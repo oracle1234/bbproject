@@ -21,7 +21,6 @@ DROP TABLE fb_member CASCADE CONSTRAINTS;
 
 
 /* Drop Sequences */
-
 DROP SEQUENCE SEQ_fb_coupon_coupon_no;
 DROP SEQUENCE SEQ_fb_coupon_book_couponbook_no;
 DROP SEQUENCE SEQ_fb_member_member_no;
@@ -40,7 +39,6 @@ DROP SEQUENCE SEQ_fb_photo_board_photo_no;
 
 
 /* Create Sequences */
-
 CREATE SEQUENCE SEQ_fb_coupon_coupon_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_fb_coupon_book_couponbook_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_fb_member_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
