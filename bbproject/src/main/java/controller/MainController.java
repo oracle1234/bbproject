@@ -6,6 +6,7 @@ public class MainController {
 	Service service;
 	
 	public MainController() {
+		// test
 	}
 
 	public void setService(Service service) {
