@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<!-- DataSource빈 선언 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin://@127.0.0.1:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="a1234" />
+	</bean>
+
+	<!-- sqlSessionFactoryBean 빈 선언 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:config/mapper.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- SqlSessionTemplate 빈 선언 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- transactionManager 설정 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 선언적 트랜색션: <tx:advice> 선언 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*Process" rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 트랜잭션 설정 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* service.Board*.*(..))"
+			id="aa" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
+	</aop:config>
+
+	<!-- DAO 빈 선언 -->
+	<bean id="dao" class="dao.DaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<!-- Service 빈 선언 -->
+	<bean id="service" class="service.ServiceImp">
+		<property name="dao" ref="dao" />
+	</bean>
+	
+	<!-- controller 등록 -->
+	<bean class="controller.MainController">
+		<property name="service" ref="service" />
+	</bean>
+
+	<!-- 파일 업로드 시작 -->
+	<!-- 첨부 파일의 임시기억장치 경로 설정 -->
+	<bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
+		<!-- <constructor-arg value="c:/temp" /> -->
+		<constructor-arg value="./src/main/webapp/files/" />
+	</bean>
+	<!-- 저장 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="uploadTempDir" ref="uploadDirResource" />
+	</bean>
+
+	<!-- 파일 다운로드 -->
+	<bean id="download" class="view.BoardDownLoadView">
+<!-- 		<property name="dao" ref="bdao" /> -->
+	</bean>
+
+	<!-- view 빈 선언 -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1"></property>
+	</bean>
+
+	<!-- ViewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2"></property>
+	</bean>
+
+
+</beans>
