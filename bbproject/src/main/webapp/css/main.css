@@ -24,7 +24,7 @@ header {
 #mainbody{
 	width: 950px;
 	min-height : 300px;
-	background-color: skyblue;
+	/* background-color: skyblue; */
 	float: left;
 }
 
