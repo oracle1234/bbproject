@@ -1,14 +1,14 @@
 package dao;
 
-import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 
 public class DaoImp implements DAO{
-	private SqlSessionFactory sqlSession;
+	private SqlSessionTemplate sqlSession;
 	
 	public DaoImp() {
 	}
 
-	public void setSqlSession(SqlSessionFactory sqlSession) {
+	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 	
