@@ -1,0 +1,21 @@
+
+
+.menu_title{
+width:250px;
+height:100px;
+background-color:black;
+/* position:absolute; */
+}
+
+.menu_title h2{
+color:white;
+}
+
+.detailmenu li{
+list-style:none;
+width:248px;
+height:50px;
+font-size:20px;
+border:solid 1px gray;
+border-top:none;
+}

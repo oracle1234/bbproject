@@ -22,4 +22,9 @@ public class MainController {
 		return "index";
 	}
 	
+	@RequestMapping("/mypage.do")
+	public String mypage(){
+		return "mypage";
+	}
+	
 }
