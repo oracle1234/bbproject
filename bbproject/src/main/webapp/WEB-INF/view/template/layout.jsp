@@ -6,35 +6,59 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title" /></title>
+
+<link rel="stylesheet" type="text/css" href="css/header.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/main.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/footer.css" />
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 </head>
 <style>
-* {
-	margin: 0px;
+body{
+	margin: auto;
+	width:1350px;
 }
 
 header {
-	width: 100%;
+	width: 1350px;
 	height: 100px;
 	background-color: aqua;
 }
 
-menu {
-	height: 670px;
+#main {
+	width : 1200px;
+	box-sizing: border-box;
+	text-align: center;
+	margin: auto;
+}
+
+.menu{
+	width: 250px;
 	background-color: teal;
-	width: 15%;
 	float: left;
 }
 
-section {
+#mainbody{
+	width: 950px;
+	min-height : 300px;
 	background-color: skyblue;
-	width: 80%;
-	height: 670px;
-	float: right;
+	float: left;
 }
 
 footer {
 	background-color: #ffffff;
 	clear: both;
+}
+
+#imgbar {
+	width: 1350px;
+	height: 350px;
+}
+
+li{
+	list-style-type: none;
 }
 </style>
 <body>
@@ -45,18 +69,15 @@ footer {
 		</p>
 	</header>
 
-	<div>
+	<div id="imgbar">
 		<tiles:insertAttribute name="img" />
 	</div>
-	<menu>
+	<div id="main">
 		<tiles:insertAttribute name="menu" />
-	</menu>
-
-	<section>
-		<p>
+		<div id="mainbody">
 			<tiles:insertAttribute name="body" />
-		</p>
-	</section>
+		</div>
+	</div>
 
 	<footer>
 		<p>
