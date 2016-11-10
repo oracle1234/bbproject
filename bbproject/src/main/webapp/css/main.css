@@ -1,0 +1,57 @@
+
+
+.menu{
+margin-left:325px;
+margin-top:550px;
+width:950px;
+height:1000px;
+}
+
+.menu h2{
+margin-left:5px;
+}
+
+.menu span{
+margin-left:5px;
+}
+
+#order{
+margin-left:100px;
+margin-top:20px;
+width: 320px;
+height:250px;
+border:solid 1px gray;
+}
+
+#cart{
+margin-left:440px;
+margin-top:20px;
+width: 320px;
+height:250px;
+border:solid 1px black;
+}
+
+#coupon{
+margin-left:100px;
+margin-top:290px;
+width: 320px;
+height:250px;
+border:solid 1px black;
+}
+
+#point{
+margin-left:440px;
+margin-top:290px;
+width: 320px;
+height:250px;
+border:solid 1px black;
+}
+
+
+#board{
+margin-left:100px;
+margin-top:560px;
+width: 320px;
+height:250px;
+border:solid 1px black;
+}

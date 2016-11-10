@@ -1,0 +1,35 @@
+
+
+.menubar{
+margin-left:75px;
+margin-top:450px;
+width:250px;
+position:absolute;
+}
+
+.menu_title{
+width:250px;
+height:100px;
+background-color:black;
+position:absolute;
+}
+
+.menu_title h2{
+color:white;
+
+}
+
+.detailmenu {
+margin-top:100px;
+position:absolute;
+}
+
+.detailmenu li{
+list-style:none;
+width:248px;
+height:50px;
+font-size:20px;
+border:solid 1px gray;
+border-top:none;
+
+}
