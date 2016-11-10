@@ -21,40 +21,24 @@ DROP TABLE fb_photo_board CASCADE CONSTRAINTS;
 
 
 /* Drop Sequences */
-DROP SEQUENCE SEQ_fb_coupon_coupon_no;
-DROP SEQUENCE SEQ_fb_coupon_book_couponbook_no;
-DROP SEQUENCE SEQ_fb_member_member_no;
-DROP SEQUENCE SEQ_fb_category_category_no;
-DROP SEQUENCE SEQ_fb_delivery_cost_fb_delivery_no;
-DROP SEQUENCE SEQ_fb_food_comment_fc_no;
-DROP SEQUENCE SEQ_fb_theme_theme_no;
-DROP SEQUENCE SEQ_fb_foods_foods_no;
-DROP SEQUENCE SEQ_fb_theme_receipe_receipe_no;
-DROP SEQUENCE SEQ_fb_comment_comment_no;
-DROP SEQUENCE SEQ_fb_qa_board_qa_no;
-DROP SEQUENCE SEQ_fb_board_board_no;
-DROP SEQUENCE SEQ_fb_photo_board_photo_no;
+DROP SEQUENCE SEQ_coupon_no;
+DROP SEQUENCE SEQ_couponbook_no;
+DROP SEQUENCE SEQ_member_no;
+DROP SEQUENCE SEQ_category_no;
+DROP SEQUENCE SEQ_fb_delivery_no;
+DROP SEQUENCE SEQ_fc_no;
+DROP SEQUENCE SEQ_theme_no;
+DROP SEQUENCE SEQ_foods_no;
+DROP SEQUENCE SEQ_receipe_no;
+DROP SEQUENCE SEQ_comment_no;
+DROP SEQUENCE SEQ_qa_no;
+DROP SEQUENCE SEQ_board_no;
+DROP SEQUENCE SEQ_photo_no;
 
 
 
 
 /* Create Sequences */
-<<<<<<< HEAD
-CREATE SEQUENCE SEQ_fb_coupon_coupon_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_coupon_book_couponbook_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_member_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_category_category_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_delivery_cost_fb_delivery_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_food_comment_fc_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_theme_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_foods_foods_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_theme_receipe_receipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_comment_comment_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_qa_board_qa_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_board_board_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_fb_photo_board_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-=======
-
 CREATE SEQUENCE SEQ_coupon_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_couponbook_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -68,7 +52,6 @@ CREATE SEQUENCE SEQ_comment_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
->>>>>>> refs/remotes/origin/master
 
 
 
