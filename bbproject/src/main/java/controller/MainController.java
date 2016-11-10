@@ -23,4 +23,9 @@ public class MainController {
 		return "index";
 	}
 	
+	
+	@RequestMapping("/board.do")
+	public String boardPage(){
+		return "board";
+	}
 }

@@ -14,6 +14,12 @@
 		<put-attribute name="img" value="/WEB-INF/view/template/imgbar.jsp" />
 	</definition>
 	
+	<definition name="board" extends="index">
+		<put-attribute name="title" value="board example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/list.jsp" />
+	</definition>
+	
 </tiles-definitions>
 
 

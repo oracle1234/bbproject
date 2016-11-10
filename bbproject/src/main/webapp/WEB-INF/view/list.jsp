@@ -7,16 +7,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: menu;
+	text-decoration: none;
+	letter-spacing: 0px;
+}
+
+#bodywrap {
+	width: 950px;
+}
+
+</style>
+
 <body>
-	<form id="frm" method="get" action="write.sb">
-		<input type="submit" id="btnWrite" value="글쓰기"/>
-	</form>
+	
 <div id="bodywrap">
-	<!-- 리스트 출력 -->
 	<table>
 		<tr>
 			<th width="5%">번호</th>
-			<th width="70%">제목</th>
+			<th width="70%">제목</th>	
 			<th width="20%">글쓴이</th>
 			<th width="15%">조회수</th>
 		</tr>
@@ -57,11 +70,11 @@
 	<c:if test="${pv.totalPage>pv.endPage}">
 		<a href="list.sb?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 	</c:if>
-<%-- 	
-	<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}" step="1">
-		<span>${i}</span>
-	</c:forEach>
---%>
-</div>
+	
+	<form id="frm" method="get" action="write.sb">
+		<input type="submit" id="btnWrite" value="글쓰기"/>
+	</form>
+	
+	</div>
 </body>
 </html>
