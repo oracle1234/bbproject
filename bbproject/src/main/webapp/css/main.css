@@ -1,57 +1,48 @@
 
-
-.menu{
-margin-left:325px;
-margin-top:550px;
-width:950px;
-height:1000px;
+body{
+	margin: auto;
+	width:1350px;
 }
 
-.menu h2{
-margin-left:5px;
+header {
+	width: 1350px;
+	height: 100px;
+	background-color: aqua;
 }
 
-.menu span{
-margin-left:5px;
+#main {
+	width : 1200px;
+	box-sizing: border-box;
+	text-align: center;
+	margin: auto;
 }
 
-#order{
-margin-left:100px;
-margin-top:20px;
-width: 320px;
-height:250px;
-border:solid 1px gray;
+.menubar{
+	width: 250px;
+	float: left;
 }
 
-#cart{
-margin-left:440px;
-margin-top:20px;
-width: 320px;
-height:250px;
-border:solid 1px black;
+#mainbody{
+	width: 950px;
+	min-height : 300px;
+	background-color: skyblue;
+	float: left;
 }
 
-#coupon{
-margin-left:100px;
-margin-top:290px;
-width: 320px;
-height:250px;
-border:solid 1px black;
+footer {
+	background-color: #ffffff;
+	clear: both;
 }
 
-#point{
-margin-left:440px;
-margin-top:290px;
-width: 320px;
-height:250px;
-border:solid 1px black;
+#imgbar {
+	width: 1350px;
+	height: 350px;
 }
 
+li{
+	list-style-type: none;
+}
 
-#board{
-margin-left:100px;
-margin-top:560px;
-width: 320px;
-height:250px;
-border:solid 1px black;
+a{
+ text-decoration: none;	
 }
