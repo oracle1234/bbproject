@@ -27,4 +27,10 @@ public class MainController {
 		return "mypage";
 	}
 	
+	@RequestMapping("/recipe.do")
+	public String recipePage(){
+		return "recipe";
+	}
+	
+	
 }
