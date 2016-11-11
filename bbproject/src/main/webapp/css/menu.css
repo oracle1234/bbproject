@@ -1,7 +1,7 @@
 .menu_title {
 	width: 250px;
 	height: 100px;
-	background-color: black;
+	background-color: #9e2b40;
 	vertical-align: middle;
 }
 
@@ -23,6 +23,8 @@
 	border-top: none;
 	font-size: x-large;
 	font-style: bold;
+	font-color: white;
+	background-color:#70a7067;
 	
 }
 

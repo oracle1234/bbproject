@@ -31,4 +31,24 @@ public class MainController {
 		return "mypage";
 	}
 	
+	@RequestMapping("/my_order.do")
+	public String myorder(){
+		return "my_order";
+	}
+	
+	@RequestMapping("/my_cart.do")
+	public String mycart(){
+		return "my_cart";
+	}
+	
+	@RequestMapping("/my_coupon.do")
+	public String mycoupon(){
+		return "my_coupon";
+	}
+	
+	@RequestMapping("/my_board.do")
+	public String myboard(){
+		return "my_board";
+	}
+	
 }
