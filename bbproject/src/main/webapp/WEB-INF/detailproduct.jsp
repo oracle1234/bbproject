@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,9 +24,9 @@ body {
 	width: 320px;
 	height: 320px;
 	position: absolute;
-	left:20px;
-	top:20px;
-	}
+	left: 20px;
+	top: 20px;
+}
 
 .info #info_table {
 	position: absolute;
@@ -73,75 +73,75 @@ body {
 	font-size: 25px;
 }
 
-#account{
+#account {
 	position: absolute;
 	top: 370px;
-	left : 20px;
+	left: 20px;
 }
 
-#account_meter th{
+#account_meter th {
 	width: 80px;
 }
 
-#account_meter td{
+#account_meter td {
 	width: 700px;
 }
 
-#product_packing{
+#product_packing {
 	background-color: gray;
 	width: 850px;
 	height: 1117px;
 	position: absolute;
 	top: 550px;
-	left:50px;
+	left: 50px;
 }
 
-
-
-#shop_review{
+.shop_review {
 	width: 850px;
-	height: 300px;
 	position: absolute;
-	top: 1730px;
-	left:50px;
+	float : left;
 	background-color: yellow;
-	
 }
 
-#review_text_span{
+#review_text_p {
 	width: 130px;
 	height: 30px;
 	background-color: blue;
-	position: absolute;
-	top: 1700px;
-	left:50px;
 	font-size: 20px;
 }
 
-#review_table{
+#review_table {
 	width: 850px;
 }
 
-
-#review_table th:nth-child(1){
+#review_table th:nth-child(1) {
 	width: 80px;
 }
-#review_table th:nth-child(2){
+
+#review_table th:nth-child(2) {
 	width: 610px;
 }
 
-#review_table th:nth-child(3){
+#review_table th:nth-child(3) {
 	width: 90px;
 }
 
-#review_table th:nth-child(4){
+#review_table th:nth-child(4) {
 	width: 100px;
 }
 
-#review_text{
-	position: absolute;
-	top : 2040px;
-	left : 120px;
+#review_wrap{
+	width: 850px;
+	height: 600px;
+	background-color: red;
+	position:relative;
+	top:1770px;
+	left : 50px;
+}
+
+.review_text{
+	position : absolute;
+	background-color: lime;
 }
 
 </style>
@@ -160,11 +160,11 @@ body {
 		});
 
 		$('#shop_downbutton').on('click', function() {
-			
+
 			var count = parseInt($('#counttext').val());
-			if(count!=1){
-			count -= 1;
-			document.getElementById("counttext").value = count;
+			if (count != 1) {
+				count -= 1;
+				document.getElementById("counttext").value = count;
 			}
 		});
 
@@ -226,52 +226,71 @@ body {
 				<img src="" alt="바로구매이미지" src=""> <img alt="장바구니이미지" src="">
 			</div>
 		</div>
-		<div id = "account">
-			<table id = "account_meter">
-			<tr>
-			<th>재료</th>
-			<td>ㅁㄴㅇㅁㅇㄴㄻㄴㅇㄻㄴㅇasdasfdadsfafsdafdsㅁㅇㄴㄻㅇㄴㄻㄴㅇㄻㄴㅇㄻㅇㄹㄴㅇㅁㄹㄴㅁㅇㄴㄻㅇㄹㄴㅇㄻㄴㄹ라ㅏㅓㅏㅣㅓㅏㅣㅏㅘㅓㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣ</td>
-			</tr>
-			
-			<tr>
-			<th>설명</th>
-			<td>ㅅㅁㄴㅇㄻㅇㅓㅏㅣㅓㅏㅣㅏㅓㅣㅏㅓㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅏㅓㅣㅏㅓㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㅓㅏㅣㅓㅏㅣㅏㄴ</td>
-			</tr>
+		<div id="account">
+			<table id="account_meter">
+				<tr>
+					<th>재료</th>
+					<td>ㅁㄴㅇㅁㅇㄴㄻㄴㅇㄻㄴㅇasdasfdadsfafsdafdsㅁㅇㄴㄻㅇㄴㄻㄴㅇㄻㄴㅇㄻㅇㄹㄴㅇㅁㄹㄴㅁㅇㄴㄻㅇㄹㄴㅇㄻㄴㄹ라ㅏㅓㅏㅣㅓㅏㅣㅏㅘㅓㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣ</td>
+				</tr>
+
+				<tr>
+					<th>설명</th>
+					<td>ㅅㅁㄴㅇㄻㅇㅓㅏㅣㅓㅏㅣㅏㅓㅣㅏㅓㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅏㅓㅣㅏㅓㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㅣㅓㅏㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㅓㅏㅣㅓㅏㅣㅏㄴ</td>
+				</tr>
 			</table>
 		</div>
-		<div id = "product_packing">
-		<img alt="배송용기설명" src="./images/delevery.png">
+		<div id="product_packing">
+			<img alt="배송용기설명" src="./images/delevery.png">
 		</div>
-		
-		<span id = "review_text_span">한줄평</span>
-		
-		<div id= "shop_review">
-		<table id = "review_table">
-			<tr>
-				<th>번호</th>
-				<th>내용</th>
-				<th>작성자</th>
-				<th>작성일</th>
-			</tr>
-			
-			<c:forEach items="${list}" var="ReviewDTO">
-				<tr>
-					<td>${ReviewDTO.fc_no}</td>
-					<td>${ReviewDTO.fc_content}</td>
-					<td>${ReviewDTO.fc_writer}</td>
-					<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle = "short" value = "${ReviewDTO.date}" /></td>
-				</tr>
-			</c:forEach>
-			
-		</table>
-		
+
+
+		<div id = review_wrap>
+
+			<div class="shop_review">
+			<p id="review_text_p">한줄평</p>
+				<table id="review_table">
+					<tr>
+						<th>번호</th>
+						<th>내용</th>
+						<th>작성자</th>
+						<th>작성일</th>
+					</tr>
+
+					<%-- <c:forEach items="${list}" var="ReviewDTO"> --%>
+					<tr>
+						<td>ReviewDTO.fc_no</td>
+						<td>ReviewDTO.fc_content}</td>
+						<td>ReviewDTO.fc_writer}</td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
+								value="${ReviewDTO.date}" /></td>
+					</tr>
+					<tr>
+						<td>ReviewDTO.fc_no</td>
+						<td>ReviewDTO.fc_content}</td>
+						<td>ReviewDTO.fc_writer}</td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
+								value="${ReviewDTO.date}" /></td>
+					</tr>
+					<tr>
+						<td>ReviewDTO.fc_no</td>
+						<td>ReviewDTO.fc_content}</td>
+						<td>ReviewDTO.fc_writer}</td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
+								value="${ReviewDTO.date}" /></td>
+					</tr>
+					<%-- </c:forEach> --%>
+
+				</table>
+
+			</div>
+
+			<div class="review_text">
+				<label>한줄평 남기기</label><input type="text" size="70px"
+					value="30자 이내로 한줄평을 작성해주세요.">
+				<button id="review_reg">등록</button>
+			</div>
 		</div>
-		
-		<div id = "review_text">
-		<label>한줄평 남기기</label><input type = "text" size="70px" value="30자 이내로 한줄평을 작성해주세요." >
-		<button id = "review_reg">등록</button>
-		</div>
-		
+
 	</div>
 
 </body>
