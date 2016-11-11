@@ -50,5 +50,10 @@ public class MainController {
 	public String myboard(){
 		return "my_board";
 	}
-	
+
+	@RequestMapping("/recipe.do")
+	public String recipePage(){
+		return "recipe";
+	}
+
 }

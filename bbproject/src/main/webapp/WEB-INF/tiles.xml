@@ -18,8 +18,10 @@
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+
 	</definition>
 	
+
 		<definition name="my_order" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
@@ -46,6 +48,13 @@
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/my_board.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+		</definition>
+
+	<definition name="receipe" extends="index">
+		<put-attribute name="title" value="receipe" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/receipe_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
+
 	</definition>
 	
 </tiles-definitions>
