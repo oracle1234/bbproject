@@ -24,8 +24,8 @@ header {
 
 #mainbody {
 	width: 950px;
-	min-height: 300px;
 	background-color: white;
+	min-height : 300px;
 	float: left;
 }
 

@@ -21,7 +21,6 @@ DROP TABLE fb_photo_board CASCADE CONSTRAINTS;
 
 
 /* Drop Sequences */
-
 DROP SEQUENCE SEQ_coupon_no;
 DROP SEQUENCE SEQ_couponbook_no;
 DROP SEQUENCE SEQ_member_no;
@@ -40,7 +39,6 @@ DROP SEQUENCE SEQ_photo_no;
 
 
 /* Create Sequences */
-
 CREATE SEQUENCE SEQ_coupon_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_couponbook_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -55,7 +53,7 @@ CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
-
+select * from fb_basket;
 
 /* Create Tables */
 
@@ -69,7 +67,6 @@ CREATE TABLE fb_request
 	delivery_condition varchar2(50) NOT NULL,
 	foods_no number NOT NULL
 );
-
 
 CREATE TABLE fb_basket
 (
@@ -85,6 +82,8 @@ CREATE TABLE fb_lately_product
 	foods_no number NOT NULL,
 	lately_no number NOT NULL
 );
+
+
 
 
 CREATE TABLE fb_coupon
