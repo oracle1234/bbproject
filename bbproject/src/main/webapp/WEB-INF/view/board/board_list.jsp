@@ -50,7 +50,7 @@
 		<table id="table">
 			<tr>
 				<th width="5%">번호</th>
-				<th width="70%">제목</th>
+				<th width="65%">제목</th>
 				<th width="10%">글쓴이</th>
 				<th width="10%">등록일</th>
 				<th width="10%">조회수</th>
@@ -58,18 +58,18 @@
 
 			<c:forEach var="dto" items="${aList}">
 				<tr>
-					<td>${dto.board_num}</td>
-					<td><c:url var="content" value="view.sb">
+					<td>${dto.board_no}</td>
+					<td><c:url var="content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="num" value="${dto.board_num}" />
-						</c:url> <c:if test="${dto.re_level!=0}">
-							<img src="images/level.gif" width="${20*dto.re_level}"
+							<c:param name="num" value="${dto.board_no}" />
+						</c:url> <c:if test="${dto.board_re_level!=0}">
+							<img src="images/level.gif" width="${20*dto.board_re_level}"
 								height="15" />
 							<img src="images/re.gif" />
-						</c:if><a href="${content}">${dto.subject}</a></td>
-					<td>${dto.writer}</td>
-					<td>${dto.reg_date}
-					<td>${dto.readcount}</td>
+						</c:if><a href="${content}">${dto.board_subject}</a></td>
+					<td>${dto.board_writer}</td>
+					<td>${dto.board_reg_date}
+					<td>${dto.board_readcount}</td>
 
 				</tr>
 			</c:forEach>
@@ -77,12 +77,12 @@
 
 		<!-- 이전 출력 시작 -->
 		<c:if test="${pv.startPage>1}">
-			<a href="list.sb?currentPage=${pv.startPage-pv.blockPage}">이전</a>
+			<a href="board_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
 		</c:if>
 
 		<!-- 페이지 출력 시작 -->
 		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-			<c:url var="currPage" value="list.sb">
+			<c:url var="currPage" value="board_list.do">
 				<c:param name="currentPage" value="${i}" />
 			</c:url>
 			<a href="${currPage}"><c:out value="${i}" /></a>
@@ -90,10 +90,10 @@
 
 		<!-- 페이지 출력 끝 -->
 		<c:if test="${pv.totalPage>pv.endPage}">
-			<a href="list.sb?currentPage=${pv.startPage+pv.blockPage}">다음</a>
+			<a href="board_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
 
-		<form id="frm" method="get" action="write.sb">
+		<form id="frm" method="get" action="board_write.do">
 			<input type="submit" id="btnWrite" value="글쓰기" />
 		</form>
 

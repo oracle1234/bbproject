@@ -22,19 +22,19 @@
 		frm.setAttribute("action","list.do");
 		frm.submit(); */
 		
-		$('#frm').attr('action', "list.sb").submit();
+		$('#frm').attr('action', "list.do").submit();
 	}
 
 	function replayRun() {
-		$('#frm').attr('action', "write.sb").submit();
+		$('#frm').attr('action', "write.do").submit();
 	}
 
 	function updateRun() {
-		$('#frm').attr('action', "update.sb").submit();
+		$('#frm').attr('action', "update.do").submit();
 	}
 
 	function deleteRun() {
-		$('#frm').attr('action', "delete.sb").submit();
+		$('#frm').attr('action', "delete.do").submit();
 	}
 	
 	</script>
@@ -56,23 +56,18 @@
 
 		<tr>
 			<th>제목</th>
-			<td colspan="3">${dto.subject}</td>
-		</tr>
-
-		<tr>
-			<th>메일</th>
-			<td colspan="3">${dto.email}</td>
+			<td colspan="3">${dto.board_subject}</td>
 		</tr>
 
 		<tr>
 			<th>내용</th>
-			<td colspan="3">${dto.content}</td>
+			<td colspan="3">${dto.board_content}</td>
 		</tr>
 
 		<tr>
 			<th>파일</th>
 			<td colspan="3"><c:if test="${!empty dto.upload}">
-					<a href="contentdownload.sb?num=${dto.num}">
+					<a href="contentdownload.do?no=${dto.board_no}">
 					 ${fn:substringAfter(dto.upload,"_")}
 					 </a>
 				</c:if> <c:if test="${empty dto.upload }">
@@ -82,11 +77,11 @@
 	</table>
 	
 	<form name="frm" id="frm" method="get" >	 
-	    <input type="hidden" name="num" value="${dto.num}" />	
+	    <input type="hidden" name="num" value="${dto.board_no}" />	
 		<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" /> 
-		<input type="hidden" name="ref" value="${dto.ref}" /> 
-		<input type="hidden" name="re_step" value="${dto.re_step}" /> 
-		<input type="hidden" name="re_level" value="${dto.re_level}" /> 
+		<input type="hidden" name="ref" value="${dto.comment_ref}" /> 
+		<input type="hidden" name="re_step" value="${dto.comment_re_step}" /> 
+		<input type="hidden" name="re_level" value="${dto.comment_re_level}" /> 
 		<input type="button" id="list" value="리스트" />
 		<input type="button" id="replay" value="답변" /> 
 		<input type="button" id="update" value="수정" /> 

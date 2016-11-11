@@ -13,13 +13,13 @@
 	$(document).ready(function() {
 
 		$('#btnList').bind('click', function() {
-			$('#frm').attr('action', 'list.sb');
+			$('#frm').attr('action', 'board_list.do');
 			$('#frm').submit();
 			// $('#frm').attr('action','list.sb').submit();
 		});
 
 		$('#btnSave').bind('click', function() {
-			$('#frm').attr('action', 'write.sb').submit();
+			$('#frm').attr('action', 'board_write.do').submit();
 		});
 
 		$('#filepath').on('change', function() {
@@ -53,11 +53,6 @@
 			</tr>
 
 			<tr>
-				<td width="20%" align="center">Email</td>
-				<td><input type="text" name="email" size="30" maxlength="30" /></td>
-			</tr>
-
-			<tr>
 				<td width="20%" align="center">제목</td>
 				<td><c:if test="${dto!=null}">답변</c:if> <input type="text"
 					name="subject" size="40" /></td>
@@ -76,12 +71,12 @@
 		<!-- 답변글일때.... -->
 
 		<c:if test="${dto!=null}">
-			<input type="hidden" name="num" id="num" value="${dto.num}" />
+			<input type="hidden" name="num" id="num" value="${dto.board_no}" />
 			<input type="hidden" name="currentPage" id="currentPage"
 				value="${currentPage}" />
-			<input type="hidden" name="ref" value="${dto.ref}" />
-			<input type="hidden" name="re_step" value="${dto.re_step}" />
-			<input type="hidden" name="re_level" value="${dto.re_level}" />
+			<input type="hidden" name="ref" value="${dto.comment_ref}" />
+			<input type="hidden" name="re_step" value="${dto.comment_re_step}" />
+			<input type="hidden" name="re_level" value="${dto.comment_re_level}" />
 		</c:if>
 
 		<input type="button" id="btnList" value="리스트" /> <input type="button"
