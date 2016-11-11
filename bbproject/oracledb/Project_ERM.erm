@@ -41,7 +41,7 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<category_name_to_export>전체</category_name_to_export>
-			<ddl_output>C:\Users\user1\Downloads\Project_ERM.sql</ddl_output>
+			<ddl_output>C:\Users\user1\Desktop\Project_ERM.sql</ddl_output>
 			<excel_output></excel_output>
 			<excel_template></excel_template>
 			<image_output></image_output>
@@ -110,7 +110,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2016-11-08 13:24:55</creation_date>
-			<updated_date>2016-11-11 16:56:06</updated_date>
+			<updated_date>2016-11-11 16:58:16</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
