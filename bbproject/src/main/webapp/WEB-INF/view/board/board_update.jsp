@@ -38,9 +38,18 @@
 	}
 </script>
 <style type="text/css">
-table {
-	width: 80%;
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: menu;
+	text-decoration: none;
+	letter-spacing: 0px;
 }
+
+/* table {
+	width: 80%;
+} */
 </style>
 </head>
 <body>

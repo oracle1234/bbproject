@@ -56,7 +56,7 @@ public class MainController {
 			mav.addObject("pv", pdto);
 			mav.addObject("aList", service.listProcess(pdto));
 		}
-		mav.setViewName("view/board/board_list");
+		mav.setViewName("board_list");
 		return mav;
 	}// end board_listMethod()
 
@@ -66,8 +66,7 @@ public class MainController {
 		fb_BoardDTO dto = service.contentProcess(num);
 		mav.addObject("dto", dto);
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("view/board/board_view");
-
+		mav.setViewName("board_view");
 		return mav;
 	}// end board_viewMethod()
 
@@ -78,11 +77,12 @@ public class MainController {
 			mav.addObject("currentPage", pv.getCurrentPage());
 			mav.addObject("dto", dto);
 		}
-		mav.setViewName("view/board/board_write");
+		mav.setViewName("board_write");
 		return mav;
 
 	}// end board_writeMethod()
-
+	
+/*
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
 	public String board_writeProMethod(fb_BoardDTO bdto, fb_CommentDTO cdto, HttpServletRequest request) {
 
@@ -121,7 +121,9 @@ public class MainController {
 		return "redirect:/board_list.do";
 
 	}
-
+	*/
+	
+/*
 	@RequestMapping("/contentdownload.do")
 	public ModelAndView downMethod(int num) {
 		ModelAndView mav = new ModelAndView();
@@ -129,13 +131,14 @@ public class MainController {
 		mav.setViewName("download");
 		return mav;
 	}// end downMethod()
-
+*/
+	
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)
 	public ModelAndView board_updateMethod(int num, int currentPage) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", service.updateSelectProcess(num));
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("view/board/update");
+		mav.setViewName("board_update");
 		return mav;
 
 	}// end board_updateMethod()
@@ -145,11 +148,10 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		service.updateProcess(dto, request);
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("redirect:/board_list.do");
-
+		mav.setViewName("board_list");
 		return mav;
 
-	}
+	}// end board_updateProMethod()
 
 	@RequestMapping("/board_delete.do")
 	public ModelAndView board_deleteMethod(int num, int currentPage, HttpServletRequest request) {
@@ -159,10 +161,10 @@ public class MainController {
 		fb_PageDTO pv = new fb_PageDTO(service.countProcess());
 		if (pv.getTotalPage() < currentPage)
 			mav.addObject("currentPage", pv.getTotalPage());
-		mav.setViewName("redirect:/board_list.do");
+		mav.setViewName("board_list");
 		return mav;
 
-	}//end deleteMethod()
+	}// end deleteMethod()
 
 	@RequestMapping("/mypage.do")
 	public String mypage() {
