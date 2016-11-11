@@ -20,10 +20,10 @@
 		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
 	</definition>
 	
-	<definition name="receipe" extends="index">
-		<put-attribute name="title" value="receipe" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/receipe_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
+	<definition name="recipe" extends="index">
+		<put-attribute name="title" value="recipe" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/recipe_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/recipe.jsp" />
 	</definition>
 	
 </tiles-definitions>
