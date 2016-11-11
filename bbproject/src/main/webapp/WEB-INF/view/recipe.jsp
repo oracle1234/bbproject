@@ -10,9 +10,10 @@
 
 .recipebox {
 	width: 700px;
-	height: 300px;
+	height: 250px;
 	background-color: red;
 	margin: auto;
+	margin-top: 10px;
 }
 
 .recipe_over {
@@ -23,27 +24,35 @@
 	display: block;
 }
 
-
-.recipe_sub1{
-	width : 250px;
+.recipe_sub1 {
+	width: 250px;
 	float: left;
 	position: relative;
 }
 
-.recipe_sub2{
-	width : 450px;
-	height : 250px;
+.recipe_sub2 {
+	width: 450px;
+	height: 250px;
 	background-color: green;
 	float: right;
-	margin-top: 25px;
+	position: relative;
 }
 
 span img {
-	width : 250px;
-	height : 250px;
+	width: 250px;
+	height: 250px;
 	position: absolute;
 	left: 0;
-	top: 25px;
+}
+
+.list_detail{
+	position: absolute;
+	top: 40px;
+	left: 40px;
+}
+
+.list_detail p {
+	line-height: 30px;
 }
 
 
@@ -55,6 +64,9 @@ span img {
 			$("span #recipe_img").removeClass("recipe_over");
 			$("span #recipe_img").addClass("test");
 		});
+		
+// 		alert($("#barimg").attr("src", "images/mypage_main.png"));
+		
 	});
 </script>
 
@@ -70,15 +82,39 @@ span img {
 				<a href="#" class="recipe">
 					<div class="recipe_sub1">
 						<span> <img id="recipe_img" class="recipe_over" alt=""
-							src="images/thumb_over.png"> <img id="imgtt" alt=""
+							src="images/thumb_over.png"> <img alt=""
 							src="images/thumb_over.png" />
 						</span>
 					</div>
 					<div class="recipe_sub2">
-						<p>제목</p> 
-						<p>작성자</p>
+						<div class="list_detail">
+							<p>레시피 이름</p>
+							<p>간단 설명</p>
+							<p>~인 분</p>
+							<p>조리 난이도</p>
+							<p>조리 시간</p>
+						</div>
 					</div>
-
+				</a>
+			</div>
+			
+			<div class="recipebox">
+				<a href="#" class="recipe">
+					<div class="recipe_sub1">
+						<span> <img id="recipe_img" class="recipe_over" alt=""
+							src="images/thumb_over.png"> <img alt=""
+							src="images/thumb_over.png" />
+						</span>
+					</div>
+					<div class="recipe_sub2">
+						<div class="list_detail">
+							<p>레시피 이름</p>
+							<p>간단 설명</p>
+							<p>~인 분</p>
+							<p>조리 난이도</p>
+							<p>조리 시간</p>
+						</div>
+					</div>
 				</a>
 			</div>
 		</div>

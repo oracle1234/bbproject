@@ -25,7 +25,7 @@ header {
 #mainbody {
 	width: 950px;
 	min-height: 300px;
-	background-color: skyblue;
+	background-color: white;
 	float: left;
 }
 
@@ -41,4 +41,8 @@ footer {
 
 li {
 	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
 }

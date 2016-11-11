@@ -10,13 +10,20 @@
 
 </style>
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
-<!-- <link rel="stylesheet" type="text/css" href="css/header.css" media="all" /> -->
+<link rel="stylesheet" type="text/css" href="css/header.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/main.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
-<!-- <link rel="stylesheet" type="text/css" href="css/footer.css" /> -->
+<link rel="stylesheet" type="text/css" href="css/footer.css" />
+<link rel="stylesheet" type="text/css" href="css/mypage.css" />
+<link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
+<link rel="stylesheet" type="text/css" href="css/my_order.css" />
+<link rel="stylesheet" type="text/css" href="css/my_cart.css" />
+<link rel="stylesheet" type="text/css" href="css/my_coupon.css" />
+<link rel="stylesheet" type="text/css" href="css/my_board.css" />
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
+
 <body>
 	<header>
 		<br />
