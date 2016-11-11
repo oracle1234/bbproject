@@ -70,7 +70,6 @@ CREATE TABLE fb_request
 	foods_no number NOT NULL
 );
 
-
 CREATE TABLE fb_basket
 (
 	member_no number NOT NULL,
@@ -85,6 +84,8 @@ CREATE TABLE fb_lately_product
 	foods_no number NOT NULL,
 	lately_no number NOT NULL
 );
+
+
 
 
 CREATE TABLE fb_coupon

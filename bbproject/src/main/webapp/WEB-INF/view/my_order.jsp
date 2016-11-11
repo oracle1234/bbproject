@@ -27,7 +27,7 @@
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td><img id="foodsmall_photo" alt="" src=""></td>
 					<td></td>
 					<td></td>
 					<td></td>

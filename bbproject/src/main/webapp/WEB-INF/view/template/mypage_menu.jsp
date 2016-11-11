@@ -4,10 +4,10 @@
 		<p>MYPAGE</p>
 	</div>
 	<ul class="detailmenu">
-		<li><a href="order.bb">ORDER</a></li>
-		<li><a href="cart.bb">CART</a></li>
-		<li><a href="coupon.bb">COUPON</a></li>
-		<li><a href="point.bb">POINT</a></li>
-		<li><a href="board.bb">BOARD</a></li>
+		<li><a href="my_order.do">ORDER</a></li>
+		<li><a href="my_cart.do">CART</a></li>
+		<li><a href="my_coupon.do">COUPON</a></li>
+		<li><a href="my_point.do">POINT</a></li>
+		<li><a href="my_board.do">BOARD</a></li>
 	</ul>
 </div>
