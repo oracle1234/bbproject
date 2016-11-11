@@ -22,6 +22,9 @@
 <link rel="stylesheet" type="text/css" href="css/my_board.css" />
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+
 </head>
 
 <body>

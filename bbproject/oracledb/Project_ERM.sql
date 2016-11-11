@@ -11,7 +11,7 @@ DROP TABLE fb_food_comment CASCADE CONSTRAINTS;
 DROP TABLE fb_foods CASCADE CONSTRAINTS;
 DROP TABLE fb_category CASCADE CONSTRAINTS;
 DROP TABLE fb_delivery_cost CASCADE CONSTRAINTS;
-DROP TABLE fb_theme_receipe CASCADE CONSTRAINTS;
+DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
 DROP TABLE fb_comment CASCADE CONSTRAINTS;
 DROP TABLE fb_qa_board CASCADE CONSTRAINTS;
@@ -21,7 +21,6 @@ DROP TABLE fb_photo_board CASCADE CONSTRAINTS;
 
 
 /* Drop Sequences */
-
 DROP SEQUENCE SEQ_coupon_no;
 DROP SEQUENCE SEQ_couponbook_no;
 DROP SEQUENCE SEQ_member_no;
@@ -30,7 +29,7 @@ DROP SEQUENCE SEQ_fb_delivery_no;
 DROP SEQUENCE SEQ_fc_no;
 DROP SEQUENCE SEQ_theme_no;
 DROP SEQUENCE SEQ_foods_no;
-DROP SEQUENCE SEQ_receipe_no;
+DROP SEQUENCE SEQ_recipe_no;
 DROP SEQUENCE SEQ_comment_no;
 DROP SEQUENCE SEQ_qa_no;
 DROP SEQUENCE SEQ_board_no;
@@ -40,7 +39,6 @@ DROP SEQUENCE SEQ_photo_no;
 
 
 /* Create Sequences */
-
 CREATE SEQUENCE SEQ_coupon_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_couponbook_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -49,13 +47,13 @@ CREATE SEQUENCE SEQ_fb_delivery_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_fc_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_foods_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_receipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+CREATE SEQUENCE SEQ_recipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_comment_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
-
+select * from fb_basket;
 
 /* Create Tables */
 
@@ -173,18 +171,18 @@ CREATE TABLE fb_foods
 );
 
 
-CREATE TABLE fb_theme_receipe
+CREATE TABLE fb_theme_recipe
 (
-	receipe_no number NOT NULL,
+	recipe_no number NOT NULL,
 	theme_no number NOT NULL,
-	receipe_name varchar2(500) NOT NULL,
-	receipe_material varchar2(500) NOT NULL,
-	receipe_explaination varchar2(500) NOT NULL,
+	recipe_name varchar2(500) NOT NULL,
+	recipe_material varchar2(500) NOT NULL,
+	recipe_explaination varchar2(500) NOT NULL,
 	picture varchar2(500) NOT NULL,
 	portion varchar2(50) NOT NULL,
 	time varchar2(50) NOT NULL,
 	difficulty varchar2(10) NOT NULL,
-	PRIMARY KEY (receipe_no)
+	PRIMARY KEY (recipe_no)
 );
 
 
@@ -285,7 +283,7 @@ ALTER TABLE fb_foods
 ;
 
 
-ALTER TABLE fb_theme_receipe
+ALTER TABLE fb_theme_recipe
 	ADD FOREIGN KEY (theme_no)
 	REFERENCES fb_theme (theme_no)
 ;

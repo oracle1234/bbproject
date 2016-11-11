@@ -49,3 +49,8 @@ insert into fb_basket values
 (2, 2, 1);
 insert into fb_basket values
 (1, 1, 1);
+
+select foods_no, price, amount
+from fb_foods, fb_basket, fb_member
+where fb_member=1
+and a.fb_foods=b.fb_basket

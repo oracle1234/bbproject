@@ -40,25 +40,25 @@
 	</bean>
 
 	<!-- 선언적 트랜색션: <tx:advice> 선언 -->
-<!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager"> -->
-<!-- 		<tx:attributes> -->
-<!-- 			<tx:method name="*Process" rollback-for="java.lang.Exception" /> -->
-<!-- 		</tx:attributes> -->
-<!-- 	</tx:advice> -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<tx:attributes>
+	<tx:method name="*Process" rollback-for="java.lang.Exception" />
+	</tx:attributes>
+	</tx:advice>
 
 	<!-- 트랜잭션 설정 -->
-<!-- 	<aop:config> -->
-<!-- 		<aop:pointcut expression="execution(* service.Board*.*(..))" -->
-<!-- 			id="aa" /> -->
-<!-- 		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" /> -->
-<!-- 	</aop:config> -->
+	<aop:config>
+		<aop:pointcut expression="execution(* service.Board*.*(..))"
+			id="aa" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
+	</aop:config>
 
 	<!-- DAO 빈 선언 -->
-	<bean id="dao" class="dao.DaoImp">
+	<bean id="dao" class="dao.fb_BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	<!-- Service 빈 선언 -->
-	<bean id="service" class="service.ServiceImp">
+	<bean id="service" class="service.fb_BoardServiceImp">
 		<property name="dao" ref="dao" />
 	</bean>
 
@@ -84,23 +84,25 @@
 	<bean id="download" class="view.BoardDownLoadView">
 		<!-- <property name="dao" ref="bdao" /> -->
 	</bean>
-	
+
 	<!-- tiles -->
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/tiles.xml</value>
 			</list>
-		</property>	
+		</property>
 	</bean>
 
 	<!-- view 빈 선언 -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="1"></property>
 	</bean>
-	
+
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView" />
 		<property name="order" value="1"></property>
 	</bean>
 

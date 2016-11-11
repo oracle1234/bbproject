@@ -12,16 +12,21 @@
 		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/imgbar.jsp" />
 	</definition>
-	
+
+
+	<definition name="board" extends="index">
+		<put-attribute name="title" value="board example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/board/board_list.jsp" />
+	</definition>
+
 	<definition name="mypage" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
-
 	</definition>
 	
-
 		<definition name="my_order" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
@@ -54,9 +59,11 @@
 		<put-attribute name="title" value="receipe" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/receipe_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
 
 	</definition>
-	
+
 </tiles-definitions>
 
 
