@@ -1,11 +1,11 @@
 package dto;
 
-public class fb_BasketDTO {
+public class BasketDTO {
 	
 	private int amount, price;
 	private String foods_name; 
 
-	public fb_BasketDTO() {
+	public BasketDTO() {
 	}
 	
 	public int getAmount() {

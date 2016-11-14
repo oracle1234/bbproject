@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
-import dto.fb_BoardDTO;
-import dto.fb_CommentDTO;
-import dto.fb_PageDTO;
+import dto.BoardDTO;
+import dto.CommentDTO;
+import dto.PageDTO;
 
-public class fb_BoardDaoImp implements fb_BoardDAO {
+public class BoardDaoImp implements BoardDAO {
 	private SqlSessionTemplate sqlSession;
 
-	public fb_BoardDaoImp() {
+	public BoardDaoImp() {
 
 	}
 
@@ -22,11 +22,11 @@ public class fb_BoardDaoImp implements fb_BoardDAO {
 	@Override
 	public int count() {
 
-		return sqlSession.selectOne("board.count");
+		return sqlSession.selectOne("board.readcount");
 	}
 
 	@Override
-	public List<fb_BoardDTO> list(fb_PageDTO pv) {
+	public List<BoardDTO> list(PageDTO pv) {
 
 		return sqlSession.selectList("board.list", pv);
 	}
@@ -38,31 +38,31 @@ public class fb_BoardDaoImp implements fb_BoardDAO {
 	}
 
 	@Override
-	public fb_BoardDTO content(int num) {
+	public BoardDTO content(int num) {
 
 		return sqlSession.selectOne("board.content", num);
 	}
 
 	@Override
-	public void reStepCount(fb_CommentDTO dto) {
+	public void reStepCount(CommentDTO dto) {
 		sqlSession.update("board.reStepCount", dto);
 
 	}
 
 	@Override
-	public void save(fb_CommentDTO dto) {
+	public void save(CommentDTO dto) {
 		sqlSession.insert("board.save", dto);
 
 	}
 
 	@Override
-	public fb_BoardDTO updateNum(int num) {
+	public BoardDTO updateNum(int num) {
 
 		return sqlSession.selectOne("board.content", num);
 	}
 
 	@Override
-	public void update(fb_BoardDTO dto) {
+	public void update(BoardDTO dto) {
 		sqlSession.update("board.update", dto);
 
 	}

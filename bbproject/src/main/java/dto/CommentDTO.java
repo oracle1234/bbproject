@@ -2,7 +2,7 @@ package dto;
 
 import java.util.Date;
 
-public class fb_CommentDTO {
+public class CommentDTO {
 	private int comment_no, board_no, photo_no, qa_no;
 	private int comment_ref, comment_re_step, comment_re_level;
 	private String comment_content, comment_writer;

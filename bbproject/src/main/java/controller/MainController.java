@@ -7,28 +7,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import dto.fb_BoardDTO;
-import dto.fb_CommentDTO;
-import dto.fb_PageDTO;
-import service.fb_BoardService;
+import dto.BoardDTO;
+import dto.CommentDTO;
+import dto.PageDTO;
+import service.BoardService;
 
 @Controller
 public class MainController {
-	private fb_BoardService service;
+	private BoardService service;
 	private int currentPage;
-	private fb_PageDTO pdto;
+	private PageDTO pdto;
 
 	public MainController() {
 
 	}
 
-	public void setService(fb_BoardService service) {
+	public void setService(BoardService service) {
 		this.service = service;
 	}
 
-	//[자유게시판]
+	// [자유게시판]
 	@RequestMapping("/board_list.do")
-	public ModelAndView board_listMethod(fb_PageDTO pv) {
+	public ModelAndView board_listMethod(PageDTO pv) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -39,7 +39,7 @@ public class MainController {
 			else
 				currentPage = pv.getCurrentPage();
 
-			pdto = new fb_PageDTO(currentPage, totalRecord);
+			pdto = new PageDTO(currentPage, totalRecord);
 
 			mav.addObject("pv", pdto);
 			mav.addObject("aList", service.listProcess(pdto));
@@ -51,7 +51,7 @@ public class MainController {
 	@RequestMapping("/board_view.do")
 	public ModelAndView board_viewMethod(int currentPage, int num) {
 		ModelAndView mav = new ModelAndView();
-		fb_BoardDTO dto = service.contentProcess(num);
+		BoardDTO dto = service.contentProcess(num);
 		mav.addObject("dto", dto);
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("board_view");
@@ -59,7 +59,7 @@ public class MainController {
 	}// end board_viewMethod()
 
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
-	public ModelAndView board_writeMethod(fb_PageDTO pv, fb_CommentDTO dto) {
+	public ModelAndView board_writeMethod(PageDTO pv, CommentDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		if (dto.getComment_ref() != 0) {
 			mav.addObject("currentPage", pv.getCurrentPage());
@@ -69,40 +69,6 @@ public class MainController {
 		return mav;
 
 	}// end board_writeMethod()
-
-	/*
-	 * @RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
-	 * public String board_writeProMethod(fb_BoardDTO bdto, fb_CommentDTO cdto,
-	 * HttpServletRequest request) {
-	 * 
-	 * MultipartFile file = bdto.getFilename(); if (!file.isEmpty()) { String
-	 * fileName = file.getOriginalFilename();
-	 * 
-	 * // 중복파일 피해야 하니 난수 발생 UUID random = UUID.randomUUID(); String root =
-	 * request.getSession().getServletContext().getRealPath("/"); String
-	 * saveDirectory = root + "temp" + File.separator; File fe = new
-	 * File(saveDirectory); if (!fe.exists()) fe.mkdir();
-	 * 
-	 * File ff = new File(saveDirectory, random + "_" + fileName); try {
-	 * FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff)); }
-	 * catch (FileNotFoundException e) {
-	 * 
-	 * e.printStackTrace(); } catch (IOException e) {
-	 * 
-	 * e.printStackTrace(); } bdto.setUpload(random + "_" + fileName); }
-	 * bdto.setBoard_ip(request.getRemoteAddr());
-	 * 
-	 * // 답변글이면 if (cdto.getComment_ref() != 0) { service.reStepProcess(cdto); }
-	 * else { service.insertProcess(cdto); } return "redirect:/board_list.do";
-	 * 
-	 * }
-	 */
-
-	/*
-	 * @RequestMapping("/contentdownload.do") public ModelAndView downMethod(int
-	 * num) { ModelAndView mav = new ModelAndView(); mav.addObject("num", num);
-	 * mav.setViewName("download"); return mav; }// end downMethod()
-	 */
 
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)
 	public ModelAndView board_updateMethod(int num, int currentPage) {
@@ -115,7 +81,7 @@ public class MainController {
 	}// end board_updateMethod()
 
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.POST)
-	public ModelAndView board_updateProMethod(fb_BoardDTO dto, int currentPage, HttpServletRequest request) {
+	public ModelAndView board_updateProMethod(BoardDTO dto, int currentPage, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		service.updateProcess(dto, request);
 		mav.addObject("currentPage", currentPage);
@@ -129,17 +95,17 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		service.deleteProcess(num, request);
 
-		fb_PageDTO pv = new fb_PageDTO(service.countProcess());
+		PageDTO pv = new PageDTO(service.countProcess());
 		if (pv.getTotalPage() < currentPage)
 			mav.addObject("currentPage", pv.getTotalPage());
 		mav.setViewName("board_list");
 		return mav;
 
 	}// end deleteMethod()
-	
-	//[QA게시판]
+
+	// [QA게시판]
 	@RequestMapping("/qa_list.do")
-	public ModelAndView qa_listMethod(fb_PageDTO pv) {
+	public ModelAndView qa_listMethod(PageDTO pv) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -150,16 +116,14 @@ public class MainController {
 			else
 				currentPage = pv.getCurrentPage();
 
-			pdto = new fb_PageDTO(currentPage, totalRecord);
+			pdto = new PageDTO(currentPage, totalRecord);
 
 			mav.addObject("pv", pdto);
-			mav.addObject("aList", service.listProcess(pdto));
+			mav.addObject("aList2", service.listProcess(pdto));
 		}
-		mav.setViewName("board_list");
+		mav.setViewName("qa_list");
 		return mav;
 	}// end board_listMethod()
-	
-	
 
 	@RequestMapping("/mypage.do")
 	public String mypage() {

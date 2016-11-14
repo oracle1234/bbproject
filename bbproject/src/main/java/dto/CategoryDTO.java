@@ -1,11 +1,11 @@
 package dto;
 
-public class fb_CategoryDTO {
+public class CategoryDTO {
 
 	private int category_no;
 	private String category_name;
 	
-	public fb_CategoryDTO() {
+	public CategoryDTO() {
 	
 	}
 

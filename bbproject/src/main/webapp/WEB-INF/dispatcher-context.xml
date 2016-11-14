@@ -56,11 +56,11 @@
 	</aop:config>
 
 	<!-- DAO 빈 선언 -->
-	<bean id="dao" class="dao.fb_BoardDaoImp">
+	<bean id="dao" class="dao.BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	<!-- Service 빈 선언 -->
-	<bean id="service" class="service.fb_BoardServiceImp">
+	<bean id="service" class="service.BoardServiceImp">
 		<property name="dao" ref="dao" />
 	</bean>
 

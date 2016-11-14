@@ -1,6 +1,6 @@
 package dto;
 
-public class fb_PageDTO {
+public class PageDTO {
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
 	private int blockCount = 15; // 한 페이지에 보여줄 레코드수
@@ -12,16 +12,16 @@ public class fb_PageDTO {
 	private int endPage; // 한 블록의 끝페이지 번호
 	private int number;
 
-	public fb_PageDTO() {
+	public PageDTO() {
 
 	}
 
-	public fb_PageDTO(int totalCount) {
+	public PageDTO(int totalCount) {
 		// 총페이지수
 		totalPage = totalCount / blockCount + (totalCount % blockCount == 0 ? 0 : 1);
 	}
 
-	public fb_PageDTO(int currentPage, int totalCount) {
+	public PageDTO(int currentPage, int totalCount) {
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
 
