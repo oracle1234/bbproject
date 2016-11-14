@@ -14,7 +14,6 @@
 		<put-attribute name="img" value="/WEB-INF/view/template/imgbar.jsp" />
 	</definition>
 
-
 	<definition name="board_list" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
