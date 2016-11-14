@@ -7,17 +7,30 @@
 #shopbody_wrap {
 	width: 1200px;
 	height: 810px;
+	background-color: blue;
 }
 
 #shopbody_menu {
 	width: 950px;
 	height: 810px;
+	background-color: red;
 }
 
-#shop_table{
-	text-align: center;	
+#shop_table {
+	text-align: center;
+	float: left;
 }
 
+#prod_img {
+	width: 312px;
+	height: 200px;
+	background-color: gray;
+}
+
+#prod_img a img {
+	width: 312px;
+	height: 200px;
+}
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,35 +41,36 @@
 	<div id="shop_wrap">
 
 		<div id="shop_menu">
-			<table id="shop_table">
-				<tr>
-					<td><div class="prod_img">
-							<a href=""><img alt="상품이미지" src="ban_images/gosarinamul.jpg"
-								width="237" height="155"> </a>
+			<c:forEach items="${list}" var="FoodsDTO">
+				<table id="shop_table">
+					<tr>
+						<td><div class="prod_img">
+								<a href=""><img alt="상품이미지" src="ban_images/gosarinamul.jpg"
+									width="230" height="155"> </a>
 
-						</div>
+							</div>
 
-						<p class="name">
-							<a href="">고사리나물(350g)</a>
-						</p>
-						<p class="price">
-							3000<span> 원</span>
-						</p>
-						<p class="count">
+							<p class="name">
+								<a href="">${FoodsDTO.foods_name}</a>
+							</p>
+							<p class="price">
+								${FoodsDTO.price}<span> 원</span>
+							</p>
+							<p class="count">
 
-							<select name="count_select">
+								<select name="count_select">
 
-								<c:forEach var="i" begin="1" end="20" step="1">
-									<option value="i">${i}</option>
-								</c:forEach>
+									<c:forEach var="i" begin="1" end="20" step="1">
+										<option value="i">${i}</option>
+									</c:forEach>
 
-							</select>
-						</p>
-						<img alt = "장바구니 이미지" src = "" width="237" height=""></td>
-				</tr>
+								</select>
+							</p> <img alt="장바구니 이미지" src="" width="237" height=""></td>
+					</tr>
 
 
-			</table>
+				</table>
+			</c:forEach>
 		</div>
 	</div>
 </body>

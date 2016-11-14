@@ -25,6 +25,7 @@
 			<list>
 				<value>classpath*:config/mapper.xml</value>
 				<value>classpath*:config/mapper_recipe.xml</value>
+				<value>classpath*:config/shop_mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -58,9 +59,16 @@
 	<bean id="dao" class="dao.fb_BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	<bean id="shopDao" class="dao.ShopDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
 	<!-- Service 빈 선언 -->
 	<bean id="service" class="service.fb_BoardServiceImp">
 		<property name="dao" ref="dao" />
+	</bean>
+	
+	<bean id="shopService" class="service.ShopSercviceImp">
+		<property name="dao" ref="shopDao" />
 	</bean>
 
 	<!-- controller 등록 -->
@@ -69,7 +77,9 @@
 	</bean>
 	<bean class="controller.ProductController"></bean>
 	<bean class="controller.RecipeController"></bean>
-	<bean class="controller.ShopController"></bean>
+	<bean class="controller.ShopController">
+		<property name="service" ref="shopService"></property>
+	</bean>
 
 	<!-- 파일 업로드 시작 -->
 	<!-- 첨부 파일의 임시기억장치 경로 설정 -->

@@ -54,3 +54,8 @@ select foods_no, price, amount
 from fb_foods, fb_basket, fb_member
 where fb_member=1
 and a.fb_foods=b.fb_basket
+
+
+select * from fb_foods where category_no = 1 order by foods_no desc
+
+

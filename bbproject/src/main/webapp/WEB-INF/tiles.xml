@@ -15,8 +15,7 @@
 
 	<definition name="board_list" extends="index">
 		<put-attribute name="title" value="board example" />
-		<put-attribute name="menu"
-			value="/WEB-INF/view/template/board_menu.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/board/board_list.jsp" />
 	</definition>
 	
@@ -40,11 +39,9 @@
 
 	<definition name="mypage" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
-		<put-attribute name="menu"
-			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
-		<put-attribute name="img"
-			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 	
 	<definition name="recipe" extends="index">
@@ -92,22 +89,21 @@
 			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 	
-	
 	<definition name="shop_soup" extends="index">
-		<put-attribute name="title" value="soup" />
-		<put-attribute name="menu" value="/WEB-INF/view/shop/shop_menu.jsp" />
+		<put-attribute name="title" value="soup page" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop/shopbody_soup.jsp" />
 	</definition>
 	
 	<definition name="shop_dish" extends="index">
-		<put-attribute name="title" value="dish" />
-		<put-attribute name="menu" value="/WEB-INF/view/shop/shop_menu.jsp" />
+		<put-attribute name="title" value="dish page" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop/shopbody_dish.jsp" />
 	</definition>
 	
 	<definition name="shop_kimchi" extends="index">
-		<put-attribute name="title" value="kimchi" />
-		<put-attribute name="menu" value="/WEB-INF/view/shop/shop_menu.jsp" />
+		<put-attribute name="title" value="kimchi page" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop/shopbody_kimchi.jsp" />
 	</definition>
 	
