@@ -2,7 +2,7 @@ package dto;
 
 public class fb_BasketDTO {
 	
-	private int amount, price;
+	private int amount, price, point;
 	private String foods_name; 
 
 	public fb_BasketDTO() {
@@ -32,6 +32,12 @@ public class fb_BasketDTO {
 		this.foods_name = foods_name;
 	}
 	
+	public int getPoint() {
+		return point;
+	}
 	
+	public void setPoint(int point) {
+		this.point = point;
+	}
 	
 }//end class

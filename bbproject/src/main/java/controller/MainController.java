@@ -19,8 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import dto.fb_BoardDTO;
 import dto.fb_CommentDTO;
 import dto.fb_PageDTO;
+import service.fb_BasketService;
 import service.fb_BoardService;
-
 
 @Controller
 public class MainController {
@@ -28,12 +28,18 @@ public class MainController {
 	private int currentPage;
 	private fb_PageDTO pdto;
 
+	private fb_BasketService service2;
+
 	public MainController() {
 
 	}
 
 	public void setService(fb_BoardService service) {
 		this.service = service;
+	}
+
+	public void setService2(fb_BasketService service2) {
+		this.service2 = service2;
 	}
 
 	@RequestMapping("/index.do")
@@ -83,58 +89,41 @@ public class MainController {
 		return mav;
 
 	}// end board_writeMethod()
-	
-/*
-	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
-	public String board_writeProMethod(fb_BoardDTO bdto, fb_CommentDTO cdto, HttpServletRequest request) {
 
-		MultipartFile file = bdto.getFilename();
-		if (!file.isEmpty()) {
-			String fileName = file.getOriginalFilename();
+	/*
+	 * @RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
+	 * public String board_writeProMethod(fb_BoardDTO bdto, fb_CommentDTO cdto,
+	 * HttpServletRequest request) {
+	 * 
+	 * MultipartFile file = bdto.getFilename(); if (!file.isEmpty()) { String
+	 * fileName = file.getOriginalFilename();
+	 * 
+	 * // 중복파일 피해야 하니 난수 발생 UUID random = UUID.randomUUID(); String root =
+	 * request.getSession().getServletContext().getRealPath("/"); String
+	 * saveDirectory = root + "temp" + File.separator; File fe = new
+	 * File(saveDirectory); if (!fe.exists()) fe.mkdir();
+	 * 
+	 * File ff = new File(saveDirectory, random + "_" + fileName); try {
+	 * FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff)); }
+	 * catch (FileNotFoundException e) {
+	 * 
+	 * e.printStackTrace(); } catch (IOException e) {
+	 * 
+	 * e.printStackTrace(); } bdto.setUpload(random + "_" + fileName); }
+	 * bdto.setBoard_ip(request.getRemoteAddr());
+	 * 
+	 * // 답변글이면 if (cdto.getComment_ref() != 0) { service.reStepProcess(cdto); }
+	 * else { service.insertProcess(cdto); } return "redirect:/board_list.do";
+	 * 
+	 * }
+	 */
 
-			// 중복파일 피해야 하니 난수 발생
-			UUID random = UUID.randomUUID();
-			String root = request.getSession().getServletContext().getRealPath("/");
-			String saveDirectory = root + "temp" + File.separator;
-			File fe = new File(saveDirectory);
-			if (!fe.exists())
-				fe.mkdir();
+	/*
+	 * @RequestMapping("/contentdownload.do") public ModelAndView downMethod(int
+	 * num) { ModelAndView mav = new ModelAndView(); mav.addObject("num", num);
+	 * mav.setViewName("download"); return mav; }// end downMethod()
+	 */
 
-			File ff = new File(saveDirectory, random + "_" + fileName);
-			try {
-				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
-			} catch (FileNotFoundException e) {
-
-				e.printStackTrace();
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-			bdto.setUpload(random + "_" + fileName);
-		}
-		bdto.setBoard_ip(request.getRemoteAddr());
-
-		// 답변글이면
-		if (cdto.getComment_ref() != 0) {
-			service.reStepProcess(cdto);
-		} else {
-			service.insertProcess(cdto);
-		}
-		return "redirect:/board_list.do";
-
-	}
-	*/
-	
-/*
-	@RequestMapping("/contentdownload.do")
-	public ModelAndView downMethod(int num) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("num", num);
-		mav.setViewName("download");
-		return mav;
-	}// end downMethod()
-*/
-	
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)
 	public ModelAndView board_updateMethod(int num, int currentPage) {
 		ModelAndView mav = new ModelAndView();
@@ -172,31 +161,37 @@ public class MainController {
 	public String mypage() {
 		return "mypage";
 	}
-	
+
 	@RequestMapping("/recipe.do")
-	public String recipePage(){
+	public String recipePage() {
 		return "recipe";
 	}
-	
 
 	@RequestMapping("/my_order.do")
-	public String myorder(){
+	public String myorder() {
 		return "my_order";
 	}
-	
+
 	@RequestMapping("/my_cart.do")
-	public String mycart(){
-		return "my_cart";
-	}
-	
+	public ModelAndView listMethod(int member_no) {
+		// num=1;
+		System.out.println("test"+member_no);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("aList", service2.listProcess(member_no));
+
+		mav.setViewName("my_cart");
+		return mav;
+	}// end listMethod()
+
 	@RequestMapping("/my_coupon.do")
-	public String mycoupon(){
+	public String mycoupon() {
 		return "my_coupon";
 	}
-	
+
 	@RequestMapping("/my_board.do")
-	public String myboard(){
+	public String myboard() {
 		return "my_board";
 	}
-	
+
 }

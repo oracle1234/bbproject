@@ -18,7 +18,7 @@
 			</div>
 			<div id="cart">
 				<p>
-					<a href="my_cart.do">장바구니</a>
+					<a href="my_cart.do?member_no=1">장바구니</a>
 				</p>
 				<span>고객님께서 장바구니에 담으신 상품의 내용을 확인하실 수 있습니다.</span>
 			</div>

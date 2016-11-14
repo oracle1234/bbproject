@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="basket">
+
+	<select id="list" resultType="dto.fb_BasketDTO" parameterType="int">
+	<![CDATA[ 
+		select f.foods_name, f.price, b.amount, m.point
+		from fb_member m, fb_foods f, fb_basket b
+		where m.member_no=#{member_no}
+		and m.member_no=b.member_no
+		and b.foods_no=f.foods_no
+		]]>
+	</select>
+</mapper>

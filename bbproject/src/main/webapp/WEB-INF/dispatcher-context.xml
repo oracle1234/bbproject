@@ -24,6 +24,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath*:config/mapper.xml</value>
+				<value>classpath*:config/mapper2.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -52,19 +53,31 @@
 			id="aa" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
 	</aop:config>
+	<aop:config>
+		<aop:pointcut expression="execution(* service.Basket*.*(..))"
+			id="bb" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="bb" />
+	</aop:config>
 
 	<!-- DAO 빈 선언 -->
 	<bean id="dao" class="dao.fb_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<bean id="BasketDao" class="dao.fb_BasketDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	<!-- Service 빈 선언 -->
 	<bean id="service" class="service.fb_BoardServiceImp">
 		<property name="dao" ref="dao" />
 	</bean>
-
+	<bean id="BasketService" class="service.fb_BasketServiceImp">
+		<property name="dao" ref="BasketDao" />
+	</bean>
+	
 	<!-- controller 등록 -->
 	<bean class="controller.MainController">
 		<property name="service" ref="service" />
+		<property name="service2" ref="BasketService" />
 	</bean>
 	<bean class="controller.ProductController"></bean>
 

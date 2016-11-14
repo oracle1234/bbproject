@@ -50,7 +50,9 @@ insert into fb_basket values
 insert into fb_basket values
 (1, 1, 1);
 
-select foods_no, price, amount
-from fb_foods, fb_basket, fb_member
-where fb_member=1
-and a.fb_foods=b.fb_basket
+장바구니 조인 - 상품명, 상품가격, 수량, 적립금
+select f.foods_name, f.price, b.amount, m.point
+from fb_member m, fb_foods f, fb_basket b
+where m.member_no=1
+and m.member_no=b.member_no
+and b.foods_no=f.foods_no;
