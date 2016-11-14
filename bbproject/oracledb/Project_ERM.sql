@@ -61,12 +61,33 @@ CREATE SEQUENCE SEQ_fb_theme_recipe_recipe_no INCREMENT BY 1 START WITH 1;
 
 /* Create Tables */
 
+CREATE TABLE fb_request
+(
+	member_no number NOT NULL,
+	price number NOT NULL,
+	amount number NOT NULL,
+	picture number NOT NULL,
+	day date NOT NULL,
+	delivery_condition varchar2(50) NOT NULL,
+	foods_no number NOT NULL
+);
+
+CREATE TABLE fb_basket
+(
+	member_no number NOT NULL,
+	foods_no number NOT NULL,
+	amount number NOT NULL
+);
+
+
 CREATE TABLE fb_lately_product
 (
 	member_no number NOT NULL,
 	foods_no number NOT NULL,
 	lately_no number NOT NULL
 );
+
+
 
 
 CREATE TABLE fb_coupon

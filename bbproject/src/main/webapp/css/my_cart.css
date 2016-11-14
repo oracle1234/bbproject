@@ -1,0 +1,35 @@
+
+
+.cart_state{
+	width:930px;
+	height:200px;
+	border:solid 1px gray;
+	margin:auto;
+	margin-top:5px;
+}
+
+
+.mycart_table{
+	width:940px;
+	margin:auto;
+	margin-top:5px;
+}
+
+.cart_button{
+	margin:auto;
+	margin-top:5px;
+}
+
+.cart_button button{
+	margin:5px;
+}
+
+.cart_button #cart_del{
+	width:150px;
+	height:40px;
+}
+
+.cart_button #cart_order{
+	width:150px;
+	height:40px;
+}

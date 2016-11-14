@@ -10,13 +10,13 @@
 		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/body.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
-
 		<put-attribute name="img" value="/WEB-INF/view/template/imgbar.jsp" />
 	</definition>
 
 	<definition name="board_list" extends="index">
 		<put-attribute name="title" value="board example" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/board/board_list.jsp" />
 	</definition>
 	
@@ -43,7 +43,53 @@
 		<put-attribute name="menu"
 			value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage.jsp" />
+		<put-attribute name="img"
+			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
 
+	<definition name="recipe" extends="index">
+		<put-attribute name="title" value="recipe" />
+		<put-attribute name="menu"
+			value="/WEB-INF/view/template/recipe_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/recipe.jsp" />
+	</definition>
+
+	<definition name="my_order" extends="index">
+		<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu"
+			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/my_order.jsp" />
+		<put-attribute name="img"
+			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+
+	<definition name="my_cart" extends="index">
+		<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu"
+			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/my_cart.jsp" />
+		<put-attribute name="img"
+			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+
+	<definition name="my_coupon" extends="index">
+		<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu"
+			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/my_coupon.jsp" />
+		<put-attribute name="img"
+			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+
+	<definition name="my_board" extends="index">
+		<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu"
+			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/my_board.jsp" />
+		<put-attribute name="img"
+			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+		<put-attribute name="img"
+			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 
 </tiles-definitions>

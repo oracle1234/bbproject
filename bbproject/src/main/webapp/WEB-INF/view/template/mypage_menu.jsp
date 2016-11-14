@@ -1,13 +1,13 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <div class="menubar">
 	<div class="menu_title">
-		<h2>MYPAGE</h2>
+		<p>MYPAGE</p>
 	</div>
 	<ul class="detailmenu">
-		<li><a href="order.bb">order</a></li>
-		<li><a href="cart.bb">cart</a></li>
-		<li><a href="coupon.bb">coupon</a></li>
-		<li><a href="point.bb">point</a></li>
-		<li><a href="board.bb">board</a></li>
+		<li><a href="my_order.do">ORDER</a></li>
+		<li><a href="my_cart.do">CART</a></li>
+		<li><a href="my_coupon.do">COUPON</a></li>
+		<li><a href="my_point.do">POINT</a></li>
+		<li><a href="my_board.do">BOARD</a></li>
 	</ul>
 </div>

@@ -1,5 +1,8 @@
 package controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,9 +11,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,7 @@ import dto.fb_BoardDTO;
 import dto.fb_CommentDTO;
 import dto.fb_PageDTO;
 import service.fb_BoardService;
+
 
 @Controller
 public class MainController {
@@ -170,5 +172,31 @@ public class MainController {
 	public String mypage() {
 		return "mypage";
 	}
+	
+	@RequestMapping("/recipe.do")
+	public String recipePage(){
+		return "recipe";
+	}
+	
 
+	@RequestMapping("/my_order.do")
+	public String myorder(){
+		return "my_order";
+	}
+	
+	@RequestMapping("/my_cart.do")
+	public String mycart(){
+		return "my_cart";
+	}
+	
+	@RequestMapping("/my_coupon.do")
+	public String mycoupon(){
+		return "my_coupon";
+	}
+	
+	@RequestMapping("/my_board.do")
+	public String myboard(){
+		return "my_board";
+	}
+	
 }

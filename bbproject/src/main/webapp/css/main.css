@@ -1,6 +1,7 @@
-body{
+body {
 	margin: auto;
-	width:1350px;
+	width: 1350px;
+	background-color: #ede6be;
 }
 
 header {
@@ -10,21 +11,21 @@ header {
 }
 
 #main {
-	width : 1200px;
+	width: 1200px;
 	box-sizing: border-box;
 	text-align: center;
 	margin: auto;
 }
 
-.menubar{
+.menubar {
 	width: 250px;
 	float: left;
 }
 
-#mainbody{
+#mainbody {
 	width: 950px;
+	background-color: white;
 	min-height : 300px;
-	/* background-color: skyblue; */
 	float: left;
 }
 
@@ -38,6 +39,10 @@ footer {
 	height: 350px;
 }
 
-li{
+li {
 	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
 }
