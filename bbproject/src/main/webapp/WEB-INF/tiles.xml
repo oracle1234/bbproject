@@ -13,12 +13,30 @@
 		<put-attribute name="img" value="/WEB-INF/view/template/imgbar.jsp" />
 	</definition>
 
-	<definition name="board" extends="index">
+	<definition name="board_list" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu"
 			value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/board/board_list.jsp" />
 	</definition>
+	
+	<definition name="board_update" extends="index">
+		<put-attribute name="title" value="board example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/board/board_update.jsp" />
+	</definition>
+	
+	<definition name="board_view" extends="index">
+		<put-attribute name="title" value="board example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/board/board_view.jsp" />
+	</definition>	
+	
+	<definition name="board_write" extends="index">
+		<put-attribute name="title" value="board example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/board/board_write.jsp" />
+	</definition>		
 
 	<definition name="mypage" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
