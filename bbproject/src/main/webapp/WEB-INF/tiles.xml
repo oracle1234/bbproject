@@ -46,7 +46,7 @@
 		<put-attribute name="img"
 			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
-
+	
 	<definition name="recipe" extends="index">
 		<put-attribute name="title" value="recipe" />
 		<put-attribute name="menu"
