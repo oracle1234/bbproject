@@ -69,6 +69,7 @@
 	</bean>
 	<bean class="controller.ProductController"></bean>
 	<bean class="controller.RecipeController"></bean>
+	<bean class="controller.ShopController"></bean>
 
 	<!-- 파일 업로드 시작 -->
 	<!-- 첨부 파일의 임시기억장치 경로 설정 -->

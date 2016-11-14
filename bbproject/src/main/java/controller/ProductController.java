@@ -12,7 +12,7 @@ public class ProductController {
 	@RequestMapping("/detailProduct.do")
 	public ModelAndView detailproductProcess(){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("detail_product");
+		mav.setViewName("view/shop_detail/detail_product");
 		return mav;
 	}
 	
