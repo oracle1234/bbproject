@@ -50,18 +50,18 @@
 
 			<c:forEach var="dto" items="${aList2}">
 				<tr>
-					<td>${dto.board_no}</td>
+					<td>${dto.qa_no}</td>
 					<td><c:url var="content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="num" value="${dto.board_no}" />
-						</c:url> <c:if test="${dto.board_re_level!=0}">
-							<img src="images/level.gif" width="${20*dto.board_re_level}"
+							<c:param name="num" value="${dto.qa_no}" />
+						</c:url> <c:if test="${dto.qa_re_level!=0}">
+							<img src="images/level.gif" width="${20*dto.qa_re_level}"
 								height="15" />
 							<img src="images/re.gif" />
-						</c:if><a href="${content}">${dto.board_subject}</a></td>
-					<td>${dto.board_writer}</td>
-					<td>${dto.board_reg_date}
-					<td>${dto.board_readcount}</td>
+						</c:if><a href="${content}">${dto.qa_subject}</a></td>
+					<td>${dto.qa_writer}</td>
+					<td>${dto.qa_reg_date}
+					<td>${dto.qa_readcount}</td>
 
 				</tr>
 			</c:forEach>
@@ -69,12 +69,12 @@
 
 		<!-- 이전 출력 시작 -->
 		<c:if test="${pv.startPage>1}">
-			<a href="board_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
+			<a href="qa_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
 		</c:if>
 
 		<!-- 페이지 출력 시작 -->
 		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-			<c:url var="currPage" value="board_list.do">
+			<c:url var="currPage" value="qa_list.do">
 				<c:param name="currentPage" value="${i}" />
 			</c:url>
 			<a href="${currPage}"><c:out value="${i}" /></a>
@@ -82,10 +82,10 @@
 
 		<!-- 페이지 출력 끝 -->
 		<c:if test="${pv.totalPage>pv.endPage}">
-			<a href="board_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
+			<a href="qa_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
 
-		<form id="frm" method="get" action="board_write.do">
+		<form id="frm" method="get" action="qa_write.do">
 			<input type="submit" id="btnWrite" value="글쓰기" />
 		</form>
 
