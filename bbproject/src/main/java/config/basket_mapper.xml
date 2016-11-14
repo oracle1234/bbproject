@@ -13,4 +13,10 @@
 		and b.foods_no=f.foods_no
 		]]>
 	</select>
+
+	<update id="amount" parameterType="int">
+		update fb_basket
+		set amount=#{amount}
+		where foods_no=#{foods_no};
+	</update>
 </mapper>

@@ -14,14 +14,14 @@
 	height: 810px;
 }
 
-#shopbody_menubar {
-	width: 252px;
-	height: 810px;
+#shop_table{
+	text-align: center;	
 }
+
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>soup</title>
 </head>
 <body>
 <body>

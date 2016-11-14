@@ -60,9 +60,15 @@ span img {
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$(".recipebox").on("click", function() {
-			$("span #recipe_img").removeClass("recipe_over");
-			$("span #recipe_img").addClass("test");
+		
+		$(".recipebox").mouseover(function() {
+			$("span #recipe_img", this).removeClass("recipe_over");
+			$("span #recipe_img", this).addClass("test");
+		});
+		
+		$(".recipebox").mouseout(function() {
+			$("span #recipe_img", this).removeClass("test");
+			$("span #recipe_img", this).addClass("recipe_over");
 		});
 		
 // 		alert($("#barimg").attr("src", "images/mypage_main.png"));

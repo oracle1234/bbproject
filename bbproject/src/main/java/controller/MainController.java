@@ -9,17 +9,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.fb_BoardDTO;
 import dto.fb_CommentDTO;
 import dto.fb_PageDTO;
-import service.fb_BasketService;
 import service.fb_BoardService;
 
 @Controller
@@ -28,18 +26,12 @@ public class MainController {
 	private int currentPage;
 	private fb_PageDTO pdto;
 
-	private fb_BasketService service2;
-
 	public MainController() {
 
 	}
 
 	public void setService(fb_BoardService service) {
 		this.service = service;
-	}
-
-	public void setService2(fb_BasketService service2) {
-		this.service2 = service2;
 	}
 
 	@RequestMapping("/index.do")
@@ -156,42 +148,5 @@ public class MainController {
 		return mav;
 
 	}// end deleteMethod()
-
-	@RequestMapping("/mypage.do")
-	public String mypage() {
-		return "mypage";
-	}
-
-	@RequestMapping("/recipe.do")
-	public String recipePage() {
-		return "recipe";
-	}
-
-	@RequestMapping("/my_order.do")
-	public String myorder() {
-		return "my_order";
-	}
-
-	@RequestMapping("/my_cart.do")
-	public ModelAndView listMethod(int member_no) {
-		// num=1;
-		System.out.println("test"+member_no);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("aList", service2.listProcess(member_no));
-
-		mav.setViewName("my_cart");
-		return mav;
-	}// end listMethod()
-
-	@RequestMapping("/my_coupon.do")
-	public String mycoupon() {
-		return "my_coupon";
-	}
-
-	@RequestMapping("/my_board.do")
-	public String myboard() {
-		return "my_board";
-	}
 
 }

@@ -24,9 +24,8 @@
 	</select>
 
 	<update id="readCount" parameterType="int">
-		update board set
-		board_readcount=board_readcount+1 where
-		board_no=#{board_no}
+		update board set board_readcount=board_readcount+1 
+		where board_no=#{board_no}
 	</update>
 
 	<update id="reStepCount" parameterType="dto.fb_BoardDTO">
@@ -66,10 +65,9 @@
 	</update>
 
 	<delete id="delete" parameterType="int">
+
 		delete from fb_board where
 		board_no=#{board_no}
 	</delete>
 
 </mapper>
-
-

@@ -13,8 +13,15 @@
 	width:940px;
 	margin:auto;
 	margin-top:5px;
+	border:1px solid gray;
 }
 
+.mycart_table2{
+	width:940px;
+	margin:auto;
+	margin-top:5px;
+	border:1px solid gray;
+}
 .cart_button{
 	margin:auto;
 	margin-top:5px;
@@ -33,3 +40,4 @@
 	width:150px;
 	height:40px;
 }
+

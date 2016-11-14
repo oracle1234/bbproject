@@ -22,4 +22,5 @@ public class fb_BasketServiceImp implements fb_BasketService{
 		return dao.list(num);
 	}//end listProcess()
 
+
 }//end class

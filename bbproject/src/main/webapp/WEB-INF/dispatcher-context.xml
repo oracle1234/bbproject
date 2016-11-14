@@ -24,7 +24,8 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath*:config/mapper.xml</value>
-				<value>classpath*:config/mapper2.xml</value>
+				<value>classpath*:config/basket_mapper.xml</value>
+				<value>classpath*:config/mapper_recipe.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -77,9 +78,13 @@
 	<!-- controller 등록 -->
 	<bean class="controller.MainController">
 		<property name="service" ref="service" />
-		<property name="service2" ref="BasketService" />
+	</bean>
+	<bean class="controller.MypageController">
+		<property name="service" ref="BasketService" />
 	</bean>
 	<bean class="controller.ProductController"></bean>
+	<bean class="controller.RecipeController"></bean>
+	<bean class="controller.ShopController"></bean>
 
 	<!-- 파일 업로드 시작 -->
 	<!-- 첨부 파일의 임시기억장치 경로 설정 -->
@@ -126,6 +131,5 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2"></property>
 	</bean>
-
 
 </beans>

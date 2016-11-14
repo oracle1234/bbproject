@@ -56,3 +56,8 @@ from fb_member m, fb_foods f, fb_basket b
 where m.member_no=1
 and m.member_no=b.member_no
 and b.foods_no=f.foods_no;
+
+장바구니 수량 변경
+update fb_basket 
+set amount=3
+where foods_no=1;
