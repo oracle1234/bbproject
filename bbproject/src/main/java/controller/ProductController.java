@@ -14,10 +14,17 @@ public class ProductController {
 		return mav;
 	}
 	
-	@RequestMapping("/detailproduct.do")
+	@RequestMapping("/detailProduct.do")
 	public ModelAndView detailproductProcess(){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("detailproduct");
+		mav.setViewName("detail_product");
+		return mav;
+	}
+	
+	@RequestMapping("reviewView.do")
+	public ModelAndView review_listProcess(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("reivew_list.jsp");
 		return mav;
 	}
 }

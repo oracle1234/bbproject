@@ -23,7 +23,11 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<list>
+
 				<value>classpath*:config/board_mapper.xml</value>
+				<value>classpath*:config/mapper.xml</value>
+				<value>classpath*:config/mapper_recipe.xml</value>
+
 			</list>
 		</property>
 	</bean>
@@ -67,6 +71,7 @@
 		<property name="service" ref="service" />
 	</bean>
 	<bean class="controller.ProductController"></bean>
+	<bean class="controller.RecipeController"></bean>
 
 	<!-- 파일 업로드 시작 -->
 	<!-- 첨부 파일의 임시기억장치 경로 설정 -->
@@ -109,7 +114,7 @@
 	<!-- ViewResolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/" />
+		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2"></property>
 	</bean>
