@@ -20,7 +20,7 @@ DROP TABLE fb_photo_board CASCADE CONSTRAINTS;
 
 
 
-/* Drop Sequences */
+/* Drop Sequences dfsdf*/
 
 DROP SEQUENCE SEQ_coupon_no;
 DROP SEQUENCE SEQ_couponbook_no;
