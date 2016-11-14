@@ -45,7 +45,7 @@ span img {
 	left: 0;
 }
 
-.list_detail{
+.list_detail {
 	position: absolute;
 	top: 40px;
 	left: 40px;
@@ -54,25 +54,23 @@ span img {
 .list_detail p {
 	line-height: 30px;
 }
-
-
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function() {
-		
+
 		$(".recipebox").mouseover(function() {
 			$("span #recipe_img", this).removeClass("recipe_over");
 			$("span #recipe_img", this).addClass("test");
 		});
-		
+
 		$(".recipebox").mouseout(function() {
 			$("span #recipe_img", this).removeClass("test");
 			$("span #recipe_img", this).addClass("recipe_over");
 		});
-		
-// 		alert($("#barimg").attr("src", "images/mypage_main.png"));
-		
+
+		// 		alert($("#barimg").attr("src", "images/mypage_main.png"));
+
 	});
 </script>
 
@@ -87,9 +85,9 @@ span img {
 			<div class="recipebox">
 				<a href="#" class="recipe">
 					<div class="recipe_sub1">
-						<span> <img id="recipe_img" class="recipe_over" alt=""
-							src="images/thumb_over.png"> <img alt=""
-							src="images/thumb_over.png" />
+						<span> 
+							<img alt="" src="images/delevery.png" /> 
+							<img id="recipe_img" class="recipe_over" alt=""	src="images/thumb_over.png">
 						</span>
 					</div>
 					<div class="recipe_sub2">
@@ -103,7 +101,7 @@ span img {
 					</div>
 				</a>
 			</div>
-			
+
 			<div class="recipebox">
 				<a href="#" class="recipe">
 					<div class="recipe_sub1">

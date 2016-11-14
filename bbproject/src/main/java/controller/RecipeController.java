@@ -1,9 +1,14 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import dto.ThemeRecipeDTO;
 
 
 @Controller
@@ -20,10 +25,15 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value = "/recipeins.do", method = RequestMethod.POST)
-	public ModelAndView recipeSavePage(int theme){
+	public ModelAndView recipeSavePage(ThemeRecipeDTO theme, HttpServletRequest req){
 		ModelAndView mav = new ModelAndView();
 		
-		System.out.println(theme);
+		
+		for (MultipartFile ss : theme.getComplete_file()) {
+			System.out.println(ss.getOriginalFilename());
+		}
+		
+		
 		
 		mav.setViewName("view/recipe_insert");
 		return mav;
