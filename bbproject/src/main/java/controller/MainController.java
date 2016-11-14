@@ -26,11 +26,7 @@ public class MainController {
 		this.service = service;
 	}
 
-	@RequestMapping("/index.do")
-	public String process() {
-		return "index";
-	}
-
+	//[자유게시판]
 	@RequestMapping("/board_list.do")
 	public ModelAndView board_listMethod(fb_PageDTO pv) {
 
@@ -140,6 +136,30 @@ public class MainController {
 		return mav;
 
 	}// end deleteMethod()
+	
+	//[QA게시판]
+	@RequestMapping("/qa_list.do")
+	public ModelAndView qa_listMethod(fb_PageDTO pv) {
+
+		ModelAndView mav = new ModelAndView();
+
+		int totalRecord = service.countProcess();
+		if (totalRecord >= 1) {
+			if (pv.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = pv.getCurrentPage();
+
+			pdto = new fb_PageDTO(currentPage, totalRecord);
+
+			mav.addObject("pv", pdto);
+			mav.addObject("aList", service.listProcess(pdto));
+		}
+		mav.setViewName("board_list");
+		return mav;
+	}// end board_listMethod()
+	
+	
 
 	@RequestMapping("/mypage.do")
 	public String mypage() {

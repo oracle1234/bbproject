@@ -54,11 +54,11 @@
 	</select>
  	
  	<update id="update" parameterType="dto.fb_BoardDTO">
- 	update fb_board set board_subject=#{board_subject}, board_content=#{board_content}
+ 		update fb_board set board_subject=#{board_subject}, board_content=#{board_content}
  	<if test="upload!=null">
  		,board_upload=#{board_upload}
  	</if>
- 	where num=#{num}
+ 		where num=#{num}
  	</update>
  	
  	<delete id="delete" parameterType="int">

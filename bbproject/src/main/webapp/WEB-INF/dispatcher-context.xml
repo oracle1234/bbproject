@@ -23,11 +23,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<list>
-
 				<value>classpath*:config/board_mapper.xml</value>
-				<value>classpath*:config/mapper.xml</value>
+				<value>classpath*:config/product_mapper.xml</value>
 				<value>classpath*:config/mapper_recipe.xml</value>
-
 			</list>
 		</property>
 	</bean>
