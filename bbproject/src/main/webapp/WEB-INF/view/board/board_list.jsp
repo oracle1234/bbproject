@@ -8,14 +8,6 @@
 <title>Insert title here</title>
 </head>
 <style type="text/css">
-* {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: menu;
-	text-decoration: none;
-	letter-spacing: 0px;
-}
 
 #bodywrap {
 	width: 950px;
