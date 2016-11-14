@@ -7,12 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProductController {
 	
-	@RequestMapping("/product.do")
-	public ModelAndView productProcess(){
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("shopbody");
-		return mav;
-	}
+
 	
 	@RequestMapping("/detailProduct.do")
 	public ModelAndView detailproductProcess(){
@@ -24,7 +19,7 @@ public class ProductController {
 	@RequestMapping("reviewView.do")
 	public ModelAndView review_listProcess(){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("reivew_list.jsp");
+		mav.setViewName("reivew_list");
 		return mav;
 	}
 }
