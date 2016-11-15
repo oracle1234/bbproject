@@ -2,11 +2,53 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recipe">
 
- <mapper namespace="recipe">
-	<insert id="insert">
+	<insert id="insert" parameterType="dto.ThemeRecipeDTO">
 		insert all
-		
-			
+		into fb_theme_recipe
+		values(SEQ_recipe_no.nextval, #{theme_no}, #{recipe_name}, #{recipe_material},
+		#{recipe_explaination}, #{picture}, #{portion}, #{recipe_time},
+		#{difficulty})
+		<foreach collection="list" item="order">
+			into fb_tr_order
+			values(SEQ_recipe_no.nextval, #{order.order_pic},
+			#{order.order_text})
+		</foreach>
+		<foreach collection="complete_pic" item="pic">
+			into
+			fb_tr_complete values(SEQ_recipe_no.nextval, #{pic})
+		</foreach>
+		select * from dual
 	</insert>
- </mapper>
+
+	<resultMap type="dto.ThemeRecipeDTO" id="list_result">
+		<result column="recipe_no" property="recipe_no" />
+		<result column="theme_no" property="theme_no" />
+		<result column="recipe_name" property="recipe_name" />
+		<result column="recipe_material" property="recipe_material" />
+		<result column="recipe_explaination" property="recipe_explaination" />
+		<result column="picture" property="picture" />
+		<result column="portion" property="portion" />
+		<result column="recipe_time" property="recipe_time" />
+		<result column="difficulty" property="difficulty" />
+		
+		<collection property="list" javaType="java.util.List" ofType="dto.ThemeRecipeOderDTO">
+			<result column="order_pic" property="order_pic" />
+			<result column="order_text" property="order_text" />
+		</collection>
+		
+		<collection property="complete_pic" javaType="java.util.List" ofType="string">
+			<result column="complete_pic" property="complete_pic" />
+		</collection>
+
+	</resultMap>
+
+	<select id="list" resultMap="list_result">
+		select *
+		from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
+		where a.recipe_no =
+		b.recipe_no and a.recipe_no = c.recipe_no
+	</select>
+
+</mapper>

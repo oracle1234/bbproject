@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class ThemeRecipeDTO {
@@ -14,27 +16,35 @@ public class ThemeRecipeDTO {
 	private String recipe_material;
 	// 레시피 설명
 	private String recipe_explaination;
+	// 타이틀 사진
+	private String picture;
 	// 인원
 	private String portion;
 	// 조리시간
-	private String time;
+	private String recipe_time;
 	// 난이도
 	private String difficulty;
-	// 타이틀 사진
-	private String picture;
 
 	// 조리 순서
-	private String[] order_pic;
 	private MultipartFile[] order_file;
 	private String[] order_text;
+	private List<ThemeRecipeOderDTO> list;
 
 	// 완성사진
-	private String[] complete_pic;
+	private List<String> complete_pic;
 	private MultipartFile[] complete_file;
 
 	public ThemeRecipeDTO() {
 	}
 
+	public List<ThemeRecipeOderDTO> getList() {
+		return list;
+	}
+
+	public void setList(List<ThemeRecipeOderDTO> list) {
+		this.list = list;
+	}
+	
 	public int getRecipe_no() {
 		return recipe_no;
 	}
@@ -83,12 +93,12 @@ public class ThemeRecipeDTO {
 		this.portion = portion;
 	}
 
-	public String getTime() {
-		return time;
+	public String getRecipe_time() {
+		return recipe_time;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setRecipe_time(String recipe_time) {
+		this.recipe_time = recipe_time;
 	}
 
 	public String getDifficulty() {
@@ -107,14 +117,6 @@ public class ThemeRecipeDTO {
 		this.picture = picture;
 	}
 
-	public String[] getOrder_pic() {
-		return order_pic;
-	}
-
-	public void setOrder_pic(String[] order_pic) {
-		this.order_pic = order_pic;
-	}
-
 	public MultipartFile[] getOrder_file() {
 		return order_file;
 	}
@@ -131,11 +133,12 @@ public class ThemeRecipeDTO {
 		this.order_text = order_text;
 	}
 
-	public String[] getComplete_pic() {
+
+	public List<String> getComplete_pic() {
 		return complete_pic;
 	}
 
-	public void setComplete_pic(String[] complete_pic) {
+	public void setComplete_pic(List<String> complete_pic) {
 		this.complete_pic = complete_pic;
 	}
 

@@ -30,7 +30,7 @@ DROP SEQUENCE SEQ_member_no;
 DROP SEQUENCE SEQ_category_no;
 DROP SEQUENCE SEQ_fb_delivery_no;
 DROP SEQUENCE SEQ_foods_no;
-DROP SEQUENCE SEQ_receipe_no;
+DROP SEQUENCE SEQ_recipe_no;
 DROP SEQUENCE SEQ_comment_no;
 DROP SEQUENCE SEQ_qa_no;
 DROP SEQUENCE SEQ_board_no;
@@ -52,7 +52,7 @@ CREATE SEQUENCE SEQ_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_category_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_fb_delivery_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_foods_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_receipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+CREATE SEQUENCE SEQ_recipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_comment_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -235,7 +235,7 @@ CREATE TABLE fb_theme_recipe
 	recipe_explaination varchar2(500) NOT NULL,
 	picture varchar2(500) NOT NULL,
 	portion varchar2(50) NOT NULL,
-	time varchar2(50) NOT NULL,
+	recipe_time varchar2(50) NOT NULL,
 	difficulty varchar2(10) NOT NULL,
 	PRIMARY KEY (recipe_no)
 );
@@ -253,9 +253,8 @@ CREATE TABLE fb_tr_order
 (
 	order_no number NOT NULL,
 	recipe_no number NOT NULL,
-	order_pic varchar2(50),
-	-- 설명
-	order_text varchar2(100),
+	order_pic varchar2(500),
+	order_text varchar2(500),
 	PRIMARY KEY (order_no)
 );
 
@@ -264,7 +263,7 @@ CREATE TABLE fb_tr_complete
 (
 	complete_no number NOT NULL,
 	recipe_no number NOT NULL,
-	complete_pic varchar2(50),
+	complete_pic varchar2(500),
 	PRIMARY KEY (complete_no)
 );
 
@@ -366,12 +365,5 @@ ALTER TABLE fb_theme_recipe
 	ADD FOREIGN KEY (theme_no)
 	REFERENCES fb_theme (theme_no)
 ;
-
-
-
-/* Comments */
-
-COMMENT ON COLUMN fb_tr_order.order_text IS '설명';
-
 
 

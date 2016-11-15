@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dao.ThemeRecipeDAO;
 import dto.ThemeRecipeDTO;
 
@@ -15,8 +17,13 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 	}
 
 	@Override
-	public void insert(ThemeRecipeDTO dto) {
+	public void insertRecipeProcess(ThemeRecipeDTO dto) {
 		dao.insertRecipe(dto);
+	}
+
+	@Override
+	public List<ThemeRecipeDTO> selectListProcess() {
+		return dao.selectList();
 	}
 
 }

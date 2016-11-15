@@ -60,7 +60,7 @@
 				</tr>
 				<tr>
 					<th>조리시간</th>
-					<td><input type="text" id="time" name="time" /></td>
+					<td><input type="text" id="recipe_time" name="recipe_time" /></td>
 				</tr>
 				<tr>
 					<th>조리 난이도</th>

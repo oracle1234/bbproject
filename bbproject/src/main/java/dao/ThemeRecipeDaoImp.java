@@ -1,13 +1,15 @@
 package dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.ThemeRecipeDTO;
 
-public class ThemeRecipeImp implements ThemeRecipeDAO {
+public class ThemeRecipeDaoImp implements ThemeRecipeDAO {
 	private SqlSessionTemplate sqlSession;
 
-	public ThemeRecipeImp() {
+	public ThemeRecipeDaoImp() {
 
 	}
 
@@ -17,8 +19,12 @@ public class ThemeRecipeImp implements ThemeRecipeDAO {
 
 	@Override
 	public void insertRecipe(ThemeRecipeDTO dto) {
-		
 		sqlSession.insert("recipe.insert", dto);
+	}
+
+	@Override
+	public List<ThemeRecipeDTO> selectList() {
+		return sqlSession.selectList("recipe.list");
 	}
 
 
