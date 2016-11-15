@@ -26,10 +26,13 @@ $(document).ready(function() {
 	
 	$(document).on('click', '#cart_del',function(){
 		$.ajax({
-			type:'GET',
+		type:'GET',
 		dataType :'json',
 		url:'my_cart_delete.do?member_no=${member_no}&foods_no='+$('.foods_no').val(),
-		success:cartdelete
+		success:cartdelete,
+		error: function(xhr, textStatus, error) {
+			alert(error);
+		}
 		});
 		
 	});
@@ -37,8 +40,33 @@ $(document).ready(function() {
 
 
 	function cartdelete(aaa){
-		$('input.cart_cb:checked').each(function(){
+		/* $('input.cart_cb:checked').each(function(){
 			$(this).empty();
+		}); */
+		
+		$('.mycart_table').empty();
+		$('.mycart_table').append('<tr><th width="5%"><input type="checkbox" id="cart_checkbox"></th>'+
+				'<th width="20%">상품명</th>'+
+				'<th width="20%">상품가격</th>'+
+				'<th width="15%">수량</th>'+
+				'<th width="20%">적립금</th>'+
+				'<th width="20%">합계</th>'+
+			'</tr>');
+		
+		$.each(data,function(index, value){
+			
+			$('.mycart_table').append('<tr><td><input type="checkbox" class="cart_cb"></td>'+
+			'<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
+			'<td>'+value.price+'원</td>'+
+			'<td>'+value.amount+'<select id="count_select">'+
+					'<c:forEach var="i" begin="1" end="20" step="1">'+
+						'<option value="${i}">${i}</option>'+
+					'</c:forEach></select>'+
+					'<input type="button" class="upd_amount" value="변경"></td>'+
+					'<input type="hidden" class="foods_no" value="'+value.foods_no+'">'+
+			'<td>'+value.price*value.amount*1/100+'원</td>'+
+			'<td>'+value.price*value.amount+'원</td></tr>');
+		
 		});
 	}
 	
