@@ -41,16 +41,15 @@
 
 		<div id="shop_menu">
 
-			<c:forEach items="${list}" var="FoodsDTO">
+			<c:forEach items="${aList}" var="FoodsDTO">
 				<table id="shop_table">
 					<tr>
 						<td><div id="prod_img">
-								<a href=""><img alt="상품이미지" src="ban_images/gosarinamul.jpg">
+								<a href="detailProduct.do?foods_no=${FoodsDTO.foods_no}"><img alt="상품이미지" src="images/${FoodsDTO.picture}">
 								</a>
 							</div>
-
 							<p class="name">
-								<a href="">${FoodsDTO.foods_name}</a>
+								<a href="detailProduct.do?foods_no=${FoodsDTO.foods_no}">${FoodsDTO.foods_name}</a>
 							</p>
 							<p class="price">${FoodsDTO.price}<span>원</span>
 							</p>
@@ -67,10 +66,29 @@
 					</tr>
 
 				</table>
+
 			</c:forEach>
+			<c:if test="${pv.startPage>1}">
+				<a href="shopDish.do?category_no=2&currentPage=${pv.startPage-pv.blockPage}">
+					<c:out value="이전" />
+				</a>
+			</c:if>
+
+			<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+				<c:url var="currPage" value="shopDish.do?category_no=2">
+					<c:param name="currentPage" value="${i}" />
+				</c:url>
+
+				<a href="${currPage}"> <c:out value="${i}" />
+				</a>
+			</c:forEach>
+
+			<c:if test="${pv.endPage<pv.totalPage}">
+				<a href="shopDish.do?category_no=2&currentPage=${pv.startPage+pv.blockPage}">
+					<c:out value="다음" />
+				</a>
+			</c:if>
 		</div>
 	</div>
 </body>
-
-
 </html>

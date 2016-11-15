@@ -1,9 +1,11 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import dao.ShopDAO;
 import dto.FoodsDTO;
+import dto.ReviewDTO;
 import dto.shop_PageDTO;
 
 public class ShopSercviceImp implements ShopService{
@@ -19,8 +21,8 @@ public class ShopSercviceImp implements ShopService{
 	}
 
 	@Override
-	public List<FoodsDTO> listProcess(int category_no) {
-		return dao.shopList(category_no);
+	public List<FoodsDTO> listProcess(int foods_no) {
+		return dao.shopList(foods_no);
 	}
 
 	@Override
@@ -30,8 +32,13 @@ public class ShopSercviceImp implements ShopService{
 	}
 
 	@Override
-	public List<FoodsDTO> pageListProcess(shop_PageDTO spdto) {
-		return dao.pageList(spdto);
+	public List<FoodsDTO> pageListProcess(HashMap<String, Object> map) {
+		return dao.pageList(map);
+	}
+
+	@Override
+	public List<ReviewDTO> reviewListProcess(int foods_no) {
+		return dao.reviewList(foods_no);
 	}
 
 	

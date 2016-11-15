@@ -62,6 +62,7 @@
 	<bean id="shopDao" class="dao.ShopDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	
 	<!-- Service 빈 선언 -->
 	<bean id="service" class="service.fb_BoardServiceImp">
 		<property name="dao" ref="dao" />
@@ -75,7 +76,9 @@
 	<bean class="controller.MainController">
 		<property name="service" ref="service" />
 	</bean>
-	<bean class="controller.ProductController"></bean>
+	<bean class="controller.ProductController">
+		<property name="service" ref="shopService"></property>
+	</bean>
 	<bean class="controller.RecipeController"></bean>
 	<bean class="controller.ShopController">
 		<property name="service" ref="shopService"></property>

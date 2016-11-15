@@ -1,10 +1,12 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.FoodsDTO;
+import dto.ReviewDTO;
 import dto.shop_PageDTO;
 
 public class ShopDaoImp implements ShopDAO {
@@ -20,18 +22,24 @@ public class ShopDaoImp implements ShopDAO {
 	}
 
 	@Override
-	public List<FoodsDTO> shopList(int category_no) {
-		return sqlSession.selectList("shop.shop_list", category_no);
+	public List<FoodsDTO> shopList(int foods_no) {
+		return sqlSession.selectList("shop.shop_list", foods_no);
 	}
 
 	@Override
 	public int count(int category_no) {
 		return sqlSession.selectOne("shop.count", category_no);
+		
 	}
 
 	@Override
-	public List<FoodsDTO> pageList(shop_PageDTO spdto) {
-		return sqlSession.selectList("shop.pagelist", spdto);
+	public List<FoodsDTO> pageList(HashMap<String, Object> map) {
+		return sqlSession.selectList("shop.page_list", map);
+	}
+
+	@Override
+	public List<ReviewDTO> reviewList(int foods_no) {
+		return sqlSession.selectList("shop.review_list", foods_no);
 	}
 
 	

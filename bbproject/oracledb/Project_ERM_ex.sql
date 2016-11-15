@@ -58,4 +58,7 @@ and a.fb_foods=b.fb_basket
 
 select * from fb_foods where category_no = 1 order by foods_no desc
 
-
+select *
+		from fb_review r, fb_foods f
+		where  r.foods_no = f.foods_no and r.foods_no = 1
+		order by r.review_no desc

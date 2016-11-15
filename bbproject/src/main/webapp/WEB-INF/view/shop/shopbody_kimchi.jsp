@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style type="text/css">
 #shopbody_wrap {
 	width: 1200px;
 	height: 810px;
-	background-color: blue;
 }
 
 #shopbody_menu {
 	width: 950px;
 	height: 810px;
-	background-color: red;
 }
 
 #shop_table {
@@ -34,27 +33,25 @@
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>kimchi</title>
+<title>Kimchi</title>
 </head>
 <body>
 <body>
 	<div id="shop_wrap">
 
 		<div id="shop_menu">
-			<c:forEach items="${list}" var="FoodsDTO">
+
+			<c:forEach items="${aList}" var="FoodsDTO">
 				<table id="shop_table">
 					<tr>
-						<td><div class="prod_img">
-								<a href=""><img alt="상품이미지" src="ban_images/gosarinamul.jpg"
-									width="230" height="155"> </a>
-
+						<td><div id="prod_img">
+								<a href=""><img alt="상품이미지" src="ban_images/gosarinamul.jpg">
+								</a>
 							</div>
-
 							<p class="name">
 								<a href="">${FoodsDTO.foods_name}</a>
 							</p>
-							<p class="price">
-								${FoodsDTO.price}<span> 원</span>
+							<p class="price">${FoodsDTO.price}<span>원</span>
 							</p>
 							<p class="count">
 
@@ -68,9 +65,29 @@
 							</p> <img alt="장바구니 이미지" src="" width="237" height=""></td>
 					</tr>
 
-
 				</table>
+
 			</c:forEach>
+			<c:if test="${pv.startPage>1}">
+				<a href="shopKimchi.do?category_no=3&currentPage=${pv.startPage-pv.blockPage}">
+					<c:out value="이전" />
+				</a>
+			</c:if>
+
+			<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+				<c:url var="currPage" value="shopKimchi.do?category_no=3">
+					<c:param name="currentPage" value="${i}" />
+				</c:url>
+
+				<a href="${currPage}"> <c:out value="${i}" />
+				</a>
+			</c:forEach>
+
+			<c:if test="${pv.endPage<pv.totalPage}">
+				<a href="shopKimchi.do?category_no=3&currentPage=${pv.startPage+pv.blockPage}">
+					<c:out value="다음" />
+				</a>
+			</c:if>
 		</div>
 	</div>
 </body>

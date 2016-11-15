@@ -1,12 +1,32 @@
 package dto;
 
+import java.util.List;
+
 public class FoodsDTO {
-	
+	private int review_no;
 	private int foods_no, price, category_no, fb_delivery_no;
 	private String foods_name, weight, way, shelfLife, foods_explaination, foods_material, picture;
-	
+
+	private List<ReviewDTO> rdto;
+
 	public FoodsDTO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public int getReview_no() {
+		return review_no;
+	}
+
+	public void setReview_no(int review_no) {
+		this.review_no = review_no;
+	}
+
+	public List<ReviewDTO> getRdto() {
+		return rdto;
+	}
+
+	public void setRdto(List<ReviewDTO> rdto) {
+		this.rdto = rdto;
 	}
 
 	public int getFoods_no() {
@@ -96,7 +116,5 @@ public class FoodsDTO {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	
-	
-	
+
 }
