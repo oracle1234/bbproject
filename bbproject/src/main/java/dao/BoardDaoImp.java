@@ -22,7 +22,7 @@ public class BoardDaoImp implements BoardDAO {
 	@Override
 	public int count() {
 
-		return sqlSession.selectOne("board.readcount");
+		return sqlSession.selectOne("board.count");
 	}
 
 	@Override

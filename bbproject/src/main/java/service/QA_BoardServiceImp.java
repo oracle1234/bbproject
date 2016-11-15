@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import dao.BoardDAO;
-import dto.BoardDTO;
+import dao.QA_BoardDAO;
+import dto.QA_BoardDTO;
 import dto.CommentDTO;
 import dto.PageDTO;
 
-public class BoardServiceImp implements BoardService {
-	private BoardDAO dao;
+public class QA_BoardServiceImp implements QA_BoardService {
+	private QA_BoardDAO dao;
 
-	public BoardServiceImp() {
+	public QA_BoardServiceImp() {
 
 	}
 
-	public void setDao(BoardDAO dao) {
+	public void setDao(QA_BoardDAO dao) {
 		this.dao = dao;
 	}
 
@@ -35,7 +35,7 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> listProcess(PageDTO pv) {
+	public List<QA_BoardDTO> listProcess(PageDTO pv) {
 
 		return dao.list(pv);
 	}
@@ -47,7 +47,7 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public BoardDTO contentProcess(int num) {
+	public QA_BoardDTO contentProcess(int num) {
 		dao.readCount(num);
 		return dao.content(num);
 	}
@@ -61,14 +61,14 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public BoardDTO updateSelectProcess(int num) {
+	public QA_BoardDTO updateSelectProcess(int num) {
 
 		return dao.updateNum(num);
 	}
-/*
+
 	@Override
-	public void updateProcess(BoardDTO dto, HttpServletRequest request) {
-		String filename = dao.getFile(dto.getBoard_no());
+	public void updateProcess(QA_BoardDTO dto, HttpServletRequest request) {
+		String filename = dao.getFile(dto.getQa_no());
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String saveDirectory = root + "temp" + File.separator;
 
@@ -100,29 +100,21 @@ public class BoardServiceImp implements BoardService {
 				e.printStackTrace();
 			}
 		}
-		dto.setBoard_ip(request.getRemoteAddr());
 		dao.update(dto);
 	}// end updateProcess()
 
-*/	
 	@Override
 	public void deleteProcess(int num, HttpServletRequest request) {
 		String upload = dao.getFile(num);
-		if(upload != null){
+		if (upload != null) {
 			String root = request.getSession().getServletContext().getRealPath("/");
 			String saveDirectory = root + "temp" + File.separator;
 			File fe = new File(saveDirectory, upload);
 			fe.delete();
 		}
-		
-		dao.delete(num);
-		
-	}
 
-	@Override
-	public void updateProcess(BoardDTO dto, HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		
+		dao.delete(num);
+
 	}
 
 }

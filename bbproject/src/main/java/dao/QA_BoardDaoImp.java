@@ -69,14 +69,14 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 
 	@Override
 	public void delete(int num) {
-		sqlSession.delete("board.delete", num);
+		sqlSession.delete("board.qa_delete", num);
 
 	}
 
 	@Override
 	public String getFile(int num) {
 
-		return sqlSession.selectOne("board.uploadFile", num);
+		return sqlSession.selectOne("board.qa_uploadFile", num);
 
 	}
 

@@ -59,6 +59,7 @@
 	<bean id="dao" class="dao.BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	
 	<!-- Service 빈 선언 -->
 	<bean id="service" class="service.BoardServiceImp">
 		<property name="dao" ref="dao" />
