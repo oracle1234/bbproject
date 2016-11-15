@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.fb_BasketDTO;
 import dto.fb_BoardDTO;
 import dto.fb_CommentDTO;
 import dto.fb_PageDTO;
@@ -47,15 +50,23 @@ public class MypageController {
 
 	@RequestMapping("/my_cart.do")
 	public ModelAndView listMethod(int member_no) {
-		// num=1;
-		System.out.println("test" + member_no);
-
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("member_no", member_no);
 		mav.addObject("aList", service.listProcess(member_no));
-
 		mav.setViewName("my_cart");
 		return mav;
 	}// end listMethod()
+	
+	@RequestMapping("/my_cart_amountupdate.do")
+	public @ResponseBody List<fb_BasketDTO> amountUpdate(fb_BasketDTO bdto){
+		return service.amountUpdateProcess(bdto);
+	}
+	
+	@RequestMapping("/my_cart_delete.do")
+	public @ResponseBody List<fb_BasketDTO> deleteMethod(fb_BasketDTO bdto){
+		return service.deleteProcess(bdto);
+	}
+	
 
 	@RequestMapping("/my_coupon.do")
 	public String mycoupon() {

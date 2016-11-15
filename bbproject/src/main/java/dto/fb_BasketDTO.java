@@ -2,8 +2,18 @@ package dto;
 
 public class fb_BasketDTO {
 	
-	private int amount, price, point;
+	private int amount, price, point, foods_no;
 	private String foods_name; 
+	
+	private int member_no;
+	
+	public int getMember_no() {
+		return member_no;
+	}
+
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
+	}
 
 	public fb_BasketDTO() {
 	}
@@ -39,5 +49,15 @@ public class fb_BasketDTO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+
+	public int getFoods_no() {
+		return foods_no;
+	}
+
+	public void setFoods_no(int foods_no) {
+		this.foods_no = foods_no;
+	}
+	
+	
 	
 }//end class

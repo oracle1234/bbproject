@@ -23,4 +23,16 @@ public class fb_BasketDaoImp implements fb_BasketDAO{
 		return sqlSession.selectList("basket.list",member_no);
 	}
 
+	@Override
+	public void amountUpdate(fb_BasketDTO bdto) {
+		sqlSession.update("basket.amount", bdto);
+		
+		
+	}
+
+	@Override
+	public void delete(fb_BasketDTO bdto) {
+		sqlSession.delete("basket.delete", bdto);
+	}
+
 }//end class

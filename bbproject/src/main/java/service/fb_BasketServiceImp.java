@@ -18,9 +18,21 @@ public class fb_BasketServiceImp implements fb_BasketService{
 	}
 
 	@Override
-	public List<fb_BasketDTO> listProcess(int num) {
-		return dao.list(num);
+	public List<fb_BasketDTO> listProcess(int member_no) {
+		return dao.list(member_no);
 	}//end listProcess()
+
+	@Override
+	public List<fb_BasketDTO> amountUpdateProcess(fb_BasketDTO bdto) {
+		dao.amountUpdate(bdto);
+		return dao.list(bdto.getMember_no());
+	}
+
+	@Override
+	public List<fb_BasketDTO> deleteProcess(fb_BasketDTO bdto) {
+		dao.delete(bdto);
+		return dao.list(bdto.getMember_no());
+	}
 
 
 }//end class

@@ -61,3 +61,7 @@ and b.foods_no=f.foods_no;
 update fb_basket 
 set amount=3
 where foods_no=1;
+
+장바구니 음식 삭제
+delete from fb_basket
+where foods_no=1;
