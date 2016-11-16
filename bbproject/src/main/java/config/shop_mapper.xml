@@ -5,9 +5,34 @@
 
 
 <mapper namespace="shop">
-	<select id="shop_list" parameterType="int" resultType="dto.FoodsDTO">
-		select * from fb_foods where foods_no = #{foods_no} order by foods_no
-		desc
+
+	<resultMap type="dto.FoodsDTO" id="food_rev_result">
+		<result column="foods_no" property="foods_no" />
+		<result column="foods_name" property="foods_name" />
+		<result column="price" property="price" />
+		<result column="weight" property="weight" />
+		<result column="way" property="way" />
+		<result column="shelfLife" property="shelfLife" />
+		<result column="foods_explaination" property="foods_explaination" />
+		<result column="foods_material" property="foods_material" />
+		<result column="picture" property="picture" />
+		<result column="category_no" property="category_no" />
+		<result column="fb_delivery_no" property="fb_delivery_no" />
+		<collection property="rdto" javaType="java.util.List"
+			ofType="dto.ReviewDTO">
+			<result column="review_no" property="review_no" />
+			<result column="review_writer" property="review_writer" />
+			<result column="review_content" property="review_content" />
+			<result column="review_date" property="review_date" />
+		</collection>
+	</resultMap>
+
+	<select id="shop_list" parameterType="int" resultMap="food_rev_result">
+		select * from
+		fb_review r, fb_foods f
+		where r.foods_no = f.foods_no and
+		r.foods_no = #{foods_no}
+		order by r.review_no desc
 	</select>
 
 	<select id="count" resultType="int" parameterType="dto.FoodsDTO">
@@ -23,25 +48,14 @@
 		where b.rm>=#{startRow} and b.rm <=#{endRow}
 		]]>
 	</select>
-	
-	
-	<resultMap type="dto.FoodsDTO" id="food_rev_result" autoMapping="false">
-	<result column="foods_no" property="foods_no" />
-	<!-- ofType은 List<요기> 요기와같음 -->
-	<collection property="rdto" javaType="java.util.List" ofType="dto.ReviewDTO">
-		<result column="review_no" property="review_no" />
-		<result column="review_writer" property="review_writer" />
-		<result column="review_content" property="review_content" />
-		<result column="review_date" property="review_date" />
-	</collection>
-</resultMap>
 
-	<select id="review_list" resultMap="food_rev_result" parameterType="int">
-		select r.review_no, r.review_writer, r.review_content, r.review_date
-		from fb_review r, fb_foods f
-		where  r.foods_no = f.foods_no and r.foods_no = #{foods_no}
-		order by r.review_no desc
-	</select>
+
+
+
+	<!-- <select id="review_list" resultMap="food_rev_result" parameterType="int"> 
+		select r.review_no, r.review_writer, r.review_content, r.review_date from 
+		fb_review r, fb_foods f where r.foods_no = f.foods_no and r.foods_no = #{foods_no} 
+		order by r.review_no desc </select> -->
 
 </mapper>
 

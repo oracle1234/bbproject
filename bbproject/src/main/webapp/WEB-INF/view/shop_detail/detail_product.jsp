@@ -326,15 +326,13 @@ body {
 						<th>작성일</th>
 					</tr>
 
-					<c:forEach items="${reviewList}" var="ReviewDTO">
 						<tr>
 							<td>${ReviewDTO.review_no}</td>
-							<td>${ReviewDTO.writer}</td>
-							<td>${ReviewDTO.content}</td>
-							<td>${ReviewDTO.date}</td>
+							<td>${ReviewDTO.review_writer}</td>
+							<td>${ReviewDTO.review_content}</td>
+							<td>${ReviewDTO.review_date}</td>
 						</tr>
 
-					</c:forEach>
 
 
 				</table>

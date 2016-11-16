@@ -62,3 +62,9 @@ select *
 		from fb_review r, fb_foods f
 		where  r.foods_no = f.foods_no and r.foods_no = 1
 		order by r.review_no desc
+		
+		select * from
+		fb_foods f, fb_review r
+		where f.foods_no = r.foods_no and
+		r.foods_no = 1
+		order by r.review_no desc
