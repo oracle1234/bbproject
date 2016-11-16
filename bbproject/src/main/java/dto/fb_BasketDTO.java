@@ -4,24 +4,15 @@ public class fb_BasketDTO {
 	
 	private int amount, price, point, foods_no;
 	private String foods_name; 
-	
 	private int member_no;
 	
-	public int getMember_no() {
-		return member_no;
-	}
-
-	public void setMember_no(int member_no) {
-		this.member_no = member_no;
-	}
-
 	public fb_BasketDTO() {
 	}
-	
+
 	public int getAmount() {
 		return amount;
 	}
-	
+
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
@@ -34,18 +25,10 @@ public class fb_BasketDTO {
 		this.price = price;
 	}
 
-	public String getFoods_name() {
-		return foods_name;
-	}
-
-	public void setFoods_name(String foods_name) {
-		this.foods_name = foods_name;
-	}
-	
 	public int getPoint() {
 		return point;
 	}
-	
+
 	public void setPoint(int point) {
 		this.point = point;
 	}
@@ -56,6 +39,22 @@ public class fb_BasketDTO {
 
 	public void setFoods_no(int foods_no) {
 		this.foods_no = foods_no;
+	}
+
+	public String getFoods_name() {
+		return foods_name;
+	}
+
+	public void setFoods_name(String foods_name) {
+		this.foods_name = foods_name;
+	}
+
+	public int getMember_no() {
+		return member_no;
+	}
+
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
 	}
 	
 	

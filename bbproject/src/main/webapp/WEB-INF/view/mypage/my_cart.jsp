@@ -12,65 +12,37 @@ $(document).ready(function() {
 	});
 	
 	$(document).on('click', '.upd_amount',function(){
-		alert("test");
-		$.ajax({
-			type : 'GET',
+		 $.ajax({
+		 type : 'GET', 
 			dataType : 'json',
-			url : 'my_cart_amountupdate.do?member_no=${member_no}&foods_no='+$('.foods_no').val()+'&amount='+$('#count_select').val(),
+			url : 'my_cart_amountupdate.do?member_no=${member_no}&foods_no='+$(this).next().val()+'&amount='+$(this).prev().val(),
 			success : cartlist,
 			error: function(xhr, textStatus, error) {
 				alert(error);
 			}
-		});
+		});  
+		
 	});
 	
 	$(document).on('click', '#cart_del',function(){
-		$.ajax({
-		type:'GET',
-		dataType :'json',
-		url:'my_cart_delete.do?member_no=${member_no}&foods_no='+$('.foods_no').val(),
-		success:cartdelete,
-		error: function(xhr, textStatus, error) {
-			alert(error);
-		}
-		});
 		
+		
+		$('input[type=checkbox]:checked').each(function() {
+			alert($(this).val());
+			$.ajax({
+		 		type:'GET',
+		 		dataType :'json',
+				url:'my_cart_delete.do?member_no=${member_no}&foods_no='+$(this).val()+'&amount='+$('#count_select').val(),
+		 		success: cartlist,
+				error: function(xhr, textStatus, error) {
+		 			alert(error);
+		 		}
+		 		});
+		});
 	});
 });
 
 
-	function cartdelete(aaa){
-		/* $('input.cart_cb:checked').each(function(){
-			$(this).empty();
-		}); */
-		
-		$('.mycart_table').empty();
-		$('.mycart_table').append('<tr><th width="5%"><input type="checkbox" id="cart_checkbox"></th>'+
-				'<th width="20%">상품명</th>'+
-				'<th width="20%">상품가격</th>'+
-				'<th width="15%">수량</th>'+
-				'<th width="20%">적립금</th>'+
-				'<th width="20%">합계</th>'+
-			'</tr>');
-		
-		$.each(data,function(index, value){
-			
-			$('.mycart_table').append('<tr><td><input type="checkbox" class="cart_cb"></td>'+
-			'<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
-			'<td>'+value.price+'원</td>'+
-			'<td>'+value.amount+'<select id="count_select">'+
-					'<c:forEach var="i" begin="1" end="20" step="1">'+
-						'<option value="${i}">${i}</option>'+
-					'</c:forEach></select>'+
-					'<input type="button" class="upd_amount" value="변경"></td>'+
-					'<input type="hidden" class="foods_no" value="'+value.foods_no+'">'+
-			'<td>'+value.price*value.amount*1/100+'원</td>'+
-			'<td>'+value.price*value.amount+'원</td></tr>');
-		
-		});
-	}
-	
-	
 	function cartlist(data) {
 		$('.mycart_table').empty();
 		$('.mycart_table').append('<tr><th width="5%"><input type="checkbox" id="cart_checkbox"></th>'+
@@ -82,7 +54,6 @@ $(document).ready(function() {
 			'</tr>');
 		
 		$.each(data,function(index, value){
-			
 			$('.mycart_table').append('<tr><td><input type="checkbox" class="cart_cb"></td>'+
 			'<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
 			'<td>'+value.price+'원</td>'+
@@ -90,11 +61,10 @@ $(document).ready(function() {
 					'<c:forEach var="i" begin="1" end="20" step="1">'+
 						'<option value="${i}">${i}</option>'+
 					'</c:forEach></select>'+
-					'<input type="button" class="upd_amount" value="변경"></td>'+
-					'<input type="hidden" class="foods_no" value="'+value.foods_no+'">'+
+					'<input type="button" class="upd_amount" value="변경">'+
+					'<input type="hidden" class="foods_no" value="'+value.foods_no+'"></td>'+
 			'<td>'+value.price*value.amount*1/100+'원</td>'+
 			'<td>'+value.price*value.amount+'원</td></tr>');
-		
 		});
 	}
 	
@@ -115,7 +85,7 @@ $(document).ready(function() {
 		</tr>
 			<c:forEach var="dto" items="${aList}">
 				<tr>
-					<td><input type="checkbox" class="cart_cb"></td>
+					<td><input type="checkbox" class="cart_cb" value="${dto.foods_no}"></td>
 					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_name}</td>
 					<td>${dto.price}원</td>
 					<td>${dto.amount}
@@ -126,7 +96,8 @@ $(document).ready(function() {
 							</c:forEach>
 
 
-					</select> <input type="button" class="upd_amount" value="변경">
+					</select> 
+					<input type="button" class="upd_amount" value="변경">
 					<input type="hidden" class="foods_no" value="${dto.foods_no}">
 					</td>
 					<td>${dto.price*dto.amount*1/100}원</td>

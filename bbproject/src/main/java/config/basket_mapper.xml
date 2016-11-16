@@ -21,7 +21,7 @@
 		where foods_no=#{foods_no}
 	</update>
 
-	<delete id="delete"  parameterType="int">
+	<delete id="delete" parameterType="int">
 		delete from fb_basket
 		where foods_no=#{foods_no}
 	</delete>

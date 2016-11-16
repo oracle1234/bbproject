@@ -31,8 +31,10 @@ public class fb_BasketDaoImp implements fb_BasketDAO{
 	}
 
 	@Override
-	public void delete(fb_BasketDTO bdto) {
-		sqlSession.delete("basket.delete", bdto);
+	public void delete(int foods_no) {
+		sqlSession.delete("basket.delete", foods_no);
+		
 	}
+
 
 }//end class

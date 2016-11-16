@@ -46,9 +46,12 @@ insert into fb_basket values
 insert into fb_basket values
 (1, 3, 2);  
 insert into fb_basket values
-(2, 2, 1);
-insert into fb_basket values
 (1, 1, 1);
+insert into fb_basket values
+(1, 2, 7);
+insert into fb_basket values
+(2, 2, 1);
+
 
 장바구니 조인 - 상품명, 상품가격, 수량, 적립금
 select f.foods_name, f.price, b.amount, m.point

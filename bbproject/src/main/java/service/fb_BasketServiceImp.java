@@ -30,9 +30,10 @@ public class fb_BasketServiceImp implements fb_BasketService{
 
 	@Override
 	public List<fb_BasketDTO> deleteProcess(fb_BasketDTO bdto) {
-		dao.delete(bdto);
+		dao.delete(bdto.getFoods_no());
 		return dao.list(bdto.getMember_no());
 	}
+
 
 
 }//end class

@@ -63,10 +63,9 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/my_cart_delete.do")
-	public @ResponseBody List<fb_BasketDTO> deleteMethod(fb_BasketDTO bdto){
+	public @ResponseBody List<fb_BasketDTO> delete(fb_BasketDTO bdto){
 		return service.deleteProcess(bdto);
 	}
-	
 
 	@RequestMapping("/my_coupon.do")
 	public String mycoupon() {
