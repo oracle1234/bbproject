@@ -13,12 +13,12 @@ import dto.PageDTO;
 import service.BoardService;
 
 @Controller
-public class MainController {
+public class BoardController {
 	private BoardService service;
 	private int currentPage;
 	private PageDTO pdto;
 
-	public MainController() {
+	public BoardController() {
 
 	}
 

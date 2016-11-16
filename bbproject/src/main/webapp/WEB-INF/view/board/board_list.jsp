@@ -31,9 +31,19 @@
 	float: left;
 }
 
-.board_input {
+.board_search {
 	padding: 20px 50px;
 	text-align: center;
+}
+
+.board_page {
+	text-align: center;
+}
+
+.board_write {
+	padding-top:10px;
+	padding-right:10px;
+	text-align: right;
 }
 
 .board_search_str {
@@ -62,6 +72,7 @@
 	border-top: 2px solid black;
 	border-bottom: 1px solid gray;
 }
+
 </style>
 
 <body>
@@ -96,7 +107,12 @@
 				</tr>
 			</c:forEach>
 		</table>
+		
+		<div class="board_write">
+			<a href="board_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
+		</div>
 
+		<div class="board_page">
 		<!-- 이전 출력 시작 -->
 		<c:if test="${pv.startPage>1}">
 			<a href="board_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
@@ -115,8 +131,10 @@
 			<a href="board_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
 		
-		<div class="board_input">
-			<form id="input_frm" method="get" action="board_write.do">
+		</div>
+		
+		<div class="board_search">
+			<form id="search_frm" method="get">
 				<span class="chk"> 
 				<label> 
 					<input type="radio" name="search" checked value="board_writer"> 이름
@@ -130,7 +148,7 @@
 				</span> 
 					<input type="text" name="search_str" value class="board_search_str" />
 					<input type="button" id="btnSearch" value="검색" />
-					<input type="submit" id="btnWrite" value="글쓰기" />
+					
 			</form>
 		</div>	
 	</div>

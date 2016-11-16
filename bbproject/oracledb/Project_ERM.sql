@@ -1,6 +1,5 @@
 
 /* Drop Tables */
-
 DROP TABLE fb_lately_product CASCADE CONSTRAINTS;
 DROP TABLE fb_coupon_book CASCADE CONSTRAINTS;
 DROP TABLE fb_coupon CASCADE CONSTRAINTS;
@@ -199,7 +198,6 @@ CREATE TABLE fb_qa_board
 	PRIMARY KEY (qa_no)
 );
 
-
 CREATE TABLE fb_photo_board
 (
 	photo_no number NOT NULL,
@@ -224,6 +222,10 @@ CREATE TABLE fb_board
 	PRIMARY KEY (board_no)
 );
 
+insert into fb_board values(1,0,'kys','너무 졸리다',sysdate,'첫번째 글');
+insert into fb_board values(board_no_seq.nextval,0,'kys','밥 언제먹지?',sysdate,'두번째 글');
+select * from fb_board;
+delete from fb_board;
 
 CREATE TABLE fb_theme_recipe
 (

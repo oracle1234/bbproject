@@ -43,9 +43,9 @@
 
 	<!-- 선언적 트랜색션: <tx:advice> 선언 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-	<tx:attributes>
-	<tx:method name="*Process" rollback-for="java.lang.Exception" />
-	</tx:attributes>
+		<tx:attributes>
+			<tx:method name="*Process" rollback-for="java.lang.Exception" />
+		</tx:attributes>
 	</tx:advice>
 
 	<!-- 트랜잭션 설정 -->
@@ -59,14 +59,14 @@
 	<bean id="dao" class="dao.BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
+
 	<!-- Service 빈 선언 -->
 	<bean id="service" class="service.BoardServiceImp">
 		<property name="dao" ref="dao" />
 	</bean>
 
 	<!-- controller 등록 -->
-	<bean class="controller.MainController">
+	<bean class="controller.BoardController">
 		<property name="service" ref="service" />
 	</bean>
 	<bean class="controller.ProductController"></bean>

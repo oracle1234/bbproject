@@ -57,15 +57,15 @@
 
 	<!-- [QA게시판] -->
 
-	<select id="qa_count" resultType="int">
+	<!-- <select id="qa_count" resultType="int">
 		select count(*) from qa_board
 	</select>
 
 	<select id="qa_list" resultType="dto.QA_BoardDTO" parameterType="dto.PageDTO">
-		<!-- 파싱하지말고 문자열 그대로 사용하라(<,>) '<'를 사용하기 위해서 CDATA를 사용 아직 수정중 <![CDATA[ 
+		파싱하지말고 문자열 그대로 사용하라(<,>) '<'를 사용하기 위해서 CDATA를 사용 아직 수정중 <![CDATA[ 
 			select b.* from( select rownum as rm, a.* from( select * from fb_board order 
 			by ref desc, re_step asc)a)b where b.rm>=#{startRow} and b.rm<=#{endRow} 
-			]]> -->
+			]]>
 	</select>
 
 	<select id="qa_content" parameterType="int" resultType="dto.QA_BoardDTO">
@@ -79,14 +79,14 @@
 	</update>
 
 	<update id="qa_reStepCount" parameterType="dto.QA_BoardDTO">
-		<!-- 아직 수정중 <![CDATA[ update fb_qa_board set re_step=re_step+1 where ref=#{ref} 
-			and re_step>#{re_step} ]]> -->
+		아직 수정중 <![CDATA[ update fb_qa_board set re_step=re_step+1 where ref=#{ref} 
+			and re_step>#{re_step} ]]>
 	</update>
 
 	<insert id="qa_save" parameterType="dto.QA_BoardDTO">
-		<!-- 아직 수정중 insert into board(num,writer,subject,reg_date, readcount,ref,re_step,re_level,content,ip,upload) 
+		아직 수정중 insert into board(num,writer,subject,reg_date, readcount,ref,re_step,re_level,content,ip,upload) 
 			values(board_seq.nextval,#{writer},#{subject},sysdate,0, <choose> <when test="ref==0"> 
-			board_seq.nextval </when> <otherwise> #{ref} </otherwise> </choose> ,#{re_step},#{re_level},#{content},#{ip},#{upload,jdbcType=VARCHAR}) -->
+			board_seq.nextval </when> <otherwise> #{ref} </otherwise> </choose> ,#{re_step},#{re_level},#{content},#{ip},#{upload,jdbcType=VARCHAR})
 	</insert>
 
 	<select id="qa_uploadFile" parameterType="int" resultType="String">
@@ -105,10 +105,6 @@
 	<delete id="qa_delete" parameterType="int">
 		delete from fb_qa_board
 		where qa_no=#{qa_no}
-	</delete>
-
-	<select id="qa_uploadFile" parameterType="int" resultType="String">
-		select qa_upload from fb_qa_board where qa_no = #{qa_no}
-	</select>
+	</delete> -->
 
 </mapper>
