@@ -60,7 +60,7 @@ td{
 
 .textarea textarea{
 	width:948px;
-	
+	height: 600px;
 }
 </style>
 </head>
@@ -81,6 +81,7 @@ td{
 				<td><c:if test="${dto!=null}">답변</c:if> <input type="text"
 					name="subject" size="40" /></td>
 			</tr>
+			
 		</table>
 		
 		<div class="textarea">

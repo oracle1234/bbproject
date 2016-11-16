@@ -112,9 +112,6 @@ public class QA_BoardServiceImp implements QA_BoardService {
 			File fe = new File(saveDirectory, upload);
 			fe.delete();
 		}
-
 		dao.delete(num);
-
-	}
-
+	}// end deleteProcess()
 }

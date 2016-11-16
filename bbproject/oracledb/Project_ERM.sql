@@ -33,7 +33,6 @@ DROP SEQUENCE SEQ_recipe_no;
 DROP SEQUENCE SEQ_comment_no;
 DROP SEQUENCE SEQ_qa_no;
 DROP SEQUENCE SEQ_board_no;
-
 DROP SEQUENCE SEQ_photo_no;
 DROP SEQUENCE SEQ_theme_no;
 DROP SEQUENCE SEQ_order_no;

@@ -50,9 +50,14 @@ public class BoardDaoImp implements BoardDAO {
 	}
 
 	@Override
-	public void save(CommentDTO dto) {
-		sqlSession.insert("board.save", dto);
+	public void save(CommentDTO cdto) {
+		sqlSession.insert("board.c_save", cdto);
 
+	}
+	
+	@Override
+	public void save(BoardDTO bdto) {
+		sqlSession.insert("board.b_save", bdto);
 	}
 
 	@Override
@@ -70,13 +75,6 @@ public class BoardDaoImp implements BoardDAO {
 	@Override
 	public void delete(int num) {
 		sqlSession.delete("board.delete", num);
-
-	}
-
-	@Override
-	public String getFile(int num) {
-
-		return sqlSession.selectOne("board.uploadFile", num);
 
 	}
 

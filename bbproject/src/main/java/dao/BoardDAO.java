@@ -12,9 +12,9 @@ public interface BoardDAO {
 	public void readCount(int num);
 	public BoardDTO content(int num);
 	public void reStepCount(CommentDTO dto);
-	public void save(CommentDTO dto);
+	public void save(BoardDTO dto);
+	public void save(CommentDTO cdto);
 	public BoardDTO updateNum(int num);
 	public void update(BoardDTO dto);
 	public void delete(int num);
-	public String getFile(int num);
 }

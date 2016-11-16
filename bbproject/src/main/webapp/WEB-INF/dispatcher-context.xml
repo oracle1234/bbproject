@@ -56,18 +56,34 @@
 	</aop:config>
 
 	<!-- DAO 빈 선언 -->
-	<bean id="dao" class="dao.BoardDaoImp">
+	<bean id="boardDao" class="dao.BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	
+	<bean id="qaDao" class="dao.QA_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean> -->
 
 	<bean id="themeRecipeDao" class="dao.ThemeRecipeDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	
 	<!-- Service 빈 선언 -->
-	<bean id="service" class="service.BoardServiceImp">
-		<property name="dao" ref="dao" />
+	<bean id="boardService" class="service.BoardServiceImp">
+		<property name="dao" ref="boardDao" />
 	</bean>
+	
+	<bean id="qaService" class="service.QA_BoardServiceImp">
+		<property name="dao" ref="qaDao"/>
+	</bean>
+	
+	<!-- <bean id="photoService" class="service.Photo_BoardServiceImp">
+		<property name="dao" ref="photoDao"/>
+	</bean> -->
 	
 	<bean id="themeRecipeservice" class="service.ThemeRecipeServiceImp">
 		<property name="dao" ref="themeRecipeDao" />
@@ -75,7 +91,9 @@
 
 	<!-- controller 등록 -->
 	<bean class="controller.BoardController">
-		<property name="service" ref="service" />
+		<property name="service" ref="boardService" />
+		<property name="qa_service" ref="qaService" />
+		
 	</bean>
 	<bean class="controller.ProductController"></bean>
 	<bean class="controller.ThemeRecipeController">
