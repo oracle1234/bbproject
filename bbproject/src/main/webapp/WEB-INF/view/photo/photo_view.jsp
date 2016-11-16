@@ -49,9 +49,9 @@
 <table border="1" width="80%">
 		<tr>
 			<th width="20%">글쓴이</th>
-			<td>${dto.board_writer}</td>
+			<td>${dto.writer}</td>
 			<th width="20%">조회수</th>
-			<td>${dto.board_readcount}</td>
+			<td>${dto.readcount}</td>
 		</tr>
 
 		<tr>
@@ -64,6 +64,16 @@
 			<td colspan="3">${dto.board_content}</td>
 		</tr>
 
+		<tr>
+			<th>파일</th>
+			<td colspan="3"><c:if test="${!empty dto.upload}">
+					<a href="contentdownload.do?no=${dto.board_no}">
+					 ${fn:substringAfter(dto.upload,"_")}
+					 </a>
+				</c:if> <c:if test="${empty dto.upload }">
+					<c:out value="첨부파일 없음" />
+				</c:if></td>
+		</tr>
 	</table>
 	
 	<form name="frm" id="frm" method="get" >	 

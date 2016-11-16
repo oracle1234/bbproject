@@ -4,11 +4,11 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class fb_BoardDTO {
+public class BoardDTO {
 	private int board_no, board_readcount;
 	private String board_writer, board_subject, board_content;
 	private String board_passwd, board_ip;
-	private Date reg_date;
+	private Date board_reg_date;
 
 	// board테이블의 파일첨부를 처리해주는 멤버변수
 	private String upload;
@@ -56,12 +56,12 @@ public class fb_BoardDTO {
 		this.board_content = board_content;
 	}
 
-	public Date getReg_date() {
-		return reg_date;
+	public Date getBoard_reg_date() {
+		return board_reg_date;
 	}
 
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setBoard_reg_date(Date board_reg_date) {
+		this.board_reg_date = board_reg_date;
 	}
 
 	public String getUpload() {

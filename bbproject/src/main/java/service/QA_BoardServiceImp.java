@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import dao.fb_BoardDAO;
-import dto.fb_BoardDTO;
-import dto.fb_CommentDTO;
-import dto.fb_PageDTO;
+import dao.QA_BoardDAO;
+import dto.QA_BoardDTO;
+import dto.CommentDTO;
+import dto.PageDTO;
 
-public class fb_BoardServiceImp implements fb_BoardService {
-	private fb_BoardDAO dao;
+public class QA_BoardServiceImp implements QA_BoardService {
+	private QA_BoardDAO dao;
 
-	public fb_BoardServiceImp() {
+	public QA_BoardServiceImp() {
 
 	}
 
-	public void setDao(fb_BoardDAO dao) {
+	public void setDao(QA_BoardDAO dao) {
 		this.dao = dao;
 	}
 
@@ -35,25 +35,25 @@ public class fb_BoardServiceImp implements fb_BoardService {
 	}
 
 	@Override
-	public List<fb_BoardDTO> listProcess(fb_PageDTO pv) {
+	public List<QA_BoardDTO> listProcess(PageDTO pv) {
 
 		return dao.list(pv);
 	}
 
 	@Override
-	public void insertProcess(fb_CommentDTO dto) {
+	public void insertProcess(CommentDTO dto) {
 		dao.save(dto);
 
 	}
 
 	@Override
-	public fb_BoardDTO contentProcess(int num) {
+	public QA_BoardDTO contentProcess(int num) {
 		dao.readCount(num);
 		return dao.content(num);
 	}
 
 	@Override
-	public void reStepProcess(fb_CommentDTO dto) {
+	public void reStepProcess(CommentDTO dto) {
 		dao.reStepCount(dto);
 		dto.setComment_re_step(dto.getComment_re_step() + 1);
 		dto.setComment_re_level(dto.getComment_re_level() + 1);
@@ -61,14 +61,14 @@ public class fb_BoardServiceImp implements fb_BoardService {
 	}
 
 	@Override
-	public fb_BoardDTO updateSelectProcess(int num) {
+	public QA_BoardDTO updateSelectProcess(int num) {
 
 		return dao.updateNum(num);
 	}
 
 	@Override
-	public void updateProcess(fb_BoardDTO dto, HttpServletRequest request) {
-		String filename = dao.getFile(dto.getBoard_no());
+	public void updateProcess(QA_BoardDTO dto, HttpServletRequest request) {
+		String filename = dao.getFile(dto.getQa_no());
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String saveDirectory = root + "temp" + File.separator;
 
@@ -100,22 +100,21 @@ public class fb_BoardServiceImp implements fb_BoardService {
 				e.printStackTrace();
 			}
 		}
-		dto.setBoard_ip(request.getRemoteAddr());
 		dao.update(dto);
 	}// end updateProcess()
 
 	@Override
 	public void deleteProcess(int num, HttpServletRequest request) {
 		String upload = dao.getFile(num);
-		if(upload != null){
+		if (upload != null) {
 			String root = request.getSession().getServletContext().getRealPath("/");
 			String saveDirectory = root + "temp" + File.separator;
 			File fe = new File(saveDirectory, upload);
 			fe.delete();
 		}
-		
+
 		dao.delete(num);
-		
+
 	}
 
 }
