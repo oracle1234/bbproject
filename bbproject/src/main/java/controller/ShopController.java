@@ -108,5 +108,6 @@ public class ShopController {
 		mav.setViewName("shop_kimchi");
 		return mav;
 	}// end kimchiPage()
-
+	
+	
 }

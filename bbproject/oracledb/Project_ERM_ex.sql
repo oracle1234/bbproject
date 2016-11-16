@@ -68,3 +68,69 @@ select *
 		where f.foods_no = r.foods_no and
 		r.foods_no = 1
 		order by r.review_no desc
+		
+CREATE TABLE fb_category
+(
+	category_no number NOT NULL,
+	category_name varchar2(50) NOT NULL,
+	PRIMARY KEY (category_no)
+);
+
+CREATE TABLE fb_delivery_cost
+(
+	fb_delivery_no number NOT NULL,
+	fb_delivery_cost number NOT NULL,
+	PRIMARY KEY (fb_delivery_no)
+);
+select * from fb_foods
+
+insert into fb_delivery_cost values (SEQ_fb_delivery_no.nextval, 3000);
+insert into fb_category values (SEQ_category_no.nextval, '국/찌개');
+insert into fb_category values (SEQ_category_no.nextval, '반찬');
+insert into fb_category values (SEQ_category_no.nextval, '김치');
+
+insert into fb_foods values (SEQ_foods_no.nextval, '반찬28', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 2, 1);
+insert into fb_foods values (SEQ_foods_no.nextval, '반찬29', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 2, 1);
+insert into fb_foods values (SEQ_foods_no.nextval, '반찬30', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 2, 1);
+insert into fb_foods values (SEQ_foods_no.nextval, '국1', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 1, 1);
+
+select * from fb_review
+insert into FB_REVIEW values (SEQ_review_no.nextval, '똥개', '맛없어요 시키지마세여', sysdate, 2);
+
+select * from
+		fb_review r, fb_foods f
+		where 
+		r.foods_no(+) = 1
+		order by r.review_no desc
+		
+		
+select * from
+		fb_review r, fb_foods f
+		where r.foods_no = f.foods_no and
+		r.foods_no(+) = #{foods_no}
+		order by r.review_no desc
+		
+		
+		select   * from fb_foods f
+		left outer join  fb_review r
+		on r.foods_no = f.foods_no and
+		r.foods_no = 1
+
+		
+		select b.*, r.*
+		from tbl_board b, tbl_reply r
+		where b.bno = r.bno(+) and b.bno=2
+		order by r.rno desc
+		
+		select r.*, f.* from
+		fb_review r, fb_foods f
+		where f.foods_no = r.foods_no(+) and
+		f.foods_no = 5
+		order by r.review_no desc
+		
+		
+		select r.*, f.* from
+		fb_review r, fb_foods f
+		where f.foods_no = r.foods_no(+) and
+		f.foods_no = 1
+		order by r.review_no desc

@@ -30,10 +30,6 @@ public class ProductController {
 	public ModelAndView detailproductProcess(FoodsDTO fdto){
 		ModelAndView mav = new ModelAndView();
 		
-		//mav.addObject("reviewList", service.reviewListProcess(fdto.getFoods_no()));
-		
-		
-		
 		mav.addObject("list", service.listProcess(fdto.getFoods_no()));
 		mav.setViewName("view/shop_detail/detail_product");
 		return mav;

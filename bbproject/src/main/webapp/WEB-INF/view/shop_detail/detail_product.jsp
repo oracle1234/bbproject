@@ -21,14 +21,14 @@ body {
 }
 
 .detail_img_wrap {
-	width: 350px;
-	height: 350px;
+	width: 390px;
+	height: 390px;
 	position: absolute;
 }
 
 .detail_img img {
-	width: 320px;
-	height: 320px;
+	width: 390px;
+	height: 390px;
 	position: absolute;
 	top: 20px;
 	left: 20px;
@@ -48,6 +48,7 @@ body {
 #info_table {
 	position: absolute;
 	top: 20px;
+	left : 450px;
 }
 
 #info_table tr:nth-child(1) {
@@ -56,7 +57,7 @@ body {
 
 .deli_img {
 	position: absolute;
-	top: 280px;
+	top: 400px;
 	left: 360px;
 }
 
@@ -93,29 +94,41 @@ body {
 	position: absolute;
 	top: 1640px;
 	right: 50px;
-	background-color: green;
 }
 
 #shop_upbutton {
 	position: absolute;
-	top: 162px;
+	top: 188px;
 }
 
 #shop_downbutton {
 	position: absolute;
-	top: 173px;
+	top: 199px;
 }
 
 .shop_review p {
 	font-size: 23px;
 }
 
+
+
+#review_table, th, td {
+	padding: 3px;
+}
+#review_table{
+	border-spacing: 5px; 
+}
+
+#review_table caption{
+	font-size: 30px;
+}
+
 #review_table th:nth-child(1) {
-	width: 40px;
+	width: 45px;
 }
 
 #review_table th:nth-child(2) {
-	width: 680px;
+	width: 635px;
 }
 
 #review_table th:nth-child(3) {
@@ -123,8 +136,17 @@ body {
 }
 
 #review_table th:nth-child(4) {
-	width: 100px;
+	width: 140px;
 }
+
+#review_table td{
+	text-align: center;
+}
+#review_table td:nth-child(2){
+	text-align:left;
+}
+
+
 </style>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -155,9 +177,9 @@ body {
 													.getElementById("counttext").value = count;
 											var total = price * count;
 
-											$('#info_table tr:nth-child(9) td')
+											$('#info_table tr:nth-child(11) td')
 													.empty();
-											$('#info_table tr:nth-child(9) td')
+											$('#info_table tr:nth-child(11) td')
 													.append(
 															'<td>'
 																	+ total
@@ -165,30 +187,17 @@ body {
 
 										});
 
-						$('#shop_downbutton')
-								.on(
-										'click',
-										function() {
-
-											var price = parseInt($(
-													'#info_table tr:nth-child(3) td')
-													.text());
-											var count = parseInt($('#counttext')
-													.val());
-											if (count != 1) {
-												count -= 1;
-												document
-														.getElementById("counttext").value = count;
-											}
-											var total = price * count;
-											$('#info_table tr:nth-child(9) td')
-													.empty();
-											$('#info_table tr:nth-child(9) td')
-													.append(
-															'<td>'
-																	+ total
-																	+ '<span>원</span></td>');
-										});
+						$('#shop_downbutton').on('click',function() {
+							var price = parseInt($('#info_table tr:nth-child(3) td').text());
+							var count = parseInt($('#counttext').val());
+							if (count != 1) {
+								count -= 1;
+								document.getElementById("counttext").value = count;
+							}
+							var total = price * count;
+							$('#info_table tr:nth-child(11) td').empty();
+							$('#info_table tr:nth-child(11) td').append('<td>'+ total+ '<span>원</span></td>');
+							});
 
 						$('#info_table tr:nth-child(7) td input')
 								.on(
@@ -202,10 +211,10 @@ body {
 											if (input >= 1) {
 												var total = price * input;
 												$(
-														'#info_table tr:nth-child(9) td')
+														'#info_table tr:nth-child(11) td')
 														.empty();
 												$(
-														'#info_table tr:nth-child(9) td')
+														'#info_table tr:nth-child(11)) td')
 														.append(
 																'<td>'
 																		+ total
@@ -226,13 +235,12 @@ body {
 
 </head>
 <body>
-
 	<div id="product_wrap">
 		<div class="sul_wrap">
 			<c:forEach items="${list}" var="FoodsDTO">
 				<div class="detail_img_wrap">
 					<div class="detail_img">
-						<img alt="상세이미지" src="images/${FoodsDTO.picture}">
+						<img alt="상세이미지" src="./images/${FoodsDTO.picture}">
 					</div>
 
 				</div>
@@ -274,11 +282,23 @@ body {
 						<tr>
 							<th>적립금</th>
 							<td><span>원</span></td>
+							
+						</tr>
+						
+						<tr>
+							<th>재료</th>
+							<td>${FoodsDTO.foods_material}</td>
+						</tr>
+
+						<tr>
+							<th>설명</th>
+							<td>${FoodsDTO.foods_explaination}</td>
 						</tr>
 						<tr>
 							<th>구매예정금액</th>
 							<td>${FoodsDTO.price}<span>원</span></td>
 						</tr>
+						
 					</table>
 
 					<div class="deli_img">
@@ -292,19 +312,12 @@ body {
 
 				<div id="account">
 					<table id="account_meter" height="auto">
-						<tr>
-							<th>재료</th>
-							<td>${FoodsDTO.foods_material}</td>
-						</tr>
-
-						<tr>
-							<th>설명</th>
-							<td>${FoodsDTO.foods_explaination}</td>
-						</tr>
+						
 					</table>
 				</div>
-			</c:forEach>
 		</div>
+
+
 
 		<!-- 상품 상세설명 end -->
 		<div class="packing_wrap">
@@ -317,24 +330,25 @@ body {
 		<div id=review_wrap>
 
 			<div class="shop_review">
-				<p id="review_text_p">한줄평</p>
-				<table id="review_table" border="1" width="850px">
+				<!-- <p id="review_text_p">한줄평</p> -->
+				<table id="review_table" width="850px" >
+					<caption>한줄평</caption>
+					
 					<tr>
 						<th>번호</th>
 						<th>내용</th>
 						<th>작성자</th>
 						<th>작성일</th>
 					</tr>
-
+					<c:forEach items="${FoodsDTO.rdto}" var = "ReviewDTO">
 						<tr>
 							<td>${ReviewDTO.review_no}</td>
-							<td>${ReviewDTO.review_writer}</td>
 							<td>${ReviewDTO.review_content}</td>
-							<td>${ReviewDTO.review_date}</td>
+							<td>${ReviewDTO.review_writer}</td>
+							<td>2016-11-11 16:14</td>
 						</tr>
-
-
-
+					</c:forEach>
+				</c:forEach>
 				</table>
 
 				<label>한줄평 남기기</label><input type="text" size="70px"
