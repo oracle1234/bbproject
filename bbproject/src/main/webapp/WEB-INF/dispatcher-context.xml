@@ -74,6 +74,9 @@
 	</bean>
 
 	<!-- controller 등록 -->
+	<bean class="controller.ImageController">
+		<property name="service" ref="themeRecipeservice"></property>
+	</bean>
 	<bean class="controller.BoardController">
 		<property name="service" ref="service" />
 	</bean>

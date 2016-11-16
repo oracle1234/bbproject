@@ -27,6 +27,11 @@ public class ThemeRecipeDaoImp implements ThemeRecipeDAO {
 		return sqlSession.selectList("recipe.list");
 	}
 
+	@Override
+	public ThemeRecipeDTO selectRecipe(int recipe_no) {
+		return sqlSession.selectOne("recipe.detail", recipe_no);
+	}
+
 
 	
 }

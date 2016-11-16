@@ -116,5 +116,9 @@ select *
 from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
 where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no
 order by a.recipe_no desc;
-and a.recipe_no = 3;
+
+select * 
+from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
+where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no
+and a.recipe_no = 4;
 

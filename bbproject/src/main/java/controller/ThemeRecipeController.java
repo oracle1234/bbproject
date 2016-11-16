@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ import service.ThemeRecipeService;
 
 @Controller
 public class ThemeRecipeController {
-	ThemeRecipeService service;
+	private ThemeRecipeService service;
 
 	public ThemeRecipeController() {
 	}
@@ -117,6 +118,14 @@ public class ThemeRecipeController {
 		service.insertRecipeProcess(dto);
 
 		mav.setViewName("view/recipe_insert");
+		return mav;
+	}
+	
+	@RequestMapping("/recipedetail.do")
+	public ModelAndView recipeDetailPage(int recipe_no) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", service.selectRecipeProcess(recipe_no));
+		mav.setViewName("recipedetail");
 		return mav;
 	}
 

@@ -101,6 +101,10 @@
 			value="/WEB-INF/view/template/recipe_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/recipe.jsp" />
 	</definition>
+	
+	<definition name="recipedetail" extends="recipe">
+		<put-attribute name="body" value="/WEB-INF/view/recipedetail.jsp" />
+	</definition>
 
 	<definition name="my_order" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />

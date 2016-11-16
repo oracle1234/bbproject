@@ -7,6 +7,7 @@ import dto.ThemeRecipeDTO;
 public interface ThemeRecipeService {
 	public void insertRecipeProcess(ThemeRecipeDTO dto);
 	public List<ThemeRecipeDTO> selectListProcess();
+	public ThemeRecipeDTO selectRecipeProcess(int recipe_no);
 }
 
 
