@@ -37,6 +37,7 @@
 }
 
 .board_page {
+	padding: 20px 50px;
 	text-align: center;
 }
 
@@ -51,7 +52,6 @@
 }
 
 #btnSearch {
-	border-color: #8c8888;
 	background-color: #8c8888;
 	color: #fff;
 	width: 80px;
