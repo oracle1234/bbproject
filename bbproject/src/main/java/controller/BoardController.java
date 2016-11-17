@@ -97,14 +97,10 @@ public class BoardController {
 		if (cdto.getComment_ref() != 0) {
 			service.reStepProcess(cdto);
 		} else {
-			System.out.println(bdto.getBoard_no());
-			System.out.println(bdto.getBoard_writer());
-			System.out.println(bdto.getBoard_subject());
-			System.out.println(bdto.getBoard_reg_date());
 			service.insertProcess(bdto);
 		}
 		
-		return "/board/board_list";
+		return "redirect:/board_list.do";
 	}// end writeProMethod
 
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)

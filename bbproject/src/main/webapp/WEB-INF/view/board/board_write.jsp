@@ -23,8 +23,8 @@
 	});
 
 	function process() {
-		$('[name=content]').val(
-				$('[name=content]').val().replace(/\n/gi, '<br/>'));
+		$('[name=board_content]').val(
+				$('[name=board_content]').val().replace(/\n/gi, '<br/>'));
 		return true;
 	}
 </script>
@@ -85,9 +85,11 @@ td{
 		</table>
 		
 		<div class="textarea">
-			<textarea name="board_content" rows="10" cols="100"></textarea>
+			<textarea name="board_content" rows="100" cols="100"></textarea>
 		</div>
+		
 		<!-- 답변글일때.... -->
+		
 		<c:if test="${bdto!=null}">
 			<input type="hidden" name="board_no" id="board_no" value="${dto.board_no}" />
 			<input type="hidden" name="currentPage" id="currentPage"
@@ -100,8 +102,7 @@ td{
 		<div class="board_btn">
 			<input type="button" id="btnList" value="리스트" /> 
 			<input type="button" id="btnSave" value="저장" />
-		</div>
-		
+		</div>		
 	</form>
 	</div>
 </body>

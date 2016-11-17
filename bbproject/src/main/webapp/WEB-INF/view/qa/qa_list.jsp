@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -73,15 +74,22 @@
 	border-bottom: 1px solid gray;
 }
 
+#table #col{
+	line-height: 40px;
+}
+
+td{
+	padding-top: 7px;
+}
 </style>
 
 <body>
 	<div id="bodywrap">
 		<div id="bodytop">
-			<h3 class="bodyname">Q&A</h3>
+			<h3 class="bodyname">Q/A</h3>
 		</div>
 		<table id="table">
-			<tr>
+			<tr id="col">
 				<th width="5%">번호</th>
 				<th width="65%">제목</th>
 				<th width="10%">글쓴이</th>
@@ -89,27 +97,25 @@
 				<th width="10%">조회수</th>
 			</tr>
 
-			<c:forEach var="dto" items="${aList2}">
+			<c:forEach var="qdto" items="${aList2}">
 				<tr>
-					<td>${dto.qa_no}</td>
-					<td><c:url var="content" value="board_view.do">
+					<td>${qdto.qa_no}</td>
+					<td><c:url var="content" value="qa_view.do">
 							<c:param name="currentPage" value="${pv2.currentPage}" />
-							<c:param name="num" value="${dto.qa_no}" />
-						</c:url> <c:if test="${dto.qa_re_level!=0}">
-							<img src="images/level.gif" width="${20*dto.qa_re_level}"
-								height="15" />
-							<img src="images/re.gif" />
-						</c:if><a href="${content}">${dto.qa_subject}</a></td>
-					<td>${dto.qa_writer}</td>
-					<td>${dto.qa_reg_date}
-					<td>${dto.qa_readcount}</td>
-
+							<c:param name="num" value="${qdto.qa_no}" />
+						</c:url> 
+						<a href="${qa_content}">${qdto.qa_subject}</a></td>
+					<td>${qdto.qa_writer}</td>
+					<td>
+						<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${qdto.qa_reg_date}" />
+					</td>
+					<td>${qdto.qa_readcount}</td>
 				</tr>
 			</c:forEach>
 		</table>
 		
 		<div class="board_write">
-			<a href="board_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
+			<a href="qa_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
 		</div>
 		
 		<div class="board_page">
@@ -146,8 +152,7 @@
 				</label>
 				</span> 
 					<input type="text" name="search_str" value class="board_search_str" />
-					<input type="button" id="btnSearch" value="검색" />
-					
+					<input type="button" id="btnSearch" value="검색" />				
 			</form>
 		</div>	
 	</div>
