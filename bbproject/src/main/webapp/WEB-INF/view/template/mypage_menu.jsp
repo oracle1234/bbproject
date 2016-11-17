@@ -4,9 +4,9 @@
 		<p>MYPAGE</p>
 	</div>
 	<ul class="detailmenu">
-		<li><a href="my_order.do">ORDER</a></li>
+		<li><a href="my_order.do?member_no=1">ORDER</a></li>
 		<li><a href="my_cart.do?member_no=1">CART</a></li>
-		<li><a href="my_coupon.do">COUPON</a></li>
+		<li><a href="my_coupon.do?member_no=1">COUPON</a></li>
 		<li><a href="my_point.do">POINT</a></li>
 		<li><a href="my_board.do">BOARD</a></li>
 	</ul>

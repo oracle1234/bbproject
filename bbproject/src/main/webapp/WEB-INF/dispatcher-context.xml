@@ -25,7 +25,10 @@
 			<list>
 				<value>classpath*:config/mapper.xml</value>
 				<value>classpath*:config/basket_mapper.xml</value>
+				<value>classpath*:config/order_mapper.xml</value>
+				<value>classpath*:config/coupon_mapper.xml</value>
 				<value>classpath*:config/mapper_recipe.xml</value>
+				<value>classpath*:config/shop_mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -59,6 +62,16 @@
 			id="bb" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="bb" />
 	</aop:config>
+	<aop:config>
+		<aop:pointcut expression="execution(* service.Order*.*(..))"
+			id="cc" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="cc" />
+	</aop:config>
+	<aop:config>
+		<aop:pointcut expression="execution(* service.Coupon*.*(..))"
+			id="dd" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="dd" />
+	</aop:config>
 
 	<!-- DAO 빈 선언 -->
 	<bean id="dao" class="dao.fb_BoardDaoImp">
@@ -67,13 +80,33 @@
 	<bean id="BasketDao" class="dao.fb_BasketDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	<bean id="shopDao" class="dao.ShopDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<bean id="OrderDao" class="dao.fb_OrderDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<bean id="CouponDao" class="dao.fb_CouponDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
 	<!-- Service 빈 선언 -->
 	<bean id="service" class="service.fb_BoardServiceImp">
 		<property name="dao" ref="dao" />
 	</bean>
+	<bean id="shopService" class="service.ShopSercviceImp">
+		<property name="dao" ref="shopDao" />
+	</bean>
 	<bean id="BasketService" class="service.fb_BasketServiceImp">
 		<property name="dao" ref="BasketDao" />
 	</bean>
+	<bean id="OrderService" class="service.fb_OrderServiceImp">
+		<property name="dao" ref="OrderDao" />
+	</bean>
+	<bean id="CouponService" class="service.fb_CouponServiceImp">
+		<property name="dao" ref="CouponDao" />
+	</bean>
+	
 	
 	<!-- controller 등록 -->
 	<bean class="controller.MainController">
@@ -81,10 +114,16 @@
 	</bean>
 	<bean class="controller.MypageController">
 		<property name="service" ref="BasketService" />
+		<property name="orderservice" ref="OrderService" />
+		<property name="couponservice" ref="CouponService" />
 	</bean>
-	<bean class="controller.ProductController"></bean>
+	<bean class="controller.ProductController">
+		<property name="service" ref="shopService"></property>
+	</bean>
 	<bean class="controller.RecipeController"></bean>
-	<bean class="controller.ShopController"></bean>
+	<bean class="controller.ShopController">
+		<property name="service" ref="shopService"></property>
+	</bean>
 
 	<!-- 파일 업로드 시작 -->
 	<!-- 첨부 파일의 임시기억장치 경로 설정 -->

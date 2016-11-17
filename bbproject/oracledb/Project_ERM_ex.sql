@@ -68,3 +68,62 @@ where foods_no=1;
 장바구니 음식 삭제
 delete from fb_basket
 where foods_no=1;
+
+
+--주훈오빠
+select foods_no, price, amount
+from fb_foods, fb_basket, fb_member
+where fb_member=1
+and a.fb_foods=b.fb_basket
+
+
+select * from fb_foods where category_no = 1 order by foods_no desc
+
+select *
+		from fb_review r, fb_foods f
+		where  r.foods_no = f.foods_no and r.foods_no = 1
+		order by r.review_no desc
+		
+		select * from
+		fb_foods f, fb_review r
+		where f.foods_no = r.foods_no and
+		r.foods_no = 1
+		order by r.review_no desc
+		
+		
+주문내역
+select * from fb_request
+insert into fb_request values
+(1, 3000, 3, 1, sysdate, '배송전', 1);
+insert into fb_request values
+(1, 3000, 2, 1, sysdate, '배송완료', 2);
+insert into fb_request values
+(1, 3000, 3, 1, sysdate, '입금완료', 3);
+
+주문조회 내역
+select day, foods_no, price, delivery_condition, amount
+from fb_request
+where member_no=1;
+
+쿠폰
+select * from fb_coupon
+insert into fb_coupon values
+(1, '가입 선물', 2000);
+insert into fb_coupon values
+(2, '생일 선물', 3000);
+insert into fb_coupon values
+(3, '크리스마스 선물', 2500);
+
+select * from FB_COUPON_BOOK
+insert into FB_COUPON_BOOK values
+(1, 1, 1, '미사용');
+insert into FB_COUPON_BOOK values
+(2, 1, 2, '미사용');
+insert into FB_COUPON_BOOK values
+(3, 1, 3, '사용');
+
+
+select c.coupon_name, c.coupon_discount, b.coupon_state
+from fb_coupon c, fb_coupon_book b
+where member_no=1
+and c.coupon_no = b.coupon_no;

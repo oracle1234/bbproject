@@ -96,7 +96,7 @@ span img {
 						<div class="list_detail">
 							<p>레시피 이름</p>
 							<p>간단 설명</p>
-							<p>~인 분</p>
+							<p>인원</p>
 							<p>조리 난이도</p>
 							<p>조리 시간</p>
 						</div>
@@ -116,7 +116,7 @@ span img {
 						<div class="list_detail">
 							<p>레시피 이름</p>
 							<p>간단 설명</p>
-							<p>~인 분</p>
+							<p>인원</p>
 							<p>조리 난이도</p>
 							<p>조리 시간</p>
 						</div>

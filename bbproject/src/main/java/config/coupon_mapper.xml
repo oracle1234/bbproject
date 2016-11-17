@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+
+	<select id="list" resultType="dto.fb_CouponDTO" parameterType="int">
+		select c.coupon_name, c.coupon_discount, b.coupon_state
+		from fb_coupon c, fb_coupon_book b
+		where member_no=#{member_no}
+		and c.coupon_no = b.coupon_no
+	</select>
+</mapper>

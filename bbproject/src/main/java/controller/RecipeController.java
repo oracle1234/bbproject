@@ -3,6 +3,7 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -19,8 +20,13 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value = "/recipeins.do", method = RequestMethod.POST)
-	public String recipeinsertPage(int a){
-		return "view/recipe_insert";
+	public ModelAndView recipeSavePage(int theme){
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println(theme);
+		
+		mav.setViewName("view/recipe_insert");
+		return mav;
 	}
 	
 }

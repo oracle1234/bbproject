@@ -2,11 +2,6 @@
 <html>
 <head>
 <style>
-
-table {
-	width: 900px;
-}
-
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -17,7 +12,7 @@ table {
 </head>
 <body>
 
-	<form id="recipe_form" action="/recipe_ins.do" method="post"
+	<form id="recipe_form" action="recipeins.do" method="post"
 		enctype="multipart/form-data">
 
 		<div>
@@ -39,33 +34,46 @@ table {
 				</tr>
 				<tr>
 					<th>레시피 재료</th>
-					<td><input type="text" id="recipe_name" name="recipe_name" /></td>
+					<td><input type="text" id="recipe_material"
+						name="recipe_material" /></td>
 				</tr>
 				<tr>
 					<th>레시피 설명</th>
-					<td><textarea rows="5" cols="50" form="recipe_form"
-							name="explan"></textarea></td>
+					<td><textarea rows="5" cols="30" form="recipe_form"
+							name="recipe_explaination"></textarea></td>
 				</tr>
 				<tr>
 					<th>조리시간</th>
-					<td><input type="text" id="recipe_name" name="recipe_name" /></td>
+					<td><input type="text" id="time" name="time" /></td>
 				</tr>
 				<tr>
 					<th>조리 난이도</th>
-					<td><input type="text" id="recipe_name" name="recipe_name" /></td>
+					<td><input type="text" id="difficulty" name="difficulty" /></td>
 				</tr>
 				<tr>
 					<th>인원</th>
-					<td><input type="text" id="recipe_name" name="recipe_name" /></td>
+					<td><input type="text" id="portion" name="portion" /></td>
+				</tr>
+				
+				<tr>
+					<th>레시피 순서</th>
+					<td><input type="file" id="picture" name="picture[]"
+						multiple="multiple" />
+						<input type="text"  />
+						</td>
+					<td>
+						
 				</tr>
 				<tr>
-					<th>레시피 사진</th>
-					<td><input type="file" id="recipe_files" name="recipe_files[]"
+					<th>레시피 완성 사진</th>
+					<td><input type="file" id="picture" name="picture[]"
 						multiple="multiple" /></td>
 				</tr>
 			</table>
 		</div>
-
+		
+		<input type="submit" value="등록">
+		
 	</form>
 </body>
 </html>

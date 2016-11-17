@@ -11,13 +11,20 @@
 	float:left;
 }
 
-.board_button #button_qa{
-	width:463px;
+.board_button #button_free{
+	width:310px;
 	height:38px;
 	
 }
+
 .board_button #button_review{
-	width:463px;
+	width:310px;
+	height:38px;
+	
+}
+
+.board_button #button_qa{
+	width:310px;
 	height:38px;
 	
 }

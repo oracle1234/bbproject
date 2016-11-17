@@ -8,16 +8,5 @@
 </head>
 <body>
 
-<div class="menubar">
-	<div class="menu_title">
-		<h2>shop</h2>
-	</div>
-	<ul class="detailmenu">
-		<li><a href="shop_soup.do">국/찌개</a></li>
-		<li><a href="shop_dish.do">반찬</a></li>
-		<li><a href="shop_kimchi.do">김치</a></li>
-	</ul>
-</div>
-
 </body>
 </html>
