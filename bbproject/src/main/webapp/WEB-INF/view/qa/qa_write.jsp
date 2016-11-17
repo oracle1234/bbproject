@@ -38,13 +38,48 @@
 		return true;
 	}
 </script>
+<style type="text/css">	
+.board_row tr{
+	width:950px;
+}
 
+
+th{
+ 	width: 140px;
+	text-align: left;
+	padding: 10px;
+}
+
+td{
+	width: 790px;
+	text-align: left;
+}
+
+#btnList, #btnSave{
+	border-color: #cec6c6;
+	background-color: #ffffff;
+	width: 80px;
+	height: 25px;
+	line-height: 10px;
+}
+
+.textarea {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.textarea textarea{
+	width:948px;
+	height: 600px;
+}
+</style>
 </head>
 <body>
+	<div id="board_write">
 	<form name="frm" id="frm" method="post" enctype="multipart/form-data"
 		onsubmit="return process()">
 
-		<table class="qa_row">
+		<table class="board_row">
 
 			<tr>
 				<th scope="row">글쓴이</th>
@@ -53,7 +88,7 @@
 
 			<tr>
 				<th scope="row">제목</th>
-				<td><c:if test="${qdto!=null}">답변</c:if> <input type="text"
+				<td><c:if test="${dto!=null}">답변</c:if> <input type="text"
 					name="qa_subject" size="40" /></td>
 			</tr>
 			
@@ -70,7 +105,7 @@
 		
 		<!-- 답변글일때.... -->
 
-		<c:if test="${qdto!=null}">
+		<c:if test="${dto!=null}">
 			<input type="hidden" name="num" id="num" value="${dto.board_no}" />
 			<input type="hidden" name="currentPage" id="currentPage"
 				value="${currentPage}" />
@@ -84,6 +119,7 @@
 			<input type="button" id="btnSave" value="저장" />
 		</div>
 	</form>
+	</div>
 </body>
 </html>
 

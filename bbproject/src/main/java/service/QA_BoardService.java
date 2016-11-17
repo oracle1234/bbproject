@@ -12,11 +12,11 @@ public interface QA_BoardService {
 	
 	public int countProcess();
 	public List<QA_BoardDTO> listProcess(PageDTO pv);
-	public void insertProcess(CommentDTO dto);
+	public void insertProcess(QA_BoardDTO qdto);
 	public QA_BoardDTO contentProcess(int num);
-	public void reStepProcess(CommentDTO dto);
+	public void reStepProcess(CommentDTO cdto);
 	public QA_BoardDTO updateSelectProcess(int num);
-	public void updateProcess(QA_BoardDTO dto,HttpServletRequest request);
+	public void updateProcess(QA_BoardDTO qdto,HttpServletRequest request);
 	public void deleteProcess(int num,HttpServletRequest request);
 }
 

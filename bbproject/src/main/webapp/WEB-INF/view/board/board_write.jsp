@@ -78,7 +78,7 @@ td{
 
 			<tr>
 				<th scope="row">제목</th>
-				<td><c:if test="${bdto!=null}">답변</c:if> <input type="text"
+				<td><c:if test="${dto!=null}">답변</c:if> <input type="text"
 					name="board_subject" size="40" /></td>
 			</tr>
 			
@@ -90,7 +90,7 @@ td{
 		
 		<!-- 답변글일때.... -->
 		
-		<c:if test="${bdto!=null}">
+		<c:if test="${dto!=null}">
 			<input type="hidden" name="board_no" id="board_no" value="${dto.board_no}" />
 			<input type="hidden" name="currentPage" id="currentPage"
 				value="${currentPage}" />

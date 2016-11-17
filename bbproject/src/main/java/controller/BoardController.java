@@ -169,11 +169,11 @@ public class BoardController {
 	}// end qa_viewMethod()
 
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.GET)
-	public ModelAndView qa_writeMethod(PageDTO pv2, CommentDTO dto) {
+	public ModelAndView qa_writeMethod(PageDTO pv2, CommentDTO cdto) {
 		ModelAndView mav = new ModelAndView();
-		if (dto.getComment_ref() != 0) {
+		if (cdto.getComment_ref() != 0) {
 			mav.addObject("currentPage", pv2.getCurrentPage());
-			mav.addObject("dto", dto);
+			mav.addObject("dto", cdto);
 		}
 		mav.setViewName("qa_write");
 		return mav;
@@ -181,9 +181,9 @@ public class BoardController {
 	}// end qa_writeMethod()
 	
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.POST)
-	public String qa_writeProMethod(QA_BoardDTO dto, HttpServletRequest request) {
+	public String qa_writeProMethod(QA_BoardDTO qdto, HttpServletRequest request) {
 
-		MultipartFile file = dto.getFilename();
+		MultipartFile file = qdto.getFilename();
 		if (!file.isEmpty()) {
 			String fileName = file.getOriginalFilename();
 
@@ -206,17 +206,17 @@ public class BoardController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			dto.setUpload(random + "_" + fileName);
+			qdto.setUpload(random + "_" + fileName);
 		}
 		
 		// 답변글이면
 		if (cdto.getComment_ref() != 0) {
 			qa_service.reStepProcess(cdto);
 		} else {
-			qa_service.insertProcess(cdto);
+			qa_service.insertProcess(qdto);
 		}
 		
-		return "/qa/qa_list";
+		return "redirect:/qa_list.do";
 	}// end writeProMethod
 
 	@RequestMapping("/contentdownload.do")
@@ -257,7 +257,7 @@ public class BoardController {
 		if (pv2.getTotalPage() < currentPage){
 			mav.addObject("currentPage", pv2.getTotalPage());
 		}
-			mav.setViewName("board_list");
+			mav.setViewName("qa_list");
 			return mav;
 
 	}// end qa_deleteMethod()		
