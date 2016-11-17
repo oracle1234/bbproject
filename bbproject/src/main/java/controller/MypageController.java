@@ -1,29 +1,14 @@
 package controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.fb_BasketDTO;
-import dto.fb_BoardDTO;
-import dto.fb_CommentDTO;
-import dto.fb_PageDTO;
 import service.fb_BasketService;
-import service.fb_BoardService;
 import service.fb_CouponService;
 import service.fb_OrderService;
 
@@ -42,7 +27,6 @@ public class MypageController {
 		this.service = service;
 	}
 
-
 	public void setOrderservice(fb_OrderService orderservice) {
 		this.orderservice = orderservice;
 	}
@@ -59,7 +43,7 @@ public class MypageController {
 	@RequestMapping("/my_order.do")
 	public ModelAndView orderlist(int member_no){
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("aList", orderservice.orderlist(member_no));
+		mav.addObject("aList", orderservice.orderlistProcess(member_no));
 		mav.setViewName("my_order");
 		return mav;
 	}
@@ -86,7 +70,7 @@ public class MypageController {
 	@RequestMapping("/my_coupon.do")
 	public ModelAndView couponlist(int member_no){
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("aList", couponservice.couponlist(member_no));
+		mav.addObject("aList", couponservice.couponlistProcess(member_no));
 		mav.setViewName("my_coupon");
 		return mav;
 	}

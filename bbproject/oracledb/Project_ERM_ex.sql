@@ -76,6 +76,7 @@ from fb_foods, fb_basket, fb_member
 where fb_member=1
 and a.fb_foods=b.fb_basket
 
+<<<<<<< HEAD
 
 select * from fb_foods where category_no = 1 order by foods_no desc
 
@@ -127,3 +128,68 @@ select c.coupon_name, c.coupon_discount, b.coupon_state
 from fb_coupon c, fb_coupon_book b
 where member_no=1
 and c.coupon_no = b.coupon_no;
+
+select * from fb_qa_board
+insert into fb_qa_board values
+(1, 1, 1, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
+insert into fb_qa_board values
+(1, 2, 1, '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
+insert into fb_qa_board values
+(1, 3, 1, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
+
+select * from fb_photo_board
+insert into fb_photo_board values
+(1, 1, 1, '백나연', '떡볶이 입니다.', sysdate, '1', '포토후기');
+insert into fb_photo_board values
+(1, 2, 1, '백나연', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
+insert into fb_photo_board values
+(1, 3, 1, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
+
+select * from fb_board
+insert into fb_board values
+(1, 1, 1, '백나연', '자유게시판입니다.', sysdate, '자유');
+insert into fb_board values
+(1, 2, 1, '백나연', '자유게시판입니다2.', sysdate, '자유2');
+insert into fb_board values
+(1, 3, 1, '백나연', '자유게시판입니다3.', sysdate, '자유3');
+
+CREATE TABLE fb_photo_board
+(
+	photo_no number NOT NULL,
+	photo_readcount number NOT NULL,
+	photo_writer varchar2(100) NOT NULL,
+	photo_content varchar2(2000) NOT NULL,
+	photo_reg_date date NOT NULL,
+	photo_upload varchar2(500) NOT NULL,
+	photo_subject varchar2(200) NOT NULL,
+	PRIMARY KEY (photo_no)
+);
+
+
+CREATE TABLE fb_board
+(
+	board_no number NOT NULL,
+	board_readcount number NOT NULL,
+	board_writer varchar2(100),
+	board_content varchar2(2000) NOT NULL,
+	board_reg_date date NOT NULL,
+	board_subject varchar2(200) NOT NULL,
+	PRIMARY KEY (board_no)
+);
+
+CREATE TABLE fb_qa_board
+(
+	qa_no number NOT NULL,
+	qa_readcount number NOT NULL,
+	qa_writer varchar2(100) NOT NULL,
+	qa_content varchar2(2000) NOT NULL,
+	qa_reg_date date NOT NULL,
+	qa_upload varchar2(500) NOT NULL,
+	qa_subject varchar2(200) NOT NULL,
+	PRIMARY KEY (qa_no)
+);
+
+select p.*, q.*, b.*
+from fb_photo_board p, fb_board b, fb_qa_board q
+where p.member_no=1
+and p.member_no=b.member_no and p.member_no=q.member_no;

@@ -23,12 +23,12 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<list>
-				<value>classpath*:config/mapper.xml</value>
 				<value>classpath*:config/basket_mapper.xml</value>
 				<value>classpath*:config/order_mapper.xml</value>
 				<value>classpath*:config/coupon_mapper.xml</value>
 				<value>classpath*:config/mapper_recipe.xml</value>
 				<value>classpath*:config/shop_mapper.xml</value>
+				<value>classpath*:config/board_mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -46,35 +46,20 @@
 
 	<!-- 선언적 트랜색션: <tx:advice> 선언 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-	<tx:attributes>
-	<tx:method name="*Process" rollback-for="java.lang.Exception" />
-	</tx:attributes>
+		<tx:attributes>
+			<tx:method name="*Process" rollback-for="java.lang.Exception" />
+		</tx:attributes>
 	</tx:advice>
 
 	<!-- 트랜잭션 설정 -->
 	<aop:config>
-		<aop:pointcut expression="execution(* service.Board*.*(..))"
+		<aop:pointcut expression="execution(* service.*.*(..))"
 			id="aa" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
 	</aop:config>
-	<aop:config>
-		<aop:pointcut expression="execution(* service.Basket*.*(..))"
-			id="bb" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="bb" />
-	</aop:config>
-	<aop:config>
-		<aop:pointcut expression="execution(* service.Order*.*(..))"
-			id="cc" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="cc" />
-	</aop:config>
-	<aop:config>
-		<aop:pointcut expression="execution(* service.Coupon*.*(..))"
-			id="dd" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="dd" />
-	</aop:config>
 
 	<!-- DAO 빈 선언 -->
-	<bean id="dao" class="dao.fb_BoardDaoImp">
+	<bean id="boardDao" class="dao.BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	<bean id="BasketDao" class="dao.fb_BasketDaoImp">
@@ -87,12 +72,35 @@
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	<bean id="CouponDao" class="dao.fb_CouponDaoImp">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean id="qaDao" class="dao.QA_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean> -->
+
+	<bean id="themeRecipeDao" class="dao.ThemeRecipeDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	
 	<!-- Service 빈 선언 -->
-	<bean id="service" class="service.fb_BoardServiceImp">
-		<property name="dao" ref="dao" />
+	<bean id="boardService" class="service.BoardServiceImp">
+		<property name="dao" ref="boardDao" />
+	</bean>
+	
+	<bean id="qaService" class="service.QA_BoardServiceImp">
+		<property name="dao" ref="qaDao"/>
+	</bean>
+	
+	<!-- <bean id="photoService" class="service.Photo_BoardServiceImp">
+		<property name="dao" ref="photoDao"/>
+	</bean> -->
+	
+	<bean id="themeRecipeservice" class="service.ThemeRecipeServiceImp">
+		<property name="dao" ref="themeRecipeDao" />
 	</bean>
 	<bean id="shopService" class="service.ShopSercviceImp">
 		<property name="dao" ref="shopDao" />
@@ -109,9 +117,7 @@
 	
 	
 	<!-- controller 등록 -->
-	<bean class="controller.MainController">
-		<property name="service" ref="service" />
-	</bean>
+
 	<bean class="controller.MypageController">
 		<property name="service" ref="BasketService" />
 		<property name="orderservice" ref="OrderService" />
@@ -120,9 +126,16 @@
 	<bean class="controller.ProductController">
 		<property name="service" ref="shopService"></property>
 	</bean>
-	<bean class="controller.RecipeController"></bean>
 	<bean class="controller.ShopController">
 		<property name="service" ref="shopService"></property>
+		</bean>
+	<bean class="controller.BoardController">
+		<property name="service" ref="boardService" />
+		<property name="qa_service" ref="qaService" />
+	</bean>
+	<bean class="controller.ThemeRecipeController">
+		<property name="service" ref="themeRecipeservice"></property>
+
 	</bean>
 
 	<!-- 파일 업로드 시작 -->
@@ -131,6 +144,7 @@
 		<!-- <constructor-arg value="c:/temp" /> -->
 		<constructor-arg value="./src/main/webapp/files/" />
 	</bean>
+	
 	<!-- 저장 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -1,6 +1,6 @@
 package dto;
 
-public class fb_MemberDTO {
+public class MemberDTO {
 	private int member_no, stamp, point;
 	private String member_name, id, pw, address, tel, mail;
 

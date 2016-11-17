@@ -18,7 +18,7 @@ public class fb_OrderServiceImp implements fb_OrderService{
 	}
 
 	@Override
-	public List<fb_OrderDTO> orderlist(int member_no) {
+	public List<fb_OrderDTO> orderlistProcess(int member_no) {
 		return dao.list(member_no);
 	}
 

@@ -1,6 +1,9 @@
 
 /* Drop Tables */
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/yeonsung
 DROP TABLE fb_lately_product CASCADE CONSTRAINTS;
 DROP TABLE fb_coupon_book CASCADE CONSTRAINTS;
 DROP TABLE fb_coupon CASCADE CONSTRAINTS;
@@ -20,8 +23,11 @@ DROP TABLE fb_tr_complete CASCADE CONSTRAINTS;
 DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> refs/remotes/origin/yeonsung
 /* Drop Sequences */
 
 DROP SEQUENCE SEQ_coupon_no;
@@ -30,7 +36,7 @@ DROP SEQUENCE SEQ_member_no;
 DROP SEQUENCE SEQ_category_no;
 DROP SEQUENCE SEQ_fb_delivery_no;
 DROP SEQUENCE SEQ_foods_no;
-DROP SEQUENCE SEQ_receipe_no;
+DROP SEQUENCE SEQ_recipe_no;
 DROP SEQUENCE SEQ_comment_no;
 DROP SEQUENCE SEQ_qa_no;
 DROP SEQUENCE SEQ_board_no;
@@ -52,7 +58,7 @@ CREATE SEQUENCE SEQ_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_category_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_fb_delivery_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_foods_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-CREATE SEQUENCE SEQ_receipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+CREATE SEQUENCE SEQ_recipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_comment_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -62,7 +68,10 @@ CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/yeonsung
 
 
 /* Create Tables */
@@ -84,6 +93,7 @@ CREATE TABLE fb_coupon
 );
 
 
+<<<<<<< HEAD
 ----- 나연 수정--
 CREATE TABLE fb_coupon_book
 (
@@ -91,6 +101,13 @@ CREATE TABLE fb_coupon_book
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
 	coupon_state varchar2(10) not null,
+=======
+CREATE TABLE fb_coupon_book
+(
+	couponbook_no number NOT NULL,
+	member_no number NOT NULL,
+	coupon_no number NOT NULL,
+>>>>>>> refs/remotes/origin/yeonsung
 	PRIMARY KEY (couponbook_no)
 );
 
@@ -189,9 +206,10 @@ CREATE TABLE fb_comment
 	PRIMARY KEY (comment_no)
 );
 
-
+------------------------------------------------나연 추가
 CREATE TABLE fb_qa_board
 (
+	member_no number NOT NULL,
 	qa_no number NOT NULL,
 	qa_readcount number NOT NULL,
 	qa_writer varchar2(100) NOT NULL,
@@ -202,9 +220,33 @@ CREATE TABLE fb_qa_board
 	PRIMARY KEY (qa_no)
 );
 
+<<<<<<< HEAD
+=======
 
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구', sysdate, '첫번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구2', sysdate, '두번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구3', sysdate, '세번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구4', sysdate, '네번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구5', sysdate, '다섯번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구6', sysdate, '여섯번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구7', sysdate, '일곱번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구8', sysdate, '여덟번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구9', sysdate, '아홉번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구10', sysdate, '열번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구11', sysdate, '열한번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구12', sysdate, '열두번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구13', sysdate, '열세번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구14', sysdate, '열넷번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구15', sysdate, '열다섯번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구16', sysdate, '열여섯번째 글');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구17', sysdate, '열일곱번째 글');
+select * from fb_board;
+>>>>>>> refs/remotes/origin/yeonsung
+
+----- 나연 수정--
 CREATE TABLE fb_photo_board
 (
+	member_no number NOT NULL,
 	photo_no number NOT NULL,
 	photo_readcount number NOT NULL,
 	photo_writer varchar2(100) NOT NULL,
@@ -215,9 +257,12 @@ CREATE TABLE fb_photo_board
 	PRIMARY KEY (photo_no)
 );
 
+<<<<<<< HEAD
 
+----- 나연 수정--
 CREATE TABLE fb_board
 (
+	member_no number NOT NULL,
 	board_no number NOT NULL,
 	board_readcount number NOT NULL,
 	board_writer varchar2(100),
@@ -267,6 +312,58 @@ CREATE TABLE fb_tr_complete
 	complete_no number NOT NULL,
 	recipe_no number NOT NULL,
 	complete_pic varchar2(50),
+=======
+CREATE TABLE fb_board
+(
+	member_no number NOT NULL,
+	board_no number NOT NULL,
+	board_readcount number NOT NULL,
+	board_writer varchar2(100),
+	board_content varchar2(2000) NOT NULL,
+	board_reg_date date NOT NULL,
+	board_subject varchar2(200) NOT NULL,
+	PRIMARY KEY (board_no)
+);
+
+CREATE TABLE fb_theme_recipe
+(
+	recipe_no number NOT NULL,
+	theme_no number NOT NULL,
+	recipe_name varchar2(500) NOT NULL,
+	recipe_material varchar2(500) NOT NULL,
+	recipe_explaination varchar2(500) NOT NULL,
+	picture varchar2(500) NOT NULL,
+	portion varchar2(50) NOT NULL,
+	recipe_time varchar2(50) NOT NULL,
+	difficulty varchar2(10) NOT NULL,
+	PRIMARY KEY (recipe_no)
+);
+
+
+CREATE TABLE fb_theme
+(
+	theme_no number NOT NULL,
+	theme_name varchar2(500) NOT NULL,
+	PRIMARY KEY (theme_no)
+);
+
+
+CREATE TABLE fb_tr_order
+(
+	order_no number NOT NULL,
+	recipe_no number NOT NULL,
+	order_pic varchar2(500),
+	order_text varchar2(500),
+	PRIMARY KEY (order_no)
+);
+
+
+CREATE TABLE fb_tr_complete
+(
+	complete_no number NOT NULL,
+	recipe_no number NOT NULL,
+	complete_pic varchar2(500),
+>>>>>>> refs/remotes/origin/yeonsung
 	PRIMARY KEY (complete_no)
 );
 
@@ -370,10 +467,21 @@ ALTER TABLE fb_theme_recipe
 ;
 
 
+---------------------------------------------------나연 추가
+alter table fb_qa_board
+add foreign key (member_no)
+references fb_member (member_no);
+---------------------------------------------------나연 추가
+
+
+<<<<<<< HEAD
+
 
 /* Comments */
 
 COMMENT ON COLUMN fb_tr_order.order_text IS '설명';
 
 
+=======
+>>>>>>> refs/remotes/origin/yeonsung
 

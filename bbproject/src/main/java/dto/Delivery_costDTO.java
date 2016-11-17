@@ -1,9 +1,9 @@
 package dto;
 
-public class fb_Delivery_costDTO {
+public class Delivery_costDTO {
 	private int fb_delivery_no, fb_delivery_cost;
 	
-	public fb_Delivery_costDTO() {
+	public Delivery_costDTO() {
 	}
 
 	public int getFb_delivery_no() {

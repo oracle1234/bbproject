@@ -19,7 +19,7 @@ public class fb_CouponServiceImp implements fb_CouponService{
 
 
 	@Override
-	public List<fb_CouponDTO> couponlist(int member_no) {
+	public List<fb_CouponDTO> couponlistProcess(int member_no) {
 		return dao.list(member_no);
 	}
 

@@ -30,7 +30,7 @@
 			</div>
 			<div id="point">
 				<p>
-					<a href="my_point.do">적립금</a>
+					<a href="my_point.do?member_no=1">적립금</a>
 				</p>
 				<span>고객님이 모으신 적립금 내역입니다. </span>
 			</div>
