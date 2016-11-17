@@ -9,12 +9,10 @@
 	</select>
 
 	<select id="list" resultType="dto.BoardDTO" parameterType="dto.PageDTO">
-		<!-- 파싱하지말고 문자열 그대로 사용하라(<,>) -->
-		<!-- '<'를 사용하기 위해서 CDATA를 사용 -->
-		<!-- 아직 수정중 -->
-		<!-- <![CDATA[ select b.* from( select rownum as rm, a.* from( select * 
-			from fb_board order by ref desc, re_step asc)a)b where b.rm>=#{startRow} 
-			and b.rm<=#{endRow} ]]> -->
+		<![CDATA[
+		select b.* from (select rownum as rm, a.* from (select * from fb_board order by board_no desc)a)b 
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+ 		]]>
 	</select>
 
 	<select id="content" parameterType="int" resultType="dto.BoardDTO">
@@ -32,16 +30,15 @@
 		 <![CDATA[ update fb_board set comment_re_step=comment_re_step+1 where comment_ref=#{comment_ref} and 
 			comment_re_step>#{comment_re_step} ]]> 
 	</update>
-
-	<!-- 작성중 -->
+	
 	<!-- <insert id="c_save" parameterType="dto.CommentDTO">
-		insert into fb_comment(comment_no, comment_ref, comment_re_step, comment_re_level, comment_content, comment_writer, comment_date) 
+		insert into fb_comment(comment_no_seq.nextval, comment_ref, comment_re_step, comment_re_level, comment_content, comment_writer, comment_date) 
 		values(comment_no_seq.nextval,#{comment_ref}, #{comment_re_step}, #{comment_re_level}, #{comment_content}, #{comment_writer}, sysdate)
-	</insert> -->
+	</insert>  -->
 	
 	<insert id="b_save" parameterType="dto.BoardDTO">
-		insert into fb_board(board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
-		values(board_no_seq.nextval,0,#{board_writer}, #{board_content}, sysdate, #{subject})
+		insert into fb_board(SEQ_board_no.nextval, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
+		values(SEQ_board_no.nextval,0,#{board_writer}, #{board_content}, sysdate, #{board_subject})
 	</insert>
 
 	<update id="update" parameterType="dto.BoardDTO">

@@ -2,19 +2,10 @@ package dto;
 
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class BoardDTO {
 	private int board_no, board_readcount;
 	private String board_writer, board_subject, board_content;
-	private String board_passwd, board_ip;
 	private Date board_reg_date;
-
-	// board테이블의 파일첨부를 처리해주는 멤버변수
-	private String upload;
-
-	// form 페이지에서 파일첨부를 받아 처리해주는 멤버변수
-	private MultipartFile filename;
 
 	public int getBoard_no() {
 		return board_no;
@@ -62,38 +53,6 @@ public class BoardDTO {
 
 	public void setBoard_reg_date(Date board_reg_date) {
 		this.board_reg_date = board_reg_date;
-	}
-
-	public String getUpload() {
-		return upload;
-	}
-
-	public void setUpload(String upload) {
-		this.upload = upload;
-	}
-
-	public MultipartFile getFilename() {
-		return filename;
-	}
-
-	public void setFilename(MultipartFile filename) {
-		this.filename = filename;
-	}
-
-	public String getBoard_passwd() {
-		return board_passwd;
-	}
-
-	public void setBoard_passwd(String board_passwd) {
-		this.board_passwd = board_passwd;
-	}
-
-	public String getBoard_ip() {
-		return board_ip;
-	}
-
-	public void setBoard_ip(String board_ip) {
-		this.board_ip = board_ip;
 	}
 
 }// end class

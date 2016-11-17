@@ -73,29 +73,28 @@ td{
 
 			<tr>
 				<th scope="row">글쓴이</th>
-				<td><input type="text" name="writer" size="10" maxlength="10" /></td>
+				<td><input type="text" name="board_writer" size="10" maxlength="10" /></td>
 			</tr>
 
 			<tr>
 				<th scope="row">제목</th>
-				<td><c:if test="${dto!=null}">답변</c:if> <input type="text"
-					name="subject" size="40" /></td>
+				<td><c:if test="${bdto!=null}">답변</c:if> <input type="text"
+					name="board_subject" size="40" /></td>
 			</tr>
 			
 		</table>
 		
 		<div class="textarea">
-			<textarea name="content" rows="10" cols="100"></textarea>
+			<textarea name="board_content" rows="10" cols="100"></textarea>
 		</div>
 		<!-- 답변글일때.... -->
-
-		<c:if test="${dto!=null}">
-			<input type="hidden" name="num" id="num" value="${dto.board_no}" />
+		<c:if test="${bdto!=null}">
+			<input type="hidden" name="board_no" id="board_no" value="${dto.board_no}" />
 			<input type="hidden" name="currentPage" id="currentPage"
 				value="${currentPage}" />
-			<input type="hidden" name="ref" value="${dto.comment_ref}" />
+<%-- 			<input type="hidden" name="ref" value="${dto.comment_ref}" />
 			<input type="hidden" name="re_step" value="${dto.comment_re_step}" />
-			<input type="hidden" name="re_level" value="${dto.comment_re_level}" />
+			<input type="hidden" name="re_level" value="${dto.comment_re_level}" /> --%>
 		</c:if>
 
 		<div class="board_btn">

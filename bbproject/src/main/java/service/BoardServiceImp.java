@@ -41,8 +41,8 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public void insertProcess(BoardDTO dto) {
-		bdao.save(dto);
+	public void insertProcess(BoardDTO bdto) {
+		bdao.save(bdto);
 
 	}
 
@@ -67,9 +67,9 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public void updateProcess(BoardDTO dto) {
+	public void updateProcess(BoardDTO bdto) {
 
-		bdao.update(dto);
+		bdao.update(bdto);
 	}// end updateProcess()
 
 	@Override

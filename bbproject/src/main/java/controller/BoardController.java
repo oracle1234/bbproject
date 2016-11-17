@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +62,7 @@ public class BoardController {
 			mav.addObject("pv", pdto);
 			mav.addObject("aList", service.listProcess(pdto));
 		}
+		
 		mav.setViewName("board_list");
 		return mav;
 	}// end board_listMethod()
@@ -90,10 +92,15 @@ public class BoardController {
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
 	public String board_writeProMethod(BoardDTO bdto, CommentDTO cdto, HttpServletRequest request) {
 
+		
 		// 답변글이면
 		if (cdto.getComment_ref() != 0) {
 			service.reStepProcess(cdto);
 		} else {
+			System.out.println(bdto.getBoard_no());
+			System.out.println(bdto.getBoard_writer());
+			System.out.println(bdto.getBoard_subject());
+			System.out.println(bdto.getBoard_reg_date());
 			service.insertProcess(bdto);
 		}
 		

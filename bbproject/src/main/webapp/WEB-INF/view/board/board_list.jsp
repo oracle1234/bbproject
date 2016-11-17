@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -89,21 +90,19 @@
 				<th width="10%">조회수</th>
 			</tr>
 
-			<c:forEach var="dto" items="${aList}">
+			<c:forEach var="bdto" items="${aList}">
 				<tr>
-					<td>${dto.board_no}</td>
+					<td>${bdto.board_no}</td>
 					<td><c:url var="content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="num" value="${dto.board_no}" />
-						</c:url> <c:if test="${dto.board_re_level!=0}">
-							<img src="images/level.gif" width="${20*dto.board_re_level}"
-								height="15" />
-							<img src="images/re.gif" />
-						</c:if><a href="${content}">${dto.board_subject}</a></td>
-					<td>${dto.board_writer}</td>
-					<td>${dto.board_reg_date}
-					<td>${dto.board_readcount}</td>
-
+							<c:param name="board_no" value="${bdto.board_no}" />
+							</c:url> 
+					<a href="${board_content}">${bdto.board_subject}</a></td>
+					<td>${bdto.board_writer}</td>
+					<td>
+						<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${bdto.board_reg_date}"/>
+					</td>
+					<td>${bdto.board_readcount}</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -147,8 +146,7 @@
 				</label>
 				</span> 
 					<input type="text" name="search_str" value class="board_search_str" />
-					<input type="button" id="btnSearch" value="검색" />
-					
+					<input type="button" id="btnSearch" value="검색" />				
 			</form>
 		</div>	
 	</div>

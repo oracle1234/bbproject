@@ -50,7 +50,7 @@
 
 	<!-- 트랜잭션 설정 -->
 	<aop:config>
-		<aop:pointcut expression="execution(* service.Board*.*(..))"
+		<aop:pointcut expression="execution(* service.*.*(..))"
 			id="aa" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
 	</aop:config>
