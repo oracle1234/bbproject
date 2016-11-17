@@ -11,5 +11,7 @@ public interface ShopDAO {
 	public List<FoodsDTO> shopList(int category_no);
 	public int count(int category_no);
 	public List<FoodsDTO> pageList(HashMap<String, Object> map);
-	public List<ReviewDTO> reviewList(int foods_no);
+	public List<ReviewDTO> reviewList(int review_no);
+	public int reviewCount(int foods_no);
+	public List<ReviewDTO> reviewPageList(HashMap<String, Object> map);
 }

@@ -89,13 +89,27 @@ insert into fb_category values (SEQ_category_no.nextval, '국/찌개');
 insert into fb_category values (SEQ_category_no.nextval, '반찬');
 insert into fb_category values (SEQ_category_no.nextval, '김치');
 
-insert into fb_foods values (SEQ_foods_no.nextval, '반찬28', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 2, 1);
+insert into fb_foods values (SEQ_foods_no.nextval, '반찬test1', 3500, '300g', '제조일로부터 4일', '냉장', '온 가족이 좋아하는 달큰한 우엉조림은 여러 가지 피부질환에 탁월한 효과가 있을 뿐 아니라 풍부한 식이섬유로 비만, 당뇨, 대장암은 물론 성인병 예방과 다이어트에도 효과가 있습니다.', '돼지고기, 양파, 부추, 홍고추, 마늘, 올리브유, 청주, 생강, 소금, 후춧가루, 굴소스, 간장, 소금, 후춧가루, 참기름, 데리야끼소스', '데리야끼돼지고기안심볶음.jpg', 2, 1);
 insert into fb_foods values (SEQ_foods_no.nextval, '반찬29', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 2, 1);
 insert into fb_foods values (SEQ_foods_no.nextval, '반찬30', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 2, 1);
 insert into fb_foods values (SEQ_foods_no.nextval, '국1', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 1, 1);
 
 select * from fb_review
-insert into FB_REVIEW values (SEQ_review_no.nextval, '똥개', '맛없어요 시키지마세여', sysdate, 2);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 2);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
+
+delete from fb_review where review_writer = 'ㅎㅎ';
+
+update from fb_foods set foods_
+
+select * from fb_foods
+
+insert into fb_foods values ()
 
 select * from
 		fb_review r, fb_foods f
@@ -129,8 +143,26 @@ select * from
 		order by r.review_no desc
 		
 		
+		select * from fb_review
+		where foods_no=2
+		
+		insert into fb_review
+		
 		select r.*, f.* from
 		fb_review r, fb_foods f
 		where f.foods_no = r.foods_no(+) and
 		f.foods_no = 1
 		order by r.review_no desc
+		
+		
+		select count(*) from fb_review where foods_no = '1'
+
+		
+		
+		select b.* from(
+		select rownum as rm, a.* from(
+		select * from fb_review where foods_no = 1 order by review_no desc )a)b
+		where b.rm>=1 and b.rm <=10
+		
+		select * from fb_review where foods_no = 1
+		

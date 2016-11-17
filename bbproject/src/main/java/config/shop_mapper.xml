@@ -49,7 +49,21 @@
 		where b.rm>=#{startRow} and b.rm <=#{endRow}
 		]]>
 	</select>
-
-
+	
+	<select id="review_page_list" parameterType="map" resultType="dto.ReviewDTO">
+		<![CDATA[
+		select b.* from(
+		select rownum as rm, a.* from(
+		select * from fb_review where foods_no = #{foods_no} order by review_no desc )a)b
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+		]]>
+	</select>
+	
+	
+	
+	<select id="reviewCount" parameterType="dto.FoodsDTO" resultType="int">
+		select count(*) from fb_review where foods_no = #{foods_no}
+	</select>
+		
 </mapper>
 

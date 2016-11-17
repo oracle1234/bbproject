@@ -41,5 +41,15 @@ public class ShopSercviceImp implements ShopService{
 		return dao.reviewList(foods_no);
 	}
 
+	@Override
+	public int reviewCountProcess(int foods_no) {
+		return dao.reviewCount(foods_no);
+	}
+
+	@Override
+	public List<ReviewDTO> reviewPageListProcess(HashMap<String, Object> map) {
+		return dao.reviewPageList(map);
+	}
+
 	
 }

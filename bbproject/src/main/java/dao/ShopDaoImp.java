@@ -42,6 +42,16 @@ public class ShopDaoImp implements ShopDAO {
 		return sqlSession.selectList("shop.review_list", foods_no);
 	}
 
+	@Override
+	public int reviewCount(int foods_no) {
+		return sqlSession.selectOne("shop.reviewCount", foods_no);
+	}
+
+	@Override
+	public List<ReviewDTO> reviewPageList(HashMap<String, Object> map) {
+		return sqlSession.selectList("shop.review_page_list", map);
+	}
+
 	
 	
 	

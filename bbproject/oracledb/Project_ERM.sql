@@ -164,11 +164,14 @@ CREATE TABLE fb_review
 (
 	review_no number NOT NULL,
 	review_writer varchar2(50),
-	review_content varchar2(60) NOT NULL,
+	review_content varchar2(100) NOT NULL,
 	review_date date,
 	foods_no number NOT NULL,
 	PRIMARY KEY (review_no)
 );
+
+--review_content 컬럼 크기변경
+alter table fb_review MODIFY (review_content varchar2(100));
 
 
 CREATE TABLE fb_comment
