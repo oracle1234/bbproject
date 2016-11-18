@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myboard">
+
+	<select id="photolist" resultType="dto.Photo_BoardDTO"
+		parameterType="int">
+		select *
+		from fb_photo_board
+		where member_no=#{member_no}
+
+	</select>
+
+	<select id="boardlist" resultType="dto.BoardDTO" parameterType="int">
+		select *
+		from fb_photo_board
+		where member_no=#{member_no}
+	</select>
+	
+	<select id="qalist" resultType="dto.QA_BoardDTO" parameterType="int">
+		select *
+		from fb_qa_board
+		where member_no=#{member_no}
+	</select>
+	
+</mapper>

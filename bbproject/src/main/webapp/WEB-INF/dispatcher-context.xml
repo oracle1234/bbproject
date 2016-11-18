@@ -29,6 +29,7 @@
 				<value>classpath*:config/mapper_recipe.xml</value>
 				<value>classpath*:config/shop_mapper.xml</value>
 				<value>classpath*:config/board_mapper.xml</value>
+				<value>classpath*:config/myboard_mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -44,7 +45,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- 선언적 트랜색션: <tx:advice> 선언 -->
+	<!-- 선언적 트랜색션: <tx:advice> 선언 --> 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="*Process" rollback-for="java.lang.Exception" />
@@ -75,6 +76,9 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	<bean id="qaDao" class="dao.QA_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<bean id="myBoardDao" class="dao.myBoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	
@@ -114,6 +118,9 @@
 	<bean id="CouponService" class="service.fb_CouponServiceImp">
 		<property name="dao" ref="CouponDao" />
 	</bean>
+	<bean id="myBoardService" class="service.myBoardServiceImp">
+		<property name="dao" ref="CouponDao" />
+	</bean>
 	
 	
 	<!-- controller 등록 -->
@@ -122,6 +129,7 @@
 		<property name="service" ref="BasketService" />
 		<property name="orderservice" ref="OrderService" />
 		<property name="couponservice" ref="CouponService" />
+		<property name="boardservice" ref="myBoardService"></property>
 	</bean>
 	<bean class="controller.ProductController">
 		<property name="service" ref="shopService"></property>

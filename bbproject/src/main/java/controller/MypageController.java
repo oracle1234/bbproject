@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.Photo_BoardDTO;
 import dto.fb_BasketDTO;
 import service.fb_BasketService;
 import service.fb_CouponService;
 import service.fb_OrderService;
+import service.myBoardService;
 
 @Controller
 public class MypageController {
@@ -18,6 +20,7 @@ public class MypageController {
 	private fb_BasketService service;
 	private fb_OrderService orderservice;
 	private fb_CouponService couponservice;
+	private myBoardService boardservice;
 
 	public MypageController() {
 
@@ -33,6 +36,10 @@ public class MypageController {
 
 	public void setCouponservice(fb_CouponService couponservice) {
 		this.couponservice = couponservice;
+	}
+	
+	public void setBoardservice(myBoardService boardservice) {
+		this.boardservice = boardservice;
 	}
 	
 	@RequestMapping("/mypage.do")
@@ -76,8 +83,27 @@ public class MypageController {
 	}
 
 	@RequestMapping("/my_board.do")
-	public String myboard() {
-		return "my_board";
+	public ModelAndView BoardList(int member_no){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("member_no", member_no);
+		mav.addObject("aList", boardservice.BoardListProcess(member_no));
+		return mav;
+	}
+	
+	@RequestMapping("/my_board_photo.do")
+	public ModelAndView PhotoList(int member_no){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("member_no", member_no);
+		mav.addObject("aList", boardservice.PhotoListProcess(member_no));
+		return mav;
+	}
+	
+	@RequestMapping("/my_board_qa.do")
+	public ModelAndView QaList(int member_no){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("member_no", member_no);
+		mav.addObject("aList", boardservice.QaListProcess(member_no));
+		return mav;
 	}
 
 }
