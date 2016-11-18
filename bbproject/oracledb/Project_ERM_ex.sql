@@ -193,3 +193,7 @@ select p.*, q.*, b.*
 from fb_photo_board p, fb_board b, fb_qa_board q
 where p.member_no=1
 and p.member_no=b.member_no and p.member_no=q.member_no;
+
+select *
+from fb_photo_board
+where member_no=1

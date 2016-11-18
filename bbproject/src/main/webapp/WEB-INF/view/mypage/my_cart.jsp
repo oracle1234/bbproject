@@ -1,3 +1,4 @@
+<%@page import="dto.BasketDTO"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -8,7 +9,8 @@
 $(document).ready(function() {
 	$('.cart_checkbox').bind('click', function() {
 		$('.cart_cb').prop('checked', this.checked);
-
+		
+		
 	});
 	
 	$(document).on('click', '.upd_amount',function(){
@@ -21,7 +23,9 @@ $(document).ready(function() {
 				alert(error);
 			}
 		});  
-		
+		/*  var aa=$(this).val();
+			$("#count_select option[value="+aa+"]").attr("selected", true); */
+
 	});
 	
 	$(document).on('click', '#cart_del',function(){
@@ -70,6 +74,9 @@ $(document).ready(function() {
 	
 </script>
 <div class="mypage_body">
+<div class="link">
+	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 장바구니
+	</div>
 	<div class="cart_state">
 		<img id="cart_state_photo" alt="" src="">
 	</div>
@@ -84,6 +91,7 @@ $(document).ready(function() {
 			<th width="20%">합계</th>
 		</tr>
 			<c:forEach var="dto" items="${aList}">
+			
 				<tr>
 					<td><input type="checkbox" class="cart_cb" value="${dto.foods_no}"></td>
 					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_name}</td>
@@ -115,10 +123,10 @@ $(document).ready(function() {
 			<th width="25%">총 주문 합계</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>222222원</td>
+			<td>0원</td>
+			<td>2500원</td>
+			<td>2323원</td>
 		</tr>
 	</table> 
 
@@ -126,4 +134,7 @@ $(document).ready(function() {
 		<input type="button" id="cart_del" value="선택상품삭제"> <input
 			type="button" id="cart_order" value="선택상품주문">
 	</div>
+	<img id="plus1" src="images/plus.png">
+	<img id="plus2" src="images/plus.png">
+	<img id="sum" src="images/sum.png">
 </div>

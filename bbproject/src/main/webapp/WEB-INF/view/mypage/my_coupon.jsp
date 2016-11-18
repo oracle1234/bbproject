@@ -3,6 +3,9 @@
 
 
 <div class="mypage_body">
+<div class="link">
+	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 쿠폰/적립금
+	</div>
 	<div class="coupon_info">
 		<img id="coupon_info_photo" alt="" src="">
 	</div>

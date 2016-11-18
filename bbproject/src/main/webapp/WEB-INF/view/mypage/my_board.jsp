@@ -2,6 +2,9 @@
 
 
 	<div class="mypage_body">
+	<div class="link">
+	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 내가 쓴 글
+	</div>
 		<div class="board_button">
 		<input type="button" id="button_free" value="자유게시판">
 		<input type="button" id="button_review" value="포토후기">

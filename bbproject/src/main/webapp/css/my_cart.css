@@ -1,4 +1,16 @@
+.mypage_body{
+	position:relative;
+}
 
+.link{
+	text-align: left;
+	margin-top:5px;
+	margin-left:10px;
+}
+
+.link a{
+	color:black;
+}
 
 .cart_state{
 	width:930px;
@@ -22,6 +34,13 @@
 	margin-top:5px;
 	border:1px solid gray;
 }
+
+.mycart_table2 td{
+	height:130px;
+	border:1px solid gray;
+}
+	
+
 .cart_button{
 	margin:auto;
 	margin-top:5px;
@@ -39,5 +58,12 @@
 .cart_button #cart_order{
 	width:150px;
 	height:40px;
+}
+
+#plus1 img{
+	position:relative;
+	margin-left:100px;
+	margin-top:100px;
+	z-index:100;
 }
 

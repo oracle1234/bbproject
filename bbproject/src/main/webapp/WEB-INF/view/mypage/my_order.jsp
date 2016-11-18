@@ -3,6 +3,9 @@
 
 
 	<div class="mypage_body">
+	<div class="link">
+	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 주문/배송조회
+	</div>
 		<div class="order_notice">
 		<span id="notice_span">고객님의 주문내역이 정상적으로 처리되었는지 꼭 확인하세요.</span>
 		<span id="notice_span2">
