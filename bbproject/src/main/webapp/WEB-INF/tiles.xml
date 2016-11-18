@@ -113,7 +113,6 @@
 		<put-attribute name="body" value="/WEB-INF/view/shop_detail/detail_product.jsp" />
 	</definition>
 	
-	
 
 </tiles-definitions>
 

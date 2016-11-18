@@ -102,12 +102,4 @@ public class ProductController {
 	}
 	
 
-	/*@RequestMapping("/reviewList.do")
-	public ModelAndView review_listProcess(FoodsDTO fdto){
-		ModelAndView mav = new ModelAndView();
-		
-		
-		mav.setViewName("view/shop_detail/detail_product");
-		return mav;
-	}*/
 }

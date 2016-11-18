@@ -47,8 +47,9 @@ body {
 
 #info_table {
 	position: absolute;
-	top: 15px;
+	top: 20px;
 	left: 420px;
+	text-align: left;
 }
 
 #info_table tr:nth-child(1) {
@@ -83,6 +84,7 @@ body {
 
 #account_meter td {
 	width: 820px;
+	text-align: left;
 }
 
 .packing_wrap {
@@ -99,16 +101,17 @@ body {
 	position: absolute;
 	top: 1700px;
 	right: 50px;
-	background-color: lightgray;
 }
 
 #shop_upbutton {
 	position: absolute;
-	top: 188px;
+	left : 158px;
+	top: 190px;
 }
 
 #shop_downbutton {
 	position: absolute;
+	left : 158px;
 	top: 199px;
 }
 
@@ -253,6 +256,36 @@ body {
 										});
 
 					});//end ready end
+					
+	
+		function preFunction(f, c){
+		$.ajax({
+			type : 'POST',
+			dataType : 'JSON',
+			url : "detailProduct.do",
+			data : "foods_no=" + f + "&currentPage=" + c,
+			success : review_prenext_list_result,
+			error : function(xhr, textStatus, error) {
+				alert("joo====" + error);
+			}
+		});				
+	};				
+	
+					
+	function nextFunction(f, c) {
+		$.ajax({
+			type : 'POST',
+			dataType : 'JSON',
+			url : "detailProduct.do",
+			data : "foods_no=" + f + "&currentPage=" + c,
+			success : review_prenext_list_result,
+			error : function(xhr, textStatus, error) {
+				alert("joo====" + error);
+			}
+		});
+					
+	};
+					
 
 	function myFunction(f, i) {
 		$.ajax({
@@ -277,6 +310,18 @@ body {
 		});
 		
 	};
+	
+	function review_prenext_list_result(res) {
+		$('#review_table .review_tr').remove();
+
+		 $.each(res,function(index, value) {
+							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
+							var template = Handlebars.compile(source);
+							$('#review_table').append(template(value));
+							
+		});
+		
+	};
 </script>
 
 </head>
@@ -293,7 +338,7 @@ body {
 				<!-- 상세이미지 -->
 
 				<div class="table_wrap">
-					<table id="info_table" width="510px" height="auto">
+					<table id="info_table" width="510px" height="auto" >
 						<tr>
 							<td colspan="2">${FoodsDTO.foods_name}</td>
 						</tr>
@@ -399,8 +444,8 @@ body {
 
 				<div id="pre_next_pagenum">
 					<c:if test="${pv.startPage>1}">
-						<a
-							href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage-pv.blockPage}">
+						<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage-pv.blockPage}"> --%>
+						<a href="javascript:preFunction(${foods_no}, ${pv.startPage-pv.blockPage})">
 							<c:out value="이전" />
 						</a>
 					</c:if>
@@ -417,8 +462,9 @@ body {
 					</c:forEach>
 
 					<c:if test="${pv.endPage<pv.totalPage}">
-						<a
-							href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage+pv.blockPage}">
+						<a href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})">
+						
+						<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage+pv.blockPage}"> --%>
 							<c:out value="다음" />
 						</a>
 					</c:if>
