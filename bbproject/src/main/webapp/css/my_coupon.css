@@ -1,4 +1,12 @@
+.link{
+	text-align: left;
+	margin-top:5px;
+	margin-left:10px;
+}
 
+.link a{
+	color:black;
+}
 
 .coupon_info{
 	width:930px;
