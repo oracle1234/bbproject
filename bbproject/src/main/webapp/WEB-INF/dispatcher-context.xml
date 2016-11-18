@@ -90,10 +90,10 @@
 	</bean>
 
 	<!-- controller 등록 -->
+	<bean class="controller.MainController"></bean>
 	<bean class="controller.BoardController">
 		<property name="service" ref="boardService" />
-		<property name="qa_service" ref="qaService" />
-		
+		<property name="qa_service" ref="qaService" />		
 	</bean>
 	<bean class="controller.ProductController"></bean>
 	<bean class="controller.ThemeRecipeController">
