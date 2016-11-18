@@ -1,7 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
 <style type="text/css">
 .recipelist {
 	width: 900px;
@@ -55,6 +53,13 @@
 .list_detail p {
 	line-height: 30px;
 }
+
+h1{
+	font-size: 30px;
+	text-align: left;
+	margin-left: 10px;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -75,12 +80,11 @@
 	});
 </script>
 
-</head>
 <body>
 
 	<div class="recipediv">
 		<div>
-			<button>버튼</button>
+			<h1>RECIPE</h1>
 		</div>
 		<div class="recipelist">
 			
@@ -90,7 +94,7 @@
 					<a href="recipedetail.do?recipe_no=${dto.recipe_no }" class="recipe">
 						<span class="recipe_sub1">
 							<span class="imgbox"> 
-								<img class="recipe_img1" src="images/delevery.png" /> 
+								<img class="recipe_img1" src="image.do?filename=${dto.picture}" /> 
 								<img class="recipe_img2 recipe_out" alt=""	src="images/thumb_over.png">
 							</span>
 						</span>
@@ -113,7 +117,6 @@
 
 
 </body>
-</html>
 
 
 

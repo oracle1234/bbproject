@@ -19,7 +19,7 @@ $(function() {
 		});
 		
 		
-		$("#recipe_form").submit(function(){
+//		$("#recipe_form").submit(function(){
 			
 //			if($("#theme_no").val() == 0){
 //				alert("테마를 선택해 주세요");
@@ -58,10 +58,11 @@ $(function() {
 //				});
 //			}else if($("#complete_file")[0].files.length <= 0){
 //				alert("음식 사진을 올려주세요");
+//				return false;
 //			}
 			
-			return false;
-		});
+//			return false;
+//		});
 		
 	});
 	

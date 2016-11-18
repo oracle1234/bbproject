@@ -15,18 +15,15 @@
 <body>
 
 	<div id="detailmain">
-		<div>
+			<h1>레시피 이름 : ${dto.recipe_name }</h1>
+			
 			<span> 
 			<img src="image.do?filename=${dto.picture}" width="300px" height="300px"/>
-			<p>레시피 이름 : ${dto.recipe_name }</p>
 			</span>
 			<p>간단 설명 : ${dto.recipe_explaination }</p>
 			<p>인원 : ${dto.portion }</p>
 			<p>조리 난이도 : ${dto.difficulty }</p>
 			<p>조리 시간 : ${dto.recipe_time }</p>
-	
-		</div>
-
 	</div>
 
 </body>

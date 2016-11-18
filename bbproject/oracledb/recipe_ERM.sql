@@ -20,8 +20,8 @@ DROP SEQUENCE SEQ_complete_no;
 
 /* Create Sequences */
 
-CREATE SEQUENCE SEQ_recipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+CREATE SEQUENCE SEQ_recipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
@@ -71,20 +71,20 @@ CREATE TABLE fb_tr_complete
 
 
 ALTER TABLE fb_tr_order
-	ADD FOREIGN KEY (recipe_no)
-	REFERENCES fb_theme_recipe (recipe_no)
+	ADD CONSTRAINT fk_recipe_no FOREIGN KEY (recipe_no)
+	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
 ;
 
 
 ALTER TABLE fb_tr_complete
-	ADD FOREIGN KEY (recipe_no)
-	REFERENCES fb_theme_recipe (recipe_no)
+	ADD CONSTRAINT fk_recipe_no FOREIGN KEY (recipe_no)
+	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
 ;
 
 
 ALTER TABLE fb_theme_recipe
-	ADD FOREIGN KEY (theme_no)
-	REFERENCES fb_theme (theme_no)
+	ADD CONSTRAINT fk_theme_no FOREIGN KEY (theme_no)
+	REFERENCES fb_theme (theme_no) on delete cascade
 ;
 
 
@@ -106,9 +106,6 @@ delete from fb_tr_order;
 delete from fb_tr_complete;
 
 
-select SEQ_recipe_no.nextval
-from dual;
-
 insert into fb_theme_recipe values(SEQ_recipe_no.nextval, 1, '영양식', '소고기', '소고기 영양식이다', 'sim.txt', '3인분', '10분', 'g');
 insert into fb_tr_order values(SEQ_order_no.nextval, SEQ_recipe_no.currval, #{arr1})
 
@@ -120,5 +117,5 @@ order by a.recipe_no desc;
 select * 
 from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
 where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no
-and a.recipe_no = 4;
-
+and a.recipe_no = 1
+order by a.recipe_no desc;
