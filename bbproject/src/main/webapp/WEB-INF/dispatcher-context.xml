@@ -103,7 +103,6 @@
 		<property name="dao" ref="themeRecipeDao" />
 	</bean>
 
-	<!-- controller 등록 -->
 	<bean id="shopService" class="service.ShopSercviceImp">
 		<property name="dao" ref="shopDao" />
 	</bean>
@@ -140,7 +139,10 @@
 	</bean>
 	<bean class="controller.ThemeRecipeController">
 		<property name="service" ref="themeRecipeservice"></property>
-
+	</bean>
+	
+	<bean class="controller.adminController">
+		<property name="service" ref="themeRecipeservice"></property>
 	</bean>
 
 	<!-- 파일 업로드 시작 -->

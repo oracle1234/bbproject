@@ -44,11 +44,14 @@
 
 	</resultMap>
 
-	<select id="list" resultMap="list_result">
+	<select id="list" parameterType="int" resultMap="list_result">
 		select *
 		from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
 		where a.recipe_no =
 		b.recipe_no and a.recipe_no = c.recipe_no
+		<if test="value != 0">
+			and a.theme_no = #{value}
+		</if>
 		order by a.recipe_no desc
 	</select>
 	

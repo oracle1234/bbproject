@@ -103,6 +103,9 @@ delete from fb_theme_recipe;
 delete from fb_tr_order;
 delete from fb_tr_complete;
 
+select theme_name
+		from fb_theme
+		where theme_no = 1
 
 insert into fb_theme_recipe values(SEQ_recipe_no.nextval, 1, '영양식', '소고기', '소고기 영양식이다', 'sim.txt', '3인분', '10분', 'g');
 insert into fb_tr_order values(SEQ_order_no.nextval, SEQ_recipe_no.currval, #{arr1})
@@ -117,3 +120,10 @@ from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
 where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no
 and a.recipe_no = 1
 order by a.recipe_no desc;
+
+select *
+		from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
+		where a.recipe_no =
+		b.recipe_no and a.recipe_no = c.recipe_no
+			and a.theme_no = 3
+		order by a.recipe_no desc

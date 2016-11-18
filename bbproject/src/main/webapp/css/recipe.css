@@ -1,0 +1,48 @@
+body {
+	margin: auto;
+	width: 1350px;
+	background-color: #ede6be;
+}
+
+header {
+	width: 1350px;
+	height: 100px;
+	background-color: aqua;
+}
+
+#main {
+	width: 1200px;
+	box-sizing: border-box;
+	text-align: center;
+	margin: auto;
+}
+
+.menubar {
+	width: 250px;
+	float: left;
+}
+
+#mainbody {
+	width: 950px;
+	background-color: white;
+	min-height : 300px;
+	float: left;
+}
+
+footer {
+	background-color: #ffffff;
+	clear: both;
+}
+
+#imgbar {
+	width: 1350px;
+	height: 350px;
+}
+
+li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}

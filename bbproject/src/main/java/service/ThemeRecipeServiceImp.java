@@ -22,8 +22,8 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 	}
 
 	@Override
-	public List<ThemeRecipeDTO> selectListProcess() {
-		return dao.selectList();
+	public List<ThemeRecipeDTO> selectListProcess(int theme_no) {
+		return dao.selectList(theme_no);
 	}
 
 	@Override

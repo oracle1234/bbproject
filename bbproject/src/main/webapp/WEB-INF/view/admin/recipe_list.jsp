@@ -15,14 +15,6 @@
 	margin-top: 10px;
 }
 
-.recipe_over {
-	display: block;
-}
-
-.recipe_out {
-	display: none;
-}
-
 .recipe_sub1 {
 	width: 250px;
 	float: left;
@@ -50,17 +42,14 @@
 	left: 40px;
 }
 
-.list_detail p {
+.list_detail span {
+	display : block;
 	line-height: 30px;
 }
 
-h1{
-	font-size: 30px;
-	text-align: left;
-	margin-left: 10px;
-}
 
 </style>
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -83,9 +72,6 @@ h1{
 <body>
 
 	<div class="recipediv">
-		<div>
-			<h1>RECIPE</h1>
-		</div>
 		<div class="recipelist">
 			
 			<c:forEach items="${aList}" var="dto">
@@ -95,19 +81,43 @@ h1{
 						<span class="recipe_sub1">
 							<span class="imgbox"> 
 								<img class="recipe_img1" src="image.do?filename=${dto.picture}" /> 
-								<img class="recipe_img2 recipe_out" alt=""	src="images/thumb_over.png">
 							</span>
 						</span>
 						<span class="recipe_sub2">
 							<span class="list_detail">
-								<p>레시피 이름 : ${dto.recipe_name }</p>
-								<p>간단 설명 : ${dto.recipe_explaination }</p>
-								<p>인원 : ${dto.portion }</p>
-								<p>조리 난이도 : ${dto.difficulty }</p>
-								<p>조리 시간 : ${dto.recipe_time }</p>
+								<span>레시피 이름 : ${dto.recipe_name }</span>
+								<span>간단 설명 : ${dto.recipe_explaination }</span>
+								<span>인원 : ${dto.portion }</span>
+								<span>조리 난이도 : ${dto.difficulty }</span>
+								<span>조리 시간 : ${dto.recipe_time }</span>
+								<span>테마 : 
+									<c:choose>
+										<c:when test="${dto.theme_no == 1}">
+											<c:out value="영양식"></c:out>
+										</c:when>
+										<c:when test="${dto.theme_no == 2}">
+											<c:out value="간식"></c:out>
+										</c:when>
+										<c:when test="${dto.theme_no == 3}">
+											<c:out value="도시락"></c:out>
+										</c:when>
+										<c:when test="${dto.theme_no == 4}">
+											<c:out value="다이어트"></c:out>
+										</c:when>
+										<c:when test="${dto.theme_no == 5}">
+											<c:out value="야식"></c:out>
+										</c:when>
+										<c:otherwise>
+											<c:out value="미분류"></c:out>
+										</c:otherwise>
+									</c:choose>
+								</span>
 							</span>
 						</span>
 					</a>
+				</div>
+				<div>
+					<a href="#">삭제</a>	
 				</div>
 			</c:forEach>
 			
