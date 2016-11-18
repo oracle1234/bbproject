@@ -313,6 +313,10 @@ body {
 	
 	function review_prenext_list_result(res) {
 		$('#pre_next_pagenum').remove();
+		
+		$.each(res, function(){
+			var source = "<>"
+		});
 
 		 /* $.each(res,function(index, value) {
 			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
