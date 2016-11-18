@@ -1,7 +1,11 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 	<div class="mypage_body">
+	<div class="link">
+	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 주문/배송조회
+	</div>
 		<div class="order_notice">
 		<span id="notice_span">고객님의 주문내역이 정상적으로 처리되었는지 꼭 확인하세요.</span>
 		<span id="notice_span2">
@@ -16,21 +20,23 @@
 		
 		<table class="myorder_table">
 		<tr>
-				<th width="5%">번호</th>
+				
 				<th width="20%">주문일자</th>
 				<th width="20%">상품명</th>
+				<th width="5%">수량</th>
 				<th width="15%">상품가격</th>
 				<th width="20%">총결제금액</th>
 				<th width="20%">주문현황</th>
 			</tr>
-
+			<c:forEach var="dto" items="${aList}">
 				<tr>
-					<td></td>
-					<td></td>
-					<td><img id="foodsmall_photo" alt="" src=""></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>${dto.day}</td>
+					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_no}</td>
+					<td>${dto.amount}개</td>
+					<td>${dto.price}</td>
+					<td>${dto.price*dto.amount}원</td>
+					<td>${dto.delivery_condition}</td>
 				</tr>
+				</c:forEach>
 		</table>
 	</div>

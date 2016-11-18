@@ -9,12 +9,10 @@
 	</select>
 
 	<select id="list" resultType="dto.BoardDTO" parameterType="dto.PageDTO">
-		<!-- 파싱하지말고 문자열 그대로 사용하라(<,>) -->
-		<!-- '<'를 사용하기 위해서 CDATA를 사용 -->
-		<!-- 아직 수정중 -->
-		<!-- <![CDATA[ select b.* from( select rownum as rm, a.* from( select * 
-			from fb_board order by ref desc, re_step asc)a)b where b.rm>=#{startRow} 
-			and b.rm<=#{endRow} ]]> -->
+		<![CDATA[
+		select b.* from (select rownum as rm, a.* from (select * from fb_board order by board_no desc)a)b 
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+ 		]]>
 	</select>
 
 	<select id="content" parameterType="int" resultType="dto.BoardDTO">
@@ -28,17 +26,24 @@
 		board_no=#{board_no}
 	</update>
 
-	<update id="reStepCount" parameterType="dto.BoardDTO">
-		<!-- 아직 수정중 -->
-		<!-- <![CDATA[ update board set re_step=re_step+1 where ref=#{ref} and 
-			re_step>#{re_step} ]]> -->
+	<update id="reStepCount" parameterType="dto.CommentDTO">
+		 <![CDATA[ update fb_board set comment_re_step=comment_re_step+1 where comment_ref=#{comment_ref} and 
+			comment_re_step>#{comment_re_step} ]]> 
 	</update>
-
-	<insert id="save" parameterType="dto.BoardDTO">
-		<!-- 아직 수정중 -->
-		<!-- insert into board(num,writer,subject,reg_date, readcount,ref,re_step,re_level,content) 
-			values(board_seq.nextval,#{writer},#{subject},sysdate,0, <choose> <when test="ref==0"> 
-			board_seq.nextval </when> <otherwise> #{ref} </otherwise> </choose> ,#{re_step},#{re_level},#{content},#{ip},#{upload,jdbcType=VARCHAR}) -->
+	
+	<!-- <insert id="c_save" parameterType="dto.CommentDTO">
+		insert into fb_comment(comment_no_seq.nextval, comment_ref, comment_re_step, comment_re_level, comment_content, comment_writer, comment_date) 
+		values(comment_no_seq.nextval,#{comment_ref}, #{comment_re_step}, #{comment_re_level}, #{comment_content}, #{comment_writer}, sysdate)
+	</insert>  -->
+	
+	<insert id="b_save" parameterType="dto.BoardDTO">
+		insert into fb_board(board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
+		values(SEQ_board_no.nextval,0,#{board_writer}, #{board_content}, sysdate, #{board_subject})
+	</insert>
+	
+	<insert id="c_save" parameterType="dto.QA_BoardDTO">
+		insert into fb_qa_board(qa_no, qa_readcount, qa_writer, qa_content, qa_reg_date, qa_subject)  
+		values(SEQ_qa_no.nextval,0,#{qa_writer}, #{qa_content}, sysdate, #{qa_subject})
 	</insert>
 
 	<update id="update" parameterType="dto.BoardDTO">
@@ -54,15 +59,14 @@
 		board_no=#{board_no}
 	</delete>
 
-
 	<!-- [QA게시판] -->
-
-	<!-- <select id="qa_count" resultType="int">
-		select count(*) from qa_board
+	<select id="qa_count" resultType="int">
+		select count(*) from fb_qa_board
 	</select>
 
 	<select id="qa_list" resultType="dto.QA_BoardDTO" parameterType="dto.PageDTO">
-		파싱하지말고 문자열 그대로 사용하라(<,>) '<'를 사용하기 위해서 CDATA를 사용 아직 수정중 <![CDATA[ 
+		<!-- 파싱하지말고 문자열 그대로 사용하라(<,>) '<'를 사용하기 위해서 CDATA를 사용 아직 수정중  -->
+		<![CDATA[ 
 			select b.* from( select rownum as rm, a.* from( select * from fb_board order 
 			by ref desc, re_step asc)a)b where b.rm>=#{startRow} and b.rm<=#{endRow} 
 			]]>
@@ -105,6 +109,6 @@
 	<delete id="qa_delete" parameterType="int">
 		delete from fb_qa_board
 		where qa_no=#{qa_no}
-	</delete> -->
+	</delete>
 
 </mapper>

@@ -23,9 +23,12 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<list>
+				<value>classpath*:config/basket_mapper.xml</value>
+				<value>classpath*:config/order_mapper.xml</value>
+				<value>classpath*:config/coupon_mapper.xml</value>
+				<value>classpath*:config/recipe_mapper.xml</value>
+				<value>classpath*:config/shop_mapper.xml</value>
 				<value>classpath*:config/board_mapper.xml</value>
-				<value>classpath*:config/product_mapper.xml</value>
-				<value>classpath*:config/mapper_recipe.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -56,33 +59,88 @@
 	</aop:config>
 
 	<!-- DAO 빈 선언 -->
-	<bean id="dao" class="dao.BoardDaoImp">
+	<bean id="boardDao" class="dao.BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	<bean id="BasketDao" class="dao.fb_BasketDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<bean id="shopDao" class="dao.ShopDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<bean id="OrderDao" class="dao.fb_OrderDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<bean id="CouponDao" class="dao.fb_CouponDaoImp">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean id="qaDao" class="dao.QA_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean> -->
 
 	<bean id="themeRecipeDao" class="dao.ThemeRecipeDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	
 	<!-- Service 빈 선언 -->
-	<bean id="service" class="service.BoardServiceImp">
-		<property name="dao" ref="dao" />
+	<bean id="boardService" class="service.BoardServiceImp">
+		<property name="dao" ref="boardDao" />
 	</bean>
+	
+	<bean id="qaService" class="service.QA_BoardServiceImp">
+		<property name="dao" ref="qaDao"/>
+	</bean>
+	
+	<!-- <bean id="photoService" class="service.Photo_BoardServiceImp">
+		<property name="dao" ref="photoDao"/>
+	</bean> -->
 	
 	<bean id="themeRecipeservice" class="service.ThemeRecipeServiceImp">
 		<property name="dao" ref="themeRecipeDao" />
 	</bean>
 
 	<!-- controller 등록 -->
+	<bean id="shopService" class="service.ShopSercviceImp">
+		<property name="dao" ref="shopDao" />
+	</bean>
+	
+	<bean id="BasketService" class="service.fb_BasketServiceImp">
+		<property name="dao" ref="BasketDao" />
+	</bean>
+	<bean id="OrderService" class="service.fb_OrderServiceImp">
+		<property name="dao" ref="OrderDao" />
+	</bean>
+	<bean id="CouponService" class="service.fb_CouponServiceImp">
+		<property name="dao" ref="CouponDao" />
+	</bean>
+	
+	
+	<!-- controller 등록 -->
 	<bean class="controller.ImageController">
 		<property name="service" ref="themeRecipeservice"></property>
 	</bean>
-	<bean class="controller.BoardController">
-		<property name="service" ref="service" />
+	<bean class="controller.MypageController">
+		<property name="service" ref="BasketService" />
+		<property name="orderservice" ref="OrderService" />
+		<property name="couponservice" ref="CouponService" />
 	</bean>
-	<bean class="controller.ProductController"></bean>
+	<bean class="controller.ProductController">
+		<property name="service" ref="shopService"></property>
+	</bean>
+	<bean class="controller.ShopController">
+		<property name="service" ref="shopService"></property>
+		</bean>
+	<bean class="controller.BoardController">
+		<property name="service" ref="boardService" />
+		<property name="qa_service" ref="qaService" />
+	</bean>
 	<bean class="controller.ThemeRecipeController">
 		<property name="service" ref="themeRecipeservice"></property>
+
 	</bean>
 
 	<!-- 파일 업로드 시작 -->
@@ -131,6 +189,5 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2"></property>
 	</bean>
-
 
 </beans>

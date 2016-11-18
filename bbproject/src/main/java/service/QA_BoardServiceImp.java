@@ -18,57 +18,57 @@ import dto.CommentDTO;
 import dto.PageDTO;
 
 public class QA_BoardServiceImp implements QA_BoardService {
-	private QA_BoardDAO dao;
+	private QA_BoardDAO qdao;
 
 	public QA_BoardServiceImp() {
 
 	}
 
-	public void setDao(QA_BoardDAO dao) {
-		this.dao = dao;
+	public void setDao(QA_BoardDAO qdao) {
+		this.qdao = qdao;
 	}
 
 	@Override
 	public int countProcess() {
 
-		return dao.count();
+		return qdao.count();
 	}
 
 	@Override
 	public List<QA_BoardDTO> listProcess(PageDTO pv) {
 
-		return dao.list(pv);
+		return qdao.list(pv);
 	}
 
 	@Override
-	public void insertProcess(CommentDTO dto) {
-		dao.save(dto);
+	public void insertProcess(QA_BoardDTO qdto) {
+		qdao.save(qdto);
 
 	}
 
 	@Override
 	public QA_BoardDTO contentProcess(int num) {
-		dao.readCount(num);
-		return dao.content(num);
+		qdao.readCount(num);
+		return qdao.content(num);
 	}
 
 	@Override
 	public void reStepProcess(CommentDTO dto) {
-		dao.reStepCount(dto);
+		qdao.reStepCount(dto);
 		dto.setComment_re_step(dto.getComment_re_step() + 1);
 		dto.setComment_re_level(dto.getComment_re_level() + 1);
-		dao.save(dto);
+		qdao.save(dto);
 	}
 
 	@Override
 	public QA_BoardDTO updateSelectProcess(int num) {
 
-		return dao.updateNum(num);
+		return qdao.updateNum(num);
 	}
 
 	@Override
 	public void updateProcess(QA_BoardDTO dto, HttpServletRequest request) {
-		String filename = dao.getFile(dto.getQa_no());
+		String filename = qdao.getFile(dto.getQa_no());
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String saveDirectory = root + "temp" + File.separator;
 
@@ -100,21 +100,18 @@ public class QA_BoardServiceImp implements QA_BoardService {
 				e.printStackTrace();
 			}
 		}
-		dao.update(dto);
+		qdao.update(dto);
 	}// end updateProcess()
 
 	@Override
 	public void deleteProcess(int num, HttpServletRequest request) {
-		String upload = dao.getFile(num);
+		String upload = qdao.getFile(num);
 		if (upload != null) {
 			String root = request.getSession().getServletContext().getRealPath("/");
 			String saveDirectory = root + "temp" + File.separator;
 			File fe = new File(saveDirectory, upload);
 			fe.delete();
 		}
-
-		dao.delete(num);
-
-	}
-
+		qdao.delete(num);
+	}// end deleteProcess()
 }

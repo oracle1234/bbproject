@@ -88,8 +88,6 @@ ALTER TABLE fb_theme_recipe
 ;
 
 
-
-
 insert into fb_theme values(1, '영양식');
 insert into fb_theme values(2, '간식');
 insert into fb_theme values(3, '도시락');

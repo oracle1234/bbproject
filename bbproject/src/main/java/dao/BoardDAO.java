@@ -11,10 +11,10 @@ public interface BoardDAO {
 	public List<BoardDTO> list(PageDTO pv);
 	public void readCount(int num);
 	public BoardDTO content(int num);
-	public void reStepCount(CommentDTO dto);
-	public void save(CommentDTO dto);
+	public void reStepCount(CommentDTO cdto);
+	public void save(BoardDTO bdto);
+	public void save(CommentDTO cdto);
 	public BoardDTO updateNum(int num);
-	public void update(BoardDTO dto);
+	public void update(BoardDTO bdto);
 	public void delete(int num);
-	public String getFile(int num);
 }
