@@ -23,6 +23,8 @@ DROP TABLE fb_tr_complete CASCADE CONSTRAINTS;
 DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
 
+DROP TABLE fb_boardcategory CASCADE CONSTRAINTS;
+
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -72,6 +74,7 @@ CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+
 <<<<<<< HEAD
 
 =======
@@ -216,8 +219,23 @@ CREATE TABLE fb_comment
 );
 
 ------------------------------------------------나연 추가
+
+create table fb_boardcategory
+(
+boardcategory_no number not null,
+boardcategory_name varchar2(20) not null,
+primary key (boardcategory_no)
+);
+insert into fb_boardcategory values
+(1, '자유게시판');
+insert into fb_boardcategory values
+(2, '포토후기');
+insert into fb_boardcategory values
+(3, '질문과 답변');
+
 CREATE TABLE fb_qa_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	qa_no number NOT NULL,
 	qa_readcount number NOT NULL,
@@ -255,6 +273,7 @@ select * from fb_board;
 ----- 나연 수정--
 CREATE TABLE fb_photo_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	photo_no number NOT NULL,
 	photo_readcount number NOT NULL,
@@ -271,6 +290,7 @@ CREATE TABLE fb_photo_board
 ----- 나연 수정--
 CREATE TABLE fb_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	board_no number NOT NULL,
 	board_readcount number NOT NULL,
@@ -322,6 +342,7 @@ CREATE TABLE fb_tr_complete
 	recipe_no number NOT NULL,
 	complete_pic varchar2(50),
 =======
+
 CREATE TABLE fb_board
 (
 	member_no number NOT NULL,

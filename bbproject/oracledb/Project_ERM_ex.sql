@@ -227,27 +227,27 @@ and c.coupon_no = b.coupon_no;
 
 select * from fb_qa_board
 insert into fb_qa_board values
-(1, 1, 1, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
+(3, 1, 1, 1, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
 insert into fb_qa_board values
-(1, 2, 1, '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
+(3, 1, 2, 1, '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
 insert into fb_qa_board values
-(1, 3, 1, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
+(3, 1, 3, 1, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
 
 select * from fb_photo_board
 insert into fb_photo_board values
-(1, 1, 1, '백나연', '떡볶이 입니다.', sysdate, '1', '포토후기');
+(2, 1, 1, 1, '백나연', '떡볶이 입니다.', sysdate, '1', '포토후기');
 insert into fb_photo_board values
-(1, 2, 1, '백나연', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
+(2, 1, 2, 1, '백나연', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
 insert into fb_photo_board values
-(1, 3, 1, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
+(2, 1, 3, 1, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
 
 select * from fb_board
 insert into fb_board values
-(1, 1, 1, '백나연', '자유게시판입니다.', sysdate, '자유');
+(1, 1, 1, 1, '백나연', '자유게시판입니다.', sysdate, '자유');
 insert into fb_board values
-(1, 2, 1, '백나연', '자유게시판입니다2.', sysdate, '자유2');
+(1, 1, 2, 1, '백나연', '자유게시판입니다2.', sysdate, '자유2');
 insert into fb_board values
-(1, 3, 1, '백나연', '자유게시판입니다3.', sysdate, '자유3');
+(1, 1, 3, 1, '백나연', '자유게시판입니다3.', sysdate, '자유3');
 
 CREATE TABLE fb_photo_board
 (
@@ -275,6 +275,7 @@ CREATE TABLE fb_board
 
 CREATE TABLE fb_qa_board
 (
+
 	qa_no number NOT NULL,
 	qa_readcount number NOT NULL,
 	qa_writer varchar2(100) NOT NULL,
@@ -293,3 +294,18 @@ and p.member_no=b.member_no and p.member_no=q.member_no;
 select *
 from fb_photo_board
 where member_no=1
+
+create table fb_boardcategory
+(
+boardcategory_no number not null,
+boardcategory_name varchar2(20) not null,
+primary key (boardcategory_no)
+);
+insert into fb_boardcategory values
+(1, '자유게시판');
+insert into fb_boardcategory values
+(2, '포토후기');
+insert into fb_boardcategory values
+(3, '질문과 답변');
+
+

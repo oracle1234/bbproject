@@ -7,6 +7,6 @@
 		<li><a href="my_order.do?member_no=1">ORDER</a></li>
 		<li><a href="my_cart.do?member_no=1">CART</a></li>
 		<li><a href="my_coupon.do?member_no=1">COUPON</a></li>
-		<li><a href="my_board.do">BOARD</a></li>
+		<li><a href="my_board.do?member_no=1&boardcategory_no=1">BOARD</a></li>
 	</ul>
 </div>

@@ -36,7 +36,7 @@
 			</div>
 			<div id="board">
 				<p>
-					<a href="my_board.do">내가쓴글</a>
+					<a href="my_board.do?member_no=1">내가쓴글</a>
 				</p>
 				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
 			</div>

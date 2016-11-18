@@ -1,14 +1,14 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
-import dao.BoardDAO;
-import dao.fb_OrderDAO;
+
 import dao.myBoardDAO;
 import dto.BoardDTO;
 import dto.Photo_BoardDTO;
 import dto.QA_BoardDTO;
-import dto.fb_OrderDTO;
+import dto.myBoardDTO;
 
 public class myBoardServiceImp implements myBoardService{
 	
@@ -22,17 +22,9 @@ public class myBoardServiceImp implements myBoardService{
 	}
 
 	@Override
-	public List<BoardDTO> BoardListProcess(int member_no) {
-		return dao.BoardList(member_no);
+	public List<myBoardDTO> myboardlistProcess(HashMap<String, Integer> map) {
+		return dao.myBoardList(map);
 	}
+	
 
-	@Override
-	public List<Photo_BoardDTO> PhotoListProcess(int member_no) {
-		return dao.PhotoList(member_no);
-	}
-
-	@Override
-	public List<QA_BoardDTO> QaListProcess(int member_no) {
-		return dao.QaList(member_no);
-	}
 }

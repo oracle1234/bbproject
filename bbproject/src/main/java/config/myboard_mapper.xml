@@ -2,25 +2,64 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
 <mapper namespace="myboard">
 
-	<select id="photolist" resultType="dto.Photo_BoardDTO"
-		parameterType="int">
-		select *
-		from fb_photo_board
-		where member_no=#{member_no}
+	<resultMap type="dto.myBoardDTO" id="BoardList">
+		<collection property="bdto" javaType="java.util.List" ofType="dto.BoardDTO">
+		<result column="board_no" property="board_no"/>
+		<result column="board_readcount" property="board_readcount"/>
+		<result column="member_no" property="member_no"/>
+		<result column="boardcategory_no" property="boardcategory_no"/>
+		<result column="board_writer" property="board_writer"/>
+		<result column="board_subject" property="board_subject"/>
+		<result column="board_content" property="board_content"/>
+		<result column="board_reg_date" property="board_reg_date"/>
+		</collection>
+		
+		<collection property="pdto" javaType="java.util.List" ofType="dto.Photo_BoardDTO">
+		<result column="photo_no" property="photo_no"/>
+		<result column="photo_readcount" property="photo_readcount"/>
+		<result column="member_no" property="member_no"/>
+		<result column="boardcategory_no" property="boardcategory_no"/>
+		<result column="photo_writer" property="photo_writer"/>
+		<result column="photo_content" property="photo_content"/>
+		<result column="photo_upload" property="photo_upload"/>
+		<result column="photo_subject" property="photo_subject"/>
+		<result column="photo_reg_date" property="photo_reg_date"/>
+		</collection>
+		
+		<collection property="qdto" javaType="java.util.List" ofType="dto.QA_BoardDTO">
+		<result column="qa_no" property="qa_no"/>
+		<result column="qa_readcount" property="qa_readcount"/>
+		<result column="member_no" property="member_no"/>
+		<result column="boardcategory_no" property="boardcategory_no"/>
+		<result column="qa_writer" property="qa_writer"/>
+		<result column="qa_content" property="qa_content"/>
+		<result column="qa_upload" property="qa_upload"/>
+		<result column="qa_subject" property="qa_subject"/>
+		<result column="qa_reg_date" property="qa_reg_date"/>
+		</collection>
+	</resultMap>
 
-	</select>
-
-	<select id="boardlist" resultType="dto.BoardDTO" parameterType="int">
+	<select id="all" resultType="dto.myBoardDTO" parameterType="int">
 		select *
-		from fb_photo_board
+		from fb_board	
 		where member_no=#{member_no}
 	</select>
 	
-	<select id="qalist" resultType="dto.QA_BoardDTO" parameterType="int">
+	<select id="all2" resultMap="BoardList" parameterType="java.util.HashMap">
 		select *
-		from fb_qa_board
+		from 	
+		<if test="boardcategory_no=1">
+			fb_board
+		</if>
+		<if test="boardcategory_no=2">
+			fb_photo_board
+		</if>
+		<if test="boardcategory_no=3">
+			fb_qa_board
+		</if>
 		where member_no=#{member_no}
 	</select>
 	
