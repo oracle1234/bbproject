@@ -74,6 +74,13 @@
 	border-bottom: 1px solid gray;
 }
 
+#table #col{
+	line-height: 40px;
+}
+
+td{
+	padding-top: 7px;
+}
 </style>
 
 <body>
@@ -82,7 +89,7 @@
 			<h3 class="bodyname">자유게시판</h3>
 		</div>
 		<table id="table">
-			<tr>
+			<tr id="col">
 				<th width="5%">번호</th>
 				<th width="65%">제목</th>
 				<th width="10%">글쓴이</th>

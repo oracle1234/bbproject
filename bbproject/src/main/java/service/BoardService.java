@@ -13,11 +13,11 @@ public interface BoardService {
 	
 	public int countProcess();
 	public List<BoardDTO> listProcess(PageDTO pv);
-	public void insertProcess(BoardDTO dto);
+	public void insertProcess(BoardDTO bdto);
 	public BoardDTO contentProcess(int num);
-	public void reStepProcess(CommentDTO dto);
+	public void reStepProcess(CommentDTO cdto);
 	public BoardDTO updateSelectProcess(int num);
-	public void updateProcess(BoardDTO dto);
+	public void updateProcess(BoardDTO bdto);
 	public void deleteProcess(int num);
 }
 

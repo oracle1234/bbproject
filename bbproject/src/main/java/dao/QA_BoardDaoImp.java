@@ -50,9 +50,14 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 	}
 
 	@Override
-	public void save(CommentDTO dto) {
-		sqlSession.insert("board.qa_save", dto);
+	public void save(CommentDTO cdto) {
+		sqlSession.insert("board.c_save", cdto);
 
+	}
+	
+	@Override
+	public void save(QA_BoardDTO qdto) {
+		sqlSession.insert("board.q_save",qdto);
 	}
 
 	@Override
