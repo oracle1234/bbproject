@@ -14,4 +14,5 @@ public interface ShopDAO {
 	public List<ReviewDTO> reviewList(int review_no);
 	public int reviewCount(int foods_no);
 	public List<ReviewDTO> reviewPageList(HashMap<String, Object> map);
+	public void reviewInsertList(ReviewDTO rdto);
 }

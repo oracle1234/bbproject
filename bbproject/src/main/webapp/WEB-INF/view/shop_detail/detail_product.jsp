@@ -162,8 +162,7 @@ body {
 </style>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -224,6 +223,7 @@ body {
 																	+ total
 																	+ '<span>원</span></td>');
 										});
+						
 
 						$('#info_table tr:nth-child(7) td input')
 								.on(
@@ -254,11 +254,32 @@ body {
 											}
 
 										});
-
+						
+						$('#review_reg').on('click', function(){
+							$.ajax({
+								type : 'GET',
+								dataType : 'json',
+								url : 'reviewInsert.do?review_content='
+										+$('#reviewText').val(),
+								error : function(xhr, textStatus, error) {
+									alert("insert====" + error);
+								},
+								success : review_insert_result
+							});
+						})
+						
+			Handlebars.registerHelper("newDate", function(timeValue) {
+			var dateObj = new Date(timeValue);
+			var year = dateObj.getFullYear();
+			var month = dateObj.getMonth() + 1;
+			var date = dateObj.getDate();
+			return year + "-" + month + "-" + date;
+			});//end////////////////////////////////
+						
 					});//end ready end
 					
 	
-		/* function preFunction(f, c){
+		function preFunction(f, c){
 		$.ajax({
 			type : 'POST',
 			dataType : 'JSON',
@@ -270,7 +291,7 @@ body {
 			}
 		});				
 	};				
-	 */
+	 
 					
 	function nextFunction(f, c) {
 		$.ajax({
@@ -285,8 +306,7 @@ body {
 		});
 					
 	};
-					
-
+	
 	function myFunction(f, i) {
 		$.ajax({
 			type : 'POST',
@@ -302,8 +322,7 @@ body {
 
 	function review_list_result(res) {
 		$('#review_table .review_tr').remove();
-
-		 $.each(res,function(index, value) {
+		 $.each(res.list,function(index, value) {
 							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
 							var template = Handlebars.compile(source);
 							$('#review_table').append(template(value));
@@ -312,20 +331,41 @@ body {
 	};
 	
 	function review_prenext_list_result(res) {
-		$('#pre_next_pagenum').remove();
+		$('#review_table .review_tr').remove();
+		$('#pre_next_pagenum').empty();
 		
-		$.each(res, function(){
-			var source = "<>"
-		});
-
-		 /* $.each(res,function(index, value) {
+		 $.each(res.list,function(index, value) {
 			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
 			var template = Handlebars.compile(source);
-			$('#review_table').append(template(value)); 
-							
-		});*/
+			$('#review_table').append(template(value));
+		});
+			
+		 	var start= res.page.startPage;
+			var end= res.page.endPage;
+			var block = res.page.blockPage;
+			var total = res.page.totalPage;
+			
+			
+			if(start > 1){
+				$('#pre_next_pagenum').append('<a href="javascript:preFunction(${foods_no}, '+(start-block)+')">이전</a>');
+			}
+			
+			for (var i = start; i <= end; i++) {
+			 	var source1 = '<a href="javascript:myFunction(${foods_no}, '+i+')">'+i+'&nbsp;';
+	 			$('#pre_next_pagenum').append(source1);
+			}
 		
+			if(end < total){
+				$('#pre_next_pagenum').append('<a href="javascript:nextFunction(${foods_no}, '+(start+block)+')">다음</a>');
+			}
+			
 	};
+	
+	
+	function review_insert_result(res){
+		alert('aa');
+	}
+	
 </script>
 
 </head>
@@ -394,7 +434,6 @@ body {
 
 				</div>
 
-
 				<div id="account">
 					<table id="account_meter" height="auto">
 						<tr>
@@ -408,6 +447,7 @@ body {
 						</tr>
 					</table>
 				</div>
+		</c:forEach>
 		</div>
 		<!-- 상품 상세설명 end -->
 		<div class="packing_wrap">
@@ -439,11 +479,11 @@ body {
 									value="${ReviewDTO.review_date}" /></td>
 						</tr>
 					</c:forEach>
-					</c:forEach>
+					
 				</table>
 
 				<label>한줄평 남기기</label> <input type="text" size="70px"
-					placeholder="30자 이내로 한줄평을 작성해주세요." id="reviewText">
+					placeholder="30자 이내로 한줄평을 작성해주세요." id="reviewText" class="form-control">
 				<button id="review_reg">등록</button>
 
 				<div id="pre_next_pagenum">
@@ -455,19 +495,12 @@ body {
 					</c:if>
 
 					<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
-						<c:url var="currPage" value="detailProduct.do">
-							<c:param name="foods_no" value="${foods_no}"></c:param>
-							<c:param name="currentPage" value="${i}" />
-						</c:url>
-
-						<a href="javascript:myFunction(${foods_no}, ${i})"> <c:out
-								value="${i}" />
-						</a>
+						<a href="javascript:myFunction(${foods_no}, ${i})"> <c:out value="${i}" /></a>
 					</c:forEach>
 
 					<c:if test="${pv.endPage<pv.totalPage}">
+					<%--<a href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})"> --%>
 						<a href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})">
-						
 						<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage+pv.blockPage}"> --%>
 							<c:out value="다음" />
 						</a>

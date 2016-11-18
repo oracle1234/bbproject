@@ -52,6 +52,11 @@ public class ShopDaoImp implements ShopDAO {
 		return sqlSession.selectList("shop.review_page_list", map);
 	}
 
+	@Override
+	public void reviewInsertList(ReviewDTO rdto) {
+		sqlSession.insert("shop.reviewInsert", rdto);
+	}
+
 	
 	
 	

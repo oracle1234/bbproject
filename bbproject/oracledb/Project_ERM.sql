@@ -185,6 +185,9 @@ CREATE TABLE fb_foods
 	PRIMARY KEY (foods_no)
 );
 
+--reivew테이블 member_no 추가
+alter table FB_REVIEW add member_no number
+ALTER TABLE fb_review modify member_no NOT NULL
 
 CREATE TABLE fb_review
 (
@@ -193,6 +196,8 @@ CREATE TABLE fb_review
 	review_content varchar2(100) NOT NULL,
 	review_date date,
 	foods_no number NOT NULL,
+	member_no number NOT NULL
+	
 	PRIMARY KEY (review_no)
 );
 
@@ -469,10 +474,12 @@ ALTER TABLE fb_basket
 	REFERENCES fb_foods (foods_no)
 ;
 
-
+-- review 테이블 member_no 외부키 추가 (주훈 수정)
 ALTER TABLE fb_review
 	ADD FOREIGN KEY (foods_no)
 	REFERENCES fb_foods (foods_no)
+	ADD FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no)
 ;
 
 

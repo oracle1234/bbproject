@@ -51,5 +51,7 @@ public class ShopSercviceImp implements ShopService{
 		return dao.reviewPageList(map);
 	}
 
+
+
 	
 }

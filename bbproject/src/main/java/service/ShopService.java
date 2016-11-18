@@ -13,4 +13,5 @@ public interface ShopService {
 	public List<ReviewDTO> reviewListProcess(int review_no);
 	public int reviewCountProcess(int foods_no);
 	public List<ReviewDTO> reviewPageListProcess(HashMap<String, Object> map);
+	
 }
