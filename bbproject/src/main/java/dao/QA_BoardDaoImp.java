@@ -51,18 +51,17 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 
 	@Override
 	public void save(CommentDTO cdto) {
-		sqlSession.insert("board.c_save", cdto);
+		sqlSession.insert("board.qac_save", cdto);
 
 	}
 	
 	@Override
 	public void save(QA_BoardDTO qdto) {
-		sqlSession.insert("board.q_save",qdto);
+		sqlSession.insert("board.qa_save",qdto);
 	}
 
 	@Override
 	public QA_BoardDTO updateNum(int num) {
-
 		return sqlSession.selectOne("board.qa_content", num);
 	}
 
@@ -81,7 +80,7 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 	@Override
 	public String getFile(int num) {
 
-		return sqlSession.selectOne("board.qa_uploadFile", num);
+		return sqlSession.selectOne("board.uploadFile", num);
 
 	}
 

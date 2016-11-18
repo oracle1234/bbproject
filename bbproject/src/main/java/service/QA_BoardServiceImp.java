@@ -43,7 +43,6 @@ public class QA_BoardServiceImp implements QA_BoardService {
 	@Override
 	public void insertProcess(QA_BoardDTO qdto) {
 		qdao.save(qdto);
-
 	}
 
 	@Override

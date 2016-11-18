@@ -83,7 +83,7 @@ td{
 
 			<tr>
 				<th scope="row">글쓴이</th>
-				<td><input type="text" name="board_writer" size="10" maxlength="10" /></td>
+				<td><input type="text" name="qa_writer" size="10" maxlength="10" /></td>
 			</tr>
 
 			<tr>

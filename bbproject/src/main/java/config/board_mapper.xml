@@ -31,7 +31,7 @@
 			comment_re_step>#{comment_re_step} ]]> 
 	</update>
 	
-	<!-- <insert id="c_save" parameterType="dto.CommentDTO">
+	<!-- <insert id="bc_save" parameterType="dto.CommentDTO">
 		insert into fb_comment(comment_no_seq.nextval, comment_ref, comment_re_step, comment_re_level, comment_content, comment_writer, comment_date) 
 		values(comment_no_seq.nextval,#{comment_ref}, #{comment_re_step}, #{comment_re_level}, #{comment_content}, #{comment_writer}, sysdate)
 	</insert>  -->
@@ -39,11 +39,6 @@
 	<insert id="b_save" parameterType="dto.BoardDTO">
 		insert into fb_board(board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
 		values(SEQ_board_no.nextval,0,#{board_writer}, #{board_content}, sysdate, #{board_subject})
-	</insert>
-	
-	<insert id="c_save" parameterType="dto.QA_BoardDTO">
-		insert into fb_qa_board(qa_no, qa_readcount, qa_writer, qa_content, qa_reg_date, qa_subject)  
-		values(SEQ_qa_no.nextval,0,#{qa_writer}, #{qa_content}, sysdate, #{qa_subject})
 	</insert>
 
 	<update id="update" parameterType="dto.BoardDTO">
@@ -67,9 +62,10 @@
 	<select id="qa_list" resultType="dto.QA_BoardDTO" parameterType="dto.PageDTO">
 		<!-- 파싱하지말고 문자열 그대로 사용하라(<,>) '<'를 사용하기 위해서 CDATA를 사용 아직 수정중  -->
 		<![CDATA[ 
-			select b.* from( select rownum as rm, a.* from( select * from fb_board order 
-			by ref desc, re_step asc)a)b where b.rm>=#{startRow} and b.rm<=#{endRow} 
+			select b.* from (select rownum as rm, a.* from (select * from fb_qa_board order by qa_no desc)a)b 
+			where b.rm>=#{startRow} and b.rm <=#{endRow}
 			]]>
+			
 	</select>
 
 	<select id="qa_content" parameterType="int" resultType="dto.QA_BoardDTO">
@@ -83,24 +79,32 @@
 	</update>
 
 	<update id="qa_reStepCount" parameterType="dto.QA_BoardDTO">
-		아직 수정중 <![CDATA[ update fb_qa_board set re_step=re_step+1 where ref=#{ref} 
-			and re_step>#{re_step} ]]>
+		<!-- 아직 수정중 <![CDATA[ update fb_qa_board set re_step=re_step+1 where ref=#{ref} 
+			and re_step>#{re_step} ]]> -->
 	</update>
-
+	
 	<insert id="qa_save" parameterType="dto.QA_BoardDTO">
-		아직 수정중 insert into board(num,writer,subject,reg_date, readcount,ref,re_step,re_level,content,ip,upload) 
-			values(board_seq.nextval,#{writer},#{subject},sysdate,0, <choose> <when test="ref==0"> 
-			board_seq.nextval </when> <otherwise> #{ref} </otherwise> </choose> ,#{re_step},#{re_level},#{content},#{ip},#{upload,jdbcType=VARCHAR})
+		insert into fb_qa_board(qa_no, qa_readcount, qa_writer, qa_content, qa_reg_date, qa_subject, qa_upload)  
+		values(SEQ_qa_no.nextval,0,#{qa_writer}, #{qa_content}, sysdate, #{qa_subject}, #{upload})
+		<!-- <choose>
+			<when test="comment_ref==0">
+				SEQ_qa_no.nextval
+			</when>
+			<otherwise>
+				#{comment_ref}
+			</otherwise>
+		</choose>
+		,#{comment_re_step}, #{comment_re_level},#{upload,jdbcType=VARCHAR}) -->
 	</insert>
 
-	<select id="qa_uploadFile" parameterType="int" resultType="String">
+	<select id="uploadFile" parameterType="int" resultType="String">
 		select qa_upload from fb_qa_board where qa_no = #{qa_no}
 	</select>
 
 	<update id="qa_update" parameterType="dto.QA_BoardDTO">
 		update fb_qa_board set qa_subject=#{qa_subject},
 		qa_content=#{qa_content}
-		<if test="upload!=null">
+		<if test="qa_upload!=null">
 			,qa_upload=#{qa_upload}
 		</if>
 		where qa_no=#{qa_no}

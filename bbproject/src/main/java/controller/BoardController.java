@@ -30,7 +30,7 @@ public class BoardController {
 	
 	private int currentPage;
 	private PageDTO pdto;
-	private CommentDTO cdto;
+	//private CommentDTO cdto;
 
 	public BoardController() {
 
@@ -181,7 +181,7 @@ public class BoardController {
 	}// end qa_writeMethod()
 	
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.POST)
-	public String qa_writeProMethod(QA_BoardDTO qdto, HttpServletRequest request) {
+	public String qa_writeProMethod(QA_BoardDTO qdto, CommentDTO cdto, HttpServletRequest request) {
 
 		MultipartFile file = qdto.getFilename();
 		if (!file.isEmpty()) {
@@ -207,12 +207,21 @@ public class BoardController {
 				e.printStackTrace();
 			}
 			qdto.setUpload(random + "_" + fileName);
+			System.out.println(qdto);
 		}
 		
 		// 답변글이면
 		if (cdto.getComment_ref() != 0) {
 			qa_service.reStepProcess(cdto);
 		} else {
+			
+			System.out.println(qdto.getQa_content());
+			System.out.println(qdto.getQa_no());
+			System.out.println(qdto.getQa_readcount());
+			System.out.println(qdto.getQa_subject());
+			System.out.println(qdto.getQa_writer());
+			System.out.println(qdto.getUpload());
+			
 			qa_service.insertProcess(qdto);
 		}
 		

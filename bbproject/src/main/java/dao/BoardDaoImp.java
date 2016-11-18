@@ -51,7 +51,7 @@ public class BoardDaoImp implements BoardDAO {
 
 	@Override
 	public void save(CommentDTO cdto) {
-		sqlSession.insert("board.c_save", cdto);
+		sqlSession.insert("board.bc_save", cdto);
 
 	}
 	

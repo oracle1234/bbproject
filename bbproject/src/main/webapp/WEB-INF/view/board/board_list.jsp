@@ -153,7 +153,7 @@ td{
 				</label>
 				</span> 
 					<input type="text" name="search_str" value class="board_search_str" />
-					<input type="button" id="btnSearch" value="검색" />				
+					<input type="submit" id="btnSearch" value="검색" />				
 			</form>
 		</div>	
 	</div>

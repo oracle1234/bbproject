@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class QA_BoardDTO {
 
 	private int qa_no, qa_readcount;
-	private String qa_writer, qa_content, qa_upload, qa_subject;
+	private String qa_writer, qa_content, qa_subject;
 	private Date qa_reg_date;
 
 	// board테이블의 파일첨부를 처리해주는 멤버변수
@@ -46,14 +46,6 @@ public class QA_BoardDTO {
 
 	public void setQa_content(String qa_content) {
 		this.qa_content = qa_content;
-	}
-
-	public String getQa_upload() {
-		return qa_upload;
-	}
-
-	public void setQa_upload(String qa_upload) {
-		this.qa_upload = qa_upload;
 	}
 
 	public String getQa_subject() {
