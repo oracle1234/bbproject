@@ -26,4 +26,9 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 		return dao.selectList();
 	}
 
+	@Override
+	public ThemeRecipeDTO selectRecipeProcess(int recipe_no) {
+		return dao.selectRecipe(recipe_no);
+	}
+
 }

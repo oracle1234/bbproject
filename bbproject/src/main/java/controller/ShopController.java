@@ -24,7 +24,7 @@ public class ShopController {
 	public void setService(ShopService service) {
 		this.service = service;
 	}
-
+	//sdfas
 	@RequestMapping("/shopSoup.do")
 	public ModelAndView soupPage(FoodsDTO fdto, shop_PageDTO spdto) {
 
@@ -108,5 +108,7 @@ public class ShopController {
 		mav.setViewName("shop_kimchi");
 		return mav;
 	}// end kimchiPage()
-
+	
+	
 }
+

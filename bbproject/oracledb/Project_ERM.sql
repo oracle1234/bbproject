@@ -67,7 +67,6 @@ CREATE SEQUENCE SEQ_recipe_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_comment_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-
 CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -191,11 +190,14 @@ CREATE TABLE fb_review
 (
 	review_no number NOT NULL,
 	review_writer varchar2(50),
-	review_content varchar2(60) NOT NULL,
+	review_content varchar2(100) NOT NULL,
 	review_date date,
 	foods_no number NOT NULL,
 	PRIMARY KEY (review_no)
 );
+
+--review_content 컬럼 크기변경
+alter table fb_review MODIFY (review_content varchar2(100));
 
 
 CREATE TABLE fb_comment

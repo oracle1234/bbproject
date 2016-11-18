@@ -98,6 +98,10 @@
 			value="/WEB-INF/view/template/recipe_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/recipe.jsp" />
 	</definition>
+	
+	<definition name="recipedetail" extends="recipe">
+		<put-attribute name="body" value="/WEB-INF/view/recipedetail.jsp" />
+	</definition>
 
 	<definition name="my_order" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
@@ -155,6 +159,11 @@
 		<put-attribute name="body" value="/WEB-INF/view/shop/shopbody_kimchi.jsp" />
 	</definition>
 	
+	<definition name="detail_product" extends="index">
+		<put-attribute name="title" value="detail_page" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/shop_detail/detail_product.jsp" />
+	</definition>
 	
 
 </tiles-definitions>

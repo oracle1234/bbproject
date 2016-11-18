@@ -27,8 +27,8 @@ body {
 }
 
 .detail_img img {
-	width: 320px;
-	height: 320px;
+	width: 350px;
+	height: 350px;
 	position: absolute;
 	top: 20px;
 	left: 20px;
@@ -48,22 +48,28 @@ body {
 #info_table {
 	position: absolute;
 	top: 20px;
+	left: 420px;
+	text-align: left;
 }
 
 #info_table tr:nth-child(1) {
 	font-size: 25px;
 }
 
+#info_table tr:nth-child(9) td {
+	font-size: 25px;
+}
+
 .deli_img {
 	position: absolute;
-	top: 280px;
-	left: 360px;
+	top: 325px;
+	left: 387px;
 }
 
 #account {
 	position: absolute;
 	left: 20px;
-	top: 350px;
+	top: 390px;
 }
 
 #info_table th {
@@ -73,17 +79,19 @@ body {
 }
 
 #account_meter th {
-	width: 50px;
+	width: 80px;
 }
 
 #account_meter td {
-	width: 800px;
+	width: 820px;
+	text-align: left;
 }
 
 .packing_wrap {
 	width: 852px;
 	height: 1119px;
 	position: absolute;
+	top: 550px;
 	left: 50px;
 }
 
@@ -91,31 +99,44 @@ body {
 	width: 850px;
 	height: 500px;
 	position: absolute;
-	top: 1640px;
+	top: 1700px;
 	right: 50px;
-	background-color: green;
 }
 
 #shop_upbutton {
 	position: absolute;
-	top: 162px;
+	left : 158px;
+	top: 190px;
 }
 
 #shop_downbutton {
 	position: absolute;
-	top: 173px;
+	left : 158px;
+	top: 199px;
 }
 
 .shop_review p {
 	font-size: 23px;
 }
 
+#review_table, th, td {
+	padding: 3px;
+}
+
+#review_table {
+	border-spacing: 5px;
+}
+
+#review_table caption {
+	font-size: 30px;
+}
+
 #review_table th:nth-child(1) {
-	width: 40px;
+	width: 45px;
 }
 
 #review_table th:nth-child(2) {
-	width: 680px;
+	width: 635px;
 }
 
 #review_table th:nth-child(3) {
@@ -123,11 +144,26 @@ body {
 }
 
 #review_table th:nth-child(4) {
-	width: 100px;
+	width: 140px;
+}
+
+#review_table td {
+	text-align: center;
+}
+
+#review_table td:nth-child() {
+	text-align: left;
+}
+
+#pre_next_pagenum {
+	width: 130px;
+	height: 40px;
 }
 </style>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -169,7 +205,6 @@ body {
 								.on(
 										'click',
 										function() {
-
 											var price = parseInt($(
 													'#info_table tr:nth-child(3) td')
 													.text());
@@ -194,7 +229,6 @@ body {
 								.on(
 										"keyup",
 										function() {
-
 											var input = parseInt($(
 													'#info_table tr:nth-child(7) td input')
 													.val());
@@ -221,25 +255,90 @@ body {
 
 										});
 
-					});
+					});//end ready end
+					
+	
+		function preFunction(f, c){
+		$.ajax({
+			type : 'POST',
+			dataType : 'JSON',
+			url : "detailProduct.do",
+			data : "foods_no=" + f + "&currentPage=" + c,
+			success : review_prenext_list_result,
+			error : function(xhr, textStatus, error) {
+				alert("joo====" + error);
+			}
+		});				
+	};				
+	
+					
+	function nextFunction(f, c) {
+		$.ajax({
+			type : 'POST',
+			dataType : 'JSON',
+			url : "detailProduct.do",
+			data : "foods_no=" + f + "&currentPage=" + c,
+			success : review_prenext_list_result,
+			error : function(xhr, textStatus, error) {
+				alert("joo====" + error);
+			}
+		});
+					
+	};
+					
+
+	function myFunction(f, i) {
+		$.ajax({
+			type : 'POST',
+			dataType : 'JSON',
+			url : "detailProduct.do",
+			data : "foods_no=" + f + "&currentPage=" + i,
+			success : review_list_result,
+			error : function(xhr, textStatus, error) {
+				alert("joo====" + error);
+			}
+		});
+	};
+
+	function review_list_result(res) {
+		$('#review_table .review_tr').remove();
+
+		 $.each(res,function(index, value) {
+							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
+							var template = Handlebars.compile(source);
+							$('#review_table').append(template(value));
+		});
+		
+	};
+	
+	function review_prenext_list_result(res) {
+		$('#review_table .review_tr').remove();
+
+		 $.each(res,function(index, value) {
+							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
+							var template = Handlebars.compile(source);
+							$('#review_table').append(template(value));
+							
+		});
+		
+	};
 </script>
 
 </head>
 <body>
-
 	<div id="product_wrap">
 		<div class="sul_wrap">
 			<c:forEach items="${list}" var="FoodsDTO">
 				<div class="detail_img_wrap">
 					<div class="detail_img">
-						<img alt="상세이미지" src="images/${FoodsDTO.picture}">
+						<img alt="상세이미지" src="./images/${FoodsDTO.picture}">
 					</div>
 
 				</div>
 				<!-- 상세이미지 -->
 
 				<div class="table_wrap">
-					<table id="info_table" width="600px" height="auto">
+					<table id="info_table" width="510px" height="auto" >
 						<tr>
 							<td colspan="2">${FoodsDTO.foods_name}</td>
 						</tr>
@@ -275,10 +374,12 @@ body {
 							<th>적립금</th>
 							<td><span>원</span></td>
 						</tr>
+
 						<tr>
 							<th>구매예정금액</th>
 							<td>${FoodsDTO.price}<span>원</span></td>
 						</tr>
+
 					</table>
 
 					<div class="deli_img">
@@ -303,9 +404,7 @@ body {
 						</tr>
 					</table>
 				</div>
-			</c:forEach>
 		</div>
-
 		<!-- 상품 상세설명 end -->
 		<div class="packing_wrap">
 			<div id="product_packing">
@@ -317,29 +416,60 @@ body {
 		<div id=review_wrap>
 
 			<div class="shop_review">
-				<p id="review_text_p">한줄평</p>
-				<table id="review_table" border="1" width="850px">
+				<!-- <p id="review_text_p">한줄평</p> -->
+				<table id="review_table" width="850px">
+					<caption>한줄평</caption>
+
 					<tr>
 						<th>번호</th>
 						<th>내용</th>
 						<th>작성자</th>
 						<th>작성일</th>
 					</tr>
-
-						<tr>
+					<c:forEach items="${aList}" var="ReviewDTO">
+						<tr class="review_tr">
 							<td>${ReviewDTO.review_no}</td>
-							<td>${ReviewDTO.review_writer}</td>
 							<td>${ReviewDTO.review_content}</td>
-							<td>${ReviewDTO.review_date}</td>
+							<td>${ReviewDTO.review_writer}</td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
+									value="${ReviewDTO.review_date}" /></td>
 						</tr>
-
-
-
+					</c:forEach>
+					</c:forEach>
 				</table>
 
-				<label>한줄평 남기기</label><input type="text" size="70px"
-					value="30자 이내로 한줄평을 작성해주세요.">
+				<label>한줄평 남기기</label> <input type="text" size="70px"
+					placeholder="30자 이내로 한줄평을 작성해주세요." id="reviewText">
 				<button id="review_reg">등록</button>
+
+				<div id="pre_next_pagenum">
+					<c:if test="${pv.startPage>1}">
+						<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage-pv.blockPage}"> --%>
+						<a href="javascript:preFunction(${foods_no}, ${pv.startPage-pv.blockPage})">
+							<c:out value="이전" />
+						</a>
+					</c:if>
+
+					<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
+						<c:url var="currPage" value="detailProduct.do">
+							<c:param name="foods_no" value="${foods_no}"></c:param>
+							<c:param name="currentPage" value="${i}" />
+						</c:url>
+
+						<a href="javascript:myFunction(${foods_no}, ${i})"> <c:out
+								value="${i}" />
+						</a>
+					</c:forEach>
+
+					<c:if test="${pv.endPage<pv.totalPage}">
+						<a href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})">
+						
+						<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage+pv.blockPage}"> --%>
+							<c:out value="다음" />
+						</a>
+					</c:if>
+				</div>
+
 			</div>
 
 		</div>

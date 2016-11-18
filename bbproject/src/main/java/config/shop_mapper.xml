@@ -26,12 +26,13 @@
 			<result column="review_date" property="review_date" />
 		</collection>
 	</resultMap>
+	
 
 	<select id="shop_list" parameterType="int" resultMap="food_rev_result">
-		select * from
+		select r.*, f.* from
 		fb_review r, fb_foods f
-		where r.foods_no = f.foods_no and
-		r.foods_no = #{foods_no}
+		where f.foods_no = r.foods_no(+) and
+		f.foods_no = #{foods_no}
 		order by r.review_no desc
 	</select>
 
@@ -48,14 +49,21 @@
 		where b.rm>=#{startRow} and b.rm <=#{endRow}
 		]]>
 	</select>
-
-
-
-
-	<!-- <select id="review_list" resultMap="food_rev_result" parameterType="int"> 
-		select r.review_no, r.review_writer, r.review_content, r.review_date from 
-		fb_review r, fb_foods f where r.foods_no = f.foods_no and r.foods_no = #{foods_no} 
-		order by r.review_no desc </select> -->
-
+	
+	<select id="review_page_list" parameterType="map" resultType="dto.ReviewDTO">
+		<![CDATA[
+		select b.* from(
+		select rownum as rm, a.* from(
+		select * from fb_review where foods_no = #{foods_no} order by review_no desc )a)b
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+		]]>
+	</select>
+	
+	
+	
+	<select id="reviewCount" parameterType="dto.FoodsDTO" resultType="int">
+		select count(*) from fb_review where foods_no = #{foods_no}
+	</select>
+		
 </mapper>
 

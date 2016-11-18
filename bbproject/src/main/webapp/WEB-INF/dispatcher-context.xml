@@ -26,7 +26,7 @@
 				<value>classpath*:config/basket_mapper.xml</value>
 				<value>classpath*:config/order_mapper.xml</value>
 				<value>classpath*:config/coupon_mapper.xml</value>
-				<value>classpath*:config/mapper_recipe.xml</value>
+				<value>classpath*:config/recipe_mapper.xml</value>
 				<value>classpath*:config/shop_mapper.xml</value>
 				<value>classpath*:config/board_mapper.xml</value>
 				<value>classpath*:config/myboard_mapper.xml</value>
@@ -106,9 +106,12 @@
 	<bean id="themeRecipeservice" class="service.ThemeRecipeServiceImp">
 		<property name="dao" ref="themeRecipeDao" />
 	</bean>
+
+	<!-- controller 등록 -->
 	<bean id="shopService" class="service.ShopSercviceImp">
 		<property name="dao" ref="shopDao" />
 	</bean>
+	
 	<bean id="BasketService" class="service.fb_BasketServiceImp">
 		<property name="dao" ref="BasketDao" />
 	</bean>
@@ -124,7 +127,9 @@
 	
 	
 	<!-- controller 등록 -->
-
+	<bean class="controller.ImageController">
+		<property name="service" ref="themeRecipeservice"></property>
+	</bean>
 	<bean class="controller.MypageController">
 		<property name="service" ref="BasketService" />
 		<property name="orderservice" ref="OrderService" />
