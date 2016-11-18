@@ -24,7 +24,6 @@ public class ShopController {
 	public void setService(ShopService service) {
 		this.service = service;
 	}
-	//sdfas
 	@RequestMapping("/shopSoup.do")
 	public ModelAndView soupPage(FoodsDTO fdto, shop_PageDTO spdto) {
 

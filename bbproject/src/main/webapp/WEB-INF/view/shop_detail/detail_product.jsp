@@ -258,7 +258,7 @@ body {
 					});//end ready end
 					
 	
-		function preFunction(f, c){
+		/* function preFunction(f, c){
 		$.ajax({
 			type : 'POST',
 			dataType : 'JSON',
@@ -270,7 +270,7 @@ body {
 			}
 		});				
 	};				
-	
+	 */
 					
 	function nextFunction(f, c) {
 		$.ajax({
@@ -312,14 +312,14 @@ body {
 	};
 	
 	function review_prenext_list_result(res) {
-		$('#review_table .review_tr').remove();
+		$('#pre_next_pagenum').remove();
 
-		 $.each(res,function(index, value) {
-							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
-							var template = Handlebars.compile(source);
-							$('#review_table').append(template(value));
+		 /* $.each(res,function(index, value) {
+			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
+			var template = Handlebars.compile(source);
+			$('#review_table').append(template(value)); 
 							
-		});
+		});*/
 		
 	};
 </script>
