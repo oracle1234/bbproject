@@ -100,7 +100,7 @@ td{
 			<c:forEach var="bdto" items="${aList}">
 				<tr>
 					<td>${bdto.board_no}</td>
-					<td><c:url var="content" value="board_view.do">
+					<td><c:url var="board_content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
 							<c:param name="board_no" value="${bdto.board_no}" />
 							</c:url> 

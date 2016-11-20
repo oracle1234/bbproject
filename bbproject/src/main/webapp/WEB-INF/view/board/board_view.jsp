@@ -69,9 +69,9 @@
 	<form name="frm" id="frm" method="get" >	 
 	    <input type="hidden" name="num" value="${dto.board_no}" />	
 		<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" /> 
-		<input type="hidden" name="ref" value="${dto.comment_ref}" /> 
+		<%-- <input type="hidden" name="ref" value="${dto.comment_ref}" /> 
 		<input type="hidden" name="re_step" value="${dto.comment_re_step}" /> 
-		<input type="hidden" name="re_level" value="${dto.comment_re_level}" /> 
+		<input type="hidden" name="re_level" value="${dto.comment_re_level}" />  --%>
 		<input type="button" id="list" value="리스트" />
 		<input type="button" id="replay" value="답변" /> 
 		<input type="button" id="update" value="수정" /> 
