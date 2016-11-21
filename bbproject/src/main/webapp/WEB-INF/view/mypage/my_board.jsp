@@ -2,9 +2,13 @@
 
 
 	<div class="mypage_body">
+	<div class="link">
+	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 내가 쓴 글
+	</div>
 		<div class="board_button">
-		<input type="button" id="button_qa" value="Q&A">
+		<input type="button" id="button_free" value="자유게시판">
 		<input type="button" id="button_review" value="포토후기">
+		<input type="button" id="button_qa" value="Q&A">
 		</div>
 		
 		<table class="myboard_table">
@@ -29,8 +33,8 @@
 		<input type="button" id="button_write" value="글쓰기">
 		</div>
 		<div class="myboard_find">
-		<input type="radio" id="radio_title">제목
-		<input type="radio" id="radio_content">내용
+		<input type="radio" name="board">제목
+		<input type="radio" name="board">내용
 		<input type="text" id="text_find" placeholder="검색">
 		<input type="button" id="button_fint" value="검색">
 		</div>
