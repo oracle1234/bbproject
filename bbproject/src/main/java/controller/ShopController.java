@@ -18,7 +18,7 @@ public class ShopController {
 	private shop_PageDTO pdto;
 
 	public ShopController() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubdd
 	}
 
 	public void setService(ShopService service) {
