@@ -37,8 +37,8 @@
 	</insert>  -->
 	
 	<insert id="b_save" parameterType="dto.BoardDTO">
-		insert into fb_board(board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
-		values(SEQ_board_no.nextval,0,#{board_writer}, #{board_content}, sysdate, #{board_subject})
+		insert into fb_board(member_no, board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
+		values(1,SEQ_board_no.nextval,0,#{board_writer}, #{board_content}, sysdate, #{board_subject})
 	</insert>
 
 	<update id="update" parameterType="dto.BoardDTO">
@@ -84,8 +84,8 @@
 	</update>
 	
 	<insert id="qa_save" parameterType="dto.QA_BoardDTO">
-		insert into fb_qa_board(qa_no, qa_readcount, qa_writer, qa_content, qa_reg_date, qa_subject, qa_upload)  
-		values(SEQ_qa_no.nextval,0,#{qa_writer}, #{qa_content}, sysdate, #{qa_subject}, #{upload,jdbcType=VARCHAR})
+		insert into fb_qa_board(member_no ,qa_no, qa_readcount, qa_writer, qa_content, qa_reg_date, qa_subject, qa_upload)  
+		values(1,SEQ_qa_no.nextval,0,#{qa_writer}, #{qa_content}, sysdate, #{qa_subject}, #{upload,jdbcType=VARCHAR})
 		
 		<!-- <choose>
 			<when test="comment_ref==0">
