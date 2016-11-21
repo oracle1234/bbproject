@@ -138,6 +138,8 @@ public class BoardController {
 			mav.addObject("currentPage", pv.getTotalPage());
 		else
 			mav.addObject("currentPage", currentPage);
+			mav.addObject("pv", pdto);
+			mav.addObject("aList", service.listProcess(pdto));
 			mav.setViewName("board_list");
 		return mav;
 

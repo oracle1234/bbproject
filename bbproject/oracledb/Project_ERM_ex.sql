@@ -25,7 +25,7 @@ insert into fb_category values
 테이블명:fb_delivery_cost
 select * from fb_delivery_cost;
 insert into fb_delivery_cost values
-(1,2500)
+(1,2500);
 
 테이블명:fb_foods
 select * from fb_foods;
