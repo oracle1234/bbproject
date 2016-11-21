@@ -115,7 +115,7 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 			File fe = new File(saveDirectory, filename);
 			fe.delete();
 		}
-		return dao.deleteRecipe(dto);
+		return dao.deleteRecipe(temp);
 	}
 
 	@Override

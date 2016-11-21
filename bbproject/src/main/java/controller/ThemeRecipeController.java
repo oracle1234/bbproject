@@ -25,6 +25,7 @@ public class ThemeRecipeController {
 		ModelAndView mav = new ModelAndView();
 		List<ThemeRecipeDTO> list = service.selectListProcess(theme_no);
 		mav.addObject("aList", list);
+		mav.addObject("theme_no", theme_no);
 		mav.setViewName("recipe");
 		return mav;
 	}

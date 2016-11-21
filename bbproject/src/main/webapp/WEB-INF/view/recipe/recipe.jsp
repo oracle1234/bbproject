@@ -1,84 +1,12 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style type="text/css">
-.recipelist {
-	width: 900px;
-	background-color: yellow;
-	margin: auto;
-}
-
-.recipebox {
-	width: 700px;
-	height: 250px;
-	background-color: red;
-	margin: auto;
-	margin-top: 10px;
-}
-
-.recipe_over {
-	display: block;
-}
-
-.recipe_out {
-	display: none;
-}
-
-.recipe_sub1 {
-	width: 250px;
-	float: left;
-	position: relative;
-}
-
-.recipe_sub2 {
-	width: 450px;
-	height: 250px;
-	background-color: green;
-	float: right;
-	position: relative;
-}
-
-.recipe_sub1 span img {
-	width: 250px;
-	height: 250px;
-	position: absolute;
-	left: 0;
-}
-
-.list_detail {
-	position: absolute;
-	top: 40px;
-	left: 40px;
-}
-
-.list_detail p {
-	line-height: 30px;
-}
-
-h1{
-	font-size: 30px;
-	text-align: left;
-	margin-left: 10px;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="css/recipe.css" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/recipe.js"></script>
-
 <script type="text/javascript">
 	$(function() {
-
-		$(".recipebox").mouseover(function() {
-			$(".imgbox .recipe_img2", this).removeClass("recipe_out");
-			$(".imgbox .recipe_img2", this).addClass("recipe_over");
-		});
-
-		$(".recipebox").mouseout(function() {
-			$(".imgbox .recipe_img2", this).removeClass("recipe_over");
-			$(".imgbox .recipe_img2", this).addClass("recipe_out");
-		});
-
-		// 		alert($("#barimg").attr("src", "images/mypage_main.png"));
-
+		var theme_no = "${theme_no}";
+		themeTitle(theme_no);
 	});
 </script>
 
@@ -86,7 +14,7 @@ h1{
 
 	<div class="recipediv">
 		<div>
-			<h1>RECIPE</h1>
+			<h1 id="list_title">RECIPE</h1>
 		</div>
 		<div class="recipelist">
 			
@@ -102,11 +30,11 @@ h1{
 						</span>
 						<span class="recipe_sub2">
 							<span class="list_detail">
-								<p>레시피 이름 : ${dto.recipe_name }</p>
-								<p>간단 설명 : ${dto.recipe_explaination }</p>
-								<p>인원 : ${dto.portion }</p>
-								<p>조리 난이도 : ${dto.difficulty }</p>
-								<p>조리 시간 : ${dto.recipe_time }</p>
+								<span>레시피 이름 : ${dto.recipe_name }</span>
+								<span>간단 설명 : ${dto.recipe_explaination }</span>
+								<span>인원 : ${dto.portion }</span>
+								<span>조리 난이도 : ${dto.difficulty }</span>
+								<span>조리 시간 : ${dto.recipe_time }</span>
 							</span>
 						</span>
 					</a>

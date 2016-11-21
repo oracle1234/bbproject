@@ -1,71 +1,8 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style type="text/css">
-.recipelist {
-	width: 900px;
-	background-color: yellow;
-	margin: auto;
-}
-
-.recipebox {
-	width: 700px;
-	height: 250px;
-	background-color: red;
-	margin: auto;
-	margin-top: 10px;
-	border: 2px solid #0066ff;
-	border-radius: 30px;
-	overflow: hidden;
-}
-
-.recipe_sub1 {
-	width: 250px;
-	float: left;
-	position: relative;
-}
-
-.recipe_sub2 {
-	width: 450px;
-	height: 250px;
-	background-color: green;
-	float: right;
-	position: relative;
-}
-
-.recipe_sub1 span img {
-	width: 250px;
-	height: 250px;
-	position: absolute;
-	left: 0;
-}
-
-.list_detail {
-	position: absolute;
-	top: 40px;
-	left: 40px;
-}
-
-.list_detail span {
-	display : block;
-	line-height: 30px;
-}
-
-.del{
-	width : 100%;
-	text-align: center;
-}
-
-
-</style>
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/recipe.css" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript">
-	$(function() {
-
-	});
-</script>
-
-<body>
 
 	<div class="recipediv">
 		<div class="recipelist">
@@ -119,10 +56,4 @@
 			
 		</div>
 	</div>
-
-
-
-</body>
-
-
 
