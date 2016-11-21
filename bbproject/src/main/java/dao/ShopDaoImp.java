@@ -53,9 +53,25 @@ public class ShopDaoImp implements ShopDAO {
 	}
 
 	@Override
-	public void reviewInsertList(ReviewDTO rdto) {
-		sqlSession.insert("shop.reviewInsert", rdto);
+	public void reviewInsertList(HashMap<String, Object> map) {
+		sqlSession.insert("shop.reviewInsert", map);
 	}
+
+	@Override
+	public void reviewDeleteList(HashMap<String, Object> deleteMap) {
+		sqlSession.delete("shop.reviewDelete", deleteMap);
+		
+	}
+
+	@Override
+	public void reviewUpdateList(HashMap<String, Object> updateMap) {
+		sqlSession.update("shop.reviewUpdate", updateMap);
+	}
+
+
+	
+
+	
 
 	
 	

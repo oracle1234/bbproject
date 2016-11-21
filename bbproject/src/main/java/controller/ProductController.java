@@ -1,10 +1,13 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.FoodsDTO;
+import dto.MemberDTO;
 import dto.ReviewDTO;
 import dto.review_PageDTO;
 import service.ShopService;
@@ -90,7 +94,111 @@ public class ProductController {
 		resultMap.put("page", pdto);
 		
 		return resultMap;
-	}
+	}//////////////////////////end List/////////////
+	
+	//멤버ID도 추가해야함.
+	@RequestMapping("/reviewInsert.do")
+	public @ResponseBody HashMap<String, Object> reviewInsertProcess(FoodsDTO fdto, ReviewDTO rdto, MemberDTO mdto, review_PageDTO rpdto){
+		
+		
+		HashMap<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("review_content", rdto.getReview_content());
+		insertMap.put("foods_no", fdto.getFoods_no());
+		insertMap.put("member_no", mdto.getMember_no());
+		insertMap.put("review_writer", "홍길동");
+		
+		service.reviewInsertProcess(insertMap);
+		
+		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+		
+		if (totalRecord >= 1) {
+			// 첫 접속시 현재 페이지를 1로 지정
+			if (rpdto.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = rpdto.getCurrentPage();
+
+			pdto = new review_PageDTO(currentPage, totalRecord);
+			
+			pageMap.put("startRow", pdto.getStartRow());
+			pageMap.put("endRow", pdto.getEndRow());
+			pageMap.put("foods_no", fdto.getFoods_no());
+		} 
+		
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("ReviewDTO", service.reviewPageListProcess(pageMap));
+		resultMap.put("page", pdto);
+		
+		return resultMap;
+	}//end reviewInsertProcess()//////////////////////////
+	
+	@RequestMapping("/reviewDelete.do")
+	public @ResponseBody HashMap<String, Object> reviewDeleteProcess(ReviewDTO rdto, MemberDTO mdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletResponse req) {
+		
+		HashMap<String, Object> deleteMap = new HashMap<String, Object>();
+		deleteMap.put("review_no", rdto.getReview_no());
+		deleteMap.put("member_no", mdto.getMember_no());
+		service.reviewDeleteProcess(deleteMap);
+		
+		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+		
+		if (totalRecord >= 1) {
+			// 첫 접속시 현재 페이지를 1로 지정
+			if (rpdto.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = rpdto.getCurrentPage();
+
+			pdto = new review_PageDTO(currentPage, totalRecord);
+			
+			pageMap.put("startRow", pdto.getStartRow());
+			pageMap.put("endRow", pdto.getEndRow());
+			pageMap.put("foods_no", fdto.getFoods_no());
+		}
+		
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("ReviewDTO", service.reviewPageListProcess(pageMap));
+		resultMap.put("page", pdto);
+		
+		return resultMap;
+		
+	}//end delete/////////////////////////////////////
+	
+	@RequestMapping("/reviewUpdate.do")
+	public @ResponseBody HashMap<String, Object> reviewUpdateProcess(ReviewDTO rdto, MemberDTO mdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletResponse req) {
+		
+		
+		HashMap<String, Object> updateMap = new HashMap<String, Object>();
+		updateMap.put("review_content", rdto.getReview_content());
+		updateMap.put("review_no", rdto.getReview_no());
+		updateMap.put("member_no", mdto.getMember_no());
+		service.reviewUpdateProcess(updateMap);
+		
+		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+		
+		if (totalRecord >= 1) {
+			// 첫 접속시 현재 페이지를 1로 지정
+			if (rpdto.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = rpdto.getCurrentPage();
+
+			pdto = new review_PageDTO(currentPage, totalRecord);
+			
+			pageMap.put("startRow", pdto.getStartRow());
+			pageMap.put("endRow", pdto.getEndRow());
+			pageMap.put("foods_no", fdto.getFoods_no());
+		}
+		
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("ReviewDTO", service.reviewPageListProcess(pageMap));
+		resultMap.put("page", pdto);
+		
+		return resultMap;
+	}//end update/////////////////////////////////////
 	
 	
 

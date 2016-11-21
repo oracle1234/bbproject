@@ -96,23 +96,28 @@ body {
 }
 
 #review_wrap {
-	width: 850px;
+	width: 930px;
 	height: 500px;
 	position: absolute;
 	top: 1700px;
-	right: 50px;
+	left: 10px;
 }
 
 #shop_upbutton {
 	position: absolute;
-	left : 158px;
+	left: 158px;
 	top: 190px;
 }
 
 #shop_downbutton {
 	position: absolute;
-	left : 158px;
+	left: 158px;
 	top: 199px;
+}
+
+.shop_review {
+	width: 1000px;
+	height: 1000px;
 }
 
 .shop_review p {
@@ -124,7 +129,7 @@ body {
 }
 
 #review_table {
-	border-spacing: 5px;
+	border-spacing: 3px;
 }
 
 #review_table caption {
@@ -136,7 +141,7 @@ body {
 }
 
 #review_table th:nth-child(2) {
-	width: 635px;
+	width: 500px;
 }
 
 #review_table th:nth-child(3) {
@@ -144,14 +149,14 @@ body {
 }
 
 #review_table th:nth-child(4) {
-	width: 140px;
+	width: 120px;
 }
 
 #review_table td {
 	text-align: center;
 }
 
-#review_table td:nth-child() {
+#review_table td:nth-child(2) {
 	text-align: left;
 }
 
@@ -159,14 +164,52 @@ body {
 	width: 130px;
 	height: 40px;
 }
+
+.modifyHide {
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+}
+
+.modifyShow {
+	display: block;
+	position: absolute;
+	top: 150px;
+	left: 200px;
+	width: 400px;
+	height: 150px;
+	z-index: 1000;
+	border: 1px solid black;
+	background-color: green;
+	text-align: center;
+}
 </style>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
+
+	var uno="";
+	
+	$(document).ready(function() {
+						
+						$('#modifyWindow').addClass('modifyHide');
+						
+						$('.review_udt_btn').on('click', function(){
+							$('#modifyWindow').addClass('modifyShow');
+							$('#modifyWindow').removeClass('modifyHide');
+						});
+						
+						$('#btnClose').on('click', function() {
+							$('#modifyWindow').removeClass('modifyShow');
+							$('#modifyWindow').addClass('modifyHide');
+							uno = '';
+						});
+						
+						$('#btnModify').on('click', review_update_result);
+						
+						
 						var price = parseInt($('#info_table tr:nth-child(3) td')
 								.text());
 						var savemoney = price * 0.01;
@@ -223,7 +266,6 @@ body {
 																	+ total
 																	+ '<span>원</span></td>');
 										});
-						
 
 						$('#info_table tr:nth-child(7) td input')
 								.on(
@@ -254,32 +296,66 @@ body {
 											}
 
 										});
-						
-						$('#review_reg').on('click', function(){
+
+						$('#review_reg')
+								.on(
+										'click',
+										function() {
+
+											if ($('#reviewText').val() == "") {
+												alert('한줄평을 입력하세요.');
+												return false;
+
+											}
+
+											$
+													.ajax({
+														type : 'GET',
+														dataType : 'json',
+														url : 'reviewInsert.do?review_content='
+																+ $('#reviewText').val()
+																+ "&foods_no=${foods_no}"
+																+ "&member_no=1",
+														success : review_insert_result,
+														error : function(xhr,
+																textStatus,
+																error) {
+															alert("insert===="
+																	+ error);
+														}
+													});
+										});
+
+						//딜리트
+						$(document).on("click",".review_del_btn",function() {
+							var dno = $(this).val();
 							$.ajax({
 								type : 'GET',
 								dataType : 'json',
-								url : 'reviewInsert.do?review_content='
-										+$('#reviewText').val(),
-								error : function(xhr, textStatus, error) {
-									alert("insert====" + error);
-								},
-								success : review_insert_result
+								url : 'reviewDelete.do?review_no='
+								+dno
+								+ "&foods_no=${foods_no}"+ "&member_no=1",
+								success : review_delete_result,
+								error : function(xhr,textStatus,error) {
+								alert("delete===="+ error);
+								}
 							});
-						})
+						});
 						
-			Handlebars.registerHelper("newDate", function(timeValue) {
-			var dateObj = new Date(timeValue);
-			var year = dateObj.getFullYear();
-			var month = dateObj.getMonth() + 1;
-			var date = dateObj.getDate();
-			return year + "-" + month + "-" + date;
-			});//end////////////////////////////////
 						
+							
+
 					});//end ready end
-					
-	
-		function preFunction(f, c){
+
+	Handlebars.registerHelper("newDate", function(timeValue) {
+		var dateObj = new Date(timeValue);
+		var year = dateObj.getFullYear();
+		var month = dateObj.getMonth() + 1;
+		var date = dateObj.getDate();
+		return year + "-" + month + "-" + date;
+	});
+
+	function preFunction(f, c) {
 		$.ajax({
 			type : 'POST',
 			dataType : 'JSON',
@@ -289,10 +365,9 @@ body {
 			error : function(xhr, textStatus, error) {
 				alert("joo====" + error);
 			}
-		});				
-	};				
-	 
-					
+		});
+	};
+
 	function nextFunction(f, c) {
 		$.ajax({
 			type : 'POST',
@@ -304,9 +379,9 @@ body {
 				alert("joo====" + error);
 			}
 		});
-					
+
 	};
-	
+
 	function myFunction(f, i) {
 		$.ajax({
 			type : 'POST',
@@ -322,50 +397,162 @@ body {
 
 	function review_list_result(res) {
 		$('#review_table .review_tr').remove();
-		 $.each(res.list,function(index, value) {
-							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
+		$
+				.each(
+						res.list,
+						function(index, value) {
+							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
 							var template = Handlebars.compile(source);
 							$('#review_table').append(template(value));
-		});
-		
+						});
+
 	};
-	
+
 	function review_prenext_list_result(res) {
 		$('#review_table .review_tr').remove();
 		$('#pre_next_pagenum').empty();
-		
-		 $.each(res.list,function(index, value) {
-			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{review_date}}</td></tr>";
-			var template = Handlebars.compile(source);
-			$('#review_table').append(template(value));
-		});
-			
-		 	var start= res.page.startPage;
-			var end= res.page.endPage;
-			var block = res.page.blockPage;
-			var total = res.page.totalPage;
-			
-			
-			if(start > 1){
-				$('#pre_next_pagenum').append('<a href="javascript:preFunction(${foods_no}, '+(start-block)+')">이전</a>');
-			}
-			
-			for (var i = start; i <= end; i++) {
-			 	var source1 = '<a href="javascript:myFunction(${foods_no}, '+i+')">'+i+'&nbsp;';
-	 			$('#pre_next_pagenum').append(source1);
-			}
-		
-			if(end < total){
-				$('#pre_next_pagenum').append('<a href="javascript:nextFunction(${foods_no}, '+(start+block)+')">다음</a>');
-			}
-			
+
+		$
+				.each(
+						res.list,
+						function(index, value) {
+							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+							var template = Handlebars.compile(source);
+							$('#review_table').append(template(value));
+						});
+
+		var start = res.page.startPage;
+		var end = res.page.endPage;
+		var block = res.page.blockPage;
+		var total = res.page.totalPage;
+
+		if (start > 1) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:preFunction(${foods_no}, '
+							+ (start - block) + ')">이전&nbsp;</a>');
+		}
+
+		for (var i = start; i <= end; i++) {
+			var source1 = '<a href="javascript:myFunction(${foods_no}, ' + i
+					+ ')">' + i + '&nbsp;';
+			$('#pre_next_pagenum').append(source1);
+		}
+
+		if (end < total) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:nextFunction(${foods_no}, '
+							+ (start + block) + ')">다음</a>');
+		}
+
+	};
+
+	function review_insert_result(res) {
+		$('.review_tr').remove();
+		$('#pre_next_pagenum').empty();
+
+		$
+				.each(
+						res.ReviewDTO,
+						function(index, value) {
+							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+							var template = Handlebars.compile(source);
+							$('#review_table').append(template(value));
+						});
+
+		var start = res.page.startPage;
+		var end = res.page.endPage;
+		var block = res.page.blockPage;
+		var total = res.page.totalPage;
+
+		if (start > 1) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:preFunction(${foods_no}, '
+							+ (start - block) + ')">이전</a>');
+		}
+
+		for (var i = start; i <= end; i++) {
+			var source1 = '<a href="javascript:myFunction(${foods_no}, ' + i
+					+ ')">' + i + '&nbsp;';
+			$('#pre_next_pagenum').append(source1);
+		}
+
+		if (end < total) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:nextFunction(${foods_no}, '
+							+ (start + block) + ')">다음</a>');
+		}
+
+		$('#reviewText').val("");
+	}
+
+	//딜리트
+	function review_delete_result(res) {
+		$('.review_tr').remove();
+		$('#pre_next_pagenum').empty();
+
+		$
+				.each(
+						res.ReviewDTO,
+						function(index, value) {
+							var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+							var template = Handlebars.compile(source);
+							$('#review_table').append(template(value));
+						});
+
+		var start = res.page.startPage;
+		var end = res.page.endPage;
+		var block = res.page.blockPage;
+		var total = res.page.totalPage;
+
+		if (start > 1) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:preFunction(${foods_no}, '
+							+ (start - block) + ')">이전</a>');
+		}
+
+		for (var i = start; i <= end; i++) {
+			var source1 = '<a href="javascript:myFunction(${foods_no}, ' + i
+					+ ')">' + i + '&nbsp;';
+			$('#pre_next_pagenum').append(source1);
+		}
+
+		if (end < total) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:nextFunction(${foods_no}, '
+							+ (start + block) + ')">다음</a>');
+		}
 	};
 	
-	
-	function review_insert_result(res){
-		alert('aa');
-	}
-	
+	function review_update_result(res) {
+		
+		if($('#updateReviewText').val() == ''){
+			alert('수정할 내용을 입력하세요.')
+			return false;
+		}
+		
+		
+		//시작할곳 수정할곳
+		var uno = $('#updateReviewText').val();
+		alert(uno);
+		
+		$.ajax({
+			type : 'GET',
+			dataType : 'json',
+			url : 'reviewUpdate.do?review_no='
+					+ uno
+					+ "&member_no=1"
+					+ "review_content="+$('#updateReviewText').val(),
+			seccess : review_update_result,
+			error : function(xhr,textStatus,error) {
+			alert("update===="+ error);
+			}
+		});
+		
+		$('#modifyWindow').removeClass('modifyShow');
+		$('#modifyWindow').addClass('modifyHide');
+		uno = '';
+		
+	};
 </script>
 
 </head>
@@ -382,7 +569,7 @@ body {
 				<!-- 상세이미지 -->
 
 				<div class="table_wrap">
-					<table id="info_table" width="510px" height="auto" >
+					<table id="info_table" width="510px" height="auto">
 						<tr>
 							<td colspan="2">${FoodsDTO.foods_name}</td>
 						</tr>
@@ -447,7 +634,7 @@ body {
 						</tr>
 					</table>
 				</div>
-		</c:forEach>
+			</c:forEach>
 		</div>
 		<!-- 상품 상세설명 end -->
 		<div class="packing_wrap">
@@ -461,7 +648,7 @@ body {
 
 			<div class="shop_review">
 				<!-- <p id="review_text_p">한줄평</p> -->
-				<table id="review_table" width="850px">
+				<table id="review_table" width="930">
 					<caption>한줄평</caption>
 
 					<tr>
@@ -469,6 +656,7 @@ body {
 						<th>내용</th>
 						<th>작성자</th>
 						<th>작성일</th>
+						<th></th>
 					</tr>
 					<c:forEach items="${aList}" var="ReviewDTO">
 						<tr class="review_tr">
@@ -477,34 +665,56 @@ body {
 							<td>${ReviewDTO.review_writer}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
 									value="${ReviewDTO.review_date}" /></td>
+							<td>
+								<button class="review_udt_btn" value="${ReviewDTO.review_no}">수정</button>
+							</td>
+							<td>
+								<button class="review_del_btn" value="${ReviewDTO.review_no}">삭제</button>
+							</td>
 						</tr>
 					</c:forEach>
-					
+
 				</table>
 
 				<label>한줄평 남기기</label> <input type="text" size="70px"
-					placeholder="30자 이내로 한줄평을 작성해주세요." id="reviewText" class="form-control">
+					placeholder="20자 이내로 한줄평을 작성해주세요." id="reviewText"
+					class="form-control">
 				<button id="review_reg">등록</button>
 
 				<div id="pre_next_pagenum">
 					<c:if test="${pv.startPage>1}">
 						<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage-pv.blockPage}"> --%>
-						<a href="javascript:preFunction(${foods_no}, ${pv.startPage-pv.blockPage})">
+						<a
+							href="javascript:preFunction(${foods_no}, ${pv.startPage-pv.blockPage})">
 							<c:out value="이전" />
 						</a>
 					</c:if>
 
 					<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
-						<a href="javascript:myFunction(${foods_no}, ${i})"> <c:out value="${i}" /></a>
+						<a href="javascript:myFunction(${foods_no}, ${i})"> <c:out
+								value="${i}" /></a>
 					</c:forEach>
 
 					<c:if test="${pv.endPage<pv.totalPage}">
-					<%--<a href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})"> --%>
-						<a href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})">
-						<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage+pv.blockPage}"> --%>
+						<%--<a href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})"> --%>
+						<a
+							href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})">
+							<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage+pv.blockPage}"> --%>
 							<c:out value="다음" />
 						</a>
 					</c:if>
+				</div>
+
+				<div id="modifyWindow">
+					<p>
+						<label for="updateReplyText">한줄평 수정하기</label> <input
+							class="form-control" type="text" placeholder="수정할 한줄평을 입력하세요."
+							id="updateReviewText">
+					</p>
+					<p>
+						<button id="btnModify" value = "${ReviewDTO.review_no}">수정</button>
+						<button id="btnClose">닫기</button>
+					</p>
 				</div>
 
 			</div>

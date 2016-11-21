@@ -51,7 +51,21 @@ public class ShopSercviceImp implements ShopService{
 		return dao.reviewPageList(map);
 	}
 
+	@Override
+	public void reviewInsertProcess(HashMap<String, Object> map) {
+		dao.reviewInsertList(map);
+	}
+
+	@Override
+	public void reviewDeleteProcess(HashMap<String, Object> deleteMap) {
+		dao.reviewDeleteList(deleteMap);
+	}
+
+	@Override
+	public void reviewUpdateProcess(HashMap<String, Object> updateMap) {
+		dao.reviewUpdateList(updateMap);
+	}
 
 
 	
-}
+}//end class
