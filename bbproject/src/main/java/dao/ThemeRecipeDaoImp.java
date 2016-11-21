@@ -18,8 +18,15 @@ public class ThemeRecipeDaoImp implements ThemeRecipeDAO {
 	}
 
 	@Override
-	public void insertRecipe(ThemeRecipeDTO dto) {
+	public String insertRecipe(ThemeRecipeDTO dto) {
 		sqlSession.insert("recipe.insert", dto);
+		return "adminrecipe";
+	}
+	
+	@Override
+	public List<ThemeRecipeDTO> deleteRecipe(ThemeRecipeDTO dto){
+		sqlSession.delete("recipe.delete", dto.getRecipe_no());
+		return sqlSession.selectList("recipe.list", 0);
 	}
 
 	@Override

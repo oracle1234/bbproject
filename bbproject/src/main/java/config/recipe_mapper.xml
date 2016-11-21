@@ -61,5 +61,10 @@
 		where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no
 		and a.recipe_no = #{recipe_no}
 	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from fb_theme_recipe
+		where recipe_no = #{recipe_no}
+	</delete>
 
 </mapper>

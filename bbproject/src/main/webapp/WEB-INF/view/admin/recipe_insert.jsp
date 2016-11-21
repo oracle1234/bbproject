@@ -18,7 +18,7 @@
 </head>
 <body>
 
-	<form id="recipe_form" action="recipeins.do" method="post"
+	<form id="recipe_form" action="adminrecipeins.do" method="post"
 		enctype="multipart/form-data">
 
 		<div>

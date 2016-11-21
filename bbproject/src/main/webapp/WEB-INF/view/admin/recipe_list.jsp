@@ -13,6 +13,9 @@
 	background-color: red;
 	margin: auto;
 	margin-top: 10px;
+	border: 2px solid #0066ff;
+	border-radius: 30px;
+	overflow: hidden;
 }
 
 .recipe_sub1 {
@@ -47,24 +50,17 @@
 	line-height: 30px;
 }
 
+.del{
+	width : 100%;
+	text-align: center;
+}
+
 
 </style>
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(function() {
-
-		$(".recipebox").mouseover(function() {
-			$(".imgbox .recipe_img2", this).removeClass("recipe_out");
-			$(".imgbox .recipe_img2", this).addClass("recipe_over");
-		});
-
-		$(".recipebox").mouseout(function() {
-			$(".imgbox .recipe_img2", this).removeClass("recipe_over");
-			$(".imgbox .recipe_img2", this).addClass("recipe_out");
-		});
-
-		// 		alert($("#barimg").attr("src", "images/mypage_main.png"));
 
 	});
 </script>
@@ -116,8 +112,8 @@
 						</span>
 					</a>
 				</div>
-				<div>
-					<a href="#">삭제</a>	
+				<div class="del">
+					<a href="adminrecipedel.do?recipe_no=${dto.recipe_no}">삭제</a>	
 				</div>
 			</c:forEach>
 			

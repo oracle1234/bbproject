@@ -71,13 +71,13 @@ CREATE TABLE fb_tr_complete
 
 
 ALTER TABLE fb_tr_order
-	ADD CONSTRAINT fk_recipe_no FOREIGN KEY (recipe_no)
+	ADD CONSTRAINT fk_order_recipe_no FOREIGN KEY (recipe_no)
 	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
 ;
 
 
 ALTER TABLE fb_tr_complete
-	ADD CONSTRAINT fk_recipe_no FOREIGN KEY (recipe_no)
+	ADD CONSTRAINT fk_complete_recipe_no FOREIGN KEY (recipe_no)
 	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
 ;
 
@@ -114,6 +114,8 @@ select *
 from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
 where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no
 order by a.recipe_no desc;
+
+delete from fb_theme_recipe where recipe_no = 2
 
 select * 
 from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
