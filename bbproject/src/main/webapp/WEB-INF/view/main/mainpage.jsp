@@ -23,7 +23,9 @@
 </head>
 
 <body>
-<!-- 로그인, 회원가입, 게시판 -->
+<!-- 
+
+로그인, 회원가입, 게시판
 <div id="wrap">
 	<div id="header">
 		<div class="wrap_inner">
@@ -54,11 +56,11 @@
 
 <div id="wrap">
   <div id="header2"> 
-    <!-- header_area -->
+    header_area
     <div class="header_area">
       <div class="sm_logo"><a href="Website.html"><img src="" alt="??"></a></div>
       <div class="h_gnb"> 
-        <!--header depth -->
+        header depth
         <div class=dp_1>
           <ul>
             <li class="li_s"><a href="#">?</a>
@@ -98,7 +100,7 @@
     </div>
   </div>
   
-  <!-- content(메인 배너) -->
+  content(메인 배너)
   <div id="content">
     <ul class="bxslider">
       <li><img src="#"/></li>
@@ -108,7 +110,7 @@
     </ul>
   </div>
   
-  <!-- banner_text(브랜드 배너) -->
+  banner_text(브랜드 배너)
   <div class="banner_text">
     <ul class="ul_banner1" onclick="#" style="opacity:1, border: 1px solid rgb(206, 206, 206);">
       <li>
@@ -137,7 +139,7 @@
     </ul>
   </div>
   
-  <!-- article(이벤트/행사 배너) -->
+  article(이벤트/행사 배너)
   <div class="article">
     <div class="con">
       <div class="menu_L">
@@ -156,7 +158,7 @@
   </div>
 </div>
 
-<!-- footer -->
+footer
 <footer id="footer">
   <div class="bottom_gnb1">
     <div class="wrap">
@@ -175,7 +177,7 @@
     <div class="wrap">
       <div class="info">
         <p class="text1">Company Info</p>
-        <p class="text2"> <span class="tit">주소 : 서울특별시 성동구 무학로 2길 54 신방빌딩 4,5층 / 대표자 : 김연성 / TEL : 02-446-6066, FAX : 02-428-9694</span> </p>
+        <p class="text2"> <span class="tit">주소 : 서울특별시 성동구 무학로 2길 54 신방빌딩 4,5층 / 대표자 : 어쩌구 / TEL : ??-??-????, FAX : ??-???-????</span> </p>
       </div>
       <div class="sv">
         <p class="text1">Contact</p>
@@ -189,5 +191,8 @@
     </div>
   </div>
 </footer>
-</body>
+ 
+ 
+ -->
+ </body>
 </html>

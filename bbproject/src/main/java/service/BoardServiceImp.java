@@ -62,7 +62,7 @@ public class BoardServiceImp implements BoardService {
 
 	@Override
 	public BoardDTO updateSelectProcess(int num) {
-
+		
 		return bdao.updateNum(num);
 	}
 

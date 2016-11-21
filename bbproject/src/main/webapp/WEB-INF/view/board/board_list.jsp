@@ -102,7 +102,7 @@ td{
 					<td>${bdto.board_no}</td>
 					<td><c:url var="board_content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="board_no" value="${bdto.board_no}" />
+							<c:param name="num" value="${bdto.board_no}" />
 							</c:url> 
 					<a href="${board_content}">${bdto.board_subject}</a></td>
 					<td>${bdto.board_writer}</td>

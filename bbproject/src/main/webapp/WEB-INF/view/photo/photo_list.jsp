@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -8,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <style type="text/css">
-
 #bodywrap {
 	width: 950px;
 }
@@ -16,10 +16,6 @@
 #bodytop {
 	width: 950px;
 	height: 100px;
-}
-
-#table {
-	width: 950px;
 }
 
 .bodyname {
@@ -31,6 +27,24 @@
 	margin-left:25px;
 	float: left;
 }
+
+#photobox{
+	width: 950px;
+}
+
+.line_first{
+	padding-left: 0px;
+}
+
+li{
+	float:left;
+}
+
+.board_write {
+	padding-top:10px;
+	padding-right:10px;
+	text-align: right;
+}
 </style>
 
 <body>
@@ -39,33 +53,71 @@
 		<div id="bodytop">
 			<h3 class="bodyname">포토후기</h3>
 		</div>
-		<table id="table">
-			<tr>
-				<th width="5%">번호</th>
-				<th width="65%">제목</th>
-				<th width="10%">글쓴이</th>
-				<th width="10%">등록일</th>
-				<th width="10%">조회수</th>
-			</tr>
+		<div id=photobox>
+			<ul id="list">
+				<li class="line_first">
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				
+				<li class="line_first">
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				
+				<li class="line_first">
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				
+			</ul>
+		</div>
 
-			<c:forEach var="dto" items="${aList}">
-				<tr>
-					<td>${dto.board_no}</td>
-					<td><c:url var="content" value="board_view.do">
-							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="num" value="${dto.board_no}" />
-						</c:url> <c:if test="${dto.board_re_level!=0}">
-							<img src="images/level.gif" width="${20*dto.board_re_level}"
-								height="15" />
-							<img src="images/re.gif" />
-						</c:if><a href="${content}">${dto.board_subject}</a></td>
-					<td>${dto.board_writer}</td>
-					<td>${dto.board_reg_date}
-					<td>${dto.board_readcount}</td>
-
-				</tr>
-			</c:forEach>
-		</table>
+		<div class="board_write">
+			<a href="photo_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
+		</div>
 
 		<!-- 이전 출력 시작 -->
 		<c:if test="${pv.startPage>1}">
@@ -74,7 +126,7 @@
 
 		<!-- 페이지 출력 시작 -->
 		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-			<c:url var="currPage" value="board_list.do">
+			<c:url var="currPage" value="photo_list.do">
 				<c:param name="currentPage" value="${i}" />
 			</c:url>
 			<a href="${currPage}"><c:out value="${i}" /></a>
@@ -84,10 +136,6 @@
 		<c:if test="${pv.totalPage>pv.endPage}">
 			<a href="board_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
-
-		<form id="frm" method="get" action="board_write.do">
-			<input type="submit" id="btnWrite" value="글쓰기" />
-		</form>
 
 	</div>
 </body>

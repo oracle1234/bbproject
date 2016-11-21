@@ -33,7 +33,6 @@
 	width:950px;
 }
 
-
 th{
  	width: 140px;
 	text-align: left;
@@ -45,14 +44,6 @@ td{
 	text-align: left;
 }
 
-#btnList, #btnSave{
-	border-color: #cec6c6;
-	background-color: #ffffff;
-	width: 80px;
-	height: 25px;
-	line-height: 10px;
-}
-
 .textarea {
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -60,9 +51,10 @@ td{
 
 .textarea textarea{
 	width:948px;
-	height: 600px;
+	height: 450px;
 }
 </style>
+
 </head>
 <body>
 	<div id="board_write" >
@@ -100,8 +92,8 @@ td{
 		</c:if>
 
 		<div class="board_btn">
-			<input type="button" id="btnList" value="리스트" /> 
-			<input type="button" id="btnSave" value="저장" />
+			<img alt="확인" src="./images/btn_ok.gif" id="btnSave">
+			<img alt="취소" src="./images/btn_cancel.gif" id="btnList">
 		</div>		
 	</form>
 	</div>

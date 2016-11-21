@@ -80,7 +80,7 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 	@Override
 	public String getFile(int num) {
 
-		return sqlSession.selectOne("board.uploadFile", num);
+		return sqlSession.selectOne("board.qa_uploadFile", num);
 
 	}
 

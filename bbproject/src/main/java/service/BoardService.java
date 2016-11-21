@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import dto.BoardDTO;
 import dto.CommentDTO;
 import dto.PageDTO;
-import dto.QA_BoardDTO;
 
 public interface BoardService {
 	

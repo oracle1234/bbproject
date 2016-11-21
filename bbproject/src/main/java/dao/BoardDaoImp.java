@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.BoardDTO;
@@ -75,7 +77,6 @@ public class BoardDaoImp implements BoardDAO {
 	@Override
 	public void delete(int num) {
 		sqlSession.delete("board.delete", num);
-
 	}
 
 }

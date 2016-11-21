@@ -19,6 +19,8 @@ DROP TABLE fb_tr_complete CASCADE CONSTRAINTS;
 DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
 
+select * from fb_qa_board;
+
 /* Drop Sequences */
 
 DROP SEQUENCE SEQ_coupon_no;
