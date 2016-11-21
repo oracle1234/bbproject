@@ -24,16 +24,11 @@
 			</div>
 			<div id="coupon">
 				<p>
-					<a href="my_coupon.do?member_no=1">쿠폰</a>
+					<a href="my_coupon.do?member_no=1">쿠폰/적립금</a>
 				</p>
-				<span>고객님께 더 큰 혜택을 드리는게 반찬을 부탁해의 행복입니다. </span>
+				<span>고객님의 쿠폰과 적립금을 확인하실 수 있습니다. </span>
 			</div>
-			<div id="point">
-				<p>
-					<a href="my_point.do?member_no=1">적립금</a>
-				</p>
-				<span>고객님이 모으신 적립금 내역입니다. </span>
-			</div>
+
 			<div id="board">
 				<p>
 					<a href="my_board.do?member_no=1">내가쓴글</a>

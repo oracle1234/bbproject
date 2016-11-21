@@ -309,3 +309,5 @@ insert into fb_boardcategory values
 (3, '질문과 답변');
 
 
+ SET fb_board          fb_photo_board          fb_qa_board  
+

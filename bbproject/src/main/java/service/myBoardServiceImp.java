@@ -2,7 +2,7 @@ package service;
 
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import dao.myBoardDAO;
 import dto.BoardDTO;
@@ -25,6 +25,6 @@ public class myBoardServiceImp implements myBoardService{
 	public List<myBoardDTO> myboardlistProcess(HashMap<String, Integer> map) {
 		return dao.myBoardList(map);
 	}
-	
+
 
 }

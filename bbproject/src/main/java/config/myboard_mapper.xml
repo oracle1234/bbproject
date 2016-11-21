@@ -42,25 +42,22 @@
 		</collection>
 	</resultMap>
 
-	<select id="all" resultType="dto.myBoardDTO" parameterType="int">
+ 	<select id="all" resultMap="BoardList" parameterType="java.util.HashMap">
 		select *
-		from fb_board	
+		from fb_board
 		where member_no=#{member_no}
 	</select>
 	
 	<select id="all2" resultMap="BoardList" parameterType="java.util.HashMap">
 		select *
-		from 	
-		<if test="boardcategory_no=1">
-			fb_board
-		</if>
-		<if test="boardcategory_no=2">
-			fb_photo_board
-		</if>
-		<if test="boardcategory_no=3">
-			fb_qa_board
-		</if>
+		from fb_photo_board
 		where member_no=#{member_no}
 	</select>
+	
+	<select id="all3" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_qa_board
+		where member_no=#{member_no}
+	</select> 
 	
 </mapper>

@@ -8,10 +8,13 @@
 $(document).ready(function() {
 	$('.cart_checkbox').bind('click', function() {
 		$('.cart_cb').prop('checked', this.checked);
-		
-		
 	});
 	
+/* 	var test = $('#count_select')[0].selectedIndex;
+	$('#count_select').change(function(){
+		$(this)[0].selectedIndex = test;
+	});
+	 */
 	$(document).on('click', '.upd_amount',function(){
 		 $.ajax({
 		 type : 'GET', 
@@ -23,7 +26,9 @@ $(document).ready(function() {
 			}
 		});  
 		/*  var aa=$(this).val();
-			$("#count_select option[value="+aa+"]").attr("selected", true); */
+			$("#count_select option[value="+aa+"]").attr("
+
+					", true); */
 
 	});
 	
@@ -96,7 +101,7 @@ $(document).ready(function() {
 					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_name}</td>
 					<td>${dto.price}원</td>
 					<td>${dto.amount}
-					<select id="count_select">
+					<select id="count_select" name="count_select">
 
 							<c:forEach var="i" begin="1" end="20" step="1">
 								<option value="${i}">${i}</option>
