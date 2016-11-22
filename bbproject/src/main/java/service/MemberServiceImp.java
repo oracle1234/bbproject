@@ -1,8 +1,5 @@
 package service;
 
-
-import java.util.List;
-
 import dao.MemberDAO;
 import dto.MemberDTO;
 
@@ -24,7 +21,7 @@ public class MemberServiceImp implements MemberService{
 	}
 
 	@Override
-	public List<MemberDTO> idcheckProcess(String id) {
+	public int idcheckProcess(String id) {
 		return dao.idcheck(id);
 	}
 

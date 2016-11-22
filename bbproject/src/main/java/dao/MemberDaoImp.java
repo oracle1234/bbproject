@@ -24,7 +24,7 @@ public class MemberDaoImp implements MemberDAO {
 	}
 
 	@Override
-	public List<MemberDTO> idcheck(String id) {
+	public int idcheck(String id) {
 		return sqlSession.selectOne("member.ck", id);
 	}
 

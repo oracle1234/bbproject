@@ -9,13 +9,105 @@
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
  	       
 $(document).ready(function(){
+	
+	$("#phone2").keyup(function () {
+	    if (this.value.length == this.maxLength) {
+	        $("#tel").focus();
+	    }
+	});
+
+	var reg2 = /[^(a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣)]/gi; // 영문자,숫자만 (대소문자 구분 x)
+	var reg3 = /[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; //특수문자는 반드시 포함되어야함
+	var reg4 = /[0-9]/g; // 숫자는 반드시 포함되어야 함
+	var reg5 = /[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; // 문자는 반드시 포함되어야 함
+	
+	$('#pw').on('keyup', function(){
+		var pwreg =$('#pass').val();
+
+		if(pwreg.length == 0){
+			alert("공백은 입력할 수 없습니다.");
+		} else {
+			alert("pw true 1");
+		}
+		
+		if(reg3.test(pwreg)){
+			alert("pw true 3");
+		} else {
+			alert("특수문자는 반드시 포함되어야합니다.");
+		}
+		
+		if(reg4.test(pwreg)){
+			alert("pw true 4");
+		} else {
+			alert("숫자는 반드시 포함되어야합니다.");
+		}
+		
+		if(reg5.test(pwreg)){
+			alert("pw true 5");
+		} else {
+			alert("문자는 반드시 포함되어야합니다.");
+		}
+	});
+	
+	$('#pw').on('click', function(){
+		var pwreg =$('#pass').val();
+
+		if(pwreg.length == 0){
+			alert("공백은 입력할 수 없습니다.");
+		} else {
+			alert("pw true 1");
+		}
+		
+		if(reg3.test(pwreg)){
+			alert("pw true 3");
+		} else {
+			alert("특수문자는 반드시 포함되어야합니다.");
+		}
+		
+		if(reg4.test(pwreg)){
+			alert("pw true 4");
+		} else {
+			alert("숫자는 반드시 포함되어야합니다.");
+		}
+		
+		if(reg5.test(pwreg)){
+			alert("pw true 5");
+		} else {
+			alert("문자는 반드시 포함되어야합니다.");
+		}
+	});
+	
+	$('#ok').on('click', function(){
+		var pw1 =$('#pass').val();
+		var pw2 =$('#pw').val();
+		if(pw1=pw2){
+			alert("pw1, pw2같음")
+		}else {
+			alert("pw1, pw2다름")
+		}
+	});
+	
+	
 	$('#button_idcheck').bind('click', function() {
-		//alert($('#id').val()+" : 사용가능한 아이디 입니다.")
-		//alert(('#id').val()+" : 이미 가입된 아이디 입니다.")
+		var idreg =$('#id').val();
+		
+		if(idreg.length == 0){
+			alert("공백은 입력할 수 없습니다.");
+		} else {
+			alert("id true 1");
+		}
+		
+		if(reg2.test(idreg)){
+			alert("id true 2");
+		} else {
+			alert("문자, 숫자만 입력할 수 있습니다.");
+		}
+		
  		$.ajax({
 			type : 'POST',
 			url : 'join_idck.do',
-			data :'id='+$('#id').val(),
+			data :'id='+id,
+			 cache: false,
 			success : function(data){
 				if(data==1){
 					alert(('#id').val()+" : 이미 가입된 아이디 입니다.");
@@ -80,6 +172,8 @@ function sample4_execDaumPostcode() {
 <form action="" method="post" enctype="application/x-www-form-urlencoded">
 <fieldset>
 <legend>회원가입</legend>
+<c:out value="${i }"></c:out> 
+ 
 
 <table>
 <tr>
@@ -113,9 +207,9 @@ function sample4_execDaumPostcode() {
 	<option value="019">019</option>
 </select>
 <span>-</span>
-<input type="text" name="phone2" id="phone2">
+<input type="text" name="phone2" id="phone2" maxlength="4">
 <span>-</span>
-<input type="text" name="tel" id="tel">
+<input type="text" name="tel" id="tel" maxlength="4">
 <input type="checkbox" id="messagree">문자메세지를 수신합니다.</td>
 </tr>
 
@@ -149,7 +243,7 @@ function sample4_execDaumPostcode() {
 
 
 <p>
-<input type="submit" value="확인" />
+<input type="submit" value="확인" id="ok"/>
 <input type="reset" value="취소" />
 </p>
 </form>
