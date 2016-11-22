@@ -30,6 +30,7 @@
 				<value>classpath*:config/shop_mapper.xml</value>
 				<value>classpath*:config/board_mapper.xml</value>
 				<value>classpath*:config/myboard_mapper.xml</value>
+				<value>classpath*:config/member_mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -45,7 +46,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- 선언적 트랜색션: <tx:advice> 선언 --> 
+	<!-- 선언적 트랜색션: <tx:advice> 선언 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="*Process" rollback-for="java.lang.Exception" />
@@ -82,37 +83,37 @@
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 
-	
-	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp">
-		<property name="sqlSession" ref="sqlSession"/>
-	</bean> -->
+	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp"> <property name="sqlSession" 
+		ref="sqlSession"/> </bean> -->
 
 	<bean id="themeRecipeDao" class="dao.ThemeRecipeDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
+
+	<bean id="memberDao" class="dao.MemberDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
 	<!-- Service 빈 선언 -->
 	<bean id="boardService" class="service.BoardServiceImp">
 		<property name="dao" ref="boardDao" />
 	</bean>
-	
+
 	<bean id="qaService" class="service.QA_BoardServiceImp">
-		<property name="dao" ref="qaDao"/>
+		<property name="dao" ref="qaDao" />
 	</bean>
-	
-	<!-- <bean id="photoService" class="service.Photo_BoardServiceImp">
-		<property name="dao" ref="photoDao"/>
-	</bean> -->
-	
+
+	<!-- <bean id="photoService" class="service.Photo_BoardServiceImp"> <property 
+		name="dao" ref="photoDao"/> </bean> -->
+
 	<bean id="themeRecipeservice" class="service.ThemeRecipeServiceImp">
 		<property name="dao" ref="themeRecipeDao" />
 	</bean>
 
-	<!-- controller 등록 -->
 	<bean id="shopService" class="service.ShopSercviceImp">
 		<property name="dao" ref="shopDao" />
 	</bean>
-	
+
 	<bean id="BasketService" class="service.fb_BasketServiceImp">
 		<property name="dao" ref="BasketDao" />
 	</bean>
@@ -126,7 +127,11 @@
 		<property name="dao" ref="myBoardDao" />
 	</bean>
 	
+	<bean id="memberService" class="service.MemberServiceImp">
+		<property name="dao" ref="memberDao" />
+	</bean>
 	
+
 	<!-- controller 등록 -->
 	<bean class="controller.ImageController">
 		<property name="service" ref="themeRecipeservice"></property>
@@ -142,14 +147,16 @@
 	</bean>
 	<bean class="controller.ShopController">
 		<property name="service" ref="shopService"></property>
-		</bean>
+	</bean>
 	<bean class="controller.BoardController">
 		<property name="service" ref="boardService" />
 		<property name="qa_service" ref="qaService" />
 	</bean>
 	<bean class="controller.ThemeRecipeController">
 		<property name="service" ref="themeRecipeservice"></property>
-
+	</bean>
+	<bean class="controller.JoinController">
+	<property name="memberservice" ref="memberService"></property>
 	</bean>
 
 	<!-- 파일 업로드 시작 -->
@@ -158,7 +165,7 @@
 		<!-- <constructor-arg value="c:/temp" /> -->
 		<constructor-arg value="./src/main/webapp/files/" />
 	</bean>
-	
+
 	<!-- 저장 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

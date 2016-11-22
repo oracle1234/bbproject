@@ -1,4 +1,16 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("p").hover(function(){
+		    $(this).parent().css("background-color", "#c4c4c4");
+		    }, function(){
+		    $(this).parent().css("background-color", "white");
+		}); 
+	});
+</script>
 
 	<div class="mypage_title">
 		<div id="title">
@@ -6,9 +18,6 @@
 		</div>
 	</div>
 	<div class="mypage_body">
-		<div class="myorderinfo">
-			<p>2016년 11월 10일 백나연님의 현재 총 구매금액은 0원 이며, 회원등급은 입니다.</p>
-		</div>
 		<div class="menu">
 			<div id="order">
 				<p>
