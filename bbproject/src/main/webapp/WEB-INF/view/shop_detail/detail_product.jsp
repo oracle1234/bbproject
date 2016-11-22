@@ -196,18 +196,19 @@ body {
 						
 						$('#modifyWindow').addClass('modifyHide');
 						
-						$('.review_udt_btn').on('click', function(){
+						$(document).on("click",".review_udt_btn",function() {
+							uno = $(this).val();
 							$('#modifyWindow').addClass('modifyShow');
 							$('#modifyWindow').removeClass('modifyHide');
 						});
 						
-						$('#btnClose').on('click', function() {
+						$('.btnClose').on('click', function() {
 							$('#modifyWindow').removeClass('modifyShow');
 							$('#modifyWindow').addClass('modifyHide');
 							uno = '';
 						});
 						
-						$('#btnModify').on('click', review_update_result);
+						//$('#btnModify').on('click', review_update_result);
 						
 						
 						var price = parseInt($('#info_table tr:nth-child(3) td')
@@ -342,8 +343,28 @@ body {
 							});
 						});
 						
-						
+						//업데이트
+						$(document).on('click', ".btnModify", function(){
 							
+							if($('#updateReviewText').val()==""){
+								alert('수정할 한줄평 내용을 입력하세요.')
+								return false;
+							}
+							
+							$.ajax({
+								type : 'POST',
+								dataType : 'json',
+								url : 'reviewUpdate.do',
+								data : "review_no=" + uno
+										+ "&member_no=1"
+										+ "&review_content="+$('#updateReviewText').val()
+										+ "&foods_no=${foods_no}",
+								success : review_update_result,
+								error : function(xhr,textStatus,error) {
+								alert("update===="+ error);
+								},
+							});
+						});
 
 					});//end ready end
 
@@ -484,7 +505,10 @@ body {
 
 		$('#reviewText').val("");
 	}
-
+	
+	
+	
+	
 	//딜리트
 	function review_delete_result(res) {
 		$('.review_tr').remove();
@@ -523,36 +547,50 @@ body {
 		}
 	};
 	
-	function review_update_result(res) {
-		
-		if($('#updateReviewText').val() == ''){
-			alert('수정할 내용을 입력하세요.')
-			return false;
+	
+	function review_update_result(data) {
+		$('.review_tr').remove();
+		$('#pre_next_pagenum').empty();
+
+		$.each(data.ReviewDTO,function(index, value) {
+			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+			var template = Handlebars.compile(source);
+			$('#review_table').append(template(value));
+		});
+
+		var start = data.page.startPage;
+		var end = data.page.endPage;
+		var block = data.page.blockPage;
+		var total = data.page.totalPage;
+
+		if (start > 1) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:preFunction(${foods_no}, '
+							+ (start - block) + ')">이전</a>');
+		}
+
+		for (var i = start; i <= end; i++) {
+			var source1 = '<a href="javascript:myFunction(${foods_no}, ' + i
+					+ ')">' + i + '&nbsp;';
+			$('#pre_next_pagenum').append(source1);
+		}
+
+		if (end < total) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:nextFunction(${foods_no}, '
+							+ (start + block) + ')">다음</a>');
 		}
 		
 		
-		//시작할곳 수정할곳
-		var uno = $('#updateReviewText').val();
-		alert(uno);
 		
-		$.ajax({
-			type : 'GET',
-			dataType : 'json',
-			url : 'reviewUpdate.do?review_no='
-					+ uno
-					+ "&member_no=1"
-					+ "review_content="+$('#updateReviewText').val(),
-			seccess : review_update_result,
-			error : function(xhr,textStatus,error) {
-			alert("update===="+ error);
-			}
-		});
-		
+		$('#updateReviewText').val('');
 		$('#modifyWindow').removeClass('modifyShow');
 		$('#modifyWindow').addClass('modifyHide');
 		uno = '';
-		
+	
 	};
+	
+	
 </script>
 
 </head>
@@ -707,13 +745,13 @@ body {
 
 				<div id="modifyWindow">
 					<p>
-						<label for="updateReplyText">한줄평 수정하기</label> <input
+						<label for="updateReviewText">한줄평 수정하기</label> <input
 							class="form-control" type="text" placeholder="수정할 한줄평을 입력하세요."
 							id="updateReviewText">
 					</p>
 					<p>
-						<button id="btnModify" value = "${ReviewDTO.review_no}">수정</button>
-						<button id="btnClose">닫기</button>
+						<button class="btnModify" value = "${ReviewDTO.review_no}">수정</button>
+						<button class="btnClose">닫기</button>
 					</p>
 				</div>
 

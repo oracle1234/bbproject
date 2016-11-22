@@ -26,7 +26,6 @@ DROP TABLE fb_theme CASCADE CONSTRAINTS;
 <<<<<<< HEAD
 <<<<<<< HEAD
 
-
 =======
 >>>>>>> refs/remotes/origin/yeonsung
 =======
@@ -196,8 +195,7 @@ CREATE TABLE fb_review
 	review_content varchar2(100) NOT NULL,
 	review_date date,
 	foods_no number NOT NULL,
-	member_no number NOT NULL
-	
+	member_no number NOT NULL,
 	PRIMARY KEY (review_no)
 );
 

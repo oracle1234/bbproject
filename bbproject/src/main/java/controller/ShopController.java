@@ -108,6 +108,12 @@ public class ShopController {
 		return mav;
 	}// end kimchiPage()
 	
-	
+	@RequestMapping("/shop_buy.do")
+	public ModelAndView buyPage() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("shop_buy");
+		return mav;
+	}
 }
 

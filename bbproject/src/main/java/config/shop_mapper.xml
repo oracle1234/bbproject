@@ -65,9 +65,8 @@
 	</select>
 	
 	<insert id="reviewInsert" parameterType="hashmap" >
-		insert into fb_review values (SEQ_review_no.nextval, #{review_writer}, #{review_content}, sysdate, #{foods_no}, #{member_no})
+		insert into fb_review values (SEQ_review_no.nextval, #{review_writer,jdbcType=VARCHAR}, #{review_content}, sysdate, #{foods_no}, #{member_no})
 	</insert>
-	
 	<delete id="reviewDelete" parameterType="hashmap">
 		delete from fb_review where review_no = #{review_no} and member_no = #{member_no}
 	</delete>
@@ -75,5 +74,7 @@
 	<update id="reviewUpdate" parameterType="hashmap">
 		update fb_review set review_content = #{review_content} where review_no = #{review_no} and member_no = #{member_no}
 	</update>
+	
 </mapper>
+
 
