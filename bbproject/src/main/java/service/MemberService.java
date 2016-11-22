@@ -9,5 +9,5 @@ public interface MemberService {
 	
 	public void insertProcess(MemberDTO mdto);
 	public List<MemberDTO> idcheckProcess(String id);
-
+	public MemberDTO loginChkProcess(String id, String pw);
 }

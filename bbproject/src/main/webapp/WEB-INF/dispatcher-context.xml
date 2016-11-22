@@ -165,7 +165,9 @@
 		<property name="service" ref="themeRecipeservice"></property>
 	</bean>
 
-	<bean class="controller.LoginController"></bean>
+	<bean class="controller.LoginController">
+		<property name="memberservice" ref="memberService"></property>
+	</bean>
 
 	<!-- 파일 업로드 시작 -->
 	<!-- 첨부 파일의 임시기억장치 경로 설정 -->
