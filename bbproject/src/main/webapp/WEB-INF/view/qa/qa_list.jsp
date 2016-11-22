@@ -100,9 +100,9 @@ td{
 			<c:forEach var="qdto" items="${aList}">
 				<tr>
 					<td>${qdto.qa_no}</td>
-					<td><c:url var="content" value="qa_view.do">
+					<td><c:url var="qa_content" value="qa_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="num" value="${qdto.qa_no}" />
+							<c:param name="qa_no" value="${qdto.qa_no}" />
 						</c:url> 
 						<a href="${qa_content}">${qdto.qa_subject}</a></td>
 					<td>${qdto.qa_writer}</td>
@@ -141,15 +141,10 @@ td{
 		<div class="board_search">
 			<form id="search_frm" method="get">
 				<span class="chk"> 
-				<label> 
-					<input type="radio" name="search" checked value="board_writer"> 이름
-				</label> 
-				<label> 
-					<input type="radio" name="search" value="board_subject"> 제목
-				</label> 
-				<label> 
-					<input type="radio" name="search" value="board_content"> 내용
-				</label>
+				<select name="search_select">
+					<option value="board_subject">제목</option>
+					<option value="board_writer">작성자</option>
+				</select>
 				</span> 
 					<input type="text" name="search_str" value class="board_search_str" />
 					<input type="button" id="btnSearch" value="검색" />				

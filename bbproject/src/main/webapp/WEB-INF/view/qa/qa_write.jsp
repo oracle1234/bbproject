@@ -7,14 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+</head>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 
 		$('#btnList').bind('click', function() {
-			$('#frm').attr('action', 'qa_list.do');
-			$('#frm').submit();
+			$('#frm').attr('action', 'qa_list.do').submit();
 		});
 
 		$('#btnSave').bind('click', function() {
@@ -65,9 +64,8 @@ td{
 	height: 600px;
 }
 </style>
-</head>
 <body>
-	<div id="board_write">
+<div id="board_write">
 	<form name="frm" id="frm" method="post" enctype="multipart/form-data"
 		onsubmit="return process()">
 
@@ -80,7 +78,7 @@ td{
 
 			<tr>
 				<th scope="row">제목</th>
-				<td><c:if test="${dto!=null}">답변</c:if> <input type="text"
+				<td><c:if test="${qdto!=null}">답변</c:if> <input type="text"
 					name="qa_subject" size="40" /></td>
 			</tr>
 			
@@ -96,22 +94,21 @@ td{
 		</div>
 		
 		<!-- 답변글일때.... -->
-
-		<c:if test="${dto!=null}">
-			<input type="hidden" name="num" id="num" value="${dto.board_no}" />
-			<input type="hidden" name="currentPage" id="currentPage"
-				value="${currentPage}" />
-			<%-- <input type="hidden" name="ref" value="${dto.comment_ref}" />
+		<c:if test="${qdto!=null}">
+			<input type="hidden" name="qa_no" id="qa_no" value="${qdto.qa_no}" />
+			<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" />
+			<%-- 
+			<input type="hidden" name="ref" value="${dto.comment_ref}" />
 			<input type="hidden" name="re_step" value="${dto.comment_re_step}" />
-			<input type="hidden" name="re_level" value="${dto.comment_re_level}" /> --%>
+			<input type="hidden" name="re_level" value="${dto.comment_re_level}" />
+			 --%>
 		</c:if>
-
 		<div class="board_btn">
-			<img alt="확인" src="./images/btn_ok.gif" id="btnSave">
-			<img alt="취소" src="./images/btn_cancel.gif" id="btnList">
+			<a href="#"><img alt="확인" src="./images/btn_ok.gif" id="btnSave"></a>
+			<a href="#"><img alt="취소" src="./images/btn_cancel.gif" id="btnList"></a>
 		</div>
 	</form>
-	</div>
+</div>
 </body>
 </html>
 

@@ -102,7 +102,7 @@ td{
 					<td>${bdto.board_no}</td>
 					<td><c:url var="board_content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="num" value="${bdto.board_no}" />
+							<c:param name="board_no" value="${bdto.board_no}" />
 							</c:url> 
 					<a href="${board_content}">${bdto.board_subject}</a></td>
 					<td>${bdto.board_writer}</td>
@@ -142,15 +142,10 @@ td{
 		<div class="board_search">
 			<form id="search_frm" method="get">
 				<span class="chk"> 
-				<label> 
-					<input type="radio" name="search" checked value="board_writer"> 이름
-				</label> 
-				<label> 
-					<input type="radio" name="search" value="board_subject"> 제목
-				</label> 
-				<label> 
-					<input type="radio" name="search" value="board_content"> 내용
-				</label>
+				<select name="search_select">
+					<option value="board_subject">제목</option>
+					<option value="board_writer">작성자</option>
+				</select> 
 				</span> 
 					<input type="text" name="search_str" value class="board_search_str" />
 					<input type="submit" id="btnSearch" value="검색" />				

@@ -14,21 +14,21 @@
 		$('#update').bind('click', updateRun);
 		$('#cancel').bind('click', cancelRun);
 		$('#back').bind('click', backRun);
-		$('[name=content]').val($('[name=content]').val().trim());
-		$('[name=content]').val($('[name=content]').val().replace(/<br\s?\/?>/g,"\n"));
+		$('[name=board_content]').val($('[name=board_content]').val().trim());
+		$('[name=board_content]').val($('[name=board_content]').val().replace(/<br\s?\/?>/g,"\n"));
 	});
 
 	function updateRun() {
-		$('[name=content]').val(
-				$('[name=content]').val().replace(/\n/gi, '<br/>'));
-		$('#frm').attr('action', 'update.do').submit();
+		$('[name=board_content]').val(
+				$('[name=board_content]').val().replace(/\n/gi, '<br/>'));
+		$('#frm').attr('action', 'board_update.do').submit();
 	}
 
 	function cancelRun() {
-		$('#subject').val('${dto.subject}');
-		$('#content').val('${dto.content}');
-		$('[name=content]').val($('[name=content]').val().trim());
-		$('[name=content]').val($('[name=content]').val().replace(/<br\s?\/?>/g,"\n"));
+		$('#board_subject').val('${dto.board_subject}');
+		$('#board_content').val('${dto.board_content}');
+		$('[name=board_content]').val($('[name=board_content]').val().trim());
+		$('[name=board_content]').val($('[name=board_content]').val().replace(/<br\s?\/?>/g,"\n"));
 		//window.history.back();
 	}
 	
@@ -38,57 +38,66 @@
 	}
 </script>
 <style type="text/css">
-* {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: menu;
-	text-decoration: none;
-	letter-spacing: 0px;
+.board_row tr{
+	width:950px;
 }
 
-/* table {
-	width: 80%;
-} */
+th{
+ 	width: 140px;
+	text-align: left;
+	padding: 10px;
+}
+
+td{
+	width: 790px;
+	text-align: left;
+}
+
+.textarea {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.textarea textarea{
+	width:948px;
+	height: 450px;
+}
 </style>
 </head>
 <body>
-	<!-- 치환 변수 선언 -->
-	<c:set var="cr" value="\r" scope="page" />
-	<c:set var="cn" value="\n" scope="page" />
-	<c:set var="crcn" value="\r\n" scope="page" />
-	<c:set var="br" value="<br/>" scope="page" />
-
-	<form name="frm" id="frm" method="post" enctype="multipart/form-data">
-		<table border="1">
+	<div id="board_update" >
+	<form name="frm" id="frm" method="post" >
+		<table class="board_row">
 			<tr>
-				<th width="20%">글쓴이</th>
+				<th scope="row">글쓴이</th>
 				<td>${dto.board_writer}</td>
-				<th width="20%">등록일</th>
+				<th scope="row">등록일</th>
 				<td>${dto.board_reg_date}</td>
 			</tr>
 
 			<tr>
-				<th>제목</th>
-				<td colspan="3"><input type="text" name="subject" id="subject"
+				<th scope="row">제목</th>
+				<td><input type="text" name="board_subject" id="board_subject"
 					value="${dto.board_subject}" /></td>
 			</tr>
 
 			<tr>
-				<th>내용</th>
-				<td colspan="3"><textarea name="content" id="content" rows="13"
-						cols="40">
-				${dto.board_content}
-				</textarea></td>
-			</tr>
-
 		</table>
-		<input type="hidden" name="num" value="${dto.board_no}" />
-		<input type="hidden" name="currentPage" value="${currentPage}" /> 
-		<input type="button" id="update" value="수정" /> 
-		<input type="button" id="cancel" value="취소" /> 
-		<input type="button" id="back" value="뒤로" />
+		
+		<div class="textarea">
+			<textarea name="board_content" id="board_content" rows="100" cols="100">${dto.board_content}</textarea>
+		</div>		
+			
+		<input type="hidden" name="board_no" id="board_no" value="${dto.board_no}" />
+		<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" /> 			
+		 			
+		<div class="board_btn">
+			<img alt="수정" src="./images/btn_ok.gif" id="update" />
+			<img alt="취소" src="./images/btn_cancel.gif" id="cancel" />
+			<img alt="뒤로" src="./images/btn_back.gif" id="back" />
+		</div>
 	</form>
+	</div>
 </body>
 </html>
 

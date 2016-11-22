@@ -144,3 +144,6 @@ references fb_member (member_no);
 COMMENT ON COLUMN fb_tr_order.order_text IS '설명';
 
 
+select * from fb_board;
+select * from fb_qa_board;
+

@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
- <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+</head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#list').bind('click', listRun);
@@ -60,14 +60,7 @@ td{
 }
 </style>	
 	
-</head>
 <body>
-<!-- 치환 변수 선언 -->
-<c:set var="cr" value="\r" scope="page"/>
-<c:set var="cn" value="\n" scope="page"/>
-<c:set var="crcn" value="\r\n" scope="page"/>
-<c:set var="br" value="<br/>" scope="page"/>
-
 <table class="board_row">
 		<tr>
 			<th>글쓴이</th>
@@ -89,7 +82,7 @@ td{
 		</div>
 
 	<form name="frm" id="frm" method="get" >	 
-	    <input type="hidden" name="num" value="${dto.board_no}" />	
+	    <input type="hidden" name="board_no" id="board_no" value="${dto.board_no}" />	
 		<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" /> 
 		<%-- <input type="hidden" name="ref" value="${dto.comment_ref}" /> 
 		<input type="hidden" name="re_step" value="${dto.comment_re_step}" /> 

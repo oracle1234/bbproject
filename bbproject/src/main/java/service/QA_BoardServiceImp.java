@@ -85,8 +85,7 @@ public class QA_BoardServiceImp implements QA_BoardService {
 			}
 
 			String fileName = file.getOriginalFilename();
-			dto.setUpload(random + "_" + fileName);
-
+			dto.setQa_upload(random + "_" + fileName);
 			File ff = new File(saveDirectory, random + "_" + fileName);
 
 			try {

@@ -11,7 +11,7 @@ public class QA_BoardDTO {
 	private Date qa_reg_date;
 
 	// board테이블의 파일첨부를 처리해주는 멤버변수
-	private String upload;
+	private String qa_upload;
 
 	// form 페이지에서 파일첨부를 받아 처리해주는 멤버변수
 	private MultipartFile filename;
@@ -64,12 +64,12 @@ public class QA_BoardDTO {
 		this.qa_reg_date = qa_reg_date;
 	}
 
-	public String getUpload() {
-		return upload;
+	public String getQa_upload() {
+		return qa_upload;
 	}
 
-	public void setUpload(String upload) {
-		this.upload = upload;
+	public void setQa_upload(String qa_upload) {
+		this.qa_upload = qa_upload;
 	}
 
 	public MultipartFile getFilename() {
