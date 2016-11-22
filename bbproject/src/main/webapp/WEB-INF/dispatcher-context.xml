@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
@@ -77,28 +79,26 @@
 	<bean id="qaDao" class="dao.QA_BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
-	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp">
-		<property name="sqlSession" ref="sqlSession"/>
-	</bean> -->
+
+	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp"> <property name="sqlSession" 
+		ref="sqlSession"/> </bean> -->
 
 	<bean id="themeRecipeDao" class="dao.ThemeRecipeDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
+
 	<!-- Service 빈 선언 -->
 	<bean id="boardService" class="service.BoardServiceImp">
 		<property name="dao" ref="boardDao" />
 	</bean>
-	
+
 	<bean id="qaService" class="service.QA_BoardServiceImp">
-		<property name="dao" ref="qaDao"/>
+		<property name="dao" ref="qaDao" />
 	</bean>
-	
-	<!-- <bean id="photoService" class="service.Photo_BoardServiceImp">
-		<property name="dao" ref="photoDao"/>
-	</bean> -->
-	
+
+	<!-- <bean id="photoService" class="service.Photo_BoardServiceImp"> <property 
+		name="dao" ref="photoDao"/> </bean> -->
+
 	<bean id="themeRecipeservice" class="service.ThemeRecipeServiceImp">
 		<property name="dao" ref="themeRecipeDao" />
 	</bean>
@@ -106,7 +106,7 @@
 	<bean id="shopService" class="service.ShopSercviceImp">
 		<property name="dao" ref="shopDao" />
 	</bean>
-	
+
 	<bean id="BasketService" class="service.fb_BasketServiceImp">
 		<property name="dao" ref="BasketDao" />
 	</bean>
@@ -116,12 +116,10 @@
 	<bean id="CouponService" class="service.fb_CouponServiceImp">
 		<property name="dao" ref="CouponDao" />
 	</bean>
-	
-	
+
+
 	<!-- controller 등록 -->
-	<bean class="controller.ImageController">
-		<property name="service" ref="themeRecipeservice"></property>
-	</bean>
+	<bean class="controller.ImageController"></bean>
 	<bean class="controller.MypageController">
 		<property name="service" ref="BasketService" />
 		<property name="orderservice" ref="OrderService" />
@@ -132,7 +130,7 @@
 	</bean>
 	<bean class="controller.ShopController">
 		<property name="service" ref="shopService"></property>
-		</bean>
+	</bean>
 	<bean class="controller.BoardController">
 		<property name="service" ref="boardService" />
 		<property name="qa_service" ref="qaService" />
@@ -140,10 +138,12 @@
 	<bean class="controller.ThemeRecipeController">
 		<property name="service" ref="themeRecipeservice"></property>
 	</bean>
-	
+
 	<bean class="controller.adminController">
 		<property name="service" ref="themeRecipeservice"></property>
 	</bean>
+	
+	<bean class="controller.LoginController"></bean>
 
 	<!-- 파일 업로드 시작 -->
 	<!-- 첨부 파일의 임시기억장치 경로 설정 -->
@@ -151,7 +151,7 @@
 		<!-- <constructor-arg value="c:/temp" /> -->
 		<constructor-arg value="./src/main/webapp/files/" />
 	</bean>
-	
+
 	<!-- 저장 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -163,6 +163,22 @@
 		<!-- <property name="dao" ref="bdao" /> -->
 	</bean>
 
+	<!-- spring Framework. 3.1과 3.2의 버전마다 차이가 있는데. Spring 3.2의 경우는 servlet-context.xml 
+		파일에 다음과 같이 설정해주면 끝. 하지만 3.1의 경우는 exclude-mapping을 지원해주지 않으므로, Interceptor 
+		클래스에서 별도의 처리를 거쳐주어야 한다. -->
+
+	<!-- interceptor -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin.do" />
+			<!-- 제외 시킬거 -->
+			<!-- spring 3.2 버전 -->
+<!-- 			<mvc:exclude-mapping path="/image.do" /> -->
+<!-- 			<mvc:exclude-mapping path="/recipe*.*" /> -->
+			<bean class="interceptor.Interceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- tiles -->
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
