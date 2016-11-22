@@ -22,6 +22,8 @@
 <link rel="stylesheet" type="text/css" href="css/my_cart.css" />
 <link rel="stylesheet" type="text/css" href="css/my_coupon.css" />
 <link rel="stylesheet" type="text/css" href="css/my_board.css" />
+<link rel="stylesheet" type="text/css" href="css/agree.css" />
+<link rel="stylesheet" type="text/css" href="css/join.css" />
 
 <link rel="stylesheet" type="text/css" href="css/recipe.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css"

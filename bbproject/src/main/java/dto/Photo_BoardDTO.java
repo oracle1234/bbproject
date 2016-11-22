@@ -4,10 +4,26 @@ import java.util.Date;
 
 public class Photo_BoardDTO {
 
-	private int photo_no, photo_readcount;
+	private int photo_no, photo_readcount, member_no, boardcategory_no;
 	private String photo_writer, photo_content, photo_upload, photo_subject;
 	private Date photo_reg_date;
 
+	public int getBoardcategory_no() {
+		return boardcategory_no;
+	}
+	
+	public void setBoardcategory_no(int boardcategory_no) {
+		this.boardcategory_no = boardcategory_no;
+	}
+	
+	public int getMember_no() {
+		return member_no;
+	}
+	
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
+	}
+	
 	public int getPhoto_no() {
 		return photo_no;
 	}

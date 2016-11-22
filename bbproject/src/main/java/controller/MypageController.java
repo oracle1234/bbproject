@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -8,9 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.fb_BasketDTO;
+import dto.myBoardDTO;
 import service.fb_BasketService;
 import service.fb_CouponService;
 import service.fb_OrderService;
+import service.myBoardService;
 
 @Controller
 public class MypageController {
@@ -18,6 +21,7 @@ public class MypageController {
 	private fb_BasketService service;
 	private fb_OrderService orderservice;
 	private fb_CouponService couponservice;
+	private myBoardService boardservice;
 
 	public MypageController() {
 
@@ -33,6 +37,10 @@ public class MypageController {
 
 	public void setCouponservice(fb_CouponService couponservice) {
 		this.couponservice = couponservice;
+	}
+	
+	public void setBoardservice(myBoardService boardservice) {
+		this.boardservice = boardservice;
 	}
 	
 	@RequestMapping("/mypage.do")
@@ -76,8 +84,39 @@ public class MypageController {
 	}
 
 	@RequestMapping("/my_board.do")
-	public String myboard() {
-		return "my_board";
+	public ModelAndView BoardList(int member_no, int boardcategory_no){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("member_no", member_no);
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("member_no", member_no);
+		map.put("boardcategory_no", boardcategory_no);
+		mav.addObject("aList", boardservice.myboardlistProcess(map));
+		mav.setViewName("my_board");
+		return mav;
+	}
+	
+	@RequestMapping("/my_board_free.do")
+	public @ResponseBody List<myBoardDTO> boardfreelist(int member_no, int boardcategory_no){
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("member_no", member_no);
+		map.put("boardcategory_no", boardcategory_no);
+		return boardservice.myboardlistProcess(map);
 	}
 
+	@RequestMapping("/my_board_photo.do")
+	public @ResponseBody List<myBoardDTO> boardphotolist(int member_no, int boardcategory_no){
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("member_no", member_no);
+		map.put("boardcategory_no", boardcategory_no);
+		return boardservice.myboardlistProcess(map);
+	}
+	
+
+	@RequestMapping("/my_board_qa.do")
+	public @ResponseBody List<myBoardDTO> boardqalist(int member_no, int boardcategory_no){
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("member_no", member_no);
+		map.put("boardcategory_no", boardcategory_no);
+		return boardservice.myboardlistProcess(map);
+	}
 }

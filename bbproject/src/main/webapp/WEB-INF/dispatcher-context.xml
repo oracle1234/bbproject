@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
@@ -31,6 +29,8 @@
 				<value>classpath*:config/recipe_mapper.xml</value>
 				<value>classpath*:config/shop_mapper.xml</value>
 				<value>classpath*:config/board_mapper.xml</value>
+				<value>classpath*:config/myboard_mapper.xml</value>
+				<value>classpath*:config/member_mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -80,10 +80,21 @@
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 
+	<bean id="myBoardDao" class="dao.myBoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
+	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp"> <property name="sqlSession" 
+		ref="sqlSession"/> </bean> -->
+
 	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp"> <property name="sqlSession" 
 		ref="sqlSession"/> </bean> -->
 
 	<bean id="themeRecipeDao" class="dao.ThemeRecipeDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
+	<bean id="memberDao" class="dao.MemberDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 
@@ -117,6 +128,13 @@
 		<property name="dao" ref="CouponDao" />
 	</bean>
 
+	<bean id="myBoardService" class="service.myBoardServiceImp">
+		<property name="dao" ref="myBoardDao" />
+	</bean>
+
+	<bean id="memberService" class="service.MemberServiceImp">
+		<property name="dao" ref="memberDao" />
+	</bean>
 
 	<!-- controller 등록 -->
 	<bean class="controller.ImageController"></bean>
@@ -124,6 +142,7 @@
 		<property name="service" ref="BasketService" />
 		<property name="orderservice" ref="OrderService" />
 		<property name="couponservice" ref="CouponService" />
+		<property name="boardservice" ref="myBoardService"></property>
 	</bean>
 	<bean class="controller.ProductController">
 		<property name="service" ref="shopService"></property>
@@ -138,11 +157,14 @@
 	<bean class="controller.ThemeRecipeController">
 		<property name="service" ref="themeRecipeservice"></property>
 	</bean>
+	<bean class="controller.JoinController">
+		<property name="memberservice" ref="memberService"></property>
+	</bean>
 
 	<bean class="controller.adminController">
 		<property name="service" ref="themeRecipeservice"></property>
 	</bean>
-	
+
 	<bean class="controller.LoginController"></bean>
 
 	<!-- 파일 업로드 시작 -->
@@ -173,12 +195,12 @@
 			<mvc:mapping path="/admin.do" />
 			<!-- 제외 시킬거 -->
 			<!-- spring 3.2 버전 -->
-<!-- 			<mvc:exclude-mapping path="/image.do" /> -->
-<!-- 			<mvc:exclude-mapping path="/recipe*.*" /> -->
+			<!-- <mvc:exclude-mapping path="/image.do" /> -->
+			<!-- <mvc:exclude-mapping path="/recipe*.*" /> -->
 			<bean class="interceptor.Interceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
+
 	<!-- tiles -->
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
