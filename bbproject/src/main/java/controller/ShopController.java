@@ -18,13 +18,12 @@ public class ShopController {
 	private shop_PageDTO pdto;
 
 	public ShopController() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubdd
 	}
 
 	public void setService(ShopService service) {
 		this.service = service;
 	}
-	//sdfas
 	@RequestMapping("/shopSoup.do")
 	public ModelAndView soupPage(FoodsDTO fdto, shop_PageDTO spdto) {
 
@@ -109,6 +108,12 @@ public class ShopController {
 		return mav;
 	}// end kimchiPage()
 	
-	
+	@RequestMapping("/shop_buy.do")
+	public ModelAndView buyPage() {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("shop_buy");
+		return mav;
+	}
 }
 

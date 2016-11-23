@@ -116,13 +116,17 @@ insert into fb_foods values (SEQ_foods_no.nextval, '반찬30', 3500, '300g', '�
 insert into fb_foods values (SEQ_foods_no.nextval, '국1', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 1, 1);
 
 select * from fb_review
-insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 2);
-insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
-insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
-insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
-insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
-insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
-insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1, 1);
+insert into FB_REVIEW values (SEQ_review_no.nextval, 'ㅎㅎ', 'ㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁ', sysdate, 1, 1);
+
+select * from fb_member
+insert into fb_member values (SEQ_member_no.nextval, '이주훈', 'pwljh', '1234', '개봉동', '010-3892-6638', 'pwljh@naver.com', 1, 1000);
+insert into fb_member values (SEQ_member_no.nextval, '유재민', 'asdf', '1234', '역곡', '010-4355-2343', 'pwljh@naver.com', 1, 1000);
+
 
 delete from fb_review where review_writer = 'ㅎㅎ';
 
@@ -293,6 +297,7 @@ and p.member_no=b.member_no and p.member_no=q.member_no;
 
 select *
 from fb_photo_board
+<<<<<<< HEAD
 where member_no=1
 
 create table fb_boardcategory
@@ -311,3 +316,8 @@ insert into fb_boardcategory values
 
  SET fb_board          fb_photo_board          fb_qa_board  
 
+=======
+where member_no=1
+
+
+>>>>>>> refs/remotes/origin/joohoon2
