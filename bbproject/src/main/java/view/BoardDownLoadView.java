@@ -32,7 +32,7 @@ public class BoardDownLoadView extends AbstractView {
 			HttpServletResponse response) throws Exception {
  
 		int num = Integer.parseInt(request.getParameter("qa_no"));
-		//System.out.println(num);
+		System.out.println(num);
 		// System.out.println(model.get("num"));
 
 		String root = request.getSession().getServletContext().getRealPath("/");
