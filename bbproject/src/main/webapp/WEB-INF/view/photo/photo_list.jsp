@@ -11,6 +11,7 @@
 <style type="text/css">
 #bodywrap {
 	width: 950px;
+	height: 750px;
 }
 
 #bodytop {
@@ -28,16 +29,32 @@
 	float: left;
 }
 
-#photobox{
+.board_page {
+	padding: 20px 50px;
+	text-align: center;
+}
+
+#photobox, #list{
 	width: 950px;
+	height:560px;
 }
 
-.line_first{
-	padding-left: 0px;
-}
-
-li{
+#list li{
+	padding-left:15px;
+	padding-bottom:15px;
 	float:left;
+	width: 105px;
+	height:95px;
+}
+
+#list .line_first{
+	padding-left: 0px;
+	padding-bottom: 15px;
+}
+
+#list a{
+	width: 80px;
+	height:70px;
 }
 
 .board_write {
@@ -48,7 +65,6 @@ li{
 </style>
 
 <body>
-
 	<div id="bodywrap">
 		<div id="bodytop">
 			<h3 class="bodyname">포토후기</h3>
@@ -73,6 +89,37 @@ li{
 				<li>
 					<a href="#"><img src=""></a>
 				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				
+				<li class="line_first">
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
 				
 				<li class="line_first">
 					<a href="#"><img src=""></a>
@@ -92,8 +139,45 @@ li{
 				<li>
 					<a href="#"><img src=""></a>
 				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
 				
 				<li class="line_first">
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				
+				<li class="line_first">
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
+					<a href="#"><img src=""></a>
+				</li>
+				<li>
 					<a href="#"><img src=""></a>
 				</li>
 				<li>
@@ -119,6 +203,7 @@ li{
 			<a href="photo_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
 		</div>
 
+		<div class="board_page">
 		<!-- 이전 출력 시작 -->
 		<c:if test="${pv.startPage>1}">
 			<a href="board_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
@@ -136,6 +221,7 @@ li{
 		<c:if test="${pv.totalPage>pv.endPage}">
 			<a href="board_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
+		</div>
 
 	</div>
 </body>
