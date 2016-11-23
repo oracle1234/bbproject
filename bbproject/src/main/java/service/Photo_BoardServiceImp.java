@@ -85,7 +85,7 @@ public class Photo_BoardServiceImp implements Photo_BoardService {
 			}
 
 			String fileName = file.getOriginalFilename();
-			pdto.setUpload(random + "_" + fileName);
+			pdto.setPhoto_upload(random + "_" + fileName);
 
 			File ff = new File(saveDirectory, random + "_" + fileName);
 

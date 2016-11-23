@@ -129,3 +129,9 @@ select *
 		b.recipe_no and a.recipe_no = c.recipe_no
 			and a.theme_no = 3
 		order by a.recipe_no desc
+		
+
+		
+select *
+		from fb_member
+		where id = 'ss' and pw = 'sdf'		

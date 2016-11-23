@@ -136,10 +136,11 @@ public class BoardController {
 		service.deleteProcess(bdto.getBoard_no());
 
 		PageDTO pv = new PageDTO(service.countProcess());
-		if (pv.getTotalPage() < currentPage)
+		if (pv.getTotalPage() < currentPage) {
 			mav.addObject("currentPage", pv.getTotalPage());
-		else
+		} else {
 			mav.addObject("currentPage", currentPage);
+		}
 		mav.addObject("pv", pdto);
 		mav.addObject("aList", service.listProcess(pdto));
 		mav.setViewName("board_list");
@@ -242,7 +243,7 @@ public class BoardController {
 	@RequestMapping(value = "/qa_update.do", method = RequestMethod.GET)
 	public ModelAndView qa_updateMethod(QA_BoardDTO qdto, int currentPage) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("dto", service.updateSelectProcess(qdto.getQa_no()));
+		mav.addObject("dto", qa_service.updateSelectProcess(qdto.getQa_no()));
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("qa_update");
 		return mav;
@@ -253,6 +254,8 @@ public class BoardController {
 	public ModelAndView qa_updateProMethod(QA_BoardDTO dto, int currentPage, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		qa_service.updateProcess(dto, request);
+		mav.addObject("pv", pdto);
+		mav.addObject("aList", qa_service.listProcess(pdto));
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("qa_list");
 		return mav;
@@ -266,10 +269,13 @@ public class BoardController {
 		PageDTO pv = new PageDTO(qa_service.countProcess());
 		if (pv.getTotalPage() < currentPage) {
 			mav.addObject("currentPage", pv.getTotalPage());
+		} else {
+			mav.addObject("currentPage", currentPage);
 		}
+		mav.addObject("pv", pdto);
+		mav.addObject("aList", qa_service.listProcess(pdto));
 		mav.setViewName("qa_list");
 		return mav;
-
 	}// end qa_deleteMethod()
 
 	// [Photo게시판]

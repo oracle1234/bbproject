@@ -1,4 +1,16 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("p").hover(function(){
+		    $(this).parent().css("background-color", "#c4c4c4");
+		    }, function(){
+		    $(this).parent().css("background-color", "white");
+		}); 
+	});
+</script>
 
 	<div class="mypage_title">
 		<div id="title">
@@ -6,9 +18,6 @@
 		</div>
 	</div>
 	<div class="mypage_body">
-		<div class="myorderinfo">
-			<p>2016년 11월 10일 백나연님의 현재 총 구매금액은 0원 이며, 회원등급은 입니다.</p>
-		</div>
 		<div class="menu">
 			<div id="order">
 				<p>
@@ -24,19 +33,14 @@
 			</div>
 			<div id="coupon">
 				<p>
-					<a href="my_coupon.do?member_no=1">쿠폰</a>
+					<a href="my_coupon.do?member_no=1">쿠폰/적립금</a>
 				</p>
-				<span>고객님께 더 큰 혜택을 드리는게 반찬을 부탁해의 행복입니다. </span>
+				<span>고객님의 쿠폰과 적립금을 확인하실 수 있습니다. </span>
 			</div>
-			<div id="point">
-				<p>
-					<a href="my_point.do?member_no=1">적립금</a>
-				</p>
-				<span>고객님이 모으신 적립금 내역입니다. </span>
-			</div>
+
 			<div id="board">
 				<p>
-					<a href="my_board.do">내가쓴글</a>
+					<a href="my_board.do?member_no=1">내가쓴글</a>
 				</p>
 				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
 			</div>

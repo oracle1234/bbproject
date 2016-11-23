@@ -19,7 +19,22 @@ DROP TABLE fb_tr_complete CASCADE CONSTRAINTS;
 DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
 
+<<<<<<< HEAD
 
+=======
+DROP TABLE fb_boardcategory CASCADE CONSTRAINTS;
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> refs/remotes/origin/yeonsung
+=======
+select * from fb_board;
+delete from fb_board;
+>>>>>>> refs/remotes/origin/yeonsung
+>>>>>>> refs/remotes/origin/min
 /* Drop Sequences */
 DROP SEQUENCE SEQ_coupon_no;
 DROP SEQUENCE SEQ_couponbook_no;
@@ -56,7 +71,15 @@ CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+<<<<<<< HEAD
 
+=======
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/yeonsung
+>>>>>>> refs/remotes/origin/min
 
 
 /* Create Tables */
@@ -187,8 +210,23 @@ CREATE TABLE fb_comment
 );
 
 ------------------------------------------------나연 추가
+
+create table fb_boardcategory
+(
+boardcategory_no number not null,
+boardcategory_name varchar2(20) not null,
+primary key (boardcategory_no)
+);
+insert into fb_boardcategory values
+(1, '자유게시판');
+insert into fb_boardcategory values
+(2, '포토후기');
+insert into fb_boardcategory values
+(3, '질문과 답변');
+
 CREATE TABLE fb_qa_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	qa_no number NOT NULL,
 	qa_readcount number NOT NULL,
@@ -202,6 +240,7 @@ CREATE TABLE fb_qa_board
 
 CREATE TABLE fb_photo_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	photo_no number NOT NULL,
 	photo_readcount number NOT NULL,
@@ -216,6 +255,7 @@ CREATE TABLE fb_photo_board
 ----- 나연 수정--
 CREATE TABLE fb_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	board_no number NOT NULL,
 	board_readcount number NOT NULL,
@@ -226,7 +266,99 @@ CREATE TABLE fb_board
 	PRIMARY KEY (board_no)
 );
 
+<<<<<<< HEAD
 	
+=======
+
+CREATE TABLE fb_theme_recipe
+(
+	recipe_no number NOT NULL,
+	theme_no number NOT NULL,
+	recipe_name varchar2(500) NOT NULL,
+	recipe_material varchar2(500) NOT NULL,
+	recipe_explaination varchar2(500) NOT NULL,
+	picture varchar2(500) NOT NULL,
+	portion varchar2(50) NOT NULL,
+	time varchar2(50) NOT NULL,
+	difficulty varchar2(10) NOT NULL,
+	PRIMARY KEY (recipe_no)
+);
+
+
+CREATE TABLE fb_theme
+(
+	theme_no number NOT NULL,
+	theme_name varchar2(500) NOT NULL,
+	PRIMARY KEY (theme_no)
+);
+
+
+CREATE TABLE fb_tr_order
+(
+	order_no number NOT NULL,
+	recipe_no number NOT NULL,
+	order_pic varchar2(50),
+	-- 설명
+	order_text varchar2(100),
+	PRIMARY KEY (order_no)
+);
+
+
+CREATE TABLE fb_tr_complete
+(
+	complete_no number NOT NULL,
+	recipe_no number NOT NULL,
+	complete_pic varchar2(50),
+=======
+
+CREATE TABLE fb_board
+(
+	member_no number NOT NULL,
+	board_no number NOT NULL,
+	board_readcount number NOT NULL,
+	board_writer varchar2(100),
+	board_content varchar2(2000) NOT NULL,
+	board_reg_date date NOT NULL,
+	board_subject varchar2(200) NOT NULL,
+	PRIMARY KEY (board_no)
+);
+
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
+
+>>>>>>> refs/remotes/origin/min
 
 CREATE TABLE fb_theme_recipe
 (

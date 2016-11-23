@@ -19,7 +19,7 @@
 		<result column="category_no" property="category_no" />
 		<result column="fb_delivery_no" property="fb_delivery_no" />
 		<collection property="rdto" javaType="java.util.List"
-			ofType="dto.ReviewDTO">
+ofType="dto.ReviewDTO">
 			<result column="review_no" property="review_no" />
 			<result column="review_writer" property="review_writer" />
 			<result column="review_content" property="review_content" />

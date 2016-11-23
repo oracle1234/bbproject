@@ -82,7 +82,7 @@ td{
 			<th>파일</th>
 			<td>
 			<c:if test="${!empty dto.qa_upload}">
-					<a href="contentdownload.do?no=${dto.qa_no}">
+					<a href="contentdownload.do?qa_no=${dto.qa_no}">
 					 ${fn:substringAfter(dto.qa_upload,"_")}
 					 </a>
 			</c:if> 

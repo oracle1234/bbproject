@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<insert id="ins" parameterType="dto.MemberDTO">
+		insert into fb_member values
+		(member_no_seq.nextval, #{member_name}, #{id}, #{pw},
+		#{address}, #{tel}, #{mail})
+	</insert>
+
+	<select id="ck" resultType="Int" parameterType="String">
+		select count(*)
+		from fb_member
+		where id=#{id}
+	</select>
+	
+	<select id="loginchk" parameterType="hashmap" resultType="dto.MemberDTO">
+		select *
+		from fb_member
+		where id = #{id} and pw = #{pw}
+	</select>
+
+</mapper>

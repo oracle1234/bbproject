@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -72,7 +73,9 @@ td{
 				<th scope="row">글쓴이</th>
 				<td>${dto.board_writer}</td>
 				<th scope="row">등록일</th>
-				<td>${dto.board_reg_date}</td>
+				<td>
+					<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${dto.board_reg_date}"/>
+				</td>
 			</tr>
 
 			<tr>
@@ -81,7 +84,6 @@ td{
 					value="${dto.board_subject}" /></td>
 			</tr>
 
-			<tr>
 		</table>
 		
 		<div class="textarea">

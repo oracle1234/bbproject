@@ -12,7 +12,6 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
 import dao.QA_BoardDAO;
-import dto.QA_BoardDTO;
 
 // 다운로드 창을 띄우기 위한 뷰페이지
 public class BoardDownLoadView extends AbstractView {
@@ -30,9 +29,9 @@ public class BoardDownLoadView extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
- 
+
 		int num = Integer.parseInt(request.getParameter("qa_no"));
-		System.out.println(num);
+		
 		// System.out.println(model.get("num"));
 
 		String root = request.getSession().getServletContext().getRealPath("/");
@@ -48,7 +47,6 @@ public class BoardDownLoadView extends AbstractView {
 
 		// 컨텐트 타입
 		response.setContentType("application/octat-stream");
-
 		// 다운로드창에 보여줄 파일명을 지정한다.
 		response.setHeader("Content-Disposition", "attachment;filename=" + str + ";");
 		// 서버에 저장된 파일을 읽어와 클라이언트에 출력해 준다.

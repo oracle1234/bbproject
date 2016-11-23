@@ -6,7 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class QA_BoardDTO {
 
-	private int qa_no, qa_readcount;
+
+	private int qa_no, qa_readcount, member_no, boardcategory_no;
 	private String qa_writer, qa_content, qa_subject;
 	private Date qa_reg_date;
 
@@ -16,6 +17,22 @@ public class QA_BoardDTO {
 	// form 페이지에서 파일첨부를 받아 처리해주는 멤버변수
 	private MultipartFile filename;
 
+	public int getBoardcategory_no() {
+		return boardcategory_no;
+	}
+	
+	public void setBoardcategory_no(int boardcategory_no) {
+		this.boardcategory_no = boardcategory_no;
+	}
+	
+	public int getMember_no() {
+		return member_no;
+	}
+	
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
+	}
+	
 	public int getQa_no() {
 		return qa_no;
 	}

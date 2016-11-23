@@ -1,0 +1,24 @@
+.join{
+	text-align: left;
+	padding:10px;
+}
+
+.label{
+	width:120px;
+	height:40px;
+}
+
+.form{
+	width:780px;
+	height:40px;
+}
+
+.label2{
+	width:120px;
+	height:60px;
+}
+
+.form2{
+	width:780px;
+	height:60px;
+}
