@@ -77,15 +77,15 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#ok').on('click', function(){
+ 	$('#ok').on('click', function(){
 		var pw1 =$('#pass').val();
 		var pw2 =$('#pw').val();
-		if(pw1=pw2){
-			alert("pw1, pw2같음")
-		}else {
+		if(pw1!=pw2){
 			alert("pw1, pw2다름")
+		}else {
+			alert("pw1, pw2같음")
 		}
-	});
+	}); 
 	
 	
 	$('#button_idcheck').bind('click', function() {
@@ -106,7 +106,7 @@ $(document).ready(function(){
  		$.ajax({
 			type : 'POST',
 			url : 'join_idck.do',
-			data :'id='+id,
+			data :'id='+('#id').val(),
 			 cache: false,
 			success : function(data){
 				if(data==1){
@@ -173,7 +173,6 @@ function sample4_execDaumPostcode() {
 <fieldset>
 <legend>회원가입</legend>
 <c:out value="${i }"></c:out> 
- 
 
 <table>
 <tr>

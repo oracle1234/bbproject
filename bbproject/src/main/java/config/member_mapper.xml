@@ -10,8 +10,8 @@ insert into fb_member values
 #{address}, #{tel}, #{mail})
 </insert>
  
-<select id="ck" resultType="Int" parameterType="String">
-select count(*) 
+<select id="ck" resultType="int" parameterType="String">
+select count(*)
 from fb_member 
 where id=#{id}
 </select>

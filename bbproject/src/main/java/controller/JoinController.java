@@ -57,6 +57,7 @@ public class JoinController {
 			request.setCharacterEncoding("UTF-8"); 
 			String id = request.getParameter("id");
 			int idcheck = dao.idcheck(id);
+			System.out.println("i");
 			int i = 0;
 			if (idcheck == 0){
 				i = 0;
