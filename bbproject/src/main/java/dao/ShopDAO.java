@@ -17,4 +17,5 @@ public interface ShopDAO {
 	public void reviewInsertList(HashMap<String, Object> map);
 	public void reviewDeleteList(HashMap<String, Object> deleteMap);
 	public void reviewUpdateList(HashMap<String, Object> updateMap);
+	public void basketInsertList(HashMap<String, Object> map);
 }

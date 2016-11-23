@@ -68,6 +68,11 @@ public class ShopDaoImp implements ShopDAO {
 		sqlSession.update("shop.reviewUpdate", updateMap);
 	}
 
+	@Override
+	public void basketInsertList(HashMap<String, Object> map) {
+		
+	}
+
 
 	
 

@@ -19,4 +19,9 @@ select * from fb_review
 update fb_review set review_content = '맛없어요' where review_no = 100 and member_no = 1;
 
 
+
+
 update fb_review set review_content = '12345' where review_no = 99 and member_no = 1
+
+
+insert into fb_basket values ()

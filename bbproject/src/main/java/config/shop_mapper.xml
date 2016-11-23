@@ -75,6 +75,11 @@
 		update fb_review set review_content = #{review_content} where review_no = #{review_no} and member_no = #{member_no}
 	</update>
 	
+	<insert id="basketInsert" parameterType="hashmap">
+		insert into fb_basket values 
+	</insert>
+	
+	
 </mapper>
 
 

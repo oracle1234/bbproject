@@ -16,5 +16,6 @@ public interface ShopService {
 	public void reviewInsertProcess(HashMap<String, Object> map);
 	public void reviewDeleteProcess(HashMap<String, Object> deleteMap);
 	public void reviewUpdateProcess(HashMap<String, Object> updateMap);
+	public void basketInsertProcess(HashMap<String, Object> map);
 	
 }
