@@ -9,10 +9,7 @@
 	margin: 2px;
 }
 
-
 </style>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="js/admin_recipe_ins.js"></script>
 
 	<form id="recipe_form" action="adminrecipeins.do" method="post"
 		enctype="multipart/form-data">

@@ -26,7 +26,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		reqUrl = reqUrl.substring(reqUrl.lastIndexOf("/") + 1);
 		HttpSession session = request.getSession();
 		if (session.getAttribute("member") == null) {
-			response.sendRedirect("login.do?reqUrl=" + reqUrl);
+			response.sendRedirect("login.do");
 			return false;
 		} else {
 			return super.preHandle(request, response, handler);

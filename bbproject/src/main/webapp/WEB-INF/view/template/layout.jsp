@@ -29,8 +29,9 @@
 <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css"
 	media="all" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="js/recipe.js"></script>
 <script src="js/jquery.bxslider.js"></script>
+<script src="js/recipe.js"></script>
+<script src="js/admin_recipe_ins.js"></script>
 
 </head>
 
