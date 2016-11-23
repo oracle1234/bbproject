@@ -16,9 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.BoardDTO;
+import dto.QA_BoardDTO;
+import dto.Photo_BoardDTO;
 import dto.CommentDTO;
 import dto.PageDTO;
-import dto.QA_BoardDTO;
 import service.BoardService;
 import service.Photo_BoardService;
 import service.QA_BoardService;
@@ -299,6 +300,24 @@ public class BoardController {
 
 		mav.setViewName("photo_list");
 		return mav;
+	}
+
+	/*@RequestMapping("/photo_view.do")
+	public ModelAndView photo_viewMethod(int currentPage, Photo_BoardDTO pdto) {
+		ModelAndView mav = new ModelAndView();
+		Photo_BoardDTO dto = photo_service.contentProcess(pdto.getPhoto_no());
+		mav.addObject("dto", pdto);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("photo_view");
+		return mav;
+	}*/
+	
+	@RequestMapping(value="/photo_write.do", method = RequestMethod.GET)
+	public ModelAndView photo_writeMethod(PageDTO pv){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("photo_write");
+		return mav;
+		
 	}
 
 }
