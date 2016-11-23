@@ -41,6 +41,7 @@ public class LoginController {
 		if (dto == null) {
 			map.put("chk", "아이디 비밀번호를 확인하세요.");
 		} else {
+			session.setMaxInactiveInterval(30*60); //30분
 			session.setAttribute("member", dto);
 			if (dto.getId().equals("admin")) {
 				map.put("href", "admin.do");

@@ -21,7 +21,6 @@ public class MemberDaoImp implements MemberDAO {
 	@Override
 	public void insertMethod(MemberDTO dto) {
 		sqlSession.insert("member.ins", dto);
-		
 	}
 
 	@Override
@@ -34,7 +33,7 @@ public class MemberDaoImp implements MemberDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("pw", pw);
-		return sqlSession.selectOne("member.loginchk", map);
+		return sqlSession.selectOne("member.login", map);
 	}
 
 }

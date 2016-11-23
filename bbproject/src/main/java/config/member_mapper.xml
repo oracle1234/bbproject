@@ -23,4 +23,30 @@
 		where id = #{id} and pw = #{pw}
 	</select>
 
+	
+	<resultMap type="dto.MemberDTO" id="member">
+		<result column="member_no" property="member_no"/>
+		<result column="member_name" property="member_name"/>
+		<result column="id" property="id"/>
+		<result column="pw" property="pw"/>
+		<result column="address" property="address"/>
+		<result column="tel" property="tel"/>
+		<result column="mail" property="mail"/>
+		
+		<collection property="cList" javaType="list" ofType="dto.fb_CouponDTO">
+			<result column="couponbook_no" property="couponbook_no"/>
+			<result column="coupon_no" property="coupon_no"/>
+			<result column="coupon_name" property="coupon_name"/>
+			<result column="coupon_discount" property="coupon_discount"/>
+			<result column="coupon_state" property="coupon_state"/>
+		</collection>
+		
+	</resultMap>
+
+	<select id="login" parameterType="hashmap" resultMap="member">
+		select *
+		from FB_MEMBER a, FB_COUPON_BOOK b, FB_COUPON c
+		where a.member_no = b.member_no(+) and b.coupon_no = c.coupon_no(+)
+		and a.member_no = (select member_no from fb_member where id = #{id} and pw = #{pw})
+	</select>
 </mapper>

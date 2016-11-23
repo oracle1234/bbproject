@@ -3,11 +3,15 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.MemberDTO;
 import dto.fb_BasketDTO;
 import dto.myBoardDTO;
 import service.fb_BasketService;
@@ -44,7 +48,12 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/mypage.do")
-	public String mypage() {
+	public String mypage(HttpServletRequest req) {
+		
+		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
+		System.out.println(dto.getMember_no());
+		System.out.println(dto.getcList().get(0).getCoupon_name());
+		
 		return "mypage";
 	}
 

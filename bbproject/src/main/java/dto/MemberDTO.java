@@ -1,8 +1,22 @@
 package dto;
 
+import java.util.List;
+
 public class MemberDTO {
 	private int member_no, stamp, point;
 	private String member_name, id, pw, address, tel, mail;
+	private List<fb_CouponDTO> cList;
+
+	public MemberDTO() {
+	}
+
+	public List<fb_CouponDTO> getcList() {
+		return cList;
+	}
+
+	public void setcList(List<fb_CouponDTO> cList) {
+		this.cList = cList;
+	}
 
 	public int getMember_no() {
 		return member_no;
