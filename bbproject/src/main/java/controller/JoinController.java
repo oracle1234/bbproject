@@ -1,17 +1,11 @@
 package controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dao.MemberDAO;
 import dto.MemberDTO;
 import service.MemberService;
 
@@ -32,6 +26,7 @@ public class JoinController {
 	@RequestMapping("/agree.do")
 	public String agree() {
 
+		
 		return "agree";
 	}
 
@@ -56,6 +51,7 @@ public class JoinController {
 	
 	@RequestMapping(value = "/joinInsert.do", method = RequestMethod.POST)
 	public String joinProcess(MemberDTO dto) {
+		System.out.println(dto.getTel());
 		memberservice.insertProcess(dto);
 		return "joinsucc";
 	}

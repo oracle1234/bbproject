@@ -177,7 +177,7 @@ function sample4_execDaumPostcode() {
 }
 </script>
 <div class="join">
-<form action="joinInsert.do" method="post" onsubmit="return false" enctype="application/x-www-form-urlencoded">
+<form action="joinInsert.do" method="post" enctype="application/x-www-form-urlencoded">
 <fieldset>
 <legend>회원가입</legend>
 

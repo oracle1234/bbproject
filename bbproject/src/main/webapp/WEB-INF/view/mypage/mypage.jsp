@@ -21,26 +21,26 @@ $(document).ready(function(){
 		<div class="menu">
 			<div id="order">
 				<p>
-					<a href="my_order.do?member_no=1">주문/배송조회</a>
+					<a href="my_order.do">주문/배송조회</a>
 				</p>
 				<span>고객님께서 주문하신 상품의 내용 및 배송조회를 확인하실 수 있습니다.</span>
 			</div>
 			<div id="cart">
 				<p>
-					<a href="my_cart.do?member_no=1">장바구니</a>
+					<a href="my_cart.do">장바구니</a>
 				</p>
 				<span>고객님께서 장바구니에 담으신 상품의 내용을 확인하실 수 있습니다.</span>
 			</div>
 			<div id="coupon">
 				<p>
-					<a href="my_coupon.do?member_no=1">쿠폰/적립금</a>
+					<a href="my_coupon.do">쿠폰/적립금</a>
 				</p>
 				<span>고객님의 쿠폰과 적립금을 확인하실 수 있습니다. </span>
 			</div>
 
 			<div id="board">
 				<p>
-					<a href="my_board.do?member_no=1">내가쓴글</a>
+					<a href="my_board.do">내가쓴글</a>
 				</p>
 				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
 			</div>

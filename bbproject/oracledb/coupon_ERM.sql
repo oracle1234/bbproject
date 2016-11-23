@@ -61,7 +61,7 @@ delete from FB_COUPON_BOOK
 select *
 from FB_MEMBER a, FB_COUPON_BOOK b, FB_COUPON c
 where a.member_no = b.member_no(+) and b.coupon_no = c.coupon_no(+)
-and a.member_no = (select member_no from fb_member where id = 'jaemin' and pw = '444444');
+and a.member_no = (select member_no from fb_member where id = 'jaemin' and pw = 'woals132$');
 
 
 select *

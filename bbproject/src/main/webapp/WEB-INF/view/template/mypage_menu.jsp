@@ -35,13 +35,13 @@ $(document).ready(function(){
 		<img alt="" src="./images/menubar_mypage.png">
 	</div>
 	<ul class="detailmenu">
-		<li><a href="my_order.do?member_no=1"><img class="myorder"
+		<li><a href="my_order.do"><img class="myorder"
 				src="./images/mypage_order.png"></a></li>
-		<li><a href="my_cart.do?member_no=1"><img class="mycart"
+		<li><a href="my_cart.do"><img class="mycart"
 				src="./images/mypage_basket.png"></a></li>
-		<li><a href="my_coupon.do?member_no=1"><img class="mycoupon"
+		<li><a href="my_coupon.do"><img class="mycoupon"
 				src="./images/mypage_coupon.png"></a></li>
-		<li><a href="my_board.do?member_no=1&boardcategory_no=1"><img
+		<li><a href="my_board.do?boardcategory_no=1"><img
 				class="myboard" src="./images/mypage_board.png"></a></li>
 	</ul>
 </div>
