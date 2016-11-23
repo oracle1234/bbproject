@@ -47,9 +47,9 @@ public class JoinController {
 		String str = "";
 
 		if (memberservice.idcheckProcess(id) > 0) {
-			str = "중복";
+			str = "중복된 아이디입니다.";
 		} else {
-			str = "중복아님";
+			str = "사용가능한 아이디입니다.";
 		}
 		return str;
 	}

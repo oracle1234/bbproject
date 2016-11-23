@@ -10,29 +10,79 @@
  	       
 $(document).ready(function(){
 	
-	$("#phone2").keyup(function () {
+	$("#phone").keyup(function () {
 	    if (this.value.length == this.maxLength) {
-	        $("#tel").focus();
+	        $("#phone2").focus();
 	    }
 	});
 	
+	$("#pass").keyup(function(){
+		$('font[name=check]').text('');
+	});
+	$('#pw').keyup(function(){
+		if($("#pass").val()!=$("#pw").val()){
+			$('#check').css("color","red");
+			$('font[name=check]').text('');
+			$('font[name=check]').html('비밀번호가 일치하지 않습니다.');
+		}else{
+			$('#check').css("color","green");
+			$('font[name=check]').text('');
+			$('font[name=check]').html('비밀번호가 일치합니다.');
+		}
+	});
 	
-
+	$("#ok").click(function () {
+		
+	$(".form2").append('<input type="hidden" id="mail" name="mail">');
+	$("#mail").val($("#email").val()+"@"+$('#domain').val());
+	//alert($("#mail").val());
+	
+	$(".form2").append('<input type="hidden" id="tel" name="tel">');
+	$("#tel").val($('#phoneselect').val()+$('#phone').val()+$('#phone2').val());
+	//alert($("#tel").val());
+	
+	if($("#member_name").val().length == 0){
+		alert("이름을 입력해주세요");
+	}
+	
+	if($("#id").val().length == 0){
+		alert("아이디를 입력해주세요");
+	}
+	
+	if($("#pass").val().length == 0){
+		alert("비밀번호를 입력해주세요");
+	}
+	
+	if($("#pw").val().length == 0){
+		alert("비밀번호를 입력해주세요");
+	}
+	
+	if($("#phone").val().length == 0){
+		alert("휴대폰번호를 입력해주세요");
+	}
+	
+	if($("#phone2").val().length == 0){
+		alert("휴대폰번호를 입력해주세요");
+	}
+	
+	if($("#email").val().length == 0){
+		alert("이메일주소를 입력해주세요");
+	}
+	
+	if($("#address").val().length == 0){
+		alert("주소를 입력해주세요");
+	}
+	});
+	
 	var reg2 = /[^(a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣)]/gi; // 영문자,숫자만 (대소문자 구분 x)
 	var reg3 = /[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; //특수문자는 반드시 포함되어야함
 	var reg4 = /[0-9]/g; // 숫자는 반드시 포함되어야 함
 	var reg5 = /[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; // 문자는 반드시 포함되어야 함
 
-	
+ 	
 	$('#pw').on('click', function(){
 		var pwreg =$('#pass').val();
 
-		if(pwreg.length == 0){
-			alert("공백은 입력할 수 없습니다.");
-		} else {
-			alert("pw true 1");
-		}
-		
 		if(reg3.test(pwreg)){
 			alert("pw true 3");
 		} else {
@@ -51,19 +101,7 @@ $(document).ready(function(){
 			alert("문자는 반드시 포함되어야합니다.");
 		}
 	});
-	
- 	$('#ok').on('click', function(){
-		var pw1 =$('#pass').val();
-		var pw2 =$('#pw').val();
-		if(pw1!=pw2){
-			alert("pw1, pw2다름")
-		}else {
-			alert("pw1, pw2같음")
-		}
-		
-/* 		$("#tel").val() = $("#phoneselect").val()+$("#phone").val()+$("#phone").val();
-		alert($("#tel").val()); */
-	}); 
+	 
 	
 	
 	$('#button_idcheck').bind('click', function() {
@@ -73,12 +111,6 @@ $(document).ready(function(){
 			alert("공백은 입력할 수 없습니다.");
 		} else {
 			alert("id true 1");
-		}
-		
- 		if(reg3.test(pwreg)){
-			alert("특수문자는 입력할 수 없습니다.")
-		} else {
-			alert("pw true 3");
 		}
 		
  		$.ajax({
@@ -145,10 +177,9 @@ function sample4_execDaumPostcode() {
 }
 </script>
 <div class="join">
-<form action="joinInsert.do" method="post" enctype="application/x-www-form-urlencoded">
+<form action="joinInsert.do" method="post" onsubmit="return false" enctype="application/x-www-form-urlencoded">
 <fieldset>
 <legend>회원가입</legend>
-<c:out value="${i }"></c:out> 
 
 <table>
 <tr>
@@ -168,7 +199,8 @@ function sample4_execDaumPostcode() {
 
 <tr>
 <td class="label"><label for="pw">비밀번호확인</label></td>
-<td class="form"><input type="password" name="pw" id="pw"></td>
+<td class="form"><input type="password" name="pw" id="pw">
+<font id="check" name="check" size="2"></font></td>
 </tr>
 
 <tr>
@@ -186,32 +218,32 @@ function sample4_execDaumPostcode() {
 <span>-</span>
 <input type="text" name="phone2" id="phone2" maxlength="4">
 <input type="checkbox" id="messagree">문자메세지를 수신합니다.
-<!-- <input type="text" name="tel" id="tel"> -->
+<!-- <input type="hidden" id="tel" name="tel">-->
 </td>
-
 </tr>
 
 <tr>
 <td class="label2"><label for="mail">이메일</label></td>
-<td class="form2"><input type="text" name="mail" id="mail"/><span>@</span>
+<td class="form2"><input type="text" id="email"/><span>@</span>
 <input type="text" name="mail2" id="mail2"/>
-<select name="domain">
-<option value="">::직접입력::</option>
-<option value="naver">naver.com</option>
-<option value="daum">daum.net</option>
-<option value="paran">paran.com</option>
-<option value="empal">empal.com</option>
-<option value="nate">nate.com</option>
-<option value="yahoo">yahoo.co.kr</option>
-<option value="hotmail">hotmail.com</option>
+<select name="domain" id="domain">
+<option value="::직접입력::">::직접입력::</option>
+<option value="naver.com">naver.com</option>
+<option value="daum.net">daum.net</option>
+<option value="paran.com">paran.com</option>
+<option value="empal.com">empal.com</option>
+<option value="nate.com">nate.com</option>
+<option value="yahoo.co.kr">yahoo.co.kr</option>
+<option value="hotmail.com">hotmail.com</option>
 </select>
-<br><input type="checkbox" id="mailagree">반찬을부탁해에서 보내드리는 정보, 이벤트 메일을 받습니다</td>
+<br><input type="checkbox" id="mailagree">반찬을부탁해에서 보내드리는 정보, 이벤트 메일을 받습니다
+<!-- <input type="hidden" id="mail" name="mail"> --></td>
 </tr>
 
 <tr>
 <td class="label2"><label for="addr">주소</label></td>
 <td class="form2"><input type="text" id="sample4_postcode" placeholder="우편번호">
-<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+<input type="button" onclick="sample4_execDaumPostcode()" id="map" value="우편번호 찾기"><br>
 <input type="text" id="sample4_roadAddress" name="address" placeholder="도로명주소">
 <input type="text" id="address" placeholder="지번주소"></td>
 <span id="guide" style="color:#999"></span>
