@@ -97,6 +97,7 @@ CREATE TABLE fb_boardcategory
 );
 
 
+
 /* Create Foreign Keys */
 ALTER TABLE fb_comment
 	ADD FOREIGN KEY (qa_no)
