@@ -16,6 +16,9 @@ insert into fb_member values
 (1, '관리자', 'admin', 'admin', '종각', 
 01044444444, 'admin', 0, 0);
 
+delete 
+from fb_member
+where member_no=4
 
 테이블명:fb_category
 select * from fb_category;

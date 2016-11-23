@@ -109,7 +109,7 @@ CREATE TABLE fb_coupon_book
 	coupon_no number NOT NULL,
 	coupon_state varchar2(10) not null,
 	PRIMARY KEY (couponbook_no)
-	;
+	);
 =======
 CREATE TABLE fb_coupon_book
 (

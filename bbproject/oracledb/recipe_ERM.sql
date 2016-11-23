@@ -135,3 +135,8 @@ select *
 select *
 		from fb_member
 		where id = 'ss' and pw = 'sdf'		
+		
+		
+		select count(*)
+		from fb_member
+		where id='sdf'

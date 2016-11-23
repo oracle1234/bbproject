@@ -9,19 +9,87 @@
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
  	       
 $(document).ready(function(){
+	
+	$("#phone2").keyup(function () {
+	    if (this.value.length == this.maxLength) {
+	        $("#tel").focus();
+	    }
+	});
+	
+	
+
+	var reg2 = /[^(a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣)]/gi; // 영문자,숫자만 (대소문자 구분 x)
+	var reg3 = /[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; //특수문자는 반드시 포함되어야함
+	var reg4 = /[0-9]/g; // 숫자는 반드시 포함되어야 함
+	var reg5 = /[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; // 문자는 반드시 포함되어야 함
+
+	
+	$('#pw').on('click', function(){
+		var pwreg =$('#pass').val();
+
+		if(pwreg.length == 0){
+			alert("공백은 입력할 수 없습니다.");
+		} else {
+			alert("pw true 1");
+		}
+		
+		if(reg3.test(pwreg)){
+			alert("pw true 3");
+		} else {
+			alert("특수문자는 반드시 포함되어야합니다.");
+		}
+		
+		if(reg4.test(pwreg)){
+			alert("pw true 4");
+		} else {
+			alert("숫자는 반드시 포함되어야합니다.");
+		}
+		
+		if(reg5.test(pwreg)){
+			alert("pw true 5");
+		} else {
+			alert("문자는 반드시 포함되어야합니다.");
+		}
+	});
+	
+ 	$('#ok').on('click', function(){
+		var pw1 =$('#pass').val();
+		var pw2 =$('#pw').val();
+		if(pw1!=pw2){
+			alert("pw1, pw2다름")
+		}else {
+			alert("pw1, pw2같음")
+		}
+		
+/* 		$("#tel").val() = $("#phoneselect").val()+$("#phone").val()+$("#phone").val();
+		alert($("#tel").val()); */
+	}); 
+	
+	
 	$('#button_idcheck').bind('click', function() {
-		//alert($('#id').val()+" : 사용가능한 아이디 입니다.")
-		//alert(('#id').val()+" : 이미 가입된 아이디 입니다.")
+		var idreg =$('#id').val();
+		
+ 		if(idreg.length == 0){
+			alert("공백은 입력할 수 없습니다.");
+		} else {
+			alert("id true 1");
+		}
+		
+ 		if(reg3.test(pwreg)){
+			alert("특수문자는 입력할 수 없습니다.")
+		} else {
+			alert("pw true 3");
+		}
+		
  		$.ajax({
-			type : 'POST',
+ 			type : 'POST',
 			url : 'join_idck.do',
-			data :'id='+$('#id').val(),
+			data :"id="+idreg,
 			success : function(data){
-				if(data==1){
-					alert(('#id').val()+" : 이미 가입된 아이디 입니다.");
-				} else {
-					alert($('#id').val()+" : 사용가능한 아이디 입니다.");
-				}
+				alert(data);
+			},
+			error : function(xhr, textStatus, error) {
+				alert(error);
 			}
 		});
 	});
@@ -57,7 +125,7 @@ function sample4_execDaumPostcode() {
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
             document.getElementById('sample4_roadAddress').value = fullRoadAddr;
-            document.getElementById('sample4_jibunAddress').value = data.jibunAddress;
+            document.getElementById('address').value = data.jibunAddress;
 
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
             if(data.autoRoadAddress) {
@@ -77,9 +145,10 @@ function sample4_execDaumPostcode() {
 }
 </script>
 <div class="join">
-<form action="" method="post" enctype="application/x-www-form-urlencoded">
+<form action="joinInsert.do" method="post" enctype="application/x-www-form-urlencoded">
 <fieldset>
 <legend>회원가입</legend>
+<c:out value="${i }"></c:out> 
 
 <table>
 <tr>
@@ -113,10 +182,13 @@ function sample4_execDaumPostcode() {
 	<option value="019">019</option>
 </select>
 <span>-</span>
-<input type="text" name="phone2" id="phone2">
+<input type="text" name="phone" id="phone" maxlength="4">
 <span>-</span>
-<input type="text" name="tel" id="tel">
-<input type="checkbox" id="messagree">문자메세지를 수신합니다.</td>
+<input type="text" name="phone2" id="phone2" maxlength="4">
+<input type="checkbox" id="messagree">문자메세지를 수신합니다.
+<!-- <input type="text" name="tel" id="tel"> -->
+</td>
+
 </tr>
 
 <tr>
@@ -140,8 +212,8 @@ function sample4_execDaumPostcode() {
 <td class="label2"><label for="addr">주소</label></td>
 <td class="form2"><input type="text" id="sample4_postcode" placeholder="우편번호">
 <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-<input type="text" id="sample4_jibunAddress" placeholder="지번주소"></td>
+<input type="text" id="sample4_roadAddress" name="address" placeholder="도로명주소">
+<input type="text" id="address" placeholder="지번주소"></td>
 <span id="guide" style="color:#999"></span>
 </tr>
 </table>
@@ -149,8 +221,9 @@ function sample4_execDaumPostcode() {
 
 
 <p>
-<input type="submit" value="확인" />
+<input type="submit" value="확인" id="ok" />
 <input type="reset" value="취소" />
 </p>
+
 </form>
 </div>
