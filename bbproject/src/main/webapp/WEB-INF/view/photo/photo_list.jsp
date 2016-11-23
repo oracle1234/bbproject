@@ -71,131 +71,11 @@
 		</div>
 		<div id=photobox>
 			<ul id="list">
-				<li class="line_first">
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				
-				<li class="line_first">
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				
-				<li class="line_first">
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				
-				<li class="line_first">
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				
-				<li class="line_first">
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				<li>
-					<a href="#"><img src=""></a>
-				</li>
-				
+			<c:forEach items="${aList}" var="Photo_BoardDTO">
+				<li class="photo_img">
+					<a href="photo_list.do?photo_no=${Photo_BoardDTO.photo_no}"><img alt="후기이미지" src="images/${Photo_BoardDTO.picture}"></a>
+				</li>	
+			</c:forEach>
 			</ul>
 		</div>
 
@@ -221,7 +101,7 @@
 		<c:if test="${pv.totalPage>pv.endPage}">
 			<a href="board_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
-		</div>
+	</div>
 
 	</div>
 </body>

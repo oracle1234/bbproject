@@ -26,7 +26,7 @@
 		board_no=#{board_no}
 	</update>
 
-	<update id="reStepCount" parameterType="dto.CommentDTO">
+	<update id="board_reStepCount" parameterType="dto.CommentDTO">
 		 <![CDATA[ update fb_board set comment_re_step=comment_re_step+1 where comment_ref=#{comment_ref} and 
 			comment_re_step>#{comment_re_step} ]]> 
 	</update>

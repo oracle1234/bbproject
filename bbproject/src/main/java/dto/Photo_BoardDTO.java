@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Photo_BoardDTO {
 
 	private int photo_no, photo_readcount, member_no, boardcategory_no;
-	private String photo_writer, photo_content, photo_subject;
+	private String photo_writer, photo_content, photo_subject, picture;
 
 	private Date photo_reg_date;
 
@@ -93,6 +93,14 @@ public class Photo_BoardDTO {
 
 	public void setFilename(MultipartFile filename) {
 		this.filename = filename;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 }

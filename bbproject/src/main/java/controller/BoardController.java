@@ -29,13 +29,13 @@ public class BoardController {
 	private BoardService service;
 	private QA_BoardService qa_service;
 	private Photo_BoardService photo_service;
-
+	
 	private int currentPage;
 	private PageDTO pdto;
 	private CommentDTO cdto;
-
+	
 	public BoardController() {
-
+		
 	}
 
 	public void setService(BoardService service) {

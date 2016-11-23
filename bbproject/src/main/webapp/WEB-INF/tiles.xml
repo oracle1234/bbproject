@@ -199,6 +199,7 @@
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/join/joinsucc.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
 
 	<definition name="shop_buy" extends="index">
 		<put-attribute name="title" value="buy_page" />
@@ -206,16 +207,4 @@
 		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buyPage.jsp" />
 	</definition>
 	
-
 </tiles-definitions>
-
-
-
-
-
-
-
-
-
-
-

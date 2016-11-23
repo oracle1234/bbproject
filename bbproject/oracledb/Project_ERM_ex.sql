@@ -22,6 +22,18 @@ insert into fb_category values
 insert into fb_category values 
 (3, '국, 찌개');
 
+테이블명:fb_boardcategory
+select * from fb_boardcategory;
+insert into fb_boardcategory values 
+(1, '자유게시판');
+insert into fb_boardcategory values 
+(2, 'QA게시판');
+insert into fb_boardcategory values 
+(3, '포토후기');
+
+테이블명:fb_boardcategory
+select * from fb_boardcategory;
+
 테이블명:fb_delivery_cost
 select * from fb_delivery_cost;
 insert into fb_delivery_cost values
@@ -217,11 +229,11 @@ insert into fb_coupon values
 
 select * from FB_COUPON_BOOK
 insert into FB_COUPON_BOOK values
-(1, 1, 1, '미사용');
+(1, '미사용');
 insert into FB_COUPON_BOOK values
-(2, 1, 2, '미사용');
+(2, '미사용');
 insert into FB_COUPON_BOOK values
-(3, 1, 3, '사용');
+(3, '사용');
 
 
 select c.coupon_name, c.coupon_discount, b.coupon_state
@@ -231,11 +243,11 @@ and c.coupon_no = b.coupon_no;
 
 select * from fb_qa_board
 insert into fb_qa_board values
-(3, 1, 1, 1, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
+(3, 1, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
 insert into fb_qa_board values
-(3, 1, 2, 1, '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
+(3, 2,  '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
 insert into fb_qa_board values
-(3, 1, 3, 1, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
+(3, 3, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
 
 select * from fb_photo_board
 insert into fb_photo_board values
@@ -247,11 +259,12 @@ insert into fb_photo_board values
 
 select * from fb_board
 insert into fb_board values
-(1, 1, 1, 1, '백나연', '자유게시판입니다.', sysdate, '자유');
+(1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
 insert into fb_board values
-(1, 1, 2, 1, '백나연', '자유게시판입니다2.', sysdate, '자유2');
+(1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다2.', sysdate, '자유2');
 insert into fb_board values
-(1, 1, 3, 1, '백나연', '자유게시판입니다3.', sysdate, '자유3');
+(1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다3.', sysdate, '자유3');
+
 
 CREATE TABLE fb_photo_board
 (

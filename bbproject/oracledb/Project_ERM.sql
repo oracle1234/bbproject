@@ -18,22 +18,11 @@ DROP TABLE fb_tr_order CASCADE CONSTRAINTS;
 DROP TABLE fb_tr_complete CASCADE CONSTRAINTS;
 DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
-
-<<<<<<< HEAD
-
-=======
 DROP TABLE fb_boardcategory CASCADE CONSTRAINTS;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/yeonsung
-=======
 select * from fb_board;
 delete from fb_board;
->>>>>>> refs/remotes/origin/yeonsung
->>>>>>> refs/remotes/origin/min
+
 /* Drop Sequences */
 DROP SEQUENCE SEQ_coupon_no;
 DROP SEQUENCE SEQ_couponbook_no;
@@ -70,15 +59,6 @@ CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-<<<<<<< HEAD
-
-=======
-
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/yeonsung
->>>>>>> refs/remotes/origin/min
 
 
 /* Create Tables */
@@ -137,7 +117,6 @@ CREATE TABLE fb_request
 	foods_no number NOT NULL
 );
 
-
 CREATE TABLE fb_category
 (
 	category_no number NOT NULL,
@@ -145,6 +124,12 @@ CREATE TABLE fb_category
 	PRIMARY KEY (category_no)
 );
 
+CREATE TABLE fb_boardcategory
+(
+	boardcategory_no number NOT NULL,
+	boardcategory_name varchar2(50) NOT NULL,
+	PRIMARY KEY (boardcategory_no)
+);
 
 CREATE TABLE fb_basket
 (

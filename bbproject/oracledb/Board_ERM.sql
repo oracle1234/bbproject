@@ -89,24 +89,12 @@ CREATE TABLE fb_board
 	PRIMARY KEY (board_no)
 );
 
-CREATE TABLE fb_tr_order
+CREATE TABLE fb_boardcategory
 (
-	order_no number NOT NULL,
-	recipe_no number NOT NULL,
-	order_pic varchar2(500),
-	order_text varchar2(500),
-	PRIMARY KEY (order_no)
+	boardcategory_no number NOT NULL,
+	boardcategory_name varchar2(50) NOT NULL,
+	PRIMARY KEY (boardcategory_no)
 );
-
-
-CREATE TABLE fb_tr_complete
-(
-	complete_no number NOT NULL,
-	recipe_no number NOT NULL,
-	complete_pic varchar2(500),
-	PRIMARY KEY (complete_no)
-);
-
 
 
 /* Create Foreign Keys */
@@ -143,6 +131,10 @@ references fb_member (member_no);
 /* Comments */
 COMMENT ON COLUMN fb_tr_order.order_text IS '설명';
 
+delete from fb_board;
+delete from fb_qa_board;
+delete from fb_photo_board;
+
 select * from fb_board;
 select * from fb_qa_board;
-select * from fb_qa_board;
+select * from fb_photo_board;
