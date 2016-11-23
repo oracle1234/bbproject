@@ -9,19 +9,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.FoodsDTO;
 import dto.ThemeRecipeDTO;
 import dto.ThemeRecipeOderDTO;
+import service.ShopService;
 import service.ThemeRecipeService;
 
 @Controller
 public class adminController {
-	private ThemeRecipeService service;
+	private ThemeRecipeService recipeservice;
+	private ShopService foodsservice;
 
 	public adminController() {
 	}
 
-	public void setService(ThemeRecipeService service) {
-		this.service = service;
+	public void setRecipeservice(ThemeRecipeService recipeservice) {
+		this.recipeservice = recipeservice;
+	}
+	
+	
+
+	public void setFoodsservice(ShopService foodsservice) {
+		this.foodsservice = foodsservice;
 	}
 
 	@RequestMapping("/admin.do")
@@ -29,6 +38,9 @@ public class adminController {
 		return "admin";
 	}
 
+	/*
+	 * 레시피관리
+	 */
 	@RequestMapping("/adminrecipe.do")
 	public String recipeadmin() {
 		return "adminrecipe";
@@ -37,7 +49,7 @@ public class adminController {
 	@RequestMapping("/adminrecipelist.do")
 	public ModelAndView recipePage(int theme_no) {
 		ModelAndView mav = new ModelAndView();
-		List<ThemeRecipeDTO> list = service.selectListProcess(theme_no);
+		List<ThemeRecipeDTO> list = recipeservice.selectListProcess(theme_no);
 		mav.addObject("aList", list);
 		mav.setViewName("adminrecipelist");
 		return mav;
@@ -50,20 +62,61 @@ public class adminController {
 
 	@RequestMapping(value = "/adminrecipeins.do", method = RequestMethod.POST)
 	public String recipeSavePage(ThemeRecipeDTO dto, HttpServletRequest req) {
-		return service.insertRecipeProcess(dto, req);
+		return recipeservice.insertRecipeProcess(dto, req);
 	}
 
 	@RequestMapping("/adminrecipedel.do")
 	public ModelAndView recipeDelPage(ThemeRecipeDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		List<ThemeRecipeDTO> list = service.deleteRecipeProcess(dto, req);
+		List<ThemeRecipeDTO> list = recipeservice.deleteRecipeProcess(dto, req);
 		mav.addObject("aList", list);
 		mav.setViewName("adminrecipelist");
 		return mav;
 	}
-	
+
+	/*
+	 * 음식관리
+	 */
+	@RequestMapping("/adminfoods.do")
+	public String foodsInsertPage() {
+		return "adminfoods";
+	}
+
+	@RequestMapping("/adminfoodslist.do")
+	public ModelAndView foodsPage(int theme_no) {
+		ModelAndView mav = new ModelAndView();
+		List<ThemeRecipeDTO> list = recipeservice.selectListProcess(theme_no);
+		mav.addObject("aList", list);
+		mav.setViewName("adminfoodslist");
+		return mav;
+	}
+
+	@RequestMapping(value = "/adminfoodsins.do", method = RequestMethod.GET)
+	public String foodsinsertPage() {
+		return "adminfoodsins";
+	}
+
+	@RequestMapping(value = "/adminfoodsins.do", method = RequestMethod.POST)
+	public String foodsSavePage(FoodsDTO dto, HttpServletRequest req) {
+		
+		System.out.println(dto.getCategory_no());
+		System.out.println(dto.getFoods_no());
+		System.out.println(dto.getFoods_name());
+		System.out.println(dto.getPrice());
+		System.out.println(dto.getWeight());
+		System.out.println(dto.getWay());
+		System.out.println(dto.getShelfLife());
+		System.out.println(dto.getFoods_explaination());
+		System.out.println(dto.getFoods_material());
+		System.out.println(dto.getFoods_file().getOriginalFilename());
+		
+		
+		
+		return foodsservice.insertFoodsProcess(dto, req);
+	}
+
 	@RequestMapping("/test.do")
-	public String test(){
+	public String test() {
 		return "view/test";
 	}
 

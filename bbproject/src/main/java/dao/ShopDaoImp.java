@@ -52,10 +52,11 @@ public class ShopDaoImp implements ShopDAO {
 		return sqlSession.selectList("shop.review_page_list", map);
 	}
 
-	
-	
-	
-	
-	
+	@Override
+	public String insertFoods(FoodsDTO dto) {
+		sqlSession.insert("shop.insert", dto);
+		return "adminfoods"; 
+	}
+
 
 }

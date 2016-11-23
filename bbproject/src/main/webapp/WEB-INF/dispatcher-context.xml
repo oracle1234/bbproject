@@ -162,7 +162,8 @@
 	</bean>
 
 	<bean class="controller.adminController">
-		<property name="service" ref="themeRecipeservice"></property>
+		<property name="recipeservice" ref="themeRecipeservice"></property>
+		<property name="foodsservice" ref="shopService"></property>
 	</bean>
 
 	<bean class="controller.LoginController">
