@@ -18,14 +18,9 @@ import service.ThemeRecipeService;
 @Controller
 public class ImageController {
 
-	private ThemeRecipeService service;
 
 	public ImageController() {
 
-	}
-
-	public void setService(ThemeRecipeService service) {
-		this.service = service;
 	}
 
 	// <img src="image.do?filename=사진이름" alt="Upload Image" />

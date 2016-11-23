@@ -1,6 +1,4 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<html>
-<head>
 <style>
 
 .holder{
@@ -12,13 +10,8 @@
 }
 
 </style>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="js/recipe.js"></script>
 
-</head>
-<body>
-
-	<form id="recipe_form" action="recipeins.do" method="post"
+	<form id="recipe_form" action="adminrecipeins.do" method="post"
 		enctype="multipart/form-data">
 
 		<div>
@@ -58,7 +51,7 @@
 					<td><input type="text" id="difficulty" name="difficulty" /></td>
 				</tr>
 				<tr>
-					<th>인원</th>
+					<th>분량(인분)</th>
 					<td><input type="text" id="portion" name="portion" /></td>
 				</tr>
 				<tbody id="add_order">
@@ -90,9 +83,4 @@
 		<input id="btn_submit" type="submit" value="등록">
 
 	</form>
-
-</body>
-</html>
-
-
 

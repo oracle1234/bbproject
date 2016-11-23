@@ -1,9 +1,9 @@
 package controller;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +17,13 @@ import service.MemberService;
 
 @Controller
 public class JoinController {
-	
+
 	private MemberService memberservice;
-	private MemberDAO dao;
 
 	public JoinController() {
 
 	}
+
 	
 	public void setMemberservice(MemberService memberservice) {
 		this.memberservice = memberservice;
@@ -31,40 +31,32 @@ public class JoinController {
 
 	@RequestMapping("/agree.do")
 	public String agree() {
-		
+
 		return "agree";
 	}
-	
+
 	@RequestMapping("/join.do")
 	public String join() {
-		
+
 		return "join";
 	}
-	
-	@RequestMapping(value="/join.do", method=RequestMethod.POST)
-	public String joinProcess(MemberDTO dto) {
 
-		return "joinsucc";
+	@RequestMapping(value = "/join_idck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	public @ResponseBody String idcheck(String id) {
+		System.out.println(id);
+		String str = "";
+
+		if (memberservice.idcheckProcess(id) > 0) {
+			str = "중복";
+		} else {
+			str = "중복아님";
+		}
+		return str;
 	}
 	
-/*	@RequestMapping("/join_idck.do")
-	public @ResponseBody List<MemberDTO> idcheck(String id){
-		return memberservice.idcheckProcess(id);
-		
-	}*/
-		@RequestMapping("/join_idck.do")
-		public String idcheck(HttpServletRequest request, Model model) throws Exception {
-			request.setCharacterEncoding("UTF-8"); 
-			String id = request.getParameter("id");
-			int idcheck = dao.idcheck(id);
-			System.out.println("i");
-			int i = 0;
-			if (idcheck == 0){
-				i = 0;
-			} else {
-				i = 1;
-			}
-			model.addAttribute("i", i);
-			return "joinsucc";
-		} 
+	@RequestMapping(value = "/joinInsert.do", method = RequestMethod.POST)
+	public String joinProcess(MemberDTO dto) {
+		memberservice.insertProcess(dto);
+		return "joinsucc";
+	}
 }

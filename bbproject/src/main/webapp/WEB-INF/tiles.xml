@@ -94,14 +94,36 @@
 	
 	<definition name="recipe" extends="index">
 		<put-attribute name="title" value="recipe" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/recipe_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/recipe.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/view/template/recipe_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/recipe/recipe.jsp" />
 	</definition>
 	
 	<definition name="recipedetail" extends="recipe">
-		<put-attribute name="body" value="/WEB-INF/view/recipedetail.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/recipe/recipe_detail.jsp" />
 	</definition>
-
+	
+	<!-- 관리자 페이지 -->
+	<definition name="admin" template="/WEB-INF/view/template/admin.jsp">
+		<put-attribute name="title" value="관리자 페이지" />
+		<put-attribute name="header" value="/WEB-INF/view/template/admin_header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/body.jsp" />
+	</definition>
+	
+	<definition name="adminrecipe" extends="admin">
+		<put-attribute name="title" value="레시피 관리자 페이지" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/recipe_admin.jsp" />
+	</definition>
+	
+	<definition name="adminrecipeins" extends="adminrecipe">
+		<put-attribute name="body" value="/WEB-INF/view/admin/recipe_insert.jsp" />
+	</definition>
+	
+	<definition name="adminrecipelist" extends="adminrecipe">
+		<put-attribute name="body" value="/WEB-INF/view/admin/recipe_list.jsp" />
+	</definition>
+	<!-- 관리자 페이지 -->
+	
 	<definition name="my_order" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />

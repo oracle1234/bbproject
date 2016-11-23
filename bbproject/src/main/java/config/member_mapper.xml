@@ -4,16 +4,23 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
-<insert id="ins" parameterType="dto.MemberDTO">
-insert into fb_member values
-(member_no_seq.nextval, #{member_name}, #{id}, #{pw},
-#{address}, #{tel}, #{mail})
-</insert>
- 
-<select id="ck" resultType="int" parameterType="String">
-select count(*)
-from fb_member 
-where id=#{id}
-</select>
+
+	<insert id="ins" parameterType="dto.MemberDTO">
+		insert into fb_member values
+		(SEQ_member_no.nextval, #{member_name}, #{id}, #{pw},
+		#{address}, #{tel}, #{mail}, 0, 0)
+	</insert>
+
+	<select id="ck" resultType="int" parameterType="String">
+		select count(*)
+		from fb_member
+		where id=#{id}
+	</select>
+	
+	<select id="loginchk" parameterType="hashmap" resultType="dto.MemberDTO">
+		select *
+		from fb_member
+		where id = #{id} and pw = #{pw}
+	</select>
 
 </mapper>

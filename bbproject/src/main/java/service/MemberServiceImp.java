@@ -25,5 +25,10 @@ public class MemberServiceImp implements MemberService{
 		return dao.idcheck(id);
 	}
 
+	@Override
+	public MemberDTO loginChkProcess(String id, String pw) {
+		return dao.loginChk(id, pw);
+	}
+
 
 }
