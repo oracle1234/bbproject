@@ -14,7 +14,6 @@ public interface QA_BoardService {
 	public List<QA_BoardDTO> listProcess(PageDTO pv);
 	public void insertProcess(QA_BoardDTO qdto);
 	public QA_BoardDTO contentProcess(int num);
-	public void reStepProcess(CommentDTO cdto);
 	public QA_BoardDTO updateSelectProcess(int num);
 	public void updateProcess(QA_BoardDTO qdto,HttpServletRequest request);
 	public void deleteProcess(int num,HttpServletRequest request);

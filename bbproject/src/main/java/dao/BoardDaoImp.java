@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,15 +23,21 @@ public class BoardDaoImp implements BoardDAO {
 	}
 
 	@Override
-	public int count() {
+	public int count(int boardcategory_no) {
 
-		return sqlSession.selectOne("board.count");
+		return sqlSession.selectOne("board.count", boardcategory_no);
 	}
-
+	
 	@Override
 	public List<BoardDTO> list(PageDTO pv) {
-
-		return sqlSession.selectList("board.list", pv);
+		
+		return sqlSession.selectList("board.list",pv);
+	}
+	
+	@Override
+	public List<BoardDTO> pageList(HashMap<String, Object> map) {
+		
+		return sqlSession.selectList("board.pageList", map);
 	}
 
 	@Override
@@ -42,30 +49,18 @@ public class BoardDaoImp implements BoardDAO {
 	@Override
 	public BoardDTO content(int num) {
 
-		return sqlSession.selectOne("board.content", num);
-	}
-
-	@Override
-	public void reStepCount(CommentDTO cdto) {
-		sqlSession.update("board.reStepCount", cdto);
-
-	}
-
-	@Override
-	public void save(CommentDTO cdto) {
-		sqlSession.insert("board.bc_save", cdto);
-
+		return sqlSession.selectOne("board.list", num);
 	}
 	
 	@Override
 	public void save(BoardDTO bdto) {
-		sqlSession.insert("board.b_save", bdto);
+		sqlSession.insert("board.save", bdto);
 	}
 
 	@Override
 	public BoardDTO updateNum(int num) {
 
-		return sqlSession.selectOne("board.content", num);
+		return sqlSession.selectOne("board.list", num);
 	}
 
 	@Override
@@ -77,6 +72,44 @@ public class BoardDaoImp implements BoardDAO {
 	@Override
 	public void delete(int num) {
 		sqlSession.delete("board.delete", num);
+	}
+
+	@Override
+	public int commentCount(int board_no) {
+		
+		return sqlSession.selectOne("board.commentCount");
+	}
+	
+/*
+	@Override
+	public List<CommentDTO> commentList(int comment_no) {
+		
+		return sqlSession.selectList("board.commentList", comment_no);
+	}
+
+*/	
+	@Override
+	public List<CommentDTO> commentPageList(HashMap<String, Object> map) {
+		
+		return sqlSession.selectList("board.commentPageList", map);
+	}
+
+	@Override
+	public void commentSaveList(HashMap<String, Object> map) {
+		
+		sqlSession.selectList("board.commentSave", map);
+	}
+
+	@Override
+	public void commentUpdateList(HashMap<String, Object> map) {
+		
+		sqlSession.selectList("board.commentUpdate", map);
+	}
+
+	@Override
+	public void commentDeleteList(HashMap<String, Object> map) {
+		
+		sqlSession.selectList("board.commentDelete", map);
 	}
 
 }

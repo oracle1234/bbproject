@@ -52,14 +52,6 @@ public class QA_BoardServiceImp implements QA_BoardService {
 	}
 
 	@Override
-	public void reStepProcess(CommentDTO dto) {
-		qdao.reStepCount(dto);
-		dto.setComment_re_step(dto.getComment_re_step() + 1);
-		dto.setComment_re_level(dto.getComment_re_level() + 1);
-		qdao.save(dto);
-	}
-
-	@Override
 	public QA_BoardDTO updateSelectProcess(int num) {
 
 		return qdao.updateNum(num);

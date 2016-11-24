@@ -39,6 +39,7 @@ CREATE TABLE fb_member
 CREATE TABLE fb_comment
 (
 	comment_no number NOT NULL,
+	member_no number NOT NULL,
 	board_no number NOT NULL,
 	photo_no number NOT NULL,
 	qa_no number NOT NULL,
@@ -48,14 +49,15 @@ CREATE TABLE fb_comment
 	PRIMARY KEY (comment_no)
 );
 
-insert into FB_COMMENT values (1, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (2, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (3, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (4, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-
+insert into FB_COMMENT values (1, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+insert into FB_COMMENT values (2, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+insert into FB_COMMENT values (3, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+insert into FB_COMMENT values (4, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+insert into FB_COMMENT values (5, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
 
 CREATE TABLE fb_qa_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	qa_no number NOT NULL,
 	qa_readcount number NOT NULL,
@@ -67,8 +69,10 @@ CREATE TABLE fb_qa_board
 	PRIMARY KEY (qa_no)
 );
 
+
 CREATE TABLE fb_photo_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	photo_no number NOT NULL,
 	photo_readcount number NOT NULL,
@@ -80,8 +84,10 @@ CREATE TABLE fb_photo_board
 	PRIMARY KEY (photo_no)
 );
 
+
 CREATE TABLE fb_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	board_no number NOT NULL,
 	board_readcount number NOT NULL,
@@ -91,6 +97,7 @@ CREATE TABLE fb_board
 	board_subject varchar2(200) NOT NULL,
 	PRIMARY KEY (board_no)
 );
+
 
 CREATE TABLE fb_boardcategory
 (
@@ -138,7 +145,9 @@ COMMENT ON COLUMN fb_tr_order.order_text IS '설명';
 delete from fb_board;
 delete from fb_qa_board;
 delete from fb_photo_board;
+delete from FB_COMMENT;
 
 select * from fb_board;
 select * from fb_qa_board;
 select * from fb_photo_board;
+select * from FB_COMMENT;
