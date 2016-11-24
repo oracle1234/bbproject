@@ -122,6 +122,19 @@
 	<definition name="adminrecipelist" extends="adminrecipe">
 		<put-attribute name="body" value="/WEB-INF/view/admin/recipe_list.jsp" />
 	</definition>
+	
+	<definition name="adminfoods" extends="admin">
+		<put-attribute name="title" value="음식 관리자 페이지" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_admin.jsp" />
+	</definition>
+	
+	<definition name="adminfoodsins" extends="adminfoods">
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_insert.jsp" />
+	</definition>
+	
+	<definition name="adminfoodslist" extends="adminfoods">
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_list.jsp" />
+	</definition>
 	<!-- 관리자 페이지 -->
 	
 	<definition name="my_order" extends="index">

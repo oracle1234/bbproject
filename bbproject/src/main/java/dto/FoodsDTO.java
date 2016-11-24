@@ -2,15 +2,26 @@ package dto;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class FoodsDTO {
 	private int review_no;
 	private int foods_no, price, category_no, fb_delivery_no;
 	private String foods_name, weight, way, shelfLife, foods_explaination, foods_material, picture;
+	private MultipartFile foods_file;
 
 	private List<ReviewDTO> rdto;
 
 	public FoodsDTO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public MultipartFile getFoods_file() {
+		return foods_file;
+	}
+
+	public void setFoods_file(MultipartFile foods_file) {
+		this.foods_file = foods_file;
 	}
 
 	public int getReview_no() {

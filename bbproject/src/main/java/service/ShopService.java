@@ -3,6 +3,8 @@ package service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dto.FoodsDTO;
 import dto.ReviewDTO;
 
@@ -13,4 +15,9 @@ public interface ShopService {
 	public List<ReviewDTO> reviewListProcess(int review_no);
 	public int reviewCountProcess(int foods_no);
 	public List<ReviewDTO> reviewPageListProcess(HashMap<String, Object> map);
+
+
+	public String insertFoodsProcess(FoodsDTO dto, HttpServletRequest req);
+	public List<FoodsDTO> deletFoodsProcess(int foods_no, HttpServletRequest req);
+	public List<FoodsDTO> adminFoodsListProcess(int category_no);
 }
