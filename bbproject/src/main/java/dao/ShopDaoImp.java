@@ -73,6 +73,11 @@ public class ShopDaoImp implements ShopDAO {
 		sqlSession.insert("shop.basketInsert", map);
 	}
 
+	@Override
+	public List<FoodsDTO> buyList(int foods_no) {
+		return sqlSession.selectList("shop.buy_list", foods_no);
+	}
+
 
 	
 

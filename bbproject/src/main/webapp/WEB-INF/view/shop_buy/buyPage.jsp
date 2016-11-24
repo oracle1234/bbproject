@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -314,13 +315,13 @@ caption {
 							<th>합계</th>
 						</tr>
 
-						<c:forEach begin="1" end="10">
+						<c:forEach items="${FoodsDTO}" var="food">
 							<tr>
-								<td>상품명</td>
-								<td>가격</td>
-								<td>수량</td>
-								<td>적립금</td>
-								<td>합계</td>
+								<td>${food.foods_name}</td>
+								<td>${food.price}</td>
+								<td>${amount}</td>
+								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * amount}" type="NUMBER"></fmt:formatNumber></td>
+								<td>${food.price * amount}</td>
 							</tr>
 						</c:forEach>
 					</table>

@@ -200,6 +200,7 @@ body {
 
 	
 	var uno="";
+	var savemoney="";
 	$(document).ready(function() {
 		
 		 $( "#dialog-confirm" ).dialog({
@@ -236,11 +237,10 @@ body {
 						
 						var price = parseInt($('#info_table tr:nth-child(3) td')
 								.text());
-						var savemoney = price * 0.01;
+						savemoney = price * 0.01;
 
 						$('#info_table tr:nth-child(8) td').empty();
-						$('#info_table tr:nth-child(8) td').append(
-								'<td>' + savemoney + '<span>원</span></td>');
+						$('#info_table tr:nth-child(8) td').append('<td>' + savemoney + '<span>원</span></td>');
 
 						$('#shop_upbutton').on('click',function() {
 							var price = parseInt($('#info_table tr:nth-child(3) td').text());
@@ -252,7 +252,7 @@ body {
 							$('#info_table tr:nth-child(9) td').empty();
 							$('#info_table tr:nth-child(9) td').append('<td>'+ total+ '<span>원</span></td>');
 
-										});
+							});
 
 						$('#shop_downbutton')
 								.on(
@@ -374,6 +374,13 @@ body {
 							$('#foodform').attr('action','basketInsert.do');
 						   $("#foodform").submit();
 						   $("#dialog-confirm").dialog("open");
+						});
+						
+						
+						$("#buy_insimg").on("click", function() {
+							
+							$('#foodform').attr('action','shop_buy.do');
+						   $("#foodform").submit();
 						});
 						
 					});//end ready end
@@ -611,7 +618,7 @@ body {
 
 	<div id="product_wrap">
 	
-	<form action="basketInsert.do" method="post" id="foodform">
+	<form method="post" id="foodform">
 	
 		<div class="sul_wrap">
 			
@@ -626,9 +633,6 @@ body {
 				<div class="table_wrap">
 					<table id="info_table" width="510px" height="auto">
 						<tr>
-						
-			
-
 							<td colspan="2">${FoodsDTO.foods_name}</td>
 						</tr>
 						<tr>

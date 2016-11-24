@@ -26,3 +26,5 @@ update fb_review set review_content = '12345' where review_no = 99 and member_no
 select * from fb_basket
 member_no, foods_no, amount
 insert into fb_basket values (1, 1, 1)
+
+select * from fb_foods where foods_no= 1 order by foods_no desc

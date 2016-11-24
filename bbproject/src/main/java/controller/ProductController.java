@@ -236,13 +236,9 @@ public class ProductController {
 	
 	
 	
-	
 	@RequestMapping(value="/basketInsert.do", method = RequestMethod.POST)
 	public ModelAndView basketInsertProcess(FoodsDTO fdto, MemberDTO mdto, String amount, fb_BasketDTO bdto){
 		ModelAndView mav = new ModelAndView();
-		System.out.println(bdto.getAmount());
-		System.out.println("푸드넘"+fdto.getFoods_no());
-		System.out.println("어마운트:"+amount);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", fdto.getFoods_no());
@@ -251,10 +247,9 @@ public class ProductController {
 		map.put("amount", bdto.getAmount());
 		
 		service.basketInsertProcess(map);
-		//d
 		
 		return mav;
-	}
+	}//end basketinsert/////////////////////////
 	
 
 }

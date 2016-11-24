@@ -71,6 +71,11 @@ public class ShopSercviceImp implements ShopService{
 		dao.basketInsertList(map);
 	}
 
+	@Override
+	public List<FoodsDTO> buyListProcess(int foods_no) {
+		return dao.buyList(foods_no);
+	}
+
 
 	
 }//end class

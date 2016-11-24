@@ -35,6 +35,10 @@
 		f.foods_no = #{foods_no}
 		order by r.review_no desc
 	</select>
+	
+	<select id="buy_list" parameterType="int" resultType="dto.FoodsDTO">
+		select * from fb_foods where foods_no= #{foods_no} order by foods_no
+	</select>
 
 	<select id="count" resultType="int" parameterType="dto.FoodsDTO">
 		select
