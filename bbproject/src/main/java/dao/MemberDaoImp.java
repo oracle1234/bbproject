@@ -36,4 +36,18 @@ public class MemberDaoImp implements MemberDAO {
 		return sqlSession.selectOne("member.login", map);
 	}
 
+	@Override
+	public void pwfindMethod(MemberDTO dto) {
+		sqlSession.selectList("member.pwfind", dto);
+		
+	}
+
+	@Override
+	public MemberDTO idfindMethod(String member_name, String mail) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("member_name", member_name);
+		map.put("mail", mail);
+		return sqlSession.selectOne("member.idfind", map);
+	}
+
 }

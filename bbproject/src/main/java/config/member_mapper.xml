@@ -22,6 +22,18 @@
 		from fb_member
 		where id = #{id} and pw = #{pw}
 	</select>
+	
+	<select id="idfind" resultType="String" parameterType="String">
+	select id
+	from fb_member
+	where member_name=#{member_name} and pw=#{pw}
+	</select>
+	
+	<select id="pwfind" resultType="int" parameterType="String">
+	select count(*)
+	from fb_member
+	where id = #{id} and member_name=#{member_name} and mail=#{mail}
+	</select>
 
 	
 	<resultMap type="dto.MemberDTO" id="member">

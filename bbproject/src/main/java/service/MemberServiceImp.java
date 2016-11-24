@@ -30,5 +30,15 @@ public class MemberServiceImp implements MemberService{
 		return dao.loginChk(id, pw);
 	}
 
+	@Override
+	public void pwfindProcess(MemberDTO mdto) {
+		dao.pwfindMethod(mdto);
+	}
+
+	@Override
+	public MemberDTO idfindProcess(String member_name, String mail) {
+		return dao.idfindMethod(member_name, mail);
+	}
+
 
 }

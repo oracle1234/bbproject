@@ -5,8 +5,4 @@
 
 <div class="success">
 <p>가입을 축하합니다.</p>
-
-<c:out value="${i }"></c:out> 
- 
-
 </div>
