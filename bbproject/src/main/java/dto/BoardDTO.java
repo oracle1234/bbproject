@@ -3,10 +3,27 @@ package dto;
 import java.util.Date;
 
 public class BoardDTO {
-	private int board_no, board_readcount;
+	private int board_no, board_readcount, member_no, boardcategory_no;
 	private String board_writer, board_subject, board_content;
 	private Date board_reg_date;
 
+	public int getBoardcategory_no() {
+		return boardcategory_no;
+	}
+	
+	public void setBoardcategory_no(int boardcategory_no) {
+		this.boardcategory_no = boardcategory_no;
+	}
+	
+	
+	public int getMember_no() {
+		return member_no;
+	}
+	
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
+	}
+	
 	public int getBoard_no() {
 		return board_no;
 	}

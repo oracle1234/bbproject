@@ -107,13 +107,17 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 		// 조리 사진 삭제
 		for (int i = 0; i < temp.getList().size(); i++) {
 			String filename = temp.getList().get(i).getOrder_pic();
-			File fe = new File(saveDirectory, filename);
-			fe.delete();
+			if (filename != null) {
+				File fe = new File(saveDirectory, filename);
+				fe.delete();
+			}
 		}
 		//완성 사진삭제
 		for (String filename : temp.getComplete_pic()) {
-			File fe = new File(saveDirectory, filename);
-			fe.delete();
+			if (filename != null) {
+				File fe = new File(saveDirectory, filename);
+				fe.delete();
+			}
 		}
 		return dao.deleteRecipe(temp);
 	}

@@ -122,33 +122,40 @@
 	<definition name="adminrecipelist" extends="adminrecipe">
 		<put-attribute name="body" value="/WEB-INF/view/admin/recipe_list.jsp" />
 	</definition>
+	
+	<definition name="adminfoods" extends="admin">
+		<put-attribute name="title" value="음식 관리자 페이지" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_admin.jsp" />
+	</definition>
+	
+	<definition name="adminfoodsins" extends="adminfoods">
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_insert.jsp" />
+	</definition>
+	
+	<definition name="adminfoodslist" extends="adminfoods">
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_list.jsp" />
+	</definition>
 	<!-- 관리자 페이지 -->
 	
 	<definition name="my_order" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
-		<put-attribute name="menu"
-			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage/my_order.jsp" />
-		<put-attribute name="img"
-			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 
 	<definition name="my_cart" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
-		<put-attribute name="menu"
-			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage/my_cart.jsp" />
-		<put-attribute name="img"
-			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 
 	<definition name="my_coupon" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
-		<put-attribute name="menu"
-			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage/my_coupon.jsp" />
-		<put-attribute name="img"
-			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 
 	<definition name="my_board" extends="index">
@@ -190,6 +197,34 @@
 		<put-attribute name="title" value="buy_page" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buyPage.jsp" />
+	</definition>
+	
+	<definition name="agree" extends="index">
+		<put-attribute name="title" value="join_agree" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/join/agree.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+	
+	<definition name="join" extends="index">
+		<put-attribute name="title" value="join_join" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/join/join.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+	
+	<definition name="joinsucc" extends="index">
+		<put-attribute name="title" value="join_succ" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/join/joinsucc.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+	
+	<definition name="idpwfind" extends="index">
+		<put-attribute name="title" value="idpwfind" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/join/idpwfind.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 	
 

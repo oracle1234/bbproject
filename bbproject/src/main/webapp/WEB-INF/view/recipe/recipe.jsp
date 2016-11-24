@@ -1,8 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" href="css/recipe.css" />
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="js/recipe.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var theme_no = "${theme_no}";

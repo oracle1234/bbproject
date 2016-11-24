@@ -22,10 +22,15 @@
 <link rel="stylesheet" type="text/css" href="css/my_cart.css" />
 <link rel="stylesheet" type="text/css" href="css/my_coupon.css" />
 <link rel="stylesheet" type="text/css" href="css/my_board.css" />
+<link rel="stylesheet" type="text/css" href="css/agree.css" />
+<link rel="stylesheet" type="text/css" href="css/join.css" />
 
+<link rel="stylesheet" type="text/css" href="css/recipe.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css"
+	media="all" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-</head>
+<script src="js/jquery.bxslider.js"></script>
+<script src="js/recipe.js"></script>
 
 </head>
 

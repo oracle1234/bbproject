@@ -26,10 +26,11 @@
 			<result column="review_date" property="review_date" />
 		</collection>
 	</resultMap>
-	
+
 
 	<select id="shop_list" parameterType="int" resultMap="food_rev_result">
-		select r.*, f.* from
+		select r.*,
+		f.* from
 		fb_review r, fb_foods f
 		where f.foods_no = r.foods_no(+) and
 		f.foods_no = #{foods_no}
@@ -63,7 +64,6 @@
 		]]>
 	</select>
 	
-	
 	<select id="reviewCount" parameterType="dto.FoodsDTO" resultType="int">
 		select count(*) from fb_review where foods_no = #{foods_no}
 	</select>
@@ -84,6 +84,29 @@
 	</insert>
 	
 	
+	<insert id="insert">
+		insert into fb_foods
+		values(SEQ_foods_no.nextval, #{foods_name}, #{price}, #{weight}, #{way}, #{shelfLife},
+		#{foods_explaination}, #{foods_material}, #{picture}, 1, 0)
+	</insert>
+
+	<delete id="del">
+		delete from fb_foods where foods_no = #{id}
+	</delete>
+
+	<select id="adminlist" parameterType="int" resultType="dto.FoodsDTO">
+		select *
+		from fb_foods
+		<if test="value > 0">
+			where category_no = #{value}
+		</if>
+	</select>
+	
+	<select id="food" parameterType="int" resultType="dto.FoodsDTO">
+		select *
+		from fb_foods
+		where foods_no = #{foods_no}
+	</select>
 </mapper>
 
 
