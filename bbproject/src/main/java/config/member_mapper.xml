@@ -23,18 +23,31 @@
 		where id = #{id} and pw = #{pw}
 	</select>
 	
-	<select id="idfind" resultType="String" parameterType="String">
+	<select id="idfind" resultType="dto.MemberDTO" parameterType="hashmap">
 	select id
 	from fb_member
-	where member_name=#{member_name} and pw=#{pw}
+	where member_name=#{member_name} and mail=#{mail}
 	</select>
 	
-	<select id="pwfind" resultType="int" parameterType="String">
-	select count(*)
+	<select id="pwfind" resultType="dto.MemberDTO" parameterType="hashmap">
+	select pw
 	from fb_member
-	where id = #{id} and member_name=#{member_name} and mail=#{mail}
+	where id=#{id} and member_name=#{member_name} and mail=#{mail}
 	</select>
-
+	
+	<update id="pwupd" parameterType="hashmap">
+	update fb_member
+	set
+	pw=#{pw}
+	where id=#{id} and member_name=#{member_name} and mail=#{mail}
+	</update>
+	
+	<delete id="leave">
+	delete 
+	from
+	where id=#{id} and pw=#{pw}
+	</delete>
+	
 	
 	<resultMap type="dto.MemberDTO" id="member">
 		<result column="member_no" property="member_no"/>

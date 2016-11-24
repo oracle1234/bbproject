@@ -31,14 +31,29 @@ public class MemberServiceImp implements MemberService{
 	}
 
 	@Override
-	public void pwfindProcess(MemberDTO mdto) {
-		dao.pwfindMethod(mdto);
-	}
-
-	@Override
 	public MemberDTO idfindProcess(String member_name, String mail) {
 		return dao.idfindMethod(member_name, mail);
 	}
+
+	@Override
+	public MemberDTO pwfindProcess(String id, String member_name, String mail) {
+		return dao.pwfindMethod(id, member_name, mail);
+	}
+
+	@Override
+	public MemberDTO pwupdProcess(String id, String member_name, String mail, String pw) {
+		return dao.pwupdMethod(id, member_name, mail, pw);
+	}
+
+/*	@Override
+	public MemberDTO mypwcheckProcess(String pw) {
+		return dao.pwcheckMethod(pw);
+	}
+
+	@Override
+	public MemberDTO leaveProcess(String pw) {
+		return dao.leaveMethod(pw);
+	}*/
 
 
 }

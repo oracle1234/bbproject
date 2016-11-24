@@ -37,12 +37,6 @@ public class MemberDaoImp implements MemberDAO {
 	}
 
 	@Override
-	public void pwfindMethod(MemberDTO dto) {
-		sqlSession.selectList("member.pwfind", dto);
-		
-	}
-
-	@Override
 	public MemberDTO idfindMethod(String member_name, String mail) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("member_name", member_name);
@@ -50,4 +44,33 @@ public class MemberDaoImp implements MemberDAO {
 		return sqlSession.selectOne("member.idfind", map);
 	}
 
+	@Override
+	public MemberDTO pwfindMethod(String id, String member_name, String mail) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("member_name", member_name);
+		map.put("mail", mail);
+		return sqlSession.selectOne("member.pwfind", map);
+	}
+
+	@Override
+	public MemberDTO pwupdMethod(String id, String member_name, String mail, String pw) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("member_name", member_name);
+		map.put("mail", mail);
+		map.put("pw", pw);
+		return sqlSession.selectOne("member.pwupd", map);
+	}
+
+/*	@Override
+	public MemberDTO pwcheckMethod(String pw) {
+		return sqlSession.selectOne("member.pwck", pw);
+	}*/
+
+/*	@Override
+	public MemberDTO leaveMethod(String pw) {
+		return sqlSession.delete("member.leave", pw);
+	}
+*/
 }

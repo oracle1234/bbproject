@@ -15,7 +15,20 @@ insert into fb_member values
 insert into fb_member values 
 (1, '관리자', 'admin', 'admin', '종각', 
 01044444444, 'admin', 0, 0);
-
+	
+	select id
+	from fb_member
+	where member_name='유재민' and mail='jaemin@paran.com,'
+	
+		select pw
+	from fb_member
+	where id='jaemin' and member_name='유재민' and mail='jaemin@paran.com,'
+	
+	
+		update fb_member
+	set
+	pw='jamin123'
+	where id='jaemin' and member_name='유재민' and mail='jaemin@paran.com,'
 delete 
 from fb_member
 where member_no=4

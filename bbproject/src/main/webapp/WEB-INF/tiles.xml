@@ -160,13 +160,23 @@
 
 	<definition name="my_board" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
-		<put-attribute name="menu"
-			value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/mypage/my_board.jsp" />
-		<put-attribute name="img"
-			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
-		<put-attribute name="img"
-			value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+	
+	<definition name="my_update" extends="index">
+		<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/mypage/my_update.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+	
+	<definition name="my_leave" extends="index">
+		<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/mypage/my_leave.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 	
 	<definition name="shop_soup" extends="index">
