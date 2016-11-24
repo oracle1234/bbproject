@@ -20,6 +20,7 @@ public class adminController {
 	private ShopService foodsservice;
 
 	public adminController() {
+		
 	}
 
 	public void setRecipeservice(ThemeRecipeService recipeservice) {
