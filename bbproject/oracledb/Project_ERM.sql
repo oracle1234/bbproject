@@ -20,8 +20,11 @@ DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
 DROP TABLE fb_boardcategory CASCADE CONSTRAINTS;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git
 /* Drop Sequences */
 DROP SEQUENCE SEQ_coupon_no;
 DROP SEQUENCE SEQ_couponbook_no;
@@ -38,8 +41,7 @@ DROP SEQUENCE SEQ_theme_no;
 DROP SEQUENCE SEQ_order_no;
 DROP SEQUENCE SEQ_complete_no;
 DROP SEQUENCE SEQ_review_no;
-
-
+DROP SEQUENCE SEQ_boardcategory_no;
 
 /* Create Sequences */
 CREATE SEQUENCE SEQ_coupon_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -57,8 +59,12 @@ CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+<<<<<<< HEAD
 
 
+=======
+CREATE SEQUENCE SEQ_boardcategory_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git
 
 /* Create Tables */
 
@@ -69,7 +75,6 @@ CREATE TABLE fb_lately_product
 	lately_no number NOT NULL
 );
 
-
 CREATE TABLE fb_coupon
 (
 	coupon_no number NOT NULL,
@@ -79,7 +84,6 @@ CREATE TABLE fb_coupon
 );
 
 
------ 나연 수정--
 CREATE TABLE fb_coupon_book
 (
 	couponbook_no number NOT NULL,
@@ -196,7 +200,6 @@ CREATE TABLE fb_comment
 	PRIMARY KEY (comment_no)
 );
 
-------------------------------------------------나연 추가
 
 create table fb_boardcategory
 (
@@ -248,7 +251,11 @@ CREATE TABLE fb_board
 	board_subject varchar2(200) NOT NULL,
 	PRIMARY KEY (board_no)
 );
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git
 
 CREATE TABLE fb_theme_recipe
 (
@@ -286,8 +293,8 @@ CREATE TABLE fb_tr_order
 
 CREATE TABLE fb_tr_complete
 (
-	complete_no number NOT NULL,
 	recipe_no number NOT NULL,
+<<<<<<< HEAD
 	complete_pic varchar2(50),
 
 
@@ -343,6 +350,9 @@ CREATE TABLE fb_tr_complete
 	recipe_no number NOT NULL,
 	complete_pic varchar2(500),
 	PRIMARY KEY (complete_no)
+=======
+	complete_pic varchar2(50)
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git
 );
 
 
