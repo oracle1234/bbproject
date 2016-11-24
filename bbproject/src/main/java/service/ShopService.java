@@ -18,4 +18,6 @@ public interface ShopService {
 
 
 	public String insertFoodsProcess(FoodsDTO dto, HttpServletRequest req);
+	public List<FoodsDTO> deletFoodsProcess(int foods_no, HttpServletRequest req);
+	public List<FoodsDTO> adminFoodsListProcess(int category_no);
 }

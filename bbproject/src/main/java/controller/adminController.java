@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dto.FoodsDTO;
 import dto.ThemeRecipeDTO;
-import dto.ThemeRecipeOderDTO;
 import service.ShopService;
 import service.ThemeRecipeService;
 
@@ -83,11 +82,11 @@ public class adminController {
 	}
 
 	@RequestMapping("/adminfoodslist.do")
-	public ModelAndView foodsPage(int theme_no) {
+	public ModelAndView foodsPage(int category_no) {
 		ModelAndView mav = new ModelAndView();
-//		List<ThemeRecipeDTO> list = foodsservice.selectListProcess(theme_no);
-//		mav.addObject("aList", list);
-//		mav.setViewName("adminfoodslist");
+		List<FoodsDTO> aList = foodsservice.adminFoodsListProcess(category_no);
+		mav.addObject("aList", aList);
+		mav.setViewName("adminfoodslist");
 		return mav;
 	}
 
@@ -99,6 +98,17 @@ public class adminController {
 	@RequestMapping(value = "/adminfoodsins.do", method = RequestMethod.POST)
 	public String foodsSavePage(FoodsDTO dto, HttpServletRequest req) {
 		return foodsservice.insertFoodsProcess(dto, req);
+	}
+	
+	@RequestMapping("/adminfoodsdel.do")
+	public ModelAndView foodsDelPage(FoodsDTO dto, HttpServletRequest req){
+		ModelAndView mav = new ModelAndView();
+		
+		List<FoodsDTO> aList = foodsservice.deletFoodsProcess(dto.getFoods_no(), req);
+		mav.addObject("aList", aList);
+		mav.setViewName("adminfoodslist");
+		
+		return mav;
 	}
 
 	@RequestMapping("/test.do")

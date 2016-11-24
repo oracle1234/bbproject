@@ -195,7 +195,7 @@
 	<!-- interceptor -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin.do" />
+			<mvc:mapping path="/admin**" />
 			<!-- 제외 시킬거 -->
 			<!-- spring 3.2 버전 -->
 			<!-- <mvc:exclude-mapping path="/image.do" /> -->

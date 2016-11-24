@@ -58,5 +58,21 @@ public class ShopDaoImp implements ShopDAO {
 		return "adminfoods"; 
 	}
 
+	@Override
+	public List<FoodsDTO> deletFoodsProcess(FoodsDTO dto) {
+		sqlSession.delete("shop.del", dto.getFoods_no());
+		return sqlSession.selectList("shop.adminlist", 0);
+	}
+
+	@Override
+	public List<FoodsDTO> adminFoodsListProcess(int category_no) {
+		return sqlSession.selectList("shop.adminlist", category_no);
+	}
+
+	@Override
+	public FoodsDTO getFoodProcess(int foods_no) {
+		return sqlSession.selectOne("shop.food", foods_no);
+	}
+
 
 }

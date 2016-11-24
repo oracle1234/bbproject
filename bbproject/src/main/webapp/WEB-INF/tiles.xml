@@ -132,9 +132,9 @@
 		<put-attribute name="body" value="/WEB-INF/view/admin/foods_insert.jsp" />
 	</definition>
 	
-<!-- 	<definition name="adminfoodslist" extends="adminfoods"> -->
-<!-- 		<put-attribute name="body" value="/WEB-INF/view/admin/foods_list.jsp" /> -->
-<!-- 	</definition> -->
+	<definition name="adminfoodslist" extends="adminfoods">
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_list.jsp" />
+	</definition>
 	<!-- 관리자 페이지 -->
 	
 	<definition name="my_order" extends="index">

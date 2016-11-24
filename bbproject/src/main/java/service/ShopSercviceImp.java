@@ -90,4 +90,25 @@ public class ShopSercviceImp implements ShopService {
 		return dao.insertFoods(dto);
 	}
 
+	@Override
+	public List<FoodsDTO> deletFoodsProcess(int foods_no, HttpServletRequest req) {
+		String root = req.getSession().getServletContext().getRealPath("/");
+		String saveDirectory = root + "temp" + File.separator;
+
+		FoodsDTO dto = dao.getFoodProcess(foods_no);
+
+		String filename = dto.getPicture();
+		if (filename != null) {
+			File fe = new File(saveDirectory, filename);
+			fe.delete();
+		}
+
+		return dao.deletFoodsProcess(dto);
+	}
+
+	@Override
+	public List<FoodsDTO> adminFoodsListProcess(int category_no) {
+		return dao.adminFoodsListProcess(category_no);
+	}
+
 }
