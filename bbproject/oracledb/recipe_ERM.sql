@@ -140,3 +140,53 @@ select *
 		select count(*)
 		from fb_member
 		where id='sdf'
+		
+		
+		
+		
+		
+		
+		
+		
+/* 최근본상품 */
+DROP TABLE fb_lately_product CASCADE CONSTRAINTS;
+DROP SEQUENCE SEQ_lately_no;
+
+CREATE SEQUENCE SEQ_lately_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+
+CREATE TABLE fb_lately_product
+(
+	lately_no number NOT NULL,
+	member_no number NOT NULL,
+	foods_no number NOT NULL,
+	PRIMARY KEY (lately_no)
+);
+
+ALTER TABLE fb_lately_product
+	ADD CONSTRAINT fk_lately_foods_no FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no) on delete cascade
+;
+
+
+ALTER TABLE fb_lately_product
+	ADD CONSTRAINT fk_lately_member_no FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no) on delete cascade
+;
+
+insert into fb_lately_product values(SEQ_lately_no.nextval, 4, 5);
+insert into fb_lately_product values(SEQ_lately_no.nextval, 4, 6);
+insert into fb_lately_product values(SEQ_lately_no.nextval, 4, 7);
+
+insert into fb_lately_product values(SEQ_lately_no.nextval, 1, 3);
+
+select * from fb_foods;
+
+delete from fb_lately_product;
+SELECT * from fb_lately_product;
+
+select * 
+from fb_lately_product a, fb_member b, fb_foods c
+where a.member_no = b.member_no and a.foods_no = c.foods_no
+and a.member_no = 4
+order by a.lately_no desc;
+		

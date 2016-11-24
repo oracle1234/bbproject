@@ -1,6 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.LatelyDTO;
 import dto.MemberDTO;
 import service.MemberService;
 
@@ -47,12 +50,16 @@ public class LoginController {
 				map.put("href", "admin.do");
 			} else {
 				map.put("href", "mypage.do");
+				
 			}
 		}
 
-		// mav.setViewName("admin");
-		// mav.setViewName("mypage");
 		return map;
 	}
-
+	
+	@RequestMapping(value="/lately.do", method = RequestMethod.POST)
+	public @ResponseBody List<LatelyDTO> latelyList(int member_no){
+		return memberservice.latelyProcess(member_no);
+	}
+	
 }

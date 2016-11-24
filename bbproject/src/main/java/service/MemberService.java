@@ -1,5 +1,8 @@
 package service;
 
+import java.util.List;
+
+import dto.LatelyDTO;
 import dto.MemberDTO;
 
 public interface MemberService {
@@ -9,4 +12,5 @@ public interface MemberService {
 	public MemberDTO loginChkProcess(String id, String pw);
 	public void pwfindProcess(MemberDTO dto);
 	public MemberDTO idfindProcess(String member_name, String mail);
+	public List<LatelyDTO> latelyProcess(int member_no);
 }

@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import dto.LatelyDTO;
 import dto.MemberDTO;
 
 
 public class MemberDaoImp implements MemberDAO {
+	
 	private SqlSessionTemplate sqlSession;
 	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
@@ -48,6 +50,16 @@ public class MemberDaoImp implements MemberDAO {
 		map.put("member_name", member_name);
 		map.put("mail", mail);
 		return sqlSession.selectOne("member.idfind", map);
+	}
+
+	@Override
+	public List<LatelyDTO> latelyMethod(int member_no) {
+		return sqlSession.selectList("member.lately", member_no);
+	}
+
+	@Override
+	public void deleteLately(int lately_no) {
+		sqlSession.delete("member.dellately", lately_no);
 	}
 
 }
