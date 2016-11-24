@@ -44,6 +44,8 @@
 		<result column="address" property="address"/>
 		<result column="tel" property="tel"/>
 		<result column="mail" property="mail"/>
+		<result column="point" property="point"/>
+		<result column="stamp" property="stamp"/>
 		
 		<collection property="cList" javaType="list" ofType="dto.fb_CouponDTO">
 			<result column="couponbook_no" property="couponbook_no"/>

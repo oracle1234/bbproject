@@ -102,7 +102,6 @@ caption {
 #savemoney_wrap {
 	width: 650px;
 	height: 150px;
-	background-color: navy;
 	float: left;
 }
 
@@ -116,6 +115,10 @@ caption {
 #savemoney_table th {
 	width: 100px;
 	height: 30px;
+}
+
+#savemoney_table td {
+	text-align: left;
 }
 
 #coupon_select {
@@ -261,6 +264,84 @@ caption {
 	height: 45px;
 }
 </style>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script type="text/javascript">
+	
+$(document).ready(function() {
+	var money = $('#order_table tr:nth-child(2) td:nth-child(5)').text();
+	var totalMoney = parseInt(money.substring(0, money.length-1));
+	
+	
+	var totalcount = 0;
+	totalcount = totalcount + ${amount};
+	var totalsavemoney = 0;
+	var saveMoney = parseInt($('#order_table tr:nth-child(2) td:nth-child(4)').text());
+	totalsavemoney = totalsavemoney + saveMoney;
+	
+	$('#smalltotal_table tr:nth-child(5) td').empty();
+	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
+	
+	$('#smalltotal_table tr:nth-child(4) td').empty();
+	$('#smalltotal_table tr:nth-child(4) td').append(totalsavemoney+'<span>원</span>');
+	
+	
+	$('#smalltotal_table tr:nth-child(1) td').empty();
+	$('#smalltotal_table tr:nth-child(1) td').append(totalcount+'<span>개</span>');
+	
+	var discount = 0;
+	$('#coupon_select').on('change', function(){
+		var tm = 0;
+		discount = parseInt($(this).val());
+		
+		tm = totalMoney - discount - useSavemoney; 
+		$('#smalltotal_table tr:nth-child(2) td').empty();
+		$('#smalltotal_table tr:nth-child(2) td').append(discount+'<span>원</span>');
+		$('#smalltotal_table tr:nth-child(5) td').empty();
+		$('#smalltotal_table tr:nth-child(5) td').append(tm+'<span>원</span>')
+	});
+	
+	var useSavemoney = "";
+	$('#savemoney_table tr:nth-child(1) td input').on('change', function(){
+		
+		useSavemoney = $('#savemoney_table tr:nth-child(1) td input').val();
+		var saveMoney = ${MemberDTO.point};
+		var last = parseInt(useSavemoney.substring(useSavemoney.length-1));
+		
+		alert(useSavemoney);
+		var sm = totalMoney - useSavemoney - discount;
+		
+		if(useSavemoney > saveMoney){
+			alert('보유한 적립금보다 많이 사용할 수 없습니다.');
+			$('#savemoney_table tr:nth-child(1) td input').val("0");
+			return false;
+		}
+		
+		if(isNaN(useSavemoney)==true){
+			alert('숫자만 입력하세요.')
+			$('#savemoney_table tr:nth-child(1) td input').val("0");
+			return false;
+		}
+		
+		if(last != 0){
+			alert('1의 자리는 0만 가능합니다.');
+			$('#savemoney_table tr:nth-child(1) td input').val("0");
+			return false;
+		}
+		
+		$('#smalltotal_table tr:nth-child(3) td').empty();
+		$('#smalltotal_table tr:nth-child(3) td').append(useSavemoney+'<span>원</span>');
+		$('#smalltotal_table tr:nth-child(5) td').empty();
+		$('#smalltotal_table tr:nth-child(5) td').append(sm+'<span>원</span>')
+	});
+	
+	
+	
+});
+	
+</script>
 </head>
 <body>
 	<div id="buypage_wrap">
@@ -296,10 +377,7 @@ caption {
 					파기합니다.<br>
 				</p>
 			</div>
-			<!-- <div id="terms_checkbox">
-				<input type="checkbox" id="terms_chk"> 개인정보 정보보호에 관한 법률에
-				동의합니다.
-			</div> -->
+	
 		</div>
 
 		<div id="order_wrap">
@@ -318,10 +396,10 @@ caption {
 						<c:forEach items="${FoodsDTO}" var="food">
 							<tr>
 								<td>${food.foods_name}</td>
-								<td>${food.price}</td>
-								<td>${amount}</td>
-								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * amount}" type="NUMBER"></fmt:formatNumber></td>
-								<td>${food.price * amount}</td>
+								<td>${food.price}<span>원</span></td>
+								<td>${amount}<span>개</span></td>
+								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
+								<td>${food.price * amount}<span>원</span></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -329,43 +407,51 @@ caption {
 				<div id="savemoney_wrap">
 					<p align="left">고객님 포인트를 사용하면 좀 더 절약하여 구매할 수 있습니다.</p>
 					<br>
-					<table id="savemoney_table" border="1" width="600px">
+					<table id="savemoney_table" border="1" width="600px"> 
 						<tr>
 							<th scope="row">적립금사용</th>
-							<td>100<span>원</span> (사용가능한 적립금 : 0<span>원</span>)
+							<td>
+							<input size="2" type = "text" id ="savemoneytext" value="0"><span>원</span> (사용가능한 적립금 : ${MemberDTO.point}<span>원</span>)
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">쿠폰적용</th>
 							<td><select id="coupon_select">
-									<option>사용하실 쿠폰을 선택하세요.</option>
-									<option>회원가입 축하이벤트쿠폰(~2016.12.24)</option>
+									<option selected>사용하실 쿠폰을 선택하세요.</option>
+									<c:forEach items="${member.cList}" var = "couponDTO">
+									<option value="${couponDTO.coupon_discount}">${couponDTO.coupon_name}</option>
+									</c:forEach>
 							</select></td>
 
 						</tr>
 					</table>
+					
+					
 				</div>
 				<div id="smalltotal_wrap">
-					<table id="smalltotal_table" border="1">
+					<table id="smalltotal_table" border="1" width="100%">
 						<tr>
 							<th scope="row">주문수량합계</th>
-							<td>z</td>
+							<td><span>개</span></td>
 						</tr>
 						<tr>
+						
 							<th scope="row">총 할인금액</th>
-							<td>z</td>
+							<td>0<span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">적립금사용</th>
-							<td>z</td>
+							<td><span>0원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">적립금</th>
-							<td>z</td>
+							<td><span>0원</span></td>
 						</tr>
 						<tr>
+						
+						
 							<th scope="row">총 결제금액</th>
-							<td>zzzzzzzzzzzzzzz</td>
+							<td><span>0원</span></td>
 						</tr>
 					</table>
 				</div>

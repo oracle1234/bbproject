@@ -2,6 +2,8 @@ package controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -113,14 +115,15 @@ public class ShopController {
 	
 	
 	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
-	public ModelAndView buyPage(FoodsDTO fdto, MemberDTO mdto, fb_CouponDTO cdto, int amount) {
+	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req,  int amount) {
 		ModelAndView mav = new ModelAndView( );
-		System.out.println(fdto.getFoods_no());
-		System.out.println(mdto.getMember_no());
-		System.out.println(cdto.getCoupon_no());
+		
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		
 		
 		mav.addObject("FoodsDTO", service.buyListProcess(fdto.getFoods_no()));
 		mav.addObject("amount", amount);
+		mav.addObject("MemberDTO", mdto);
 		mav.setViewName("shop_buy");
 		return mav;
 	}

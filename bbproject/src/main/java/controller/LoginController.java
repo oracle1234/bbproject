@@ -46,7 +46,7 @@ public class LoginController {
 			if (dto.getId().equals("admin")) {
 				map.put("href", "admin.do");
 			} else {
-				map.put("href", "mypage.do");
+				map.put("href", "shopDish.do");
 			}
 		}
 

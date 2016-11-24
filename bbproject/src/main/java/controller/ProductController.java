@@ -237,13 +237,12 @@ public class ProductController {
 	
 	
 	@RequestMapping(value="/basketInsert.do", method = RequestMethod.POST)
-	public ModelAndView basketInsertProcess(FoodsDTO fdto, MemberDTO mdto, String amount, fb_BasketDTO bdto){
+	public ModelAndView basketInsertProcess(fb_BasketDTO bdto){
 		ModelAndView mav = new ModelAndView();
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("foods_no", fdto.getFoods_no());
-		/*map.put("member_no", mdto.getMember_no());*/
-		map.put("member_no",1);
+		map.put("foods_no", bdto.getFoods_no());
+		map.put("member_no",bdto.getMember_no());
 		map.put("amount", bdto.getAmount());
 		
 		service.basketInsertProcess(map);
