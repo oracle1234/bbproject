@@ -251,7 +251,7 @@ public class ProductController {
 		map.put("amount", bdto.getAmount());
 		
 		service.basketInsertProcess(map);
-		
+		//d
 		
 		return mav;
 	}
