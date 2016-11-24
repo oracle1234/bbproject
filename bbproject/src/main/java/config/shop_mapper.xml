@@ -69,6 +69,9 @@
 		insert into fb_foods 
 		values(SEQ_foods_no.nextval, #{foods_name}, #{price}, #{weight}, #{way}, #{shelfLife}, #{foods_explaination}, #{foods_material}, #{picture}, 1, 0)
 	</insert>
-
+	
+	<delete id="del">
+		delete from fb_foods where foods_no = #{id}
+	</delete>
 </mapper>
 

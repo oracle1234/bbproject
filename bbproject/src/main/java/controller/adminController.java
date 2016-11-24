@@ -85,9 +85,9 @@ public class adminController {
 	@RequestMapping("/adminfoodslist.do")
 	public ModelAndView foodsPage(int theme_no) {
 		ModelAndView mav = new ModelAndView();
-		List<ThemeRecipeDTO> list = recipeservice.selectListProcess(theme_no);
-		mav.addObject("aList", list);
-		mav.setViewName("adminfoodslist");
+//		List<ThemeRecipeDTO> list = foodsservice.selectListProcess(theme_no);
+//		mav.addObject("aList", list);
+//		mav.setViewName("adminfoodslist");
 		return mav;
 	}
 
@@ -98,20 +98,6 @@ public class adminController {
 
 	@RequestMapping(value = "/adminfoodsins.do", method = RequestMethod.POST)
 	public String foodsSavePage(FoodsDTO dto, HttpServletRequest req) {
-		
-		System.out.println(dto.getCategory_no());
-		System.out.println(dto.getFoods_no());
-		System.out.println(dto.getFoods_name());
-		System.out.println(dto.getPrice());
-		System.out.println(dto.getWeight());
-		System.out.println(dto.getWay());
-		System.out.println(dto.getShelfLife());
-		System.out.println(dto.getFoods_explaination());
-		System.out.println(dto.getFoods_material());
-		System.out.println(dto.getFoods_file().getOriginalFilename());
-		
-		
-		
 		return foodsservice.insertFoodsProcess(dto, req);
 	}
 
