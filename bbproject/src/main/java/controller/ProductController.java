@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dto.FoodsDTO;
 import dto.MemberDTO;
 import dto.ReviewDTO;
+import dto.fb_BasketDTO;
 import dto.review_PageDTO;
 import service.ShopService;
 
@@ -234,6 +235,21 @@ public class ProductController {
 	}//end update/////////////////////////////////////
 	
 	
+	
+	@RequestMapping(value="/basketInsert.do", method = RequestMethod.POST)
+	public ModelAndView basketInsertProcess(FoodsDTO fdto, MemberDTO mdto, String amount, fb_BasketDTO bdto){
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("foods_no", fdto.getFoods_no());
+		/*map.put("member_no", mdto.getMember_no());*/
+		map.put("member_no",1);
+		map.put("amount", bdto.getAmount());
+		
+		service.basketInsertProcess(map);
+		
+		return mav;
+	}//end basketinsert/////////////////////////
 	
 
 }

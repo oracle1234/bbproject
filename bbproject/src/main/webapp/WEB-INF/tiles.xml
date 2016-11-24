@@ -122,6 +122,19 @@
 	<definition name="adminrecipelist" extends="adminrecipe">
 		<put-attribute name="body" value="/WEB-INF/view/admin/recipe_list.jsp" />
 	</definition>
+	
+	<definition name="adminfoods" extends="admin">
+		<put-attribute name="title" value="음식 관리자 페이지" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_admin.jsp" />
+	</definition>
+	
+	<definition name="adminfoodsins" extends="adminfoods">
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_insert.jsp" />
+	</definition>
+	
+	<definition name="adminfoodslist" extends="adminfoods">
+		<put-attribute name="body" value="/WEB-INF/view/admin/foods_list.jsp" />
+	</definition>
 	<!-- 관리자 페이지 -->
 	
 	<definition name="my_order" extends="index">
@@ -180,6 +193,12 @@
 		<put-attribute name="body" value="/WEB-INF/view/shop_detail/detail_product.jsp" />
 	</definition>
 	
+	<definition name="shop_buy" extends="index">
+		<put-attribute name="title" value="buy_page" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buyPage.jsp" />
+	</definition>
+	
 	<definition name="agree" extends="index">
 		<put-attribute name="title" value="join_agree" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
@@ -200,11 +219,12 @@
 		<put-attribute name="body" value="/WEB-INF/view/join/joinsucc.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
-
-	<definition name="shop_buy" extends="index">
-		<put-attribute name="title" value="buy_page" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buyPage.jsp" />
+	
+	<definition name="idpwfind" extends="index">
+		<put-attribute name="title" value="idpwfind" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/join/idpwfind.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 	
 </tiles-definitions>

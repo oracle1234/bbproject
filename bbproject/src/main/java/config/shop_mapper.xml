@@ -19,21 +19,26 @@
 		<result column="category_no" property="category_no" />
 		<result column="fb_delivery_no" property="fb_delivery_no" />
 		<collection property="rdto" javaType="java.util.List"
-ofType="dto.ReviewDTO">
+			ofType="dto.ReviewDTO">
 			<result column="review_no" property="review_no" />
 			<result column="review_writer" property="review_writer" />
 			<result column="review_content" property="review_content" />
 			<result column="review_date" property="review_date" />
 		</collection>
 	</resultMap>
-	
+
 
 	<select id="shop_list" parameterType="int" resultMap="food_rev_result">
-		select r.*, f.* from
+		select r.*,
+		f.* from
 		fb_review r, fb_foods f
 		where f.foods_no = r.foods_no(+) and
 		f.foods_no = #{foods_no}
 		order by r.review_no desc
+	</select>
+	
+	<select id="buy_list" parameterType="int" resultType="dto.FoodsDTO">
+		select * from fb_foods where foods_no= #{foods_no} order by foods_no
 	</select>
 
 	<select id="count" resultType="int" parameterType="dto.FoodsDTO">
@@ -59,7 +64,6 @@ ofType="dto.ReviewDTO">
 		]]>
 	</select>
 	
-	
 	<select id="reviewCount" parameterType="dto.FoodsDTO" resultType="int">
 		select count(*) from fb_review where foods_no = #{foods_no}
 	</select>
@@ -75,6 +79,34 @@ ofType="dto.ReviewDTO">
 		update fb_review set review_content = #{review_content} where review_no = #{review_no} and member_no = #{member_no}
 	</update>
 	
+	<insert id="basketInsert" parameterType="hashmap">
+		insert into fb_basket values (#{member_no}, #{foods_no}, #{amount}) 
+	</insert>
+	
+	
+	<insert id="insert">
+		insert into fb_foods
+		values(SEQ_foods_no.nextval, #{foods_name}, #{price}, #{weight}, #{way}, #{shelfLife},
+		#{foods_explaination}, #{foods_material}, #{picture}, 1, 0)
+	</insert>
+
+	<delete id="del">
+		delete from fb_foods where foods_no = #{id}
+	</delete>
+
+	<select id="adminlist" parameterType="int" resultType="dto.FoodsDTO">
+		select *
+		from fb_foods
+		<if test="value > 0">
+			where category_no = #{value}
+		</if>
+	</select>
+	
+	<select id="food" parameterType="int" resultType="dto.FoodsDTO">
+		select *
+		from fb_foods
+		where foods_no = #{foods_no}
+	</select>
 </mapper>
 
 

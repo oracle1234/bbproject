@@ -90,6 +90,18 @@ CREATE TABLE fb_coupon_book
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
 	coupon_state varchar2(10) not null,
+<<<<<<< HEAD
+=======
+	PRIMARY KEY (couponbook_no)
+	);
+=======
+CREATE TABLE fb_coupon_book
+(
+	couponbook_no number NOT NULL,
+	member_no number NOT NULL,
+	coupon_no number NOT NULL,
+>>>>>>> refs/remotes/origin/yeonsung
+>>>>>>> refs/remotes/origin/joohoon2
 	PRIMARY KEY (couponbook_no)
 );
 

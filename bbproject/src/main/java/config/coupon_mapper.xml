@@ -5,9 +5,10 @@
 <mapper namespace="coupon">
 
 	<select id="list" resultType="dto.fb_CouponDTO" parameterType="int">
-			select c.coupon_name, c.coupon_discount, b.coupon_state
+		select c.coupon_name, c.coupon_discount, b.coupon_state
 		from fb_coupon c, fb_coupon_book b
 		where member_no=#{member_no}
 		and c.coupon_no = b.coupon_no
 	</select>
+	
 </mapper>

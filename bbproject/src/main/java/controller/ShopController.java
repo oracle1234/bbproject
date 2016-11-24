@@ -4,9 +4,12 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.FoodsDTO;
+import dto.MemberDTO;
+import dto.fb_CouponDTO;
 import dto.shop_PageDTO;
 import service.ShopService;
 
@@ -108,10 +111,16 @@ public class ShopController {
 		return mav;
 	}// end kimchiPage()
 	
-	@RequestMapping("/shop_buy.do")
-	public ModelAndView buyPage() {
-		ModelAndView mav = new ModelAndView();
-
+	
+	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
+	public ModelAndView buyPage(FoodsDTO fdto, MemberDTO mdto, fb_CouponDTO cdto, int amount) {
+		ModelAndView mav = new ModelAndView( );
+		System.out.println(fdto.getFoods_no());
+		System.out.println(mdto.getMember_no());
+		System.out.println(cdto.getCoupon_no());
+		
+		mav.addObject("FoodsDTO", service.buyListProcess(fdto.getFoods_no()));
+		mav.addObject("amount", amount);
 		mav.setViewName("shop_buy");
 		return mav;
 	}

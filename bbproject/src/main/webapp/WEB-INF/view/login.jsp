@@ -19,16 +19,12 @@
 			datatype : "json",
 			url : "loginpro.do",
 			data : "id="+$("#id").val()+"&pw="+$("#pw").val(),
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			success : function (data) {
 				if(data.chk == null){
-					alert(data.href);
 			        window.location.href = data.href;       
 				}else{
 					alert(data.chk);					
 				}
-				
-				
 				
 			},
 			error : function(xhr, textStatus, error) {

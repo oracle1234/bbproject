@@ -1,11 +1,13 @@
 package dao;
 
-import java.util.List;
+
 
 import dto.MemberDTO;
 
 public interface MemberDAO {
 	public void insertMethod(MemberDTO dto);
-	public List<MemberDTO> idcheck(String id);
+	public int idcheck(String id);
 	public MemberDTO loginChk(String id, String pw);
+	public void pwfindMethod(MemberDTO dto);
+	public MemberDTO idfindMethod(String member_name, String mail);
 }//end interface

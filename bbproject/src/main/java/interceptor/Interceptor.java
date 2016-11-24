@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import dto.MemberDTO;
+
 /*
  * preHandle - 컨트롤러에 들어가기전 접근
  * postHandle - 컨트롤러 접근 후 view 페이지 접근전
@@ -25,10 +27,17 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		String reqUrl = request.getRequestURI().toString();
 		reqUrl = reqUrl.substring(reqUrl.lastIndexOf("/") + 1);
 		HttpSession session = request.getSession();
-		if (session.getAttribute("member") == null) {
-			response.sendRedirect("login.do?reqUrl=" + reqUrl);
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("member");
+		
+		if (dto == null) {
+			response.sendRedirect("login.do");
 			return false;
 		} else {
+			if(!dto.getId().equals("admin")){
+				response.sendRedirect("mypage.do");
+				return false;
+			}
 			return super.preHandle(request, response, handler);
 		}
 	}

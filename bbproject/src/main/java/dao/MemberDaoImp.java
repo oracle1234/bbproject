@@ -21,11 +21,10 @@ public class MemberDaoImp implements MemberDAO {
 	@Override
 	public void insertMethod(MemberDTO dto) {
 		sqlSession.insert("member.ins", dto);
-		
 	}
 
 	@Override
-	public List<MemberDTO> idcheck(String id) {
+	public int idcheck(String id) {
 		return sqlSession.selectOne("member.ck", id);
 	}
 
@@ -34,7 +33,21 @@ public class MemberDaoImp implements MemberDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("pw", pw);
-		return sqlSession.selectOne("member.loginchk", map);
+		return sqlSession.selectOne("member.login", map);
+	}
+
+	@Override
+	public void pwfindMethod(MemberDTO dto) {
+		sqlSession.selectList("member.pwfind", dto);
+		
+	}
+
+	@Override
+	public MemberDTO idfindMethod(String member_name, String mail) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("member_name", member_name);
+		map.put("mail", mail);
+		return sqlSession.selectOne("member.idfind", map);
 	}
 
 }

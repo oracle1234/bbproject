@@ -183,23 +183,47 @@ body {
 	background-color: green;
 	text-align: center;
 }
+
+#dialog-confirm{
+	background-color: blue;
+}
 </style>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
-
-	var uno="";
 	
+
+   
+
+	
+	var uno="";
+	var savemoney="";
 	$(document).ready(function() {
-						
-						$('#modifyWindow').addClass('modifyHide');
-						
-						$(document).on("click",".review_udt_btn",function() {
-							uno = $(this).val();
-							$('#modifyWindow').addClass('modifyShow');
-							$('#modifyWindow').removeClass('modifyHide');
+		
+		 $( "#dialog-confirm" ).dialog({
+			  autoOpen:false, 
+		      resizable: false,
+		      height: "auto",
+		      width: 400,
+		      modal: true,
+		      buttons: {
+		        "예": function() {
+		        },
+		        "아니오": function() {
+		          $( this ).dialog( "close" );
+		        }
+		      }
+		    });
+		
+		
+		$('#modifyWindow').addClass('modifyHide');
+		$(document).on("click",".review_udt_btn",function() {
+			uno = $(this).val();
+			$('#modifyWindow').addClass('modifyShow');
+			$('#modifyWindow').removeClass('modifyHide');
 						});
 						
 						$('.btnClose').on('click', function() {
@@ -213,36 +237,22 @@ body {
 						
 						var price = parseInt($('#info_table tr:nth-child(3) td')
 								.text());
-						var savemoney = price * 0.01;
+						savemoney = price * 0.01;
 
 						$('#info_table tr:nth-child(8) td').empty();
-						$('#info_table tr:nth-child(8) td').append(
-								'<td>' + savemoney + '<span>원</span></td>');
+						$('#info_table tr:nth-child(8) td').append('<td>' + savemoney + '<span>원</span></td>');
 
-						$('#shop_upbutton')
-								.on(
-										'click',
-										function() {
-											var price = parseInt($(
-													'#info_table tr:nth-child(3) td')
-													.text());
-											var count = parseInt($('#counttext')
-													.val());
-											count += 1;
+						$('#shop_upbutton').on('click',function() {
+							var price = parseInt($('#info_table tr:nth-child(3) td').text());
+							var count = parseInt($('#counttext').val());
+							count += 1;
+							document.getElementById("counttext").value = count;
+							var total = price * count;
 
-											document
-													.getElementById("counttext").value = count;
-											var total = price * count;
+							$('#info_table tr:nth-child(9) td').empty();
+							$('#info_table tr:nth-child(9) td').append('<td>'+ total+ '<span>원</span></td>');
 
-											$('#info_table tr:nth-child(9) td')
-													.empty();
-											$('#info_table tr:nth-child(9) td')
-													.append(
-															'<td>'
-																	+ total
-																	+ '<span>원</span></td>');
-
-										});
+							});
 
 						$('#shop_downbutton')
 								.on(
@@ -268,13 +278,8 @@ body {
 																	+ '<span>원</span></td>');
 										});
 
-						$('#info_table tr:nth-child(7) td input')
-								.on(
-										"keyup",
-										function() {
-											var input = parseInt($(
-													'#info_table tr:nth-child(7) td input')
-													.val());
+						$('#info_table tr:nth-child(7) td input').on("keyup",function() {
+							var input = parseInt($('#info_table tr:nth-child(7) td input').val());
 
 											if (input >= 1) {
 												var total = price * input;
@@ -295,9 +300,7 @@ body {
 														.val("1");
 												return false;
 											}
-
 										});
-
 						$('#review_reg')
 								.on(
 										'click',
@@ -365,7 +368,21 @@ body {
 								},
 							});
 						});
-
+						//장바구니
+						$("#basket_insimg").on("click", function() {
+ 							
+							$('#foodform').attr('action','basketInsert.do');
+						   $("#foodform").submit();
+						   $("#dialog-confirm").dialog("open");
+						});
+						
+						
+						$("#buy_insimg").on("click", function() {
+							
+							$('#foodform').attr('action','shop_buy.do');
+						   $("#foodform").submit();
+						});
+						
 					});//end ready end
 
 	Handlebars.registerHelper("newDate", function(timeValue) {
@@ -591,21 +608,28 @@ body {
 	};
 	
 	
+		
+	
+	
 </script>
 
 </head>
 <body>
+
 	<div id="product_wrap">
+	
+	<form method="post" id="foodform">
+	
 		<div class="sul_wrap">
+			
 			<c:forEach items="${list}" var="FoodsDTO">
 				<div class="detail_img_wrap">
 					<div class="detail_img">
+						<input type="hidden" name="foods_no" value="${FoodsDTO.foods_no}" />
 						<img alt="상세이미지" src="./images/${FoodsDTO.picture}">
 					</div>
 
 				</div>
-				<!-- 상세이미지 -->
-
 				<div class="table_wrap">
 					<table id="info_table" width="510px" height="auto">
 						<tr>
@@ -632,8 +656,7 @@ body {
 						</tr>
 						<tr>
 							<th>수량</th>
-							<td><input type="text" id="counttext" size="2px"
-								width="10px" value="1" style="text-align: center"> <span><img
+							<td><input name="amount" type="text" id="counttext" size="2px" width="10px" value="1" style="text-align: center"> <span><img
 									alt="up" id="shop_upbutton" src="./images/upbutton.png"
 									width="11" height="10"></span> <span><img alt="down"
 									id="shop_downbutton" src="./images/downbutton.png" width="11"
@@ -650,11 +673,11 @@ body {
 						</tr>
 
 					</table>
-
 					<div class="deli_img">
-						<img alt="무료배송안내이미지" src="./images/baesong_info.png"> <img
-							src="./images/shop_buy.png" alt="바로구매이미지" src=""> <img
-							alt="장바구니이미지" src="./images/shop_basket.png">
+						<img alt="무료배송안내이미지" src="./images/baesong_info.png"> <input
+							type="image" id="buy_insimg" alt="바로구매이미지"
+							src="./images/shop_buy.png"> <input type="image"
+							id="basket_insimg" alt="장바구니이미지" src="./images/shop_basket.png">
 					</div>
 
 				</div>
@@ -671,9 +694,12 @@ body {
 							<td>${FoodsDTO.foods_explaination}</td>
 						</tr>
 					</table>
+					
 				</div>
 			</c:forEach>
 		</div>
+		
+		</form>
 		<!-- 상품 상세설명 end -->
 		<div class="packing_wrap">
 			<div id="product_packing">
@@ -750,7 +776,7 @@ body {
 							id="updateReviewText">
 					</p>
 					<p>
-						<button class="btnModify" value = "${ReviewDTO.review_no}">수정</button>
+						<button class="btnModify" value="${ReviewDTO.review_no}">수정</button>
 						<button class="btnClose">닫기</button>
 					</p>
 				</div>
@@ -758,7 +784,12 @@ body {
 			</div>
 
 		</div>
-
+		<div id="dialog-confirm" >
+			<p>
+			장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?
+			</p>
+		</div>
+	</div>
 	</div>
 
 </body>

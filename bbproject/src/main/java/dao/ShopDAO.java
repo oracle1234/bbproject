@@ -17,4 +17,11 @@ public interface ShopDAO {
 	public void reviewInsertList(HashMap<String, Object> map);
 	public void reviewDeleteList(HashMap<String, Object> deleteMap);
 	public void reviewUpdateList(HashMap<String, Object> updateMap);
+	public void basketInsertList(HashMap<String, Object> map);
+	public List<FoodsDTO> buyList(int foods_no);
+	
+	public String insertFoods(FoodsDTO dto);
+	public List<FoodsDTO> adminFoodsListProcess(int category_no);
+	public List<FoodsDTO> deletFoodsProcess(FoodsDTO dto);
+	public FoodsDTO getFoodProcess(int foods_no);
 }
