@@ -68,7 +68,7 @@ public class ShopSercviceImp implements ShopService{
 
 	@Override
 	public void basketInsertProcess(HashMap<String, Object> map) {
-		
+		dao.basketInsertList(map);
 	}
 
 

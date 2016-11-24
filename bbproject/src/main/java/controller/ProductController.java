@@ -244,14 +244,13 @@ public class ProductController {
 		System.out.println("푸드넘"+fdto.getFoods_no());
 		System.out.println("어마운트:"+amount);
 		
-		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", fdto.getFoods_no());
-		map.put("member_no","1");
-		map.put("amount", amount);
+		/*map.put("member_no", mdto.getMember_no());*/
+		map.put("member_no",1);
+		map.put("amount", bdto.getAmount());
 		
-		
-		
+		service.basketInsertProcess(map);
 		
 		
 		return mav;

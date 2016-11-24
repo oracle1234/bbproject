@@ -76,7 +76,7 @@
 	</update>
 	
 	<insert id="basketInsert" parameterType="hashmap">
-		insert into fb_basket values 
+		insert into fb_basket values (#{member_no}, #{foods_no}, #{amount}) 
 	</insert>
 	
 	

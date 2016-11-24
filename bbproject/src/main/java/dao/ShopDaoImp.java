@@ -70,7 +70,7 @@ public class ShopDaoImp implements ShopDAO {
 
 	@Override
 	public void basketInsertList(HashMap<String, Object> map) {
-		
+		sqlSession.insert("shop.basketInsert", map);
 	}
 
 

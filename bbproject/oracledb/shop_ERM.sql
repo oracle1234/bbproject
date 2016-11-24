@@ -23,5 +23,6 @@ update fb_review set review_content = '맛없어요' where review_no = 100 and m
 
 update fb_review set review_content = '12345' where review_no = 99 and member_no = 1
 
-
-insert into fb_basket values ()
+select * from fb_basket
+member_no, foods_no, amount
+insert into fb_basket values (1, 1, 1)

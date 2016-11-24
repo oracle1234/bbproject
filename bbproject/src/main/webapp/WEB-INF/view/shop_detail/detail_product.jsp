@@ -368,14 +368,12 @@ body {
 								},
 							});
 						});
-
-						
-						
+						//장바구니
 						$("#basket_insimg").on("click", function() {
  							
-							
-						$("#foodform").submit();
-						   $("#dialog-confirm").dialog("open"); //다이
+							$('#foodform').attr('action','basketInsert.do');
+						   $("#foodform").submit();
+						   $("#dialog-confirm").dialog("open");
 						});
 						
 					});//end ready end
@@ -620,6 +618,7 @@ body {
 			<c:forEach items="${list}" var="FoodsDTO">
 				<div class="detail_img_wrap">
 					<div class="detail_img">
+						<input type="hidden" name="foods_no" value="${FoodsDTO.foods_no}" />
 						<img alt="상세이미지" src="./images/${FoodsDTO.picture}">
 					</div>
 
@@ -627,7 +626,9 @@ body {
 				<div class="table_wrap">
 					<table id="info_table" width="510px" height="auto">
 						<tr>
+						
 			
+
 							<td colspan="2">${FoodsDTO.foods_name}</td>
 						</tr>
 						<tr>
