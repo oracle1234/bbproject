@@ -3,9 +3,32 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
+	<resultMap type="dto.BoardDTO" id="board">
+		<result column="member_no" property="member_no"/>
+		<result column="board_no" property="board_no"/>
+		<result column="board_readcount" property="board_readcount"/>
+		<result column="board_writer" property="board_writer"/>
+		<result column="board_content" property="board_content"/>
+		<result column="board_reg_date" property="board_reg_date"/>
+		<result column="board_subject" property="board_subject"/>
+		<collection property="bdto" javaType="java.util.List" ofType="dto.CommentDTO" >
+			<result column="comment_no" property="comment_no"/>
+			<result column="board_no" property="board_no"/>
+			<result column="photo_no" property="photo_no"/>
+			<result column="qa_no" property="qa_no"/>
+			<result column="comment_content" property="comment_content"/>
+			<result column="comment_writer" property="comment_writer"/>
+			<result column="comment_date" property="comment_date"/>
+		</collection>
+	</resultMap>
+	
 	<!-- [자유게시판] -->
 	<select id="count" resultType="int">
 		select count(*) from fb_board
+	</select>
+	
+	<select id="commentCount" parameterType="int" resultType="int">
+		select count(*) from fb_comment where board_no = #{board_no}
 	</select>
 
 	<select id="list" resultType="dto.BoardDTO" parameterType="dto.PageDTO">

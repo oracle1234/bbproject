@@ -20,8 +20,7 @@ DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
 DROP TABLE fb_boardcategory CASCADE CONSTRAINTS;
 
-select * from fb_board;
-delete from fb_board;
+
 
 /* Drop Sequences */
 DROP SEQUENCE SEQ_coupon_no;
@@ -42,7 +41,6 @@ DROP SEQUENCE SEQ_review_no;
 
 
 
-
 /* Create Sequences */
 CREATE SEQUENCE SEQ_coupon_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_couponbook_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -59,6 +57,7 @@ CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+
 
 
 /* Create Tables */
@@ -117,6 +116,7 @@ CREATE TABLE fb_request
 	foods_no number NOT NULL
 );
 
+
 CREATE TABLE fb_category
 (
 	category_no number NOT NULL,
@@ -124,12 +124,14 @@ CREATE TABLE fb_category
 	PRIMARY KEY (category_no)
 );
 
+
 CREATE TABLE fb_boardcategory
 (
 	boardcategory_no number NOT NULL,
 	boardcategory_name varchar2(50) NOT NULL,
 	PRIMARY KEY (boardcategory_no)
 );
+
 
 CREATE TABLE fb_basket
 (
@@ -188,9 +190,6 @@ CREATE TABLE fb_comment
 	board_no number NOT NULL,
 	photo_no number NOT NULL,
 	qa_no number NOT NULL,
-	comment_ref number NOT NULL,
-	comment_re_step number NOT NULL,
-	comment_re_level number NOT NULL,
 	comment_content varchar2(2000) NOT NULL,
 	comment_writer varchar2(50) NOT NULL,
 	comment_date date,
@@ -205,12 +204,7 @@ boardcategory_no number not null,
 boardcategory_name varchar2(20) not null,
 primary key (boardcategory_no)
 );
-insert into fb_boardcategory values
-(1, '자유게시판');
-insert into fb_boardcategory values
-(2, '포토후기');
-insert into fb_boardcategory values
-(3, '질문과 답변');
+
 
 CREATE TABLE fb_qa_board
 (
@@ -226,6 +220,7 @@ CREATE TABLE fb_qa_board
 	PRIMARY KEY (qa_no)
 );
 
+
 CREATE TABLE fb_photo_board
 (
 	boardcategory_no number not null,
@@ -240,7 +235,7 @@ CREATE TABLE fb_photo_board
 	PRIMARY KEY (photo_no)
 );
 
------ 나연 수정--
+
 CREATE TABLE fb_board
 (
 	boardcategory_no number not null,
@@ -254,9 +249,6 @@ CREATE TABLE fb_board
 	PRIMARY KEY (board_no)
 );
 
-<<<<<<< HEAD
-	
-=======
 
 CREATE TABLE fb_theme_recipe
 (
@@ -297,7 +289,7 @@ CREATE TABLE fb_tr_complete
 	complete_no number NOT NULL,
 	recipe_no number NOT NULL,
 	complete_pic varchar2(50),
-=======
+
 
 CREATE TABLE fb_board
 (
@@ -311,42 +303,6 @@ CREATE TABLE fb_board
 	PRIMARY KEY (board_no)
 );
 
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-
->>>>>>> refs/remotes/origin/min
 
 CREATE TABLE fb_theme_recipe
 (
@@ -489,7 +445,6 @@ ALTER TABLE fb_theme_recipe
 	ADD FOREIGN KEY (theme_no)
 	REFERENCES fb_theme (theme_no)
 ;
-
 
 ---------------------------------------------------나연 추가
 alter table fb_qa_board

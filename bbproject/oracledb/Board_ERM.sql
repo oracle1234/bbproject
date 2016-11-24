@@ -8,10 +8,10 @@ DROP TABLE fb_board CASCADE CONSTRAINTS;
 
 /* Drop Sequences */
 DROP SEQUENCE SEQ_member_no;
-DROP SEQUENCE SEQ_comment_no;
 DROP SEQUENCE SEQ_qa_no;
 DROP SEQUENCE SEQ_board_no;
 DROP SEQUENCE SEQ_photo_no;
+DROP SEQUENCE SEQ_comment_no;
 
 /* Create Sequences */
 CREATE SEQUENCE SEQ_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -20,7 +20,7 @@ CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
-select * from fb_board;
+
 /* Create Tables */
 CREATE TABLE fb_member
 (
@@ -42,14 +42,17 @@ CREATE TABLE fb_comment
 	board_no number NOT NULL,
 	photo_no number NOT NULL,
 	qa_no number NOT NULL,
-	comment_ref number NOT NULL,
-	comment_re_step number NOT NULL,
-	comment_re_level number NOT NULL,
 	comment_content varchar2(2000) NOT NULL,
 	comment_writer varchar2(50) NOT NULL,
 	comment_date date,
 	PRIMARY KEY (comment_no)
 );
+
+insert into FB_COMMENT values (1, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+insert into FB_COMMENT values (2, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+insert into FB_COMMENT values (3, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+insert into FB_COMMENT values (4, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+
 
 CREATE TABLE fb_qa_board
 (

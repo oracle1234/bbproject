@@ -243,27 +243,29 @@ and c.coupon_no = b.coupon_no;
 
 select * from fb_qa_board
 insert into fb_qa_board values
-(3, 1, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
+(2, 1, seq_qa_no.nextval, 0, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
 insert into fb_qa_board values
-(3, 2,  '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
+(2, 1, seq_qa_no.nextval, 0,  '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
 insert into fb_qa_board values
-(3, 3, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
+(2, 1, seq_qa_no.nextval, 0, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
+
 
 select * from fb_photo_board
 insert into fb_photo_board values
-(2, 1, 1, 1, '백나연', '떡볶이 입니다.', sysdate, '1', '포토후기');
+(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다.', sysdate, '1', '포토후기');
 insert into fb_photo_board values
-(2, 1, 2, 1, '백나연', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
+(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
 insert into fb_photo_board values
-(2, 1, 3, 1, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
+(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
+
 
 select * from fb_board
 insert into fb_board values
-(1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
 insert into fb_board values
-(1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다2.', sysdate, '자유2');
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다2.', sysdate, '자유2');
 insert into fb_board values
-(1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다3.', sysdate, '자유3');
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다3.', sysdate, '자유3');
 
 
 CREATE TABLE fb_photo_board
