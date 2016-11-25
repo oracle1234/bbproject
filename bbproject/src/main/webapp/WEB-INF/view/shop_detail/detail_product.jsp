@@ -371,7 +371,7 @@ body {
 						//장바구니
 						$("#basket_insimg").on("click", function() {
  							
-						   $('#foodform').attr('action','basketInsert.do');
+							$('#foodform').attr('action','basketInsert.do');
 						   $("#foodform").submit();
 						   $("#dialog-confirm").dialog("open");
 						});
