@@ -3,10 +3,8 @@
 
 <script type="text/javascript">
 	$(function() {
-		
 		var theme_no = "${theme_no}";
 		themeTitle(theme_no);
-
 	});
 </script>
 <body>
