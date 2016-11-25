@@ -11,19 +11,15 @@ $(function() {
 		var bodyHeight = $("#mainbody").height();
 		$(window).on("scroll resize", function() {
 			var scv = $(window).scrollTop() + defaultTop;
-			
 			if(scv >= bodyHeight){
 				scv = bodyHeight;
-				
 				if(scv <= 450){
 					scv = 450;
 				}
 			}
-			
 			$("#quick_menu").stop().animate({
 				top : scv + "px",
 			}, 500);
-			
 			quick_left();
 		});
 
