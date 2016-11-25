@@ -31,7 +31,7 @@ public class BoardDaoImp implements BoardDAO {
 	@Override
 	public List<BoardDTO> list(PageDTO pv) {
 		
-		return sqlSession.selectList("board.list",pv);
+		return sqlSession.selectList("board.pageList",pv);
 	}
 	
 	@Override
@@ -45,10 +45,11 @@ public class BoardDaoImp implements BoardDAO {
 		sqlSession.update("board.readCount", num);
 
 	}
-
+	
 	@Override
 	public BoardDTO content(int num) {
 
+		//return sqlSession.selectOne("board.contentList", num);
 		return sqlSession.selectOne("board.list", num);
 	}
 	
@@ -77,7 +78,7 @@ public class BoardDaoImp implements BoardDAO {
 	@Override
 	public int commentCount(int board_no) {
 		
-		return sqlSession.selectOne("board.commentCount");
+		return sqlSession.selectOne("board.commentCount", board_no);
 	}
 	
 /*

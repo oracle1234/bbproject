@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<resultMap type="dto.BoardDTO" id="board">
+	<resultMap type="dto.BoardDTO" id="fb_board">
 		<result column="member_no" property="member_no"/>
 		<result column="board_no" property="board_no"/>
 		<result column="board_readcount" property="board_readcount"/>
@@ -71,7 +71,7 @@
 		select * from fb_board where board_no = #{board_no} 
 	</select>
 	
-	<select id="contentList" parameterType="int" resultMap="board" >
+	<select id="contentList" parameterType="int" resultMap="fb_board" >
 		select b.*, c.* from fb_board b, fb_comment c 
 		where b.board_no = c.comment_no(+) 
 		and b.board_no = #{board_no} order by c.comment_no desc
@@ -100,7 +100,7 @@
 	</select>
 	
 	<insert id="commentSave" parameterType="hashmap">
-		insert into fb_comment values (SEQ_comment_no.nextval, 1, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, #{comment_date})
+		insert into fb_comment values (SEQ_comment_no.nextval, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, sysdate, 1)
 	</insert>
 	
 	<delete id="commentDelete" parameterType="hashmap">

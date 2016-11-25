@@ -42,7 +42,7 @@ public class BoardServiceImp implements BoardService {
 		return bdao.list(pv);
 	}
 	
-	//
+	
 	@Override
 	public List<BoardDTO> pageListProcess(HashMap<String, Object> map) {
 		
@@ -96,9 +96,9 @@ public class BoardServiceImp implements BoardService {
 
 	//
 	@Override
-	public int commentCountProcess(int comment_no) {
+	public int commentCountProcess(int board_no) {
 		
-		return bdao.commentCount(comment_no);
+		return bdao.commentCount(board_no);
 	}
 
 	@Override

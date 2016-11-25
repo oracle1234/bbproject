@@ -49,11 +49,7 @@ CREATE TABLE fb_comment
 	PRIMARY KEY (comment_no)
 );
 
-insert into FB_COMMENT values (1, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (2, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (3, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (4, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (5, 1, 1, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
+insert into FB_COMMENT values (SEQ_comment_no.nextval, 2, 0, 0,  '점심 뭐 먹지?', '백나연', sysdate, 1);
 
 CREATE TABLE fb_qa_board
 (
@@ -151,3 +147,4 @@ select * from fb_board;
 select * from fb_qa_board;
 select * from fb_photo_board;
 select * from FB_COMMENT;
+
