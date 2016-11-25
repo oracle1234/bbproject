@@ -45,7 +45,7 @@
 				<table id="shop_table">
 					<tr>
 						<td><div id="prod_img">
-								<a href=""><img alt="상품이미지" src="ban_images/gosarinamul.jpg">
+								<a href=""><img alt="상품이미지" src="image.do?filename=${FoodsDTO.picture }">
 								</a>
 							</div>
 							<p class="name">

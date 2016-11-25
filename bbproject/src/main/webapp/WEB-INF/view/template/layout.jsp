@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/header.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/main.css?var=1" media="all" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
-<link rel="stylesheet" type="text/css" href="css/footer.css?var=1" />
+<link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
 <link rel="stylesheet" type="text/css" href="css/mypage.css" />
 <link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
 <link rel="stylesheet" type="text/css" href="css/my_order.css" />
@@ -28,7 +28,7 @@
 	media="all" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/jquery.bxslider.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js?var=1"></script>
 <script src="js/recipe.js"></script>
 
 <script type="text/javascript">

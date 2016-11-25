@@ -1,11 +1,11 @@
 body {
 	margin: auto;
-	width: 1350px;
+	width: 1420px;
 	background-color: #ede6be;
 }
 
 header {
-	width: 1350px;
+/* 	width: 1350px; */
 	height: 100px;
 	background-color: aqua;
 }
@@ -32,10 +32,12 @@ header {
 footer {
 	background-color: #ffffff;
 	clear: both;
+	height: 200px;
+	border-top: 2px solid black;
 }
 
 #imgbar {
-	width: 1350px;
+/* 	width: 1350px; */
 	height: 350px;
 }
 
@@ -53,10 +55,11 @@ a {
 	border : 1px solid black;
 	text-align: center;
 	position: absolute;
-	top: 100px;
-	right: 0px;
+	top: 450px;
+/* 	left: 1350px; */
 	background-color: white;
  	display: none;
+ 	z-index: 100;
 }
 
 .quick_li span{
