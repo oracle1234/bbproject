@@ -22,7 +22,6 @@
 		
 		$('#comment_insert').click(function(){
 			if($('#comment_str').val()==""){
-				alert("12345");
 				return false;
 			}
 			
@@ -62,7 +61,7 @@
 	}
 	
 	function comment_insert(res){
-		$('.comment_row').empty();
+		$('.comment_row').remove();
 		$('#board_page').empty();
 		
 		$.each(res.CommentDTO, function(index, value){
@@ -77,19 +76,22 @@
 		var total = res.page.totalPage;
 		
 		if(start > 1){
-			$('#board_page').append('<a href="javascript:preFuncion(${board_no},'+ (start - block) + ')">이전</a>');
+			$('#board_page').append(
+					'<a href="javascript:preFuncion(${board_no},'+ (start - block) + ')">이전</a>');
 		}
 		
 		for(var i=start; i<=end; i++){
-			var source1 = '<a href="javascript:myFunction(${board_no}, '+ i + ')">' + i + '&nbsp;';
+			var source1 = '<a href="javascript:myFunction(${board_no}, '
+					+ i + ')">' + i + '&nbsp;';
 			$('#board_page').append(source1);
 		}
 		
 		if(end < total){
-			$('#pre_next_pagenum').append('<a href="javascript:nextFuncion(${board_no},' + (start + block) + ')">다음</a>');
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:nextFuncion(${board_no},' + (start + block) + ')">다음</a>');
 		}
 		
-// 		$('#comment_table').val("");
+		$('#comment_table').val("");
 	};
 	
 	function preFunction(b,c){
