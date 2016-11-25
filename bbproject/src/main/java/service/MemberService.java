@@ -10,6 +10,6 @@ public interface MemberService {
 	public MemberDTO pwfindProcess(String id,String member_name, String mail);
 	public MemberDTO idfindProcess(String member_name, String mail);
 	public MemberDTO pwupdProcess(String id,String member_name, String mail, String pw);
-/*	public MemberDTO mypwcheckProcess(String pw);
-	public MemberDTO leaveProcess(String pw);*/
+	public void updateProcess(MemberDTO dto);
+	public void leaveProcess(MemberDTO dto);
 }

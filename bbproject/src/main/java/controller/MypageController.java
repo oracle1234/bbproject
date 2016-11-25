@@ -150,32 +150,21 @@ public class MypageController {
 		return "my_update";
 	}
 	
-/*	@RequestMapping(value = "/mypwcheck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
-	public @ResponseBody String mypwcheck(String pw){
-	
-		MemberDTO dto =memberservice.mypwcheckProcess(pw);
-		String str ="";
-		if(dto ==null){
-			str ="비밀번호를 다시 입력해주세요.";
-		} else {
-			str = "비밀번호 확인 성공";
-		}
-		
-		return str;
+	@RequestMapping(value = "/myupdate.do", method = RequestMethod.POST)
+	public String myupdateProcess(MemberDTO dto) {
+		memberservice.updateProcess(dto);
+		return "joinsucc";
 	}
 	
-	@RequestMapping(value = "/mypwcheck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
-	public @ResponseBody String leave(String pw){
+	@RequestMapping("/my_leave.do")
+	public String myleave(){
+		return "my_leave";
+	}
 	
-		MemberDTO dto =memberservice.leaveProcess(pw);
-		String str ="";
-		if(dto ==null){
-			str ="비밀번호를 다시 입력해주세요.";
-		} else {
-			str = "비밀번호 확인 성공";
-		}
-		
-		return str;
-	}*/
+	@RequestMapping(value = "/myleave.do", method = RequestMethod.POST)
+	public String myleaveProcess(MemberDTO dto) {
+		memberservice.leaveProcess(dto);
+		return "joinsucc";
+	}
 	
 }

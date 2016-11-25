@@ -15,7 +15,7 @@ insert into fb_member values
 insert into fb_member values 
 (1, '관리자', 'admin', 'admin', '종각', 
 01044444444, 'admin', 0, 0);
-	
+	split
 	select id
 	from fb_member
 	where member_name='유재민' and mail='jaemin@paran.com,'
@@ -29,6 +29,19 @@ insert into fb_member values
 	set
 	pw='jamin123'
 	where id='jaemin' and member_name='유재민' and mail='jaemin@paran.com,'
+	
+	replace(#{mail},',','')
+	
+	
+	
+	update fb_member
+	set
+	pw='12345', tel='수정', mail='수정', address='수정'
+	where id='jaemin' and member_name='유재민'
+	
+	delete 
+	from fb_member
+	where id='jaemin' and pw='12345'
 delete 
 from fb_member
 where member_no=4

@@ -53,7 +53,6 @@ public class JoinController {
 	
 	@RequestMapping(value = "/joinInsert.do", method = RequestMethod.POST)
 	public String joinProcess(MemberDTO dto) {
-		System.out.println(dto.getTel());
 		memberservice.insertProcess(dto);
 		return "joinsucc";
 	}

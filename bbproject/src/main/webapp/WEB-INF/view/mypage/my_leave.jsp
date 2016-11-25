@@ -4,21 +4,38 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
-
+var s_pw = "${sessionScope.member.pw}";
+var s_id = "${sessionScope.member.id}";
+var s_name = "${sessionScope.member.member_name}";
 $(document).ready(function(){
-	$("#ok").on("click", function(){
-		$.ajax({
-			type:'POST',
-			url:'leave.do',
-			data : "pw="+$('#pw').val(),
-			success : function(data){
-				alert(data);
-			},
-			error : function(xhr, textStatus, error) {
-				alert(error);
-			}
-		});
+	
+	$(".leave").hide();
+	
+	$("#pwok").on("click", function(){
+		if(s_pw==$("#pwck").val()){
+			$(".password").remove();
+			$(".leave").show();
+			$("#id").attr("value",s_id);
+			$("#pw").attr("value",s_pw)
+		}else{
+			alert("비밀번호를 다시 입력해주세요.");
+		}
 	});
+	
+	$("#ok").click(function () {
+		
+
+		if($("#otherreason").val().length == 0){
+			alert("전부 입력해주세요.");
+				 $('#otherreason').focus();
+			}
+		else {
+			$("a#okhref").attr("href","joinsucc.do");
+			$("#form").attr('action','myleave.do').attr('method','post').attr('onsubmit','true').submit();
+		}
+		});
+		
+	
 });
 </script>
 	<div class="mypage_body">
@@ -26,13 +43,14 @@ $(document).ready(function(){
 	<table>
 <tr>
 <td class="label"><label for="pw">비밀번호확인</label></td>
-<td class="form"><input type="password" name="pw" id="pw">
+<td class="form"><input type="password" name="pw" id="pwck">
 <font id="check" name="check" size="2"></font></td>
 </tr>
 </table>
 <input type="button" id="pwok" value="확인"> 
 </div>
-
+<div class="leave">
+<form action="myleave.do" method="post" enctype="application/x-www-form-urlencoded"></form>
 	탈퇴 사유
 	<ul class="reason">
 	<li id="reason1"><input type="checkbox" >상품품질불만(맛)</li>
@@ -46,7 +64,11 @@ $(document).ready(function(){
 	<li id="reason9"><input type="checkbox" >기타</li>
 	</ul>
 	<div id="other">
+	<input type="text" id="otherreason"> 
 	</div>
-	<input type="button" id="ok" value="확인">
+	<a id="okhref" href=""><input type="submit" value="확인" id="ok" /></a>
 	<input type="button" id="no" value="취소">
+	<input type="hidden" name="id" id="id">
+	<input type="hidden" name="pw" id="pw">
+	</div>
 	</div>

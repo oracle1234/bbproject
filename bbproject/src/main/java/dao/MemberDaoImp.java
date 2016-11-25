@@ -63,14 +63,16 @@ public class MemberDaoImp implements MemberDAO {
 		return sqlSession.selectOne("member.pwupd", map);
 	}
 
-/*	@Override
-	public MemberDTO pwcheckMethod(String pw) {
-		return sqlSession.selectOne("member.pwck", pw);
-	}*/
-
-/*	@Override
-	public MemberDTO leaveMethod(String pw) {
-		return sqlSession.delete("member.leave", pw);
+	@Override
+	public void updateMethod(MemberDTO dto) {
+		sqlSession.update("member.upt", dto);
+		
 	}
-*/
+
+	@Override
+	public void deleteMethod(MemberDTO dto) {
+		sqlSession.delete("member.del", dto);
+		
+	}
+
 }

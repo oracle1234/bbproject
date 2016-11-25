@@ -11,6 +11,6 @@ public interface MemberDAO {
 	public MemberDTO idfindMethod(String member_name, String mail);
 	public MemberDTO pwfindMethod(String id, String member_name, String mail);
 	public MemberDTO pwupdMethod(String id, String member_name, String mail, String pw);
-	/*public MemberDTO pwcheckMethod(String pw);*/
-	/*public MemberDTO leaveMethod(String pw);*/
+	public void updateMethod(MemberDTO dto);
+	public void deleteMethod(MemberDTO dto);
 }//end interface

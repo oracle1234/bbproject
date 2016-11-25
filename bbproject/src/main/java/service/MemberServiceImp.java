@@ -17,7 +17,7 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public void insertProcess(MemberDTO mdto) {
 		dao.insertMethod(mdto);
-		
+	
 	}
 
 	@Override
@@ -45,15 +45,16 @@ public class MemberServiceImp implements MemberService{
 		return dao.pwupdMethod(id, member_name, mail, pw);
 	}
 
-/*	@Override
-	public MemberDTO mypwcheckProcess(String pw) {
-		return dao.pwcheckMethod(pw);
+	@Override
+	public void updateProcess(MemberDTO mdto) {
+		dao.updateMethod(mdto);
+		
 	}
 
 	@Override
-	public MemberDTO leaveProcess(String pw) {
-		return dao.leaveMethod(pw);
-	}*/
-
+	public void leaveProcess(MemberDTO mdto) {
+		dao.deleteMethod(mdto);
+		
+	}
 
 }

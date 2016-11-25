@@ -5,13 +5,21 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#agreeno').prop('checked', this.checked);
-	$('#privateno').prop('checked', this.checked);
 	
 	$('#allagree').bind('click', function() {
 		$('#agreeok').prop('checked', this.checked);
 		$('#privateok').prop('checked', this.checked);
+		
 	});
+	
+	$('#ok').bind('click',function(){
+	if($('input:radio[name="agree"]:checked').val()=="no" || $('input:radio[name="private"]:checked').val()=="no"){
+		alert("약관에 동의해 주세요.");
+	} else {
+		$("a#okhref").attr("href","join.do");
+	}
+	});
+
 	
 });
 
@@ -23,8 +31,8 @@ $(document).ready(function(){
 	</div>
 <div class="agreecheck">
 <p>약관동의   </p>
-<input type="radio" id="agreeok" name="agree">이용약관에 동의 합니다.
-<input type="radio" id="agreeno" name="agree">이용약관에 동의하지 않습니다.
+<input type="radio" id="agreeok" name="agree" value ="ok">이용약관에 동의 합니다.
+<input type="radio" id="agreeno" name="agree" checked value ="no">이용약관에 동의하지 않습니다.
 <div class="agreeinfo">
 <span>
 <p>제1조(목적)</p>
@@ -179,8 +187,8 @@ $(document).ready(function(){
 <div class="private">
 <div class="privatecheck">
 <p>개인정보취급방침   </p>
-<input type="radio" id="privateok" name="private">개인정보취급방침에 동의 합니다.
-<input type="radio" id="privateno" name="private">개인정보취급방침에 동의하지 않습니다.
+<input type="radio" id="privateok" name="private" value ="ok">개인정보취급방침에 동의 합니다.
+<input type="radio" id="privateno" name="private" checked value ="no">개인정보취급방침에 동의하지 않습니다.
 <div class="privateinfo">
 <span>
 <br>'(주)반찬을부탁해'은 (이하 '회사'는) 고객님의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다.
@@ -214,7 +222,7 @@ $(document).ready(function(){
 <input type="checkbox" id="allagree">회원가입 정보정책(이용약관/개인정보취급방침)에 모두 동의합니다.
 </div>
 <div class="button">
-<input type="button" id="ok" value="확인">
+<a id="okhref" href=""><input type="button" id="ok" value="확인" ></a>
 <input type="button" id="no" value="취소">
 </div>
 </div>

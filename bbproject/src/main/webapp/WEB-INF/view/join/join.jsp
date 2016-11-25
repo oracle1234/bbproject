@@ -10,6 +10,13 @@
  	       
 $(document).ready(function(){
 	
+	$('#domain').change(function(){
+	if($('#domain').val()!="::직접입력::"){
+		$('#mail2').attr("value",$('#domain').val()).attr("readonly","true");
+	//alert($('#domain').val());	
+	}
+});
+	
 	$("#phone").keyup(function () {
 	    if (this.value.length == this.maxLength) {
 	        $("#phone2").focus();
@@ -34,43 +41,60 @@ $(document).ready(function(){
 	$("#ok").click(function () {
 		
 	$(".form2").append('<input type="hidden" id="mail" name="mail">');
-	$("#mail").val($("#email").val()+"@"+$('#domain').val());
+	$("#mail").val($("#email").val()+"@"+$('#mail2').val());
 	//alert($("#mail").val());
 	
 	$(".form2").append('<input type="hidden" id="tel" name="tel">');
-	$("#tel").val($('#phoneselect').val()+$('#phone').val()+$('#phone2').val());
+	$("#tel").val($('#phoneselect').val()+"-"+$('#phone').val()+"-"+$('#phone2').val());
 	//alert($("#tel").val());
 	
-	if($("#member_name").val().length == 0){
-		alert("이름을 입력해주세요");
-	}
+	$(".form2").append('<input type="hidden" id="address" name="address">');
+	$("#address").val($('#sample4_roadAddress').val()+"/"+$('#sangsae').val()+"/"+$('#sample4_postcode').val());
+//	alert($("#address").val());
 	
-	if($("#id").val().length == 0){
-		alert("아이디를 입력해주세요");
+	if($("#member_name").val().length == 0 || $("#id").val().length == 0 || $("#pass").val().length == 0 ||
+			$("#pw").val().length == 0 || $("#phone").val().length == 0 || $("#phone2").val().length == 0 ||
+			$("#email").val().length == 0 || $("#address").val().length == 0){
+		alert("전부 입력해주세요.");
+		if($("#member_name").val().length == 0){
+			$('#member_name').focus();
+		}
+		
+		if($("#id").val().length == 0){
+			 $('#id').focus();
+		}
+		
+		if($("#pass").val().length == 0){
+			$('#pass').focus();
+		}
+		
+		if($("#pw").val().length == 0){
+			$('#pw').focus();
+		}
+		
+		if($("#phone").val().length == 0){
+			$('#phone').focus();
+		}
+		
+		if($("#phone2").val().length == 0){
+			$('#phone2').focus();
+		}
+		
+		if($("#email").val().length == 0){
+			$('#email').focus();
+		}
+		
+		if($("#address").val().length == 0){
+			$('#address').focus();
+		}
 	}
-	
-	if($("#pass").val().length == 0){
-		alert("비밀번호를 입력해주세요");
-	}
-	
-	if($("#pw").val().length == 0){
-		alert("비밀번호를 입력해주세요");
-	}
-	
-	if($("#phone").val().length == 0){
-		alert("휴대폰번호를 입력해주세요");
-	}
-	
-	if($("#phone2").val().length == 0){
-		alert("휴대폰번호를 입력해주세요");
-	}
-	
-	if($("#email").val().length == 0){
-		alert("이메일주소를 입력해주세요");
-	}
-	
-	if($("#address").val().length == 0){
-		alert("주소를 입력해주세요");
+	else {
+		if($("#pass").val()==$("#pw").val()){
+		$("a#okhref").attr("href","joinsucc.do");
+		$("#form").attr('action','joinInsert.do').attr('method','post').attr('onsubmit','true').submit();
+		}else{
+			alert("비밀번호가 일치하지 않습니다.");
+		}
 	}
 	});
 	
@@ -80,7 +104,7 @@ $(document).ready(function(){
 	var reg5 = /[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; // 문자는 반드시 포함되어야 함
 
  	
-	$('#pw').on('click', function(){
+	$('#ok').on('click', function(){
 		var pwreg =$('#pass').val();
 
 		if(reg3.test(pwreg)){
@@ -110,20 +134,18 @@ $(document).ready(function(){
  		if(idreg.length == 0){
 			alert("공백은 입력할 수 없습니다.");
 		} else {
-			alert("id true 1");
+	 		$.ajax({
+	 			type : 'POST',
+				url : 'join_idck.do',
+				data :"id="+idreg,
+				success : function(data){
+					alert(data);
+				},
+				error : function(xhr, textStatus, error) {
+					alert(error);
+				}
+			});
 		}
-		
- 		$.ajax({
- 			type : 'POST',
-			url : 'join_idck.do',
-			data :"id="+idreg,
-			success : function(data){
-				alert(data);
-			},
-			error : function(xhr, textStatus, error) {
-				alert(error);
-			}
-		});
 	});
 });
 function sample4_execDaumPostcode() {
@@ -177,7 +199,7 @@ function sample4_execDaumPostcode() {
 }
 </script>
 <div class="join">
-<form action="joinInsert.do" method="post" enctype="application/x-www-form-urlencoded">
+<form id="form" action="joinInsert.do" method="post" onsubmit="return false" enctype="application/x-www-form-urlencoded">
 <fieldset>
 <legend>회원가입</legend>
 
@@ -194,7 +216,8 @@ function sample4_execDaumPostcode() {
 
 <tr>
 <td class="label"><label for="pass">비밀번호</label></td>
-<td class="form"><input type="password" name="pass" id="pass"></td>
+<td class="form"><input type="password" name="pass" id="pass">
+<font id="pwpw" size="2" color="gray"> *특수문자, 숫자, 문자포함</font></td>
 </tr>
 
 <tr>
@@ -244,8 +267,10 @@ function sample4_execDaumPostcode() {
 <td class="label2"><label for="addr">주소</label></td>
 <td class="form2"><input type="text" id="sample4_postcode" placeholder="우편번호">
 <input type="button" onclick="sample4_execDaumPostcode()" id="map" value="우편번호 찾기"><br>
-<input type="text" id="sample4_roadAddress" name="address" placeholder="도로명주소">
-<input type="text" id="address" placeholder="지번주소"></td>
+<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+<input type="text" id="jibun" placeholder="지번주소">
+<input type="text" id="sangsae" placeholder="상세주소"></td>
+<!-- <input type="hidden" id="address" name="address"> -->
 <span id="guide" style="color:#999"></span>
 </tr>
 </table>
@@ -253,7 +278,7 @@ function sample4_execDaumPostcode() {
 
 
 <p>
-<input type="submit" value="확인" id="ok" />
+<a id="okhref" href=""><input type="submit" value="확인" id="ok" /></a>
 <input type="reset" value="취소" />
 </p>
 
