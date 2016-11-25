@@ -127,13 +127,16 @@ CREATE TABLE fb_member
 	member_name varchar2(500) NOT NULL,
 	id varchar2(50) NOT NULL,
 	pw varchar2(50) NOT NULL,
-	address varchar2(50) NOT NULL,
+	address varchar2(100) NOT NULL,
 	tel varchar2(50) NOT NULL,
 	mail varchar2(50) NOT NULL,
 	stamp number,
 	point number,
 	PRIMARY KEY (member_no)
 );
+-- address 컬럼 크기 100으로 수정 //주훈수정
+alter table fb_member
+modify (address VARCHAR2(100));
 
 
 CREATE TABLE fb_request

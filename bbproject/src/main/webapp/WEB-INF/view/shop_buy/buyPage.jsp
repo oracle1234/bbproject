@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 table {
 	font-size: 13px;
@@ -263,23 +264,29 @@ caption {
 	width: 145px;
 	height: 45px;
 }
+
+#total_table tr:nth-child(3) td{
+	width:170px;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	
 $(document).ready(function() {
 	var money = $('#order_table tr:nth-child(2) td:nth-child(5)').text();
 	var totalMoney = parseInt(money.substring(0, money.length-1));
 	
-	
 	var totalcount = 0;
 	totalcount = totalcount + ${amount};
 	var totalsavemoney = 0;
 	var saveMoney = parseInt($('#order_table tr:nth-child(2) td:nth-child(4)').text());
 	totalsavemoney = totalsavemoney + saveMoney;
+	
+	var delicheck = 0;
 	
 	$('#smalltotal_table tr:nth-child(5) td').empty();
 	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
@@ -291,16 +298,53 @@ $(document).ready(function() {
 	$('#smalltotal_table tr:nth-child(1) td').empty();
 	$('#smalltotal_table tr:nth-child(1) td').append(totalcount+'<span>개</span>');
 	
+	
+	$('#total_table tr:nth-child(2) td:nth-child(1)').empty();
+	$('#total_table tr:nth-child(2) td:nth-child(1)').append(totalMoney+'<span>원</span>');
+	
+	if(totalMoney < 45000){
+		delicheck = totalMoney + 2500;
+		$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>')
+		$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(4)').append(delicheck+'<span>원</span>')
+	}
+	if (totalMoney >= 45000){
+		$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
+		$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(4)').append(totalMoney+'<span>원</span>')
+	}
+	
+	
+	
 	var discount = 0;
 	$('#coupon_select').on('change', function(){
 		var tm = 0;
 		discount = parseInt($(this).val());
 		
 		tm = totalMoney - discount - useSavemoney; 
+		var deli = tm + 2500;
+		if(tm < 45000){
+			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append(deli+'<span>원</span>');
+		}
+		if(tm >= 45000){
+			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append(tm+'<span>원</span>');
+		}
+		
 		$('#smalltotal_table tr:nth-child(2) td').empty();
 		$('#smalltotal_table tr:nth-child(2) td').append(discount+'<span>원</span>');
 		$('#smalltotal_table tr:nth-child(5) td').empty();
-		$('#smalltotal_table tr:nth-child(5) td').append(tm+'<span>원</span>')
+		$('#smalltotal_table tr:nth-child(5) td').append(tm+'<span>원</span>');
+		$('#total_table tr:nth-child(3) td:nth-child(2)').empty();
+		$('#total_table tr:nth-child(3) td:nth-child(2)').append(discount+'<span>원</span>');
+		
 	});
 	
 	var useSavemoney = "";
@@ -310,9 +354,9 @@ $(document).ready(function() {
 		var saveMoney = ${MemberDTO.point};
 		var last = parseInt(useSavemoney.substring(useSavemoney.length-1));
 		
-		alert(useSavemoney);
-		var sm = totalMoney - useSavemoney - discount;
 		
+		var sm = totalMoney - useSavemoney - discount;
+		var deli = sm + 2500;
 		if(useSavemoney > saveMoney){
 			alert('보유한 적립금보다 많이 사용할 수 없습니다.');
 			$('#savemoney_table tr:nth-child(1) td input').val("0");
@@ -331,15 +375,81 @@ $(document).ready(function() {
 			return false;
 		}
 		
+		if(sm < 45000){
+			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>');
+			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append(deli+'<span>원</span>');
+		}
+		if (sm >= 45000){
+			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append(sm+'<span>원</span>');
+		}
+		$('#total_table tr:nth-child(3) td:nth-child(1)').empty();
+		$('#total_table tr:nth-child(3) td:nth-child(1)').append(useSavemoney+'<span>원</span>');
 		$('#smalltotal_table tr:nth-child(3) td').empty();
 		$('#smalltotal_table tr:nth-child(3) td').append(useSavemoney+'<span>원</span>');
 		$('#smalltotal_table tr:nth-child(5) td').empty();
 		$('#smalltotal_table tr:nth-child(5) td').append(sm+'<span>원</span>')
+		
+		
 	});
 	
 	
-	
-});
+}); //end document ready///////////////////////
+
+
+function sample4_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if(fullRoadAddr !== ''){
+                fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('sample4_roadAddress').value = fullRoadAddr;
+            document.getElementById('address').value = data.jibunAddress;
+
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+
+            } else {
+                document.getElementById('guide').innerHTML = '';
+            }
+        }
+    }).open();
+}
 	
 </script>
 </head>
@@ -417,7 +527,7 @@ $(document).ready(function() {
 						<tr>
 							<th scope="row">쿠폰적용</th>
 							<td><select id="coupon_select">
-									<option selected>사용하실 쿠폰을 선택하세요.</option>
+									<option selected value="0">사용하실 쿠폰을 선택하세요.</option>
 									<c:forEach items="${member.cList}" var = "couponDTO">
 									<option value="${couponDTO.coupon_discount}">${couponDTO.coupon_name}</option>
 									</c:forEach>
@@ -436,7 +546,7 @@ $(document).ready(function() {
 						</tr>
 						<tr>
 						
-							<th scope="row">총 할인금액</th>
+							<th scope="row">쿠폰사용</th>
 							<td>0<span>원</span></td>
 						</tr>
 						<tr>
@@ -448,8 +558,6 @@ $(document).ready(function() {
 							<td><span>0원</span></td>
 						</tr>
 						<tr>
-						
-						
 							<th scope="row">총 결제금액</th>
 							<td><span>0원</span></td>
 						</tr>
@@ -464,16 +572,17 @@ $(document).ready(function() {
 							<th>배송비 합계</th>
 							<th>총 주문 합계</th>
 						</tr>
+						
 						<tr>
-							<td rowspan="2">14543<span>원</span></td>
+							<td rowspan="2"><span>원</span></td>
 							<td colspan="2">적립금사용&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 쿠폰사용</td>
-							<td rowspan="2">g</td>
-							<td rowspan="2">g</td>
+							<td rowspan="2">0원</td>
+							<td rowspan="2">총주</td>
 						</tr>
 						<tr>
-							<td>적립금사용<span>원</span></td>
-							<td>쿠폰사용.<span>원</span></td>
+							<td>0<span>원</span></td>
+							<td>0<span>원</span></td>
 						</tr>
 						<tr>
 							<td colspan="5" align="left">고객님, 수도권 지역이세요?<br> 반찬을부탁해
@@ -490,19 +599,22 @@ $(document).ready(function() {
 							<caption>주문자 정보</caption>
 							<tr>
 								<th scope="row">주문자 *</th>
-								<td><input type="text"></td>
+								<td><input type="text" value="${MemberDTO.member_name}"></td>
 							</tr>
 							<tr>
 								<th scope="row" rowspan="3">주소</th>
 
-								<td><input type="text" size="30">&nbsp;<input
-									type="button" value="우편번호 검색"></td>
+								<td>
+								<input type="text" id="sample4_postcode" placeholder="우편번호">
+								<input type="button" onclick="sample4_execDaumPostcode()" id="map" value="우편번호 찾기"><br>
+								
 							</tr>
 							<tr>
-								<td><input type="text" size="100"></td>
+								<td><input type="text" size = "30px" id="sample4_roadAddress" name="address" placeholder="도로명주소">
+								<input type="text" size = "30px" id="address" placeholder="지번주소"></td></td>
 							</tr>
 							<tr>
-								<td><input type="text" size="100"></td>
+								<td><input type="text" size="66" placeholder="상세주소"></td>
 							</tr>
 							<tr>
 								<th scope="row">전화번호</th>
@@ -538,14 +650,17 @@ $(document).ready(function() {
 							<tr>
 								<th scope="row" rowspan="3">주소</th>
 
-								<td><input type="text" size="30">&nbsp;<input
-									type="button" value="우편번호 검색"></td>
+								<td>
+								<input type="text" id="sample4_postcode" placeholder="우편번호">
+								<input type="button" onclick="sample4_execDaumPostcode()" id="map" value="우편번호 찾기"><br>
+								
 							</tr>
 							<tr>
-								<td><input type="text" size="100"></td>
+								<td><input type="text" size = "30px" id="sample4_roadAddress" name="address" placeholder="도로명주소">
+								<input type="text" size = "30px" id="address" placeholder="지번주소"></td></td>
 							</tr>
 							<tr>
-								<td><input type="text" size="100"></td>
+								<td><input type="text" size="66" placeholder="상세주소"></td>
 							</tr>
 							<tr>
 								<th scope="row">전화번호</th>

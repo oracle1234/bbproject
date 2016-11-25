@@ -237,7 +237,9 @@ body {
 						$('#info_table tr:nth-child(8) td').empty();
 						$('#info_table tr:nth-child(8) td').append(
 								'<td>' + savemoney + '<span>원</span></td>');
-
+						
+						
+						var totalmoney = 0;
 						$('#shop_upbutton')
 								.on(
 										'click',
@@ -245,22 +247,13 @@ body {
 											var price = parseInt($(
 													'#info_table tr:nth-child(3) td')
 													.text());
-											var count = parseInt($('#counttext')
-													.val());
+											var count = parseInt($('#counttext').val());
 											count += 1;
-											document
-													.getElementById("counttext").value = count;
-											var total = price * count;
-
-											$('#info_table tr:nth-child(9) td')
-													.empty();
-											$('#info_table tr:nth-child(9) td')
-													.append(
-															'<td>'
-																	+ total
-																	+ '<span>원</span></td>');
-
-										});
+											document.getElementById("counttext").value = count;
+											totalmoney = price * count;
+											$('#info_table tr:nth-child(9) td').empty();
+											$('#info_table tr:nth-child(9) td').append('<td>'+ totalmoney+ '<span>원</span></td>');
+											});
 
 						$('#shop_downbutton')
 								.on(
@@ -276,34 +269,27 @@ body {
 												document
 														.getElementById("counttext").value = count;
 											}
-											var total = price * count;
+											totalmoney = price * count;
 											$('#info_table tr:nth-child(9) td')
 													.empty();
 											$('#info_table tr:nth-child(9) td')
 													.append(
 															'<td>'
-																	+ total
+																	+ totalmoney
 																	+ '<span>원</span></td>');
 										});
 
-						$('#info_table tr:nth-child(7) td input')
-								.on(
-										"keyup",
-										function() {
-											var input = parseInt($(
-													'#info_table tr:nth-child(7) td input')
-													.val());
+						$('#info_table tr:nth-child(7) td input').on("keyup",function() {
+							var input = parseInt($('#info_table tr:nth-child(7) td input').val());
 
 											if (isNaN(input) == true) {
 												alert('숫자만 입력하세요.')
-												$(
-														'#info_table tr:nth-child(7) td input')
-														.val("1");
+												$('#info_table tr:nth-child(7) td input').val("1");
 												return false;
 											}
 
 											if (input >= 1) {
-												var total = price * input;
+												totalmoney = price * input;
 												$(
 														'#info_table tr:nth-child(9) td')
 														.empty();
@@ -311,14 +297,12 @@ body {
 														'#info_table tr:nth-child(9) td')
 														.append(
 																'<td>'
-																		+ total
+																		+ totalmoney
 																		+ '<span>원</span></td>');
 												return false;
 											} else if (input == 0) {
 												alert('최소 구매수량은 1개입니다.')
-												$(
-														'#info_table tr:nth-child(7) td input')
-														.val("1");
+												$('#info_table tr:nth-child(7) td input').val("1");
 												return false;
 											}
 										});
@@ -412,18 +396,23 @@ body {
 														},
 													});
 										});
-						//장바구니
+						//장바구니 클릭
 						$("#basket_insimg").on("click", function() {
-
+							
 							$('#foodform').attr('action', 'basketInsert.do');
-							$("#foodform").submit();
+							$('#foodform').submit();
 							$("#dialog-confirm").dialog("open");
 						});
-
+						//바로구매 클릭
 						$("#buy_insimg").on("click", function() {
-
+							 if(totalmoney < 10000){
+								alert('최소주문금액은 10000원입니다.')
+								return false;
+							} 
+							if(totalmoney >= 10000){
 							$('#foodform').attr('action', 'shop_buy.do');
-							$("#foodform").submit();
+							$('#foodform').submit();
+							}
 						});
 
 					});//end ready end
@@ -657,37 +646,37 @@ body {
 
 			<div class="sul_wrap">
 
-				<c:forEach items="${list}" var="FoodsDTO">
+				<c:forEach items="${list}" var="Foods">
 					<div class="detail_img_wrap">
 						<div class="detail_img">
-							<input type="hidden" name="foods_no" value="${FoodsDTO.foods_no}" />
-							<img alt="상세이미지" src="./images/${FoodsDTO.picture}">
+							<input type="hidden" name="foods_no" value="${foods_no}" />
+							<img alt="상세이미지" src="./images/${Foods.picture}">
 						</div>
 
 					</div>
 					<div class="table_wrap">
 						<table id="info_table" width="510px" height="auto">
 							<tr>
-								<td colspan="2">${FoodsDTO.foods_name}</td>
+								<td colspan="2">${Foods.foods_name}</td>
 							</tr>
 							<tr>
 								<td></td>
 							</tr>
 							<tr>
 								<th>판매가격</th>
-								<td>${FoodsDTO.price}<span>원</span></td>
+								<td>${Foods.price}<span>원</span></td>
 							</tr>
 							<tr>
 								<th>유통기한</th>
-								<td>${FoodsDTO.way}</td>
+								<td>${Foods.way}</td>
 							</tr>
 							<tr>
 								<th>용량</th>
-								<td>${FoodsDTO.weight}</td>
+								<td>${Foods.weight}</td>
 							</tr>
 							<tr>
 								<th>보관방법</th>
-								<td>${FoodsDTO.shelfLife}</td>
+								<td>${Foods.shelfLife}</td>
 							</tr>
 							<tr>
 								<th>수량</th>
@@ -705,7 +694,7 @@ body {
 
 							<tr>
 								<th>구매예정금액</th>
-								<td>${FoodsDTO.price}<span>원</span></td>
+								<td>${Foods.price}<span>원</span></td>
 							</tr>
 
 						</table>
@@ -722,12 +711,12 @@ body {
 						<table id="account_meter" height="auto">
 							<tr>
 								<th>재료</th>
-								<td>${FoodsDTO.foods_material}</td>
+								<td>${Foods.foods_material}</td>
 							</tr>
 
 							<tr>
 								<th>설명</th>
-								<td>${FoodsDTO.foods_explaination}</td>
+								<td>${Foods.foods_explaination}</td>
 							</tr>
 						</table>
 

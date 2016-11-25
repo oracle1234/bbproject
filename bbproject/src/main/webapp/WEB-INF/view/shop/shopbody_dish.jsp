@@ -30,46 +30,77 @@
 	width: 312px;
 	height: 200px;
 }
+
+.count {
+	display: block;
+	margin: auto;
+}
 </style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.basketInsertBtn').on('click', function() {
+// 			alert($(this).prev().val());
+// 			alert($(this).children().val());
+// 			var url = "basketInsert.do?amount="+$(this).prev().val()+"&foods_no="+$(this).children().val();
+			
+// 			$(this).attr("href", url);
+			
+			$.ajax({
+	 			type : "GET",
+	 			dataType : "text",
+				url : "basketInsert.do?amount="+$(this).prev().val()+"&foods_no="+$(this).children().val(),
+				success : function(aa){
+					alert(aa);
+				},
+				error : function(xhr, textStatus, error) {
+					alert(error);
+				}
+			});
+			
+			
+		});
+	});
+</script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>dish</title>
 </head>
 <body>
 <body>
 	<div id="shop_wrap">
-
 		<div id="shop_menu">
 
 			<c:forEach items="${aList}" var="FoodsDTO">
 				<table id="shop_table">
 					<tr>
 						<td><div id="prod_img">
-								<a href="detailProduct.do?foods_no=${FoodsDTO.foods_no}"><img alt="상품이미지" src="images/${FoodsDTO.picture}">
-								</a>
+								<a href="detailProduct.do?foods_no=${FoodsDTO.foods_no}"><img
+									alt="상품이미지" src="images/${FoodsDTO.picture}"> </a>
 							</div>
 							<p class="name">
 								<a href="detailProduct.do?foods_no=${FoodsDTO.foods_no}">${FoodsDTO.foods_name}</a>
 							</p>
 							<p class="price">${FoodsDTO.price}<span>원</span>
-							</p>
-							<p class="count">
-
-								<select name="count_select">
-
-									<c:forEach var="i" begin="1" end="20" step="1">
-										<option value="i">${i}</option>
-									</c:forEach>
-
-								</select>
-							</p> <img alt="장바구니 이미지" src="" width="237" height=""></td>
+							</p> <select class="count" name="amount">
+								<c:forEach var="i" begin="1" end="20" step="1">
+									<option value="${i}">${i}</option>
+								</c:forEach>
+						</select> <a href="" class="basketInsertBtn"><input type="image" alt=""
+								src="images/basketIns.png" value="${FoodsDTO.foods_no}"> </a>
 					</tr>
 
 				</table>
 
 			</c:forEach>
 			<c:if test="${pv.startPage>1}">
-				<a href="shopDish.do?category_no=2&currentPage=${pv.startPage-pv.blockPage}">
+				<a
+					href="shopDish.do?category_no=2&currentPage=${pv.startPage-pv.blockPage}">
 					<c:out value="이전" />
 				</a>
 			</c:if>
@@ -84,7 +115,8 @@
 			</c:forEach>
 
 			<c:if test="${pv.endPage<pv.totalPage}">
-				<a href="shopDish.do?category_no=2&currentPage=${pv.startPage+pv.blockPage}">
+				<a
+					href="shopDish.do?category_no=2&currentPage=${pv.startPage+pv.blockPage}">
 					<c:out value="다음" />
 				</a>
 			</c:if>
