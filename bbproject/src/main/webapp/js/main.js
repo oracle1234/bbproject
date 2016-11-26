@@ -40,6 +40,45 @@ $(function() {
 			}
 		});
 	}
+	
+	/* GNB 메뉴 */
+	$("#util_menu #menu_main #gnb>li:last").css({
+		"border-right" : "1px solid orange"
+	});
+//	$("#util_menu #menu_main #gnb li ul li:last-child").css({
+//		"border-right" : "0px"
+//	});
+
+	$("#gnb>li").on("mouseover focus", function() {
+		$("#gnb ul:visible").slideUp(10);
+		$(this).children().next().stop().slideDown("normal");
+
+		var list = $(this).children().next();
+		if ($("li", list).size() <= 3) {
+			$("li:last-child", list).css({
+				"border-right" : "1px solid orange"
+			});
+		}
+	});
+	$("#gnb").on("mouseleave", function() {
+		$("#gnb ul:visible").slideUp(10);
+	});
+
+	$("#login_btn").click(function() {
+		if ($("#login_f").is(":visible")) {
+			$("#login_f").fadeOut(100);
+		} else {
+			$("#login_f").fadeIn(1000);
+		}
+		return false;
+	});
+
+	$("#loginBtn").click(function() {
+		$("#login_f").fadeOut(100);
+		return false;
+	});
+	
+	
 });
 
 function quick_left() {

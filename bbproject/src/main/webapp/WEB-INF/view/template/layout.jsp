@@ -10,7 +10,7 @@
 <title><tiles:getAsString name="title" /></title>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
-<link rel="stylesheet" type="text/css" href="css/header.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/header.css?var=1" media="all" />
 <link rel="stylesheet" type="text/css" href="css/main.css?var=1" media="all" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
@@ -28,7 +28,7 @@
 	media="all" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/jquery.bxslider.js"></script>
-<script src="js/main.js?var=1"></script>
+<script src="js/main.js?var=2"></script>
 <script src="js/recipe.js"></script>
 
 <script type="text/javascript">
@@ -39,10 +39,7 @@
 
 <body>
 	<header>
-		<br />
-		<p>
-			<tiles:insertAttribute name="header" />
-		</p>
+		<tiles:insertAttribute name="header" />
 	</header>
 
 	<div id="imgbar">
