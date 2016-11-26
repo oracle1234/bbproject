@@ -117,46 +117,44 @@ public class BoardController {
 		return mav;
 	}// end board_viewMethod()
 
-	
-	@RequestMapping(value="/board_view.do", method=RequestMethod.POST)
-	public @ResponseBody HashMap<String, Object> board_viewProMethod(int currentPage, BoardDTO bdto, Comment_PageDTO cpv) {
-			int totalRecord = service.commentCountProcess(bdto.getBoard_no());
-			HashMap<String, Object> map = new HashMap<String, Object>();
-	  
-			if(totalRecord>=1){ 
-				if(cpdto.getCurrentPage() == 0) 
-					currentPage = 1; 
-				else
-					currentPage = cpdto.getCurrentPage();
-	 
-	 cpdto = new Comment_PageDTO(currentPage, totalRecord);
-	 
-	 	map.put("startRow", cpdto.getStartRow()); 
-	 	map.put("endRow", cpdto.getEndRow()); 
-	 	map.put("board_no", bdto.getBoard_no()); 
-	 }
-	
+	@RequestMapping(value = "/board_view.do", method = RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> board_viewProMethod(BoardDTO bdto, Comment_PageDTO cpv) {
+		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		if (totalRecord >= 1) {
+			if (cpdto.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = cpdto.getCurrentPage();
+
+			cpdto = new Comment_PageDTO(currentPage, totalRecord);
+
+			map.put("startRow", cpdto.getStartRow());
+			map.put("endRow", cpdto.getEndRow());
+			map.put("board_no", bdto.getBoard_no());
+		}
+
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", service.commentPageProcess(resultMap));
-		resultMap.put("page", cpdto); 
-		return resultMap; 
-	 }// end board_viewProMethod();
-	
+		resultMap.put("list", service.commentPageProcess(map));
+		resultMap.put("page", cpdto);
+		return resultMap;
+	}// end board_viewProMethod();
 
 	@RequestMapping("/commentInsert.do")
 	public @ResponseBody HashMap<String, Object> commentInsertProcess(BoardDTO bdto, CommentDTO cdto, MemberDTO mdto,
 			Comment_PageDTO cpdto) {
 		HashMap<String, Object> insertMap = new HashMap<String, Object>();
-		
+
 		insertMap.put("comment_content", cdto.getComment_content());
 		insertMap.put("board_no", bdto.getBoard_no());
 		insertMap.put("member_no", mdto.getMember_no());
 		insertMap.put("comment_writer", "백나연");
 
 		service.commentInsertProcess(insertMap);
-		
+
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
-		
+
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
 
 		if (totalRecord >= 1) {
