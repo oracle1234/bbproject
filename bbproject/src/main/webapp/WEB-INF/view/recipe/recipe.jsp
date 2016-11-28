@@ -2,10 +2,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
-	$(function() {
-		var theme_no = "${theme_no}";
-		themeTitle(theme_no);
-	});
+	var theme_no = "${pdto.theme_no}";
+	var currentRow = parseInt("${pdto.currentRow}");
+	var endRow = parseInt("${pdto.endRow}");
+	var totalRow = parseInt("${pdto.totalRow}");
 </script>
 <body>
 

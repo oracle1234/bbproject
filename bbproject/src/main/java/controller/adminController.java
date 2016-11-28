@@ -48,8 +48,8 @@ public class adminController {
 	@RequestMapping("/adminrecipelist.do")
 	public ModelAndView recipePage(int theme_no) {
 		ModelAndView mav = new ModelAndView();
-		List<ThemeRecipeDTO> list = recipeservice.selectListProcess(theme_no);
-		mav.addObject("aList", list);
+//		List<ThemeRecipeDTO> list = recipeservice.selectListProcess(theme_no);
+//		mav.addObject("aList", list);
 		mav.setViewName("adminrecipelist");
 		return mav;
 	}

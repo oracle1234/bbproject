@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import dto.RecipePageDTO;
 import dto.ThemeRecipeDTO;
 
 public class ThemeRecipeDaoImp implements ThemeRecipeDAO {
@@ -30,8 +31,8 @@ public class ThemeRecipeDaoImp implements ThemeRecipeDAO {
 	}
 
 	@Override
-	public List<ThemeRecipeDTO> selectList(int theme_no) {
-		return sqlSession.selectList("recipe.list", theme_no);
+	public List<ThemeRecipeDTO> selectList(RecipePageDTO pdto) {
+		return sqlSession.selectList("recipe.list", pdto);
 	}
 
 	@Override
@@ -39,6 +40,9 @@ public class ThemeRecipeDaoImp implements ThemeRecipeDAO {
 		return sqlSession.selectOne("recipe.detail", recipe_no);
 	}
 
-
+	@Override
+	public int countRecipe(int theme_no){
+		return sqlSession.selectOne("recipe.count", theme_no);
+	}
 	
 }
