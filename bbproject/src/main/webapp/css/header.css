@@ -1,0 +1,121 @@
+#header {
+	height: 100px;
+	position: relative;
+	/*헤더(header) 영역에 전체 메뉴 포함 모든 요소를 위로 올려 나타낸다.*/
+	z-index: 10;
+}
+
+.hide, legend, caption, hr {
+	position: absolute;
+	left: -9999px;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+
+/*헤더*/
+/*로그인 영역*/
+#login_f {
+	width: 250px;
+	height: 100px;
+	border: 3px solid #802b00;
+	position: absolute;
+	z-index: 20;
+	background-color: white;
+	top: 20px;
+	right: 10px;
+	display: none;
+}
+
+#login_f #id {
+	position: absolute;
+	top: 10px;
+	left: 5px;
+}
+
+#login_f #password {
+	position: absolute;
+	top: 40px;
+	left: 5px;
+}
+
+#login_f #remember {
+	position: absolute;
+	top: 70px;
+	left: 5px;
+}
+
+#login_f label {
+	position: absolute;
+	top: 70px;
+	left: 20px;
+}
+
+#login_f #loginBtn {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+/* 유틸 */
+#util_menu #menu_util {
+	position: absolute;
+	top: 0;
+	right: 5px;
+	text-align: center;
+}
+
+#util_menu #menu_util li {
+	float: left;
+	margin-left: 5px;
+}
+
+#util_menu #menu_main {
+	position: absolute;
+	bottom: 0;
+	left: 41px;
+}
+
+#util_menu #menu_main #gnb>li {
+	width: 230px;
+	height: 80px;
+	float: left;
+	text-align: center;
+	border: 1px solid orange;
+	border-right: 0px;
+}
+
+#util_menu #menu_main #gnb>li>a {
+	text-align: center;
+	line-height: 80px;
+	font-size: 40px;
+}
+
+#util_menu #menu_main #gnb li ul {
+/* 	width : 923px; */
+/* 	position: absolute; */
+	background-color: white;
+/* 	left: 0px; */
+	display: none;
+	border: 1px solid orange;
+}
+
+#util_menu #menu_main #gnb li ul li {
+	width: 230px;
+	height: 50px;
+	text-align: center;
+/* 	border-right: 1px solid orange; */
+}
+
+
+#util_menu #menu_main #gnb li ul li>a {
+	text-align: center;
+	line-height: 50px;
+	font-size: 30px;
+}
+
+#util_menu #menu_main #gnb li ul li img {
+	position: relative;
+	top: 5px;
+}

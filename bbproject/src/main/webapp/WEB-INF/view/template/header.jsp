@@ -1,2 +1,625 @@
-<%@page contentType="text/html; charset=UTF-8"%>
-<h2 align="center">Spring Tiles Examples!!!</h2>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!doctype html>
+<meta charset="UTF-8">
+<title>Login Form</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.idpwfind').hide(); 
+
+		$('.pwupd').hide();
+
+		$("#loginform").on("click", function() {
+			$(".screen").css('display', 'block');
+		});
+
+		$("#close").on("click", function() {
+			$(".screen").css('display', 'none');
+		});
+
+		$("#findbutton").on("click", function() {
+			$(".screen").css('display', 'none');
+			$('.idpwfind').show();
+		});
+
+		$("#findclose").on("click", function() {
+			$('.idpwfind').hide();
+		});
+		
+		$("#updclose").on("click", function() {
+			$('.pwupd').hide();
+		});
+
+
+		$('#idok').on('click',function() {
+			//alert("idck 이름"+$('#member_name').val());
+			//alert("idck 메일"+$('#mail').val());
+			$.ajax({
+						type : 'POST',
+						url : 'idfind.do',
+						data : "member_name="+$('#member_name').val()+"&mail="+$('#mail').val(),
+						success : function(data) {
+							alert(data);
+							$('#member_name').val('');
+							$('#mail').val('');
+						},
+						error : function(xhr,
+								textStatus, error) {
+							alert(error);
+						}
+					});
+				});
+
+		$('#pwok').on('click',function() {
+			//alert("pwck 아이디"+$('#pwid').val());
+			//alert("pwck 이름"+$('#pwmember_name').val());
+			//alert("pwck 메일"+$('#pwmail').val());
+			$.ajax({
+						type : 'POST',
+						url : 'pwfind.do',
+						data : "id="+$('#pwid').val()+ "&member_name="+ $('#pwmember_name').val()+"&mail="+$('#pwmail').val(),
+						success : function(data) {
+							alert(data);
+						
+									$(".pwupd").append('<input type="hidden" id="hdid" value="" name="id">'
+									+'<input type="hidden" id="hdmember_name" value="" name="member_name">'
+									+'<input type="hidden" id="hdmail" value="" name="mail">');
+									$('#hdid').val($('#pwid').val());
+									$('#hdmember_name').val($('#pwmember_name').val());
+									$('#hdmail').val($('#pwmail').val());
+											//alert($('#hdid').val());
+											//alert($('#hdmember_name').val());
+											//alert($('#hdmail').val());
+									$(".idpwfind").remove();
+									$(".pwupd").show();
+							
+							
+
+							$("#pass").keyup(function() {
+								$('font[name=check]').text('');
+							});
+							
+							$('#pw').keyup(function() {
+								if ($("#pass").val() != $("#pw").val()) {
+									$('#check').css("color", "red");
+									$('font[name=check]').text('');
+									$('font[name=check]').html('비밀번호가 일치하지 않습니다.');
+								} else {
+									$('#check').css("color", "green");
+									$('font[name=check]').text('');
+									$('font[name=check]').html('비밀번호가 일치합니다.');
+								}
+							});
+
+							if (data != "입력하신 이름과 이메일이 일치하는 회원이 없습니다.") {
+								$('#pwid').val('');
+								$('#pwmember_name').val('');
+								$('#pwmail').val('');
+							}
+						},
+						error : function(xhr,textStatus,error) {
+							alert(error);
+						}
+					});
+		});
+
+	$('#pwupdok').on('click',function() {
+				//alert("pwck 아이디"+$('#hdid').val());
+				//alert("pwck 이름"+$('#hdmember_name').val());
+				//alert("pwck 메일"+$('#hdmail').val());
+				//alert("pwck 메일"+$('#pwpw').val());
+				$.ajax({
+							type : 'POST',
+							url : 'pwupd.do',
+							data : "id="+ $('#hdid').val()+"&member_name="+$('#hdmember_name').val()+"&mail="+$('#hdmail').val()
+									+ "&pw="+ $('#pwpw').val(),
+							success : passsuc,
+							error : function(xhr, textStatus, error) {
+								alert(error);
+							}
+						});
+				});
+
+		});
+
+	$(function() {
+
+	});
+
+	function chkfun() {
+		$.ajax({
+			type : "POST",
+			datatype : "json",
+			url : "loginpro.do",
+			data : "id=" + $("#id").val() + "&pw=" + $("#pw").val(),
+			success : function(data) {
+				if (data.chk == null) {
+					window.location.href = data.href;
+				} else {
+					alert(data.chk);
+				}
+
+			},
+			error : function(xhr, textStatus, error) {
+				alert(error);
+			}
+		});
+
+	};
+	
+	function passsuc(aaa){
+		alert("비밀번호 변경이 완료되었습니다.");
+		$('.pwupd').hide();
+	}
+	
+	</script>
+<style>
+.menu {
+	position: relative;
+	height: 79px;
+	background: #2b2f3a;
+	width: auto;
+	clear: both;
+}
+
+.menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+}
+
+.menu>ul {
+	height: 79px;
+	position: relative;
+	display: block;
+	background: #ffffff;
+	width: 100%;
+	z-index: 500;
+	text-align: center;
+}
+
+.menu>ul>li {
+	width: 200px;
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+.menu ul li a {
+	display: block;
+	font-family: Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+.menu>ul>li>a {
+	line-height: 79px;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	color: #2b2f3a;
+	text-transform: uppercase;
+	-webkit-transition: color 0.25s ease-out;
+	-moz-transition: color 0.25s ease-out;
+	-ms-transition: color 0.25s ease-out;
+	-o-transition: color 0.25s ease-out;
+	transition: color 0.25s ease-out;
+	color: #2b2f3a;
+}
+
+.menu ul ul {
+	position: absolute;
+	left: -9999px;
+	top: 70px;
+	opacity: 0;
+	-webkit-transition: opacity .3s ease, top .25s ease;
+	-moz-transition: opacity .3s ease, top .25s ease;
+	-ms-transition: opacity .3s ease, top .25s ease;
+	-o-transition: opacity .3s ease, top .25s ease;
+	transition: opacity .3s ease, top .25s ease;
+	z-index: 1000;
+}
+
+.menu ul ul li {
+	position: relative;
+	width: 200px;
+}
+
+.menu>ul>li:hover>ul {
+	left: auto;
+	top: 79px;
+	opacity: 1;
+}
+
+.menu ul ul li a {
+	border-bottom: 1px solid #eeeeee;
+	padding: 10px 20px;
+	font-size: 12px;
+	color: #9ea2a5;
+	background: #ffffff;
+	-webkit-transition: all .35s ease;
+	-moz-transition: all .35s ease;
+	-ms-transition: all .35s ease;
+	-o-transition: all .35s ease;
+	transition: all .35s ease;
+}
+
+.menu ul ul li:hover>a {
+	background: #f2f2f2;
+	color: #8c9195;
+}
+
+.menu ul ul li:last-child>a, .menu ul ul li.last>a {
+	border-bottom: 0;
+}
+
+.logindiv li {
+	float: left;
+}
+
+.logindiv {
+	float: right;
+}
+
+.screen {
+	display: none;
+	background-color: gray;
+	z-index: 100000;
+	position: absolute;
+	margin-top: -79px;
+	width: 2000px;
+	height: auto;
+	min-height: 1200px;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login {
+	width: 400px;
+	height: 300px;
+	z-index: 1000000;
+	margin-top: 200px;
+	margin-left: 500px;
+	background-color:white;
+}
+
+#login_header {
+	width: 400px;
+	height: 50px;
+	background-color: white;
+	border:1px solid black;
+}
+
+#close {
+	width: 50px;
+	height: 50px;
+	margin-left: 350px;
+}
+
+.login-form {
+	width: 400px;
+	height: 125px;
+}
+
+#button {
+	width: 400px;
+	height: 125px;
+	background-color: white;
+	border:1px solid black;
+}
+
+#form {
+	width: 250px;
+	height: 125px;
+	background-color: white;
+	border:1px solid black;
+}
+
+#loginbutton {
+	margin-top: -105px;
+	margin-left: 250px;
+	width: 100px;
+	height: 80px;
+	background-color: black;
+}
+
+.idpwfind {
+	display: none;
+	background-color: gray;
+	z-index: 100000;
+	position: absolute;
+	margin-top: -79px;
+	width: 2000px;
+	height: auto;
+	min-height: 1200px;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.idpwform {
+	width: 600px;
+	height: 300px;
+	z-index: 1000000;
+	margin-top: 200px;
+	margin-left: 400px;
+	background-color: white;
+	border: 2px solid black;
+}
+
+.idpwheader {
+	width: 600px;
+	height: 50px;
+	background-color: white;
+	border:1px solid black;
+}
+
+#findclose {
+	width: 50px;
+	height: 50px;
+	margin-left: 550px;
+}
+
+.idfind {
+	width: 300px;
+	height: 250px;
+	background-color: white;
+	border:1px solid black;
+}
+
+.pwfind {
+	width: 300px;
+	height: 250px;
+	background-color: white;
+	border:1px solid black;
+	margin-top: -250px;
+	margin-left: 300px;
+}
+
+.pwupd {
+	display: none;
+	background-color: gray;
+	z-index: 1000000;
+	position: absolute;
+	margin-top: -79px;
+	width: 2000px;
+	height: auto;
+	min-height: 1200px;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.pwupdform {
+	width: 300px;
+	height: 300px;
+	z-index: 10000000;
+	margin-top: 200px;
+	margin-left: 550px;
+	background-color: white;
+	border: 2px solid black;
+}
+
+.pwupdheader {
+	width: 300px;
+	height: 50px;
+	background-color: white;
+	border:1px solid black;
+}
+
+#updclose {
+	width: 50px;
+	height: 50px;
+	margin-left: 250px;
+}
+
+#check {
+margin-left:180px;
+z-index:10000000;
+}
+
+
+input {
+   font-family: inherit;
+   color: inherit;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   /* box-sizing: border-box; */
+}
+
+.login .signUpInput {
+    outline: none;
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+  width:180px;
+  height:30px;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  line-height: inherit;
+  -webkit-transition: 0.3s ease;
+          transition: 0.3s ease;
+          margin:5px;
+          margin-top:20px;
+          margin-left:30px;
+}
+
+.idform .signUpInput {
+    outline: none;
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+   width:180px;
+  height:30px; 
+  border: 0;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: inherit;
+  font-size: inherit;
+   font-weight: 500; 
+   line-height: inherit; 
+  -webkit-transition: 0.3s ease;
+          transition: 0.3s ease;
+          margin-top:40px;
+          margin-left:40px; 
+          margin:10px;
+}
+
+.pwfind .signUpInput {
+    outline: none;
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+   width:180px;
+  height:30px; 
+  border: 0;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: inherit;
+  font-size: inherit;
+   font-weight: 500; 
+   line-height: inherit; 
+  -webkit-transition: 0.3s ease;
+          transition: 0.3s ease;
+          margin-top:40px;
+          margin-left:40px; 
+          margin:10px;
+}
+
+.pwupd .signUpInput {
+    outline: none;
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+   width:180px;
+  height:30px; 
+  border: 0;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: inherit;
+  font-size: inherit;
+   font-weight: 500; 
+   line-height: inherit; 
+  -webkit-transition: 0.3s ease;
+          transition: 0.3s ease;
+          margin-top:100px;
+          margin-left:40px; 
+          margin:10px;
+}
+
+
+</style>
+
+<div class="logindiv">
+	<ul>
+		<li id="loginform">로그인</li>
+		<li>&nbsp;|&nbsp;</li>
+		<li id="join"><a href="agree.do">회원가입</a></li>
+	</ul>
+
+</div>
+<div class='menu'>
+	<ul>
+		<li><a href='#'>Home</a></li>
+		<li><a href='#'>SHOP</a>
+
+			<ul>
+				<li class='sub'><a href='#'>요리1</a></li>
+				<li class='sub'><a href='#'>요리2</a></li>
+				<li class='sub'><a href='#'>요리3</a></li>
+			</ul></li>
+		<li><a href='#'>RECIPE</a>
+			<ul>
+				<li class='sub'><a href='#'>레시피1</a></li>
+				<li class='sub'><a href='#'>레시피2</a></li>
+			</ul></li>
+		<li><a href='#'>BORDER</a>
+			<ul>
+				<li class='sub'><a href='#'>게시판1</a></li>
+				<li class='sub'><a href='#'>게시판2</a></li>
+			</ul></li>
+		<li class='last'><a href='#'>MYPAGE</a></li>
+	</ul>
+</div>
+
+
+<div class="screen">
+	<div class="login">
+		<div id="login_header">
+			<button id="close" value="x"></button>
+		</div>
+		<div class="login-form">
+			<div id="form">
+				<input type="text" class="signUpInput" value="" placeholder="이이디"
+					id="id" name="id"> <input type="password"
+					class="signUpInput" value="" placeholder="비밀번호" id="pw" name="pw">
+			</div>
+			<div id="loginbutton">
+				<a href="javascript:chkfun()">login</a>
+			</div>
+		</div>
+
+		<div id="button">
+			<input type="button" id="findbutton" value="아이디/비밀번호찾기"> <input
+				type="button" id="joinbutton"  value="회원가입">
+		</div>
+	</div>
+</div>
+
+
+<!-- 아이디 비밀번호 찾기 -->
+<div class="idpwfind">
+	<div class="idpwform">
+		<div class="idpwheader">
+			<button id="findclose" value="x"></button>
+		</div>
+		<div class="idfind">
+			<span>아이디 찾기 이름과 이메일을 입력하시면 아이디를 알려드립니다.</span>
+			<div class="idform">
+				<input type="text" id="member_name" name="member_name"
+					placeholder="이름" class="signUpInput"> <input type="text" id="mail" name="mail"
+					placeholder="이메일 주소" class="signUpInput">
+			</div>
+			<div class="idbutton">
+				<input type="button" id="idok" value="확인">
+			</div>
+		</div>
+		<div class="pwfind">
+			<span>비밀번호 찾기 아이디, 이름, 이메일을 입력하시면 새로운 비밀번호로 변경할 수 있습니다.</span>
+			<div class="pwform">
+				<input type="text" id="pwid" name="id" placeholder="아이디" class="signUpInput"> <input
+					type="text" id="pwmember_name" name="member_name" placeholder="이름" class="signUpInput">
+				<input type="text" id="pwmail" name="mail" placeholder="이메일 주소" class="signUpInput">
+			</div>
+			<div class="pwbutton">
+				<input type="button" id="pwok" value="확인">
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<div class="pwupd">
+		<div class="pwupdform">
+			<div class="pwupdheader">
+				<button id="updclose" value="x"></button>
+			</div>
+			<table>
+				<tr>
+					<td><input type="password" name="pass" id="pass" placeholder="비밀번호" class="signUpInput"></td>
+				</tr>
+				<tr>
+					<td><input type="password" name="pw" id="pwpw" placeholder="비밀번호 확인" class="signUpInput">
+						<font id="check" name="check" size="2"></font></td>
+				</tr>
+			</table>
+			<input type="button" id="pwupdok" value="확인">
+		</div>
+	</div>
+	
+	<!-- <div id="hide">
+	<input type="hidden" id="hdid" value="" name="id">
+	<input type="hidden" id="hdmember_name" value="" name="member_name">
+	<input type="hidden" id="hdmail" value="" name="mail">
+	</div> -->
+
+

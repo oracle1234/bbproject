@@ -93,7 +93,7 @@ public class JoinController {
 		return str;
 	}
 	
-	@RequestMapping(value ="/pwupd.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@RequestMapping(value ="/pwupd.do", method = {RequestMethod.POST,RequestMethod.GET}, produces = "application/text; charset=utf8")
 	public @ResponseBody MemberDTO pwupd(String id, String member_name, String mail, String pw){
 		return memberservice.pwupdProcess(id, member_name, mail, pw);
 	}

@@ -1,0 +1,29 @@
+.wrap_inner {
+	width: 1000px;
+	margin: auto;
+	position: relative;
+}
+.wrap_inner ul{
+ 	text-align: center; 
+}
+.wrap_inner ul li{
+	float: left;
+}
+
+.sns_menu{
+	float: right;
+}
+
+.shopinfo{
+	clear: both;
+}
+
+.shopinfo{
+	font-size: 12px;
+}
+
+.escrow{
+	position: absolute;
+	right: 0;
+	top: 20px;
+}

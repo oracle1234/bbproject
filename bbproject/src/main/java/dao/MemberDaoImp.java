@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import dto.LatelyDTO;
 import dto.MemberDTO;
 
 
 public class MemberDaoImp implements MemberDAO {
+	
 	private SqlSessionTemplate sqlSession;
 	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
@@ -72,7 +74,16 @@ public class MemberDaoImp implements MemberDAO {
 	@Override
 	public void updateMethod(MemberDTO dto) {
 		sqlSession.update("member.upd", dto);
+	}
 		
+
+	public List<LatelyDTO> latelyMethod(int member_no) {
+		return sqlSession.selectList("member.lately", member_no);
+	}
+
+	@Override
+	public void deleteLately(int lately_no) {
+		sqlSession.delete("member.dellately", lately_no);
 	}
 
 }

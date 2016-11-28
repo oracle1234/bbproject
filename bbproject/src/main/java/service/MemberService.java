@@ -1,5 +1,8 @@
 package service;
 
+import java.util.List;
+
+import dto.LatelyDTO;
 import dto.MemberDTO;
 
 public interface MemberService {
@@ -12,4 +15,5 @@ public interface MemberService {
 	public MemberDTO pwupdProcess(String id,String member_name, String mail, String pw);
 	public void leaveProcess(MemberDTO dto);
 	public void updateProcess(MemberDTO dto);
+	public List<LatelyDTO> latelyProcess(int member_no);
 }
