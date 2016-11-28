@@ -351,7 +351,7 @@ body {
 														url : 'reviewDelete.do?review_no='
 																+ dno
 																+ "&foods_no=${foods_no}"
-																+ "&member_no=1",
+																+ "&member_no=${member_no}",
 														success : review_delete_result,
 														error : function(xhr,
 																textStatus,
@@ -381,7 +381,7 @@ body {
 														url : 'reviewUpdate.do',
 														data : "review_no="
 																+ uno
-																+ "&member_no=1"
+																+ "&member_no=${member_no}"
 																+ "&review_content="
 																+ $(
 																		'#updateReviewText')

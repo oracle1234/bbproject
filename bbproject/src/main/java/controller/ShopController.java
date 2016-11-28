@@ -123,10 +123,26 @@ public class ShopController {
 		System.out.println("푸드넘"+fdto.getFoods_no());
 		System.out.println("어마운트"+amount);
 		System.out.println("멤넘"+mdto.getMember_no());
+		System.out.println("주소:"+mdto.getAddress());
+		String address[] = mdto.getAddress().split("/");
+		String Address = address[0]; 
+		String detailAddress = address[1];
+		String postNum = address[2];
+		
+		String phoneNumber[] = mdto.getTel().split("-");
+		String firstPhone = phoneNumber[0];
+		String secondPhone = phoneNumber[1];
+		String lastPhone = phoneNumber[2];
 		
 		mav.addObject("FoodsDTO", service.buyListProcess(fdto.getFoods_no()));
 		mav.addObject("amount", amount);
 		mav.addObject("MemberDTO", mdto);
+		mav.addObject("Address", Address);
+		mav.addObject("detailAddress", detailAddress);
+		mav.addObject("postNum", postNum);
+		mav.addObject("firstPhone", firstPhone);
+		mav.addObject("secondPhone", secondPhone);
+		mav.addObject("lastPhone", lastPhone);
 		mav.setViewName("shop_buy");
 		return mav;
 	}

@@ -134,7 +134,9 @@ public class ProductController {
 	}//end reviewInsertProcess()//////////////////////////
 	
 	@RequestMapping("/reviewDelete.do")
-	public @ResponseBody HashMap<String, Object> reviewDeleteProcess(ReviewDTO rdto, MemberDTO mdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletResponse req) {
+	public @ResponseBody HashMap<String, Object> reviewDeleteProcess(ReviewDTO rdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req) {
+		
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
 		HashMap<String, Object> deleteMap = new HashMap<String, Object>();
 		deleteMap.put("review_no", rdto.getReview_no());
@@ -167,8 +169,9 @@ public class ProductController {
 	}//end delete/////////////////////////////////////
 	
 	@RequestMapping(value="/reviewUpdate.do", method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> reviewUpdateProcess(ReviewDTO rdto, MemberDTO mdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletResponse req) {
+	public @ResponseBody HashMap<String, Object> reviewUpdateProcess(ReviewDTO rdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req) {
 		
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
 		HashMap<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("review_content", rdto.getReview_content());
@@ -201,7 +204,9 @@ public class ProductController {
 	}//end update/////////////////////////////////////
 	
 	@RequestMapping(value="/reviewUpdate.do", method = RequestMethod.POST)
-	public @ResponseBody HashMap<String, Object> reviewUpdatePostProcess(ReviewDTO rdto, MemberDTO mdto, FoodsDTO fdto, review_PageDTO rpdto) {
+	public @ResponseBody HashMap<String, Object> reviewUpdatePostProcess(ReviewDTO rdto,FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req) {
+		
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
 		HashMap<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("review_content", rdto.getReview_content());

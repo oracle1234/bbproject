@@ -58,9 +58,17 @@ update fb_coupon set coupon_name = '회원가입 축하쿠폰 (-2000원)' where 
 
 select * from fb_member
 
-update fb_member set address = '서울시 구로구 개봉로 11길 10-17 / 이화빌라 101호' where member_no = 1
+update fb_member set address = '서울 어딘가/00빌라 21355호/534433' where member_no = 3
 
 select * from fb_basket
 
 
-select * from fb_foods
+select * from fb_foods order by foods_no desc;
+
+insert into fb_foods
+		values(SEQ_foods_no.nextval, #{foods_name}, #{price}, #{weight}, #{way}, #{shelfLife},
+		#{foods_explaination}, #{foods_material}, #{picture}, #{category_no})
+		
+alter table fb_foods drop column fb_delivery_no;
+
+

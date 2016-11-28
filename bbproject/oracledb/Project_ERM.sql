@@ -174,6 +174,9 @@ CREATE TABLE fb_delivery_cost
 	PRIMARY KEY (fb_delivery_no)
 );
 
+--fb_foods 테이블 deliver_no 컬럼 삭제 --주훈수정 
+
+alter table fb_foods drop column fb_delivery_no;
 
 CREATE TABLE fb_foods
 (
@@ -187,7 +190,6 @@ CREATE TABLE fb_foods
 	foods_material varchar2(2000) NOT NULL,
 	picture varchar2(500) NOT NULL,
 	category_no number NOT NULL,
-	fb_delivery_no number NOT NULL,
 	PRIMARY KEY (foods_no)
 );
 
