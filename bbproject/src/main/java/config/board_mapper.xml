@@ -100,11 +100,12 @@
 	</select>
 	
 	<insert id="commentSave" parameterType="hashmap">
-		insert into fb_comment values (SEQ_comment_no.nextval, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, sysdate, 1)
+		insert into fb_comment values (SEQ_comment_no.nextval, 1, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, sysdate)
 	</insert>
 	
 	<delete id="commentDelete" parameterType="hashmap">
 		delete from fb_comment where comment_no = #{comment_no} and member_no = #{member_no}
+		<!-- delete from fb_comment where comment_no = #{comment_no} and member_no = 1 -->
 	</delete>
 
 	<update id="commentUpdate" parameterType="hashmap">

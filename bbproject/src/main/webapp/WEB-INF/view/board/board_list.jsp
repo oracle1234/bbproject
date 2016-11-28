@@ -107,7 +107,7 @@ td{
 					<a href="${board_content}">${BoardDTO.board_subject}</a></td>
 					<td>${BoardDTO.board_writer}</td>
 					<td>
-						<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${bdto.board_reg_date}"/>
+						<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_reg_date}"/>
 					</td>
 					<td>${BoardDTO.board_readcount}</td>
 				</tr>
