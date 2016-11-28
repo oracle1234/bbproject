@@ -45,11 +45,9 @@ CREATE TABLE fb_comment
 	qa_no number NOT NULL,
 	comment_content varchar2(2000) NOT NULL,
 	comment_writer varchar2(50) NOT NULL,
-	comment_date date,
+	comment_date date NOT NULL,
 	PRIMARY KEY (comment_no)
 );
-
-insert into FB_COMMENT values (SEQ_comment_no.nextval, 2, 0, 0,  '점심 뭐 먹지?', '백나연', sysdate, 1);
 
 CREATE TABLE fb_qa_board
 (
@@ -87,7 +85,7 @@ CREATE TABLE fb_board
 	member_no number NOT NULL,
 	board_no number NOT NULL,
 	board_readcount number NOT NULL,
-	board_writer varchar2(100),
+	board_writer varchar2(100) NOT null,
 	board_content varchar2(2000) NOT NULL,
 	board_reg_date date NOT NULL,
 	board_subject varchar2(200) NOT NULL,
@@ -101,7 +99,6 @@ CREATE TABLE fb_boardcategory
 	boardcategory_name varchar2(50) NOT NULL,
 	PRIMARY KEY (boardcategory_no)
 );
-
 
 
 /* Create Foreign Keys */
@@ -148,3 +145,4 @@ select * from fb_qa_board;
 select * from fb_photo_board;
 select * from FB_COMMENT;
 
+update fb_comment set comment_content = '진짜 왜 널값이냐고' where comment_no = 10 and member_no = 1;

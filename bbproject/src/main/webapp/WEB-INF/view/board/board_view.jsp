@@ -15,76 +15,97 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <script type="text/javascript">
-	var uno="";
-	$(document).ready(function() {
-		$('#list').bind('click', listRun);
-		$('#update').bind('click', updateRun);
-		$('#delete').bind('click', deleteRun);
-		
-		//[댓글입력]
-		$('#comment_insert').click(function(){
-			
-			if($('#comment_str').val()==""){
-				return false;
-			}
-						
-			$.ajax({
-				type:'GET',
-				dataType:'json',
-				url:"commentInsert.do?comment_content="
-						+ $('#comment_str').val() 
-						+ "&board_no=${dto.board_no}"
-						+ "&member_no=1",
-				success : comment_insert,
-				error:function(xhr, textStatus, error){
-					alert("insert는 " + error);
-				}
+	var uno = "";
+	$(document).ready(
+			function() {
+				$('#list').bind('click', listRun);
+				$('#update').bind('click', updateRun);
+				$('#delete').bind('click', deleteRun);
+
+				//[댓글입력]
+				$('#comment_insert').click(
+						function() {
+
+							if ($('#comment_str').val() == "") {
+								return false;
+							}
+
+							$.ajax({
+								type : 'GET',
+								dataType : 'json',
+								url : "commentInsert.do?comment_content="
+										+ $('#comment_str').val()
+										+ "&board_no=${dto.board_no}"
+										+ "&member_no=1",
+								success : comment_insert,
+								error : function(xhr, textStatus, error) {
+									alert("insert는 " + error);
+								}
+							});
+						});
+
+				//[댓글삭제]
+				$(document).on(
+						'click',
+						'.comment_delete',
+						function() {
+							var cno = $(this).val();
+							$.ajax({
+								type : 'GET',
+								dataType : 'json',
+								url : "commentDelete.do?comment_no=" + cno
+										+ "&board_no=${dto.board_no}"
+										+ "&member_no=1",
+								success : comment_delete,
+								error : function(xhr, textStatus, error) {
+									alert("delete는 " + error);
+								}
+							});
+						});
+
+				//[댓글수정 창 띄우기]
+				$('#updateWindow').addClass('updateHide');
+				$(document).on('click', '.comment_update', function() {
+					uno = $(this).val();
+					$('#updateWindow').addClass('updateShow');
+					$('#updateWindow').removeClass('updateHide');
+				});
+
+				//[업데이트_닫기버튼]
+				$('.btnClose').on('click', function() {
+					$('#updateWindow').removeClass('updateShow');
+					$('#updateWindow').addClass('updateHide');
+					uno = '';
+				});
+
+				//[댓글수정]
+				$(document).on(
+						'click',
+						'.btnUpdate',
+						function() {
+							if ($('#comment_update_str').val() == "") {
+								return false;
+								
+							}
+							
+							$.ajax({
+								type : 'POST',
+								dataType : 'json',
+								url : "commentUpdate.do",
+								data : "comment_no=" + uno + "&member_no=1"
+										+ "&comment_content="
+										+ $('#updateCommentText').val()
+										+ "&board_no=${dto.board_no}",
+								success : comment_update,
+								error : function(xhr, textStatus, error) {
+									alert("update는 " + error);
+								}
+							});
+						});
+
 			});
-			
-		});
-		
-		//[댓글삭제]
-		$('#comment_delete').click(function(){
-			var cno = $(this).val();
-			$.ajax({
-				type:'GET',
-				dataType:'json',
-				url:"commentDelete.do?comment_no="+cno 
-						+"&board_no=${dto.board_no}"
-						+"&member_no=1",
-				success : comment_delete,
-				error:function(xhr, textStatus, error){
-					alert("delete는 " + error);
-				}
-			});
-			
-		});
-		
-		//[댓글수정]
-		$('#comment_update').click(function(){
-			
-			if($('#comment_update_str').val()==""){
-				return false;
-			}
-			
-			$.ajax({
-				type:'POST',
-				dataType:'json',
-				url:"commentUpdate.do",
-				data:"board_no="+uno
-				+ "&member_no=1"
-				+ "&comment_content="+$('#updateCommentText').val(),
-				success : comment_update,
-				error:function(xhr, textStatus, error){
-					alert("update는 " + error);
-				}
-			});
-			
-		});
-		
-	});	
-	
-	function listRun() {		
+
+	function listRun() {
 		$('#frm').attr('action', "board_list.do").submit();
 	}
 
@@ -95,23 +116,21 @@
 	function deleteRun() {
 		$('#frm').attr('action', "board_delete.do").submit();
 	}
-	
-	
-	
+
 	Handlebars.registerHelper("newDate", function(timeValue) {
 		var dataObj = new Date(timeValue);
 		var year = dataObj.getFullYear();
-		var month = dataObj.getMonth()+1;
+		var month = dataObj.getMonth() + 1;
 		var date = dataObj.getDate();
-		return year + "/" + month + "/" + date; 
-// 		return new Date(timeValue);
-	});	
-	
+		return year + "/" + month + "/" + date;
+		//return new Date(timeValue);
+	});
+
 	//[댓글입력]
-	function comment_insert(res){
+	function comment_insert(res) {
 		$('.comment_row').remove();
 		$('.board_page').empty();
-		
+
 		/*
 		<td>${CommentDTO.comment_writer}<fmt:formatDate
 							pattern="yyyy/MM/dd" dateStyle="short"
@@ -120,177 +139,105 @@
 						<button class="comment_update" value="${CommentDTO.comment_no}">수정</button>
 						<button class="comment_delete" value="${CommentDTO.comment_no}">삭제</button>
 					</td>
-		*/
-		
-		$.each(res.CommentDTO, function(index, value){
-			var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
-			var template = Handlebars.compile(source);
-			$('#comment_table').append(template(value));
-		});
-		
+		 */
+
+		$
+				.each(
+						res.list,
+						function(index, value) {
+							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button id='comment_comment' value={{comment_no}}>댓글</button><button id='comment_update' value={{comment_no}}>수정</button><button id = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var template = Handlebars.compile(source);
+							$('#comment_table').append(template(value));
+						});
+
 		var start = res.page.startPage;
 		var end = res.page.endPage;
 		var block = res.page.blockPage;
 		var total = res.page.totalPage;
-		
-		if(start > 1){
-			$('.board_page').append(
-					'<a href="javascript:preFuncion(${board_no},'+ (start - block) + ')">이전</a>');
-		}
-		
-		for(var i=start; i<=end; i++){
-			var source1 = '<a href="javascript:myFunction(${board_no}, '
-					+ i + ')">' + i + '&nbsp;';
-			$('.board_page').append(source1);
-		}
-		
-		if(end < total){
-			$('.board_page').append(
-					'<a href="javascript:nextFuncion(${board_no},' + (start + block) + ')">다음</a>');
-		}
-		
-		$('#comment_str').val("");
-	};
-	
-	//[댓글삭제]
-	function comment_delete(res){
-		$('.comment_row').remove();
-		$('.board_page').empty();
-		
-		$.each(res.CommentDTO, function(index, value){
-			var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
-			var template = Handlebars.compile(source);
-			$('#comment_table').append(template(value));
-		});
-		
-		var start = res.page.startPage;
-		var end = res.page.endPage;
-		var block = res.page.blockPage;
-		var total = res.page.totalPage;
-		
-		if(start > 1){
-			$('.board_page').append(
-					'<a href="javascript:preFuncion(${board_no},'+ (start - block) + ')">이전</a>');
-		}
-		
-		for(var i=start; i<=end; i++){
-			var source1 = '<a href="javascript:myFunction(${board_no}, '
-					+ i + ')">' + i + '&nbsp;';
-			$('.board_page').append(source1);
-		}
-		
-		if(end < total){
-			$('#pre_next_pagenum').append(
-					'<a href="javascript:nextFuncion(${board_no},' + (start + block) + ')">다음</a>');
-		}
-	
-	};
-		
-	//[댓글수정]
-	function comment_update(data){
-		$('.comment_row').remove();
-		$('.board_page').empty();
-		
-		$.each(data.CommentDTO, function(index, value){
-			var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
-			var template = Handlebars.compile(source);
-			$('#comment_table').append(template(value));
-		});
-		
-		var start = res.page.startPage;
-		var end = res.page.endPage;
-		var block = res.page.blockPage;
-		var total = res.page.totalPage;
-		
-		if(start > 1){
-			$('.board_page').append(
-					'<a href="javascript:preFuncion(${board_no},'+ (start - block) + ')">이전</a>');
-		}
-		
-		for(var i=start; i<=end; i++){
-			var source1 = '<a href="javascript:myFunction(${board_no}, '
-					+ i + ')">' + i + '&nbsp;';
-			$('.board_page').append(source1);
-		}
-		
-		if(end < total){
-			$('#pre_next_pagenum').append(
-					'<a href="javascript:nextFuncion(${board_no},' + (start + block) + ')">다음</a>');
-		}
-	
-		$('#updateCommentText').val("");
-		$('#updateWindow').removeClass('updateShow');
-		$('#updateWindow').removeClass('updateHide');
-		uno = "";
-	};
-	
-	function preFunction(b,c){
-		$.ajax({
-			type:'POST',
-			dataType:'JSON',
-			url:"board_view.do",
-			data:"board_no="+b+"&currentPage="+c,
-			success:comment_prenext_list_result,
-			error:function(xhr, textStatus, error){
-				alert("에러"+error);
-			}
-		});
-	};
-	
-	function nextFunction(b,c){
-		$.ajax({
-			type:'POST',
-			dataType:'JSON',
-			url:"board_view.do",
-			data:"board_no="+ b + "&currentPage=" + c,
-			success:comment_prenext_list_result,
-			error:function(xhr,textStatus,error){
-				alert("에러"+error);
-			}
-		});
-	};
-	
-	function myFunction(b,i){
-		$.ajax({
-			type:'POST',
-			dataType:'json',
-			url:"board_view.do",
-			data:"board_no="+ b + "&currentPage=" + i,
-			success:comment_list_result,
-			error:function(xhr,textStatus,error){
-				alert("에러"+error);
-			}
-		});
-	};
-	
-	function comment_list_result(res){
-		$('#comment_table .comment_row').remove();
-		$.each(res.list,function(index,value){
-			var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
-			var template = Handlebars.compile(source);
-			$('#comment_table').append(template(value));
-		});
-	};
-	
-	function comment_prenext_list_result(res){
-		$('#comment_table .comment_row').remove();
-		$('.board_page').empty();
-		
-		$.each(res.list,function(index,value){
-			var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
-			var template = Handlebars.compile(source);
-			$('#comment_table').append(template(value));
-		});
-		
-		var start = res.page.startPage;
-		var end = res.page.endPage;
-		var block = res.page.blockPage;
-		var total = res.page.totalPage;
-		
+
 		if (start > 1) {
 			$('.board_page').append(
-					'<a href="javascript:preFunction(${board_no}, '
-							+ (start - block) + ')">이전&nbsp;</a>');
+					'<a href="javascript:preFuncion(${dto.board_no},'
+							+ (start - block) + ')">이전</a>');
+		}
+
+		for (var i = start; i <= end; i++) {
+			var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
+					+ i + ')">' + i + '&nbsp;';
+			$('.board_page').append(source1);
+		}
+
+		if (end < total) {
+			$('.board_page').append(
+					'<a href="javascript:nextFuncion(${dto.board_no},'
+							+ (start + block) + ')">다음</a>');
+		}
+
+		$('#comment_str').val("");
+	};
+
+	//[댓글삭제]
+	function comment_delete(res) {
+		$('.comment_row').remove();
+		$('.board_page').empty();
+
+		$
+				.each(
+						res.list,
+						function(index, value) {
+							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button id='comment_comment' value={{comment_no}}>댓글</button><button id='comment_update' value={{comment_no}}>수정</button><button id = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var template = Handlebars.compile(source);
+							$('#comment_table').append(template(value));
+						});
+
+		var start = res.page.startPage;
+		var end = res.page.endPage;
+		var block = res.page.blockPage;
+		var total = res.page.totalPage;
+
+		if (start > 1) {
+			$('.board_page').append(
+					'<a href="javascript:preFuncion(${dto.board_no},'
+							+ (start - block) + ')">이전</a>');
+		}
+
+		for (var i = start; i <= end; i++) {
+			var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
+					+ i + ')">' + i + '&nbsp;';
+			$('.board_page').append(source1);
+		}
+
+		if (end < total) {
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:nextFuncion(${dto.board_no},'
+							+ (start + block) + ')">다음</a>');
+		}
+
+	};
+
+	//[댓글수정]
+	function comment_update(data) {
+		$('.comment_row').remove();
+		$('.board_page').empty();
+
+		$
+				.each(
+						data.list,
+						function(index, value) {
+							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var template = Handlebars.compile(source);
+							$('#comment_table').append(template(value));
+						});
+
+		var start = data.page.startPage;
+		var end = data.page.endPage;
+		var block = data.page.blockPage;
+		var total = data.page.totalPage;
+
+		if (start > 1) {
+			$('.board_page').append(
+					'<a href="javascript:preFuncion(${board_no},'
+							+ (start - block) + ')">이전</a>');
 		}
 
 		for (var i = start; i <= end; i++) {
@@ -300,12 +247,104 @@
 		}
 
 		if (end < total) {
-			$('.board_page').append(
-					'<a href="javascript:nextFunction(${board_no}, '
+			$('#pre_next_pagenum').append(
+					'<a href="javascript:nextFuncion(${board_no},'
 							+ (start + block) + ')">다음</a>');
 		}
-	}; 
-	
+
+		$('#updateCommentText').val("");
+		$('#updateWindow').removeClass('updateShow');
+		$('#updateWindow').removeClass('updateHide');
+		uno = "";
+	};
+
+	function preFunction(b, c) {
+		$.ajax({
+			type : 'POST',
+			dataType : 'JSON',
+			url : "board_view.do",
+			data : "board_no=" + b + "&currentPage=" + c,
+			success : comment_prenext_list_result,
+			error : function(xhr, textStatus, error) {
+				alert("에러" + error);
+			}
+		});
+	};
+
+	function nextFunction(b, c) {
+		$.ajax({
+			type : 'POST',
+			dataType : 'JSON',
+			url : "board_view.do",
+			data : "board_no=" + b + "&currentPage=" + c,
+			success : comment_prenext_list_result,
+			error : function(xhr, textStatus, error) {
+				alert("에러" + error);
+			}
+		});
+	};
+
+	function myFunction(b, i) {
+		$.ajax({
+			type : 'POST',
+			dataType : 'json',
+			url : "board_view.do",
+			data : "board_no=" + b + "&currentPage=" + i,
+			success : comment_list_result,
+			error : function(xhr, textStatus, error) {
+				alert("에러" + error);
+			}
+		});
+	};
+
+	function comment_list_result(res) {
+		$('#comment_table .comment_row').remove();
+		$
+				.each(
+						res.list,
+						function(index, value) {
+							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button id='comment_comment' value={{comment_no}}>댓글</button><button id='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var template = Handlebars.compile(source);
+							$('#comment_table').append(template(value));
+						});
+	};
+
+	function comment_prenext_list_result(res) {
+		$('#comment_table .comment_row').remove();
+		$('.board_page').empty();
+
+		$
+				.each(
+						res.list,
+						function(index, value) {
+							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button id='comment_update' value={{comment_no}}>수정</button><button id = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var template = Handlebars.compile(source);
+							$('#comment_table').append(template(value));
+						});
+
+		var start = res.page.startPage;
+		var end = res.page.endPage;
+		var block = res.page.blockPage;
+		var total = res.page.totalPage;
+
+		if (start > 1) {
+			$('.board_page').append(
+					'<a href="javascript:preFunction(${dto.board_no}, '
+							+ (start - block) + ')">이전&nbsp;</a>');
+		}
+
+		for (var i = start; i <= end; i++) {
+			var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
+					+ i + ')">' + i + '&nbsp;';
+			$('.board_page').append(source1);
+		}
+
+		if (end < total) {
+			$('.board_page').append(
+					'<a href="javascript:nextFunction(${dto.board_no}, '
+							+ (start + block) + ')">다음</a>');
+		}
+	};
 </script>
 <style type="text/css">
 #board_row tr {
@@ -357,6 +396,23 @@ td {
 	padding: 20px 50px;
 	text-align: center;
 }
+
+.updateShow {
+	visibility: block;
+	position: absolute;
+	width: 400px;
+	height: 200px;
+	top: 600px;
+	left: 850px;
+	border: 1px solid gray;
+	text-align: left;
+}
+
+.updateHide {
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+}
 </style>
 
 <body>
@@ -380,7 +436,6 @@ td {
 
 	<div id="commentarea">
 		<table id="comment_table">
-
 			<c:forEach items="${aList}" var="CommentDTO">
 				<tr class="comment_row">
 					<td>${CommentDTO.comment_writer}<fmt:formatDate
@@ -404,7 +459,6 @@ td {
 				type="button" id="comment_insert" value="입력" />
 		</form>
 	</div>
-
 
 	<div class="board_page">
 		<!-- 이전 출력 시작 -->
@@ -431,6 +485,17 @@ td {
 				<c:out value="다음" />
 			</a>
 		</c:if>
+	</div>
+
+	<div id="updateWindow">
+		<p>
+			<input class="form-control" type="text" id="updateCommentText"
+				placeholder="수정할 댓글을 입력하세요" />
+		</p>
+		<p>
+			<button class="btnUpdate" value="${CommentDTO.comment_no}">수정</button>
+			<button class="btnClose">닫기</button>
+		</p>
 	</div>
 
 	<div class="board_buttons">
