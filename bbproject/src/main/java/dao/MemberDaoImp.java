@@ -64,14 +64,14 @@ public class MemberDaoImp implements MemberDAO {
 	}
 
 	@Override
-	public void updateMethod(MemberDTO dto) {
-		sqlSession.update("member.upt", dto);
+	public void deleteMethod(MemberDTO dto) {
+		sqlSession.delete("member.del", dto);
 		
 	}
 
 	@Override
-	public void deleteMethod(MemberDTO dto) {
-		sqlSession.delete("member.del", dto);
+	public void updateMethod(MemberDTO dto) {
+		sqlSession.update("member.upd", dto);
 		
 	}
 

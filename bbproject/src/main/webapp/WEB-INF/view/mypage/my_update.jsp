@@ -106,7 +106,7 @@ $(document).ready(function(){
 		else {
 			if($("#pass").val()==$("#pw").val()){
 			$("a#okhref").attr("href","joinsucc.do");
-			$("#form").attr('action','joinInsert.do').attr('method','post').attr('onsubmit','true').submit();
+			$("#form").attr('action','myupdate.do').attr('method','post').attr('onsubmit','true').submit();
 			}else{
 				alert("비밀번호가 일치하지 않습니다.");
 			}
@@ -205,7 +205,7 @@ function sample4_execDaumPostcode() {
 </div>
 
 <div class="join">
-<form action="joinInsert.do" method="post" enctype="application/x-www-form-urlencoded">
+<form action="myupdate.do" method="post" enctype="application/x-www-form-urlencoded" id="form" onsubmit="return false">
 <fieldset>
 <legend>회원정보 수정</legend>
 

@@ -156,6 +156,7 @@ public class MypageController {
 		return "joinsucc";
 	}
 	
+
 	@RequestMapping("/my_leave.do")
 	public String myleave(){
 		return "my_leave";
@@ -163,6 +164,13 @@ public class MypageController {
 	
 	@RequestMapping(value = "/myleave.do", method = RequestMethod.POST)
 	public String myleaveProcess(MemberDTO dto) {
+		
+		System.out.println(dto.getId());
+		System.out.println(dto.getMember_name());
+		System.out.println(dto.getPw());
+		System.out.println(dto.getTel());
+		System.out.println(dto.getAddress());
+		
 		memberservice.leaveProcess(dto);
 		return "joinsucc";
 	}

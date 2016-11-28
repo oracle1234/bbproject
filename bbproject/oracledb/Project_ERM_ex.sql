@@ -37,7 +37,7 @@ insert into fb_member values
 	update fb_member
 	set
 	pw='12345', tel='수정', mail='수정', address='수정'
-	where id='jaemin' and member_name='유재민'
+	where id='nayeon6222' and member_name='백나연'
 	
 	delete 
 	from fb_member

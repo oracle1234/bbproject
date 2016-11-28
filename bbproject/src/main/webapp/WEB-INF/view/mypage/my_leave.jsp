@@ -10,6 +10,7 @@ var s_name = "${sessionScope.member.member_name}";
 $(document).ready(function(){
 	
 	$(".leave").hide();
+	$("#hidden").hide();
 	
 	$("#pwok").on("click", function(){
 		if(s_pw==$("#pwck").val()){
@@ -28,9 +29,8 @@ $(document).ready(function(){
 		if($("#otherreason").val().length == 0){
 			alert("전부 입력해주세요.");
 				 $('#otherreason').focus();
-			}
-		else {
-			$("a#okhref").attr("href","joinsucc.do");
+			} else {
+				$("a#okhref").attr("href","joinsucc.do");
 			$("#form").attr('action','myleave.do').attr('method','post').attr('onsubmit','true').submit();
 		}
 		});
@@ -50,7 +50,7 @@ $(document).ready(function(){
 <input type="button" id="pwok" value="확인"> 
 </div>
 <div class="leave">
-<form action="myleave.do" method="post" enctype="application/x-www-form-urlencoded"></form>
+<form action="myleave.do" method="post" enctype="application/x-www-form-urlencoded" id="form" onsubmit="return false">
 	탈퇴 사유
 	<ul class="reason">
 	<li id="reason1"><input type="checkbox" >상품품질불만(맛)</li>
@@ -68,7 +68,14 @@ $(document).ready(function(){
 	</div>
 	<a id="okhref" href=""><input type="submit" value="확인" id="ok" /></a>
 	<input type="button" id="no" value="취소">
-	<input type="hidden" name="id" id="id">
-	<input type="hidden" name="pw" id="pw">
+	<div id="hidden">
+	<input type="text" name="id" id="id">
+	<input type="text" name="pw" id="pw">
 	</div>
+	</form>
+
+	
 	</div>
+	
+	</div>
+	
