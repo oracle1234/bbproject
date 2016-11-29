@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,15 +30,23 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public int countProcess() {
+	public int countProcess(int boardcategory_no) {
 
-		return bdao.count();
+		return bdao.count(boardcategory_no);
 	}
-
+	
+	
 	@Override
 	public List<BoardDTO> listProcess(PageDTO pv) {
-
+		
 		return bdao.list(pv);
+	}
+	
+	
+	@Override
+	public List<BoardDTO> pageListProcess(HashMap<String, Object> map) {
+		
+		return bdao.pageList(map);
 	}
 
 	@Override
@@ -53,16 +62,8 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public void reStepProcess(CommentDTO cdto) {
-		bdao.reStepCount(cdto);
-		cdto.setComment_re_step(cdto.getComment_re_step() + 1);
-		cdto.setComment_re_level(cdto.getComment_re_level() + 1);
-		bdao.save(cdto);
-	}
-
-	@Override
 	public BoardDTO updateSelectProcess(int num) {
-
+		
 		return bdao.updateNum(num);
 	}
 
@@ -78,4 +79,44 @@ public class BoardServiceImp implements BoardService {
 		bdao.delete(num);
 
 	}// end deleteProcess()
+
+	
+	/*@Override
+	public List<CommentDTO> commentListProcess(int comment_no) {
+		
+		return null;
+	}*/
+
+	//
+	@Override
+	public List<CommentDTO> commentPageProcess(HashMap<String, Object> map) {
+		
+		return bdao.commentPageList(map);
+	}
+
+	//
+	@Override
+	public int commentCountProcess(int board_no) {
+		
+		return bdao.commentCount(board_no);
+	}
+
+	@Override
+	public void commentInsertProcess(HashMap<String, Object> map) {
+		
+		bdao.commentSaveList(map);
+	}
+
+	@Override
+	public void commentUpdateProcess(HashMap<String, Object> map) {
+		
+		bdao.commentUpdateList(map);
+	}
+
+	@Override
+	public void commentDeleteProcess(HashMap<String, Object> map) {
+		
+		bdao.commentDeleteList(map);
+	}
+
 }

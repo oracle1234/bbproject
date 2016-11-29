@@ -26,9 +26,7 @@ $(document).ready(function() {
 			}
 		});  
 		/*  var aa=$(this).val();
-			$("#count_select option[value="+aa+"]").attr("
-
-					", true); */
+			$("#count_select option[value="+aa+"]").attr("", true); */
 
 	});
 	

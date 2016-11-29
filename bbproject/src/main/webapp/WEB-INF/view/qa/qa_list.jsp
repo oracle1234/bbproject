@@ -97,12 +97,12 @@ td{
 				<th width="10%">조회수</th>
 			</tr>
 
-			<c:forEach var="qdto" items="${aList2}">
+			<c:forEach var="qdto" items="${aList}">
 				<tr>
 					<td>${qdto.qa_no}</td>
-					<td><c:url var="content" value="qa_view.do">
-							<c:param name="currentPage" value="${pv2.currentPage}" />
-							<c:param name="num" value="${qdto.qa_no}" />
+					<td><c:url var="qa_content" value="qa_view.do">
+							<c:param name="currentPage" value="${pv.currentPage}" />
+							<c:param name="qa_no" value="${qdto.qa_no}" />
 						</c:url> 
 						<a href="${qa_content}">${qdto.qa_subject}</a></td>
 					<td>${qdto.qa_writer}</td>
@@ -120,12 +120,12 @@ td{
 		
 		<div class="board_page">
 		<!-- 이전 출력 시작 -->
-		<c:if test="${pv2.startPage>1}">
-			<a href="qa_list.do?currentPage=${pv2.startPage-pv2.blockPage}">이전</a>
+		<c:if test="${pv.startPage>1}">
+			<a href="qa_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
 		</c:if>
 
 		<!-- 페이지 출력 시작 -->
-		<c:forEach var="i" begin="${pv2.startPage}" end="${pv2.endPage}">
+		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
 			<c:url var="currPage" value="qa_list.do">
 				<c:param name="currentPage" value="${i}" />
 			</c:url>
@@ -133,23 +133,18 @@ td{
 		</c:forEach>
 
 		<!-- 페이지 출력 끝 -->
-		<c:if test="${pv2.totalPage>pv2.endPage}">
-			<a href="qa_list.do?currentPage=${pv2.startPage+pv2.blockPage}">다음</a>
+		<c:if test="${pv.totalPage>pv.endPage}">
+			<a href="qa_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
 		</div>
 
 		<div class="board_search">
 			<form id="search_frm" method="get">
 				<span class="chk"> 
-				<label> 
-					<input type="radio" name="search" checked value="board_writer"> 이름
-				</label> 
-				<label> 
-					<input type="radio" name="search" value="board_subject"> 제목
-				</label> 
-				<label> 
-					<input type="radio" name="search" value="board_content"> 내용
-				</label>
+				<select name="search_select">
+					<option value="board_subject">제목</option>
+					<option value="board_writer">작성자</option>
+				</select>
 				</span> 
 					<input type="text" name="search_str" value class="board_search_str" />
 					<input type="button" id="btnSearch" value="검색" />				

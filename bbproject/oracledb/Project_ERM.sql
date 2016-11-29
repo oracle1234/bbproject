@@ -1,9 +1,5 @@
 
 /* Drop Tables */
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/yeonsung
 DROP TABLE fb_lately_product CASCADE CONSTRAINTS;
 DROP TABLE fb_coupon_book CASCADE CONSTRAINTS;
 DROP TABLE fb_coupon CASCADE CONSTRAINTS;
@@ -22,20 +18,14 @@ DROP TABLE fb_tr_order CASCADE CONSTRAINTS;
 DROP TABLE fb_tr_complete CASCADE CONSTRAINTS;
 DROP TABLE fb_theme_recipe CASCADE CONSTRAINTS;
 DROP TABLE fb_theme CASCADE CONSTRAINTS;
-
 DROP TABLE fb_boardcategory CASCADE CONSTRAINTS;
 
 <<<<<<< HEAD
-<<<<<<< HEAD
+
 
 =======
->>>>>>> refs/remotes/origin/yeonsung
-=======
-select * from fb_board;
-delete from fb_board;
->>>>>>> refs/remotes/origin/yeonsung
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git
 /* Drop Sequences */
-
 DROP SEQUENCE SEQ_coupon_no;
 DROP SEQUENCE SEQ_couponbook_no;
 DROP SEQUENCE SEQ_member_no;
@@ -46,18 +36,14 @@ DROP SEQUENCE SEQ_recipe_no;
 DROP SEQUENCE SEQ_comment_no;
 DROP SEQUENCE SEQ_qa_no;
 DROP SEQUENCE SEQ_board_no;
-
 DROP SEQUENCE SEQ_photo_no;
 DROP SEQUENCE SEQ_theme_no;
 DROP SEQUENCE SEQ_order_no;
 DROP SEQUENCE SEQ_complete_no;
 DROP SEQUENCE SEQ_review_no;
-
-
-
+DROP SEQUENCE SEQ_boardcategory_no;
 
 /* Create Sequences */
-
 CREATE SEQUENCE SEQ_coupon_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_couponbook_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_member_no INCREMENT BY 1 START WITH 1 nocache nocycle;
@@ -72,10 +58,18 @@ CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+<<<<<<< HEAD
+CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+<<<<<<< HEAD
+=======
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
+>>>>>>> refs/remotes/origin/joohoon2
 
 
+=======
+CREATE SEQUENCE SEQ_boardcategory_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git
 
 /* Create Tables */
 
@@ -86,7 +80,6 @@ CREATE TABLE fb_lately_product
 	lately_no number NOT NULL
 );
 
-
 CREATE TABLE fb_coupon
 (
 	coupon_no number NOT NULL,
@@ -96,8 +89,6 @@ CREATE TABLE fb_coupon
 );
 
 
-<<<<<<< HEAD
------ 나연 수정--
 CREATE TABLE fb_coupon_book
 (
 	couponbook_no number NOT NULL,
@@ -105,6 +96,8 @@ CREATE TABLE fb_coupon_book
 	coupon_no number NOT NULL,
 	 
 	coupon_state varchar2(10) not null,
+<<<<<<< HEAD
+=======
 	PRIMARY KEY (couponbook_no)
 );
 =======
@@ -113,6 +106,11 @@ CREATE TABLE fb_coupon_book
 	couponbook_no number NOT NULL,
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/yeonsung
+>>>>>>> refs/remotes/origin/joohoon2
+>>>>>>> refs/remotes/origin/min
 	PRIMARY KEY (couponbook_no)
 );
 
@@ -152,6 +150,14 @@ CREATE TABLE fb_category
 	category_no number NOT NULL,
 	category_name varchar2(50) NOT NULL,
 	PRIMARY KEY (category_no)
+);
+
+
+CREATE TABLE fb_boardcategory
+(
+	boardcategory_no number NOT NULL,
+	boardcategory_name varchar2(50) NOT NULL,
+	PRIMARY KEY (boardcategory_no)
 );
 
 
@@ -208,23 +214,19 @@ CREATE TABLE fb_review
 --review_content 컬럼 크기변경
 alter table fb_review MODIFY (review_content varchar2(100));
 
-
 CREATE TABLE fb_comment
 (
 	comment_no number NOT NULL,
+	member_no number NOT NULL,
 	board_no number NOT NULL,
 	photo_no number NOT NULL,
 	qa_no number NOT NULL,
-	comment_ref number NOT NULL,
-	comment_re_step number NOT NULL,
-	comment_re_level number NOT NULL,
 	comment_content varchar2(2000) NOT NULL,
 	comment_writer varchar2(50) NOT NULL,
 	comment_date date,
 	PRIMARY KEY (comment_no)
 );
 
-------------------------------------------------나연 추가
 
 create table fb_boardcategory
 (
@@ -232,12 +234,7 @@ boardcategory_no number not null,
 boardcategory_name varchar2(20) not null,
 primary key (boardcategory_no)
 );
-insert into fb_boardcategory values
-(1, '자유게시판');
-insert into fb_boardcategory values
-(2, '포토후기');
-insert into fb_boardcategory values
-(3, '질문과 답변');
+
 
 CREATE TABLE fb_qa_board
 (
@@ -253,30 +250,7 @@ CREATE TABLE fb_qa_board
 	PRIMARY KEY (qa_no)
 );
 
-<<<<<<< HEAD
-=======
 
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구', sysdate, '첫번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구2', sysdate, '두번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구3', sysdate, '세번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구4', sysdate, '네번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구5', sysdate, '다섯번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구6', sysdate, '여섯번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구7', sysdate, '일곱번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구8', sysdate, '여덟번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구9', sysdate, '아홉번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구10', sysdate, '열번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구11', sysdate, '열한번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구12', sysdate, '열두번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구13', sysdate, '열세번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구14', sysdate, '열넷번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구15', sysdate, '열다섯번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구16', sysdate, '열여섯번째 글');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '어쩌구 저쩌구17', sysdate, '열일곱번째 글');
-select * from fb_board;
->>>>>>> refs/remotes/origin/yeonsung
-
------ 나연 수정--
 CREATE TABLE fb_photo_board
 (
 	boardcategory_no number not null,
@@ -291,9 +265,7 @@ CREATE TABLE fb_photo_board
 	PRIMARY KEY (photo_no)
 );
 
-<<<<<<< HEAD
 
------ 나연 수정--
 CREATE TABLE fb_board
 (
 	boardcategory_no number not null,
@@ -306,7 +278,11 @@ CREATE TABLE fb_board
 	board_subject varchar2(200) NOT NULL,
 	PRIMARY KEY (board_no)
 );
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git
 
 CREATE TABLE fb_theme_recipe
 (
@@ -344,10 +320,10 @@ CREATE TABLE fb_tr_order
 
 CREATE TABLE fb_tr_complete
 (
-	complete_no number NOT NULL,
 	recipe_no number NOT NULL,
+<<<<<<< HEAD
 	complete_pic varchar2(50),
-=======
+
 
 CREATE TABLE fb_board
 (
@@ -360,41 +336,6 @@ CREATE TABLE fb_board
 	board_subject varchar2(200) NOT NULL,
 	PRIMARY KEY (board_no)
 );
-
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
-insert into fb_board values(SEQ_board_no.nextval, 0, 'kys', '심심해', sysdate, '심심해');
 
 
 CREATE TABLE fb_theme_recipe
@@ -435,8 +376,10 @@ CREATE TABLE fb_tr_complete
 	complete_no number NOT NULL,
 	recipe_no number NOT NULL,
 	complete_pic varchar2(500),
->>>>>>> refs/remotes/origin/yeonsung
 	PRIMARY KEY (complete_no)
+=======
+	complete_pic varchar2(50)
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git
 );
 
 
@@ -535,20 +478,24 @@ ALTER TABLE fb_theme_recipe
 	REFERENCES fb_theme (theme_no)
 ;
 
-
 ---------------------------------------------------나연 추가
 alter table fb_qa_board
 add foreign key (member_no)
 references fb_member (member_no);
 ---------------------------------------------------나연 추가
+alter table fb_board
+add foreign key (member_no)
+references fb_member (member_no);
 
-
-
-/* Comments */
-
-COMMENT ON COLUMN fb_tr_order.order_text IS '설명';
-
+<<<<<<< HEAD
 
 =======
->>>>>>> refs/remotes/origin/yeonsung
+alter table fb_photo_board
+add foreign key (member_no)
+references fb_member (member_no);
+>>>>>>> refs/remotes/origin/min
+
+/* Comments */
+COMMENT ON COLUMN fb_tr_order.order_text IS '설명';
+
 

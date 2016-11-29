@@ -18,7 +18,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<div class="mypage_body">
-		<div class="menu">
+		<div class="mymenu">
 			<div id="order">
 				<p>
 					<a href="my_order.do">주문/배송조회</a>
@@ -41,6 +41,20 @@ $(document).ready(function(){
 			<div id="board">
 				<p>
 					<a href="my_board.do">내가쓴글</a>
+				</p>
+				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
+			</div>
+			
+			<div id="update">
+				<p>
+					<a href="my_update.do">개인정보 수정</a>
+				</p>
+				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
+			</div>
+			
+			<div id="leave">
+				<p>
+					<a href="my_leave.do">회원 탈퇴</a>
 				</p>
 				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
 			</div>

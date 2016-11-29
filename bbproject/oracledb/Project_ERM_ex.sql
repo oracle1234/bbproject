@@ -15,7 +15,33 @@ insert into fb_member values
 insert into fb_member values 
 (1, '관리자', 'admin', 'admin', '종각', 
 01044444444, 'admin', 0, 0);
-
+	split
+	select id
+	from fb_member
+	where member_name='유재민' and mail='jaemin@paran.com,'
+	
+		select pw
+	from fb_member
+	where id='jaemin' and member_name='유재민' and mail='jaemin@paran.com,'
+	
+	
+		update fb_member
+	set
+	pw='jamin123'
+	where id='jaemin' and member_name='유재민' and mail='jaemin@paran.com,'
+	
+	replace(#{mail},',','')
+	
+	
+	
+	update fb_member
+	set
+	pw='12345', tel='수정', mail='수정', address='수정'
+	where id='nayeon6222' and member_name='백나연'
+	
+	delete 
+	from fb_member
+	where member_no >2 and member_no <43
 delete 
 from fb_member
 where member_no=4
@@ -29,10 +55,22 @@ insert into fb_category values
 insert into fb_category values 
 (3, '국, 찌개');
 
+테이블명:fb_boardcategory
+select * from fb_boardcategory;
+insert into fb_boardcategory values 
+(1, '자유게시판');
+insert into fb_boardcategory values 
+(2, 'QA게시판');
+insert into fb_boardcategory values 
+(3, '포토후기');
+
+테이블명:fb_boardcategory
+select * from fb_boardcategory;
+
 테이블명:fb_delivery_cost
 select * from fb_delivery_cost;
 insert into fb_delivery_cost values
-(1,2500)
+(1,2500);
 
 테이블명:fb_foods
 select * from fb_foods;
@@ -222,11 +260,23 @@ insert into fb_coupon values
 
 select * from FB_COUPON_BOOK
 insert into FB_COUPON_BOOK values
+<<<<<<< HEAD
+(1, '미사용');
+=======
 (1, 11, 1, '미사용');
+>>>>>>> refs/remotes/origin/joohoon2
 insert into FB_COUPON_BOOK values
+<<<<<<< HEAD
+(2, '미사용');
+=======
 (2, 11, 2, '미사용');
+>>>>>>> refs/remotes/origin/joohoon2
 insert into FB_COUPON_BOOK values
+<<<<<<< HEAD
+(3, '사용');
+=======
 (3, 11, 3, '사용');
+>>>>>>> refs/remotes/origin/joohoon2
 
 
 select c.coupon_name, c.coupon_discount, b.coupon_state
@@ -236,27 +286,66 @@ and c.coupon_no = b.coupon_no;
 
 select * from fb_qa_board
 insert into fb_qa_board values
+<<<<<<< HEAD
+(2, 1, seq_qa_no.nextval, 0, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
+=======
 (3, 11, 1, 1, '유재민', '이게 뭡니까', sysdate, '1','질문잇어요');
+>>>>>>> refs/remotes/origin/joohoon2
 insert into fb_qa_board values
+<<<<<<< HEAD
+(2, 1, seq_qa_no.nextval, 0,  '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
+=======
 (3, 11, 2, 1, '유재민', '이게 뭡니까2', sysdate, '2','질문잇어요2');
+>>>>>>> refs/remotes/origin/joohoon2
 insert into fb_qa_board values
+<<<<<<< HEAD
+(2, 1, seq_qa_no.nextval, 0, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
+
+=======
 (3, 11, 3, 1, '유재민', '이게 뭡니까3', sysdate, '3','질문잇어요3');
+>>>>>>> refs/remotes/origin/joohoon2
 
 select * from fb_photo_board
 insert into fb_photo_board values
+<<<<<<< HEAD
+(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다.', sysdate, '1', '포토후기');
+=======
 (2, 11, 1, 1, '유재민', '떡볶이 입니다.', sysdate, '1', '포토후기');
+>>>>>>> refs/remotes/origin/joohoon2
 insert into fb_photo_board values
+<<<<<<< HEAD
+(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
+=======
 (2, 11, 2, 1, '유재민', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
+>>>>>>> refs/remotes/origin/joohoon2
 insert into fb_photo_board values
+<<<<<<< HEAD
+(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
+
+=======
 (2, 11, 3, 1, '유재민', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
+>>>>>>> refs/remotes/origin/joohoon2
 
 select * from fb_board
 insert into fb_board values
+<<<<<<< HEAD
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
+=======
 (1, 11, 1, 1, '유재민', '자유게시판입니다.', sysdate, '자유');
+>>>>>>> refs/remotes/origin/joohoon2
 insert into fb_board values
+<<<<<<< HEAD
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다2.', sysdate, '자유2');
+=======
 (1, 11, 2, 1, '유재민', '자유게시판입니다2.', sysdate, '자유2');
+>>>>>>> refs/remotes/origin/joohoon2
 insert into fb_board values
+<<<<<<< HEAD
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다3.', sysdate, '자유3');
+
+=======
 (1, 11, 3, 1, '유재민', '자유게시판입니다3.', sysdate, '자유3');
+>>>>>>> refs/remotes/origin/joohoon2
 
 CREATE TABLE fb_photo_board
 (

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -8,18 +9,14 @@
 <title>Insert title here</title>
 </head>
 <style type="text/css">
-
 #bodywrap {
 	width: 950px;
+	height: 750px;
 }
 
 #bodytop {
 	width: 950px;
 	height: 100px;
-}
-
-#table {
-	width: 950px;
 }
 
 .bodyname {
@@ -31,42 +28,62 @@
 	margin-left:25px;
 	float: left;
 }
+
+.board_page {
+	padding: 20px 50px;
+	text-align: center;
+}
+
+#photobox, #list{
+	width: 950px;
+	height:560px;
+}
+
+#list li{
+	padding-left:15px;
+	padding-bottom:15px;
+	float:left;
+	width: 105px;
+	height:95px;
+}
+
+#list .line_first{
+	padding-left: 0px;
+	padding-bottom: 15px;
+}
+
+#list a{
+	width: 80px;
+	height:70px;
+}
+
+.board_write {
+	padding-top:10px;
+	padding-right:10px;
+	text-align: right;
+}
 </style>
 
 <body>
-
 	<div id="bodywrap">
 		<div id="bodytop">
 			<h3 class="bodyname">포토후기</h3>
 		</div>
-		<table id="table">
-			<tr>
-				<th width="5%">번호</th>
-				<th width="65%">제목</th>
-				<th width="10%">글쓴이</th>
-				<th width="10%">등록일</th>
-				<th width="10%">조회수</th>
-			</tr>
-
-			<c:forEach var="dto" items="${aList}">
-				<tr>
-					<td>${dto.board_no}</td>
-					<td><c:url var="content" value="board_view.do">
-							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="num" value="${dto.board_no}" />
-						</c:url> <c:if test="${dto.board_re_level!=0}">
-							<img src="images/level.gif" width="${20*dto.board_re_level}"
-								height="15" />
-							<img src="images/re.gif" />
-						</c:if><a href="${content}">${dto.board_subject}</a></td>
-					<td>${dto.board_writer}</td>
-					<td>${dto.board_reg_date}
-					<td>${dto.board_readcount}</td>
-
-				</tr>
+		<div id=photobox>
+			<ul id="list">
+			<c:forEach items="${aList}" var="Photo_BoardDTO">
+				<li class="photo_img">
+					<a href="photo_list.do?photo_no=${Photo_BoardDTO.photo_no}"><img alt="후기이미지" src="images/${Photo_BoardDTO.picture}"></a>
+				</li>	
 			</c:forEach>
-		</table>
+			</ul>
+		</div>
 
+		<div class="board_write">
+			<a href="photo_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
+		</div>
+
+		<div class="board_page">
 		<!-- 이전 출력 시작 -->
 		<c:if test="${pv.startPage>1}">
 			<a href="board_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
@@ -74,7 +91,7 @@
 
 		<!-- 페이지 출력 시작 -->
 		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-			<c:url var="currPage" value="board_list.do">
+			<c:url var="currPage" value="photo_list.do">
 				<c:param name="currentPage" value="${i}" />
 			</c:url>
 			<a href="${currPage}"><c:out value="${i}" /></a>
@@ -84,10 +101,7 @@
 		<c:if test="${pv.totalPage>pv.endPage}">
 			<a href="board_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
-
-		<form id="frm" method="get" action="board_write.do">
-			<input type="submit" id="btnWrite" value="글쓰기" />
-		</form>
+	</div>
 
 	</div>
 </body>

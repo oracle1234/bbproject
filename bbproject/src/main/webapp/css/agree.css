@@ -3,6 +3,15 @@ div.agree {
 	padding: 14px;
 }
 
+p.big {
+    line-height: 1.3;
+ 
+}
+
+p{
+font-weight: bold;
+}
+
 div.agreeinfo {
 	margin-top:5px;
 	width: 930px;

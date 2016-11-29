@@ -64,28 +64,34 @@
 	<bean id="boardDao" class="dao.BoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	
+	<bean id="qaDao" class="dao.QA_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<bean id="photoDao" class="dao.Photo_BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
 	<bean id="BasketDao" class="dao.fb_BasketDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+
 	<bean id="shopDao" class="dao.ShopDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+
 	<bean id="OrderDao" class="dao.fb_OrderDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+
 	<bean id="CouponDao" class="dao.fb_CouponDaoImp">
 		<property name="sqlSession" ref="sqlSession"></property>
-	</bean>
-	<bean id="qaDao" class="dao.QA_BoardDaoImp">
-		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 
 	<bean id="myBoardDao" class="dao.myBoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-
-	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp"> <property name="sqlSession" 
-		ref="sqlSession"/> </bean> -->
 
 	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp"> <property name="sqlSession" 
 		ref="sqlSession"/> </bean> -->
@@ -106,7 +112,11 @@
 	<bean id="qaService" class="service.QA_BoardServiceImp">
 		<property name="dao" ref="qaDao" />
 	</bean>
-
+	
+	<bean id="photoService" class="service.Photo_BoardServiceImp">
+		<property name="dao" ref="photoDao" />
+	</bean>
+	
 	<!-- <bean id="photoService" class="service.Photo_BoardServiceImp"> <property 
 		name="dao" ref="photoDao"/> </bean> -->
 
@@ -121,13 +131,14 @@
 	<bean id="BasketService" class="service.fb_BasketServiceImp">
 		<property name="dao" ref="BasketDao" />
 	</bean>
+
 	<bean id="OrderService" class="service.fb_OrderServiceImp">
 		<property name="dao" ref="OrderDao" />
 	</bean>
+
 	<bean id="CouponService" class="service.fb_CouponServiceImp">
 		<property name="dao" ref="CouponDao" />
 	</bean>
-
 	<bean id="myBoardService" class="service.myBoardServiceImp">
 		<property name="dao" ref="myBoardDao" />
 	</bean>
@@ -137,26 +148,40 @@
 	</bean>
 
 	<!-- controller 등록 -->
-	<bean class="controller.ImageController"></bean>
+	<bean class="controller.MainController">
+
+	</bean>
+
+	<bean class="controller.ImageController">
+
+	</bean>
+
 	<bean class="controller.MypageController">
 		<property name="service" ref="BasketService" />
 		<property name="orderservice" ref="OrderService" />
 		<property name="couponservice" ref="CouponService" />
-		<property name="boardservice" ref="myBoardService"></property>
+		<property name="boardservice" ref="myBoardService" />
+		<property name="memberservice" ref="memberService" />
 	</bean>
+
 	<bean class="controller.ProductController">
 		<property name="service" ref="shopService"></property>
 	</bean>
+
 	<bean class="controller.ShopController">
 		<property name="service" ref="shopService"></property>
 	</bean>
+
 	<bean class="controller.BoardController">
 		<property name="service" ref="boardService" />
 		<property name="qa_service" ref="qaService" />
+		<property name="photo_service" ref="photoService" />
 	</bean>
+
 	<bean class="controller.ThemeRecipeController">
 		<property name="service" ref="themeRecipeservice"></property>
 	</bean>
+
 	<bean class="controller.JoinController">
 		<property name="memberservice" ref="memberService"></property>
 	</bean>
@@ -185,7 +210,8 @@
 
 	<!-- 파일 다운로드 -->
 	<bean id="download" class="view.BoardDownLoadView">
-		<!-- <property name="dao" ref="bdao" /> -->
+		<property name="qdao" ref="qaDao" /> 
+		<!-- <property name="pdao" ref="photoDao" /> -->
 	</bean>
 
 	<!-- spring Framework. 3.1과 3.2의 버전마다 차이가 있는데. Spring 3.2의 경우는 servlet-context.xml 

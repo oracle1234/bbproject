@@ -58,13 +58,14 @@ public class ProductController {
 			map.put("startRow", pdto.getStartRow());
 			map.put("endRow", pdto.getEndRow());
 			map.put("foods_no", fdto.getFoods_no());
-			map.put("member_no", mdto.getMember_no());
+			
 			mav.addObject("aList", service.reviewPageListProcess(map));
 			
 		}
 		
 		mav.addObject("foods_no", fdto.getFoods_no());
 		mav.addObject("list", service.listProcess(fdto.getFoods_no()));
+		mav.addObject("member_no", mdto.getMember_no());
 		mav.setViewName("detail_product");
 		return mav;
 	}

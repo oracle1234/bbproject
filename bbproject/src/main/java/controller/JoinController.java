@@ -37,6 +37,12 @@ public class JoinController {
 
 		return "join";
 	}
+	
+/*	@RequestMapping("/joinsucc.do")
+	public String joinsucc() {
+
+		return "joinsucc";
+	}*/
 
 	@RequestMapping(value = "/join_idck.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public @ResponseBody String idcheck(String id) {
@@ -53,16 +59,23 @@ public class JoinController {
 	
 	@RequestMapping(value = "/joinInsert.do", method = RequestMethod.POST)
 	public String joinProcess(MemberDTO dto) {
-		System.out.println(dto.getTel());
 		memberservice.insertProcess(dto);
 		return "joinsucc";
 	}
 	
-	@RequestMapping(value = "/idfind.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	
+	@RequestMapping("/idpwfind.do")
+	public String idfwfind() {
+
+		return "idpwfind";
+	}
+
+	
+	@RequestMapping(value = "/idfind.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public @ResponseBody String idfind(String member_name, String mail){
-		HashMap<String, String> map = new HashMap<String, String>();
-		
+	
 		MemberDTO dto =memberservice.idfindProcess(member_name, mail);
+	
 		String str ="";
 		if(dto ==null){
 			str ="입력하신 이름과 이메일이 일치하는 회원이 없습니다.";
@@ -73,9 +86,21 @@ public class JoinController {
 		return str;
 	}
 	
-	@RequestMapping(value = "/pwfind.do", method = RequestMethod.POST)
-	public String pwfind(MemberDTO dto) {
-		memberservice.pwfindProcess(dto);
-		return "pwupd";
+
+	@RequestMapping(value = "/pwfind.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	public @ResponseBody String pwfind(String id, String member_name, String mail){
+		MemberDTO dto=memberservice.pwfindProcess(id, member_name, mail);
+		String str ="";
+		if(dto ==null){
+			str ="입력하신 아이디, 이름, 이메일이 일치하는 회원이 없습니다.";
+		} else {
+			str = member_name +"님 확인 되었습니다.";
+		}
+		return str;
+	}
+	
+	@RequestMapping(value ="/pwupd.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	public @ResponseBody MemberDTO pwupd(String id, String member_name, String mail, String pw){
+		return memberservice.pwupdProcess(id, member_name, mail, pw);
 	}
 }

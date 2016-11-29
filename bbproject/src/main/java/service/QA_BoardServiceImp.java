@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,9 +30,9 @@ public class QA_BoardServiceImp implements QA_BoardService {
 	}
 
 	@Override
-	public int countProcess() {
+	public int countProcess(int boardcategory_no) {
 
-		return qdao.count();
+		return qdao.count(boardcategory_no);
 	}
 
 	@Override
@@ -39,25 +40,22 @@ public class QA_BoardServiceImp implements QA_BoardService {
 
 		return qdao.list(pv);
 	}
+	
+	@Override
+	public List<QA_BoardDTO> pageListProcess(HashMap<String, Object> map) {
+		
+		return qdao.pageList(map);
+	}
 
 	@Override
 	public void insertProcess(QA_BoardDTO qdto) {
 		qdao.save(qdto);
-
 	}
 
 	@Override
 	public QA_BoardDTO contentProcess(int num) {
 		qdao.readCount(num);
 		return qdao.content(num);
-	}
-
-	@Override
-	public void reStepProcess(CommentDTO dto) {
-		qdao.reStepCount(dto);
-		dto.setComment_re_step(dto.getComment_re_step() + 1);
-		dto.setComment_re_level(dto.getComment_re_level() + 1);
-		qdao.save(dto);
 	}
 
 	@Override
@@ -86,8 +84,7 @@ public class QA_BoardServiceImp implements QA_BoardService {
 			}
 
 			String fileName = file.getOriginalFilename();
-			dto.setUpload(random + "_" + fileName);
-
+			dto.setQa_upload(random + "_" + fileName);
 			File ff = new File(saveDirectory, random + "_" + fileName);
 
 			try {
@@ -114,4 +111,5 @@ public class QA_BoardServiceImp implements QA_BoardService {
 		}
 		qdao.delete(num);
 	}// end deleteProcess()
+
 }

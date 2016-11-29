@@ -33,7 +33,6 @@
 	width:950px;
 }
 
-
 th{
  	width: 140px;
 	text-align: left;
@@ -45,14 +44,6 @@ td{
 	text-align: left;
 }
 
-#btnList, #btnSave{
-	border-color: #cec6c6;
-	background-color: #ffffff;
-	width: 80px;
-	height: 25px;
-	line-height: 10px;
-}
-
 .textarea {
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -60,17 +51,16 @@ td{
 
 .textarea textarea{
 	width:948px;
-	height: 600px;
+	height: 450px;
 }
 </style>
+
 </head>
 <body>
 	<div id="board_write" >
-	<form name="frm" id="frm" method="post" enctype="multipart/form-data"
-		onsubmit="return process()">
+	<form name="frm" id="frm" method="post" onsubmit="return process()">
 
 		<table class="board_row">
-
 			<tr>
 				<th scope="row">글쓴이</th>
 				<td><input type="text" name="board_writer" size="10" maxlength="10" /></td>
@@ -78,10 +68,9 @@ td{
 
 			<tr>
 				<th scope="row">제목</th>
-				<td><c:if test="${dto!=null}">답변</c:if> <input type="text"
+				<td><c:if test="${bdto!=null}">답변</c:if> <input type="text"
 					name="board_subject" size="40" /></td>
-			</tr>
-			
+			</tr>		
 		</table>
 		
 		<div class="textarea">
@@ -89,19 +78,18 @@ td{
 		</div>
 		
 		<!-- 답변글일때.... -->
-		
-		<c:if test="${dto!=null}">
+		<c:if test="${bdto!=null}">
 			<input type="hidden" name="board_no" id="board_no" value="${dto.board_no}" />
-			<input type="hidden" name="currentPage" id="currentPage"
-				value="${currentPage}" />
-<%-- 			<input type="hidden" name="ref" value="${dto.comment_ref}" />
+			<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" />
+		<%-- 			
+			<input type="hidden" name="ref" value="${dto.comment_ref}" />
 			<input type="hidden" name="re_step" value="${dto.comment_re_step}" />
-			<input type="hidden" name="re_level" value="${dto.comment_re_level}" /> --%>
+			<input type="hidden" name="re_level" value="${dto.comment_re_level}" /> 
+		--%>
 		</c:if>
-
 		<div class="board_btn">
-			<input type="button" id="btnList" value="리스트" /> 
-			<input type="button" id="btnSave" value="저장" />
+			<a href="#"><img alt="확인" src="./images/btn_ok.gif" id="btnSave"></a>
+			<a href="#"><img alt="취소" src="./images/btn_cancel.gif" id="btnList"></a>
 		</div>		
 	</form>
 	</div>

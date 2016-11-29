@@ -15,7 +15,6 @@ public class BoardDTO {
 		this.boardcategory_no = boardcategory_no;
 	}
 	
-	
 	public int getMember_no() {
 		return member_no;
 	}
