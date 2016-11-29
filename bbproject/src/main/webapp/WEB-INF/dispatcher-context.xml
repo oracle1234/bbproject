@@ -161,6 +161,7 @@
 		<property name="orderservice" ref="OrderService" />
 		<property name="couponservice" ref="CouponService" />
 		<property name="boardservice" ref="myBoardService" />
+		<property name="memberservice" ref="memberService" />
 	</bean>
 
 	<bean class="controller.ProductController">

@@ -39,12 +39,6 @@ public class MemberDaoImp implements MemberDAO {
 	}
 
 	@Override
-	public void pwfindMethod(MemberDTO dto) {
-		sqlSession.selectList("member.pwfind", dto);
-		
-	}
-
-	@Override
 	public MemberDTO idfindMethod(String member_name, String mail) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("member_name", member_name);
@@ -53,6 +47,36 @@ public class MemberDaoImp implements MemberDAO {
 	}
 
 	@Override
+	public MemberDTO pwfindMethod(String id, String member_name, String mail) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("member_name", member_name);
+		map.put("mail", mail);
+		return sqlSession.selectOne("member.pwfind", map);
+	}
+
+	@Override
+	public MemberDTO pwupdMethod(String id, String member_name, String mail, String pw) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("member_name", member_name);
+		map.put("mail", mail);
+		map.put("pw", pw);
+		return sqlSession.selectOne("member.pwupd", map);
+	}
+
+	@Override
+	public void deleteMethod(MemberDTO dto) {
+		sqlSession.delete("member.del", dto);
+		
+	}
+
+	@Override
+	public void updateMethod(MemberDTO dto) {
+		sqlSession.update("member.upd", dto);
+	}
+		
+
 	public List<LatelyDTO> latelyMethod(int member_no) {
 		return sqlSession.selectList("member.lately", member_no);
 	}

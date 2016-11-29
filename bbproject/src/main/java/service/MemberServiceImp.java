@@ -21,7 +21,7 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public void insertProcess(MemberDTO mdto) {
 		dao.insertMethod(mdto);
-		
+	
 	}
 
 	@Override
@@ -35,13 +35,30 @@ public class MemberServiceImp implements MemberService{
 	}
 
 	@Override
-	public void pwfindProcess(MemberDTO mdto) {
-		dao.pwfindMethod(mdto);
+	public MemberDTO idfindProcess(String member_name, String mail) {
+		return dao.idfindMethod(member_name, mail);
 	}
 
 	@Override
-	public MemberDTO idfindProcess(String member_name, String mail) {
-		return dao.idfindMethod(member_name, mail);
+	public MemberDTO pwfindProcess(String id, String member_name, String mail) {
+		return dao.pwfindMethod(id, member_name, mail);
+	}
+
+	@Override
+	public MemberDTO pwupdProcess(String id, String member_name, String mail, String pw) {
+		return dao.pwupdMethod(id, member_name, mail, pw);
+	}
+
+	@Override
+	public void updateProcess(MemberDTO mdto) {
+		dao.updateMethod(mdto);
+		
+	}
+
+	@Override
+	public void leaveProcess(MemberDTO mdto) {
+		dao.deleteMethod(mdto);
+		
 	}
 
 	@Override
@@ -60,6 +77,5 @@ public class MemberServiceImp implements MemberService{
 		
 		return list;
 	}
-
 
 }

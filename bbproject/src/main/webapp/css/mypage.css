@@ -12,19 +12,19 @@
 	line-height: 100px;
 }
 
-.menu {
+.mymenu {
 	width: 950px;
 	margin: auto;
 	text-align: left;
 }
 
-.menu div {
+.mymenu div {
 	float: left;
 	margin: 7px;
 	text-align: left;
 }
 
-.menu a {
+.mymenu a {
 	font-size: 20px;
 	font-color: black;
 	color: black;
@@ -55,6 +55,18 @@
 }
 
 #board {
+	width: 457px;
+	height: 100px;
+	border: solid 1px gray;
+}
+
+#update {
+	width: 457px;
+	height: 100px;
+	border: solid 1px gray;
+}
+
+#leave {
 	width: 457px;
 	height: 100px;
 	border: solid 1px gray;

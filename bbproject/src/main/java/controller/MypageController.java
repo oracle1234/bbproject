@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +17,7 @@ import dto.MemberDTO;
 import dto.fb_BasketDTO;
 import dto.fb_OrderDTO;
 import dto.myBoardDTO;
+import service.MemberService;
 import service.fb_BasketService;
 import service.fb_CouponService;
 import service.fb_OrderService;
@@ -28,6 +30,7 @@ public class MypageController {
 	private fb_OrderService orderservice;
 	private fb_CouponService couponservice;
 	private myBoardService boardservice;
+	private MemberService memberservice;
 
 	public MypageController() {
 
@@ -47,6 +50,10 @@ public class MypageController {
 	
 	public void setBoardservice(myBoardService boardservice) {
 		this.boardservice = boardservice;
+	}
+	
+	public void setMemberservice(MemberService memberservice) {
+		this.memberservice = memberservice;
 	}
 	
 	@RequestMapping("/mypage.do")
@@ -137,4 +144,35 @@ public class MypageController {
 		map.put("boardcategory_no", boardcategory_no);
 		return boardservice.myboardlistProcess(map);
 	}
+	
+	@RequestMapping("/my_update.do")
+	public String myupdate(){
+		return "my_update";
+	}
+	
+	@RequestMapping(value = "/myupdate.do", method = RequestMethod.POST)
+	public String myupdateProcess(MemberDTO dto) {
+		memberservice.updateProcess(dto);
+		return "joinsucc";
+	}
+	
+
+	@RequestMapping("/my_leave.do")
+	public String myleave(){
+		return "my_leave";
+	}
+	
+	@RequestMapping(value = "/myleave.do", method = RequestMethod.POST)
+	public String myleaveProcess(MemberDTO dto) {
+		
+		System.out.println(dto.getId());
+		System.out.println(dto.getMember_name());
+		System.out.println(dto.getPw());
+		System.out.println(dto.getTel());
+		System.out.println(dto.getAddress());
+		
+		memberservice.leaveProcess(dto);
+		return "joinsucc";
+	}
+	
 }
