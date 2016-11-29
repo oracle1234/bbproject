@@ -262,7 +262,8 @@ public class ProductController {
 	}//end basketinsert/////////////////////////
 	
 	@RequestMapping(value="/basketInsert.do", method = RequestMethod.POST)
-	public ModelAndView basketInsertPostProcess(fb_BasketDTO bdto, HttpServletRequest req, int amount){
+	public @ResponseBody ModelAndView basketInsertPostProcess(fb_BasketDTO bdto, HttpServletRequest req, int amount){
+		
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		

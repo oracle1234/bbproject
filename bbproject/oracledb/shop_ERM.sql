@@ -8,6 +8,22 @@ insert into fb_review values (SEQ_review_no.nextval, 'adfasdfsdaf', 'ㅎㅎㅎ�
 insert into fb_review values (SEQ_review_no.nextval, 'adfasdfsdaf', 'ㅎㅎㅎㅎㅎㅎㅎ', sysdate, 1, 1);
 
 
+drop table fb_review;
+select * from fb_foods
+
+select * from fb_category
+select * from fb_member
+
+
+drop table fb_category;
+drop table fb_member;
+drop table fb_foods
+drop table fb_basket
+drop table fb_coupon
+drop table fb_delivery_cost
+drop table fb_review
+drop table fb_lately_product
+
 select * from fb_member
 
 delete from fb_review where review_no = 169;
@@ -71,4 +87,12 @@ insert into fb_foods
 		
 alter table fb_foods drop column fb_delivery_no;
 
+ALTER TABLE fb_foods
+	ADD FOREIGN KEY (fb_delivery_no)
+	REFERENCES fb_delivery_cost (fb_delivery_no)
+;
 
+ALTER TABLE fb_tr_order
+	ADD CONSTRAINT fk_order_recipe_no FOREIGN KEY (recipe_no)
+	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
+;

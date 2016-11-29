@@ -74,10 +74,7 @@ CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/yeonsung
 
 
 /* Create Tables */
@@ -109,7 +106,7 @@ CREATE TABLE fb_coupon_book
 	 
 	coupon_state varchar2(10) not null,
 	PRIMARY KEY (couponbook_no)
-	);
+);
 =======
 CREATE TABLE fb_coupon_book
 (
@@ -173,6 +170,7 @@ CREATE TABLE fb_delivery_cost
 	fb_delivery_cost number NOT NULL,
 	PRIMARY KEY (fb_delivery_no)
 );
+
 
 --fb_foods 테이블 deliver_no 컬럼 삭제 --주훈수정 
 
@@ -481,11 +479,6 @@ ALTER TABLE fb_foods
 	REFERENCES fb_category (category_no)
 ;
 
-
-ALTER TABLE fb_foods
-	ADD FOREIGN KEY (fb_delivery_no)
-	REFERENCES fb_delivery_cost (fb_delivery_no)
-;
 
 
 ALTER TABLE fb_lately_product

@@ -49,22 +49,63 @@
 // 			var url = "basketInsert.do?amount="+$(this).prev().val()+"&foods_no="+$(this).children().val();
 			
 // 			$(this).attr("href", url);
+
 			
 			$.ajax({
 	 			type : "GET",
 	 			dataType : "text",
-				url : "basketInsert.do?amount="+$(this).prev().val()+"&foods_no="+$(this).children().val(),
-				success : function(aa){
-					alert(aa);
-				},
+				url : "basketInsert.do?amount="+$(this).prev().val()+"&foods_no="+$(this).val(),
+				success : dialog_result,
 				error : function(xhr, textStatus, error) {
 					alert(error);
 				}
-			});
+			}); 
 			
-			
+
+		
 		});
-	});
+		
+		$("#dialog").dialog({
+			autoOpen: false,
+			width : "100%",
+			height : "100%",
+			modal : true,
+			resizeable : false,
+			buttons : { // dialog 하단 버튼들
+				예 : function() {
+					$(this).dialog("close"); //장바구니 이동
+				},
+				 
+				아니요 : function() {
+					$(this).dialog("close"); // 남아있기
+				},
+			},
+			show : { // 애니메이션 효과 - 보여줄때
+				effect : "blind",
+				duration : 1000
+			},
+			hide : { // 애니메이션 효과 - 감출때
+				effect : "explode",
+				duration : 1000
+			},
+			open : function() {
+				$(".ui-dialog-titlebar-close").hide();
+			}
+		});
+		
+	});//end ready
+	
+	function dialog_result(data){
+		
+// 		alert('adfqwe');
+		alert(data);
+		$('#dialog').dialog('open');
+	};
+	
+	
+	
+	
+	
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -81,7 +122,7 @@
 					<tr>
 						<td><div id="prod_img">
 								<a href="detailProduct.do?foods_no=${FoodsDTO.foods_no}"><img
-									alt="상품이미지" src="images/${FoodsDTO.picture}"> </a>
+									alt="상품이미지" src="image.do?filename=${FoodsDTO.picture}"> </a>
 							</div>
 							<p class="name">
 								<a href="detailProduct.do?foods_no=${FoodsDTO.foods_no}">${FoodsDTO.foods_name}</a>
@@ -91,8 +132,8 @@
 								<c:forEach var="i" begin="1" end="20" step="1">
 									<option value="${i}">${i}</option>
 								</c:forEach>
-						</select> <a href="" class="basketInsertBtn"><input type="image" alt=""
-								src="images/basketIns.png" value="${FoodsDTO.foods_no}"> </a>
+						</select> <input type="image" alt=""
+								src="images/basketIns.png" value="${FoodsDTO.foods_no}" class="basketInsertBtn">
 					</tr>
 
 				</table>
@@ -121,6 +162,10 @@
 				</a>
 			</c:if>
 		</div>
+	</div>
+	<div id="dialog" >
+		<p>장바구니에 추가되었습니다. 이동하시겠습니까?
+		</p>
 	</div>
 </body>
 </html>

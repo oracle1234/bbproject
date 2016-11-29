@@ -120,10 +120,6 @@ public class ShopController {
 		
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
-		System.out.println("푸드넘"+fdto.getFoods_no());
-		System.out.println("어마운트"+amount);
-		System.out.println("멤넘"+mdto.getMember_no());
-		System.out.println("주소:"+mdto.getAddress());
 		String address[] = mdto.getAddress().split("/");
 		String Address = address[0]; 
 		String detailAddress = address[1];
