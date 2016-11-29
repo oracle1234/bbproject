@@ -65,15 +65,15 @@ public class LoginController {
 	  
 	
 	//MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
-/*	
-	@RequestMapping(value="/logout.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")    
-	public String logout(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws Exception{                
+	
+	@RequestMapping("/logout.do")    
+	public String logoutProcess(HttpServletRequest req, HttpSession session) {                
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");            
 		if(dto != null) {                     
 			session.removeAttribute("member");            
 			session.invalidate();            
 			}            
-		return "redirect:mypage.do";
+		return "redirect:/mypage.do";
 
-	}*/
+	}
 }

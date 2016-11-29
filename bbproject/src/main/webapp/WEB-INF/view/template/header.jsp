@@ -13,7 +13,7 @@ var s_name = "${sessionScope.member.member_name}";
 			$('.logindiv').empty();
 			$('.logindiv').append('<ul>'
 					+'<li>'+s_name+'님&nbsp;</li>'
-			+'<li id="logoutform">로그아웃</li>'
+			+'<li id="logoutform"><a href="logout.do">로그아웃</a></li>'
 			+'</ul>');
 		}
 /* 		$("#logoutform").on("click", function() {
