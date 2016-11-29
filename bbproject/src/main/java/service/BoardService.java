@@ -14,7 +14,6 @@ public interface BoardService {
 	public int countProcess(int boardcategry_no);
 	public List<BoardDTO> listProcess(PageDTO pv);
 	public List<BoardDTO> pageListProcess(HashMap<String, Object> map);
-	//public List<CommentDTO> commentListProcess(int comment_no);
 	public List<CommentDTO> commentPageProcess(HashMap<String, Object> map);
 	public void insertProcess(BoardDTO bdto);
 	public BoardDTO updateSelectProcess(int num);

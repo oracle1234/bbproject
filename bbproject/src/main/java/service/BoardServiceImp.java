@@ -81,13 +81,6 @@ public class BoardServiceImp implements BoardService {
 	}// end deleteProcess()
 
 	
-	/*@Override
-	public List<CommentDTO> commentListProcess(int comment_no) {
-		
-		return null;
-	}*/
-
-	//
 	@Override
 	public List<CommentDTO> commentPageProcess(HashMap<String, Object> map) {
 		

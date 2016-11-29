@@ -265,7 +265,7 @@ public class BoardController {
 		resultMap.put("page", cpdto);
 
 		return resultMap;
-	}// end commentDeleteProcess()
+	}// end commentUpdateProProcess()
 
 
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
@@ -345,7 +345,7 @@ public class BoardController {
 	}// end board_listMethod()
 
 	
-	@RequestMapping("/qa_view.do")
+	/*@RequestMapping("/qa_view.do")
 	public ModelAndView qa_viewMethod(int currentPage, QA_BoardDTO qdto) {
 		ModelAndView mav = new ModelAndView();
 		QA_BoardDTO dto = qa_service.contentProcess(qdto.getQa_no());
@@ -354,7 +354,195 @@ public class BoardController {
 		mav.setViewName("qa_view");
 		return mav;
 	}// end qa_viewMethod()
+*/	
+	@RequestMapping(value = "/qa_view.do", method = RequestMethod.GET)
+	public ModelAndView qa_viewMethod(int currentPage, QA_BoardDTO qdto, Comment_PageDTO cpdto2) {
+		ModelAndView mav = new ModelAndView();
 
+		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
+
+		if (totalRecord >= 1) {
+			if (cpdto2.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = cpdto2.getCurrentPage();
+
+			cpdto = new Comment_PageDTO(currentPage, totalRecord);
+			mav.addObject("pv", cpdto);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("startRow", cpdto.getStartRow());
+			map.put("endRow", cpdto.getEndRow());
+			map.put("board_no", qdto.getQa_no());
+			mav.addObject("aList", service.commentPageProcess(map));
+		}
+
+		BoardDTO dto = service.contentProcess(qdto.getQa_no());
+		mav.addObject("dto", dto);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("qa_view");
+		return mav;
+	}// end board_viewMethod()
+
+	@RequestMapping(value = "/qa_view.do", method = RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> qa_viewProMethod(QA_BoardDTO qdto, Comment_PageDTO cpdto2) {
+		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		if (totalRecord >= 1) {
+			if (cpdto2.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = cpdto2.getCurrentPage();
+
+			cpdto = new Comment_PageDTO(currentPage, totalRecord);
+			map.put("startRow", cpdto.getStartRow());
+			map.put("endRow", cpdto.getEndRow());
+			map.put("board_no", qdto.getQa_no());
+		}
+
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", qa_service.commentPageProcess(map));
+		resultMap.put("page", cpdto);
+		return resultMap;
+	}// end board_viewProMethod();
+	
+	@RequestMapping("/qa_commentInsert.do")
+	public @ResponseBody HashMap<String, Object> qa_commentInsertProcess(QA_BoardDTO qdto, CommentDTO cdto, MemberDTO mdto,
+			Comment_PageDTO cpdto2) {
+
+		HashMap<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("comment_content", cdto.getComment_content());
+		insertMap.put("qa_no", qdto.getQa_no());
+		insertMap.put("member_no", mdto.getMember_no());
+		insertMap.put("comment_writer", "백나연");
+
+		qa_service.commentInsertProcess(insertMap);
+
+		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
+
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+
+		if (totalRecord >= 1) {
+			if (cpdto2.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = cpdto2.getCurrentPage();
+
+			cpdto = new Comment_PageDTO(currentPage, totalRecord);
+
+			pageMap.put("startRow", cpdto.getStartRow());
+			pageMap.put("endRow", cpdto.getEndRow());
+			pageMap.put("qa_no", qdto.getQa_no());
+		}
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", qa_service.commentPageProcess(pageMap));
+		resultMap.put("page", cpdto);
+
+		return resultMap;
+	}// end qa_commentInsertProcess()
+
+	@RequestMapping("/qa_commentDelete.do")
+	public @ResponseBody HashMap<String, Object> qa_commentDeleteProcess(QA_BoardDTO qdto, CommentDTO cdto, MemberDTO mdto,
+			Comment_PageDTO cpdto2) {
+
+		HashMap<String, Object> deleteMap = new HashMap<String, Object>();
+		deleteMap.put("comment_no", cdto.getComment_no());
+		deleteMap.put("member_no", mdto.getMember_no());
+
+		qa_service.commentDeleteProcess(deleteMap);
+
+		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
+
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+
+		if (totalRecord >= 1) {
+			if (cpdto2.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = cpdto2.getCurrentPage();
+
+			cpdto = new Comment_PageDTO(currentPage, totalRecord);
+
+			pageMap.put("startRow", cpdto.getStartRow());
+			pageMap.put("endRow", cpdto.getEndRow());
+			pageMap.put("qa_no", qdto.getQa_no());
+		}
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", qa_service.commentPageProcess(pageMap));
+		resultMap.put("page", cpdto);
+
+		return resultMap;
+	}// end qa_commentDeleteProcess()
+	
+	@RequestMapping(value = "/qa_commentUpdate.do", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> qa_commentUpdateProcess(QA_BoardDTO qdto, CommentDTO cdto, MemberDTO mdto,
+			Comment_PageDTO cpdto2) {
+
+		HashMap<String, Object> updateMap = new HashMap<String, Object>();
+		updateMap.put("comment_content", cdto.getComment_content());
+		updateMap.put("comment_no", cdto.getComment_no());
+		updateMap.put("member_no", mdto.getMember_no());
+
+		qa_service.commentUpdateProcess(updateMap);
+
+		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
+
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+
+		if (totalRecord >= 1) {
+			if (cpdto2.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = cpdto2.getCurrentPage();
+
+			cpdto = new Comment_PageDTO(currentPage, totalRecord);
+
+			pageMap.put("startRow", cpdto.getStartRow());
+			pageMap.put("endRow", cpdto.getEndRow());
+			pageMap.put("qa_no", qdto.getQa_no());
+		}
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", qa_service.commentPageProcess(pageMap));
+		resultMap.put("page", cpdto);
+
+		return resultMap;
+	}// end commentUpdateProcess()
+
+	@RequestMapping(value = "/qa_commentUpdate.do", method = RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> qa_commentUpdateProProcess(QA_BoardDTO qdto, CommentDTO cdto, MemberDTO mdto,
+			Comment_PageDTO cpdto2) {
+
+		HashMap<String, Object> updateMap = new HashMap<String, Object>();
+		updateMap.put("comment_content", cdto.getComment_content());
+		updateMap.put("comment_no", cdto.getComment_no());
+		updateMap.put("member_no", mdto.getMember_no());
+		
+		qa_service.commentUpdateProcess(updateMap);
+
+		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
+		
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+		
+		if (totalRecord >= 1) {
+			if (cpdto2.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = cpdto2.getCurrentPage();
+
+			cpdto = new Comment_PageDTO(currentPage, totalRecord);
+
+			pageMap.put("startRow", cpdto.getStartRow());
+			pageMap.put("endRow", cpdto.getEndRow());
+			pageMap.put("qa_no",qdto.getQa_no());
+		}
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", service.commentPageProcess(pageMap));
+		resultMap.put("page", cpdto);
+
+		return resultMap;
+	}// end commentUpdateProProcess()
+
+	
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.GET)
 	public ModelAndView qa_writeMethod(PageDTO pv, CommentDTO cdto) {
 		ModelAndView mav = new ModelAndView();

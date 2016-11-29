@@ -27,16 +27,16 @@ public class BoardDaoImp implements BoardDAO {
 
 		return sqlSession.selectOne("board.count", boardcategory_no);
 	}
-	
+
 	@Override
 	public List<BoardDTO> list(PageDTO pv) {
-		
-		return sqlSession.selectList("board.pageList",pv);
+
+		return sqlSession.selectList("board.pageList", pv);
 	}
-	
+
 	@Override
 	public List<BoardDTO> pageList(HashMap<String, Object> map) {
-		
+
 		return sqlSession.selectList("board.pageList", map);
 	}
 
@@ -45,16 +45,16 @@ public class BoardDaoImp implements BoardDAO {
 		sqlSession.update("board.readCount", num);
 
 	}
-	
+
 	@Override
 	public BoardDTO content(int num) {
 
-		//return sqlSession.selectOne("board.contentList", num);
 		return sqlSession.selectOne("board.list", num);
 	}
-	
+
 	@Override
 	public void save(BoardDTO bdto) {
+		
 		sqlSession.insert("board.save", bdto);
 	}
 
@@ -77,39 +77,31 @@ public class BoardDaoImp implements BoardDAO {
 
 	@Override
 	public int commentCount(int board_no) {
-		
+
 		return sqlSession.selectOne("board.commentCount", board_no);
 	}
-	
-/*
-	@Override
-	public List<CommentDTO> commentList(int comment_no) {
-		
-		return sqlSession.selectList("board.commentList", comment_no);
-	}
 
-*/	
 	@Override
 	public List<CommentDTO> commentPageList(HashMap<String, Object> map) {
-		
+
 		return sqlSession.selectList("board.commentPageList", map);
 	}
 
 	@Override
 	public void commentSaveList(HashMap<String, Object> map) {
-		
+
 		sqlSession.selectList("board.commentSave", map);
 	}
 
 	@Override
 	public void commentUpdateList(HashMap<String, Object> map) {
-		
+
 		sqlSession.selectList("board.commentUpdate", map);
 	}
 
 	@Override
 	public void commentDeleteList(HashMap<String, Object> map) {
-		
+
 		sqlSession.selectList("board.commentDelete", map);
 	}
 
