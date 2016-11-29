@@ -18,7 +18,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<div class="mypage_body">
-		<div class="menu">
+		<div class="mymenu">
 			<div id="order">
 				<p>
 					<a href="my_order.do">주문/배송조회</a>

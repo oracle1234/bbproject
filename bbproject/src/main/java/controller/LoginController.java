@@ -36,7 +36,7 @@ public class LoginController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/loginpro.do", method = {RequestMethod.POST,RequestMethod.GET}, produces = "application/json; charset=utf8")
+	@RequestMapping(value = "/loginpro.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public @ResponseBody HashMap<String, String> loginPro(String id, String pw, HttpSession session) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		

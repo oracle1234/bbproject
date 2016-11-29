@@ -38,11 +38,11 @@
 			$.ajax({
 						type : 'POST',
 						url : 'idfind.do',
-						data : "member_name="+$('#member_name').val()+"&mail="+$('#mail').val(),
+						data : "member_name="+$('#loginmember_name').val()+"&mail="+$('#loginmail').val(),
 						success : function(data) {
 							alert(data);
-							$('#member_name').val('');
-							$('#mail').val('');
+							$('#loginmember_name').val('');
+							$('#loginmail').val('');
 						},
 						error : function(xhr,
 								textStatus, error) {
@@ -76,19 +76,19 @@
 							
 							
 
-							$("#pass").keyup(function() {
-								$('font[name=check]').text('');
+							$("#loginpass").keyup(function() {
+								$('font[name=logincheck]').text('');
 							});
 							
 							$('#pw').keyup(function() {
-								if ($("#pass").val() != $("#pw").val()) {
-									$('#check').css("color", "red");
-									$('font[name=check]').text('');
-									$('font[name=check]').html('비밀번호가 일치하지 않습니다.');
+								if ($("#loginpass").val() != $("#pwpw").val()) {
+									$('#logincheck').css("color", "red");
+									$('font[name=logincheck]').text('');
+									$('font[name=logincheck]').html('비밀번호가 일치하지 않습니다.');
 								} else {
-									$('#check').css("color", "green");
-									$('font[name=check]').text('');
-									$('font[name=check]').html('비밀번호가 일치합니다.');
+									$('#logincheck').css("color", "green");
+									$('font[name=logincheck]').text('');
+									$('font[name=logincheck]').html('비밀번호가 일치합니다.');
 								}
 							});
 
@@ -132,7 +132,7 @@
 			type : "POST",
 			datatype : "json",
 			url : "loginpro.do",
-			data : "id=" + $("#id").val() + "&pw=" + $("#pw").val(),
+			data : "id=" + $("#loginid").val() + "&pw=" + $("#loginpw").val(),
 			success : function(data) {
 				if (data.chk == null) {
 					window.location.href = data.href;
@@ -411,7 +411,7 @@
 	margin-left: 250px;
 }
 
-#check {
+#logincheck {
 margin-left:180px;
 z-index:10000000;
 }
@@ -551,8 +551,8 @@ input {
 		<div class="login-form">
 			<div id="form">
 				<input type="text" class="signUpInput" value="" placeholder="이이디"
-					id="id" name="id"> <input type="password"
-					class="signUpInput" value="" placeholder="비밀번호" id="pw" name="pw">
+					id="loginid" name="id"> <input type="password"
+					class="signUpInput" value="" placeholder="비밀번호" id="loginpw" name="pw">
 			</div>
 			<div id="loginbutton">
 				<a href="javascript:chkfun()">login</a>
@@ -576,8 +576,8 @@ input {
 		<div class="idfind">
 			<span>아이디 찾기 이름과 이메일을 입력하시면 아이디를 알려드립니다.</span>
 			<div class="idform">
-				<input type="text" id="member_name" name="member_name"
-					placeholder="이름" class="signUpInput"> <input type="text" id="mail" name="mail"
+				<input type="text" id="loginmember_name" name="member_name"
+					placeholder="이름" class="signUpInput"> <input type="text" id="loginmail" name="mail"
 					placeholder="이메일 주소" class="signUpInput">
 			</div>
 			<div class="idbutton">
@@ -605,11 +605,11 @@ input {
 			</div>
 			<table>
 				<tr>
-					<td><input type="password" name="pass" id="pass" placeholder="비밀번호" class="signUpInput"></td>
+					<td><input type="password" name="pass" id="loginpass" placeholder="비밀번호" class="signUpInput"></td>
 				</tr>
 				<tr>
 					<td><input type="password" name="pw" id="pwpw" placeholder="비밀번호 확인" class="signUpInput">
-						<font id="check" name="check" size="2"></font></td>
+						<font id="logincheck" name="logincheck" size="2"></font></td>
 				</tr>
 			</table>
 			<input type="button" id="pwupdok" value="확인">

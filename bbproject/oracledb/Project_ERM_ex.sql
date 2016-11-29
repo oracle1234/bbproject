@@ -41,7 +41,7 @@ insert into fb_member values
 	
 	delete 
 	from fb_member
-	where id='jaemin' and pw='12345'
+	where member_no >2 and member_no <43
 delete 
 from fb_member
 where member_no=4
