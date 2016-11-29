@@ -121,7 +121,7 @@ delete from fb_theme_recipe where recipe_no = 2
 select * 
 from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
 where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no
-and a.recipe_no = 1
+and a.recipe_no = 36
 order by a.recipe_no desc;
 
 select *
@@ -229,9 +229,11 @@ where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no  and a.theme_no = 
 
 select *
 		from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
-		where a.recipe_no =
-		b.recipe_no and a.recipe_no = c.recipe_no
-		and a.recipe_no = 18
-
+		where a.recipe_no =	b.recipe_no(+) and a.recipe_no = c.recipe_no(+)
+		and a.recipe_no = 39
+		
+		
+		
+		
 
 		

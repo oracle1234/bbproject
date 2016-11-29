@@ -53,12 +53,10 @@ $(function () {
 	
 	<div id="orderlist">
 		<c:forEach items="${dto.list}" var="list" varStatus="status">
-			<div>
 				<p><img alt="" src="images/icon_step_${status.index + 1}.gif" width="20px" height="20px"> ${list.order_text}</p>
 				<p>
 					<img src="image.do?filename=${list.order_pic }" width="300">
 				</p>
-			</div>
 		</c:forEach>
 	</div>
 
