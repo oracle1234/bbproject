@@ -105,14 +105,14 @@ body {
 
 #shop_upbutton {
 	position: absolute;
-	left: 158px;
-	top: 190px;
+	left: 140px;
+	top: 188px;
 }
 
 #shop_downbutton {
 	position: absolute;
-	left: 158px;
-	top: 199px;
+	left: 140px;
+	top: 200px;
 }
 
 .shop_review {
@@ -197,6 +197,17 @@ body {
 var uno = "";
 var savemoney = "";
 $(document).ready(function() {
+			
+			var review_mem_no = $('.r_mem_no').val();
+			
+			
+			/* if(review_mem_no == member_no){
+				$('.review_tr').append('<td><button class="review_udt_btn" value="${ReviewDTO.review_no}">수정</button></td>')
+			}
+			if(review_mem_no == mem_no){
+				$('.review_tr').append('<td><button class="review_del_btn" value="${ReviewDTO.review_no}">삭제</button></td>')
+			}  */
+	
 		
 			$('#modifyWindow').addClass('modifyHide');
 				$(document).on("click", ".review_udt_btn", function() {
@@ -285,7 +296,7 @@ $(document).ready(function() {
 				});
 			});
 
-						//딜리트
+			//딜리트
 			$(document).on("click",".review_del_btn",function() {
 				var dno = $(this).val();
 				
@@ -303,7 +314,7 @@ $(document).ready(function() {
 				});
 			});
 
-						//업데이트
+			//업데이트
 			$(document).on('click',".btnModify",function() {
 
 				if ($('#updateReviewText').val() == "") {
@@ -330,6 +341,7 @@ $(document).ready(function() {
 						
 			//장바구니 클릭
 			$(".basket_insimg").on("click", function() {
+				
 				$("#dialog").dialog({
 					autoOpen: false,
 					width : "500px",
@@ -338,9 +350,8 @@ $(document).ready(function() {
 					resizeable : false,
 					buttons : { // dialog 하단 버튼들
 						예 : function() {
-							$(this).dialog("close"); //장바구니 이동
+							window.location.href = "my_cart.do";
 						},
-						 
 						아니요 : function() {
 							$(this).dialog("close"); // 남아있기
 						},
@@ -357,7 +368,7 @@ $(document).ready(function() {
 						$(".ui-dialog-titlebar-close").hide();
 					}
 				});
-							
+				
 				$.ajax({
 					type : 'GET',
 					dataType : 'text',
@@ -370,27 +381,16 @@ $(document).ready(function() {
 				
 				return false;
 			});
+			
 			//바로구매 클릭
 			$("#buy_insimg").on("click", function() {
+				
 				if(totalmoney < 10000){
 				alert('최소주문금액은 10000원입니다.')
 				return false;
 				} 
-				$.ajax({
-					type : 'POST',
-					dataType : 'json',
-					url : 'reviewUpdate.do',
-					data : "review_no=" + uno
-							+ "&member_no=1"
-							+ "&review_content="+$('#updateReviewText').val()
-							+ "&foods_no=${foods_no}",
-					success : review_update_result,
-					error : function(xhr,textStatus,error) {
-					alert("update===="+ error);
-					},
-				});
 				
-				if(totalmoney >= 10000){
+				else if(totalmoney >= 10000){
 					$('#foodform').attr('action', 'shop_buy.do');
 					$('#foodform').submit();
 				}
@@ -398,8 +398,6 @@ $(document).ready(function() {
 			});
 						
 							
-		});
-
 });//end ready end
 
 	Handlebars.registerHelper("newDate", function(timeValue) {
@@ -449,25 +447,43 @@ $(document).ready(function() {
 			}
 		});
 	};
-
+	
+	
+	//리스트?
 	function review_list_result(res) {
 		$('#review_table .review_tr').remove();
 		$.each(res.list,function(index, value) {
-			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
-			var template = Handlebars.compile(source);
-			$('#review_table').append(template(value));
+			if(value.member_no == member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
+			else if (value.member_no != member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
 		});
 
 	};
-
+	
+	
+	//페이지 넘버
 	function review_prenext_list_result(res) {
 		$('#review_table .review_tr').remove();
 		$('#pre_next_pagenum').empty();
 
 		$.each(res.list,function(index, value) {
-			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
-			var template = Handlebars.compile(source);
-			$('#review_table').append(template(value));
+			if(value.member_no == member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
+			else if (value.member_no != member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
 		});
 
 		var start = res.page.startPage;
@@ -494,17 +510,28 @@ $(document).ready(function() {
 		}
 
 	};
-
+	
+	
+	//인설트
 	function review_insert_result(res) {
 		$('.review_tr').remove();
 		$('#pre_next_pagenum').empty();
-
-		$.each(res.ReviewDTO,
-			function(index, value) {
-			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
-			var template = Handlebars.compile(source);
-			$('#review_table').append(template(value));
-			});
+		
+	
+		
+		$.each(res.ReviewDTO,function(index, value) {
+			
+			if(value.member_no == member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
+			else if (value.member_no != member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
+		});
 
 		var start = res.page.startPage;
 		var end = res.page.endPage;
@@ -531,16 +558,25 @@ $(document).ready(function() {
 
 		$('#reviewText').val("");
 	}
-
+	
+	
+	//딜리트 석세스
 	function review_delete_result(res) {
 		$('.review_tr').remove();
 		$('#pre_next_pagenum').empty();
 
 		$.each(res.ReviewDTO,
 			function(index, value) {
-			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
-			var template = Handlebars.compile(source);
-			$('#review_table').append(template(value));
+			if(value.member_no == member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
+			else if (value.member_no != member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
 		});
 
 		var start = res.page.startPage;
@@ -564,15 +600,23 @@ $(document).ready(function() {
 							+ (start + block) + ')">다음</a>');
 		}
 	};
-
+	
+	//업데이트 석세스
 	function review_update_result(data) {
 		$('.review_tr').remove();
 		$('#pre_next_pagenum').empty();
 
 		$.each(data.ReviewDTO,function(index, value) {
-			var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
-			var template = Handlebars.compile(source);
-			$('#review_table').append(template(value));
+			if(value.member_no == member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
+			else if (value.member_no != member_no){
+				var source = "<tr class='review_tr'><td>{{review_no}}</td><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td></tr>";
+				var template = Handlebars.compile(source);
+				$('#review_table').append(template(value));
+			}
 		});
 
 		var start = data.page.startPage;
@@ -676,8 +720,9 @@ $(document).ready(function() {
 						<div class="deli_img">
 							<img alt="무료배송안내이미지" src="./images/baesong_info.png"> <input
 								type="image" id="buy_insimg" alt="바로구매이미지"
-								src="./images/shop_buy.png">
-								<input type="image" class="basket_insimg" alt="장바구니이미지" src="./images/shop_basket.png">
+								src="./images/shop_buy.png"> <input type="image"
+								class="basket_insimg" alt="장바구니이미지"
+								src="./images/shop_basket.png">
 						</div>
 
 					</div>
@@ -724,18 +769,24 @@ $(document).ready(function() {
 					</tr>
 					<c:forEach items="${aList}" var="ReviewDTO">
 						<tr class="review_tr">
-							<td>${ReviewDTO.review_no}</td>
+							
+							<td>
+								${ReviewDTO.review_no}
+								<input type = "hidden" class="r_mem_no" value="${ReviewDTO.member_no}">
+							</td>
 							<td>${ReviewDTO.review_content}</td>
 							<td>${ReviewDTO.review_writer}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
 									value="${ReviewDTO.review_date}" /></td>
 							<td>
-							<%-- <c:if test="${member_no==${aList.member_no}"> --%>
+								<c:if test="${ReviewDTO.member_no == member_no }">
 								<button class="review_udt_btn" value="${ReviewDTO.review_no}">수정</button>
-							<%-- </c:if> --%>
+								</c:if>
 							</td>
 							<td>
+							<c:if test="${ReviewDTO.member_no == member_no }">
 								<button class="review_del_btn" value="${ReviewDTO.review_no}">삭제</button>
+							</c:if>
 							</td>
 						</tr>
 					</c:forEach>
@@ -755,7 +806,7 @@ $(document).ready(function() {
 							<c:out value="이전" />
 						</a>
 					</c:if>
-
+					
 					<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
 						<a href="javascript:myFunction(${foods_no}, ${i})"> <c:out
 								value="${i}" /></a>
@@ -777,7 +828,7 @@ $(document).ready(function() {
 							class="form-control" type="text" placeholder="수정할 한줄평을 입력하세요."
 							id="updateReviewText">
 					</p>
-					
+
 					<p>
 						<button class="btnModify" value="${ReviewDTO.review_no}">수정</button>
 						<button class="btnClose">닫기</button>
@@ -788,9 +839,10 @@ $(document).ready(function() {
 
 		</div>
 		<div id="dialog" >
-		<p>장바구니에 추가되었습니다. 이동하시겠습니까?<br>
-		</p>
-	</div>
+			<p>
+				장바구니에 추가되었습니다. 이동하시겠습니까?<br>
+			</p>
+		</div>
 	</div>
 
 </body>

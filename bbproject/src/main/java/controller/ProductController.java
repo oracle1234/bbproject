@@ -278,7 +278,6 @@ public class ProductController {
 		System.out.println("멤넘"+mdto.getMember_no());
 		
 		
-		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", bdto.getFoods_no());
 		map.put("member_no", mdto.getMember_no());
