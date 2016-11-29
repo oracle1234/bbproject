@@ -21,9 +21,9 @@
 					<th>반찬 구분</th>
 					<td><select id="category_no" name="category_no">
 							<option value="0">선택</option>
-							<option value="1">요리</option>
+							<option value="1">국, 찌개</option>
 							<option value="2">반찬</option>
-							<option value="3">국, 찌개</option>
+							<option value="3">김치류</option>
 					</select>
 				</tr>
 				<tr>

@@ -8,11 +8,11 @@
 .holder_arr img{
 	margin: 2px;
 }
-
 </style>
+<script src="js/admin_recipe_ins.js"></script>
 
 	<form id="recipe_form" action="adminrecipeins.do" method="post"
-		enctype="multipart/form-data">
+		enctype="multipart/form-data" onsubmit="return process()" >
 
 		<div>
 			<table>

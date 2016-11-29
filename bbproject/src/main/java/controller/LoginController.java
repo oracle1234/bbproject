@@ -52,7 +52,6 @@ public class LoginController {
 				map.put("href", "admin.do");
 			} else {
 				map.put("href", "mypage.do");
-				
 			}
 		}
 

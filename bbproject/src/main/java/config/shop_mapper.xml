@@ -87,7 +87,7 @@
 	<insert id="insert">
 		insert into fb_foods
 		values(SEQ_foods_no.nextval, #{foods_name}, #{price}, #{weight}, #{way}, #{shelfLife},
-		#{foods_explaination}, #{foods_material}, #{picture}, 1, 0)
+		#{foods_explaination}, #{foods_material}, #{picture}, #{category_no})
 	</insert>
 
 	<delete id="del">

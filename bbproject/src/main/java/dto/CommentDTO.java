@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class CommentDTO {
 	private int comment_no, board_no, photo_no, qa_no;
-	private int comment_ref, comment_re_step, comment_re_level;
 	private String comment_content, comment_writer;
 	private Date comment_date;
 
@@ -38,30 +37,6 @@ public class CommentDTO {
 
 	public void setQa_no(int qa_no) {
 		this.qa_no = qa_no;
-	}
-
-	public int getComment_ref() {
-		return comment_ref;
-	}
-
-	public void setComment_ref(int comment_ref) {
-		this.comment_ref = comment_ref;
-	}
-
-	public int getComment_re_step() {
-		return comment_re_step;
-	}
-
-	public void setComment_re_step(int comment_re_step) {
-		this.comment_re_step = comment_re_step;
-	}
-
-	public int getComment_re_level() {
-		return comment_re_level;
-	}
-
-	public void setComment_re_level(int comment_re_level) {
-		this.comment_re_level = comment_re_level;
 	}
 
 	public String getComment_content() {

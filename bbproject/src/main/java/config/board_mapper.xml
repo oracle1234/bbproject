@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<resultMap type="dto.BoardDTO" id="board">
+	<resultMap type="dto.BoardDTO" id="fb_board">
 		<result column="member_no" property="member_no"/>
 		<result column="board_no" property="board_no"/>
 		<result column="board_readcount" property="board_readcount"/>
@@ -11,6 +11,7 @@
 		<result column="board_content" property="board_content"/>
 		<result column="board_reg_date" property="board_reg_date"/>
 		<result column="board_subject" property="board_subject"/>
+		<result column="boardcategory_no" property="boardcategory_no"/>
 		<collection property="bdto" javaType="java.util.List" ofType="dto.CommentDTO" >
 			<result column="comment_no" property="comment_no"/>
 			<result column="board_no" property="board_no"/>
@@ -22,46 +23,104 @@
 		</collection>
 	</resultMap>
 	
+	<resultMap type="dto.QA_BoardDTO" id="qa_board">
+		<result column="member_no" property="member_no"/>
+		<result column="qa_no" property="qa_no"/>
+		<result column="qa_readcount" property="qa_readcount"/>
+		<result column="qa_writer" property="qa_writer"/>
+		<result column="qa_content" property="qa_content"/>
+		<result column="qa_reg_date" property="qa_reg_date"/>
+		<result column="qa_subject" property="qa_subject"/>
+		<collection property="qdto" javaType="java.util.List" ofType="dto.CommentDTO" >
+			<result column="comment_no" property="comment_no"/>
+			<result column="board_no" property="board_no"/>
+			<result column="photo_no" property="photo_no"/>
+			<result column="qa_no" property="qa_no"/>
+			<result column="comment_content" property="comment_content"/>
+			<result column="comment_writer" property="comment_writer"/>
+			<result column="comment_date" property="comment_date"/>
+		</collection>
+	</resultMap>
+	
+	<resultMap type="dto.Photo_BoardDTO" id="photo_board">
+		<result column="member_no" property="member_no"/>
+		<result column="photo_no" property="photo_no"/>
+		<result column="photo_readcount" property="photo_readcount"/>
+		<result column="photo_writer" property="photo_writer"/>
+		<result column="photo_content" property="photo_content"/>
+		<result column="photo_reg_date" property="photo_reg_date"/>
+		<result column="photo_subject" property="photo_subject"/>
+		<collection property="pdto" javaType="java.util.List" ofType="dto.CommentDTO" >
+			<result column="comment_no" property="comment_no"/>
+			<result column="board_no" property="board_no"/>
+			<result column="photo_no" property="photo_no"/>
+			<result column="qa_no" property="qa_no"/>
+			<result column="comment_content" property="comment_content"/>
+			<result column="comment_writer" property="comment_writer"/>
+			<result column="comment_date" property="comment_date"/>
+		</collection>
+	</resultMap>
+
+	
 	<!-- [자유게시판] -->
-	<select id="count" resultType="int">
+	<select id="count" resultType="int" parameterType="dto.BoardDTO">
 		select count(*) from fb_board
+	</select>
+	
+	<select id="list" resultType="dto.BoardDTO" parameterType="int">
+		select * from fb_board where board_no = #{board_no} 
+	</select>
+	
+	<select id="contentList" parameterType="int" resultMap="fb_board" >
+		select b.*, c.* from fb_board b, fb_comment c 
+		where b.board_no = c.comment_no(+) 
+		and b.board_no = #{board_no} order by c.comment_no desc
+	</select>
+
+	<select id="pageList" resultType="dto.BoardDTO" parameterType="map">
+		<![CDATA[
+		select b.* from (
+		select rownum as rm, a.* from (
+		select * from fb_board order by board_no desc)a)b 
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+ 		]]>
+	</select>
+	
+	<select id="commentPageList" resultType="dto.CommentDTO" parameterType="hashmap">
+		<![CDATA[
+		select b.* from (
+		select rownum as rm, a.* from (
+		select * from fb_comment where board_no = #{board_no} order by comment_no desc)a)b 
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+ 		]]>
 	</select>
 	
 	<select id="commentCount" parameterType="int" resultType="int">
 		select count(*) from fb_comment where board_no = #{board_no}
 	</select>
+	
+	<insert id="commentSave" parameterType="hashmap">
+		insert into fb_comment values (SEQ_comment_no.nextval, 1, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, sysdate)
+	</insert>
+	
+	<delete id="commentDelete" parameterType="hashmap">
+		delete from fb_comment where comment_no = #{comment_no} and member_no = #{member_no}
+		<!-- delete from fb_comment where comment_no = #{comment_no} and member_no = 1 -->
+	</delete>
 
-	<select id="list" resultType="dto.BoardDTO" parameterType="dto.PageDTO">
-		<![CDATA[
-		select b.* from (select rownum as rm, a.* from (select * from fb_board order by board_no desc)a)b 
-		where b.rm>=#{startRow} and b.rm <=#{endRow}
- 		]]>
-	</select>
-
-	<select id="content" parameterType="int" resultType="dto.BoardDTO">
-		select *
-		from fb_board where board_no=#{board_no}
-	</select>
+	<update id="commentUpdate" parameterType="hashmap">
+		update fb_comment set comment_content = #{comment_content} where comment_no = #{comment_no} and member_no = #{member_no}
+	</update>
 
 	<update id="readCount" parameterType="int">
 		update fb_board set
 		board_readcount=board_readcount+1 where
 		board_no=#{board_no}
 	</update>
-
-	<update id="board_reStepCount" parameterType="dto.CommentDTO">
-		 <![CDATA[ update fb_board set comment_re_step=comment_re_step+1 where comment_ref=#{comment_ref} and 
-			comment_re_step>#{comment_re_step} ]]> 
-	</update>
 	
-	<!-- <insert id="bc_save" parameterType="dto.CommentDTO">
-		insert into fb_comment(comment_no_seq.nextval, comment_ref, comment_re_step, comment_re_level, comment_content, comment_writer, comment_date) 
-		values(comment_no_seq.nextval,#{comment_ref}, #{comment_re_step}, #{comment_re_level}, #{comment_content}, #{comment_writer}, sysdate)
-	</insert>  -->
-	
-	<insert id="b_save" parameterType="dto.BoardDTO">
-		insert into fb_board(member_no, board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
-		values(1,SEQ_board_no.nextval,0,#{board_writer}, #{board_content}, sysdate, #{board_subject})
+	<insert id="save" parameterType="dto.BoardDTO">
+		insert into fb_board(boardcategory_no, member_no, board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
+		values(1, 1,SEQ_board_no.nextval,0,#{board_writer}, #{board_content}, sysdate, #{board_subject})
 	</insert>
 
 	<update id="update" parameterType="dto.BoardDTO">
@@ -74,38 +133,70 @@
 		board_no=#{board_no}
 	</delete>
 
+
 	<!-- [QA게시판] -->
 	<select id="qa_count" resultType="int">
 		select count(*) from fb_qa_board
 	</select>
-
-	<select id="qa_list" resultType="dto.QA_BoardDTO" parameterType="dto.PageDTO">
-		<!-- 파싱하지말고 문자열 그대로 사용하라(<,>) '<'를 사용하기 위해서 CDATA를 사용 아직 수정중  -->
-		<![CDATA[ 
-			select b.* from (select rownum as rm, a.* from (select * from fb_qa_board order by qa_no desc)a)b 
-			where b.rm>=#{startRow} and b.rm <=#{endRow}
-			]]>
-			
+	
+	<select id="qa_list" resultType="dto.QA_BoardDTO" parameterType="int">
+		select * from fb_qa_board where qa_no = #{qa_no} 
+	</select>
+	
+	<select id="qa_contentList" parameterType="int" resultMap="qa_board" >
+		select b.*, c.* from fb_qa_board b, fb_comment c 
+		where b.qa_no = c.comment_no(+) 
+		and b.qa_no = #{qa_no} order by c.comment_no desc
+	</select>
+	
+	<select id="qa_pageList" resultType="dto.QA_BoardDTO" parameterType="map">
+		<![CDATA[
+		select b.* from (
+		select rownum as rm, a.* from (
+		select * from fb_qa_board order by qa_no desc)a)b 
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+ 		]]>
 	</select>
 
-	<select id="qa_content" parameterType="int" resultType="dto.QA_BoardDTO">
-		select *
-		from fb_qa_board where qa_no=#{qa_no}
+	<select id="qa_commentPageList" resultType="dto.CommentDTO" parameterType="hashmap">
+		<![CDATA[
+		select b.* from (
+		select rownum as rm, a.* from (
+		select * from fb_comment where qa_no = #{qa_no} order by comment_no desc)a)b 
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+ 		]]>
 	</select>
+	
+	<select id="qa_commentCount" parameterType="int" resultType="int">
+		select count(*) from fb_comment where qa_no = #{qa_no}
+	</select>
+	
+	<insert id="qa_commentSave" parameterType="hashmap">
+		insert into fb_comment values (SEQ_comment_no.nextval, 1, 0, 0, #{qa_no}, #{comment_content}, #{comment_writer}, sysdate)
+	</insert>
+	
+	<delete id="qa_commentDelete" parameterType="hashmap">
+		delete from fb_comment where comment_no = #{comment_no} and member_no = #{member_no}
+	</delete>
 
+	<update id="qa_commentUpdate" parameterType="hashmap">
+		update fb_comment set comment_content = #{comment_content} where comment_no = #{comment_no} and member_no = #{member_no}
+	</update>
+	
 	<update id="qa_readCount" parameterType="int">
 		update fb_qa_board set
-		qa_readcount=qa_readcount+1 where qa_no=#{qa_no}
+		qa_readcount=qa_readcount+1 where
+		qa_no=#{qa_no}
 	</update>
-
+	
 	<update id="qa_reStepCount" parameterType="dto.QA_BoardDTO">
 		<!-- 아직 수정중 <![CDATA[ update fb_qa_board set re_step=re_step+1 where ref=#{ref} 
 			and re_step>#{re_step} ]]> -->
 	</update>
 	
 	<insert id="qa_save" parameterType="dto.QA_BoardDTO">
-		insert into fb_qa_board(member_no ,qa_no, qa_readcount, qa_writer, qa_content, qa_reg_date, qa_subject, qa_upload)  
-		values(1,SEQ_qa_no.nextval,0,#{qa_writer}, #{qa_content}, sysdate, #{qa_subject}, #{qa_upload,jdbcType=VARCHAR})
+		insert into fb_qa_board(boardcategory_no, member_no, qa_no, qa_readcount, qa_writer, qa_content, qa_reg_date, qa_upload, qa_subject)  
+		values(2, 1,SEQ_qa_no.nextval,0,#{qa_writer}, #{qa_content}, sysdate, ,#{qa_upload,jdbcType=VARCHAR}, #{qa_subject})
 		
 		<!-- <choose>
 			<when test="comment_ref==0">
@@ -116,8 +207,9 @@
 			</otherwise>
 		</choose>
 		,#{comment_re_step}, #{comment_re_level},#{upload,jdbcType=VARCHAR}) -->
+		
 	</insert>
-
+	
 	<select id="qa_uploadFile" parameterType="int" resultType="String">
 		select qa_upload from fb_qa_board where qa_no = #{qa_no}
 	</select>
@@ -125,7 +217,7 @@
 	<update id="qa_update" parameterType="dto.QA_BoardDTO">
 		update fb_qa_board set qa_subject=#{qa_subject}, qa_content=#{qa_content}
 		<if test="qa_upload!=null">
-			,qa_upload=#{qa_upload}
+		,qa_upload=#{qa_upload}
 		</if>
 		where qa_no=#{qa_no}
 	</update>

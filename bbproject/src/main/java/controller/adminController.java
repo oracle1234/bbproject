@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.FoodsDTO;
+import dto.RecipePageDTO;
 import dto.ThemeRecipeDTO;
 import service.ShopService;
 import service.ThemeRecipeService;
@@ -18,7 +21,8 @@ import service.ThemeRecipeService;
 public class adminController {
 	private ThemeRecipeService recipeservice;
 	private ShopService foodsservice;
-
+	private int currentRow;
+	
 	public adminController() {
 	}
 
@@ -46,12 +50,45 @@ public class adminController {
 	}
 
 	@RequestMapping("/adminrecipelist.do")
-	public ModelAndView recipePage(int theme_no) {
+	public ModelAndView recipePage(RecipePageDTO pdto) {
 		ModelAndView mav = new ModelAndView();
-		List<ThemeRecipeDTO> list = recipeservice.selectListProcess(theme_no);
-		mav.addObject("aList", list);
+		int theme_no = pdto.getTheme_no();
+		int totalRow = recipeservice.countRecipeProcess(pdto.getTheme_no());
+		if (totalRow >= 1) {
+			if (pdto.getCurrentRow() == 0) {
+				currentRow = 1;
+			} else {
+				currentRow = pdto.getCurrentRow();
+			}
+			pdto = new RecipePageDTO(currentRow, totalRow);
+			pdto.setTheme_no(theme_no);
+			mav.addObject("pdto", pdto);
+			mav.addObject("aList", recipeservice.selectListProcess(pdto));
+		}
+		
 		mav.setViewName("adminrecipelist");
 		return mav;
+	}
+	
+	@RequestMapping(value="/adminrecipelist.do", method=RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> recipePagePost(RecipePageDTO pdto) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int theme_no = pdto.getTheme_no();
+		int totalRow = recipeservice.countRecipeProcess(pdto.getTheme_no());
+		if (totalRow >= 1) {
+			if (pdto.getCurrentRow() == 0) {
+				currentRow = 1;
+			} else {
+				currentRow = pdto.getCurrentRow();
+			}
+			pdto = new RecipePageDTO(currentRow, totalRow);
+			pdto.setTheme_no(theme_no);
+		}
+		
+		map.put("pdto", pdto);
+		map.put("list", recipeservice.selectListProcess(pdto));
+		
+		return map; 
 	}
 
 	@RequestMapping(value = "/adminrecipeins.do", method = RequestMethod.GET)
@@ -111,9 +148,6 @@ public class adminController {
 		return mav;
 	}
 
-	@RequestMapping("/test.do")
-	public String test() {
-		return "view/test";
-	}
+
 
 }

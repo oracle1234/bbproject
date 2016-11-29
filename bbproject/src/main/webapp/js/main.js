@@ -8,9 +8,10 @@ $(function() {
 		quick_left();
 		$("#quick_menu").css("display", "block");
 		var defaultTop = parseInt($("#quick_menu").css("top"));
-		var bodyHeight = $("#mainbody").height();
 		$(window).on("scroll resize", function() {
+			var bodyHeight = $("#mainbody").height();
 			var scv = $(window).scrollTop() + defaultTop;
+			
 			if(scv >= bodyHeight){
 				scv = bodyHeight;
 				if(scv <= 450){

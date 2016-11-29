@@ -52,14 +52,6 @@ public class Photo_BoardServiceImp implements Photo_BoardService {
 	}
 
 	@Override
-	public void reStepProcess(CommentDTO dto) {
-		pdao.reStepCount(dto);
-		dto.setComment_re_step(dto.getComment_re_step() + 1);
-		dto.setComment_re_level(dto.getComment_re_level() + 1);
-		pdao.save(dto);
-	}
-
-	@Override
 	public Photo_BoardDTO updateSelectProcess(int num) {
 
 		return pdao.updateNum(num);

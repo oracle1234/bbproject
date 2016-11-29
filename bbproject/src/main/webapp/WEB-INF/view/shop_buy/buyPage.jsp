@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 table {
 	font-size: 13px;
@@ -18,15 +19,13 @@ caption {
 
 #buypage_wrap {
 	width: 950px;
-	height: 2850px;
-	background-color: lightgray;
+	height: 2650px;
 	position: relative;
 }
 
 #guide_wrap {
 	width: 950px;
 	height: 280px;
-	background-color: blue;
 	position: absolute;
 	top: 30px;
 }
@@ -34,7 +33,6 @@ caption {
 #guide_image_wrap {
 	width: 950px;
 	height: 250px;
-	background-color: red;
 }
 
 #guide_image_wrap img {
@@ -47,13 +45,11 @@ caption {
 	height: 245px;
 	position: absolute;
 	top: 320px;
-	background-color: yellow;
 }
 
 #terms_text {
 	width: 950px;
 	height: 200px;
-	background-color: green;
 }
 
 #terms_text p {
@@ -82,13 +78,11 @@ caption {
 	height: 630px;
 	position: absolute;
 	top: 580px;
-	background-color: aqua;
 }
 
 #order_list_wrap {
 	width: 950px;
 	height: 620px;
-	background-color: maroon;
 }
 
 #order_table {
@@ -102,20 +96,22 @@ caption {
 #savemoney_wrap {
 	width: 650px;
 	height: 150px;
-	background-color: navy;
 	float: left;
 }
 
 #smalltotal_wrap {
 	width: 300px;
 	height: 150px;
-	background-color: blue;
 	float: left;
 }
 
 #savemoney_table th {
 	width: 100px;
 	height: 30px;
+}
+
+#savemoney_table td {
+	text-align: left;
 }
 
 #coupon_select {
@@ -135,7 +131,6 @@ caption {
 #total_wrap {
 	width: 950px;
 	height: 230px;
-	background-color: lime;
 	float: left;
 }
 
@@ -150,7 +145,6 @@ caption {
 #orderer_wrap {
 	width: 950px;
 	height: 900px;
-	background-color: purple;
 	position: absolute;
 	top: 630px;
 }
@@ -158,7 +152,6 @@ caption {
 #orderer_info {
 	width: 950px;
 	height: 350px;
-	background-color: teal;
 	float: left;
 }
 
@@ -188,10 +181,10 @@ caption {
 	text-align: left;
 }
 
+
 #deliver_image {
 	width: 950px;
 	height: 105px;
-	background-color: green;
 	float: left;
 }
 
@@ -202,15 +195,13 @@ caption {
 
 #delivery_info {
 	width: 950px;
-	height: 510px;
-	background-color: olive;
+	height: 400px;
 	float: left;
 }
 
 #pay_info_wrap {
 	width: 950px;
 	height: 80px;
-	background-color: silver;
 }
 
 #pay_info_text_wrap {
@@ -227,20 +218,17 @@ caption {
 	width: 950px;
 	height: 120px;
 	float: left;
-	background-color: black;
 }
 
 #pay_type_wrap {
 	width: 950px;
 	height: 410px;
-	background-color: navy;
 	float: left;
 }
 
 #pay_type_table_wrap {
 	width: 950px;
 	height: 390px;
-	background-color: fuchsia;
 }
 
 #pay_type_table td {
@@ -260,7 +248,462 @@ caption {
 	width: 145px;
 	height: 45px;
 }
+
+#total_table tr:nth-child(3) td{
+	width:170px;
+}
+
+#counter {
+  background:rgba(255,0,0,0.5);
+  border-radius: 0.5em;
+  padding: 0 .5em 0 .5em;
+  font-size: 0.75em;
+}
+
 </style>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
+<script type="text/javascript">
+	
+$(document).ready(function() {
+	IMP.init('imp26018843'); 
+	
+	var money = $('#order_table tr:nth-child(2) td:nth-child(5)').text();
+	var totalMoney = parseInt(money.substring(0, money.length-1));
+	
+	var totalcount = 0;
+	totalcount = totalcount + ${amount};
+	var totalsavemoney = 0;
+	var saveMoney = parseInt($('#order_table tr:nth-child(2) td:nth-child(4)').text());
+	totalsavemoney = totalsavemoney + saveMoney;
+	
+	var delicheck = 0;
+	
+	$('#pay_type_table tr:nth-child(2) td').empty();
+	$('#pay_type_table tr:nth-child(2) td').append(totalMoney+'<span>원</span>');
+	
+	
+	$('#smalltotal_table tr:nth-child(5) td').empty();
+	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
+	
+	
+	$('#smalltotal_table tr:nth-child(5) td').empty();
+	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
+	
+	$('#smalltotal_table tr:nth-child(4) td').empty();
+	$('#smalltotal_table tr:nth-child(4) td').append(totalsavemoney+'<span>원</span>');
+	
+	
+	$('#smalltotal_table tr:nth-child(1) td').empty();
+	$('#smalltotal_table tr:nth-child(1) td').append(totalcount+'<span>개</span>');
+	
+	
+	$('#total_table tr:nth-child(2) td:nth-child(1)').empty();
+	$('#total_table tr:nth-child(2) td:nth-child(1)').append(totalMoney+'<span>원</span>');
+	
+	if(totalMoney < 45000){
+		delicheck = totalMoney + 2500;
+		$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>')
+		$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(4)').append(delicheck+'<span>원</span>')
+		$('#pay_type_table tr:nth-child(3) td').empty();
+		$('#pay_type_table tr:nth-child(3) td').append('2500<span>원</span>');
+		$('#pay_type_table tr:nth-child(4) td').empty();
+		$('#pay_type_table tr:nth-child(4) td').append(delicheck+'<span>원</span>');
+
+		
+		
+	}
+	if (totalMoney >= 45000){
+		$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
+		$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(4)').append(totalMoney+'<span>원</span>')
+		$('#pay_type_table tr:nth-child(3) td').empty();
+		$('#pay_type_table tr:nth-child(3) td').append('<span>무료</span>');
+		$('#pay_type_table tr:nth-child(4) td').empty();
+		$('#pay_type_table tr:nth-child(4) td').append(totalMoney+'<span>원</span>');
+		
+	}
+	
+	
+	
+	var discount = 0;
+	$('#coupon_select').on('change', function(){
+		var tm = 0;
+		discount = parseInt($(this).val());
+		
+		tm = totalMoney - discount - useSavemoney; 
+		var deli = tm + 2500;
+		if(tm < 45000){
+			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append(deli+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(2) td').empty();
+			$('#pay_type_table tr:nth-child(2) td').append(tm+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(3) td').empty();
+			$('#pay_type_table tr:nth-child(3) td').append('2500<span>원</span>');
+			$('#pay_type_table tr:nth-child(4) td').empty();
+			$('#pay_type_table tr:nth-child(4) td').append(deli+'<span>원</span>');
+			
+		}
+		if(tm >= 45000){
+			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append(tm+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(2) td').empty();
+			$('#pay_type_table tr:nth-child(2) td').append(tm+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(3) td').empty();
+			$('#pay_type_table tr:nth-child(3) td').append('<span>무료</span>');
+			$('#pay_type_table tr:nth-child(4) td').empty();
+			$('#pay_type_table tr:nth-child(4) td').append(tm+'<span>원</span>');
+		}
+		
+		$('#smalltotal_table tr:nth-child(2) td').empty();
+		$('#smalltotal_table tr:nth-child(2) td').append(discount+'<span>원</span>');
+		$('#smalltotal_table tr:nth-child(5) td').empty();
+		$('#smalltotal_table tr:nth-child(5) td').append(tm+'<span>원</span>');
+		$('#total_table tr:nth-child(3) td:nth-child(2)').empty();
+		$('#total_table tr:nth-child(3) td:nth-child(2)').append(discount+'<span>원</span>');
+		
+	});
+	
+	var useSavemoney = "";
+	$('#savemoney_table tr:nth-child(1) td input').on('change', function(){
+		
+		useSavemoney = $('#savemoney_table tr:nth-child(1) td input').val();
+		var saveMoney = ${MemberDTO.point};
+		var last = parseInt(useSavemoney.substring(useSavemoney.length-1));
+		
+		
+		var sm = totalMoney - useSavemoney - discount;
+		var deli = sm + 2500;
+		if(useSavemoney > saveMoney){
+			alert('보유한 적립금보다 많이 사용할 수 없습니다.');
+			$('#savemoney_table tr:nth-child(1) td input').val("0");
+			return false;
+		}
+		
+		if(isNaN(useSavemoney)==true){
+			alert('숫자만 입력하세요.')
+			$('#savemoney_table tr:nth-child(1) td input').val("0");
+			return false;
+		}
+		
+		if(last != 0){
+			alert('1의 자리는 0만 가능합니다.');
+			$('#savemoney_table tr:nth-child(1) td input').val("0");
+			return false;
+		}
+		
+		if(sm < 45000){
+			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>');
+			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append(deli+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(2) td').empty();
+			$('#pay_type_table tr:nth-child(2) td').append(sm+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(3) td').empty();
+			$('#pay_type_table tr:nth-child(3) td').append(2500+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(4) td').empty();
+			$('#pay_type_table tr:nth-child(4) td').append(deli+'<span>원</span>');
+			
+		}
+		if (sm >= 45000){
+			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append(sm+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(2) td').empty();
+			$('#pay_type_table tr:nth-child(2) td').append(sm+'<span>원</span>');
+			$('#pay_type_table tr:nth-child(3) td').empty();
+			$('#pay_type_table tr:nth-child(3) td').append('<span>무료</span>');
+			$('#pay_type_table tr:nth-child(4) td').empty();
+			$('#pay_type_table tr:nth-child(4) td').append(sm+'<span>원</span>');
+		}
+		$('#total_table tr:nth-child(3) td:nth-child(1)').empty();
+		$('#total_table tr:nth-child(3) td:nth-child(1)').append(useSavemoney+'<span>원</span>');
+		$('#smalltotal_table tr:nth-child(3) td').empty();
+		$('#smalltotal_table tr:nth-child(3) td').append(useSavemoney+'<span>원</span>');
+		$('#smalltotal_table tr:nth-child(5) td').empty();
+		$('#smalltotal_table tr:nth-child(5) td').append(sm+'<span>원</span>')
+		
+		
+	});
+	
+	$('#sameOrder').on('click', function(){
+		var name = $('#orderer_info_table tr:nth-child(1) td input').val();
+		var chk = $(this).is(":checked");
+		var postNum = $('#orderer_info_table #sample4_postcode').val();
+		var detailAddress = $('#detailAddress').val();
+		var addressAA = $('#orderer_info_table #sample4_roadAddress').val();
+		
+		var firstPhone = $('#firstPhone').val();
+		var secondPhone = $('#secondPhone').val();
+		var lastPhone = $('#lastPhone').val();
+		
+		if(chk == true){
+			$('#delivery_info_table tr:nth-child(1) td').empty();
+			$('#delivery_info_table tr:nth-child(1) td').append('<input type = "text" value ='+name+'>');
+			$('#delivery_info_table tr:nth-child(2) td').remove();
+			$('#delivery_info_table tr:nth-child(2)').append('<td><input type="text" id="sample4_postcode" placeholder="우편번호" value='+postNum+'>&nbsp;<input type="button" onclick="sample4_execDaumPostcode()" id="map" value="우편번호 찾기"></td><br>');
+			$('#delivery_info_table #sample4_roadAddress').remove();
+			$('#delivery_info_table tr:nth-child(3) td').append('<input type="text" size = "50px" id="sample4_roadAddress" name="address" placeholder="도로명주소" value="'+addressAA+'">')
+			$('#delivery_info_table tr:nth-child(4) td').empty();
+			$('#delivery_info_table tr:nth-child(4) td').append('<input type="text" size="66" placeholder="상세주소" value="'+detailAddress+'">');
+			$('#delivery_info_table tr:nth-child(5) td input:nth-child(1)').val("");
+			$('#delivery_info_table tr:nth-child(5) td input:nth-child(1)').val(firstPhone);
+			$('#delivery_info_table tr:nth-child(5) td input:nth-child(2)').val("");
+			$('#delivery_info_table tr:nth-child(5) td input:nth-child(2)').val(secondPhone);
+			$('#delivery_info_table tr:nth-child(5) td input:nth-child(3)').val("");
+			$('#delivery_info_table tr:nth-child(5) td input:nth-child(3)').val(lastPhone);
+			
+			
+		}
+		if(chk == false){
+			$('#delivery_info_table tr:nth-child(1) td input').val("");
+			$('#delivery_info_table tr:nth-child(2) td input:nth-child(1)').val("");
+			$('#delivery_info_table tr:nth-child(3) td input').val("");
+			$('#delivery_info_table tr:nth-child(4) td input').val("");
+			$('#delivery_info_table tr:nth-child(5) td input').val("");
+			$('#delivery_info_table tr:nth-child(6) td input').val("");
+			
+		}
+	});
+	
+	
+	//작업
+	$('#deli_comment').on('change', function(){
+		var comment=$("#deli_comment option:selected").text();
+		var chk = $("#deli_comment option:selected").val();
+		if(chk == 1){
+			$('#deli_comment_area').val(comment);
+		}
+		
+		if(chk == 0){
+			$('#deli_comment_area').val("");
+		}
+		
+	});
+	
+	
+	$('#deli_comment_area').keyup(function (e){
+        var content = $(this).val();
+        $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+        $('#counter').html(content.length + '/40');
+        
+        if(content.length > 40){
+        	$(this).val($(this).val().substring(0, 40));
+        	alert('40자 이내로 입력하세요.');
+        	return false;
+        }
+        
+    });
+    $('#deli_comment_area').keyup();
+    
+    
+    $('#shop_orderBtn').on('click', function(){
+    	
+   /*  	recipient_name 이름
+		우편번호 sample4_postcode
+		도로명주소 sample4_roadAddress
+		상세주소 recipient_detail_address
+		폰번
+		recipient_phone1
+		recipient_phone2
+		recipient_phone3
+		할말
+		deli_comment_area
+    	 */
+    	/*  orderer_name 이름
+			detailAddress 상세주소
+			firstPhone 
+			secondPhone
+			lastPhone
+			orderer_mail 메일 */
+		if($('#orderer_name').val() == ""){
+			alert('주문자 이름을 입력하세요.');
+			return false;
+		}
+   
+    	if($('#detailAddress').val() == ""){
+ 			alert('주소를 입력하세요.');
+ 			return false;
+ 		}
+    	if($('#firstPhone').val() == ""){
+ 			alert('핸드폰번호를 입력하세요.');
+ 			return false;
+ 		}
+    	if($('#secondPhone').val() == ""){
+ 			alert('핸드폰번호를 입력하세요.');
+ 			return false;
+ 		}
+    	if($('#lastPhone').val() == ""){
+ 			alert('핸드폰번호를 입력하세요.');
+ 			return false;
+ 		}
+    	if($('#orderer_mail').val() == ""){
+ 			alert('이메일을 입력하세요.');
+ 			return false;
+ 		}
+    	if($('#recipient_name').val() == ""){
+    		alert('받으시는분의 이름을 입력하세요.');
+    		return false;
+    	}
+    	if($('#sample4_postcode').val() == ""){
+    		alert('우편번호를 입력하세요.');
+    		return false;
+    	}
+    	if($('#sample4_roadAddress').val() == ""){
+    		alert('주소를 입력하세요.');
+    		return false;
+    	}
+    	if($('#recipient_detail_address').val() == ""){
+    		alert('주소를 입력하세요.');
+    		return false;
+    	}
+    	
+    	if($('#recipient_phone1').val() == ""){
+    		alert('핸드폰번호를 입력하세요.');
+    		return false;
+    	}
+    	if($('#recipient_phone2').val() == ""){
+    		alert('핸드폰번호를 입력하세요.');
+    		return false;
+    	}
+    	if($('#recipient_phone3').val() == ""){
+    		alert('핸드폰번호를 입력하세요.');
+    		return false;
+    	}
+    	if($('#deli_comment_area').val() == ""){
+    		alert('배송시 할말을 입력하세요.')
+    		return false;
+    	}
+    	
+    	var temp = $('.pay_type:checked').val();
+    	
+		if(temp == 'creditCard'){
+			
+			IMP.request_pay({
+			    pg : 'danal_tpay',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '주문명:결제테스트',
+			    amount : 100,
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : '구매자이름',
+			    buyer_tel : '010-1234-5678',
+			    buyer_addr : '서울특별시 강남구 삼성동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			    }
+
+			    alert(msg);
+			});
+		}
+		else if(temp == 'bankBook'){
+			
+			IMP.request_pay({
+			    pg : 'danal_tpay',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '주문명:결제테스트',
+			    amount : 100,
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : '구매자이름',
+			    buyer_tel : '010-1234-5678',
+			    buyer_addr : '서울특별시 강남구 삼성동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			    }
+
+			    alert(msg);
+			});
+		}
+    	
+    	
+    });
+	
+	
+}); //end document ready///////////////////////
+
+
+function sample4_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if(fullRoadAddr !== ''){
+                fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('sample4_roadAddress').value = fullRoadAddr;
+            document.getElementById('address').value = data.jibunAddress;
+
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+
+            } else {
+                document.getElementById('guide').innerHTML = '';
+            }
+        }
+    }).open();
+}
+	
+</script>
 </head>
 <body>
 	<div id="buypage_wrap">
@@ -296,16 +739,13 @@ caption {
 					파기합니다.<br>
 				</p>
 			</div>
-			<!-- <div id="terms_checkbox">
-				<input type="checkbox" id="terms_chk"> 개인정보 정보보호에 관한 법률에
-				동의합니다.
-			</div> -->
+	
 		</div>
 
 		<div id="order_wrap">
 			<div id="order_list_wrap">
 				<div id="order_list">
-					<table id="order_table" border="1">
+					<table id="order_table">
 						<caption>주문내역</caption>
 						<tr>
 							<th>상품명</th>
@@ -318,10 +758,10 @@ caption {
 						<c:forEach items="${FoodsDTO}" var="food">
 							<tr>
 								<td>${food.foods_name}</td>
-								<td>${food.price}</td>
-								<td>${amount}</td>
-								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * amount}" type="NUMBER"></fmt:formatNumber></td>
-								<td>${food.price * amount}</td>
+								<td>${food.price}<span>원</span></td>
+								<td>${amount}<span>개</span></td>
+								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
+								<td>${food.price * amount}<span>원</span></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -329,65 +769,72 @@ caption {
 				<div id="savemoney_wrap">
 					<p align="left">고객님 포인트를 사용하면 좀 더 절약하여 구매할 수 있습니다.</p>
 					<br>
-					<table id="savemoney_table" border="1" width="600px">
+					<table id="savemoney_table"  width="600px"> 
 						<tr>
 							<th scope="row">적립금사용</th>
-							<td>100<span>원</span> (사용가능한 적립금 : 0<span>원</span>)
+							<td>
+							<input size="2" type = "text" id ="savemoneytext" value="0"><span>원</span> (사용가능한 적립금 : ${MemberDTO.point}<span>원</span>)
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">쿠폰적용</th>
 							<td><select id="coupon_select">
-									<option>사용하실 쿠폰을 선택하세요.</option>
-									<option>회원가입 축하이벤트쿠폰(~2016.12.24)</option>
+									<option selected value="0">사용하실 쿠폰을 선택하세요.</option>
+									<c:forEach items="${member.cList}" var = "couponDTO">
+									<option value="${couponDTO.coupon_discount}">${couponDTO.coupon_name}</option>
+									</c:forEach>
 							</select></td>
 
 						</tr>
 					</table>
+					
+					
 				</div>
 				<div id="smalltotal_wrap">
-					<table id="smalltotal_table" border="1">
+					<table id="smalltotal_table" width="100%">
 						<tr>
 							<th scope="row">주문수량합계</th>
-							<td>z</td>
+							<td><span>개</span></td>
 						</tr>
 						<tr>
-							<th scope="row">총 할인금액</th>
-							<td>z</td>
+						
+							<th scope="row">쿠폰사용</th>
+							<td>0<span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">적립금사용</th>
-							<td>z</td>
+							<td><span>0원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">적립금</th>
-							<td>z</td>
+							<td><span>0원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">총 결제금액</th>
-							<td>zzzzzzzzzzzzzzz</td>
+							<td><span>0원</span></td>
 						</tr>
 					</table>
 				</div>
 
 				<div id="total_wrap">
-					<table id="total_table" border="1" width="100%">
+					<table id="total_table" width="100%">
 						<tr>
 							<th>상품금액</th>
 							<th colspan="2">할인금액</th>
 							<th>배송비 합계</th>
 							<th>총 주문 합계</th>
 						</tr>
+						
 						<tr>
-							<td rowspan="2">14543<span>원</span></td>
+							<td rowspan="2"><span>원</span></td>
 							<td colspan="2">적립금사용&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 쿠폰사용</td>
-							<td rowspan="2">g</td>
-							<td rowspan="2">g</td>
+							<td rowspan="2">0원</td>
+							<td rowspan="2">총주</td>
 						</tr>
 						<tr>
-							<td>적립금사용<span>원</span></td>
-							<td>쿠폰사용.<span>원</span></td>
+							<td>0<span>원</span></td>
+							<td>0<span>원</span></td>
 						</tr>
 						<tr>
 							<td colspan="5" align="left">고객님, 수도권 지역이세요?<br> 반찬을부탁해
@@ -400,37 +847,32 @@ caption {
 				</div>
 				<div id="orderer_wrap">
 					<div id="orderer_info">
-						<table id="orderer_info_table" width="950" border="1">
+						<table id="orderer_info_table" width="950" height="300">
 							<caption>주문자 정보</caption>
 							<tr>
 								<th scope="row">주문자 *</th>
-								<td><input type="text"></td>
+								<td><input type="text" id ="orderer_name" value="${MemberDTO.member_name}"></td>
 							</tr>
 							<tr>
 								<th scope="row" rowspan="3">주소</th>
-
-								<td><input type="text" size="30">&nbsp;<input
-									type="button" value="우편번호 검색"></td>
+								<td>
+								<input type="text" id="sample4_postcode" placeholder="우편번호" value="${postNum}">
+								<input type="button" onclick="sample4_execDaumPostcode()" id="map" value="우편번호 찾기"><br>
 							</tr>
 							<tr>
-								<td><input type="text" size="100"></td>
+								<td><input type="text" size = "50px" value = "${Address}" id="sample4_roadAddress" name="address" placeholder="도로명주소">
 							</tr>
 							<tr>
-								<td><input type="text" size="100"></td>
-							</tr>
-							<tr>
-								<th scope="row">전화번호</th>
-								<td><input type="text" size="1"> - <input
-									type="text" size="1"> - <input type="text" size="1"></td>
+								<td><input type="text" size="66" placeholder="상세주소" id="detailAddress" value="${detailAddress}"></td>
 							</tr>
 							<tr>
 								<th scope="row">휴대폰번호</th>
-								<td><input type="text" size="1"> - <input
-									type="text" size="1"> - <input type="text" size="1"></td>
+								<td><input type="text" id = "firstPhone" size="1" value = "${firstPhone}"> - <input
+									type="text" id="secondPhone" size="1" value="${secondPhone}"> - <input type="text" id = "lastPhone" size="1" value = "${lastPhone}"></td>
 							</tr>
 							<tr>
 								<th scope="row">이메일</th>
-								<td><input type="text" size="25"></td>
+								<td><input type="text" id="orderer_mail" size="25" value ="${MemberDTO.mail}"></td>
 							</tr>
 						</table>
 					</div>
@@ -440,54 +882,52 @@ caption {
 					</div>
 
 					<div id="delivery_info">
-						<table id="delivery_info_table" width="950" border="1">
+						<table id="delivery_info_table" width="950">
 							<caption>
-								배송지 정보&nbsp;&nbsp;&nbsp;<input type="checkbox"> 주문자 정보와
+								배송지 정보&nbsp;&nbsp;&nbsp;<input type="checkbox" id="sameOrder"> 주문자 정보와
 								동일
 							</caption>
 							<tr>
 								<th scope="row">받으시는분 *</th>
-								<td><input type="text"></td>
+								<td><input id="recipient_name" type="text"></td>
 							</tr>
 							<tr>
 								<th scope="row" rowspan="3">주소</th>
-
-								<td><input type="text" size="30">&nbsp;<input
-									type="button" value="우편번호 검색"></td>
+								<td>
+								<input type="text" id="sample4_postcode" placeholder="우편번호">
+								<input type="button" onclick="sample4_execDaumPostcode()" id="map" value="우편번호 찾기"><br></td>
+								
 							</tr>
 							<tr>
-								<td><input type="text" size="100"></td>
+								<td><input type="text" size = "50px" id="sample4_roadAddress" name="address" placeholder="도로명주소"></td>
 							</tr>
 							<tr>
-								<td><input type="text" size="100"></td>
-							</tr>
-							<tr>
-								<th scope="row">전화번호</th>
-								<td><input type="text" size="1"> - <input
-									type="text" size="1"> - <input type="text" size="1"></td>
+								<td><input type="text" id = "recipient_detail_address" size="66" placeholder="상세주소"></td>
 							</tr>
 							<tr>
 								<th scope="row">휴대폰번호</th>
-								<td><input type="text" size="1"> - <input
-									type="text" size="1"> - <input type="text" size="1"></td>
+								<td><input type="text" id="recipient_phone1" size="1"> - <input
+									type="text" id="recipient_phone2" size="1"> - <input type="text" id="recipient_phone3" size="1"></td>
 							</tr>
 							<tr>
 								<th scope="row" rowspan="3">배송관련 할말(40자 내외)</th>
 								<td>* 택배기사님께 전달하는 메시지를 적는 란 입니다.</td>
 							</tr>
 							<tr>
-								<td><select>
-										<option>배송기사님께 전달되는 메세지를 입력하세요.</option>
-										<option>부재시 경비(관리)실에 맡겨주세요.</option>
-										<option>부재시 문앞에 놓아주세요.</option>
-										<option>배송전에 연락주세요.</option>
-										<option>==========================================</option>
-										<option>직접입력하기 (40자 내외)</option>
-
+								<td><select id = "deli_comment">
+										<option value = "0" selected="selected">배송기사님께 전달되는 메세지를 입력하세요.</option>
+										<option value="1">부재시 경비(관리)실에 맡겨주세요.</option>
+										<option value="1">부재시 문앞에 놓아주세요.</option>
+										<option value="1">배송전에 연락주세요.</option>
+										<option value="0">==========================================</option>
+										<option value="0">직접입력하기 (40자 내외)</option>
 								</select></td>
 							</tr>
 							<tr>
-								<td><textarea cols="100" rows="10" style="resize: none"></textarea></td>
+								<td>
+								<textarea id="deli_comment_area" rows="15" cols="70" style="resize: none;"></textarea>
+								<span id="counter">###</span>
+								</td>
 							</tr>
 
 						</table>
@@ -504,16 +944,16 @@ caption {
 
 					<div id="pay_type_wrap">
 						<div id="pay_type_table_wrap">
-							<table id="pay_type_table" border="1" width="950">
+							<table id="pay_type_table" width="950">
 								<tr>
 									<th scope="row">결제방식</th>
-									<td><input type="radio" name="pay_type" value="crditCard">
+									<td><input type="radio" class="pay_type" name="pay_type" value="creditCard">
 										신용카드<br> &nbsp;- 신용카드 결제 신청 시 승인 진행에 다소 시간이 소요될 수 있으므로
 										'중지', '새로고침'을 누르지 마시고 결과 화면이 나타날 때까지 기다려 주십시오.<br>
 										&nbsp;- 결제하기 버튼 클릭시 결제창이 나타나지 않을 경우나 안전결제 모듈이 설치 되지 않을 경우 더반찬
 										사이트를 모두 닫으시고 아래 설치파일을 다운받아 ActiveX를 수동설치 하시고 결제를 진행하여 주십시오.<br>
 									<input type="button" value="LG U+ 결제 모듈 수동설치"><br>
-									<br> <input type="radio" name="pay_type" value="bankBook">
+									<br> <input type="radio" class="pay_type" name="pay_type" value="bankBook">
 										무통장입금<br> &nbsp;- 안전한 거래를 제공하기 위해 현금결제시 구매안전 서비스를 제공하고
 										있습니다. <br> &nbsp;- 입금금액이 일치해야 정삭적으로 입금이 가능합니다.<br>
 										&nbsp;- 주문완료 후 희망배송일 이틀 전 21시 이내에 입금이 확인되지 않으면 자동취소 됩니다.<br>
@@ -521,15 +961,15 @@ caption {
 								</tr>
 								<tr>
 									<th scope="row">상품합계금액</th>
-									<td>원</td>
+									<td><span>원</span></td>
 								</tr>
 								<tr>
 									<th scope="row">배송료</th>
-									<td>2500원</td>
+									<td><span>원</span></td>
 								</tr>
 								<tr>
 									<th scope="row">총 결제금액</th>
-									<td>124323원</td>
+									<td><span>원</span></td>
 								</tr>
 							</table>
 							<br>

@@ -39,23 +39,19 @@ CREATE TABLE fb_member
 CREATE TABLE fb_comment
 (
 	comment_no number NOT NULL,
+	member_no number NOT NULL,
 	board_no number NOT NULL,
 	photo_no number NOT NULL,
 	qa_no number NOT NULL,
 	comment_content varchar2(2000) NOT NULL,
 	comment_writer varchar2(50) NOT NULL,
-	comment_date date,
+	comment_date date NOT NULL,
 	PRIMARY KEY (comment_no)
 );
 
-insert into FB_COMMENT values (1, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (2, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (3, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-insert into FB_COMMENT values (4, 121, 0, 0, '점심 뭐 먹지?', '백나연', sysdate);
-
-
 CREATE TABLE fb_qa_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	qa_no number NOT NULL,
 	qa_readcount number NOT NULL,
@@ -67,8 +63,10 @@ CREATE TABLE fb_qa_board
 	PRIMARY KEY (qa_no)
 );
 
+
 CREATE TABLE fb_photo_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	photo_no number NOT NULL,
 	photo_readcount number NOT NULL,
@@ -80,17 +78,20 @@ CREATE TABLE fb_photo_board
 	PRIMARY KEY (photo_no)
 );
 
+
 CREATE TABLE fb_board
 (
+	boardcategory_no number not null,
 	member_no number NOT NULL,
 	board_no number NOT NULL,
 	board_readcount number NOT NULL,
-	board_writer varchar2(100),
+	board_writer varchar2(100) NOT null,
 	board_content varchar2(2000) NOT NULL,
 	board_reg_date date NOT NULL,
 	board_subject varchar2(200) NOT NULL,
 	PRIMARY KEY (board_no)
 );
+
 
 CREATE TABLE fb_boardcategory
 (
@@ -98,7 +99,6 @@ CREATE TABLE fb_boardcategory
 	boardcategory_name varchar2(50) NOT NULL,
 	PRIMARY KEY (boardcategory_no)
 );
-
 
 
 /* Create Foreign Keys */
@@ -138,7 +138,14 @@ COMMENT ON COLUMN fb_tr_order.order_text IS '설명';
 delete from fb_board;
 delete from fb_qa_board;
 delete from fb_photo_board;
+delete from FB_COMMENT;
 
 select * from fb_board;
 select * from fb_qa_board;
 select * from fb_photo_board;
+select * from FB_COMMENT;
+<<<<<<< HEAD
+
+update fb_comment set comment_content = '진짜 왜 널값이냐고' where comment_no = 10 and member_no = 1;
+=======
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git

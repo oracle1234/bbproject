@@ -1,17 +1,22 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.RecipePageDTO;
 import dto.ThemeRecipeDTO;
 import service.ThemeRecipeService;
 
 @Controller
 public class ThemeRecipeController {
 	private ThemeRecipeService service;
+	private int currentRow;
 
 	public ThemeRecipeController() {
 	}
@@ -21,13 +26,44 @@ public class ThemeRecipeController {
 	}
 
 	@RequestMapping("/recipe.do")
-	public ModelAndView recipePage(int theme_no) {
+	public ModelAndView recipePage(RecipePageDTO pdto) {
 		ModelAndView mav = new ModelAndView();
-		List<ThemeRecipeDTO> list = service.selectListProcess(theme_no);
-		mav.addObject("aList", list);
-		mav.addObject("theme_no", theme_no);
+		int theme_no = pdto.getTheme_no();
+		int totalRow = service.countRecipeProcess(pdto.getTheme_no());
+		if (totalRow >= 1) {
+			if (pdto.getCurrentRow() == 0) {
+				currentRow = 1;
+			} else {
+				currentRow = pdto.getCurrentRow();
+			}
+			pdto = new RecipePageDTO(currentRow, totalRow);
+			pdto.setTheme_no(theme_no);
+			mav.addObject("pdto", pdto);
+			mav.addObject("aList", service.selectListProcess(pdto));
+		}
 		mav.setViewName("recipe");
 		return mav;
+	}
+
+	@RequestMapping(value = "/recipe.do", method = RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> recipeReload(RecipePageDTO pdto) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int theme_no = pdto.getTheme_no();
+		int totalRow = service.countRecipeProcess(pdto.getTheme_no());
+		if (totalRow >= 1) {
+			if (pdto.getCurrentRow() == 0) {
+				currentRow = 1;
+			} else {
+				currentRow = pdto.getCurrentRow();
+			}
+			pdto = new RecipePageDTO(currentRow, totalRow);
+			pdto.setTheme_no(theme_no);
+		}
+		
+		map.put("pdto", pdto);
+		map.put("list", service.selectListProcess(pdto));
+		
+		return map; 
 	}
 
 	@RequestMapping("/recipedetail.do")

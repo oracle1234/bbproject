@@ -58,8 +58,13 @@ CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+<<<<<<< HEAD
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 <<<<<<< HEAD
+=======
+CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+
+>>>>>>> refs/remotes/origin/joohoon2
 
 
 =======
@@ -89,11 +94,12 @@ CREATE TABLE fb_coupon_book
 	couponbook_no number NOT NULL,
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
+	 
 	coupon_state varchar2(10) not null,
 <<<<<<< HEAD
 =======
 	PRIMARY KEY (couponbook_no)
-	);
+);
 =======
 CREATE TABLE fb_coupon_book
 (
@@ -112,13 +118,16 @@ CREATE TABLE fb_member
 	member_name varchar2(500) NOT NULL,
 	id varchar2(50) NOT NULL,
 	pw varchar2(50) NOT NULL,
-	address varchar2(50) NOT NULL,
+	address varchar2(100) NOT NULL,
 	tel varchar2(50) NOT NULL,
 	mail varchar2(50) NOT NULL,
 	stamp number,
 	point number,
 	PRIMARY KEY (member_no)
 );
+-- address 컬럼 크기 100으로 수정 //주훈수정
+alter table fb_member
+modify (address VARCHAR2(100));
 
 
 CREATE TABLE fb_request
@@ -165,6 +174,10 @@ CREATE TABLE fb_delivery_cost
 );
 
 
+--fb_foods 테이블 deliver_no 컬럼 삭제 --주훈수정 
+
+alter table fb_foods drop column fb_delivery_no;
+
 CREATE TABLE fb_foods
 (
 	foods_no number NOT NULL,
@@ -177,7 +190,6 @@ CREATE TABLE fb_foods
 	foods_material varchar2(2000) NOT NULL,
 	picture varchar2(500) NOT NULL,
 	category_no number NOT NULL,
-	fb_delivery_no number NOT NULL,
 	PRIMARY KEY (foods_no)
 );
 
@@ -199,10 +211,10 @@ CREATE TABLE fb_review
 --review_content 컬럼 크기변경
 alter table fb_review MODIFY (review_content varchar2(100));
 
-
 CREATE TABLE fb_comment
 (
 	comment_no number NOT NULL,
+	member_no number NOT NULL,
 	board_no number NOT NULL,
 	photo_no number NOT NULL,
 	qa_no number NOT NULL,
@@ -406,11 +418,6 @@ ALTER TABLE fb_foods
 	REFERENCES fb_category (category_no)
 ;
 
-
-ALTER TABLE fb_foods
-	ADD FOREIGN KEY (fb_delivery_no)
-	REFERENCES fb_delivery_cost (fb_delivery_no)
-;
 
 
 ALTER TABLE fb_lately_product

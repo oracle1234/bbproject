@@ -15,6 +15,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.ThemeRecipeDAO;
+import dto.RecipePageDTO;
 import dto.ThemeRecipeDTO;
 import dto.ThemeRecipeOderDTO;
 
@@ -123,13 +124,18 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 	}
 
 	@Override
-	public List<ThemeRecipeDTO> selectListProcess(int theme_no) {
-		return dao.selectList(theme_no);
+	public List<ThemeRecipeDTO> selectListProcess(RecipePageDTO pdto) {
+		return dao.selectList(pdto);
 	}
 
 	@Override
 	public ThemeRecipeDTO selectRecipeProcess(int recipe_no) {
 		return dao.selectRecipe(recipe_no);
+	}
+	
+	@Override
+	public int countRecipeProcess(int theme_no){
+		return dao.countRecipe(theme_no);
 	}
 
 }

@@ -22,13 +22,8 @@
 <link rel="stylesheet" type="text/css" href="css/my_board.css" />
 <link rel="stylesheet" type="text/css" href="css/agree.css" />
 
-<link rel="stylesheet" type="text/css" href="css/recipe.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css"
-	media="all" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="js/jquery.bxslider.js"></script>
 <script src="js/main.js?var=2"></script>
-<script src="js/recipe.js"></script>
 
 <script type="text/javascript">
 		var member_no = "${sessionScope.member.member_no}";

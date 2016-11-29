@@ -2,6 +2,8 @@ package controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +34,7 @@ public class ShopController {
 
 		ModelAndView mav = new ModelAndView();
 		int totalRecord = service.countProcess(fdto.getCategory_no());
-		
+
 		
 
 		if (totalRecord >= 1) {
@@ -49,7 +51,7 @@ public class ShopController {
 			map.put("startRow", pdto.getStartRow());
 			map.put("endRow", pdto.getEndRow());
 			map.put("category_no", fdto.getCategory_no());
-			
+
 			mav.addObject("aList", service.pageListProcess(map));
 			
 		}
@@ -113,14 +115,30 @@ public class ShopController {
 	
 	
 	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
-	public ModelAndView buyPage(FoodsDTO fdto, MemberDTO mdto, fb_CouponDTO cdto, int amount) {
+	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req,  int amount) {
 		ModelAndView mav = new ModelAndView( );
-		System.out.println(fdto.getFoods_no());
-		System.out.println(mdto.getMember_no());
-		System.out.println(cdto.getCoupon_no());
+		
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		
+		String address[] = mdto.getAddress().split("/");
+		String Address = address[0]; 
+		String detailAddress = address[1];
+		String postNum = address[2];
+		
+		String phoneNumber[] = mdto.getTel().split("-");
+		String firstPhone = phoneNumber[0];
+		String secondPhone = phoneNumber[1];
+		String lastPhone = phoneNumber[2];
 		
 		mav.addObject("FoodsDTO", service.buyListProcess(fdto.getFoods_no()));
 		mav.addObject("amount", amount);
+		mav.addObject("MemberDTO", mdto);
+		mav.addObject("Address", Address);
+		mav.addObject("detailAddress", detailAddress);
+		mav.addObject("postNum", postNum);
+		mav.addObject("firstPhone", firstPhone);
+		mav.addObject("secondPhone", secondPhone);
+		mav.addObject("lastPhone", lastPhone);
 		mav.setViewName("shop_buy");
 		return mav;
 	}
