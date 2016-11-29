@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,15 +21,33 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 	}
 
 	@Override
-	public int count() {
+	public int count(int boardcategory_no) {
 
-		return sqlSession.selectOne("board.qa_count");
+		return sqlSession.selectOne("board.qa_count",boardcategory_no);
 	}
 
 	@Override
 	public List<QA_BoardDTO> list(PageDTO pv) {
 
 		return sqlSession.selectList("board.qa_list", pv);
+	}
+	
+	@Override
+	public List<QA_BoardDTO> pageList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int commentCount(int qa_no) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<CommentDTO> commentPageList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -83,5 +102,7 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 		return sqlSession.selectOne("board.qa_uploadFile", num);
 
 	}
+
+
 
 }

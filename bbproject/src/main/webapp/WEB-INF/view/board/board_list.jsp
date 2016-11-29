@@ -97,19 +97,19 @@ td{
 				<th width="10%">조회수</th>
 			</tr>
 
-			<c:forEach var="bdto" items="${aList}">
+			<c:forEach var="BoardDTO" items="${aList}">
 				<tr>
-					<td>${bdto.board_no}</td>
+					<td>${BoardDTO.board_no}</td>
 					<td><c:url var="board_content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="board_no" value="${bdto.board_no}" />
+							<c:param name="board_no" value="${BoardDTO.board_no}" />
 							</c:url> 
-					<a href="${board_content}">${bdto.board_subject}</a></td>
-					<td>${bdto.board_writer}</td>
+					<a href="${board_content}">${BoardDTO.board_subject}</a></td>
+					<td>${BoardDTO.board_writer}</td>
 					<td>
-						<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${bdto.board_reg_date}"/>
+						<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_reg_date}"/>
 					</td>
-					<td>${bdto.board_readcount}</td>
+					<td>${BoardDTO.board_readcount}</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -121,12 +121,12 @@ td{
 		<div class="board_page">
 		<!-- 이전 출력 시작 -->
 		<c:if test="${pv.startPage>1}">
-			<a href="board_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
+			<a href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}">이전</a>
 		</c:if>
 
 		<!-- 페이지 출력 시작 -->
 		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-			<c:url var="currPage" value="board_list.do">
+			<c:url var="currPage" value="board_list.do?boardcategory_no=1">
 				<c:param name="currentPage" value="${i}" />
 			</c:url>
 			<a href="${currPage}"><c:out value="${i}" /></a>
@@ -134,7 +134,7 @@ td{
 
 		<!-- 페이지 출력 끝 -->
 		<c:if test="${pv.totalPage>pv.endPage}">
-			<a href="board_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
+			<a href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}">다음</a>
 		</c:if>
 		
 		</div>

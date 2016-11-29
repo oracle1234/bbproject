@@ -34,7 +34,7 @@ public class ShopController {
 
 		ModelAndView mav = new ModelAndView();
 		int totalRecord = service.countProcess(fdto.getCategory_no());
-		
+
 		
 
 		if (totalRecord >= 1) {
@@ -51,7 +51,7 @@ public class ShopController {
 			map.put("startRow", pdto.getStartRow());
 			map.put("endRow", pdto.getEndRow());
 			map.put("category_no", fdto.getCategory_no());
-			
+
 			mav.addObject("aList", service.pageListProcess(map));
 			
 		}

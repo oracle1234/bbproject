@@ -211,10 +211,10 @@ CREATE TABLE fb_review
 --review_content 컬럼 크기변경
 alter table fb_review MODIFY (review_content varchar2(100));
 
-
 CREATE TABLE fb_comment
 (
 	comment_no number NOT NULL,
+	member_no number NOT NULL,
 	board_no number NOT NULL,
 	photo_no number NOT NULL,
 	qa_no number NOT NULL,

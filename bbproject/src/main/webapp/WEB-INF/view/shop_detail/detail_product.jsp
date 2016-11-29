@@ -351,11 +351,28 @@ $(document).ready(function() {
 				alert('최소주문금액은 10000원입니다.')
 				return false;
 				} 
-							
+				$.ajax({
+					type : 'POST',
+					dataType : 'json',
+					url : 'reviewUpdate.do',
+					data : "review_no=" + uno
+							+ "&member_no=1"
+							+ "&review_content="+$('#updateReviewText').val()
+							+ "&foods_no=${foods_no}",
+					success : review_update_result,
+					error : function(xhr,textStatus,error) {
+					alert("update===="+ error);
+					},
+				});
+				
 				if(totalmoney >= 10000){
 					$('#foodform').attr('action', 'shop_buy.do');
 					$('#foodform').submit();
 				}
+			
+			});
+						
+							
 		});
 
 });//end ready end
