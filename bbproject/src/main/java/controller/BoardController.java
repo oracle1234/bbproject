@@ -37,8 +37,6 @@ public class BoardController {
 	private int currentPage;
 	private PageDTO pdto;
 	private Comment_PageDTO cpdto;
-	// private CommentDTO cdto;
-
 
 	public BoardController() {
 

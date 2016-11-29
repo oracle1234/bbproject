@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css?var=1" media="all" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
-<link rel="stylesheet" type="text/css" href="css/mypage.css" />
+<link rel="stylesheet" type="text/css" href="css/mypage.css?var=1" />
 <link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
 <link rel="stylesheet" type="text/css" href="css/my_order.css" />
 <link rel="stylesheet" type="text/css" href="css/my_cart.css" />
