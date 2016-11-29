@@ -21,39 +21,51 @@ $(function () {
 		autoHover : true, // 마우스 오버시 정시킬지 설정합니다.
 		controls : false // 이전 다음 버튼 노출 여부 설정합니다.
 	});
+	
 });
 
 </script>
 
 <div id="detailmain">
 
-	<div id="detail_imgdiv">
-		<div id="menuimg">
-			<span> <img src="image.do?filename=${dto.picture}"
+	<div id="detail_imgdiv" class="recipebox">
+		<div id="menuimg" class="recipe_sub1">
+			<span>
+			 <img src="image.do?filename=${dto.picture}"
 				width="300px" height="300px" />
 			</span>
 		</div>
-		<div id="menudetail">
+		<div id="menudetail" class="recipe_sub2">
+			<div class="list_detail">
 			<span>레시피 이름 : ${dto.recipe_name }</span> <span>인원 :
 				${dto.portion }</span> <span>조리 난이도 : ${dto.difficulty }</span> <span>조리
 				시간 : ${dto.recipe_time }</span>
+			</div>
 		</div>
 	</div>
 	
+	<hr/>
 	<p id="exp">설명 : ${dto.recipe_explaination }</p>
+	
+	<br/>
+	<p> 조리 순서 </p>
+	<br/>
 	
 	<div id="orderlist">
 		<c:forEach items="${dto.list}" var="list" varStatus="status">
-			<p>${status.index + 1}.       ${list.order_text}</p>
-			<p>
-				<img src="image.do?filename=${list.order_pic }" width="300">
-			</p>
+			<div>
+				<p><img alt="" src="images/icon_step_${status.index + 1}.gif" width="20px" height="20px"> ${list.order_text}</p>
+				<p>
+					<img src="image.do?filename=${list.order_pic }" width="300">
+				</p>
+			</div>
 		</c:forEach>
 	</div>
 
 	<div>
 		<br />
 		<h1>완성 사진</h1>
+		<br />
 		<ul class="bxslider">
 			<c:forEach items="${dto.complete_pic}" var="img">
 				<li><img alt="" src="image.do?filename=${img}" width="500" /></li>

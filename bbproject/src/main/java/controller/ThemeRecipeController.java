@@ -38,9 +38,10 @@ public class ThemeRecipeController {
 			}
 			pdto = new RecipePageDTO(currentRow, totalRow);
 			pdto.setTheme_no(theme_no);
-			mav.addObject("pdto", pdto);
+//			mav.addObject("pdto", pdto);
 			mav.addObject("aList", service.selectListProcess(pdto));
 		}
+		mav.addObject("pdto", pdto);
 		mav.setViewName("recipe");
 		return mav;
 	}
