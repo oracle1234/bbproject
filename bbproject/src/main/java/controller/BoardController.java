@@ -39,6 +39,7 @@ public class BoardController {
 	private Comment_PageDTO cpdto;
 	// private CommentDTO cdto;
 
+
 	public BoardController() {
 
 	}
@@ -178,6 +179,7 @@ public class BoardController {
 
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
 
+
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
 
 		if (totalRecord >= 1) {
@@ -245,12 +247,10 @@ public class BoardController {
 		updateMap.put("comment_no", cdto.getComment_no());
 		updateMap.put("member_no", mdto.getMember_no());
 
-		service.commentUpdateProcess(updateMap);
-
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
-
+		
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-
+		
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -268,7 +268,8 @@ public class BoardController {
 		resultMap.put("page", cpdto);
 
 		return resultMap;
-	}// end commentUpdateProProcess()
+	}// end commentDeleteProcess()
+
 
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
 	public ModelAndView board_writeMethod(PageDTO pv, CommentDTO cdto) {

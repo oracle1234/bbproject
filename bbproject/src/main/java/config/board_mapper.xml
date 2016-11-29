@@ -135,7 +135,7 @@
 
 
 	<!-- [QA게시판] -->
-	<select id="qa_count" resultType="int" parameterType="dto.QA_boardDTO">
+	<select id="qa_count" resultType="int">
 		select count(*) from fb_qa_board
 	</select>
 	

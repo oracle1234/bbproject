@@ -144,5 +144,8 @@ select * from fb_board;
 select * from fb_qa_board;
 select * from fb_photo_board;
 select * from FB_COMMENT;
+<<<<<<< HEAD
 
 update fb_comment set comment_content = '진짜 왜 널값이냐고' where comment_no = 10 and member_no = 1;
+=======
+>>>>>>> branch 'yeonsung' of https://github.com/oracle1234/bbproject.git

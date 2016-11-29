@@ -15,53 +15,53 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <script type="text/javascript">
-	var uno = "";
-	$(document).ready(
-			function() {
-				$('#list').bind('click', listRun);
-				$('#update').bind('click', updateRun);
-				$('#delete').bind('click', deleteRun);
+var uno = "";
+$(document).ready(
+		function() {
+			$('#list').bind('click', listRun);
+			$('#update').bind('click', updateRun);
+			$('#delete').bind('click', deleteRun);
 
-				//[댓글입력]
-				$('#comment_insert').click(
-						function() {
+			//[댓글입력]
+			$('#comment_insert').click(
+					function() {
 
-							if ($('#comment_str').val() == "") {
-								return false;
+						if ($('#comment_str').val() == "") {
+							return false;
+						}
+
+						$.ajax({
+							type : 'GET',
+							dataType : 'json',
+							url : "commentInsert.do?comment_content="
+									+ $('#comment_str').val()
+									+ "&board_no=${dto.board_no}"
+									+ "&member_no=1",
+							success : comment_insert,
+							error : function(xhr, textStatus, error) {
+								alert("insert는 " + error);
 							}
-
-							$.ajax({
-								type : 'GET',
-								dataType : 'json',
-								url : "commentInsert.do?comment_content="
-										+ $('#comment_str').val()
-										+ "&board_no=${dto.board_no}"
-										+ "&member_no=1",
-								success : comment_insert,
-								error : function(xhr, textStatus, error) {
-									alert("insert는 " + error);
-								}
-							});
 						});
+					});
 
-				//[댓글삭제]
-				$(document).on(
-						'click',
-						'.comment_delete',
-						function() {
-							var cno = $(this).val();
-							$.ajax({
-								type : 'GET',
-								dataType : 'json',
-								url : "commentDelete.do?comment_no=" + cno
-										+ "&board_no=${dto.board_no}"
-										+ "&member_no=1",
-								success : comment_delete,
-								error : function(xhr, textStatus, error) {
-									alert("delete는 " + error);
-								}
-							});
+			//[댓글삭제]
+			$(document).on(
+					'click',
+					'.comment_delete',
+					function() {
+						var cno = $(this).val();
+						$.ajax({
+							type : 'GET',
+							dataType : 'json',
+							url : "commentDelete.do?comment_no=" + cno
+									+ "&board_no=${dto.board_no}"
+									+ "&member_no=1",
+							success : comment_delete,
+							error : function(xhr, textStatus, error) {
+								alert("delete는 " + error);
+							}
 						});
+					});
 
 				//[댓글수정 창 띄우기]
 				$('.updateWindow').addClass('updateHide');
@@ -102,8 +102,8 @@
 								}
 							});
 						});
-
 			});
+
 
 	function listRun() {
 		$('#frm').attr('action', "board_list.do").submit();
@@ -131,6 +131,7 @@
 		$('.comment_row').remove();
 		$('.board_page').empty();
 
+
 		$
 				.each(
 						res.list,
@@ -138,6 +139,7 @@
 							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
+
 						});
 
 		var start = res.page.startPage;
@@ -226,28 +228,27 @@
 
 		if (start > 1) {
 			$('.board_page').append(
-					'<a href="javascript:preFuncion(${board_no},'
+					'<a href="javascript:preFuncion(${dto.board_no},'
 							+ (start - block) + ')">이전</a>');
 		}
 
 		for (var i = start; i <= end; i++) {
-			var source1 = '<a href="javascript:myFunction(${board_no}, ' + i
-					+ ')">' + i + '&nbsp;';
+			var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
+					+ i + ')">' + i + '&nbsp;';
 			$('.board_page').append(source1);
 		}
 
 		if (end < total) {
 			$('#pre_next_pagenum').append(
-					'<a href="javascript:nextFuncion(${board_no},'
+					'<a href="javascript:nextFuncion(${dto.board_no},'
 							+ (start + block) + ')">다음</a>');
 		}
-
 		$('.updateCommentText').val("");
 		$('.updateWindow').removeClass('updateShow');
 		$('.updateWindow').addClass('updateHide');
 		uno = "";
 	};
-
+	
 	function preFunction(b, c) {
 		$.ajax({
 			type : 'POST',
@@ -310,31 +311,30 @@
 							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
-						});
+	});
+	var start = res.page.startPage;
+	var end = res.page.endPage;
+	var block = res.page.blockPage;
+	var total = res.page.totalPage;
+	
+	if (start > 1) {
+		$('.board_page').append(
+				'<a href="javascript:preFunction(${dto.board_no}, '
+						+ (start - block) + ')">이전&nbsp;</a>');
+	}
 
-		var start = res.page.startPage;
-		var end = res.page.endPage;
-		var block = res.page.blockPage;
-		var total = res.page.totalPage;
+	for (var i = start; i <= end; i++) {
+		var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
+				+ i + ')">' + i + '&nbsp;';
+		$('.board_page').append(source1);
+	}
 
-		if (start > 1) {
-			$('.board_page').append(
-					'<a href="javascript:preFunction(${dto.board_no}, '
-							+ (start - block) + ')">이전&nbsp;</a>');
-		}
-
-		for (var i = start; i <= end; i++) {
-			var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
-					+ i + ')">' + i + '&nbsp;';
-			$('.board_page').append(source1);
-		}
-
-		if (end < total) {
-			$('.board_page').append(
-					'<a href="javascript:nextFunction(${dto.board_no}, '
-							+ (start + block) + ')">다음</a>');
-		}
-	};
+	if (end < total) {
+		$('.board_page').append(
+				'<a href="javascript:nextFunction(${dto.board_no}, '
+						+ (start + block) + ')">다음</a>');
+	}
+};
 </script>
 <style type="text/css">
 #board_row tr {
@@ -389,14 +389,13 @@ td {
 
 .updateShow {
 	visibility: block;
-	position: absolute; 
-	width : 400px;
+	position: absolute;
+	width: 400px;
 	height: 200px;
 	top: 600px;
 	left: 850px;
 	border: 1px solid gray;
 	text-align: left;
-	width: 400px;
 }
 
 .updateHide {
@@ -422,6 +421,7 @@ td {
 					value="${dto.board_reg_date}" /></td>
 		</tr>
 	</table>
+
 
 	<div class="updateWindow">
 		<p>
