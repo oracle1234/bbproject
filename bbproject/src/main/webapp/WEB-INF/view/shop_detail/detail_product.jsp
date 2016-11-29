@@ -330,20 +330,45 @@ $(document).ready(function() {
 						
 			//장바구니 클릭
 			$(".basket_insimg").on("click", function() {
+				$("#dialog").dialog({
+					autoOpen: false,
+					width : "500px",
+					height : "500px",
+					modal : true,
+					resizeable : false,
+					buttons : { // dialog 하단 버튼들
+						예 : function() {
+							$(this).dialog("close"); //장바구니 이동
+						},
+						 
+						아니요 : function() {
+							$(this).dialog("close"); // 남아있기
+						},
+					},
+					show : { // 애니메이션 효과 - 보여줄때
+						effect : "blind",
+						duration : 1000
+					},
+					hide : { // 애니메이션 효과 - 감출때
+						effect : "explode",
+						duration : 1000
+					},
+					open : function() {
+						$(".ui-dialog-titlebar-close").hide();
+					}
+				});
 							
 				$.ajax({
 					type : 'GET',
 					dataType : 'text',
 					url : "basketInsert.do?amount="+$('#counttext').val()+"&foods_no=${foods_no}",
-					success : function(aa){
-						alert(aa);
-					},
+					success : dialog_result,
 					error : function(xhr,textStatus,error) {
 					alert("basket===="+ error);
-					},
+					}
 				});
 				
-			
+				return false;
 			});
 			//바로구매 클릭
 			$("#buy_insimg").on("click", function() {
@@ -562,32 +587,11 @@ $(document).ready(function() {
 
 	};
 	
-	/* $(function() {
-	    $( "#dialog" ).dialog({
-	        autoOpen : false        // dialog가 선언되면 자동으로 열릴것인가?
-	        , width : "500px"            // dialog 넓이 지정
-	        , height : "500px"        // dialog 높이 지정
-	        , modal : true            // dialog를 modal 창으로 띄울것인지 결정
-	        , resizeable : false    // 사이즈 조절가능 여부
-	        , buttons : {            // dialog 하단 버튼들
-	            "저장" : 함수명,    // dialog 하단 버튼 클릭시 실행할 함수. (함수는 $.ready안에 선언되어있어야 한다.)
-	            Cancel : function() {
-	                $(this).dialog("close"); // button 실행을 직접 선언하려면 function안에 기능을 써준다.
-	            }
-	        }
-	        , show: {                // 애니메이션 효과 - 보여줄때
-	            effect: "blind",
-	            duration: 1000
-	        }
-	        , hide: {                // 애니메이션 효과 - 감출때
-	            effect: "explode",
-	            duration: 1000
-	        }
-	    });
-	}); */
 	
-	function basket_insert(data){
-		alert('aa');
+	
+	function dialog_result(data){
+		alert(data);
+		$('#dialog').dialog('open');
 	};
 </script>
 
@@ -655,8 +659,8 @@ $(document).ready(function() {
 						<div class="deli_img">
 							<img alt="무료배송안내이미지" src="./images/baesong_info.png"> <input
 								type="image" id="buy_insimg" alt="바로구매이미지"
-								src="./images/shop_buy.png"> <input type="image"
-								class="basket_insimg" alt="장바구니이미지" src="./images/shop_basket.png">
+								src="./images/shop_buy.png">
+								<input type="image" class="basket_insimg" alt="장바구니이미지" src="./images/shop_basket.png">
 						</div>
 
 					</div>
@@ -709,7 +713,9 @@ $(document).ready(function() {
 							<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
 									value="${ReviewDTO.review_date}" /></td>
 							<td>
+							<%-- <c:if test="${member_no==${aList.member_no}"> --%>
 								<button class="review_udt_btn" value="${ReviewDTO.review_no}">수정</button>
+							<%-- </c:if> --%>
 							</td>
 							<td>
 								<button class="review_del_btn" value="${ReviewDTO.review_no}">삭제</button>
@@ -754,6 +760,7 @@ $(document).ready(function() {
 							class="form-control" type="text" placeholder="수정할 한줄평을 입력하세요."
 							id="updateReviewText">
 					</p>
+					
 					<p>
 						<button class="btnModify" value="${ReviewDTO.review_no}">수정</button>
 						<button class="btnClose">닫기</button>
@@ -763,11 +770,10 @@ $(document).ready(function() {
 			</div>
 
 		</div>
-		<!-- <div id="dialog" title="Basic dialog">
-			<p>This is the default dialog which is useful for displaying
-				information. The dialog window can be moved, resized and closed with
-				the 'x' icon.</p>
-		</div> -->
+		<div id="dialog" >
+		<p>장바구니에 추가되었습니다. 이동하시겠습니까?<br>
+		</p>
+	</div>
 	</div>
 
 </body>

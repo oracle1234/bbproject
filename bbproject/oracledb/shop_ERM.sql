@@ -69,7 +69,6 @@ insert into fb_coupon values
 insert into fb_coupon values (SEQ_coupon_no.nextval, '축하쿠폰(-3000원)', 3000)
 
 
-
 update fb_coupon set coupon_name = '회원가입 축하쿠폰 (-2000원)' where coupon_no = 1
 
 select * from fb_member
@@ -78,6 +77,12 @@ update fb_member set address = '서울 어딘가/00빌라 21355호/534433' where
 
 select * from fb_basket
 
+FB_MEMBER a, FB_COUPON_BOOK b, FB_COUPON
+
+select * from fb_member
+select * from FB_COUPON_BOOK
+select * from FB_COUPON
+select * from fb_review
 
 select * from fb_foods order by foods_no desc;
 

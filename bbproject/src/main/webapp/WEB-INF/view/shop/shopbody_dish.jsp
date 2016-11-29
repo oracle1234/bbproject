@@ -61,14 +61,13 @@
 				}
 			}); 
 			
-
 		
 		});
 		
 		$("#dialog").dialog({
 			autoOpen: false,
-			width : "100%",
-			height : "100%",
+			width : "500px",
+			height : "500px",
 			modal : true,
 			resizeable : false,
 			buttons : { // dialog 하단 버튼들
@@ -97,7 +96,6 @@
 	
 	function dialog_result(data){
 		
-// 		alert('adfqwe');
 		alert(data);
 		$('#dialog').dialog('open');
 	};
@@ -164,7 +162,7 @@
 		</div>
 	</div>
 	<div id="dialog" >
-		<p>장바구니에 추가되었습니다. 이동하시겠습니까?
+		<p>장바구니에 추가되었습니다. 이동하시겠습니까?<br>
 		</p>
 	</div>
 </body>

@@ -37,9 +37,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/detailProduct.do", method = RequestMethod.GET)
-	public ModelAndView detailproductProcess(FoodsDTO fdto, review_PageDTO rpdto){
+	public ModelAndView detailproductProcess(FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req){
 		
 		ModelAndView mav = new ModelAndView();
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		
 		
 		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
 		
@@ -56,6 +58,7 @@ public class ProductController {
 			map.put("startRow", pdto.getStartRow());
 			map.put("endRow", pdto.getEndRow());
 			map.put("foods_no", fdto.getFoods_no());
+			map.put("member_no", mdto.getMember_no());
 			mav.addObject("aList", service.reviewPageListProcess(map));
 			
 		}
@@ -70,8 +73,10 @@ public class ProductController {
 //	public @ResponseBody List<ReviewDTO> detailproductPostProcess(FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req){
 	public @ResponseBody HashMap<String, Object> detailproductPostProcess(FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req){
 		
+		
 		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
 		if (totalRecord >= 1) {
 			// 첫 접속시 현재 페이지를 1로 지정

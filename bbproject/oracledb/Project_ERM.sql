@@ -113,7 +113,6 @@ CREATE TABLE fb_coupon_book
 	couponbook_no number NOT NULL,
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
->>>>>>> refs/remotes/origin/yeonsung
 	PRIMARY KEY (couponbook_no)
 );
 
@@ -543,8 +542,6 @@ add foreign key (member_no)
 references fb_member (member_no);
 ---------------------------------------------------나연 추가
 
-
-<<<<<<< HEAD
 
 
 /* Comments */
