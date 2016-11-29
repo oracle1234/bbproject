@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,15 +30,21 @@ public class QA_BoardServiceImp implements QA_BoardService {
 	}
 
 	@Override
-	public int countProcess() {
+	public int countProcess(int boardcategory_no) {
 
-		return qdao.count();
+		return qdao.count(boardcategory_no);
 	}
 
 	@Override
 	public List<QA_BoardDTO> listProcess(PageDTO pv) {
 
 		return qdao.list(pv);
+	}
+	
+	@Override
+	public List<QA_BoardDTO> pageListProcess(HashMap<String, Object> map) {
+		
+		return qdao.pageList(map);
 	}
 
 	@Override
@@ -104,4 +111,5 @@ public class QA_BoardServiceImp implements QA_BoardService {
 		}
 		qdao.delete(num);
 	}// end deleteProcess()
+
 }

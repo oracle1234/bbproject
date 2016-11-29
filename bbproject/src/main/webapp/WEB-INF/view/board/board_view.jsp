@@ -64,17 +64,17 @@
 						});
 
 				//[댓글수정 창 띄우기]
-				$('#updateWindow').addClass('updateHide');
+				$('.updateWindow').addClass('updateHide');
 				$(document).on('click', '.comment_update', function() {
 					uno = $(this).val();
-					$('#updateWindow').addClass('updateShow');
-					$('#updateWindow').removeClass('updateHide');
+					$('.updateWindow').addClass('updateShow');
+					$('.updateWindow').removeClass('updateHide');
 				});
 
 				//[업데이트_닫기버튼]
 				$('.btnClose').on('click', function() {
-					$('#updateWindow').removeClass('updateShow');
-					$('#updateWindow').addClass('updateHide');
+					$('.updateWindow').removeClass('updateShow');
+					$('.updateWindow').addClass('updateHide');
 					uno = '';
 				});
 
@@ -83,18 +83,18 @@
 						'click',
 						'.btnUpdate',
 						function() {
-							if ($('#comment_update_str').val() == "") {
+							if ($('.updateCommentText').val() == "") {
 								return false;
-								
+
 							}
-							
+
 							$.ajax({
 								type : 'POST',
 								dataType : 'json',
 								url : "commentUpdate.do",
 								data : "comment_no=" + uno + "&member_no=1"
 										+ "&comment_content="
-										+ $('#updateCommentText').val()
+										+ $('.updateCommentText').val()
 										+ "&board_no=${dto.board_no}",
 								success : comment_update,
 								error : function(xhr, textStatus, error) {
@@ -131,23 +131,13 @@
 		$('.comment_row').remove();
 		$('.board_page').empty();
 
-		/*
-		<td>${CommentDTO.comment_writer}<fmt:formatDate
-							pattern="yyyy/MM/dd" dateStyle="short"
-							value="${CommentDTO.comment_date}" />
-						<button class="comment_comment" value="${CommentDTO.comment_no}">댓글</button>
-						<button class="comment_update" value="${CommentDTO.comment_no}">수정</button>
-						<button class="comment_delete" value="${CommentDTO.comment_no}">삭제</button>
-					</td>
-		 */
-
 		$
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button id='comment_comment' value={{comment_no}}>댓글</button><button id='comment_update' value={{comment_no}}>수정</button><button id = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
-							$('#comment_table').append(template(value));
+							$('.commentarea').append(template(value));
 						});
 
 		var start = res.page.startPage;
@@ -185,9 +175,9 @@
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button id='comment_comment' value={{comment_no}}>댓글</button><button id='comment_update' value={{comment_no}}>수정</button><button id = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
-							$('#comment_table').append(template(value));
+							$('.commentarea').append(template(value));
 						});
 
 		var start = res.page.startPage;
@@ -224,9 +214,9 @@
 				.each(
 						data.list,
 						function(index, value) {
-							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
-							$('#comment_table').append(template(value));
+							$('.commentarea').append(template(value));
 						});
 
 		var start = data.page.startPage;
@@ -252,9 +242,9 @@
 							+ (start + block) + ')">다음</a>');
 		}
 
-		$('#updateCommentText').val("");
-		$('#updateWindow').removeClass('updateShow');
-		$('#updateWindow').removeClass('updateHide');
+		$('.updateCommentText').val("");
+		$('.updateWindow').removeClass('updateShow');
+		$('.updateWindow').addClass('updateHide');
 		uno = "";
 	};
 
@@ -298,28 +288,28 @@
 	};
 
 	function comment_list_result(res) {
-		$('#comment_table .comment_row').remove();
+		$('.commentarea .comment_row').remove();
 		$
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button id='comment_comment' value={{comment_no}}>댓글</button><button id='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
-							$('#comment_table').append(template(value));
+							$('.commentarea').append(template(value));
 						});
 	};
 
 	function comment_prenext_list_result(res) {
-		$('#comment_table .comment_row').remove();
+		$('.commentarea .comment_row').remove();
 		$('.board_page').empty();
 
 		$
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<tr class='comment_row'><td>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button id='comment_update' value={{comment_no}}>수정</button><button id = 'comment_delete' value={{comment_no}}>삭제</button></td></tr><tr class='comment_row'><td>{{comment_content}}<td/><tr>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
-							$('#comment_table').append(template(value));
+							$('.commentarea').append(template(value));
 						});
 
 		var start = res.page.startPage;
@@ -399,13 +389,14 @@ td {
 
 .updateShow {
 	visibility: block;
-	position: absolute;
-	width: 400px;
+	position: absolute; 
+	width : 400px;
 	height: 200px;
 	top: 600px;
 	left: 850px;
 	border: 1px solid gray;
 	text-align: left;
+	width: 400px;
 }
 
 .updateHide {
@@ -432,25 +423,32 @@ td {
 		</tr>
 	</table>
 
+	<div class="updateWindow">
+		<p>
+			<input type="text" class="updateCommentText"
+				placeholder="수정할 댓글을 입력하세요" />
+		</p>
+		<p>
+			<button class="btnUpdate" value="${CommentDTO.comment_no}">수정</button>
+			<button class="btnClose">닫기</button>
+		</p>
+	</div>
+
 	<div id="textarea">${dto.board_content}</div>
 
-	<div id="commentarea">
-		<table id="comment_table">
-			<c:forEach items="${aList}" var="CommentDTO">
-				<tr class="comment_row">
-					<td>${CommentDTO.comment_writer}<fmt:formatDate
-							pattern="yyyy/MM/dd" dateStyle="short"
-							value="${CommentDTO.comment_date}" />
-						<button class="comment_comment" value="${CommentDTO.comment_no}">댓글</button>
-						<button class="comment_update" value="${CommentDTO.comment_no}">수정</button>
-						<button class="comment_delete" value="${CommentDTO.comment_no}">삭제</button>
-					</td>
-				</tr>
-				<tr class="comment_row">
-					<td>${CommentDTO.comment_content}</td>
-				</tr>
-			</c:forEach>
-		</table>
+	<div class="commentarea">
+		<c:forEach items="${aList}" var="CommentDTO">
+			<div class="comment_row">
+				<div class="comment_row_top">${CommentDTO.comment_writer}<fmt:formatDate
+						pattern="yyyy/MM/dd" dateStyle="short"
+						value="${CommentDTO.comment_date}" />
+					<button class="comment_comment" value="${CommentDTO.comment_no}">댓글</button>
+					<button class="comment_update" value="${CommentDTO.comment_no}">수정</button>
+					<button class="comment_delete" value="${CommentDTO.comment_no}">삭제</button>
+				</div>
+				<div class="comment_row_bottom">${CommentDTO.comment_content}</div>
+			</div>
+		</c:forEach>
 	</div>
 
 	<div class="board_comment">
@@ -463,7 +461,6 @@ td {
 	<div class="board_page">
 		<!-- 이전 출력 시작 -->
 		<c:if test="${pv.startPage>1}">
-			<%-- <a href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}">이전</a> --%>
 			<a
 				href="javascript:preFunction(${dto.board_no}, ${pv.startPage-pv.blockPage})">
 				<c:out value="이전" />
@@ -479,23 +476,11 @@ td {
 
 		<!-- 페이지 출력 끝 -->
 		<c:if test="${pv.totalPage>pv.endPage}">
-			<%-- <a href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}">다음</a> --%>
 			<a
 				href="javascript:nextFunction(${dto.board_no}, ${pv.startPage+pv.blockPage})">
 				<c:out value="다음" />
 			</a>
 		</c:if>
-	</div>
-
-	<div id="updateWindow">
-		<p>
-			<input class="form-control" type="text" id="updateCommentText"
-				placeholder="수정할 댓글을 입력하세요" />
-		</p>
-		<p>
-			<button class="btnUpdate" value="${CommentDTO.comment_no}">수정</button>
-			<button class="btnClose">닫기</button>
-		</p>
 	</div>
 
 	<div class="board_buttons">

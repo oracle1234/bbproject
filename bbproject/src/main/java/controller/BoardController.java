@@ -37,7 +37,7 @@ public class BoardController {
 	private int currentPage;
 	private PageDTO pdto;
 	private Comment_PageDTO cpdto;
-	//private CommentDTO cdto;
+	// private CommentDTO cdto;
 
 	public BoardController() {
 
@@ -177,9 +177,9 @@ public class BoardController {
 		service.commentDeleteProcess(deleteMap);
 
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
-		
+
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-		
+
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -244,7 +244,6 @@ public class BoardController {
 		updateMap.put("comment_content", cdto.getComment_content());
 		updateMap.put("comment_no", cdto.getComment_no());
 		updateMap.put("member_no", mdto.getMember_no());
-		
 
 		service.commentUpdateProcess(updateMap);
 
@@ -321,13 +320,14 @@ public class BoardController {
 
 	}// end deleteMethod()
 
+
 	// [QA게시판]
 	@RequestMapping("/qa_list.do")
-	public ModelAndView qa_listMethod(PageDTO pv) {
+	public ModelAndView qa_listMethod(QA_BoardDTO qdto, PageDTO pv) {
 
 		ModelAndView mav = new ModelAndView();
 
-		int totalRecord = qa_service.countProcess();
+		int totalRecord = qa_service.countProcess(qdto.getBoardcategory_no());
 		if (totalRecord >= 1) {
 			if (pv.getCurrentPage() == 0)
 				currentPage = 1;
@@ -336,12 +336,17 @@ public class BoardController {
 
 			pdto = new PageDTO(currentPage, totalRecord);
 			mav.addObject("pv", pdto);
-			mav.addObject("aList", qa_service.listProcess(pdto));
+
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("startRow", pdto.getStartRow());
+			map.put("endRow", pdto.getEndRow());
+			mav.addObject("aList", qa_service.pageListProcess(map));
 		}
 		mav.setViewName("qa_list");
 		return mav;
-	}// end qa_listMethod()
+	}// end board_listMethod()
 
+	
 	@RequestMapping("/qa_view.do")
 	public ModelAndView qa_viewMethod(int currentPage, QA_BoardDTO qdto) {
 		ModelAndView mav = new ModelAndView();
@@ -426,7 +431,7 @@ public class BoardController {
 	public ModelAndView qa_deleteMethod(QA_BoardDTO qdto, int currentPage, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		qa_service.deleteProcess(qdto.getQa_no(), request);
-		PageDTO pv = new PageDTO(qa_service.countProcess());
+		PageDTO pv = new PageDTO(qa_service.countProcess(qdto.getBoardcategory_no()));
 		if (pv.getTotalPage() < currentPage) {
 			mav.addObject("currentPage", pv.getTotalPage());
 		} else {
@@ -437,45 +442,5 @@ public class BoardController {
 		mav.setViewName("qa_list");
 		return mav;
 	}// end qa_deleteMethod()
-
-	// [Photo게시판]
-	@RequestMapping("/photo_list.do")
-	public ModelAndView photo_listMethod(PageDTO pv) {
-
-		ModelAndView mav = new ModelAndView();
-
-		int totalRecord = photo_service.countProcess();
-		if (totalRecord >= 1) {
-			if (pv.getCurrentPage() == 0)
-				currentPage = 1;
-			else
-				currentPage = pv.getCurrentPage();
-
-			pdto = new PageDTO(currentPage, totalRecord);
-
-			mav.addObject("pv", pdto);
-			// mav.addObject("aList", service.listProcess(pdto));
-		}
-
-		mav.setViewName("photo_list");
-		return mav;
-	}
-
-	/*
-	 * @RequestMapping("/photo_view.do") public ModelAndView
-	 * photo_viewMethod(int currentPage, Photo_BoardDTO pdto) { ModelAndView mav
-	 * = new ModelAndView(); Photo_BoardDTO dto =
-	 * photo_service.contentProcess(pdto.getPhoto_no()); mav.addObject("dto",
-	 * pdto); mav.addObject("currentPage", currentPage);
-	 * mav.setViewName("photo_view"); return mav; }
-	 */
-
-	@RequestMapping(value = "/photo_write.do", method = RequestMethod.GET)
-	public ModelAndView photo_writeMethod(PageDTO pv) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("photo_write");
-		return mav;
-
-	}
 
 }
