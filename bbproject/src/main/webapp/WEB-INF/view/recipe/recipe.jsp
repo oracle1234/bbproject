@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<link rel="stylesheet" type="text/css" href="css/recipe.css" />
+<script src="js/recipe.js"></script>
 <script type="text/javascript">
 	var theme_no = "${pdto.theme_no}";
 	var currentRow = parseInt("${pdto.currentRow}");

@@ -68,8 +68,16 @@ $(function() {
 			}
 		});
 	});
-
+	
 });
+
+function process() {
+	$('[name=recipe_explaination]').val(
+			$('[name=recipe_explaination]').val().replace(/\n/gi, '<br/>'));
+	$('[name=order_text]').val(
+			$('[name=order_text]').val().replace(/\n/gi, '<br/>'));
+	return true;
+}
 
 function imgOne(input) {
 	var file = input.files[0];

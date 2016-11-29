@@ -43,7 +43,7 @@
 			select * from
 			fb_theme_recipe
 			<if test="theme_no != 0">
-			and a.theme_no = #{theme_no}
+			where theme_no = #{theme_no}
 			</if>
 			order by recipe_no desc)b)c
 			<![CDATA[

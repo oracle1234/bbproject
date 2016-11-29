@@ -28,7 +28,7 @@ public class ThemeRecipeController {
 	@RequestMapping("/recipe.do")
 	public ModelAndView recipePage(RecipePageDTO pdto) {
 		ModelAndView mav = new ModelAndView();
-
+		int theme_no = pdto.getTheme_no();
 		int totalRow = service.countRecipeProcess(pdto.getTheme_no());
 		if (totalRow >= 1) {
 			if (pdto.getCurrentRow() == 0) {
@@ -37,7 +37,7 @@ public class ThemeRecipeController {
 				currentRow = pdto.getCurrentRow();
 			}
 			pdto = new RecipePageDTO(currentRow, totalRow);
-			mav.addObject("theme_no", pdto.getTheme_no());
+			pdto.setTheme_no(theme_no);
 			mav.addObject("pdto", pdto);
 			mav.addObject("aList", service.selectListProcess(pdto));
 		}
@@ -48,6 +48,7 @@ public class ThemeRecipeController {
 	@RequestMapping(value = "/recipe.do", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> recipeReload(RecipePageDTO pdto) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		int theme_no = pdto.getTheme_no();
 		int totalRow = service.countRecipeProcess(pdto.getTheme_no());
 		if (totalRow >= 1) {
 			if (pdto.getCurrentRow() == 0) {
@@ -56,6 +57,7 @@ public class ThemeRecipeController {
 				currentRow = pdto.getCurrentRow();
 			}
 			pdto = new RecipePageDTO(currentRow, totalRow);
+			pdto.setTheme_no(theme_no);
 		}
 		
 		map.put("pdto", pdto);
