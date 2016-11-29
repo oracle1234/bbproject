@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -61,5 +63,18 @@ public class LoginController {
 	public @ResponseBody List<LatelyDTO> latelyList(int member_no){
 		return memberservice.latelyProcess(member_no);
 	}
+	  
 	
+	//MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
+/*	
+	@RequestMapping(value="/logout.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")    
+	public String logout(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws Exception{                
+		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");            
+		if(dto != null) {                     
+			session.removeAttribute("member");            
+			session.invalidate();            
+			}            
+		return "redirect:mypage.do";
+
+	}*/
 }
