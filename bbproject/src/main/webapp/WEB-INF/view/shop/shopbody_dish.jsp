@@ -72,7 +72,7 @@
 			resizeable : false,
 			buttons : { // dialog 하단 버튼들
 				예 : function() {
-					$(this).dialog("close"); //장바구니 이동
+					window.location.href = "my_cart.do"; //장바구니 이동
 				},
 				 
 				아니요 : function() {
