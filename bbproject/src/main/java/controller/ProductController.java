@@ -90,20 +90,21 @@ public class ProductController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("list", service.reviewPageListProcess(map));
 		resultMap.put("page", pdto);
+		resultMap.put("foods_no", fdto.getFoods_no());
 		
 		return resultMap;
 	}//////////////////////////end List/////////////
 	
-	//멤버ID도 추가해야함.
 	@RequestMapping("/reviewInsert.do")
-	public @ResponseBody HashMap<String, Object> reviewInsertProcess(FoodsDTO fdto, ReviewDTO rdto, MemberDTO mdto, review_PageDTO rpdto){
+	public @ResponseBody HashMap<String, Object> reviewInsertProcess(FoodsDTO fdto, ReviewDTO rdto, review_PageDTO rpdto, HttpServletRequest req){
 		
+		MemberDTO mdto =  (MemberDTO) req.getSession().getAttribute("member");
 		
 		HashMap<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("review_content", rdto.getReview_content());
 		insertMap.put("foods_no", fdto.getFoods_no());
 		insertMap.put("member_no", mdto.getMember_no());
-		insertMap.put("review_writer", "홍길동");
+		insertMap.put("review_writer", mdto.getId());
 		/*insertMap.put("review_writer", mdto.getMember_name());*/
 		
 		service.reviewInsertProcess(insertMap);
@@ -133,7 +134,9 @@ public class ProductController {
 	}//end reviewInsertProcess()//////////////////////////
 	
 	@RequestMapping("/reviewDelete.do")
-	public @ResponseBody HashMap<String, Object> reviewDeleteProcess(ReviewDTO rdto, MemberDTO mdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletResponse req) {
+	public @ResponseBody HashMap<String, Object> reviewDeleteProcess(ReviewDTO rdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req) {
+		
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
 		HashMap<String, Object> deleteMap = new HashMap<String, Object>();
 		deleteMap.put("review_no", rdto.getReview_no());
@@ -166,8 +169,9 @@ public class ProductController {
 	}//end delete/////////////////////////////////////
 	
 	@RequestMapping(value="/reviewUpdate.do", method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> reviewUpdateProcess(ReviewDTO rdto, MemberDTO mdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletResponse req) {
+	public @ResponseBody HashMap<String, Object> reviewUpdateProcess(ReviewDTO rdto, FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req) {
 		
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
 		HashMap<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("review_content", rdto.getReview_content());
@@ -200,7 +204,9 @@ public class ProductController {
 	}//end update/////////////////////////////////////
 	
 	@RequestMapping(value="/reviewUpdate.do", method = RequestMethod.POST)
-	public @ResponseBody HashMap<String, Object> reviewUpdatePostProcess(ReviewDTO rdto, MemberDTO mdto, FoodsDTO fdto, review_PageDTO rpdto) {
+	public @ResponseBody HashMap<String, Object> reviewUpdatePostProcess(ReviewDTO rdto,FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req) {
+		
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
 		HashMap<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("review_content", rdto.getReview_content());
@@ -235,15 +241,41 @@ public class ProductController {
 	}//end update/////////////////////////////////////
 	
 	
-	
-	@RequestMapping(value="/basketInsert.do", method = RequestMethod.POST)
-	public ModelAndView basketInsertProcess(FoodsDTO fdto, MemberDTO mdto, String amount, fb_BasketDTO bdto){
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value="/basketInsert.do", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public @ResponseBody String basketInsertProcess(fb_BasketDTO bdto, HttpServletRequest req){
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		
+		System.out.println("어마운트"+bdto.getAmount());
+		System.out.println("푸넘"+bdto.getFoods_no());
+		System.out.println("멤넘"+mdto.getMember_no());
+		
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("foods_no", fdto.getFoods_no());
-		/*map.put("member_no", mdto.getMember_no());*/
-		map.put("member_no",1);
+		map.put("foods_no", bdto.getFoods_no());
+		map.put("member_no", mdto.getMember_no());
+		map.put("amount", bdto.getAmount());
+		
+		service.basketInsertProcess(map);
+		
+		String str = "성공";
+		return str;
+	}//end basketinsert/////////////////////////
+	
+	@RequestMapping(value="/basketInsert.do", method = RequestMethod.POST)
+	public @ResponseBody ModelAndView basketInsertPostProcess(fb_BasketDTO bdto, HttpServletRequest req, int amount){
+		
+		ModelAndView mav = new ModelAndView();
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		
+		System.out.println("어마운트"+amount);
+		System.out.println("푸넘"+bdto.getFoods_no());
+		System.out.println("멤넘"+mdto.getMember_no());
+		
+		
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("foods_no", bdto.getFoods_no());
+		map.put("member_no", mdto.getMember_no());
 		map.put("amount", bdto.getAmount());
 		
 		service.basketInsertProcess(map);

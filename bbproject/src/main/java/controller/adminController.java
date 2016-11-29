@@ -148,9 +148,6 @@ public class adminController {
 		return mav;
 	}
 
-	@RequestMapping("/test.do")
-	public String test() {
-		return "view/test";
-	}
+
 
 }

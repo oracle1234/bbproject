@@ -76,6 +76,7 @@ ALTER TABLE fb_tr_order
 ;
 
 
+
 ALTER TABLE fb_tr_complete
 	ADD CONSTRAINT fk_complete_recipe_no FOREIGN KEY (recipe_no)
 	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
