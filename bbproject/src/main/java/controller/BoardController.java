@@ -209,9 +209,6 @@ public class BoardController {
 		updateMap.put("comment_content", cdto.getComment_content());
 		updateMap.put("comment_no", cdto.getComment_no());
 		updateMap.put("member_no", mdto.getMember_no());
-		System.out.println(cdto.getComment_content());
-		System.out.println(cdto.getComment_no());
-		System.out.println(mdto.getMember_no());
 
 		service.commentUpdateProcess(updateMap);
 
@@ -246,6 +243,8 @@ public class BoardController {
 		updateMap.put("comment_content", cdto.getComment_content());
 		updateMap.put("comment_no", cdto.getComment_no());
 		updateMap.put("member_no", mdto.getMember_no());
+		
+		service.commentUpdateProcess(updateMap);
 
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
 		
