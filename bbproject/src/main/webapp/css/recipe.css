@@ -1,14 +1,12 @@
 /* listview */
 .recipelist {
 	width: 900px;
-	background-color: yellow;
 	margin: auto;
 }
 
 .recipebox {
 	width: 700px;
 	height: 250px;
-	background-color: red;
 	margin: auto;
 	margin-top: 10px;
 	border: 2px solid #0066ff;
@@ -33,7 +31,6 @@
 .recipe_sub2 {
 	width: 450px;
 	height: 250px;
-	background-color: green;
 	float: right;
 	position: relative;
 }
@@ -43,6 +40,9 @@
 	height: 250px;
 	position: absolute;
 	left: 0;
+	margin : 10px;
+	border-radius: 20px;
+	box-sizing: border-box;
 }
 
 .list_detail {
