@@ -1,7 +1,17 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" type="text/css" href="css/my_order.css" />
+   <link rel="stylesheet" href="/SRC2/rangecalendar/css/normalize.css">
+	<link rel="stylesheet" href="/SRC2/rangecalendar/css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
 
-
+$(document).ready(function() {
+/* 	$('#orderno').on('click', function() {
+		if($(this).('${delivery_condition}'))
+	}); */
+});
+</script>
 	<div class="mypage_body">
 	<div class="link">
 	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 주문/배송조회
@@ -21,21 +31,26 @@
 		<table class="myorder_table">
 		<tr>
 				
-				<th width="20%">주문일자</th>
+				<th width="15%">주문일자</th>
+				<th width="15%">상품정보</th>
 				<th width="20%">상품명</th>
 				<th width="5%">수량</th>
 				<th width="15%">상품가격</th>
-				<th width="20%">총결제금액</th>
-				<th width="20%">주문현황</th>
+				<th width="10%">총결제금액</th>
+				<th width="15%">주문상태</th>
+				<th width="15%">취소</th>
 			</tr>
 			<c:forEach var="dto" items="${aList}">
 				<tr>
 					<td>${dto.day}</td>
-					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_no}</td>
+					<td><img id="foodsmall_photo" alt="" src="">${dto.picture}</td>
+					<td>${dto.foods_no}</td>
 					<td>${dto.amount}개</td>
 					<td>${dto.price}</td>
 					<td>${dto.price*dto.amount}원</td>
 					<td>${dto.delivery_condition}</td>
+					<td><input type="button" value="취소" id="orderno">
+					<input type="hidden" class="foods_no" value="${dto.foods_no}"></td>
 				</tr>
 				</c:forEach>
 		</table>
