@@ -58,7 +58,16 @@
 	}
 </script>
 
+	<hr/>
 	<div class="recipediv">
+		<ul>
+		<li><a href="adminrecipelist.do?theme_no=1">영양식</a></li>
+		<li><a href="adminrecipelist.do?theme_no=2">간식</a></li>
+		<li><a href="adminrecipelist.do?theme_no=3">도시락</a></li>
+		<li><a href="adminrecipelist.do?theme_no=4">다이어트</a></li>
+		<li><a href="adminrecipelist.do?theme_no=5">야식</a></li>
+		</ul>
+	
 		<div class="recipelist">
 			
 			<c:forEach items="${aList}" var="dto">

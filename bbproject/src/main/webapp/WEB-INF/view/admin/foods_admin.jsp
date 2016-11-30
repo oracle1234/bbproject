@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<hr/>
 <ul>
 
 	<li><a href="adminfoodslist.do?category_no=0">음식 관리</a></li>

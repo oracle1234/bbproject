@@ -77,23 +77,6 @@
 	width: 950px;
 }
 
-/* #detail_imgdiv { */
-/* 	width: 700px; */
-/* 	margin: auto; */
-/* } */
-
-/* #menuimg{ */
-/* 	width:300px; */
-/* 	height:300px; */
-/* 	float: left; */
-/* } */
-
-/* #menudetail{ */
-/* 	width:400px; */
-/* 	float: left; */
-/* 	padding-top: 75px; */
-/* } */
-
 #menudetail span{
 	display: block;
 	line-height: 30px;
@@ -110,10 +93,31 @@
 hr{
 	clear: both;
 	height: 5px;
-	background: #000000;
+	background: #8c9199;
 }
 
-p{
+#orderlist div{
+	padding: 0 30px 0 30px;
+}
+
+#orderlist .step{
+	float: left;
+}
+
+#orderlist .ordertxt{
+	float : left;
 	font-weight: normal;
+	text-align: left;
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+#orderlist .orderpic{
+	clear: both;
+}
+
+#orderlist .orderpic img{
+	width: 600px;
+	border-radius: 20px;
 }
 
