@@ -372,11 +372,11 @@ public class BoardController {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("startRow", cpdto.getStartRow());
 			map.put("endRow", cpdto.getEndRow());
-			map.put("board_no", qdto.getQa_no());
+			map.put("qa_no", qdto.getQa_no());
 			mav.addObject("aList", service.commentPageProcess(map));
 		}
 
-		BoardDTO dto = service.contentProcess(qdto.getQa_no());
+		QA_BoardDTO dto = qa_service.contentProcess(qdto.getQa_no());
 		mav.addObject("dto", dto);
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("qa_view");
@@ -397,7 +397,7 @@ public class BoardController {
 			cpdto = new Comment_PageDTO(currentPage, totalRecord);
 			map.put("startRow", cpdto.getStartRow());
 			map.put("endRow", cpdto.getEndRow());
-			map.put("board_no", qdto.getQa_no());
+			map.put("qa_no", qdto.getQa_no());
 		}
 
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();

@@ -422,7 +422,6 @@ td {
 		</tr>
 	</table>
 
-
 	<div class="updateWindow">
 		<p>
 			<input type="text" class="updateCommentText"
