@@ -14,7 +14,6 @@
 <link rel="stylesheet" type="text/css" href="css/main.css?var=2" media="all" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
-<link rel="stylesheet" type="text/css" href="css/mypage.css?var=1" />
 <link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/main.js?var=2"></script>

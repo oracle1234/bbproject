@@ -105,7 +105,6 @@
 	
 	<delete id="commentDelete" parameterType="hashmap">
 		delete from fb_comment where comment_no = #{comment_no} and member_no = #{member_no}
-		<!-- delete from fb_comment where comment_no = #{comment_no} and member_no = 1 -->
 	</delete>
 
 	<update id="commentUpdate" parameterType="hashmap">

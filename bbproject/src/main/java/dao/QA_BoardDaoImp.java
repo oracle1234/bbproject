@@ -58,9 +58,9 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 	}
 
 	@Override
-	public void reStepCount(CommentDTO dto) {
+	public void reStepCount(CommentDTO cdto) {
 
-		sqlSession.update("board.qa_reStepCount", dto);
+		sqlSession.update("board.qa_reStepCount", cdto);
 
 	}
 
@@ -77,9 +77,9 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 	}
 
 	@Override
-	public void update(QA_BoardDTO dto) {
+	public void update(QA_BoardDTO qdto) {
 
-		sqlSession.update("board.qa_update", dto);
+		sqlSession.update("board.qa_update", qdto);
 
 	}
 

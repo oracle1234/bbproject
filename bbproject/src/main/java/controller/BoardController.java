@@ -1,13 +1,17 @@
 package controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -177,7 +181,6 @@ public class BoardController {
 
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
 
-
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
 
 		if (totalRecord >= 1) {
@@ -241,13 +244,13 @@ public class BoardController {
 		updateMap.put("comment_content", cdto.getComment_content());
 		updateMap.put("comment_no", cdto.getComment_no());
 		updateMap.put("member_no", mdto.getMember_no());
-		
+
 		service.commentUpdateProcess(updateMap);
 
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
-		
+
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-		
+
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -266,7 +269,6 @@ public class BoardController {
 
 		return resultMap;
 	}// end commentUpdateProProcess()
-
 
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
 	public ModelAndView board_writeMethod(PageDTO pv, CommentDTO cdto) {
@@ -318,7 +320,6 @@ public class BoardController {
 
 	}// end deleteMethod()
 
-
 	// [QA게시판]
 	@RequestMapping("/qa_list.do")
 	public ModelAndView qa_listMethod(QA_BoardDTO qdto, PageDTO pv) {
@@ -344,23 +345,11 @@ public class BoardController {
 		return mav;
 	}// end board_listMethod()
 
-	
-	/*@RequestMapping("/qa_view.do")
-	public ModelAndView qa_viewMethod(int currentPage, QA_BoardDTO qdto) {
-		ModelAndView mav = new ModelAndView();
-		QA_BoardDTO dto = qa_service.contentProcess(qdto.getQa_no());
-		mav.addObject("dto", dto);
-		mav.addObject("currentPage", currentPage);
-		mav.setViewName("qa_view");
-		return mav;
-	}// end qa_viewMethod()
-*/	
 	@RequestMapping(value = "/qa_view.do", method = RequestMethod.GET)
 	public ModelAndView qa_viewMethod(int currentPage, QA_BoardDTO qdto, Comment_PageDTO cpdto2) {
 		ModelAndView mav = new ModelAndView();
 
 		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
-
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -373,15 +362,14 @@ public class BoardController {
 			map.put("startRow", cpdto.getStartRow());
 			map.put("endRow", cpdto.getEndRow());
 			map.put("qa_no", qdto.getQa_no());
-			mav.addObject("aList", service.commentPageProcess(map));
+			mav.addObject("aList", qa_service.commentPageProcess(map));
 		}
-
 		QA_BoardDTO dto = qa_service.contentProcess(qdto.getQa_no());
 		mav.addObject("dto", dto);
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("qa_view");
 		return mav;
-	}// end board_viewMethod()
+	}// end qa_viewMethod()
 
 	@RequestMapping(value = "/qa_view.do", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> qa_viewProMethod(QA_BoardDTO qdto, Comment_PageDTO cpdto2) {
@@ -405,10 +393,10 @@ public class BoardController {
 		resultMap.put("page", cpdto);
 		return resultMap;
 	}// end board_viewProMethod();
-	
+
 	@RequestMapping("/qa_commentInsert.do")
-	public @ResponseBody HashMap<String, Object> qa_commentInsertProcess(QA_BoardDTO qdto, CommentDTO cdto, MemberDTO mdto,
-			Comment_PageDTO cpdto2) {
+	public @ResponseBody HashMap<String, Object> qa_commentInsertProcess(QA_BoardDTO qdto, CommentDTO cdto,
+			MemberDTO mdto, Comment_PageDTO cpdto2) {
 
 		HashMap<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("comment_content", cdto.getComment_content());
@@ -419,9 +407,7 @@ public class BoardController {
 		qa_service.commentInsertProcess(insertMap);
 
 		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
-
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -435,15 +421,15 @@ public class BoardController {
 			pageMap.put("qa_no", qdto.getQa_no());
 		}
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		System.out.println(qdto.getQa_no());
 		resultMap.put("list", qa_service.commentPageProcess(pageMap));
 		resultMap.put("page", cpdto);
-
 		return resultMap;
 	}// end qa_commentInsertProcess()
 
 	@RequestMapping("/qa_commentDelete.do")
-	public @ResponseBody HashMap<String, Object> qa_commentDeleteProcess(QA_BoardDTO qdto, CommentDTO cdto, MemberDTO mdto,
-			Comment_PageDTO cpdto2) {
+	public @ResponseBody HashMap<String, Object> qa_commentDeleteProcess(QA_BoardDTO qdto, CommentDTO cdto,
+			MemberDTO mdto, Comment_PageDTO cpdto2) {
 
 		HashMap<String, Object> deleteMap = new HashMap<String, Object>();
 		deleteMap.put("comment_no", cdto.getComment_no());
@@ -473,10 +459,10 @@ public class BoardController {
 
 		return resultMap;
 	}// end qa_commentDeleteProcess()
-	
+
 	@RequestMapping(value = "/qa_commentUpdate.do", method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> qa_commentUpdateProcess(QA_BoardDTO qdto, CommentDTO cdto, MemberDTO mdto,
-			Comment_PageDTO cpdto2) {
+	public @ResponseBody HashMap<String, Object> qa_commentUpdateProcess(QA_BoardDTO qdto, CommentDTO cdto,
+			MemberDTO mdto, Comment_PageDTO cpdto2) {
 
 		HashMap<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("comment_content", cdto.getComment_content());
@@ -509,20 +495,20 @@ public class BoardController {
 	}// end commentUpdateProcess()
 
 	@RequestMapping(value = "/qa_commentUpdate.do", method = RequestMethod.POST)
-	public @ResponseBody HashMap<String, Object> qa_commentUpdateProProcess(QA_BoardDTO qdto, CommentDTO cdto, MemberDTO mdto,
-			Comment_PageDTO cpdto2) {
+	public @ResponseBody HashMap<String, Object> qa_commentUpdateProProcess(QA_BoardDTO qdto, CommentDTO cdto,
+			MemberDTO mdto, Comment_PageDTO cpdto2) {
 
 		HashMap<String, Object> updateMap = new HashMap<String, Object>();
 		updateMap.put("comment_content", cdto.getComment_content());
 		updateMap.put("comment_no", cdto.getComment_no());
 		updateMap.put("member_no", mdto.getMember_no());
-		
+
 		qa_service.commentUpdateProcess(updateMap);
 
 		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
-		
+
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-		
+
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -533,7 +519,7 @@ public class BoardController {
 
 			pageMap.put("startRow", cpdto.getStartRow());
 			pageMap.put("endRow", cpdto.getEndRow());
-			pageMap.put("qa_no",qdto.getQa_no());
+			pageMap.put("qa_no", qdto.getQa_no());
 		}
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("list", service.commentPageProcess(pageMap));
@@ -542,7 +528,6 @@ public class BoardController {
 		return resultMap;
 	}// end commentUpdateProProcess()
 
-	
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.GET)
 	public ModelAndView qa_writeMethod(PageDTO pv, CommentDTO cdto) {
 		ModelAndView mav = new ModelAndView();
@@ -629,4 +614,52 @@ public class BoardController {
 		return mav;
 	}// end qa_deleteMethod()
 
+	// [Photo게시판]
+	@RequestMapping("/photo_list.do")
+	public ModelAndView photo_listMethod(Photo_BoardDTO idto, PageDTO pv) {
+
+		ModelAndView mav = new ModelAndView();
+
+		int totalRecord = photo_service.countProcess(idto.getBoardcategory_no());
+		if (totalRecord >= 1) {
+			if (pv.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = pv.getCurrentPage();
+
+			pdto = new PageDTO(currentPage, totalRecord);
+			mav.addObject("pv", pdto);
+
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("startRow", pdto.getStartRow());
+			map.put("endRow", pdto.getEndRow());
+			mav.addObject("aList", photo_service.pageListProcess(map));
+		}
+		mav.setViewName("photo_list");
+		return mav;
+	}// end board_listMethod()
+
+	@RequestMapping(value="/photo_image.do", method=RequestMethod.GET)
+	public void showImage(String filename, HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException{
+		
+		String filepath = request.getSession().getServletContext().getRealPath(File.separator) + "/temp/" + filename;
+		
+		byte[] a = readFile(filepath);
+		
+		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+		response.getOutputStream().write(a);
+		response.getOutputStream().close();
+	}
+	
+	private byte[] readFile(String filename) throws IOException{
+		String path = filename;
+		
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path));
+		int length = bis.available();
+		byte[] bytes = new byte[length];
+		bis.read(bytes);
+		bis.close();
+		
+		return bytes;
+	}
 }

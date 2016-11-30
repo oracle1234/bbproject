@@ -32,7 +32,7 @@ $(document).ready(
 						$.ajax({
 							type : 'GET',
 							dataType : 'json',
-							url : "commentInsert.do?comment_content="
+							url : "qa_commentInsert.do?comment_content="
 									+ $('#comment_str').val()
 									+ "&qa_no=${dto.qa_no}"
 									+ "&member_no=1",
@@ -52,8 +52,8 @@ $(document).ready(
 						$.ajax({
 							type : 'GET',
 							dataType : 'json',
-							url : "commentDelete.do?comment_no=" + cno
-									+ "&qa_no=${dtoqa_no}"
+							url : "qa_commentDelete.do?comment_no=" + cno
+									+ "&qa_no=${dto.qa_no}"
 									+ "&member_no=1",
 							success : comment_delete,
 							error : function(xhr, textStatus, error) {
@@ -90,7 +90,7 @@ $(document).ready(
 							$.ajax({
 								type : 'POST',
 								dataType : 'json',
-								url : "commentUpdate.do",
+								url : "qa_commentUpdate.do",
 								data : "comment_no=" + uno + "&member_no=1"
 										+ "&comment_content="
 										+ $('.updateCommentText').val()
@@ -113,7 +113,7 @@ $(document).ready(
 	}
 
 	function deleteRun() {
-		$('#frm').attr('action', "board_delete.do").submit();
+		$('#frm').attr('action', "qa_delete.do").submit();
 	}
 
 	Handlebars.registerHelper("newDate", function(timeValue) {
@@ -445,7 +445,7 @@ td {
 		</p>
 	</div>
 	
-	<div class="textarea">${dto.qa_content}</div>
+	<div id="textarea">${dto.qa_content}</div>
 	
 	<div class="commentarea">
 		<c:forEach items="${aList}" var="CommentDTO">

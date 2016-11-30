@@ -66,6 +66,7 @@ $(document).ready(
 				//[댓글수정 창 띄우기]
 				$('.updateWindow').addClass('updateHide');
 				$(document).on('click', '.comment_update', function() {
+					alert('test');
 					uno = $(this).val();
 					$('.updateWindow').addClass('updateShow');
 					$('.updateWindow').removeClass('updateHide');
