@@ -24,6 +24,15 @@ $(document).ready(function(){
 		})
 	});
 	
+	$('#button_find').on('click', function(){
+		var searchval = $('#searchval').val();
+		if(searchval==''){
+			alert('검색어를 입력하세요.');
+		} else{
+			$('#form_search').submit();
+		}
+	});
+	
 	$(document).on('click', '#button_review', function(){
 		$.ajax({
 			type : 'GET',
@@ -147,6 +156,7 @@ function freelist(free){
 
 	
 </script>
+<form id="form_search" method="get" action="search.do">
 	<div class="mypage_body">
 	<div class="link">
 	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 내가 쓴 글
@@ -185,9 +195,10 @@ function freelist(free){
 			</div>
 
 		<div class="myboard_find">
-		<input type="radio" name="board">제목
-		<input type="radio" name="board">내용
-		<input type="text" id="text_find" placeholder="검색">
-		<input type="button" id="button_fint" value="검색">
+		<input type="radio" name="searchtype">제목
+		<input type="radio" name="searchtype">내용
+		<input type="text" id="searchval" placeholder="검색" name="searchval">
+		<input type="button" id="button_find" value="검색">
 		</div>
 	</div>
+	</form>

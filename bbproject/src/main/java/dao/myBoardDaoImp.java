@@ -34,4 +34,10 @@ public class myBoardDaoImp implements myBoardDAO{
 		return sqlSession.selectList("myboard.all", map);
 	}
 
+/*	@Override
+	public List<myBoardDTO> searchMethod(Map map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+*/
 }

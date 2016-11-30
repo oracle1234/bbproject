@@ -16,6 +16,23 @@
 	margin-top:5px;
 }
 
+.couponbook{
+	height:200px;
+	width:500px;
+	border:solid 1px gray;
+}
+
+.couponbook td{
+	width:100px;
+	height:100px;
+	border:solid 1px gray;
+}
+
+.point{
+	width:430px;
+	height:200px;
+	border:solid 1px gray;
+}
 
 .mycoupon_table{
 	width:930px;
@@ -23,3 +40,5 @@
 	margin-top:5px;
 	border:solid 1px gray;
 }
+
+

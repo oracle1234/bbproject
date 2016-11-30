@@ -8,6 +8,27 @@
 	</div>
 	<div class="coupon_info">
 		<img id="coupon_info_photo" alt="" src="">
+		<div class="couponbook">
+		<table>
+		<tr>
+		<td>1<img id="" src=""></td>
+		<td>2<img id="" src=""></td>
+		<td>3<img id="" src=""></td>
+		<td>4<img id="" src=""></td>
+		<td>5<img id="" src=""></td>
+		</tr>
+		<tr>
+		<td>6<img id="" src=""></td>
+		<td>7<img id="" src=""></td>
+		<td>8<img id="" src=""></td>
+		<td>9<img id="" src=""></td>
+		<td>10<img id="couponsucc" src=""></td>
+		</tr>
+		</table>
+		</div>
+		<div class="point">
+		떙땡땡님의 현재 적립금은 땡땡입니다. 
+		</div>
 	</div>
 
 	<table class="mycoupon_table">

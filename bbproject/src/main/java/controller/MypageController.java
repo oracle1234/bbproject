@@ -2,11 +2,13 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -175,4 +177,17 @@ public class MypageController {
 		return "joinsucc";
 	}
 	
+	@RequestMapping(value="/search.do", method=RequestMethod.GET)
+	public String searchProcess(HttpServletRequest req, Model model){
+		String searchtype = req.getParameter("searchtype");
+		String searchval = req.getParameter("searchval");
+		
+		Map mapSearch = new HashMap();
+		mapSearch.put("searchtype", searchtype);
+		mapSearch.put("searchval", searchval);
+		
+		model.addAttribute("mapSearch", mapSearch);
+		return "my_board.do";
+		
+	}
 }

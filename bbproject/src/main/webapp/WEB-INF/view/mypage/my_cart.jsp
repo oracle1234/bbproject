@@ -30,6 +30,29 @@ $(document).ready(function() {
 		  parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
 		});
 	 
+	 $('#cart_order').on('click', function(){
+		 var foodsno ="";
+		 var amount ="";
+		 $("input[name=cart_cb]:checked").each(function(){
+			 if(foodsno==""){
+				 foodsno = $(this).next().val();
+			 } else{
+				 foodsno = foodsno + "|" + $(this).next().val();
+			 }
+		 });
+		 $("input[name=cart_cb]:checked").each(function(){
+			 if(amount==""){
+				 amount = $(this).next().next().val();
+			 } else{
+				 amount = amount + "|" + $(this).next().next().val();
+			 }
+		 });
+		 $('#foodsno').val(foodsno);
+		 $('#amount').val(amount);
+		 alert($('#foodsno').val());
+		 alert($('#amount').val());
+	 });
+	 
 	$(document).on('click', '.upd_amount',function(){
 		 $.ajax({
 		 type : 'GET', 
@@ -96,6 +119,8 @@ $(document).ready(function() {
 <style>
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
 </style>
+
+<form id="cart" method="post" action="shop_buy.do">
 <div class="mypage_body">
 <div class="link">
 	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 장바구니
@@ -119,7 +144,9 @@ $(document).ready(function() {
 		<c:set var="sum" value="${sum+totalprice}"></c:set>
 			
 				<tr>
-					<td><input type="checkbox" class="cart_cb" value="${dto.foods_no}"></td>
+					<td><input type="checkbox" class="cart_cb" name="cart_cb">
+				 	<input type="hidden" class="foods_no" value="${dto.foods_no}" >
+					<input type="hidden" class="amount" value="${dto.amount}" ></td>
 					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_name}</td>
 					<td>${dto.price}원</td>
 					<td>${dto.amount}
@@ -170,9 +197,12 @@ $(document).ready(function() {
 
 	<div class="cart_button">
 		<input type="button" id="cart_del" value="선택상품삭제"> <input
-			type="button" id="cart_order" value="선택상품주문">
+			type="submit" id="cart_order" value="선택상품주문">
 	</div>
 	<img id="plus1" src="images/plus.png">
 	<img id="plus2" src="images/plus.png">
 	<img id="sum" src="images/sum.png">
+	<input type="hidden" id="foodsno" name="foods_no">
+	<input type="hidden" id="amount" name="amount">
 </div>
+</form>

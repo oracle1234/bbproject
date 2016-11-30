@@ -1,21 +1,33 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" type="text/css" href="css/my_order.css" />
-   <link rel="stylesheet" href="/SRC2/rangecalendar/css/normalize.css">
-	<link rel="stylesheet" href="/SRC2/rangecalendar/css/style.css">
+   <link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
+  <script src="js/jquery-ui"></script>  
+  <script src="js/jquery-ui.min"></script>
+   
 <script type="text/javascript">
 
 $(document).ready(function() {
 /* 	$('#orderno').on('click', function() {
 		if($(this).('${delivery_condition}'))
 	}); */
+	
+	$('.calHelp').hide();
+	
+	$('#calfind').on('click', function(){
+		$('.calHelp').slideDown('fast');
+		  
+			
+	});
 });
 </script>
 	<div class="mypage_body">
 	<div class="link">
 	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 주문/배송조회
 	</div>
+	
 		<div class="order_notice">
 		<span id="notice_span">고객님의 주문내역이 정상적으로 처리되었는지 꼭 확인하세요.</span>
 		<span id="notice_span2">
@@ -27,6 +39,25 @@ $(document).ready(function() {
 		</span>
 		<span id="notice_span3">그 외에 또 다른 문의사항이 있으시면 반찬을 부탁해 게시판 또는 전화로 연락 주시면 친절하게 안내해 드리겠습니다.</span>
 		</div>
+		
+			<div class="calfind">
+<img id="calfind" src="images/cal.PNG"><input type="button" value="조회" id="calfindButton">
+</div>
+		<div class="calHelp">
+		<div id="calHelp">
+<!-- 	<div class="first active"><i>A</i> <b id="sel1text">SELECT DEPART</b></div><div class="disabled"><i>B</i> <b id="sel2text">RETURN</b></div> -->
+</div>
+<div id="disp"><div id="prev" class="nav">←</div><div id="month">Hello world</div><div id="next" class="nav">→</div></div>
+<div id="cal"></div>
+
+	<div class="log">
+		 <script src='js/jquery.min.js'></script>
+	<script src="js/cal.js"></script>
+	</div>
+	</div>
+	
+	
+
 		
 		<table class="myorder_table">
 		<tr>
