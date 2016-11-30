@@ -528,10 +528,13 @@ input {
 				<li class='sub'><a href='#'>요리2</a></li>
 				<li class='sub'><a href='#'>요리3</a></li>
 			</ul></li>
-		<li><a href='#'>RECIPE</a>
+		<li><a href='recipe.do'>RECIPE</a>
 			<ul>
-				<li class='sub'><a href='#'>레시피1</a></li>
-				<li class='sub'><a href='#'>레시피2</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=1">영양식</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=2">간식</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=3">도시락</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=4">다이어트</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=5">야식</a></li>
 			</ul></li>
 		<li><a href='#'>BORDER</a>
 			<ul>

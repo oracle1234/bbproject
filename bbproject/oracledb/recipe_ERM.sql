@@ -233,7 +233,15 @@ select *
 		and a.recipe_no = 39
 		
 		
-		
+		select c.* from (
+			select rownum as rm, b.*
+			from(
+			select * from
+			fb_theme_recipe
+					/*where theme_no = 1 and recipe_name like '%'||'소'||'%'*/
+					where recipe_name like '%'||'소'||'%'
+			order by recipe_no desc)b)c
+			where c.rm >= 1 and c.rm <= 5
 		
 
 		

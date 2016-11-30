@@ -63,7 +63,6 @@ public class ThemeRecipeController {
 		
 		map.put("pdto", pdto);
 		map.put("list", service.selectListProcess(pdto));
-		
 		return map; 
 	}
 
@@ -73,6 +72,28 @@ public class ThemeRecipeController {
 		mav.addObject("dto", service.selectRecipeProcess(recipe_no));
 		mav.setViewName("recipedetail");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/recipesearch.do", method = RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> recipeSearch(RecipePageDTO pdto, String recipe_name) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int theme_no = pdto.getTheme_no();
+		int totalRow = service.countRecipeProcess(pdto.getTheme_no(), recipe_name);
+		
+		if (totalRow >= 1) {
+			if (pdto.getCurrentRow() == 0) {
+				currentRow = 1;
+			} else {
+				currentRow = pdto.getCurrentRow();
+			}
+			pdto = new RecipePageDTO(currentRow, totalRow);
+			pdto.setTheme_no(theme_no);
+			map.put("list", service.selectSearchProcess(pdto, recipe_name));
+		}
+		map.put("pdto", pdto);
+		
+		return map; 
 	}
 
 }

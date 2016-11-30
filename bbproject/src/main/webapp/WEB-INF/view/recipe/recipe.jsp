@@ -7,6 +7,7 @@
 	var currentRow = parseInt("${pdto.currentRow}");
 	var endRow = parseInt("${pdto.endRow}");
 	var totalRow = parseInt("${pdto.totalRow}");
+	var recipe_name = "";
 </script>
 <body>
 
@@ -14,6 +15,20 @@
 		<div>
 			<h1 id="list_title">RECIPE</h1>
 		</div>
+		
+		<div class="recipe_search">
+			<select id="theme_no" name="theme_no">
+				<option value="0">전체</option>
+				<option value="1">영양식</option>
+				<option value="2">간식</option>
+				<option value="3">도시락</option>
+				<option value="4">다이어트</option>
+				<option value="5">야식</option>
+			</select>
+			<input type="text" id="recipe_name" name="recipe_name" />
+			<input type="image" src="images/header_sch_btn.gif" id="recipe_sch_btn">
+		</div>
+		
 		<div class="recipelist">
 
 			<c:forEach items="${aList}" var="dto">
