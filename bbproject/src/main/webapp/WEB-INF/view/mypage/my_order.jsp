@@ -4,8 +4,8 @@
    <link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
-  <script src="js/jquery-ui"></script>  
-  <script src="js/jquery-ui.min"></script>
+ <!--  <script src="js/jquery-ui"></script>  
+  <script src="js/jquery-ui.min"></script> -->
    
 <script type="text/javascript">
 
@@ -15,12 +15,40 @@ $(document).ready(function() {
 	}); */
 	
 	$('.calHelp').hide();
+	$('.calactive').hide();
+	
 	
 	$('#calfind').on('click', function(){
 		$('.calHelp').slideDown('fast');
-		  
-			
+		
+		$('#calfindButton').on('click',function(){
+			var test1= $('#cal').next().val();
+			var test1= document.getElementById("out1").value;
+
+			var test2=$('#out2').val();
+			alert(test1+test2);
+		});
 	});
+		  
+		$('.orderno').on('click', function(){
+			if($(this).next().val()=="미입금" || $(this).next().val()=="입금완료"){
+				 $.ajax({
+					type:'GET',
+					dataType : 'json',
+					url : 'myorder_del.do?member_no=${member_no}&day='+$(this).next().next().val()+'&foods_no='+$(this).next().next().next().val(),
+					success : orderlist,
+					error: function(xhr, textStatus, error) {
+						alert(error);
+					}
+				}) 
+			}
+				
+		else if ($(this).next().val()=="상품준비중" || $(this).next().val()=="배송중" || $(this).next().val()=="배송완료"){
+			alert("해당 주문건은 취소할 수 없습니다.")
+		}
+		});
+			
+	
 });
 </script>
 	<div class="mypage_body">
@@ -44,8 +72,8 @@ $(document).ready(function() {
 <img id="calfind" src="images/cal.PNG"><input type="button" value="조회" id="calfindButton">
 </div>
 		<div class="calHelp">
-		<div id="calHelp">
-<!-- 	<div class="first active"><i>A</i> <b id="sel1text">SELECT DEPART</b></div><div class="disabled"><i>B</i> <b id="sel2text">RETURN</b></div> -->
+		<div class="calactive">
+ 	<div class="first active"><i>A</i> <b id="sel1text">SELECT DEPART</b></div><div class="disabled"><i>B</i> <b id="sel2text">RETURN</b></div> 
 </div>
 <div id="disp"><div id="prev" class="nav">←</div><div id="month">Hello world</div><div id="next" class="nav">→</div></div>
 <div id="cal"></div>
@@ -80,8 +108,10 @@ $(document).ready(function() {
 					<td>${dto.price}</td>
 					<td>${dto.price*dto.amount}원</td>
 					<td>${dto.delivery_condition}</td>
-					<td><input type="button" value="취소" id="orderno">
-					<input type="hidden" class="foods_no" value="${dto.foods_no}"></td>
+					<td><input type="button" value="취소" class="orderno">
+					<input type="hidden" class="delivery_condition" value="${dto.delivery_condition}">
+					<input type="hidden" class="foods_no" value="${dto.foods_no}">
+					<input type="hidden" class="day" value="${dto.day}"></td>
 				</tr>
 				</c:forEach>
 		</table>

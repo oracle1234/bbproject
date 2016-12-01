@@ -1,36 +1,29 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" type="text/css" href="css/my_coupon.css" />
+<script type="text/javascript">
+var s_name = "${sessionScope.member.member_name}";
+var s_point = "${sessionScope.member.point}";
 
+$(document).ready(function(){
+	$('#p_name').append(s_name);
+	$('#p_point').append(s_point);
+});
+</script>
 <div class="mypage_body">
 <div class="link">
 	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 쿠폰/적립금
 	</div>
+	<div class="couponpoint">
 	<div class="coupon_info">
-		<img id="coupon_info_photo" alt="" src="">
-		<div class="couponbook">
-		<table>
-		<tr>
-		<td>1<img id="" src=""></td>
-		<td>2<img id="" src=""></td>
-		<td>3<img id="" src=""></td>
-		<td>4<img id="" src=""></td>
-		<td>5<img id="" src=""></td>
-		</tr>
-		<tr>
-		<td>6<img id="" src=""></td>
-		<td>7<img id="" src=""></td>
-		<td>8<img id="" src=""></td>
-		<td>9<img id="" src=""></td>
-		<td>10<img id="couponsucc" src=""></td>
-		</tr>
-		</table>
+
 		</div>
 		<div class="point">
-		떙땡땡님의 현재 적립금은 땡땡입니다. 
+		 
+		<p id="p_name"></p>님의 현재 적립금은 <p id="p_point"></p>원 입니다.
+	
 		</div>
-	</div>
-
+</div>
 	<table class="mycoupon_table">
 		<tr>
 			<th width="50%">쿠폰명</th>

@@ -11,10 +11,10 @@
 @color-sel2: #f6b;
 @color-range: lighten(@color-base, 12%);
 */
-html {
+ html {
   box-sizing: border-box;
   font-size: 62.5%;
-}
+} 
 *,
 *:before,
 *:after {
@@ -24,12 +24,12 @@ html {
   font-family: 'Roboto', arial, helvetica, sans-serif;
   font-weight: 400;
 }
-body {
-  padding: 40px 0;
-  background: #fafafa;
+   body {
+ /*  padding: 40px 0; */
+/*   background: #fafafa; */
   font-size: 1.6rem;
   color: #333333;
-}
+}   
 #c {
   width: 410px;
   padding: 40px;
@@ -108,6 +108,7 @@ table td.range i {
 table td.sel1 i {
   background: #ff66bb;
 }
+
 table td.sel2 i {
   background: #66ccff;
 }

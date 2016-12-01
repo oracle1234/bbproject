@@ -147,8 +147,9 @@ public class ShopController {
 	         System.out.println(amountarr[j]);
 	      }
 		
-		//mav.addObject("FoodsDTO", service.buyListProcess(fdto.getFoods_no()));
-		mav.addObject("amount", amount);
+		//mav.addObject("", service.buyListProcess(fdto.getFoods_no()));
+	    /*  mav.addObject("foods_no", foodsno[1]);
+		mav.addObject("amount", amountarr[1]);*/
 		mav.addObject("MemberDTO", mdto);
 		/*mav.addObject("Address", Address);
 		mav.addObject("detailAddress", detailAddress);

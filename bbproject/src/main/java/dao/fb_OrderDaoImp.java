@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,5 +22,12 @@ public class fb_OrderDaoImp implements fb_OrderDAO{
 	public List<fb_OrderDTO> list(int member_no) {
 		return sqlSession.selectList("order.list", member_no);
 	}
+
+/*	@Override
+	public List<fb_OrderDTO> deleteProcess(fb_OrderDTO odto) {
+		return sqlSession.delete("order.delete", odto);
+	}*/
+
+
 
 }

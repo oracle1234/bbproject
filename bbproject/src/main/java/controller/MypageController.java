@@ -76,6 +76,12 @@ public class MypageController {
 		mav.setViewName("my_order");
 		return mav;
 	}
+	
+/*	@RequestMapping("/myorder_del.do")
+	public @ResponseBody List<fb_OrderDTO> orderDelete(fb_OrderDTO odto){
+		return orderservice.deleteProcess(odto);
+
+	}*/
 
 	@RequestMapping("/my_cart.do")
 	public ModelAndView listMethod(HttpServletRequest req) {
@@ -177,7 +183,7 @@ public class MypageController {
 		return "joinsucc";
 	}
 	
-	@RequestMapping(value="/search.do", method=RequestMethod.GET)
+/*	@RequestMapping(value="/search.do", method=RequestMethod.GET)
 	public String searchProcess(HttpServletRequest req, Model model){
 		String searchtype = req.getParameter("searchtype");
 		String searchval = req.getParameter("searchval");
@@ -189,5 +195,5 @@ public class MypageController {
 		model.addAttribute("mapSearch", mapSearch);
 		return "my_board.do";
 		
-	}
+	}*/
 }
