@@ -35,6 +35,11 @@
 	display: block;
 	margin: auto;
 }
+
+.name a{
+	text-decoration: none;
+	color: black;
+}
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -102,8 +107,6 @@
 	
 	
 	
-	
-	
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -159,6 +162,15 @@
 					<c:out value="다음" />
 				</a>
 			</c:if>
+			<br><br>
+			<select id = "searchSelect">
+			<option>국/찌개</option>
+			<option>반찬</option>
+			<option>김치</option>
+			</select>
+			
+			<input type = "text" id = "searchText">
+			<button id = "searchBtn">검색</button>
 		</div>
 	</div>
 	<div id="dialog" >
