@@ -187,9 +187,10 @@
 		<property name="memberservice" ref="memberService"></property>
 	</bean>
 
-	<bean class="controller.adminController">
+	<bean class="controller.AdminController">
 		<property name="recipeservice" ref="themeRecipeservice"></property>
 		<property name="foodsservice" ref="shopService"></property>
+		<property name="couponservice" ref="CouponService"></property>
 	</bean>
 
 	<bean class="controller.LoginController">

@@ -23,4 +23,21 @@ public class fb_CouponServiceImp implements fb_CouponService{
 		return dao.list(member_no);
 	}
 
+	@Override
+	public List<fb_CouponDTO> adminCouponListProcess() {
+		return dao.adminCouponList();
+	}
+
+	@Override
+	public List<fb_CouponDTO> adminCouponInsProcess(fb_CouponDTO dto) {
+		dao.adminCouponIns(dto);
+		return dao.adminCouponList(); 
+	}
+
+	@Override
+	public List<fb_CouponDTO> adminCouponDelProcess(fb_CouponDTO dto) {
+		dao.adminCouponDel(dto);
+		return dao.adminCouponList(); 
+	}
+
 }

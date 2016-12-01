@@ -23,4 +23,20 @@ public class fb_CouponDaoImp implements fb_CouponDAO{
 		return sqlSession.selectList("coupon.list", member_no);
 	}
 
+	@Override
+	public List<fb_CouponDTO> adminCouponList() {
+		return sqlSession.selectList("coupon.adminlist");
+	}
+
+	@Override
+	public void adminCouponIns(fb_CouponDTO dto) {
+		sqlSession.selectList("coupon.admincouponins", dto);
+		
+	}
+
+	@Override
+	public void adminCouponDel(fb_CouponDTO dto) {
+		sqlSession.selectList("coupon.admincoupondel", dto);
+	}
+
 }
