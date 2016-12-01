@@ -1,19 +1,20 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import dao.MemberDAO;
 import dto.LatelyDTO;
 import dto.MemberDTO;
 
-public class MemberServiceImp implements MemberService{
+public class MemberServiceImp implements MemberService {
 	private MemberDAO dao;
 
 	public MemberServiceImp() {
 
 	}
-	
+
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
 	}
@@ -21,7 +22,7 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public void insertProcess(MemberDTO mdto) {
 		dao.insertMethod(mdto);
-	
+
 	}
 
 	@Override
@@ -52,30 +53,38 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public void updateProcess(MemberDTO mdto) {
 		dao.updateMethod(mdto);
-		
+
 	}
 
 	@Override
 	public void leaveProcess(MemberDTO mdto) {
 		dao.deleteMethod(mdto);
-		
 	}
 
 	@Override
 	public List<LatelyDTO> latelyProcess(int member_no) {
 		List<LatelyDTO> list = new ArrayList<LatelyDTO>();
 		list = dao.latelyMethod(member_no);
-		
 		int len = list.size();
-		
+
 		for (int i = 0; i < len; i++) {
 			if (i > 2) {
-				dao.deleteLately(list.get(3).getLately_no());
+				dao.LatelyDel(list.get(3).getLately_no());
 				list.remove(3);
 			}
 		}
-		
 		return list;
+	}
+
+	@Override
+	public void latelyInsProcess(int member_no, int foods_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", member_no);
+		map.put("foods_no", foods_no);
+		if (dao.latelyChk(map) == 0) {
+			dao.latelyIns(map);
+		}
+
 	}
 
 }

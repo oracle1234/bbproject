@@ -167,6 +167,7 @@
 
 	<bean class="controller.ProductController">
 		<property name="service" ref="shopService"></property>
+		<property name="mservice" ref="memberService"></property>
 	</bean>
 
 	<bean class="controller.ShopController">

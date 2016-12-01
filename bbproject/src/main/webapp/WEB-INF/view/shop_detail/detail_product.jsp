@@ -9,10 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <script src="js/detail_product.js"></script> -->
 <style type="text/css">
-body {
-	margin: 0px;
-	padding: 0px;
-}
 
 #product_wrap {
 	width: 950px;
