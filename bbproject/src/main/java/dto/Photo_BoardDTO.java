@@ -6,8 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Photo_BoardDTO {
 
-	private int photo_no, photo_readcount, member_no, boardcategory_no;
-	private String photo_writer, photo_content, photo_subject, picture;
+	private int photo_no, member_no, boardcategory_no;
+	private String photo_writer, photo_content, photo_subject;
 
 	private Date photo_reg_date;
 
@@ -15,12 +15,12 @@ public class Photo_BoardDTO {
 
 	private MultipartFile filename;
 
-	public int getBoardcategory_no() {
-		return boardcategory_no;
+	public int getPhoto_no() {
+		return photo_no;
 	}
 
-	public void setBoardcategory_no(int boardcategory_no) {
-		this.boardcategory_no = boardcategory_no;
+	public void setPhoto_no(int photo_no) {
+		this.photo_no = photo_no;
 	}
 
 	public int getMember_no() {
@@ -31,20 +31,12 @@ public class Photo_BoardDTO {
 		this.member_no = member_no;
 	}
 
-	public int getPhoto_no() {
-		return photo_no;
+	public int getBoardcategory_no() {
+		return boardcategory_no;
 	}
 
-	public void setPhoto_no(int photo_no) {
-		this.photo_no = photo_no;
-	}
-
-	public int getPhoto_readcount() {
-		return photo_readcount;
-	}
-
-	public void setPhoto_readcount(int photo_readcount) {
-		this.photo_readcount = photo_readcount;
+	public void setBoardcategory_no(int boardcategory_no) {
+		this.boardcategory_no = boardcategory_no;
 	}
 
 	public String getPhoto_writer() {
@@ -93,14 +85,6 @@ public class Photo_BoardDTO {
 
 	public void setFilename(MultipartFile filename) {
 		this.filename = filename;
-	}
-
-	public String getPicture() {
-		return picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
 	}
 
 }

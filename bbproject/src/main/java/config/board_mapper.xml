@@ -132,7 +132,6 @@
 		board_no=#{board_no}
 	</delete>
 
-
 	<!-- [QA게시판] -->
 	<select id="qa_count" resultType="int">
 		select count(*) from fb_qa_board
@@ -226,38 +225,39 @@
 		where qa_no=#{qa_no}
 	</delete>
 	
-	
 	<!-- [Photo게시판] -->
 	<select id="photo_count" resultType="int">
 		select count(*) from fb_photo_board
 	</select>
 
-	<select id="photo_list" resultType="dto.Photo_BoardDTO" parameterType="dto.PageDTO">
-		<!-- 파싱하지말고 문자열 그대로 사용하라(<,>) '<'를 사용하기 위해서 CDATA를 사용 아직 수정중  -->
-		<![CDATA[ 
-			select b.* from (select rownum as rm, a.* from (select * from fb_photo_board order by photo_no desc)a)b 
-			where b.rm>=#{startRow} and b.rm <=#{endRow}
-			]]>			
+	<select id="photo_list" resultType="dto.Photo_BoardDTO" parameterType="int">
+		select * from fb_photo_board where photo_no = #{photo_no} 
 	</select>
 
-	<select id="photo_content" parameterType="int" resultType="dto.Photo_BoardDTO">
-		select *
-		from fb_photo_board where photo_no=#{photo_no}
+	<select id="photo_contentList" parameterType="int" resultMap="photo_board">
+		select b.*, c.* from fb_photo_board b, fb_comment c 
+		where b.photo_no = c.comment_no(+) 
+		and b.photo_no = #{photo_no} order by c.comment_no desc
 	</select>
-
-	<update id="photo_readCount" parameterType="int">
-		update fb_photo_board set
-		photo_readcount=photo_readcount+1 where photo_no=#{photo_no}
-	</update>
+	
+	<select id="photo_pageList" resultType="dto.Photo_BoardDTO" parameterType="map">
+		<![CDATA[
+		select b.* from (
+		select rownum as rm, a.* from (
+		select * from fb_photo_board order by photo_no desc)a)b 
+		where b.rm>=#{startRow} and b.rm <=#{endRow}
+ 		]]>
+	</select>
 
 	<update id="photo_reStepCount" parameterType="dto.Photo_BoardDTO">
 		<!-- 아직 수정중 <![CDATA[ update fb_qa_board set re_step=re_step+1 where ref=#{ref} 
 			and re_step>#{re_step} ]]> -->
 	</update>
 	
-	<insert id="p_save" parameterType="dto.Photo_BoardDTO">
-		insert into fb_photo_board(member_no, photo_no, photo_readcount, photo_writer, photo_content, photo_reg_date, photo_subject, photo_upload)  
-		values(1, SEQ_photo_no.nextval,0,#{photo_writer}, #{photo_content}, sysdate, #{photo_subject}, #{photo_upload,jdbcType=VARCHAR})
+	<insert id="photo_save" parameterType="dto.Photo_BoardDTO">
+		insert into fb_photo_board(boardcategory_no, member_no, photo_no, photo_writer, photo_content, photo_reg_date, photo_subject, photo_upload)  
+		values(3, 1, SEQ_photo_no.nextval,#{photo_writer}, #{photo_content}, sysdate, #{photo_subject}, #{photo_upload,jdbcType=VARCHAR})
+	</insert>	
 		<!-- <choose>
 			<when test="comment_ref==0">
 				SEQ_qa_no.nextval
@@ -267,7 +267,6 @@
 			</otherwise>
 		</choose>
 		,#{comment_re_step}, #{comment_re_level},#{upload,jdbcType=VARCHAR}) -->
-	</insert>
 
 	<select id="photo_uploadFile" parameterType="int" resultType="String">
 		select photo_upload from fb_photo_board where photo_no = #{photo_no}
@@ -277,7 +276,7 @@
 		update fb_photo_board set photo_subject=#{photo_subject},
 		photo_content=#{photo_content}
 		<if test="photo_upload!=null">
-			,photo_upload=#{photo_upload}
+		,photo_upload=#{photo_upload}
 		</if>
 		where photo_no=#{photo_no}
 	</update>

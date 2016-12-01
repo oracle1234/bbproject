@@ -529,7 +529,7 @@ public class BoardController {
 	}// end commentUpdateProProcess()
 
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.GET)
-	public ModelAndView qa_writeMethod(PageDTO pv, CommentDTO cdto) {
+	public ModelAndView qa_writeMethod(PageDTO pv) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("qa_write");
 		return mav;
@@ -537,7 +537,7 @@ public class BoardController {
 	}// end qa_writeMethod()
 
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.POST)
-	public String qa_writeProMethod(QA_BoardDTO qdto, CommentDTO cdto, HttpServletRequest request) {
+	public String qa_writeProMethod(QA_BoardDTO qdto, HttpServletRequest request) {
 
 		MultipartFile file = qdto.getFilename();
 		if (!file.isEmpty()) {
@@ -563,9 +563,10 @@ public class BoardController {
 			}
 			qdto.setQa_upload(random + "_" + fileName);
 		}
+
 		qa_service.insertProcess(qdto);
 		return "redirect:/qa_list.do";
-	}// end writeProMethod
+	}// end qa_writeProMethod
 
 	@RequestMapping("/contentdownload.do")
 	public ModelAndView downMethod(QA_BoardDTO qdto) {
@@ -662,4 +663,44 @@ public class BoardController {
 		
 		return bytes;
 	}
+	
+	@RequestMapping(value = "/photo_write.do", method = RequestMethod.GET)
+	public ModelAndView photo_writeMethod(PageDTO pv) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("photo_write");
+		return mav;
+
+	}// end qa_writeMethod()
+
+	@RequestMapping(value = "/photo_write.do", method = RequestMethod.POST)
+	public String photo_writeProMethod(Photo_BoardDTO idto, HttpServletRequest request) {
+
+		MultipartFile file = idto.getFilename();
+		if (!file.isEmpty()) {
+			String fileName = file.getOriginalFilename();
+			
+			// 중복파일명을 처리하기 위해 난수 발생
+			UUID random = UUID.randomUUID();
+			String root = request.getSession().getServletContext().getRealPath("/");
+			// root+"temp/"
+			String saveDirectory = root + "temp" + File.separator;
+			File fe = new File(saveDirectory);
+			if (!fe.exists())
+				fe.mkdir();
+			File ff = new File(saveDirectory, random + "_" + fileName);
+			try {
+				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
+			} catch (FileNotFoundException e) {
+				
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			idto.setPhoto_upload(random + "_" + fileName);
+		}
+
+		photo_service.insertProcess(idto);
+		return "redirect:/photo_list.do";
+	}// end qa_writeProMethod
 }

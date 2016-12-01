@@ -43,10 +43,14 @@
 }
 
 .board_write {
-	padding-top:10px;
-	padding-right:10px;
-	text-align: right;
+	padding: 20px 10px;
+	height:30px;
 }
+
+.board_write a img{
+	float: right;
+}
+
 
 .board_search_str {
 	width: 40%;

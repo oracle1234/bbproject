@@ -69,7 +69,6 @@ CREATE TABLE fb_photo_board
 	boardcategory_no number not null,
 	member_no number NOT NULL,
 	photo_no number NOT NULL,
-	photo_readcount number NOT NULL,
 	photo_writer varchar2(100) NOT NULL,
 	photo_content varchar2(2000) NOT NULL,
 	photo_reg_date date NOT NULL,
@@ -139,6 +138,7 @@ delete from fb_board;
 delete from fb_qa_board;
 delete from fb_photo_board;
 delete from FB_COMMENT;
+delete from fb_member;
 
 select * from fb_board;
 select * from fb_qa_board;
@@ -147,4 +147,3 @@ select * from FB_COMMENT;
 select * from fb_member;
 
 select SEQ_member_no.nextval from dual;
-
