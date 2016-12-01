@@ -66,4 +66,4 @@ and a.member_no = (select member_no from fb_member where id = 'jaemin' and pw = 
 select *
 		from fb_member
 		where id = #{id} and pw = #{pw}
-
+		

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.FoodsDTO;
+import dto.MemberDTO;
 import dto.RecipePageDTO;
 import dto.ThemeRecipeDTO;
 import dto.fb_CouponDTO;
@@ -24,7 +25,7 @@ public class AdminController {
 	private ThemeRecipeService recipeservice;
 	private ShopService foodsservice;
 	private fb_CouponService couponservice;
-	
+
 	private int currentRow;
 
 	public AdminController() {
@@ -37,7 +38,7 @@ public class AdminController {
 	public void setFoodsservice(ShopService foodsservice) {
 		this.foodsservice = foodsservice;
 	}
-	
+
 	public void setCouponservice(fb_CouponService couponservice) {
 		this.couponservice = couponservice;
 	}
@@ -153,42 +154,48 @@ public class AdminController {
 
 		return mav;
 	}
-	
+
 	/* 쿠폰 */
 	@RequestMapping("/admincoupon.do")
 	public String couponPage() {
 		return "admincoupon";
 	}
-	
-	@RequestMapping("/admincouponlist.do")
-	public ModelAndView couponListPage() {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("aList", couponservice.adminCouponListProcess());
-		mav.setViewName("admincouponlist");
-		return mav;
-	}
 
 	@RequestMapping(value = "/admincouponins.do", method = RequestMethod.GET)
-	public String couponInsertPage() {
-		return "admincouponins";
+	public ModelAndView couponInsertPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("aList", couponservice.adminCouponListProcess());
+		mav.setViewName("admincouponins");
+		return mav;
 	}
 
 	@RequestMapping(value = "/admincouponins.do", method = RequestMethod.POST)
 	public ModelAndView couponSavePage(fb_CouponDTO dto) {
 		ModelAndView mav = new ModelAndView();
-		
 		mav.addObject("aList", couponservice.adminCouponInsProcess(dto));
 		mav.setViewName("admincouponins");
 		return mav;
 	}
-	
+
 	@RequestMapping("/admincoupondel.do")
 	public ModelAndView couponDelPage(fb_CouponDTO dto) {
 		ModelAndView mav = new ModelAndView();
-
 		mav.addObject("aList", couponservice.adminCouponDelProcess(dto));
-		mav.setViewName("admincouponlist");
+		mav.setViewName("admincouponins");
 		return mav;
+	}
+	
+	@RequestMapping(value="/admincouponsend.do", method=RequestMethod.POST)
+	public ModelAndView couponSendPage(fb_CouponDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("aList", couponservice.adminCouponMemProcess(dto));
+		mav.setViewName("admincouponins");
+		return mav;
+	}
+	
+	@RequestMapping("/admincouponidchk.do")
+	public @ResponseBody MemberDTO couponIdChk(String id) {
+		return couponservice.adminCouponIdChkProcess(id); 
 	}
 
 }

@@ -15,11 +15,15 @@
 	<div class="couponlist">
 		<table>
 			<tr>
+				<th>쿠폰 번호</th>
 				<th>쿠폰 이름</th>
 				<th>할인 가격</th>
 			</tr>
 			<c:forEach items="${aList}" var="dto">
 				<tr>
+					<td>
+						${dto.coupon_no}
+					</td>
 					<td>
 						${dto.coupon_name}
 					</td>

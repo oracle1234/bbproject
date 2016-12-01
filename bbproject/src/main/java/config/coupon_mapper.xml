@@ -26,6 +26,15 @@
 		where coupon_no = #{coupon_no}
 	</delete>
 	
+	<select id="admincouponidchk" parameterType="string" resultType="dto.MemberDTO">
+		select member_no, member_name from fb_member
+		where id = #{id}
+	</select>
+	
+	<insert id="admincouponmemins" parameterType="dto.fb_CouponDTO">
+		insert into fb_coupon_book
+		values(SEQ_couponbook_no.nextval, #{member_no}, #{coupon_no}, 0)
+	</insert>
 	
 	
 </mapper>
