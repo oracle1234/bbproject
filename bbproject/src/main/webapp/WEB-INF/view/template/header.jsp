@@ -521,7 +521,7 @@ input {
 <div class='menu'>
 	<ul>
 		<li><a href='#'>Home</a></li>
-		<li><a href='#'>SHOP</a>
+		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
 				<li class='sub'><a href='#'>요리1</a></li>
@@ -541,7 +541,7 @@ input {
 				<li class='sub'><a href='#'>게시판1</a></li>
 				<li class='sub'><a href='#'>게시판2</a></li>
 			</ul></li>
-		<li class='last'><a href='#'>MYPAGE</a></li>
+		<li class='last'><a href='mypage.do'>MYPAGE</a></li>
 	</ul>
 </div>
 
