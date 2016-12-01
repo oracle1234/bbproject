@@ -9,4 +9,9 @@
 		from fb_request
 		where member_no=#{member_no}
 	</select>
+	
+	<delete id="delete" parameterType="hashmap">
+	delete from fb_request
+	where member_no=#{member_no} and foods_no=#{foods_no} and day=#{day}
+	</delete>
 </mapper>

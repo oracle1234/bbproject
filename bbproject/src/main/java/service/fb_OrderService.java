@@ -8,4 +8,6 @@ public interface fb_OrderService {
 	
 	public List<fb_OrderDTO> orderlistProcess(int member_no);
 
+	/*public List<fb_OrderDTO> deleteProcess(fb_OrderDTO odto);*/
+
 }

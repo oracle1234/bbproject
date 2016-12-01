@@ -1,6 +1,8 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/my_board.css" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
@@ -20,6 +22,15 @@ $(document).ready(function(){
 				alert(error);
 			}
 		})
+	});
+	
+	$('#button_find').on('click', function(){
+		var searchval = $('#searchval').val();
+		if(searchval==''){
+			alert('검색어를 입력하세요.');
+		} else{
+			$('#form_search').submit();
+		}
 	});
 	
 	$(document).on('click', '#button_review', function(){
@@ -48,6 +59,14 @@ $(document).ready(function(){
 	
 });
 
+Handlebars.registerHelper("newDate",function(timeValue){
+	var dateObj=new Date(timeValue);
+	var year=dateObj.getFullYear();
+	var month=dateObj.getMonth()+1;
+	var date=dateObj.getDate();
+	return year+"/"+month+"/"+date;
+});//end newDate
+
 function photolist(data){
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
@@ -58,17 +77,18 @@ function photolist(data){
 	'<th width="20%">작성일</th>'+
 	'<th width="10%">수정</th>'+
 '</tr>');
-	
  	$.each(data,function(index, value){
  		$.each(value.pdto,function(index, value){
-		$('.myboard_table').append('<tr>'+
-		'<td><input type="checkbox" class="board_cb" value="${dto.photo_no}"></td>'+
-		'<td></td>'+
-		'<td>포토후기</td>'+
-		'<td>'+value.photo_subject+'</td>'+
-		'<td>'+value.photo_reg_date+'</td>'+
-		'<td><input type="button" id="board_upd" value="수정하기"></td>'+
-	'</tr>');
+	var source='<tr>'+
+	'<td><input type="checkbox" class="board_cb"{{dto.photo_no}}></td>'+
+	'<td></td>'+
+	'<td>포토후기</td>'+
+	'<td>{{photo_subject}}</td>'+
+	'<td>{{newDate photo_reg_date}}</td>'+
+	'<td><input type="button" id="board_upd" value="수정하기"></td>'+
+'</tr>'
+var template=Handlebars.compile(source); 
+$('.myboard_table').append(template(value));
  		});
 	});
 }
@@ -84,17 +104,21 @@ function qalist(qaqa){
 	'<th width="10%">수정</th>'+
 '</tr>');
 	
+ 		
 	$.each(qaqa,function(index, value){
  		$.each(value.qdto,function(index, value){
-		$('.myboard_table').append('<tr>'+
-		'<td><input type="checkbox" class="board_cb" value="${dto.photo_no}"></td>'+
-		'<td></td>'+
-		'<td>질문과 답변</td>'+
-		'<td>'+value.qa_subject+'</td>'+
-		'<td>'+value.qa_reg_date+'</td>'+
-		'<td><input type="button" id="board_upd" value="수정하기"></td>'+
-	'</tr>');
- 		});
+
+ 			var source='<tr>'+
+ 			'<td><input type="checkbox" class="board_cb"{{dto.qa_no}}></td>'+
+ 			'<td></td>'+
+ 			'<td>질문과 답변</td>'+
+ 			'<td>{{qa_subject}}</td>'+
+ 			'<td>{{newDate qa_reg_date}}</td>'+
+ 			'<td><input type="button" id="board_upd" value="수정하기"></td>'+
+ 		'</tr>'
+ 		var template=Handlebars.compile(source); 
+ 		$('.myboard_table').append(template(value));
+ 		 		});
 	});
 }
 
@@ -109,23 +133,30 @@ function freelist(free){
 	'<th width="10%">수정</th>'+
 '</tr>');
 	
+
+	
+ 		
+	
 	$.each(free,function(index, value){
  		$.each(value.bdto,function(index, value){
-		$('.myboard_table').append('<tr>'+
-		'<td><input type="checkbox" class="board_cb" value="${dto.photo_no}"></td>'+
-		'<td></td>'+
-		'<td>자유게시판</td>'+
-		'<td>'+value.board_subject+'</td>'+
-		'<td>'+value.board_reg_date+'</td>'+
-		'<td><input type="button" id="board_upd" value="수정하기"></td>'+
-	'</tr>');
- 		});
+ 			var source='<tr>'+
+ 			'<td><input type="checkbox" class="board_cb"{{dto.board_no}}></td>'+
+ 			'<td></td>'+
+ 			'<td>자유게시판</td>'+
+ 			'<td>{{board_subject}}</td>'+
+ 			'<td>{{newDate board_reg_date}}</td>'+
+ 			'<td><input type="button" id="board_upd" value="수정하기"></td>'+
+ 		'</tr>'
+ 		var template=Handlebars.compile(source); 
+ 		$('.myboard_table').append(template(value));
+ 		 		});
 	});
 }
 
 
 	
 </script>
+<form id="form_search" method="get" action="search.do">
 	<div class="mypage_body">
 	<div class="link">
 	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 내가 쓴 글
@@ -152,7 +183,7 @@ function freelist(free){
 					<td></td>
 					<td>자유게시판</td>
 					<td>${bdto.board_subject}</td>
-					<td>${bdto.board_reg_date}</td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${bdto.board_reg_date}"/></td>
 					<td><input type="button" id="board_upd" value="수정하기"></td>
 				</tr>
 						</c:forEach>
@@ -164,9 +195,10 @@ function freelist(free){
 			</div>
 
 		<div class="myboard_find">
-		<input type="radio" name="board">제목
-		<input type="radio" name="board">내용
-		<input type="text" id="text_find" placeholder="검색">
-		<input type="button" id="button_fint" value="검색">
+		<input type="radio" name="searchtype">제목
+		<input type="radio" name="searchtype">내용
+		<input type="text" id="searchval" placeholder="검색" name="searchval">
+		<input type="button" id="button_find" value="검색">
 		</div>
 	</div>
+	</form>
