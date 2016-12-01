@@ -179,23 +179,13 @@
 		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 	
-	<definition name="shop_soup" extends="index">
-		<put-attribute name="title" value="soup page" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/shop/shopbody_soup.jsp" />
-	</definition>
 	
-	<definition name="shop_dish" extends="index">
+	<definition name="shop" extends="index">
 		<put-attribute name="title" value="dish page" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/shop/shopbody_dish.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/shop/shop.jsp" />
 	</definition>
 	
-	<definition name="shop_kimchi" extends="index">
-		<put-attribute name="title" value="kimchi page" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/shop/shopbody_kimchi.jsp" />
-	</definition>
 	
 	<definition name="detail_product" extends="index">
 		<put-attribute name="title" value="detail_page" />

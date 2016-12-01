@@ -184,9 +184,11 @@ body {
 	text-align: center;
 }
 
-#dialog-confirm {
-	background-color: blue;
+#dialog{
+	display: none;
 }
+
+
 </style>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -200,13 +202,6 @@ $(document).ready(function() {
 			
 			var review_mem_no = $('.r_mem_no').val();
 			
-			
-			/* if(review_mem_no == member_no){
-				$('.review_tr').append('<td><button class="review_udt_btn" value="${ReviewDTO.review_no}">수정</button></td>')
-			}
-			if(review_mem_no == mem_no){
-				$('.review_tr').append('<td><button class="review_del_btn" value="${ReviewDTO.review_no}">삭제</button></td>')
-			}  */
 	
 		
 			$('#modifyWindow').addClass('modifyHide');

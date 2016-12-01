@@ -139,13 +139,13 @@
 			</c:forEach>
 			<c:if test="${pv.startPage>1}">
 				<a
-					href="shopDish.do?category_no=2&currentPage=${pv.startPage-pv.blockPage}">
+					href="shop.do?category_no=2&currentPage=${pv.startPage-pv.blockPage}">
 					<c:out value="이전" />
 				</a>
 			</c:if>
 
 			<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
-				<c:url var="currPage" value="shopDish.do?category_no=2">
+				<c:url var="currPage" value="shop.do?category_no=2">
 					<c:param name="currentPage" value="${i}" />
 				</c:url>
 
@@ -155,7 +155,7 @@
 
 			<c:if test="${pv.endPage<pv.totalPage}">
 				<a
-					href="shopDish.do?category_no=2&currentPage=${pv.startPage+pv.blockPage}">
+					href="shop.do?category_no=2&currentPage=${pv.startPage+pv.blockPage}">
 					<c:out value="다음" />
 				</a>
 			</c:if>

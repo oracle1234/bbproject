@@ -239,7 +239,7 @@
 			</list>
 		</property>
 	</bean>
-
+	
 	<!-- view 빈 선언 -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="1"></property>
@@ -258,5 +258,5 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2"></property>
 	</bean>
-
+	
 </beans>

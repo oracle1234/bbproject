@@ -56,17 +56,20 @@ select *
 		and a.member_no = (select member_no from fb_member where id ='asdf' and pw = '1234')
 		
 select * from fb_coupon_book
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 1);
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 4);
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 3);
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 1, 'yes');
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 2, 'no');
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 3, 'yes');
 
 
 select * from fb_coupon
+select * from fb_coupon_book
 delete from fb_coupon where coupon_no = 2
 
+insert into 
 
 insert into fb_coupon values
-insert into fb_coupon values (SEQ_coupon_no.nextval, '축하쿠폰(-3000원)', 3000)
+insert into fb_coupon values (SEQ_coupon_no.nextval, '쿠폰(-10000원)', 10000)
+
 
 
 update fb_coupon set coupon_name = '회원가입 축하쿠폰 (-2000원)' where coupon_no = 1
@@ -83,6 +86,8 @@ select * from fb_member
 select * from FB_COUPON_BOOK
 select * from FB_COUPON
 select * from fb_review
+
+
 
 select * from fb_foods order by foods_no desc;
 
