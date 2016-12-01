@@ -90,14 +90,18 @@ public class ShopController {
 		return mav;
 	}
 	
+	
 	@RequestMapping("/pay_end.do")
 	public ModelAndView mailSendProcess(HttpServletRequest req){
 		
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		ModelAndView mav = new ModelAndView();
+		
+		
 		
 		new MailSend(mdto);
 		
-		ModelAndView mav = new ModelAndView();
+		mav.setViewName("shop_buy_result");
 		return mav;
 		
 	}

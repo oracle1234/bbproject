@@ -110,6 +110,7 @@
 		<put-attribute name="body" value="/WEB-INF/view/body.jsp" />
 	</definition>
 	
+<!-- 	레시피 -->
 	<definition name="adminrecipe" extends="admin">
 		<put-attribute name="title" value="레시피 관리자 페이지" />
 		<put-attribute name="body" value="/WEB-INF/view/admin/recipe_admin.jsp" />
@@ -123,6 +124,7 @@
 		<put-attribute name="body" value="/WEB-INF/view/admin/recipe_list.jsp" />
 	</definition>
 	
+<!-- 	반찬 -->
 	<definition name="adminfoods" extends="admin">
 		<put-attribute name="title" value="음식 관리자 페이지" />
 		<put-attribute name="body" value="/WEB-INF/view/admin/foods_admin.jsp" />
@@ -135,7 +137,21 @@
 	<definition name="adminfoodslist" extends="adminfoods">
 		<put-attribute name="body" value="/WEB-INF/view/admin/foods_list.jsp" />
 	</definition>
-	<!-- 관리자 페이지 -->
+
+	<!-- 쿠폰 -->
+	<definition name="admincoupon" extends="admin">
+		<put-attribute name="title" value="쿠폰 관리자 페이지" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/coupon_admin.jsp" />
+	</definition>
+	
+	<definition name="admincouponins" extends="admincoupon">
+		<put-attribute name="body" value="/WEB-INF/view/admin/coupon_insert.jsp" />
+	</definition>
+	
+	<definition name="admincouponlist" extends="admincoupon">
+		<put-attribute name="body" value="/WEB-INF/view/admin/coupon_list.jsp" />
+	</definition>
+	<!-- 관리자 페이지 end -->
 	
 	<definition name="my_order" extends="index">
 		<put-attribute name="title" value="Spring mypage Example" />
@@ -197,6 +213,12 @@
 		<put-attribute name="title" value="buy_page" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buyPage.jsp" />
+	</definition>
+	
+	<definition name="shop_buy_result" extends="index">
+		<put-attribute name="title" value="buy_result_page" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buy_result.jsp" />
 	</definition>
 	
 	<definition name="agree" extends="index">

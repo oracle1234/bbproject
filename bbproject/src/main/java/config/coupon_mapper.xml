@@ -11,4 +11,21 @@
 		and c.coupon_no = b.coupon_no
 	</select>
 	
+	<select id="adminlist" resultType="dto.fb_CouponDTO" >
+		select *
+		from fb_coupon
+		order by coupon_no asc
+	</select>
+	
+	<insert id="admincouponins" parameterType="dto.fb_CouponDTO">
+		insert into fb_coupon values(SEQ_coupon_no.nextval, #{coupon_name}, #{coupon_discount})
+	</insert>
+	
+	<delete id="admincoupondel" parameterType="dto.fb_CouponDTO">
+		delete from fb_coupon 
+		where coupon_no = #{coupon_no}
+	</delete>
+	
+	
+	
 </mapper>

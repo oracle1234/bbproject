@@ -652,7 +652,7 @@ $(document).ready(function() {
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : '주문명:반찬을부탁해',
-			    amount : amount,
+			    amount : 100,
 			    buyer_email : buyer_mail,
 			    buyer_name : buyer_name,
 			    buyer_tel : buyer_tel,
@@ -666,7 +666,7 @@ $(document).ready(function() {
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
-			        window.location.href = "mailsend.do";
+			        window.location.href = "pay_end.do";
 			        
 			        
 			    } else {
@@ -712,6 +712,11 @@ $(document).ready(function() {
 		}
     	
     	
+    });
+    
+    
+    $('#shop_returnBtn').on('click', function(){
+    	window.location.href = "shop.do";
     });
 	
 	
@@ -847,7 +852,8 @@ function sample4_execDaumPostcode() {
 									<c:forEach items="${member.cList}" var = "couponDTO">
 									<option value="${couponDTO.coupon_discount}">${couponDTO.coupon_name}</option>
 									</c:forEach>
-							</select></td>
+							</select>
+							</td>
 
 						</tr>
 					</table>
@@ -867,15 +873,15 @@ function sample4_execDaumPostcode() {
 						</tr>
 						<tr>
 							<th scope="row">적립금사용</th>
-							<td><span>0원</span></td>
+							<td>0<span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">적립금</th>
-							<td><span>0원</span></td>
+							<td>0<span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">총 결제금액</th>
-							<td><span>0원</span></td>
+							<td>0<span>원</span></td>
 						</tr>
 					</table>
 				</div>
@@ -890,11 +896,11 @@ function sample4_execDaumPostcode() {
 						</tr>
 						
 						<tr>
-							<td rowspan="2"><span>0원</span></td>
+							<td rowspan="2">0<span>원</span></td>
 							<td>적립금사용</td>
 							<td>쿠폰사용</td>
-							<td rowspan="2">0원</td>
-							<td rowspan="2">0원</td>
+							<td rowspan="2">0<span>원</span></td>
+							<td rowspan="2">0<span>원</span></td>
 						</tr>
 						<tr>
 							<td>0<span>원</span></td>
@@ -906,7 +912,6 @@ function sample4_execDaumPostcode() {
 								주문 합계가 45,000원 이상이 되어야 무료배송이 가능합니다.
 							</td>
 						</tr>
-
 					</table>
 				</div>
 				<div id="orderer_wrap">
@@ -948,11 +953,11 @@ function sample4_execDaumPostcode() {
 					<div id="delivery_info">
 						<table id="delivery_info_table" width="950">
 							<caption>
-								배송지 정보&nbsp;&nbsp;&nbsp;<input type="checkbox" id="sameOrder"> 주문자 정보와
+								배송지 정보<span>*</span>&nbsp;&nbsp;&nbsp;<input type="checkbox" id="sameOrder"> 주문자 정보와
 								동일
 							</caption>
 							<tr>
-								<th scope="row">받으시는분 *</th>
+								<th scope="row">받으시는분 <span>*</span></th>
 								<td><input id="recipient_name" type="text"></td>
 							</tr>
 							<tr>
@@ -1017,7 +1022,6 @@ function sample4_execDaumPostcode() {
 										'중지', '새로고침'을 누르지 마시고 결과 화면이 나타날 때까지 기다려 주십시오.<br>
 										&nbsp;- 결제하기 버튼 클릭시 결제창이 나타나지 않을 경우나 안전결제 모듈이 설치 되지 않을 경우 더반찬
 										사이트를 모두 닫으시고 아래 설치파일을 다운받아 ActiveX를 수동설치 하시고 결제를 진행하여 주십시오.<br>
-									<input type="button" value="LG U+ 결제 모듈 수동설치"><br>
 									<br> <input type="radio" class="pay_type" name="pay_type" value="bankBook">
 										무통장입금<br> &nbsp;- 안전한 거래를 제공하기 위해 현금결제시 구매안전 서비스를 제공하고
 										있습니다. <br> &nbsp;- 입금금액이 일치해야 정삭적으로 입금이 가능합니다.<br>

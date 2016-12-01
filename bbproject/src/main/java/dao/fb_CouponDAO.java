@@ -8,4 +8,10 @@ public interface fb_CouponDAO {
 	
 	public List<fb_CouponDTO> list(int num);
 
+	public List<fb_CouponDTO> adminCouponList();
+	
+	public void adminCouponIns(fb_CouponDTO dto);
+	
+	public void adminCouponDel(fb_CouponDTO dto);
+
 }

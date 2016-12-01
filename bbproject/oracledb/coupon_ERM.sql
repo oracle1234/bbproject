@@ -42,8 +42,7 @@ insert into fb_coupon
 values(SEQ_coupon_no.nextval, '10쿠폰', 10);
 insert into FB_COUPON
 values(SEQ_coupon_no.nextval, '30%쿠폰!', 30);
-select * from fb_coupon;
-
+select * from fb_coupon order by coupon_no asc;
 
 insert into fb_coupon_book
 values(SEQ_couponbook_no.nextval, 4, 1, 0);

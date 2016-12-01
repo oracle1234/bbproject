@@ -263,7 +263,7 @@ public class ProductController {
 		
 		service.basketInsertProcess(map);
 		
-		String str = "성공";
+		String str = "";
 		return str;
 	}//end basketinsert/////////////////////////
 	
