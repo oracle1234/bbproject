@@ -8,6 +8,41 @@
 	}
 
 </style>
+
+<script type="text/javascript">
+$(function() {
+	
+	$('#idchk').on("click",function() {
+		var idreg =$('#id').val();
+ 		if(idreg.length == 0){
+			alert("공백은 입력할 수 없습니다.");
+			return false;
+		} else {
+	 		$.ajax({
+	 			type : 'GET',
+				url : 'admincouponidchk.do',
+				data :"id="+idreg,
+				success : function(data){
+					if(data == ""){
+						alert("없는 회원");
+					}else{
+						$(".member").empty();
+						$(".member").append('<input type="hidden" id="member_no" name="member_no" value="'+data.member_no+'"/>');
+					}
+					
+				},
+				error : function(xhr, textStatus, error) {
+					alert(error);
+				}
+			});
+		}
+	});
+	
+	
+});
+
+</script>
+
 <hr/>
 	쿠폰등록 폼
 	<form id="coupon_form" action="admincouponins.do" method="post">
@@ -60,13 +95,21 @@
 	쿠폰 보내기
 	<form id="send_form" action="admincouponsend.do" method="post">
 		
-		쿠폰이름
-		<input type="text" id="coupon_name" name="coupon_name">
-		
-		할인가격
-		<input type="text" id="coupon_discount" name="coupon_discount">
-		
-		<input type="submit" value="등록">
+		쿠폰 번호
+		<select name="coupon_no">
+			<c:forEach items="${aList}" var="dto">
+				<option value="${dto.coupon_no}">${dto.coupon_no}</option>
+			</c:forEach>
+		</select>
+		<br/>
+		회원 아이디
+		<input type="text" id="id" name="id">
+		<input type="button" id="idchk" value="조회">
+		<div class="member">
+
+		</div>
+		<br/>
+		<input type="submit" value="보내기">
 
 	</form>
 		
