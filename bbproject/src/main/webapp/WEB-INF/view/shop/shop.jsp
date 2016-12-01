@@ -15,15 +15,15 @@
 	height: 810px;
 }
 
-#shop_table {
+#shop_table{
 	text-align: center;
 	float: left;
 }
 
+
 #prod_img {
 	width: 312px;
 	height: 200px;
-	background-color: gray;
 }
 
 #prod_img a img {
@@ -40,6 +40,29 @@
 	text-decoration: none;
 	color: black;
 }
+
+#page_search_wrap{
+	width: 300px;
+	height: 100px;
+	clear: left;
+	margin: auto;
+	position: relative;
+}
+
+
+
+#pagenum_wrap{
+	width: 300px;
+	height: 30px;
+	margin: auto;
+}
+#search_wrap{
+	width: 300px;
+	height: 50px;
+	position: absolute;
+	top: 30px;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -97,6 +120,32 @@
 			}
 		});
 		
+		
+		$('#searchBtn').on('click', function(){
+			var searchText = $('#searchText').val();
+			var option = $('#searchSelect').val();
+			
+			if(searchText == ""){
+				alert('검색어를 입력하세요.');
+				
+			}
+			
+			if(option == 0){
+				alert('전체');
+			}
+			
+			$.ajax({
+	 			type : "GET",
+	 			dataType : "text",
+				url : "shopSearch.do?foods_name="+searchText+"&foods_no="+$(this).val(),
+				success : dialog_result,
+				error : function(xhr, textStatus, error) {
+					alert(error);
+				}
+			}); 
+			
+		});
+		
 	});//end ready
 	
 	function dialog_result(data){
@@ -118,7 +167,7 @@
 	<div id="shop_wrap">
 		<div id="shop_menu">
 
-			<c:forEach items="${aList}" var="FoodsDTO">
+				<c:forEach items="${aList}" var="FoodsDTO">
 				<table id="shop_table">
 					<tr>
 						<td><div id="prod_img">
@@ -138,15 +187,19 @@
 					</tr>
 
 				</table>
+				</c:forEach>
 
-			</c:forEach>
+			
+		<div id = "page_search_wrap">
+			<div id = "pagenum_wrap">
 			<c:if test="${pv.startPage>1}">
 				<a
 					href="shop.do?category_no=2&currentPage=${pv.startPage-pv.blockPage}">
 					<c:out value="이전" />
 				</a>
 			</c:if>
-
+			
+			
 			<c:forEach begin="${pv.startPage}" end="${pv.endPage}" var="i">
 				<c:url var="currPage" value="shop.do?category_no=2">
 					<c:param name="currentPage" value="${i}" />
@@ -162,15 +215,22 @@
 					<c:out value="다음" />
 				</a>
 			</c:if>
+			</div>	
 			<br><br>
+			
+			<div id="search_wrap">
 			<select id = "searchSelect">
-			<option>국/찌개</option>
-			<option>반찬</option>
-			<option>김치</option>
+			<option value="0">전체</option>
+			<option value="1">국/찌개</option>
+			<option value="2">반찬</option>
+			<option value="3">김치</option>
 			</select>
 			
 			<input type = "text" id = "searchText">
 			<button id = "searchBtn">검색</button>
+			</div>
+			
+			</div>
 		</div>
 	</div>
 	<div id="dialog" >

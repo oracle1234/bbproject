@@ -10,6 +10,7 @@ import dto.shop_PageDTO;
 public interface ShopDAO {
 	public List<FoodsDTO> shopList(int category_no);
 	public int count(int category_no);
+	public int count(HashMap<String, Object> map);
 	public List<FoodsDTO> pageList(HashMap<String, Object> map);
 	public List<ReviewDTO> reviewList(int review_no);
 	public int reviewCount(int foods_no);
@@ -24,4 +25,7 @@ public interface ShopDAO {
 	public List<FoodsDTO> adminFoodsListProcess(int category_no);
 	public List<FoodsDTO> deletFoodsProcess(FoodsDTO dto);
 	public FoodsDTO getFoodProcess(int foods_no);
+	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map);
+	
+	
 }

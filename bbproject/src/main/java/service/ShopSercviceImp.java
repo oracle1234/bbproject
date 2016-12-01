@@ -138,4 +138,18 @@ public class ShopSercviceImp implements ShopService {
 		return dao.adminFoodsListProcess(category_no);
 	}
 
+	@Override
+	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map) {
+		return dao.shopSearchProcess(map);
+	}
+
+	@Override
+	public int countProcess(int category_no, String foods_name) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("category_no", category_no);
+		map.put("foods_name", foods_name);
+		
+		return dao.count(map);
+	}
+
 }//end class

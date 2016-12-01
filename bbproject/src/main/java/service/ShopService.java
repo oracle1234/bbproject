@@ -11,6 +11,7 @@ import dto.ReviewDTO;
 public interface ShopService {
 	public List<FoodsDTO> listProcess(int foods_no);
 	public int countProcess(int category_no);
+	public int countProcess(int category_no, String foods_name);
 	public List<FoodsDTO> pageListProcess(HashMap<String, Object> map);
 	public List<ReviewDTO> reviewListProcess(int review_no);
 	public int reviewCountProcess(int foods_no);
@@ -24,4 +25,5 @@ public interface ShopService {
 	public String insertFoodsProcess(FoodsDTO dto, HttpServletRequest req);
 	public List<FoodsDTO> deletFoodsProcess(int foods_no, HttpServletRequest req);
 	public List<FoodsDTO> adminFoodsListProcess(int category_no);
+	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map);
 }

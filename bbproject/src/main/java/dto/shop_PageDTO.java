@@ -1,6 +1,11 @@
 package dto;
 
 public class shop_PageDTO {
+	
+	private int foods_no;
+	
+	
+
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
 	private int blockCount = 12; // 한 페이지에 보여줄 레코드수
@@ -14,6 +19,14 @@ public class shop_PageDTO {
 
 	public shop_PageDTO() {
 
+	}
+	
+	public int getFoods_no() {
+		return foods_no;
+	}
+
+	public void setFoods_no(int foods_no) {
+		this.foods_no = foods_no;
 	}
 	
 	public shop_PageDTO(int totalCount){

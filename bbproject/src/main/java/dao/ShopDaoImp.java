@@ -99,4 +99,14 @@ public class ShopDaoImp implements ShopDAO {
 		return sqlSession.selectOne("shop.food", foods_no);
 	}
 
+	@Override
+	public int count(HashMap<String, Object> map) {
+		return sqlSession.selectOne("shop.searchCount", map);
+	}
+
+	@Override
+	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map) {
+		return null;
+	}
+
 }

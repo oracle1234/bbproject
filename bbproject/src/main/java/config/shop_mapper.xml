@@ -107,6 +107,38 @@
 		from fb_foods
 		where foods_no = #{foods_no}
 	</select>
+	
+	<select id="search" parameterType="hashmap" resultType="dto.FoodsDTO">
+			select c.* from (
+			select rownum as rm, b.*
+			from(
+			select * from fb_foods
+			<choose>
+				<when test="pagedto.theme_no != 0">
+					where foods_no = #{pagedto.theme_no} and foods_name like '%'||#{foods_name}||'%'
+				</when>
+				<otherwise>
+					where recipe_name like '%'||#{foods_name}||'%'
+				</otherwise>
+			</choose>
+			order by recipe_no desc)b)c
+			<![CDATA[
+			where c.rm >= #{pagedto.startRow} and c.rm <= #{pagedto.endRow}
+			]]>
+	</select>
+	
+	<select id="searchCount" parameterType="hashmap" resultType="int">
+		select count(*) from fb_foods
+		<choose>
+				<when test="foods_no != 0">
+					where foods_no = #{foods_no} and foods_name like '%'||#{foods_name}||'%'
+				</when>
+				<otherwise>
+					where foods_name like '%'||#{foods_name}||'%'
+				</otherwise>
+			</choose>
+	</select>
+	
 </mapper>
 
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.FoodsDTO;
@@ -90,14 +91,42 @@ public class ShopController {
 		return mav;
 	}
 	
+	/*@RequestMapping(value = "/shopSearch.do", method=RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> searchProcess(FoodsDTO fdto, shop_PageDTO spdto){
+		
+		HashMap<String, Object> ssmap = new HashMap<String, Object>();
+		int totalRecord = service.countProcess(fdto.getCategory_no(), fdto.getFoods_name());
+
+		if (totalRecord >= 1) {
+			// 첫 접속시 현재 페이지를 1로 지정
+			if (spdto.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = spdto.getCurrentPage();
+
+			pdto = new shop_PageDTO(currentPage, totalRecord);
+			mav.addObject("pv", pdto);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("startRow", pdto.getStartRow());
+			map.put("endRow", pdto.getEndRow());
+			map.put("category_no", fdto.getCategory_no());
+			
+			mav.addObject("aList", service.pageListProcess(map));
+		}
+		
+		
+		
+		
+		return resultMap;
+		
+	}//end searchProcess()
+*/	
 	
 	@RequestMapping("/pay_end.do")
 	public ModelAndView mailSendProcess(HttpServletRequest req){
 		
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		
-		
 		
 		new MailSend(mdto);
 		
