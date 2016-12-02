@@ -331,40 +331,43 @@ caption {
 $(document).ready(function() {
 	IMP.init('imp26018843'); 
 	
-	var money = $('#order_table tr:nth-child(2) td:nth-child(5)').text();
-	var totalMoney = parseInt(money.substring(0, money.length-1));
+// 	var money = $('#order_table tr:nth-child(2) td:nth-child(5)').text();
 	
-	var totalcount = 0;
-	totalcount = totalcount + ${amount};
-	var totalsavemoney = 0;
-	var saveMoney = parseInt($('#order_table tr:nth-child(2) td:nth-child(4)').text());
-	totalsavemoney = totalsavemoney + saveMoney;
+// 	alert(money);
 	
-	var delicheck = 0;
+// 	var totalMoney = parseInt(money.substring(0, money.length-1));
 	
-	$('#pay_type_table tr:nth-child(2) td').empty();
-	$('#pay_type_table tr:nth-child(2) td').append(totalMoney+'<span>원</span>');
+// 	var totalcount = 0;
+// 	totalcount = totalcount + ${totalAmount};
 	
+// 	var totalsavemoney = 0;
+// 	var saveMoney = parseInt($('#order_table tr:nth-child(2) td:nth-child(4)').text());
+// 	totalsavemoney = totalsavemoney + saveMoney;
 	
-	$('#smalltotal_table tr:nth-child(5) td').empty();
-	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
+// 	var delicheck = 0;
 	
-	
-	$('#smalltotal_table tr:nth-child(5) td').empty();
-	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
-	
-	$('#smalltotal_table tr:nth-child(4) td').empty();
-	$('#smalltotal_table tr:nth-child(4) td').append(totalsavemoney+'<span>원</span>');
+// 	$('#pay_type_table tr:nth-child(2) td').empty();
+// 	$('#pay_type_table tr:nth-child(2) td').append(totalMoney+'<span>원</span>');
 	
 	
-	$('#smalltotal_table tr:nth-child(1) td').empty();
-	$('#smalltotal_table tr:nth-child(1) td').append(totalcount+'<span>개</span>');
+// 	$('#smalltotal_table tr:nth-child(5) td').empty();
+// 	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
 	
 	
+// 	$('#smalltotal_table tr:nth-child(5) td').empty();
+// 	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
+	
+// 	$('#smalltotal_table tr:nth-child(4) td').empty();
+// 	$('#smalltotal_table tr:nth-child(4) td').append(totalsavemoney+'<span>원</span>');
+	
+	
+// 	$('#smalltotal_table tr:nth-child(1) td').empty();
+// 	$('#smalltotal_table tr:nth-child(1) td').append(totalcount+'<span>개</span>');
+	
+	
+	var totalMoney = parseInt($("#totalPrice").text());
 	$('#total_table tr:nth-child(2) td:nth-child(1)').empty();
 	$('#total_table tr:nth-child(2) td:nth-child(1)').append(totalMoney+'<span>원</span>');
-	
-	
 	if(totalMoney < 45000){
 		delicheck = totalMoney + 2500;
 		$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
@@ -821,14 +824,23 @@ function sample4_execDaumPostcode() {
 							<th>적립금</th>
 							<th>합계</th>
 						</tr>
-
+						
+						<%-- 합계계산 --%>
+						<c:set var="totalPrice" value="0" scope="page"/>
+						<c:set var="totalAmount" value="0" scope="page"/>
+						<c:set var="saveMoney" value="0" scope="page"/>
+						
 						<c:forEach items="${FoodsDTO}" var="food">
 							<tr>
 								<td>${food.foods_name}</td>
 								<td>${food.price}<span>원</span></td>
-								<td>${amount}<span>개</span></td>
-								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
-								<td>${food.price * amount}<span>원</span></td>
+								<td>${food.amount}<span>개</span></td>
+								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * food.amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
+								<td>${food.price * food.amount}<span>원</span></td>
+								
+								<c:set var= "totalAmount" value="${totalAmount + food.amount}"/>
+								<c:set var="totalPrice" value="${totalPrice + food.price * food.amount}"/>
+								<c:set var="saveMoney" value="${saveMoney + (food.price * 0.01 * food.amount)}"/>
 							</tr>
 						</c:forEach>
 					</table>
@@ -861,7 +873,7 @@ function sample4_execDaumPostcode() {
 					<table id="smalltotal_table" width="100%" >
 						<tr>
 							<th scope="row">주문수량합계</th>
-							<td><span>개</span></td>
+							<td><span>${totalAmount}개</span></td>
 						</tr>
 						<tr>
 						
@@ -874,11 +886,11 @@ function sample4_execDaumPostcode() {
 						</tr>
 						<tr>
 							<th scope="row">적립금</th>
-							<td>0<span>원</span></td>
+							<td><fmt:formatNumber pattern="0" value="${saveMoney}" type="NUMBER" /><span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">총 결제금액</th>
-							<td>0<span>원</span></td>
+							<td id="totalPrice">${totalPrice}<span>원</span></td>
 						</tr>
 					</table>
 				</div>
@@ -1027,7 +1039,7 @@ function sample4_execDaumPostcode() {
 								</tr>
 								<tr>
 									<th scope="row">상품합계금액</th>
-									<td><span>원</span></td>
+									<td><span>${totalPrice}원</span></td>
 								</tr>
 								<tr>
 									<th scope="row">배송료</th>

@@ -17,6 +17,7 @@ import dto.MemberDTO;
 import dto.ReviewDTO;
 import dto.fb_BasketDTO;
 import dto.review_PageDTO;
+import service.MemberService;
 import service.ShopService;
 
 @Controller
@@ -27,11 +28,17 @@ public class ProductController {
 	private review_PageDTO pdto;
 	private int currentPage;
 	
+	//추가
+	private MemberService mservice;
 	
 	public void setService(ShopService service) {
 		this.service = service;
 	}
 
+	public void setMservice(MemberService mservice) {
+		this.mservice = mservice;
+	}
+	
 	public ProductController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -42,6 +49,7 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
+		mservice.latelyInsProcess(mdto.getMember_no(), fdto.getFoods_no());
 		
 		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
 		

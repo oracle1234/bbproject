@@ -14,7 +14,7 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
  		<property name="url" value="jdbc:oracle:thin://@127.0.0.1:1521:xe" />
-<!-- 		<property name="url" value="jdbc:oracle:thin://@192.168.10.106:1521:xe" /> -->
+		<!-- <property name="url" value="jdbc:oracle:thin://@192.168.10.106:1521:xe" /> -->
 		<property name="username" value="hr" />
 		<property name="password" value="a1234" />
 	</bean>
@@ -167,6 +167,7 @@
 
 	<bean class="controller.ProductController">
 		<property name="service" ref="shopService"></property>
+		<property name="mservice" ref="memberService"></property>
 	</bean>
 
 	<bean class="controller.ShopController">

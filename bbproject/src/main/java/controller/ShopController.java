@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dto.FoodsDTO;
 import dto.MemberDTO;
+import dto.fb_BasketDTO;
 import dto.fb_CouponDTO;
 import dto.shop_PageDTO;
 import service.ShopService;
@@ -92,8 +96,8 @@ public class ShopController {
 	
 
 	
-	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
-	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req,  int amount) {
+/*	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
+	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req, String foods_no, String amount) {
 		ModelAndView mav = new ModelAndView( );
 		
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
@@ -107,12 +111,66 @@ public class ShopController {
 		String firstPhone = phoneNumber[0];
 		String secondPhone = phoneNumber[1];
 		String lastPhone = phoneNumber[2];
-		
-		
-		
+
+		System.out.println(foods_no);
+	      String[] foodsno = foods_no.split("\\|");
+	      int i;
+	      for(i=0; i<foodsno.length; i++){
+	         System.out.println("길이" +foodsno.length);
+	         System.out.println(foodsno[i]);
+	         
+	      }
+	      
+	      System.out.println(amount);
+	      String[] amountarr = amount.split("\\|");
+	      int j;
+	      for(j=0; j<amountarr.length; j++){
+	         System.out.println("길이" +amountarr.length);
+	         System.out.println(amountarr[j]);
+	      }
 		
 		mav.addObject("FoodsDTO", service.buyListProcess(fdto.getFoods_no()));
 		mav.addObject("amount", amount);
+		//mav.addObject("", service.buyListProcess(fdto.getFoods_no()));
+	      mav.addObject("foods_no", foodsno[1]);
+		mav.addObject("amount", amountarr[1]);
+		mav.addObject("MemberDTO", mdto);
+		mav.addObject("Address", Address);
+		mav.addObject("detailAddress", detailAddress);
+		mav.addObject("postNum", postNum);
+		mav.addObject("firstPhone", firstPhone);
+		mav.addObject("secondPhone", secondPhone);
+		mav.addObject("lastPhone", lastPhone);
+		//mav.setViewName("shop_buy");
+		return mav;
+	}*/
+	
+	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
+	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req, String checkfood[]) {
+		ModelAndView mav = new ModelAndView( );
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		
+		String address[] = mdto.getAddress().split("/");
+		String Address = address[0]; 
+		String detailAddress = address[1];
+		String postNum = address[2];
+		
+		String phoneNumber[] = mdto.getTel().split("-");
+		String firstPhone = phoneNumber[0];
+		String secondPhone = phoneNumber[1];
+		String lastPhone = phoneNumber[2];
+		
+		List<fb_BasketDTO> list = new ArrayList<fb_BasketDTO>();
+		
+		for (String foods_no : checkfood) {
+			list.add(service.shopBuyProcess(Integer.parseInt(foods_no), mdto.getMember_no()));
+		}
+		
+		for (fb_BasketDTO aa : list) {
+			System.out.println(aa.getFoods_no());
+		}
+		
+		mav.addObject("FoodsDTO", list);
 		mav.addObject("MemberDTO", mdto);
 		mav.addObject("Address", Address);
 		mav.addObject("detailAddress", detailAddress);
@@ -184,6 +242,8 @@ public class ShopController {
 		return searchMap;
 		
 	}//end searchProcess()
+	
+	
 	
 	@RequestMapping("/pay_end.do")
 	public ModelAndView mailSendProcess(HttpServletRequest req){

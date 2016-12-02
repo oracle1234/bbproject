@@ -62,11 +62,14 @@ a {
  	z-index: 100;
 }
 
-.quick_li span{
-	font-size: 10px;
-	position: relative;
-	top: -5px;
-}
 .quick_img{
-	width: 90px;
+	width: 100px;
+	padding: 0 5px 0 5px;
+	box-sizing: border-box;
+}
+.quick_li span{
+	width : 90px;
+	font-size: 10px;
+	position : relative;
+	top: -5px;
 }

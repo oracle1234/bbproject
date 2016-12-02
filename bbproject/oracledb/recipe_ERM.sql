@@ -183,7 +183,7 @@ insert into fb_lately_product values(SEQ_lately_no.nextval, 1, 3);
 select * from fb_foods;
 
 delete from fb_lately_product;
-SELECT * from fb_lately_product;
+SELECT * from fb_lately_product where member_no = 4;
 
 select * 
 from fb_lately_product a, fb_member b, fb_foods c
@@ -243,5 +243,11 @@ select *
 			order by recipe_no desc)b)c
 			where c.rm >= 1 and c.rm <= 5
 		
+insert into fb_lately_product(lately_no, member_no, foods_no) 
+values(SEQ_lately_no.nextval, 4, (select foods_no from FB_LATELY_PRODUCT where foods_no != 10)) 
+where foods_no != 10
 
+select count(*)
+		from fb_lately_product
+		where member_no = 4 and foods_no = 7
 		

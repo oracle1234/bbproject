@@ -5,7 +5,32 @@
 <title>Login Form</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
+var s_pw = "${sessionScope.member.pw}";
+var s_id = "${sessionScope.member.id}";
+var s_name = "${sessionScope.member.member_name}";
 	$(document).ready(function() {
+		if(s_id!=''){
+			$('.logindiv').empty();
+			$('.logindiv').append('<ul>'
+					+'<li>'+s_name+'님&nbsp;</li>'
+			+'<li id="logoutform"><a href="logout.do">로그아웃</a></li>'
+			+'</ul>');
+		}
+/* 		$("#logoutform").on("click", function() {
+			$.ajax({
+				type : 'POST',
+				url : 'logout.do',
+				data : "id="+s_id+"&pw="+s_pw,
+				success : function(data) {
+					alert(data);
+				},
+				error : function(xhr,
+						textStatus, error) {
+					alert(error);
+				}
+			});
+		}); */
+		
 		$('.idpwfind').hide(); 
 
 		$('.pwupd').hide();
@@ -13,6 +38,7 @@
 		$("#loginform").on("click", function() {
 			$(".screen").css('display', 'block');
 		});
+		
 
 		$("#close").on("click", function() {
 			$(".screen").css('display', 'none');
@@ -134,8 +160,11 @@
 			url : "loginpro.do",
 			data : "id=" + $("#loginid").val() + "&pw=" + $("#loginpw").val(),
 			success : function(data) {
+				
 				if (data.chk == null) {
+					
 					window.location.href = data.href;
+					
 				} else {
 					alert(data.chk);
 				}
@@ -521,7 +550,7 @@ input {
 <div class='menu'>
 	<ul>
 		<li><a href='#'>Home</a></li>
-		<li><a href='#'>SHOP</a>
+		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
 				<li class='sub'><a href='#'>요리1</a></li>
@@ -541,7 +570,7 @@ input {
 				<li class='sub'><a href='#'>게시판1</a></li>
 				<li class='sub'><a href='#'>게시판2</a></li>
 			</ul></li>
-		<li class='last'><a href='#'>MYPAGE</a></li>
+		<li class='last'><a href='mypage.do'>MYPAGE</a></li>
 	</ul>
 </div>
 

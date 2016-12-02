@@ -6,11 +6,19 @@ public class fb_OrderDTO {
 	
 	private Date day;
 	private int  foods_no, price, amount;
-	private String delivery_condition;
+	private String delivery_condition, picture;
 	private int member_no;
 	
 	public fb_OrderDTO() {
 
+	}
+	
+	public String getPicture() {
+		return picture;
+	}
+	
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	
 	public int getMember_no() {

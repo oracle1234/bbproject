@@ -436,10 +436,10 @@ ALTER TABLE fb_basket
 
 -- review 테이블 member_no 외부키 추가 (주훈 수정)
 ALTER TABLE fb_review
-	ADD FOREIGN KEY (foods_no)
-	REFERENCES fb_foods (foods_no)
-	ADD FOREIGN KEY (member_no)
-	REFERENCES fb_member (member_no)
+	ADD CONSTRAINT fk_review_foods_no FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no) on delete cascade
+	ADD CONSTRAINT fk_review_member_no FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no) on delete cascade
 ;
 
 

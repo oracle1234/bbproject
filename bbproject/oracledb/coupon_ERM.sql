@@ -67,3 +67,9 @@ select *
 		from fb_member
 		where id = #{id} and pw = #{pw}
 		
+select *
+from FB_COUPON_BOOK
+where member_no = 4
+		
+		
+		

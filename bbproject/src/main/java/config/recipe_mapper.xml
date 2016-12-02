@@ -110,11 +110,9 @@
 		select * from dual
 	</insert>
 
-
-
 	<delete id="delete" parameterType="int">
 		delete from fb_theme_recipe
 		where recipe_no = #{recipe_no}
 	</delete>
-
+	
 </mapper>

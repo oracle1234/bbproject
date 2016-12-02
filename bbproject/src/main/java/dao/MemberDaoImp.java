@@ -82,8 +82,17 @@ public class MemberDaoImp implements MemberDAO {
 	}
 
 	@Override
-	public void deleteLately(int lately_no) {
-		sqlSession.delete("member.dellately", lately_no);
+	public void LatelyDel(int lately_no) {
+		sqlSession.delete("member.latelydel", lately_no);
 	}
 
+	@Override
+	public void latelyIns(HashMap<String, Object> map) {
+		sqlSession.insert("member.latelyins",map);
+	}
+	
+	@Override
+	public int latelyChk(HashMap<String, Object> map) {
+		return sqlSession.selectOne("member.latelychk", map);
+	}
 }

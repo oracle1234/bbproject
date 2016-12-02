@@ -37,9 +37,6 @@ select * from fb_review
 
 update fb_review set review_content = '맛없어요' where review_no = 100 and member_no = 1;
 
-
-
-
 update fb_review set review_content = '12345' where review_no = 99 and member_no = 1
 
 select * from fb_basket
@@ -110,3 +107,18 @@ ALTER TABLE fb_tr_order
 ;
 
 
+select *
+from fb_basket
+where member_no = 4
+
+select a.amount, c.foods_no, c.foods_name, c.price
+from fb_basket a, fb_member b, fb_foods c 
+where a.member_no = b.member_no
+and a.foods_no = c.foods_no
+and a.member_no = 4 and a.foods_no = 7
+
+update fb_member set point = 2000;
+
+update fb_member set pw = '1' where id='qwer';
+
+select * from fb_member

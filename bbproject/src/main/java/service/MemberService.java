@@ -16,4 +16,5 @@ public interface MemberService {
 	public void leaveProcess(MemberDTO dto);
 	public void updateProcess(MemberDTO dto);
 	public List<LatelyDTO> latelyProcess(int member_no);
+	public void latelyInsProcess(int member_no, int foods_no);
 }
