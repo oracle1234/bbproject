@@ -57,8 +57,8 @@ $(document).ready(function() {
 			 $("input[name=cart_cb]:checked").each(function(){
 				 $(this).next().prop("name", "checkfood");
 			//alert($(this).next().val());
-				 $(this).next().next().prop("name", "checkamount");
-				// alert($(this).next().next().val());
+			//$(this).next().next().prop("name", "checkamount");
+			// alert($(this).next().next().val());
 			 });
 		});
 	$(document).on('click', '.upd_amount',function(){
@@ -154,7 +154,6 @@ $(document).ready(function() {
 				<tr>
 					<td><input type="checkbox" class="cart_cb" name="cart_cb">
 				 	<input type="hidden" class="foods_no" value="${dto.foods_no}" >
-					<input type="hidden" class="amount" value="${dto.amount}" ></td>
 					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_name}</td>
 					<td>${dto.price}원</td>
 					<td>${dto.amount}
@@ -212,7 +211,5 @@ $(document).ready(function() {
 	<img id="plus1" src="images/plus.png">
 	<img id="plus2" src="images/plus.png">
 	<img id="sum" src="images/sum.png">
-	
-	<input type="hidden" id="amount" name="amount">
 </div>
 </form>

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.FoodsDTO;
 import dto.ReviewDTO;
+import dto.fb_BasketDTO;
 import dto.shop_PageDTO;
 
 public class ShopDaoImp implements ShopDAO {
@@ -74,8 +75,8 @@ public class ShopDaoImp implements ShopDAO {
 	}
 
 	@Override
-	public List<FoodsDTO> buyList(int foods_no) {
-		return sqlSession.selectList("shop.buy_list", foods_no);
+	public FoodsDTO buyList(int foods_no) {
+		return sqlSession.selectOne("shop.buy_list", foods_no);
 	}
 
 	public String insertFoods(FoodsDTO dto) {
@@ -97,6 +98,11 @@ public class ShopDaoImp implements ShopDAO {
 	@Override
 	public FoodsDTO getFoodProcess(int foods_no) {
 		return sqlSession.selectOne("shop.food", foods_no);
+	}
+
+	@Override
+	public fb_BasketDTO shopBuy(HashMap<String, Object> map) {
+		return sqlSession.selectOne("shop.buybasket", map);
 	}
 
 }

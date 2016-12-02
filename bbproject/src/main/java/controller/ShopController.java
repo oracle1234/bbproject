@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dto.FoodsDTO;
 import dto.MemberDTO;
+import dto.fb_BasketDTO;
 import dto.fb_CouponDTO;
 import dto.shop_PageDTO;
 import service.ShopService;
@@ -110,41 +112,38 @@ public class ShopController {
 	}*/
 	
 	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
-	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req, String checkamount[], String checkfood[]) {
+	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req, String checkfood[]) {
 		ModelAndView mav = new ModelAndView( );
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
-		for (String string : checkfood) {
-			System.out.println(string);
+		String address[] = mdto.getAddress().split("/");
+		String Address = address[0]; 
+		String detailAddress = address[1];
+		String postNum = address[2];
+		
+		String phoneNumber[] = mdto.getTel().split("-");
+		String firstPhone = phoneNumber[0];
+		String secondPhone = phoneNumber[1];
+		String lastPhone = phoneNumber[2];
+		
+		List<fb_BasketDTO> list = new ArrayList<fb_BasketDTO>();
+		
+		for (String foods_no : checkfood) {
+			list.add(service.shopBuyProcess(Integer.parseInt(foods_no), mdto.getMember_no()));
 		}
 		
-		for (String string2 : checkamount) {
-			System.out.println(string2);
+		for (fb_BasketDTO aa : list) {
+			System.out.println(aa.getFoods_no());
 		}
 		
-		System.out.println("체크음식"+checkfood);
-		System.out.println("체크수량"+checkamount);
-		
-		List<String> food= Arrays.asList(checkfood);
-		for(String sn:food)
-			System.out.println(sn);
-		
-		List<String> amount= Arrays.asList(checkamount);
-		//List<String> list = service.buyListProcess(checkamount, checkfood);
-		int i;
-		for(i=0; i<checkfood.length; i++)
-			System.out.println(food.get(0));
-		
-	//	mav.addObject("FoodsDTO", service.buyListProcess(Integer.parseInt(food)));
-		mav.addObject("amount", amount.get(i));
-	    //mav.addObject("foods_no", food.get(i));
+		mav.addObject("FoodsDTO", list);
 		mav.addObject("MemberDTO", mdto);
-	/*	mav.addObject("Address", Address);
+		mav.addObject("Address", Address);
 		mav.addObject("detailAddress", detailAddress);
 		mav.addObject("postNum", postNum);
 		mav.addObject("firstPhone", firstPhone);
 		mav.addObject("secondPhone", secondPhone);
-		mav.addObject("lastPhone", lastPhone);*/
+		mav.addObject("lastPhone", lastPhone);
 		mav.setViewName("shop_buy");
 		return mav;
 	}
