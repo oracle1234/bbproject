@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -59,6 +60,7 @@ public class BoardController {
 	}
 
 	// [자유게시판]
+	// <처음 게시판 리스트보기>
 	@RequestMapping("/board_list.do")
 	public ModelAndView board_listMethod(BoardDTO bdto, PageDTO pv) {
 
@@ -83,6 +85,7 @@ public class BoardController {
 		return mav;
 	}// end board_listMethod()
 
+	// <게시판 글 상세보기(눌렀을 때)>
 	@RequestMapping(value = "/board_view.do", method = RequestMethod.GET)
 	public ModelAndView board_viewMethod(int currentPage, BoardDTO bdto, Comment_PageDTO cpdto2) {
 		ModelAndView mav = new ModelAndView();
@@ -111,6 +114,7 @@ public class BoardController {
 		return mav;
 	}// end board_viewMethod()
 
+	// <게시판 글 상세보기(업데이트, 삭제 등 이후에)>
 	@RequestMapping(value = "/board_view.do", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> board_viewProMethod(BoardDTO bdto, Comment_PageDTO cpdto2) {
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
@@ -134,6 +138,7 @@ public class BoardController {
 		return resultMap;
 	}// end board_viewProMethod();
 
+	// <댓글쓰기>
 	@RequestMapping("/commentInsert.do")
 	public @ResponseBody HashMap<String, Object> commentInsertProcess(BoardDTO bdto, CommentDTO cdto, MemberDTO mdto,
 			Comment_PageDTO cpdto2) {
@@ -169,6 +174,7 @@ public class BoardController {
 		return resultMap;
 	}// end commentInsertProcess()
 
+	// <댓글삭제>
 	@RequestMapping("/commentDelete.do")
 	public @ResponseBody HashMap<String, Object> commentDeleteProcess(BoardDTO bdto, CommentDTO cdto, MemberDTO mdto,
 			Comment_PageDTO cpdto2) {
@@ -202,6 +208,7 @@ public class BoardController {
 		return resultMap;
 	}// end commentDeleteProcess()
 
+	// <댓글수정 눌렀을 때>
 	@RequestMapping(value = "/commentUpdate.do", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> commentUpdateProcess(BoardDTO bdto, CommentDTO cdto, MemberDTO mdto,
 			Comment_PageDTO cpdto2) {
@@ -236,6 +243,7 @@ public class BoardController {
 		return resultMap;
 	}// end commentUpdateProcess()
 
+	// <댓글수정 된 후>
 	@RequestMapping(value = "/commentUpdate.do", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> commentUpdateProProcess(BoardDTO bdto, CommentDTO cdto, MemberDTO mdto,
 			Comment_PageDTO cpdto2) {
@@ -270,19 +278,22 @@ public class BoardController {
 		return resultMap;
 	}// end commentUpdateProProcess()
 
+	// <게시글 쓰기>
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
-	public ModelAndView board_writeMethod(PageDTO pv, CommentDTO cdto) {
+	public ModelAndView board_writeMethod(PageDTO pv) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("board_write");
 		return mav;
 	}// end board_writeMethod()
 
+	// <게시글 쓰기>
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
-	public String board_writeProMethod(BoardDTO bdto, CommentDTO cdto) {
+	public String board_writeProMethod(BoardDTO bdto) {
 		service.insertProcess(bdto);
 		return "redirect:/board_list.do";
 	}// end writeProMethod
 
+	// <게시글 수정>
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)
 	public ModelAndView board_updateMethod(BoardDTO bdto, int currentPage) {
 		ModelAndView mav = new ModelAndView();
@@ -292,6 +303,7 @@ public class BoardController {
 		return mav;
 	}// end board_updateMethod()
 
+	// <게시글 수정>
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.POST)
 	public ModelAndView board_updateProMethod(BoardDTO bdto, int currentPage) {
 		ModelAndView mav = new ModelAndView();
@@ -303,6 +315,7 @@ public class BoardController {
 		return mav;
 	}// end board_updateProMethod()
 
+	// <게시글 삭제>
 	@RequestMapping("/board_delete.do")
 	public ModelAndView board_deleteMethod(BoardDTO bdto, int currentPage) {
 		ModelAndView mav = new ModelAndView();
@@ -319,6 +332,39 @@ public class BoardController {
 		return mav;
 
 	}// end deleteMethod()
+
+	// <검색>
+	@RequestMapping(value = "/board_search.do")
+	public ModelAndView board_searchMethod(String keyField, String keyWord, BoardDTO bdto, PageDTO pv) {
+		ModelAndView mav = new ModelAndView();
+
+		HashMap<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("keyfield", keyField);
+		searchMap.put("keyword", keyWord);
+		mav.addObject("aList", service.searchListProcess(searchMap));
+		
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+		
+		int totalRecord = service.countProcess(bdto.getBoardcategory_no());
+		if(totalRecord >=1){
+			if(pv.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = pv.getCurrentPage();
+			
+			pdto = new PageDTO(currentPage, totalRecord);
+			
+			pageMap.put("startRow", pdto.getStartRow());
+			pageMap.put("endRow", pdto.getEndRow());
+		}
+		
+		
+		mav.addObject("list", service.pageListProcess(pageMap));
+		mav.addObject("pv", pdto);
+		mav.setViewName("board_list");
+		return mav;
+
+	}//end board_searchMethod()
 
 	// [QA게시판]
 	@RequestMapping("/qa_list.do")
@@ -640,30 +686,31 @@ public class BoardController {
 		return mav;
 	}// end board_listMethod()
 
-	@RequestMapping(value="/photo_image.do", method=RequestMethod.GET)
-	public void showImage(String filename, HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException{
-		
+	@RequestMapping(value = "/photo_image.do", method = RequestMethod.GET)
+	public void showImage(String filename, HttpServletResponse response, HttpServletRequest request)
+			throws IOException, ServletException {
+
 		String filepath = request.getSession().getServletContext().getRealPath(File.separator) + "/temp/" + filename;
-		
+
 		byte[] a = readFile(filepath);
-		
+
 		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
 		response.getOutputStream().write(a);
 		response.getOutputStream().close();
 	}
-	
-	private byte[] readFile(String filename) throws IOException{
+
+	private byte[] readFile(String filename) throws IOException {
 		String path = filename;
-		
+
 		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path));
 		int length = bis.available();
 		byte[] bytes = new byte[length];
 		bis.read(bytes);
 		bis.close();
-		
+
 		return bytes;
 	}
-	
+
 	@RequestMapping(value = "/photo_write.do", method = RequestMethod.GET)
 	public ModelAndView photo_writeMethod(PageDTO pv) {
 		ModelAndView mav = new ModelAndView();
@@ -678,7 +725,7 @@ public class BoardController {
 		MultipartFile file = idto.getFilename();
 		if (!file.isEmpty()) {
 			String fileName = file.getOriginalFilename();
-			
+
 			// 중복파일명을 처리하기 위해 난수 발생
 			UUID random = UUID.randomUUID();
 			String root = request.getSession().getServletContext().getRealPath("/");
@@ -691,10 +738,10 @@ public class BoardController {
 			try {
 				FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
 			} catch (FileNotFoundException e) {
-				
+
 				e.printStackTrace();
 			} catch (IOException e) {
-				
+
 				e.printStackTrace();
 			}
 			idto.setPhoto_upload(random + "_" + fileName);

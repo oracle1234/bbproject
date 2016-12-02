@@ -26,6 +26,7 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	public void setDao(BoardDAO bdao) {
+		
 		this.bdao = bdao;
 	}
 
@@ -34,25 +35,23 @@ public class BoardServiceImp implements BoardService {
 
 		return bdao.count(boardcategory_no);
 	}
-	
-	
+
 	@Override
 	public List<BoardDTO> listProcess(PageDTO pv) {
-		
+
 		return bdao.list(pv);
 	}
-	
-	
+
 	@Override
 	public List<BoardDTO> pageListProcess(HashMap<String, Object> map) {
-		
+
 		return bdao.pageList(map);
 	}
 
 	@Override
 	public void insertProcess(BoardDTO bdto) {
+		
 		bdao.save(bdto);
-
 	}
 
 	@Override
@@ -63,7 +62,7 @@ public class BoardServiceImp implements BoardService {
 
 	@Override
 	public BoardDTO updateSelectProcess(int num) {
-		
+
 		return bdao.updateNum(num);
 	}
 
@@ -71,45 +70,49 @@ public class BoardServiceImp implements BoardService {
 	public void updateProcess(BoardDTO bdto) {
 
 		bdao.update(bdto);
-	}// end updateProcess()
+	}
 
 	@Override
 	public void deleteProcess(int num) {
 
 		bdao.delete(num);
+	}
 
-	}// end deleteProcess()
-
-	
 	@Override
 	public List<CommentDTO> commentPageProcess(HashMap<String, Object> map) {
-		
+
 		return bdao.commentPageList(map);
 	}
 
 	//
 	@Override
 	public int commentCountProcess(int board_no) {
-		
+
 		return bdao.commentCount(board_no);
 	}
 
 	@Override
 	public void commentInsertProcess(HashMap<String, Object> map) {
-		
+
 		bdao.commentSaveList(map);
 	}
 
 	@Override
 	public void commentUpdateProcess(HashMap<String, Object> map) {
-		
+
 		bdao.commentUpdateList(map);
 	}
 
 	@Override
 	public void commentDeleteProcess(HashMap<String, Object> map) {
-		
+
 		bdao.commentDeleteList(map);
+	}
+
+	@Override
+	public List<BoardDTO> searchListProcess(HashMap<String,Object> map) {
+
+		return bdao.searchList(map);
 	}
 
 }

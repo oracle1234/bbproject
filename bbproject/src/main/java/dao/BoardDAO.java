@@ -24,4 +24,5 @@ public interface BoardDAO {
 	public void commentSaveList(HashMap<String, Object> map);
 	public void commentUpdateList(HashMap<String, Object> map);
 	public void commentDeleteList(HashMap<String, Object> map);
+	public List<BoardDTO> searchList(HashMap<String, Object> map);
 }

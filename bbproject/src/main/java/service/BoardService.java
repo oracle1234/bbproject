@@ -24,6 +24,7 @@ public interface BoardService {
 	public void commentInsertProcess(HashMap<String, Object> map);
 	public void commentUpdateProcess(HashMap<String, Object> map);
 	public void commentDeleteProcess(HashMap<String, Object> map);
+	public List<BoardDTO> searchListProcess(HashMap<String, Object> map);
 }
 
 

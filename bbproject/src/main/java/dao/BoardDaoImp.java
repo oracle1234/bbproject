@@ -105,4 +105,10 @@ public class BoardDaoImp implements BoardDAO {
 		sqlSession.selectList("board.commentDelete", map);
 	}
 
+	@Override
+	public List<BoardDTO> searchList(HashMap<String,Object> map) {
+		
+		return sqlSession.selectList("board.search", map);
+	}
+
 }

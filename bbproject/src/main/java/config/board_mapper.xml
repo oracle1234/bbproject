@@ -77,7 +77,7 @@
 		and b.board_no = #{board_no} order by c.comment_no desc
 	</select>
 
-	<select id="pageList" resultType="dto.BoardDTO" parameterType="map">
+	<select id="pageList" resultType="dto.BoardDTO" parameterType="hashmap">
 		<![CDATA[
 		select b.* from (
 		select rownum as rm, a.* from (
@@ -116,6 +116,10 @@
 		board_readcount=board_readcount+1 where
 		board_no=#{board_no}
 	</update>
+	
+	<select id="search" parameterType="hashmap" resultType="dto.BoardDTO">
+		select * from fb_board where ${keyfield} like '%${keyword}%' order by board_no desc
+	</select>
 	
 	<insert id="save" parameterType="dto.BoardDTO">
 		insert into fb_board(boardcategory_no, member_no, board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
