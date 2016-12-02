@@ -106,3 +106,19 @@ ALTER TABLE fb_tr_order
 	ADD CONSTRAINT fk_order_recipe_no FOREIGN KEY (recipe_no)
 	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
 ;
+
+select *
+from fb_basket
+where member_no = 4
+
+select a.amount, c.foods_no, c.foods_name, c.price
+from fb_basket a, fb_member b, fb_foods c 
+where a.member_no = b.member_no
+and a.foods_no = c.foods_no
+and a.member_no = 4 and a.foods_no = 7
+
+update fb_member set point = 2000;
+
+update fb_member set pw = '1' where id='qwer';
+
+select * from fb_member

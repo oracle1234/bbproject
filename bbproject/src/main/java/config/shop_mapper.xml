@@ -107,6 +107,15 @@
 		from fb_foods
 		where foods_no = #{foods_no}
 	</select>
+	
+	<select id="buybasket" parameterType="hashmap" resultType="dto.fb_BasketDTO">
+		select a.amount, c.foods_no, c.foods_name, c.price
+		from fb_basket a, fb_member b, fb_foods c 
+		where a.member_no = b.member_no
+		and a.foods_no = c.foods_no
+		and a.member_no = #{member_no} and a.foods_no = #{foods_no}
+	</select>
+	
 </mapper>
 
 
