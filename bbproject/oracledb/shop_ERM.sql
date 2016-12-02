@@ -16,6 +16,7 @@ select * from fb_foods
 select * from fb_category
 select * from fb_member
 
+drop table fb_foods
 
 drop table fb_category;
 drop table fb_member;
@@ -23,8 +24,9 @@ drop table fb_foods
 drop table fb_basket
 drop table fb_coupon
 drop table fb_delivery_cost
-drop table fb_review
 drop table fb_lately_product
+drop table fb_review
+
 
 select * from fb_member
 
@@ -106,6 +108,7 @@ ALTER TABLE fb_tr_order
 	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
 ;
 
+fb_foods
 
 select *
 from fb_basket

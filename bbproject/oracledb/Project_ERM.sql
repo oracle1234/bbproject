@@ -336,7 +336,7 @@ CREATE TABLE fb_board
 	board_subject varchar2(200) NOT NULL,
 	PRIMARY KEY (board_no)
 );
-
+lately
 
 CREATE TABLE fb_theme_recipe
 (
