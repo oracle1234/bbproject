@@ -106,7 +106,7 @@ public class ShopDaoImp implements ShopDAO {
 
 	@Override
 	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map) {
-		return null;
+		return sqlSession.selectList("shop.search", map);
 	}
 
 }

@@ -9,10 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <script src="js/detail_product.js"></script> -->
 <style type="text/css">
-body {
-	margin: 0px;
-	padding: 0px;
-}
 
 #product_wrap {
 	width: 950px;
@@ -193,8 +189,7 @@ body {
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
 var uno = "";
 var savemoney = "";
@@ -795,7 +790,6 @@ $(document).ready(function() {
 
 				<div id="pre_next_pagenum">
 					<c:if test="${pv.startPage>1}">
-						<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage-pv.blockPage}"> --%>
 						<a
 							href="javascript:preFunction(${foods_no}, ${pv.startPage-pv.blockPage})">
 							<c:out value="이전" />
@@ -808,10 +802,8 @@ $(document).ready(function() {
 					</c:forEach>
 
 					<c:if test="${pv.endPage<pv.totalPage}">
-						<%--<a href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})"> --%>
 						<a
 							href="javascript:nextFunction(${foods_no}, ${pv.startPage+pv.blockPage})">
-							<%-- <a href="detailProduct.do?foods_no=${foods_no}&currentPage=${pv.startPage+pv.blockPage}"> --%>
 							<c:out value="다음" />
 						</a>
 					</c:if>

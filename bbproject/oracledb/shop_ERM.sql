@@ -8,6 +8,8 @@ insert into fb_review values (SEQ_review_no.nextval, 'adfasdfsdaf', 'ㅎㅎㅎ�
 insert into fb_review values (SEQ_review_no.nextval, 'adfasdfsdaf', 'ㅎㅎㅎㅎㅎㅎㅎ', sysdate, 1, 1);
 
 
+select count(*) from fb_foods where category_no = 3
+
 drop table fb_review;
 select * from fb_foods
 
@@ -106,3 +108,5 @@ ALTER TABLE fb_tr_order
 	ADD CONSTRAINT fk_order_recipe_no FOREIGN KEY (recipe_no)
 	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
 ;
+
+

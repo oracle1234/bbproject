@@ -46,7 +46,7 @@
 		count(*) from fb_foods where category_no = #{category_no}
 	</select>
 
-	<select id="page_list" parameterType="map" resultType="dto.FoodsDTO">
+	<select id="page_list" parameterType="hashmap" resultType="dto.FoodsDTO">
 		<![CDATA[
 		select b.* from(
 		select rownum as rm, a.* from(
@@ -114,24 +114,24 @@
 			from(
 			select * from fb_foods
 			<choose>
-				<when test="pagedto.theme_no != 0">
-					where foods_no = #{pagedto.theme_no} and foods_name like '%'||#{foods_name}||'%'
+				<when test="pdto.category_no != 0">
+					where category_no = #{pdto.category_no} and foods_name like '%'||#{foods_name}||'%'
 				</when>
 				<otherwise>
-					where recipe_name like '%'||#{foods_name}||'%'
+					where foods_name like '%'||#{foods_name}||'%'
 				</otherwise>
 			</choose>
-			order by recipe_no desc)b)c
+			order by category_no desc)b)c
 			<![CDATA[
-			where c.rm >= #{pagedto.startRow} and c.rm <= #{pagedto.endRow}
+			where c.rm >= #{pdto.startRow} and c.rm <= #{pdto.endRow}
 			]]>
 	</select>
 	
 	<select id="searchCount" parameterType="hashmap" resultType="int">
 		select count(*) from fb_foods
 		<choose>
-				<when test="foods_no != 0">
-					where foods_no = #{foods_no} and foods_name like '%'||#{foods_name}||'%'
+				<when test="category_no != 0">
+					where category_no = #{category_no} and foods_name like '%'||#{foods_name}||'%'
 				</when>
 				<otherwise>
 					where foods_name like '%'||#{foods_name}||'%'

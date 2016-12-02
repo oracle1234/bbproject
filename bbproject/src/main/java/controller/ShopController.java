@@ -31,9 +31,10 @@ public class ShopController {
 		this.service = service;
 	}
 
-	@RequestMapping("/shop.do")
-	public ModelAndView dishPage(FoodsDTO fdto, shop_PageDTO spdto) {
+	@RequestMapping(value="/shop.do", method=RequestMethod.GET)
+	public ModelAndView shopPage(FoodsDTO fdto, shop_PageDTO spdto) {
 		ModelAndView mav = new ModelAndView();
+		
 
 		int totalRecord = service.countProcess(fdto.getCategory_no());
 
@@ -45,18 +46,50 @@ public class ShopController {
 				currentPage = spdto.getCurrentPage();
 
 			pdto = new shop_PageDTO(currentPage, totalRecord);
-			mav.addObject("pv", pdto);
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("startRow", pdto.getStartRow());
 			map.put("endRow", pdto.getEndRow());
 			map.put("category_no", fdto.getCategory_no());
 			
+			mav.addObject("category_no", fdto.getCategory_no());
+			mav.addObject("pv", pdto);
 			mav.addObject("aList", service.pageListProcess(map));
 		}
 
 		mav.setViewName("shop");
 		return mav;
-	}// end dishPage()
+	}// end shopPage()
+	
+	@RequestMapping(value="/shop.do", method=RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> shopPostPage(FoodsDTO fdto, shop_PageDTO spdto) {
+		
+		System.out.println("카넘:"+fdto.getCategory_no());
+		System.out.println("커런트"+spdto.getCurrentPage());
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+		int totalRecord = service.countProcess(fdto.getCategory_no());
+		System.out.println("토탈"+totalRecord);
+
+		if (totalRecord >= 1) {
+			// 첫 접속시 현재 페이지를 1로 지정
+			if (spdto.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = spdto.getCurrentPage();
+
+			pdto = new shop_PageDTO(currentPage, totalRecord);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("startRow", pdto.getStartRow());
+			map.put("endRow", pdto.getEndRow());
+			map.put("category_no", fdto.getCategory_no());
+			
+			resultMap.put("aList", service.pageListProcess(map));
+		}
+		
+		resultMap.put("pv", pdto);
+		return resultMap;
+	}// end shopPage()
+	
 
 	
 	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
@@ -91,36 +124,66 @@ public class ShopController {
 		return mav;
 	}
 	
-	/*@RequestMapping(value = "/shopSearch.do", method=RequestMethod.POST)
+	@RequestMapping(value = "/shopSearch.do", method=RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> searchProcess(FoodsDTO fdto, shop_PageDTO spdto){
 		
-		HashMap<String, Object> ssmap = new HashMap<String, Object>();
+		HashMap<String, Object> searchMap = new HashMap<String, Object>();
 		int totalRecord = service.countProcess(fdto.getCategory_no(), fdto.getFoods_name());
 
 		if (totalRecord >= 1) {
-			// 첫 접속시 현재 페이지를 1로 지정
-			if (spdto.getCurrentPage() == 0)
+			if (spdto.getCurrentPage() == 0){
 				currentPage = 1;
-			else
+			}
+			else{
 				currentPage = spdto.getCurrentPage();
-
-			pdto = new shop_PageDTO(currentPage, totalRecord);
-			mav.addObject("pv", pdto);
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("startRow", pdto.getStartRow());
-			map.put("endRow", pdto.getEndRow());
-			map.put("category_no", fdto.getCategory_no());
+			}
 			
-			mav.addObject("aList", service.pageListProcess(map));
+			pdto = new shop_PageDTO(currentPage, totalRecord);
+			pdto.setCategory_no(fdto.getCategory_no());
+			
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pdto", pdto);
+			map.put("foods_name", fdto.getFoods_name());
+			
+			searchMap.put("searchList", service.shopSearchProcess(map));
 		}
 		
+		searchMap.put("pdto",pdto);
 		
-		
-		
-		return resultMap;
+		return searchMap;
 		
 	}//end searchProcess()
-*/	
+	
+	@RequestMapping(value = "/shopSearch.do", method=RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> searchPostProcess(FoodsDTO fdto, shop_PageDTO spdto){
+		
+		
+		HashMap<String, Object> searchMap = new HashMap<String, Object>();
+		int totalRecord = service.countProcess(fdto.getCategory_no(), fdto.getFoods_name());
+
+		if (totalRecord >= 1) {
+			if (spdto.getCurrentPage() == 0){
+				currentPage = 1;
+			}
+			else{
+				currentPage = spdto.getCurrentPage();
+			}
+			
+			pdto = new shop_PageDTO(currentPage, totalRecord);
+			pdto.setCategory_no(fdto.getCategory_no());
+			
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pdto", pdto);
+			map.put("foods_name", fdto.getFoods_name());
+			
+			searchMap.put("searchList", service.shopSearchProcess(map));
+		}
+		
+		searchMap.put("pdto",pdto);
+		
+		return searchMap;
+		
+	}//end searchProcess()
 	
 	@RequestMapping("/pay_end.do")
 	public ModelAndView mailSendProcess(HttpServletRequest req){

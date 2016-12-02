@@ -2,9 +2,7 @@ package dto;
 
 public class shop_PageDTO {
 	
-	private int foods_no;
-	
-	
+	private int category_no;
 
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
@@ -21,13 +19,15 @@ public class shop_PageDTO {
 
 	}
 	
-	public int getFoods_no() {
-		return foods_no;
+	public int getCategory_no() {
+		return category_no;
 	}
 
-	public void setFoods_no(int foods_no) {
-		this.foods_no = foods_no;
+
+	public void setCategory_no(int category_no) {
+		this.category_no = category_no;
 	}
+	
 	
 	public shop_PageDTO(int totalCount){
 		  //총페이지수
