@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,9 +25,16 @@ public class fb_OrderDaoImp implements fb_OrderDAO{
 	}
 
 /*	@Override
-	public List<fb_OrderDTO> deleteProcess(fb_OrderDTO odto) {
-		return sqlSession.delete("order.delete", odto);
-	}*/
+	public fb_OrderDTO delete(String member_no, String foods_no, String day) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("member_no", member_no);
+		map.put("foods_no", foods_no);
+		map.put("day", day);
+		return sqlSession.delete("order.delete", map);
+		
+	}
+*/
+	
 
 
 

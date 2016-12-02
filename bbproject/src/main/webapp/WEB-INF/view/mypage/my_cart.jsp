@@ -30,7 +30,7 @@ $(document).ready(function() {
 		  parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
 		});
 	 
-	 $('#cart_order').on('click', function(){
+	/*  $('#cart_order').on('click', function(){
 		 var foodsno ="";
 		 var amount ="";
 		 $("input[name=cart_cb]:checked").each(function(){
@@ -51,8 +51,16 @@ $(document).ready(function() {
 		 $('#amount').val(amount);
 		 alert($('#foodsno').val());
 		 alert($('#amount').val());
-	 });
+	 }); */
 	 
+		$('#cart_order').on('click', function(){
+			 $("input[name=cart_cb]:checked").each(function(){
+				 $(this).next().prop("name", "checkfood");
+			//alert($(this).next().val());
+				 $(this).next().next().prop("name", "checkamount");
+				// alert($(this).next().next().val());
+			 });
+		});
 	$(document).on('click', '.upd_amount',function(){
 		 $.ajax({
 		 type : 'GET', 
@@ -198,11 +206,13 @@ $(document).ready(function() {
 	<div class="cart_button">
 		<input type="button" id="cart_del" value="선택상품삭제"> <input
 			type="submit" id="cart_order" value="선택상품주문">
+			<input type="hidden" id="foodsno" >
+			<input type="hidden" id="amount" >
 	</div>
 	<img id="plus1" src="images/plus.png">
 	<img id="plus2" src="images/plus.png">
 	<img id="sum" src="images/sum.png">
-	<input type="hidden" id="foodsno" name="foods_no">
+	
 	<input type="hidden" id="amount" name="amount">
 </div>
 </form>

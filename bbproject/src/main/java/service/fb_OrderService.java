@@ -7,7 +7,6 @@ import dto.fb_OrderDTO;
 public interface fb_OrderService {
 	
 	public List<fb_OrderDTO> orderlistProcess(int member_no);
-
-	/*public List<fb_OrderDTO> deleteProcess(fb_OrderDTO odto);*/
+	//List<fb_OrderDTO> deleteProcess(String member_no, String foods_no, String day);
 
 }
