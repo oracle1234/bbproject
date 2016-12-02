@@ -75,6 +75,7 @@ public class MypageController {
 		mav.addObject("aList", orderservice.orderlistProcess(dto.getMember_no()));
 		mav.setViewName("my_order");
 		return mav;
+		
 	}
 	
 /*	@RequestMapping("/myorder_del.do")
@@ -82,7 +83,7 @@ public class MypageController {
 		return orderservice.deleteProcess(odto);
 
 	}*/
-
+	
 	@RequestMapping("/my_cart.do")
 	public ModelAndView listMethod(HttpServletRequest req) {
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
