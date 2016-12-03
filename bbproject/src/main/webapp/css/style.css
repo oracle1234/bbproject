@@ -11,10 +11,10 @@
 @color-sel2: #f6b;
 @color-range: lighten(@color-base, 12%);
 */
-html {
+ html {
   box-sizing: border-box;
   font-size: 62.5%;
-}
+} 
 *,
 *:before,
 *:after {
@@ -24,12 +24,12 @@ html {
   font-family: 'Roboto', arial, helvetica, sans-serif;
   font-weight: 400;
 }
-body {
-  padding: 40px 0;
-  background: #fafafa;
+   body {
+ /*  padding: 40px 0; */
+/*   background: #fafafa; */
   font-size: 1.6rem;
   color: #333333;
-}
+}   
 #c {
   width: 410px;
   padding: 40px;
@@ -55,7 +55,14 @@ input {
 table {
   border-collapse: collapse;
   cursor: default;
-  width: 100%;
+ /*  width: 100%; */
+ width:196px;
+ height:198px;
+}
+
+table tr {
+	width:196px;
+	height:33px;
 }
 table td {
   border: 1px solid #ddd;
@@ -76,17 +83,19 @@ table td i {
 table td i {
   display: inline-block;
   position: relative;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
   border-radius: 50%;
   transition: all .2s ease;
 }
 table thead td {
   background: #eee;
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight: 300;
+  width:28px;
+  height:25px;
 }
 .sel1,
 .sel2,
@@ -99,6 +108,7 @@ table td.range i {
 table td.sel1 i {
   background: #ff66bb;
 }
+
 table td.sel2 i {
   background: #66ccff;
 }
@@ -142,13 +152,14 @@ p.sub i {
   line-height: 140%;
 }
 #disp {
-  position: relative;
+  /* position: relative; */
   text-transform: uppercase;
   text-align: center;
-  height: 60px;
-  line-height: 60px;
-  font-size: 1.8rem;
-  background: #ff66bb;
+  width:223px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 1.3rem;
+  background: black;
   color: #fff;
   -moz-user-select: none;
   /* Firefox */
@@ -172,10 +183,10 @@ p.sub i {
   float: right;
   width: 15%;
   cursor: pointer;
-  font-size: 2.9rem;
-  width: 40px;
-  height: 40px;
-  line-height: 36px;
+  font-size: 1rem;
+  width: 20px;
+  height: 20px;
+  line-height: 15px;
   border-radius: 50%;
   margin: 10px 10px 0 0;
 }
@@ -219,8 +230,8 @@ p.sub i {
 }
 #calHelp i {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 14px;
+  height: 14px;
   line-height: 30px;
   text-align: center;
   margin: 0 3px 0 0;

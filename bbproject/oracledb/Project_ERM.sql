@@ -58,13 +58,8 @@ CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-<<<<<<< HEAD
-CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-<<<<<<< HEAD
-=======
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
->>>>>>> refs/remotes/origin/joohoon2
 
 
 =======
@@ -73,11 +68,13 @@ CREATE SEQUENCE SEQ_boardcategory_no INCREMENT BY 1 START WITH 1 nocache nocycle
 
 /* Create Tables */
 
+
+--테이블 컬럼 순서 변경 //주훈
 CREATE TABLE fb_lately_product
 (
+	lately_no number NOT NULL,
 	member_no number NOT NULL,
-	foods_no number NOT NULL,
-	lately_no number NOT NULL
+	foods_no number NOT NULL
 );
 
 CREATE TABLE fb_coupon
@@ -96,18 +93,14 @@ CREATE TABLE fb_coupon_book
 	coupon_no number NOT NULL,
 	 
 	coupon_state varchar2(10) not null,
-<<<<<<< HEAD
-=======
 	PRIMARY KEY (couponbook_no)
 );
-=======
+
 CREATE TABLE fb_coupon_book
 (
 	couponbook_no number NOT NULL,
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
->>>>>>> refs/remotes/origin/yeonsung
->>>>>>> refs/remotes/origin/joohoon2
 	PRIMARY KEY (couponbook_no)
 );
 
@@ -309,7 +302,6 @@ CREATE TABLE fb_tr_order
 	order_no number NOT NULL,
 	recipe_no number NOT NULL,
 	order_pic varchar2(50),
-	-- 설명
 	order_text varchar2(100),
 	PRIMARY KEY (order_no)
 );
@@ -318,9 +310,8 @@ CREATE TABLE fb_tr_order
 CREATE TABLE fb_tr_complete
 (
 	recipe_no number NOT NULL,
-<<<<<<< HEAD
 	complete_pic varchar2(50),
-
+);
 
 CREATE TABLE fb_board
 (
@@ -333,7 +324,6 @@ CREATE TABLE fb_board
 	board_subject varchar2(200) NOT NULL,
 	PRIMARY KEY (board_no)
 );
-
 
 CREATE TABLE fb_theme_recipe
 (
@@ -404,6 +394,8 @@ ALTER TABLE fb_coupon_book
 ALTER TABLE fb_lately_product
 	ADD FOREIGN KEY (member_no)
 	REFERENCES fb_member (member_no)
+	ADD FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no)
 ;
 
 
@@ -433,10 +425,10 @@ ALTER TABLE fb_basket
 
 -- review 테이블 member_no 외부키 추가 (주훈 수정)
 ALTER TABLE fb_review
-	ADD FOREIGN KEY (foods_no)
-	REFERENCES fb_foods (foods_no)
-	ADD FOREIGN KEY (member_no)
-	REFERENCES fb_member (member_no)
+	ADD CONSTRAINT fk_review_foods_no FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no) on delete cascade
+	ADD CONSTRAINT fk_review_member_no FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no) on delete cascade
 ;
 
 
@@ -484,9 +476,13 @@ alter table fb_board
 add foreign key (member_no)
 references fb_member (member_no);
 
+<<<<<<< HEAD
+
+=======
 alter table fb_photo_board
 add foreign key (member_no)
 references fb_member (member_no);
+>>>>>>> refs/remotes/origin/min
 
 /* Comments */
 COMMENT ON COLUMN fb_tr_order.order_text IS '설명';

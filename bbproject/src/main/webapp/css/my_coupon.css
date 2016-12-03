@@ -8,18 +8,32 @@
 	color:black;
 }
 
+.couponpoint{
+	height:200px;
+	float:left;
+}
 .coupon_info{
-	width:930px;
+	margin-left:5px;
+	width:500px;
 	height:200px;
 	border:solid 1px gray;
-	margin:auto;
-	margin-top:5px;
+	float:left;
 }
 
+
+.point{
+		margin-left:5px;
+	width:430px;
+	height:200px;
+	border:solid 1px gray;
+	float:left;
+}
 
 .mycoupon_table{
 	width:930px;
 	margin:auto;
-	margin-top:5px;
+	margin-top:10px;
 	border:solid 1px gray;
 }
+
+

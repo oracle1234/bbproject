@@ -17,6 +17,7 @@ import dto.MemberDTO;
 import dto.ReviewDTO;
 import dto.fb_BasketDTO;
 import dto.review_PageDTO;
+import service.MemberService;
 import service.ShopService;
 
 @Controller
@@ -27,19 +28,28 @@ public class ProductController {
 	private review_PageDTO pdto;
 	private int currentPage;
 	
+	//추가
+	private MemberService mservice;
 	
 	public void setService(ShopService service) {
 		this.service = service;
 	}
 
+	public void setMservice(MemberService mservice) {
+		this.mservice = mservice;
+	}
+	
 	public ProductController() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	@RequestMapping(value = "/detailProduct.do", method = RequestMethod.GET)
-	public ModelAndView detailproductProcess(FoodsDTO fdto, review_PageDTO rpdto){
+	public ModelAndView detailproductProcess(FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req){
 		
 		ModelAndView mav = new ModelAndView();
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		
+		mservice.latelyInsProcess(mdto.getMember_no(), fdto.getFoods_no());
 		
 		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
 		
@@ -56,12 +66,14 @@ public class ProductController {
 			map.put("startRow", pdto.getStartRow());
 			map.put("endRow", pdto.getEndRow());
 			map.put("foods_no", fdto.getFoods_no());
+			
 			mav.addObject("aList", service.reviewPageListProcess(map));
 			
 		}
 		
 		mav.addObject("foods_no", fdto.getFoods_no());
 		mav.addObject("list", service.listProcess(fdto.getFoods_no()));
+		mav.addObject("member_no", mdto.getMember_no());
 		mav.setViewName("detail_product");
 		return mav;
 	}
@@ -70,8 +82,10 @@ public class ProductController {
 //	public @ResponseBody List<ReviewDTO> detailproductPostProcess(FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req){
 	public @ResponseBody HashMap<String, Object> detailproductPostProcess(FoodsDTO fdto, review_PageDTO rpdto, HttpServletRequest req){
 		
+		
 		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
 		if (totalRecord >= 1) {
 			// 첫 접속시 현재 페이지를 1로 지정
@@ -245,10 +259,6 @@ public class ProductController {
 	public @ResponseBody String basketInsertProcess(fb_BasketDTO bdto, HttpServletRequest req){
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
-		System.out.println("어마운트"+bdto.getAmount());
-		System.out.println("푸넘"+bdto.getFoods_no());
-		System.out.println("멤넘"+mdto.getMember_no());
-		
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", bdto.getFoods_no());
@@ -257,7 +267,7 @@ public class ProductController {
 		
 		service.basketInsertProcess(map);
 		
-		String str = "성공";
+		String str = "";
 		return str;
 	}//end basketinsert/////////////////////////
 	
@@ -266,12 +276,6 @@ public class ProductController {
 		
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
-		
-		System.out.println("어마운트"+amount);
-		System.out.println("푸넘"+bdto.getFoods_no());
-		System.out.println("멤넘"+mdto.getMember_no());
-		
-		
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", bdto.getFoods_no());

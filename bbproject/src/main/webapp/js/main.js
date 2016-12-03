@@ -32,7 +32,7 @@ $(function() {
 			success : function(data) {
 				$(".quick_ul").empty();
 				$.each(data, function(index, value) {
-					$(".quick_ul").append('<li class="quick_li"><a href="#"><img class="quick_img" src="image.do?filename='+value.picture+'"><span>'+value.foods_name+'</span></a></li>');
+					$(".quick_ul").append('<li class="quick_li"><a href="detailProduct.do?foods_no='+value.foods_no+'"><img class="quick_img" src="image.do?filename='+value.picture+'"/><span>'+value.foods_name.substring(0, 4)+'..</span></a></li>');
 				});
 					
 			},

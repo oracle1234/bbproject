@@ -36,38 +36,50 @@
 }
 
 #order {
-	width: 457px;
-	height: 100px;
-	border: solid 1px gray;
+	width: 300px;
+	height: 270px;
+	
+}
+
+#order img{
+	margin-left:80px;
 }
 
 
 #cart {
-	width: 457px;
-	height: 100px;
-	border: solid 1px gray;
+	width: 300px;
+	height: 270px;
+}
+
+#cart img{
+	margin-left:40px;
 }
 
 #coupon {
-	width: 457px;
-	height: 100px;
-	border: solid 1px gray;
+	width: 300px;
+	height: 270px;
 }
 
 #board {
-	width: 457px;
-	height: 100px;
-	border: solid 1px gray;
+	width: 300px;
+	height: 270px;
+}
+
+#board img{
+	margin-left:80px;
 }
 
 #update {
-	width: 457px;
-	height: 100px;
-	border: solid 1px gray;
+width: 300px;
+	height: 270px;
 }
 
+#update img{
+	margin-left:40px;
+}
+
+
 #leave {
-	width: 457px;
-	height: 100px;
-	border: solid 1px gray;
+width: 300px;
+	height: 270px;
 }

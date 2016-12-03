@@ -12,7 +12,7 @@ img {
 	float: left;
 }
 </style>
-
+<hr/>
 <div class="foodsdiv">
 	<div class="foodslist">
 		<c:forEach items="${aList}" var="FoodsDTO">

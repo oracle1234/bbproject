@@ -5,7 +5,7 @@
 }
 
 .recipebox {
-	width: 700px;
+	width: 800px;
 	height: 250px;
 	margin: auto;
 	margin-top: 10px;
@@ -23,7 +23,7 @@
 }
 
 .recipe_sub1 {
-	width: 250px;
+/* 	width: 250px; */
 	float: left;
 	position: relative;
 }
@@ -36,24 +36,28 @@
 }
 
 .recipe_sub1 span img {
-	width: 250px;
-	height: 250px;
+	width: 230px;
+	height: 230px;
 	position: absolute;
 	left: 0;
 	margin : 10px;
 	border-radius: 20px;
-	box-sizing: border-box;
 }
 
 .list_detail {
-	position: absolute;
-	top: 40px;
-	left: 40px;
+	clear : both;
+	position: relative;
+	top: 65px;
+	left: 30px;
 }
 
 .list_detail span {
 	display: block;
 	line-height: 30px;
+	text-align: left;
+	font-size: 20px;
+	font-weight: bold;
+	color: #4d4d4d;
 }
 
 .del {
@@ -71,37 +75,49 @@
 
 #detailmain {
 	width: 950px;
-	background-color: yellow;
 }
-
-#detail_imgdiv {
-	width: 700px;
-	margin: auto;
-}
-
-#menuimg{
-	width:300px;
-	height:300px;
-	float: left;
-}
-
-#menudetail{
-	width:400px;
-	float: left;
-	padding-top: 75px;
-}
-
 
 #menudetail span{
 	display: block;
 	line-height: 30px;
 	text-align: left;
-	margin-left: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #4d4d4d;
 }
 
 #exp{
 	clear: both;
-	border: 1px solid black;
 }
 
+hr{
+	clear: both;
+	height: 5px;
+	background: #8c9199;
+}
+
+#orderlist div{
+	padding: 0 30px 0 30px;
+}
+
+#orderlist .step{
+	float: left;
+}
+
+#orderlist .ordertxt{
+	float : left;
+	font-weight: normal;
+	text-align: left;
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+#orderlist .orderpic{
+	clear: both;
+}
+
+#orderlist .orderpic img{
+	width: 600px;
+	border-radius: 20px;
+}
 

@@ -1,7 +1,7 @@
 body {
 	margin: auto;
 	width: 1420px;
-	background-color: #ede6be;
+	background-color: white;
 }
 
 header {
@@ -23,10 +23,12 @@ header {
 }
 
 #mainbody {
-	width: 950px;
+	width: 948px;
 	background-color: white;
-	min-height : 300px;
+	min-height : 500px;
 	float: left;
+	border-left:1px solid gray;
+	border-right:1px solid gray;
 }
 
 footer {
@@ -62,11 +64,14 @@ a {
  	z-index: 100;
 }
 
-.quick_li span{
-	font-size: 10px;
-	position: relative;
-	top: -5px;
-}
 .quick_img{
-	width: 90px;
+	width: 100px;
+	padding: 0 5px 0 5px;
+	box-sizing: border-box;
+}
+.quick_li span{
+	width : 90px;
+	font-size: 10px;
+	position : relative;
+	top: -5px;
 }

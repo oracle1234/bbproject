@@ -10,7 +10,8 @@
 }
 
 </style>
-
+<script src="js/admin_recipe_ins.js"></script>
+<hr/>
 	<form id="foods_form" action="adminfoodsins.do" method="post"
 		enctype="multipart/form-data">
 

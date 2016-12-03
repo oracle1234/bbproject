@@ -10,10 +10,10 @@
 $(function () {
 	var mySlider = $(".bxslider").bxSlider({
 		mode : "horizontal", // 가로 수평으로 슬라이드 됩니다.
-		speed : 500, // 이동 속도를 설정합니다.
+		speed : 200, // 이동 속도를 설정합니다.
 		pager : false, // 현재 위치 페이징 표시 여부 설정.
 		moveSlides : 1, // 슬라이드 이동시 갯수 설정.
-		slideWidth : 500, // 슬라이드 마다 너비 설정.
+		slideWidth : 700, // 슬라이드 마다 너비 설정.
 		minSlides : 1, // 최소 노출 개수를 설정합니다.
 		maxSlides : 1, // 최대 노출 개수를 설정합니다.
 		slideMargin : 10, // 슬라이드간의 간격을 설정합니다.
@@ -21,42 +21,54 @@ $(function () {
 		autoHover : true, // 마우스 오버시 정시킬지 설정합니다.
 		controls : false // 이전 다음 버튼 노출 여부 설정합니다.
 	});
+	
 });
 
 </script>
 
 <div id="detailmain">
 
-	<div id="detail_imgdiv">
-		<div id="menuimg">
-			<span> <img src="image.do?filename=${dto.picture}"
+	<div id="detail_imgdiv" class="recipebox">
+		<div id="menuimg" class="recipe_sub1">
+			<span>
+			 <img src="image.do?filename=${dto.picture}"
 				width="300px" height="300px" />
 			</span>
 		</div>
-		<div id="menudetail">
+		<div id="menudetail" class="recipe_sub2">
+			<div class="list_detail">
 			<span>레시피 이름 : ${dto.recipe_name }</span> <span>인원 :
 				${dto.portion }</span> <span>조리 난이도 : ${dto.difficulty }</span> <span>조리
 				시간 : ${dto.recipe_time }</span>
+			</div>
 		</div>
 	</div>
 	
-	<p id="exp">설명 : ${dto.recipe_explaination }</p>
+	<hr/>
+	<p id="exp">${dto.recipe_explaination }</p>
+	
+	<br/>
+	<p> 조리 순서 </p>
+	<br/>
 	
 	<div id="orderlist">
 		<c:forEach items="${dto.list}" var="list" varStatus="status">
-			<p>${status.index + 1}.       ${list.order_text}</p>
-			<p>
-				<img src="image.do?filename=${list.order_pic }" width="300">
-			</p>
+			<div>
+				<img class="step" alt="" src="images/icon_step_${status.index + 1}.gif" width="40px" height="40px">
+				<p class="ordertxt">${list.order_text}</p>
+				<p class="orderpic"><img src="image.do?filename=${list.order_pic }" ><p>
+			</div>
+			<br/>
 		</c:forEach>
 	</div>
 
 	<div>
 		<br />
 		<h1>완성 사진</h1>
+		<br />
 		<ul class="bxslider">
 			<c:forEach items="${dto.complete_pic}" var="img">
-				<li><img alt="" src="image.do?filename=${img}" width="500" /></li>
+				<li><img alt="" src="image.do?filename=${img}"/></li>
 			</c:forEach>
 		</ul>
 	</div>

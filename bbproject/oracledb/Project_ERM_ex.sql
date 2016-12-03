@@ -11,7 +11,7 @@ insert into fb_member values
 01033333333, 'yeonsung', 0, 0);
 insert into fb_member values 
 (4, '유재민', 'jaemin', '444444', '종각', 
-01044444444, 'jaemin', 0, 0);
+01044444444, 'jaemin',0, 0, 0);
 insert into fb_member values 
 (1, '관리자', 'admin', 'admin', '종각', 
 01044444444, 'admin', 0, 0);

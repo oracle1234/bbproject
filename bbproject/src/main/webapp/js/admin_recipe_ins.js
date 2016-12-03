@@ -8,7 +8,6 @@ $(function() {
 						$("#add_order")
 								.append(
 										"<tr><td><div class='holder'></div><input type='file' name='order_file'"
-
 												+ " class='upload'/> <textarea class='order_text' name='order_text' "
 												+ "placeholder='조리 순서'></textarea></td></tr>");
 					});
@@ -20,7 +19,8 @@ $(function() {
 	$(document).on("change", "#complete_file", function() {
 		imgArr(this);
 	});
-
+	
+	
 	$("#recipe_form").submit(function(e) {
 
 		 if ($("#theme_no").val() == 0) {
@@ -74,8 +74,10 @@ $(function() {
 function process() {
 	$('[name=recipe_explaination]').val(
 			$('[name=recipe_explaination]').val().replace(/\n/gi, '<br/>'));
-	$('[name=order_text]').val(
-			$('[name=order_text]').val().replace(/\n/gi, '<br/>'));
+	$.each($(".order_text"), function(index, value) {
+		$(value).val($(value).val().replace(/\n/gi, '<br/>'));
+	});
+	
 	return true;
 }
 

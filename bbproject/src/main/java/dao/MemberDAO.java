@@ -2,6 +2,7 @@ package dao;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import dto.LatelyDTO;
@@ -16,6 +17,8 @@ public interface MemberDAO {
 	public MemberDTO pwupdMethod(String id, String member_name, String mail, String pw);
 	public void updateMethod(MemberDTO dto);
 	public void deleteMethod(MemberDTO dto);
-	void deleteLately(int lately_no);
 	public List<LatelyDTO> latelyMethod(int member_no);
+	public void latelyIns(HashMap<String, Object> map);
+	void LatelyDel(int lately_no);
+	public int latelyChk(HashMap<String, Object> map);
 }//end interface

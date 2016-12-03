@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -43,6 +44,16 @@ public class ThemeRecipeDaoImp implements ThemeRecipeDAO {
 	@Override
 	public int countRecipe(int theme_no){
 		return sqlSession.selectOne("recipe.count", theme_no);
+	}
+
+	@Override
+	public List<ThemeRecipeDTO> selectSearch(HashMap<String, Object> map) {
+		return sqlSession.selectList("recipe.search", map);
+	}
+
+	@Override
+	public int countRecipe(HashMap<String, Object> map) {
+		return sqlSession.selectOne("recipe.schcount",map);
 	}
 	
 }

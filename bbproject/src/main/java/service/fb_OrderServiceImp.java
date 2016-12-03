@@ -22,4 +22,10 @@ public class fb_OrderServiceImp implements fb_OrderService{
 		return dao.list(member_no);
 	}
 
+	@Override
+	public void orderdelProcess(String member_no, String foods_no,String day) {
+	dao.orderdelete(member_no, foods_no, day);
+	}
+
+
 }

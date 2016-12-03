@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,8 +10,14 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-table {
+
+
+table, tr, td{
 	font-size: 13px;
+	padding: 3px;
+	border-spacing: 3px;
+	color: #262626;
+	
 }
 
 caption {
@@ -37,7 +44,7 @@ caption {
 
 #guide_image_wrap img {
 	width: 950px;
-	height: 250px;
+	height: 220px;
 }
 
 #terms_wrap {
@@ -45,24 +52,32 @@ caption {
 	height: 245px;
 	position: absolute;
 	top: 320px;
+	left : 0px;
 }
 
 #terms_text {
 	width: 950px;
-	height: 200px;
+	height: 210px;
+	position: absolute;
+	left:0px;
 }
 
 #terms_text p {
 	width: 930px;
 	height: 200px;
 	overflow: auto;
-	font-size: 13px;
-	margin-left: 20px;
+	font-size: 12px;
+	border: 1px solid lightgray;
+	position: absolute;
+	left : 10px;
+	color : #262626;
+	font-weight: normal;
+	
 }
 
 #terms_text p Strong {
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 13px;
 }
 
 #terms_checkbox {
@@ -89,18 +104,26 @@ caption {
 	width: 950px;
 }
 
+#order_table th{
+	width: 950px;
+	background-color:#ebebeb;
+}
+
+
+
+
 #order_table caption {
 	text-align: left;
 }
 
 #savemoney_wrap {
-	width: 650px;
+	width: 600px;
 	height: 150px;
 	float: left;
 }
 
 #smalltotal_wrap {
-	width: 300px;
+	width: 350px;
 	height: 150px;
 	float: left;
 }
@@ -108,10 +131,12 @@ caption {
 #savemoney_table th {
 	width: 100px;
 	height: 30px;
+	background-color: #ebebeb;
 }
 
 #savemoney_table td {
 	text-align: left;
+	background-color: #f5f5f5;
 }
 
 #coupon_select {
@@ -122,10 +147,12 @@ caption {
 #smalltotal_table th {
 	text-align: left;
 	width: 200px;
+	background-color: #ebebeb;
 }
 
 #smalltotal_table td {
 	text-align: right;
+	background-color: #f5f5f5;
 }
 
 #total_wrap {
@@ -136,11 +163,15 @@ caption {
 
 #total_table th {
 	height: 30px;
+	background-color: #ebebeb;
 }
 
 #total_table td {
 	height: 50px;
+	background-color: #f5f5f5;
 }
+
+
 
 #orderer_wrap {
 	width: 950px;
@@ -162,10 +193,12 @@ caption {
 #orderer_info_table th {
 	width: 250px;
 	height: 50px;
+	background-color: #ebebeb;
 }
 
 #orderer_info_table td {
 	text-align: left;
+	background-color: #f5f5f5;
 }
 
 #delivery_info_table caption {
@@ -175,10 +208,12 @@ caption {
 #delivery_info_table th {
 	width: 250px;
 	height: 50px;
+	background-color: #ebebeb;
 }
 
 #delivery_info_table td {
 	text-align: left;
+	background-color: #f5f5f5;
 }
 
 
@@ -190,7 +225,7 @@ caption {
 
 #deliver_image img {
 	width: 950px;
-	height: 100px;
+	height:95px;
 }
 
 #delivery_info {
@@ -231,13 +266,17 @@ caption {
 	height: 390px;
 }
 
-#pay_type_table td {
-	text-align: left;
-}
-
 #pay_type_table th {
 	width: 230px;
+	background-color: #e6e6e6;	
+	
 }
+
+#pay_type_table td {
+	text-align: left;
+	background-color: #f5f5f5;
+}
+
 
 #shop_returnBtn {
 	width: 145px;
@@ -254,10 +293,30 @@ caption {
 }
 
 #counter {
-  background:rgba(255,0,0,0.5);
+  background:black;
   border-radius: 0.5em;
   padding: 0 .5em 0 .5em;
   font-size: 0.75em;
+  color : white;
+}
+
+#total_table tr:nth-child(4) td{
+	background-color: #e6e6e6;
+}
+
+
+#savemoneytext{
+	text-align: right;
+}
+
+#deli_comment_area{
+	font-size: 13px;
+}
+
+#save_text{
+	color : #262626;
+	font-weight: normal;
+	font-size: 13px;
 }
 
 </style>
@@ -272,63 +331,63 @@ caption {
 $(document).ready(function() {
 	IMP.init('imp26018843'); 
 	
-	var money = $('#order_table tr:nth-child(2) td:nth-child(5)').text();
-	var totalMoney = parseInt(money.substring(0, money.length-1));
+// 	var money = $('#order_table tr:nth-child(2) td:nth-child(5)').text();
 	
-	var totalcount = 0;
-	totalcount = totalcount + ${amount};
-	var totalsavemoney = 0;
-	var saveMoney = parseInt($('#order_table tr:nth-child(2) td:nth-child(4)').text());
-	totalsavemoney = totalsavemoney + saveMoney;
+// 	alert(money);
 	
-	var delicheck = 0;
+// 	var totalMoney = parseInt(money.substring(0, money.length-1));
 	
-	$('#pay_type_table tr:nth-child(2) td').empty();
-	$('#pay_type_table tr:nth-child(2) td').append(totalMoney+'<span>원</span>');
+// 	var totalcount = 0;
+// 	totalcount = totalcount + ${totalAmount};
 	
+// 	var totalsavemoney = 0;
+// 	var saveMoney = parseInt($('#order_table tr:nth-child(2) td:nth-child(4)').text());
+// 	totalsavemoney = totalsavemoney + saveMoney;
 	
-	$('#smalltotal_table tr:nth-child(5) td').empty();
-	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
+// 	var delicheck = 0;
 	
-	
-	$('#smalltotal_table tr:nth-child(5) td').empty();
-	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
-	
-	$('#smalltotal_table tr:nth-child(4) td').empty();
-	$('#smalltotal_table tr:nth-child(4) td').append(totalsavemoney+'<span>원</span>');
+// 	$('#pay_type_table tr:nth-child(2) td').empty();
+// 	$('#pay_type_table tr:nth-child(2) td').append(totalMoney+'<span>원</span>');
 	
 	
-	$('#smalltotal_table tr:nth-child(1) td').empty();
-	$('#smalltotal_table tr:nth-child(1) td').append(totalcount+'<span>개</span>');
+// 	$('#smalltotal_table tr:nth-child(5) td').empty();
+// 	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
 	
 	
+// 	$('#smalltotal_table tr:nth-child(5) td').empty();
+// 	$('#smalltotal_table tr:nth-child(5) td').append(totalMoney+'<span>원</span>');
+	
+// 	$('#smalltotal_table tr:nth-child(4) td').empty();
+// 	$('#smalltotal_table tr:nth-child(4) td').append(totalsavemoney+'<span>원</span>');
+	
+	
+// 	$('#smalltotal_table tr:nth-child(1) td').empty();
+// 	$('#smalltotal_table tr:nth-child(1) td').append(totalcount+'<span>개</span>');
+	
+	
+	var totalMoney = parseInt($("#totalPrice").text());
 	$('#total_table tr:nth-child(2) td:nth-child(1)').empty();
 	$('#total_table tr:nth-child(2) td:nth-child(1)').append(totalMoney+'<span>원</span>');
-	
 	if(totalMoney < 45000){
 		delicheck = totalMoney + 2500;
-		$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
-		$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>')
 		$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
-		$('#total_table tr:nth-child(2) td:nth-child(4)').append(delicheck+'<span>원</span>')
+		$('#total_table tr:nth-child(2) td:nth-child(4)').append('2500<span>원</span>')
+		$('#total_table tr:nth-child(2) td:nth-child(5)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(5)').append(delicheck+'<span>원</span>')
 		$('#pay_type_table tr:nth-child(3) td').empty();
 		$('#pay_type_table tr:nth-child(3) td').append('2500<span>원</span>');
 		$('#pay_type_table tr:nth-child(4) td').empty();
 		$('#pay_type_table tr:nth-child(4) td').append(delicheck+'<span>원</span>');
-
-		
-		
 	}
 	if (totalMoney >= 45000){
-		$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
-		$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
 		$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
-		$('#total_table tr:nth-child(2) td:nth-child(4)').append(totalMoney+'<span>원</span>')
+		$('#total_table tr:nth-child(2) td:nth-child(4)').append('<span>무료</span>')
+		$('#total_table tr:nth-child(2) td:nth-child(5)').empty();
+		$('#total_table tr:nth-child(2) td:nth-child(5)').append(totalMoney+'<span>원</span>')
 		$('#pay_type_table tr:nth-child(3) td').empty();
 		$('#pay_type_table tr:nth-child(3) td').append('<span>무료</span>');
 		$('#pay_type_table tr:nth-child(4) td').empty();
 		$('#pay_type_table tr:nth-child(4) td').append(totalMoney+'<span>원</span>');
-		
 	}
 	
 	
@@ -341,10 +400,10 @@ $(document).ready(function() {
 		tm = totalMoney - discount - useSavemoney; 
 		var deli = tm + 2500;
 		if(tm < 45000){
-			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
-			$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>')
 			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
-			$('#total_table tr:nth-child(2) td:nth-child(4)').append(deli+'<span>원</span>');
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append('2500<span>원</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(5)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(5)').append(deli+'<span>원</span>');
 			$('#pay_type_table tr:nth-child(2) td').empty();
 			$('#pay_type_table tr:nth-child(2) td').append(tm+'<span>원</span>');
 			$('#pay_type_table tr:nth-child(3) td').empty();
@@ -354,10 +413,10 @@ $(document).ready(function() {
 			
 		}
 		if(tm >= 45000){
-			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
-			$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
 			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
-			$('#total_table tr:nth-child(2) td:nth-child(4)').append(tm+'<span>원</span>');
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append('<span>무료</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(5)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(5)').append(tm+'<span>원</span>');
 			$('#pay_type_table tr:nth-child(2) td').empty();
 			$('#pay_type_table tr:nth-child(2) td').append(tm+'<span>원</span>');
 			$('#pay_type_table tr:nth-child(3) td').empty();
@@ -370,6 +429,7 @@ $(document).ready(function() {
 		$('#smalltotal_table tr:nth-child(2) td').append(discount+'<span>원</span>');
 		$('#smalltotal_table tr:nth-child(5) td').empty();
 		$('#smalltotal_table tr:nth-child(5) td').append(tm+'<span>원</span>');
+		
 		$('#total_table tr:nth-child(3) td:nth-child(2)').empty();
 		$('#total_table tr:nth-child(3) td:nth-child(2)').append(discount+'<span>원</span>');
 		
@@ -404,10 +464,11 @@ $(document).ready(function() {
 		}
 		
 		if(sm < 45000){
-			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
-			$('#total_table tr:nth-child(2) td:nth-child(3)').append('2500<span>원</span>');
+
 			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
-			$('#total_table tr:nth-child(2) td:nth-child(4)').append(deli+'<span>원</span>');
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append('2500<span>원</span>');
+			$('#total_table tr:nth-child(2) td:nth-child(5)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(5)').append(deli+'<span>원</span>');
 			$('#pay_type_table tr:nth-child(2) td').empty();
 			$('#pay_type_table tr:nth-child(2) td').append(sm+'<span>원</span>');
 			$('#pay_type_table tr:nth-child(3) td').empty();
@@ -417,10 +478,10 @@ $(document).ready(function() {
 			
 		}
 		if (sm >= 45000){
-			$('#total_table tr:nth-child(2) td:nth-child(3)').empty();
-			$('#total_table tr:nth-child(2) td:nth-child(3)').append('<span>무료</span>')
 			$('#total_table tr:nth-child(2) td:nth-child(4)').empty();
-			$('#total_table tr:nth-child(2) td:nth-child(4)').append(sm+'<span>원</span>');
+			$('#total_table tr:nth-child(2) td:nth-child(4)').append('<span>무료</span>')
+			$('#total_table tr:nth-child(2) td:nth-child(5)').empty();
+			$('#total_table tr:nth-child(2) td:nth-child(5)').append(sm+'<span>원</span>');
 			$('#pay_type_table tr:nth-child(2) td').empty();
 			$('#pay_type_table tr:nth-child(2) td').append(sm+'<span>원</span>');
 			$('#pay_type_table tr:nth-child(3) td').empty();
@@ -428,6 +489,7 @@ $(document).ready(function() {
 			$('#pay_type_table tr:nth-child(4) td').empty();
 			$('#pay_type_table tr:nth-child(4) td').append(sm+'<span>원</span>');
 		}
+		
 		$('#total_table tr:nth-child(3) td:nth-child(1)').empty();
 		$('#total_table tr:nth-child(3) td:nth-child(1)').append(useSavemoney+'<span>원</span>');
 		$('#smalltotal_table tr:nth-child(3) td').empty();
@@ -448,6 +510,7 @@ $(document).ready(function() {
 		var firstPhone = $('#firstPhone').val();
 		var secondPhone = $('#secondPhone').val();
 		var lastPhone = $('#lastPhone').val();
+		
 		
 		if(chk == true){
 			$('#delivery_info_table tr:nth-child(1) td').empty();
@@ -511,23 +574,16 @@ $(document).ready(function() {
     
     $('#shop_orderBtn').on('click', function(){
     	
-   /*  	recipient_name 이름
-		우편번호 sample4_postcode
-		도로명주소 sample4_roadAddress
-		상세주소 recipient_detail_address
-		폰번
-		recipient_phone1
-		recipient_phone2
-		recipient_phone3
-		할말
-		deli_comment_area
-    	 */
-    	/*  orderer_name 이름
-			detailAddress 상세주소
-			firstPhone 
-			secondPhone
-			lastPhone
-			orderer_mail 메일 */
+    	var buyer_name =  $('#orderer_name').val();
+    	var buyer_tel = $('#firstPhone').val()+"-"+$('#secondPhone').val()+"-"+$('#lastPhone').val();
+    	var buyer_addr = $('#orderer_info_table #sample4_roadAddress').val() +" "+ $('#orderer_info_table #detailAddress').val();
+    	var buyer_postcode = $('#orderer_info_table #sample4_postcode').val(); 
+    	var am = $('#pay_type_table tr:nth-child(4) td').text();
+    	var amount = am.substring(0, am.length-1);
+    	var buyer_mail = $('#orderer_mail').val();
+    	
+    	
+    	
 		if($('#orderer_name').val() == ""){
 			alert('주문자 이름을 입력하세요.');
 			return false;
@@ -595,13 +651,13 @@ $(document).ready(function() {
 			    pg : 'danal_tpay',
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
+			    name : '주문명:반찬을부탁해',
 			    amount : 100,
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456'
+			    buyer_email : buyer_mail,
+			    buyer_name : buyer_name,
+			    buyer_tel : buyer_tel,
+			    buyer_addr : buyer_addr,
+			    buyer_postcode : buyer_postcode
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			        var msg = '결제가 완료되었습니다.';
@@ -609,12 +665,18 @@ $(document).ready(function() {
 			        msg += '상점 거래ID : ' + rsp.merchant_uid;
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        
+			        window.location.href = "pay_end.do";
+			        
+			        
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
 			    }
 
 			    alert(msg);
+			    
+			    
 			});
 		}
 		else if(temp == 'bankBook'){
@@ -637,6 +699,9 @@ $(document).ready(function() {
 			        msg += '상점 거래ID : ' + rsp.merchant_uid;
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        
+			        window.location.href = "pay_end.do";
+			        
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
@@ -647,6 +712,11 @@ $(document).ready(function() {
 		}
     	
     	
+    });
+    
+    
+    $('#shop_returnBtn').on('click', function(){
+    	window.location.href = "shop.do";
     });
 	
 	
@@ -709,12 +779,12 @@ function sample4_execDaumPostcode() {
 	<div id="buypage_wrap">
 		<div id="guide_wrap">
 			<div id="guide_image_wrap">
-				<img alt="안내이미지" src="">
+				<img alt="안내이미지" src="./images/shop_buy_infor.png">
 			</div>
 		</div>
 		<div id="terms_wrap">
 			<div id="terms_text">
-				<p align="left">
+				<p id = "terms_p" align="left">
 					<br> <Strong>'(주)반찬을부탁해'</Strong>는 (이하 '회사'는) 고객님의 개인정보를
 					중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다.<br> 회사는
 					개인정보취급방침을 통하여 고객님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해
@@ -754,26 +824,34 @@ function sample4_execDaumPostcode() {
 							<th>적립금</th>
 							<th>합계</th>
 						</tr>
-
+						
+						<%-- 합계계산 --%>
+						<c:set var="totalPrice" value="0" scope="page"/>
+						<c:set var="totalAmount" value="0" scope="page"/>
+						<c:set var="saveMoney" value="0" scope="page"/>
+						
 						<c:forEach items="${FoodsDTO}" var="food">
 							<tr>
 								<td>${food.foods_name}</td>
 								<td>${food.price}<span>원</span></td>
-								<td>${amount}<span>개</span></td>
-								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
-								<td>${food.price * amount}<span>원</span></td>
+								<td>${food.amount}<span>개</span></td>
+								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * food.amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
+								<td>${food.price * food.amount}<span>원</span></td>
+								
+								<c:set var= "totalAmount" value="${totalAmount + food.amount}"/>
+								<c:set var="totalPrice" value="${totalPrice + food.price * food.amount}"/>
+								<c:set var="saveMoney" value="${saveMoney + (food.price * 0.01 * food.amount)}"/>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
 				<div id="savemoney_wrap">
-					<p align="left">고객님 포인트를 사용하면 좀 더 절약하여 구매할 수 있습니다.</p>
-					<br>
-					<table id="savemoney_table"  width="600px"> 
+					<p id="save_text" align="left">고객님의 적립금이나 쿠폰을 사용하면 좀 더 절약하여 구매할 수 있습니다.</p><br>
+					<table id="savemoney_table" width="600px" height="100px;"> 
 						<tr>
 							<th scope="row">적립금사용</th>
 							<td>
-							<input size="2" type = "text" id ="savemoneytext" value="0"><span>원</span> (사용가능한 적립금 : ${MemberDTO.point}<span>원</span>)
+							<input size="5" type = "text" id ="savemoneytext" value="0"><span>원</span> (사용가능한 적립금 : ${MemberDTO.point}<span>원</span>)
 							</td>
 						</tr>
 						<tr>
@@ -783,7 +861,8 @@ function sample4_execDaumPostcode() {
 									<c:forEach items="${member.cList}" var = "couponDTO">
 									<option value="${couponDTO.coupon_discount}">${couponDTO.coupon_name}</option>
 									</c:forEach>
-							</select></td>
+							</select>
+							</td>
 
 						</tr>
 					</table>
@@ -791,10 +870,10 @@ function sample4_execDaumPostcode() {
 					
 				</div>
 				<div id="smalltotal_wrap">
-					<table id="smalltotal_table" width="100%">
+					<table id="smalltotal_table" width="100%" >
 						<tr>
 							<th scope="row">주문수량합계</th>
-							<td><span>개</span></td>
+							<td><span>${totalAmount}개</span></td>
 						</tr>
 						<tr>
 						
@@ -803,21 +882,21 @@ function sample4_execDaumPostcode() {
 						</tr>
 						<tr>
 							<th scope="row">적립금사용</th>
-							<td><span>0원</span></td>
+							<td>0<span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">적립금</th>
-							<td><span>0원</span></td>
+							<td><fmt:formatNumber pattern="0" value="${saveMoney}" type="NUMBER" /><span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">총 결제금액</th>
-							<td><span>0원</span></td>
+							<td id="totalPrice">${totalPrice}<span>원</span></td>
 						</tr>
 					</table>
 				</div>
 
 				<div id="total_wrap">
-					<table id="total_table" width="100%">
+					<table id="total_table" width="100%" >
 						<tr>
 							<th>상품금액</th>
 							<th colspan="2">할인금액</th>
@@ -826,11 +905,11 @@ function sample4_execDaumPostcode() {
 						</tr>
 						
 						<tr>
-							<td rowspan="2"><span>원</span></td>
-							<td colspan="2">적립금사용&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 쿠폰사용</td>
-							<td rowspan="2">0원</td>
-							<td rowspan="2">총주</td>
+							<td rowspan="2">0<span>원</span></td>
+							<td>적립금사용</td>
+							<td>쿠폰사용</td>
+							<td rowspan="2">0<span>원</span></td>
+							<td rowspan="2">0<span>원</span></td>
 						</tr>
 						<tr>
 							<td>0<span>원</span></td>
@@ -842,7 +921,6 @@ function sample4_execDaumPostcode() {
 								주문 합계가 45,000원 이상이 되어야 무료배송이 가능합니다.
 							</td>
 						</tr>
-
 					</table>
 				</div>
 				<div id="orderer_wrap">
@@ -867,8 +945,8 @@ function sample4_execDaumPostcode() {
 							</tr>
 							<tr>
 								<th scope="row">휴대폰번호</th>
-								<td><input type="text" id = "firstPhone" size="1" value = "${firstPhone}"> - <input
-									type="text" id="secondPhone" size="1" value="${secondPhone}"> - <input type="text" id = "lastPhone" size="1" value = "${lastPhone}"></td>
+								<td><input type="text" id = "firstPhone" size="3" value = "${firstPhone}"> - <input
+									type="text" id="secondPhone" size="4" value="${secondPhone}"> - <input type="text" id = "lastPhone" size="4" value = "${lastPhone}"></td>
 							</tr>
 							<tr>
 								<th scope="row">이메일</th>
@@ -878,17 +956,17 @@ function sample4_execDaumPostcode() {
 					</div>
 
 					<div id="deliver_image">
-						<img alt="배송안내이미지" src="">
+						<img alt="배송안내이미지" src="./images/shop_deli_img.png">
 					</div>
 
 					<div id="delivery_info">
 						<table id="delivery_info_table" width="950">
 							<caption>
-								배송지 정보&nbsp;&nbsp;&nbsp;<input type="checkbox" id="sameOrder"> 주문자 정보와
+								배송지 정보<span>*</span>&nbsp;&nbsp;&nbsp;<input type="checkbox" id="sameOrder"> 주문자 정보와
 								동일
 							</caption>
 							<tr>
-								<th scope="row">받으시는분 *</th>
+								<th scope="row">받으시는분 <span>*</span></th>
 								<td><input id="recipient_name" type="text"></td>
 							</tr>
 							<tr>
@@ -906,8 +984,8 @@ function sample4_execDaumPostcode() {
 							</tr>
 							<tr>
 								<th scope="row">휴대폰번호</th>
-								<td><input type="text" id="recipient_phone1" size="1"> - <input
-									type="text" id="recipient_phone2" size="1"> - <input type="text" id="recipient_phone3" size="1"></td>
+								<td><input type="text" id="recipient_phone1" size="3"> - <input
+									type="text" id="recipient_phone2" size="4"> - <input type="text" id="recipient_phone3" size="4"></td>
 							</tr>
 							<tr>
 								<th scope="row" rowspan="3">배송관련 할말(40자 내외)</th>
@@ -945,6 +1023,7 @@ function sample4_execDaumPostcode() {
 					<div id="pay_type_wrap">
 						<div id="pay_type_table_wrap">
 							<table id="pay_type_table" width="950">
+							
 								<tr>
 									<th scope="row">결제방식</th>
 									<td><input type="radio" class="pay_type" name="pay_type" value="creditCard">
@@ -952,7 +1031,6 @@ function sample4_execDaumPostcode() {
 										'중지', '새로고침'을 누르지 마시고 결과 화면이 나타날 때까지 기다려 주십시오.<br>
 										&nbsp;- 결제하기 버튼 클릭시 결제창이 나타나지 않을 경우나 안전결제 모듈이 설치 되지 않을 경우 더반찬
 										사이트를 모두 닫으시고 아래 설치파일을 다운받아 ActiveX를 수동설치 하시고 결제를 진행하여 주십시오.<br>
-									<input type="button" value="LG U+ 결제 모듈 수동설치"><br>
 									<br> <input type="radio" class="pay_type" name="pay_type" value="bankBook">
 										무통장입금<br> &nbsp;- 안전한 거래를 제공하기 위해 현금결제시 구매안전 서비스를 제공하고
 										있습니다. <br> &nbsp;- 입금금액이 일치해야 정삭적으로 입금이 가능합니다.<br>
@@ -961,7 +1039,7 @@ function sample4_execDaumPostcode() {
 								</tr>
 								<tr>
 									<th scope="row">상품합계금액</th>
-									<td><span>원</span></td>
+									<td><span>${totalPrice}원</span></td>
 								</tr>
 								<tr>
 									<th scope="row">배송료</th>
@@ -973,14 +1051,12 @@ function sample4_execDaumPostcode() {
 								</tr>
 							</table>
 							<br>
-							<br> <input type="image" id="shop_returnBtn" value="쇼핑계속">
-							<input type="image" id="shop_orderBtn" value="주문하기">
+							<br> <input type="image" id="shop_returnBtn" value="쇼핑계속" src="./images/shop_shopping_con.png">
+							<input type="image" id="shop_orderBtn" value="주문하기" src="./images/shop_play_order.png">
 						</div>
 					</div>
 
-
 				</div>
-
 
 			</div>
 		</div>

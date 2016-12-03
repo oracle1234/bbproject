@@ -4,12 +4,25 @@ import java.util.Date;
 
 public class ReviewDTO {
 
-	private int review_no;
+	private int review_no, member_no;
 	private String review_writer, review_content;
 	private Date review_date;
 
 	public ReviewDTO() {
 	}
+	
+	
+
+	public int getMember_no() {
+		return member_no;
+	}
+
+
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
+	}
+
+
 
 	public int getReview_no() {
 		return review_no;

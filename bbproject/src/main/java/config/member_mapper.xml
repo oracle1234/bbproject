@@ -92,10 +92,20 @@
 		order by a.lately_no desc
 	</select>
 	
-	<delete id="dellately" parameterType="int">
+	<delete id="latelydel" parameterType="int">
 		delete from fb_lately_product
 		where lately_no = #{lately_no}
 	</delete>
+	
+	<select id="latelychk" parameterType="hashmap" resultType="int">
+		select count(*)
+		from fb_lately_product
+		where member_no = #{member_no} and foods_no = #{foods_no}
+	</select>
+	
+	<insert id="latelyins" parameterType="hashmap">
+		insert into fb_lately_product values(SEQ_lately_no.nextval, #{member_no}, #{foods_no})
+	</insert>
 	
 	
 </mapper>

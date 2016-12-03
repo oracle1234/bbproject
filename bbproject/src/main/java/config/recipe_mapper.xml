@@ -9,7 +9,18 @@
 		<if test="value != 0">
 			where theme_no = #{value}
 		</if>
-
+	</select>
+	
+	<select id="schcount" parameterType="hashmap" resultType="int">
+		select count(*) from fb_theme_recipe
+		<choose>
+				<when test="theme_no != 0">
+					where theme_no = #{theme_no} and recipe_name like '%'||#{recipe_name}||'%'
+				</when>
+				<otherwise>
+					where recipe_name like '%'||#{recipe_name}||'%'
+				</otherwise>
+			</choose>
 	</select>
 
 	<resultMap type="dto.ThemeRecipeDTO" id="list_result">
@@ -50,6 +61,25 @@
 			where c.rm >= #{startRow} and c.rm <= #{endRow}
 			]]>
 	</select>
+	
+	<select id="search" parameterType="hashmap" resultType="dto.ThemeRecipeDTO">
+			select c.* from (
+			select rownum as rm, b.*
+			from(
+			select * from fb_theme_recipe
+			<choose>
+				<when test="pagedto.theme_no != 0">
+					where theme_no = #{pagedto.theme_no} and recipe_name like '%'||#{recipe_name}||'%'
+				</when>
+				<otherwise>
+					where recipe_name like '%'||#{recipe_name}||'%'
+				</otherwise>
+			</choose>
+			order by recipe_no desc)b)c
+			<![CDATA[
+			where c.rm >= #{pagedto.startRow} and c.rm <= #{pagedto.endRow}
+			]]>
+	</select>
 
 	<select id="detail" parameterType="int" resultMap="list_result">
 		select *
@@ -80,11 +110,9 @@
 		select * from dual
 	</insert>
 
-
-
 	<delete id="delete" parameterType="int">
 		delete from fb_theme_recipe
 		where recipe_no = #{recipe_no}
 	</delete>
-
+	
 </mapper>

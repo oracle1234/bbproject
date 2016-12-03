@@ -318,13 +318,20 @@ var s_name = "${sessionScope.member.member_name}";
 	width: 400px;
 	height: 50px;
 	background-color: white;
-	border:1px solid black;
+	border-bottom:4px solid black; 
+	font-size:35px;
+	font-weight: bold; 
+}
+
+#login_header p{
+margin-left:5px;
 }
 
 #close {
 	width: 50px;
 	height: 50px;
 	margin-left: 350px;
+	margin-top:-100px;
 }
 
 .login-form {
@@ -334,20 +341,39 @@ var s_name = "${sessionScope.member.member_name}";
 
 #button {
 	width: 400px;
-	height: 125px;
+	height: 90px;
 	background-color: white;
-	border:1px solid black;
+	/* border:1px solid black; */
 }
 
 #form {
 	width: 250px;
 	height: 125px;
 	background-color: white;
-	border:1px solid black;
+	margin-top:30px;
+	/* border:1px solid black; */
+}
+
+#button{
+float:left;
+
+}
+
+#findbutton{
+width:150px;
+height:40px;
+margin-left: 30px;
+}
+
+#joinbutton{
+
+width:150px;
+height:40px;
+margin-left:20px;
 }
 
 #loginbutton {
-	margin-top: -105px;
+	margin-top: -125px;
 	margin-left: 250px;
 	width: 100px;
 	height: 80px;
@@ -373,36 +399,48 @@ var s_name = "${sessionScope.member.member_name}";
 	margin-top: 200px;
 	margin-left: 400px;
 	background-color: white;
-	border: 2px solid black;
 }
 
 .idpwheader {
 	width: 600px;
 	height: 50px;
 	background-color: white;
-	border:1px solid black;
+	border-bottom:4px solid black; 
+	font-size:35px;
+	font-weight: bold; 
+	
+	
+}
+
+.idpwheader p{
+margin-left:5px;
 }
 
 #findclose {
 	width: 50px;
 	height: 50px;
 	margin-left: 550px;
+	margin-top:-100px;
 }
 
 .idfind {
-	width: 300px;
+	width: 278px;
 	height: 250px;
 	background-color: white;
-	border:1px solid black;
+	/* border:1px solid black; */
+	border-right: 1px solid black;
+	z-index:100;
+	padding:10px;
 }
 
 .pwfind {
-	width: 300px;
+	width:280px;
 	height: 250px;
 	background-color: white;
-	border:1px solid black;
-	margin-top: -250px;
+	/* border:1px solid black; */
+	margin-top: -270px;
 	margin-left: 300px;
+	padding:10px;
 }
 
 .pwupd {
@@ -431,7 +469,9 @@ var s_name = "${sessionScope.member.member_name}";
 	width: 300px;
 	height: 50px;
 	background-color: white;
-	border:1px solid black;
+	border-bottom:4px solid black; 
+	font-size:35px;
+	font-weight: bold; 
 }
 
 #updclose {
@@ -550,24 +590,27 @@ input {
 <div class='menu'>
 	<ul>
 		<li><a href='#'>Home</a></li>
-		<li><a href='#'>SHOP</a>
+		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
 				<li class='sub'><a href='#'>요리1</a></li>
 				<li class='sub'><a href='#'>요리2</a></li>
 				<li class='sub'><a href='#'>요리3</a></li>
 			</ul></li>
-		<li><a href='#'>RECIPE</a>
+		<li><a href='recipe.do'>RECIPE</a>
 			<ul>
-				<li class='sub'><a href='#'>레시피1</a></li>
-				<li class='sub'><a href='#'>레시피2</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=1">영양식</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=2">간식</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=3">도시락</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=4">다이어트</a></li>
+				<li class='sub'><a href="recipe.do?theme_no=5">야식</a></li>
 			</ul></li>
 		<li><a href='#'>BORDER</a>
 			<ul>
 				<li class='sub'><a href='#'>게시판1</a></li>
 				<li class='sub'><a href='#'>게시판2</a></li>
 			</ul></li>
-		<li class='last'><a href='#'>MYPAGE</a></li>
+		<li class='last'><a href='mypage.do'>MYPAGE</a></li>
 	</ul>
 </div>
 
@@ -575,6 +618,7 @@ input {
 <div class="screen">
 	<div class="login">
 		<div id="login_header">
+		<p>Login</p>
 			<button id="close" value="x"></button>
 		</div>
 		<div class="login-form">
@@ -600,6 +644,7 @@ input {
 <div class="idpwfind">
 	<div class="idpwform">
 		<div class="idpwheader">
+		<p>Find</p>
 			<button id="findclose" value="x"></button>
 		</div>
 		<div class="idfind">
@@ -630,6 +675,7 @@ input {
 	<div class="pwupd">
 		<div class="pwupdform">
 			<div class="pwupdheader">
+			<p>New Password</p>
 				<button id="updclose" value="x"></button>
 			</div>
 			<table>

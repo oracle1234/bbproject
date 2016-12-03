@@ -13,6 +13,8 @@ public interface ThemeRecipeService {
 	public ThemeRecipeDTO selectRecipeProcess(int recipe_no);
 	public List<ThemeRecipeDTO> deleteRecipeProcess(ThemeRecipeDTO dto, HttpServletRequest request);
 	public int countRecipeProcess(int theme_no);
+	public int countRecipeProcess(int theme_no, String recipe_name);
+	public List<ThemeRecipeDTO> selectSearchProcess(RecipePageDTO pagedto, String recipe_name);
 }
 
 

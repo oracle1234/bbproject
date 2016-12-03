@@ -46,7 +46,7 @@
 		count(*) from fb_foods where category_no = #{category_no}
 	</select>
 
-	<select id="page_list" parameterType="map" resultType="dto.FoodsDTO">
+	<select id="page_list" parameterType="hashmap" resultType="dto.FoodsDTO">
 		<![CDATA[
 		select b.* from(
 		select rownum as rm, a.* from(
@@ -107,6 +107,46 @@
 		from fb_foods
 		where foods_no = #{foods_no}
 	</select>
+	
+	<select id="search" parameterType="hashmap" resultType="dto.FoodsDTO">
+			select c.* from (
+			select rownum as rm, b.*
+			from(
+			select * from fb_foods
+			<choose>
+				<when test="pdto.category_no != 0">
+					where category_no = #{pdto.category_no} and foods_name like '%'||#{foods_name}||'%'
+				</when>
+				<otherwise>
+					where foods_name like '%'||#{foods_name}||'%'
+				</otherwise>
+			</choose>
+			order by category_no desc)b)c
+			<![CDATA[
+			where c.rm >= #{pdto.startRow} and c.rm <= #{pdto.endRow}
+			]]>
+	</select>
+	
+	<select id="searchCount" parameterType="hashmap" resultType="int">
+		select count(*) from fb_foods
+		<choose>
+				<when test="category_no != 0">
+					where category_no = #{category_no} and foods_name like '%'||#{foods_name}||'%'
+				</when>
+				<otherwise>
+					where foods_name like '%'||#{foods_name}||'%'
+				</otherwise>
+			</choose>
+	</select>
+	
+	<select id="buybasket" parameterType="hashmap" resultType="dto.fb_BasketDTO">
+		select a.amount, c.foods_no, c.foods_name, c.price
+		from fb_basket a, fb_member b, fb_foods c 
+		where a.member_no = b.member_no
+		and a.foods_no = c.foods_no
+		and a.member_no = #{member_no} and a.foods_no = #{foods_no}
+	</select>
+	
 </mapper>
 
 

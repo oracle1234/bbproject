@@ -121,7 +121,7 @@ delete from fb_theme_recipe where recipe_no = 2
 select * 
 from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
 where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no
-and a.recipe_no = 1
+and a.recipe_no = 36
 order by a.recipe_no desc;
 
 select *
@@ -183,7 +183,7 @@ insert into fb_lately_product values(SEQ_lately_no.nextval, 1, 3);
 select * from fb_foods;
 
 delete from fb_lately_product;
-SELECT * from fb_lately_product;
+SELECT * from fb_lately_product where member_no = 4;
 
 select * 
 from fb_lately_product a, fb_member b, fb_foods c
@@ -229,9 +229,28 @@ where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no  and a.theme_no = 
 
 select *
 		from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
-		where a.recipe_no =
-		b.recipe_no and a.recipe_no = c.recipe_no
-		and a.recipe_no = 18
+		where a.recipe_no =	b.recipe_no(+) and a.recipe_no = c.recipe_no(+)
+		and a.recipe_no = 39
+		
+		
+		select c.* from (
+			select rownum as rm, b.*
+			from(
+			select * from
+			fb_theme_recipe
+					/*where theme_no = 1 and recipe_name like '%'||'소'||'%'*/
+					where recipe_name like '%'||'소'||'%'
+			order by recipe_no desc)b)c
+			where c.rm >= 1 and c.rm <= 5
+		
+insert into fb_lately_product(lately_no, member_no, foods_no) 
+values(SEQ_lately_no.nextval, 4, (select foods_no from FB_LATELY_PRODUCT where foods_no != 10)) 
+where foods_no != 10
 
-
+select count(*)
+		from fb_lately_product
+		where member_no = 4 and foods_no = 7
+		
+alter table fb_tr_order
+modify ORDER_TEXT varchar2(1000);
 		

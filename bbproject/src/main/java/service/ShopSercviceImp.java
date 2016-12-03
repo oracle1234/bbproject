@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import dao.ShopDAO;
 import dto.FoodsDTO;
 import dto.ReviewDTO;
+import dto.fb_BasketDTO;
 import dto.shop_PageDTO;
 
 public class ShopSercviceImp implements ShopService {
@@ -82,12 +83,9 @@ public class ShopSercviceImp implements ShopService {
 	}
 
 	@Override
-	public List<FoodsDTO> buyListProcess(int foods_no) {
+	public FoodsDTO buyListProcess(int foods_no) {
 		return dao.buyList(foods_no);
 	}
-
-
-	
 
 	public String insertFoodsProcess(FoodsDTO dto, HttpServletRequest req) {
 
@@ -136,6 +134,28 @@ public class ShopSercviceImp implements ShopService {
 	@Override
 	public List<FoodsDTO> adminFoodsListProcess(int category_no) {
 		return dao.adminFoodsListProcess(category_no);
+	}
+	
+	@Override
+	public fb_BasketDTO shopBuyProcess(int foods_no, int member_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("foods_no", foods_no);
+		map.put("member_no", member_no);
+		return dao.shopBuy(map);
+	}
+
+	@Override
+	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map) {
+		return dao.shopSearchProcess(map);
+	}
+
+	@Override
+	public int countProcess(int category_no, String foods_name) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("category_no", category_no);
+		map.put("foods_name", foods_name);
+		
+		return dao.count(map);
 	}
 
 }//end class

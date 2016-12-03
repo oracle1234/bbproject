@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -136,6 +137,22 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 	@Override
 	public int countRecipeProcess(int theme_no){
 		return dao.countRecipe(theme_no);
+	}
+
+	@Override
+	public List<ThemeRecipeDTO> selectSearchProcess(RecipePageDTO pagedto, String recipe_name) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pagedto", pagedto);
+		map.put("recipe_name", recipe_name);
+		return dao.selectSearch(map);
+	}
+
+	@Override
+	public int countRecipeProcess(int theme_no, String recipe_name) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("theme_no", theme_no);
+		map.put("recipe_name", recipe_name);
+		return dao.countRecipe(map);
 	}
 
 }
