@@ -33,7 +33,7 @@ public class fb_BasketDaoImp implements fb_BasketDAO{
 
 	@Override
 	public void delete(int foods_no) {
-		sqlSession.delete("basket.del", foods_no);
+		sqlSession.delete("basket.delete", foods_no);
 		
 	}
 
