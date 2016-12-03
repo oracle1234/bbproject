@@ -67,12 +67,9 @@ public class ShopController {
 	@RequestMapping(value="/shop.do", method=RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> shopPostPage(FoodsDTO fdto, shop_PageDTO spdto) {
 		
-		System.out.println("카넘:"+fdto.getCategory_no());
-		System.out.println("커런트"+spdto.getCurrentPage());
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 
 		int totalRecord = service.countProcess(fdto.getCategory_no());
-		System.out.println("토탈"+totalRecord);
 
 		if (totalRecord >= 1) {
 			// 첫 접속시 현재 페이지를 1로 지정
@@ -96,7 +93,7 @@ public class ShopController {
 	
 
 	
-/*	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
+	/*@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
 	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req, String foods_no, String amount) {
 		ModelAndView mav = new ModelAndView( );
 		
@@ -146,9 +143,11 @@ public class ShopController {
 	}*/
 	
 	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
-	public ModelAndView buyPage(FoodsDTO fdto, HttpServletRequest req, String checkfood[]) {
+	public ModelAndView buyPostPage(FoodsDTO fdto, HttpServletRequest req, String checkfood[]) {
 		ModelAndView mav = new ModelAndView( );
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		System.out.println(mdto.getMember_no());
+		System.out.println(fdto.getFoods_no());
 		
 		String address[] = mdto.getAddress().split("/");
 		String Address = address[0]; 
@@ -162,6 +161,9 @@ public class ShopController {
 		
 		List<fb_BasketDTO> list = new ArrayList<fb_BasketDTO>();
 		
+		for (String f_no : checkfood) {
+			System.out.println(f_no);
+		}
 		for (String foods_no : checkfood) {
 			list.add(service.shopBuyProcess(Integer.parseInt(foods_no), mdto.getMember_no()));
 		}

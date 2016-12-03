@@ -259,10 +259,6 @@ public class ProductController {
 	public @ResponseBody String basketInsertProcess(fb_BasketDTO bdto, HttpServletRequest req){
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
-		System.out.println("어마운트"+bdto.getAmount());
-		System.out.println("푸넘"+bdto.getFoods_no());
-		System.out.println("멤넘"+mdto.getMember_no());
-		
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", bdto.getFoods_no());
@@ -280,11 +276,6 @@ public class ProductController {
 		
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
-		
-		System.out.println("어마운트"+amount);
-		System.out.println("푸넘"+bdto.getFoods_no());
-		System.out.println("멤넘"+mdto.getMember_no());
-		
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", bdto.getFoods_no());

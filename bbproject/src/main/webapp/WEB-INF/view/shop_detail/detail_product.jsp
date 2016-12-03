@@ -387,7 +387,6 @@ $(document).ready(function() {
 			
 			});
 						
-							
 });//end ready end
 
 	Handlebars.registerHelper("newDate", function(timeValue) {
@@ -651,7 +650,7 @@ $(document).ready(function() {
 
 	<div id="product_wrap">
 
-		<form method="post" id="foodform">
+		<form method="POST" id="foodform">
 
 			<div class="sul_wrap">
 

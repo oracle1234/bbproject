@@ -18,15 +18,16 @@ select * from fb_member
 
 drop table fb_foods
 
-drop table fb_category;
 drop table fb_member;
+drop table fb_request
+drop table fb_category;
 drop table fb_foods
-drop table fb_basket
-drop table fb_coupon
-drop table fb_delivery_cost
 drop table fb_lately_product
+drop table fb_basket
 drop table fb_review
-
+drop table fb_coupon;
+drop table fb_coupon_book;
+drop table fb_delivery_cost
 
 select * from fb_member
 
@@ -37,12 +38,9 @@ delete from fb_review where review_no = 172 and member_no = 1 and foods_no = 2
 
 select * from fb_review 
 
-update fb_review set review_content = '맛없어요' where review_no = 100 and member_no = 1;
 
-update fb_review set review_content = '12345' where review_no = 99 and member_no = 1
 
 select * from fb_basket
-member_no, foods_no, amount
 insert into fb_basket values (1, 1, 1)
 
 select * from fb_foods where foods_no= 1 order by foods_no desc
@@ -125,3 +123,33 @@ update fb_member set point = 2000;
 update fb_member set pw = '1' where id='qwer';
 
 select * from fb_member
+
+select * from fb_category
+insert into fb_category values(SEQ_category_no.nextval, '국/찌개');
+insert into fb_category values(SEQ_category_no.nextval, '반찬');
+insert into fb_category values(SEQ_category_no.nextval, '김치');
+
+insert into fb_lately_product values('')
+select * from fb_lately_product
+
+
+ALTER TABLE fb_lately_product
+	ADD FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no)
+	ADD FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no)
+;
+
+ALTER TABLE fb_foods
+	ADD FOREIGN KEY (category_no)
+	REFERENCES fb_category (category_no)
+;
+
+select * from fb_member
+
+CREATE TABLE fb_lately_product
+(
+	lately_no number NOT NULL,
+	member_no number NOT NULL,
+	foods_no number NOT NULL
+);
