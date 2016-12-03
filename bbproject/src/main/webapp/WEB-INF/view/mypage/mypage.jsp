@@ -2,7 +2,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<link rel="stylesheet" type="text/css" href="css/mypage.css" />
+<link rel="stylesheet" type="text/css" href="css/mypage.css?var=2" />
 <script type="text/javascript">
 $(document).ready(function(){
 	$("p").hover(function(){

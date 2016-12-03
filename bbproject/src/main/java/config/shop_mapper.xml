@@ -80,7 +80,8 @@
 	</update>
 	
 	<insert id="basketInsert" parameterType="hashmap">
-		insert into fb_basket values (#{member_no}, #{foods_no}, #{amount}) 
+		insert into fb_basket values
+		(#{member_no}, #{foods_no}, #{amount})
 	</insert>
 	
 	
@@ -145,6 +146,11 @@
 		where a.member_no = b.member_no
 		and a.foods_no = c.foods_no
 		and a.member_no = #{member_no} and a.foods_no = #{foods_no}
+	</select>
+	
+	<select id = "basketChk" parameterType="hashmap" resultType="int">
+		select count(*) from fb_basket
+		where member_no = #{member_no} and foods_no = #{foods_no}
 	</select>
 	
 </mapper>

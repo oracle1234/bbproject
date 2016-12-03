@@ -153,3 +153,17 @@ CREATE TABLE fb_lately_product
 	member_no number NOT NULL,
 	foods_no number NOT NULL
 );
+
+
+select a.amount, c.foods_no, c.foods_name, c.price
+		from fb_basket a, fb_member b, fb_foods c 
+		where a.member_no = b.member_no
+		and a.foods_no = c.foods_no
+		and a.member_no = 1 and a.foods_no = 2
+		
+		
+select * from fb_basket
+delete from fb_basket where foods_no = 2
+
+select count(*) from fb_basket
+where member_no = 1 and foods_no = 2

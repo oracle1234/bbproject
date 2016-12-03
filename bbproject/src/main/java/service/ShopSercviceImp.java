@@ -158,4 +158,13 @@ public class ShopSercviceImp implements ShopService {
 		return dao.count(map);
 	}
 
+	@Override
+	public int basketChkProcess(int foods_no, int member_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("foods_no", foods_no);
+		map.put("member_no", member_no);
+		
+		return dao.basketChk(map);
+	}
+
 }//end class

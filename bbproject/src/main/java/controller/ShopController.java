@@ -143,11 +143,15 @@ public class ShopController {
 	}*/
 	
 	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
-	public ModelAndView buyPostPage(FoodsDTO fdto, HttpServletRequest req, String checkfood[]) {
+	public ModelAndView buyPostPage(FoodsDTO fdto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView( );
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
-		System.out.println(mdto.getMember_no());
-		System.out.println(fdto.getFoods_no());
+		String [] checkfood = req.getParameterValues("checkfood");
+
+		for (String foods_no : checkfood) {
+			System.out.println(foods_no);
+		}
+		
 		
 		String address[] = mdto.getAddress().split("/");
 		String Address = address[0]; 
@@ -161,17 +165,11 @@ public class ShopController {
 		
 		List<fb_BasketDTO> list = new ArrayList<fb_BasketDTO>();
 		
-		for (String f_no : checkfood) {
-			System.out.println(f_no);
-		}
+		
 		for (String foods_no : checkfood) {
 			list.add(service.shopBuyProcess(Integer.parseInt(foods_no), mdto.getMember_no()));
 		}
-		
-		for (fb_BasketDTO aa : list) {
-			System.out.println(aa.getFoods_no());
-		}
-		
+	
 		mav.addObject("FoodsDTO", list);
 		mav.addObject("MemberDTO", mdto);
 		mav.addObject("Address", Address);

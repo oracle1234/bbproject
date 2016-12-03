@@ -30,6 +30,7 @@ public interface ShopService {
 	
 	
 	public fb_BasketDTO shopBuyProcess(int foods_no, int member_no);
+	public int basketChkProcess(int foods_no, int member_no);
 	
 	
 	
