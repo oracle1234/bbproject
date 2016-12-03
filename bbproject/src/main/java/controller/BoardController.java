@@ -354,14 +354,14 @@ public class BoardController {
 			
 			pdto = new PageDTO(currentPage, totalRecord);
 			
-			/*pageMap.put("startRow", pdto.getStartRow());
-			pageMap.put("endRow", pdto.getEndRow());*/
+			pageMap.put("startRow", pdto.getStartRow());
+			pageMap.put("endRow", pdto.getEndRow());
 		}
 			
 		mav.addObject("list", service.pageListProcess(pageMap));
 		mav.addObject("pv", pdto);
 		mav.setViewName("board_list");
-		System.out.println("123");
+		
 		return mav;
 
 	}//end board_searchMethod()

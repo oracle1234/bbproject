@@ -16,16 +16,16 @@
 	function check(res) {
 		if (document.search_frm.keyWord.value == "") {
 			alert("검색어를 입력하세요.");
-			document.search_frm.keyWord.focus();
+ 			document.search_frm.keyWord.focus();
 			return;
 		}
-		document.search.submit();
+		document.search_frm.submit();
 
-		var start = res.page.startPage;
-		var end = res.page.endPage;
-		var block = res.page.blockPage;
-		var total = res.page.totalPage;
-
+		var start = res.pv.startPage;
+		var end = res.pv.endPage;
+		var block = res.pv.blockPage;
+		var total = res.pv.totalPage;
+		
 		if (start > 1) {
 			$('.board_page').append(
 					'<a href="javascript:preFuncion(${dto.board_no},'
@@ -276,7 +276,7 @@ td {
 							test="${'board_subject'==keyField}">selected</c:if>제목
 					</option>
 					<option value="board_writer"><c:if
-							test="${'board_writer'==keyField}">selected</c:if>작성자
+							test="${'board_writer'==keyField}">selected</c:if>글쓴이
 					</option>
 				</select> <input type="text" name="keyWord" id="keyWord" value="${keyWord}">
 				<input type="image" value="검색" src="./images/menu/button_find.png"
