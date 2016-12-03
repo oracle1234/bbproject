@@ -21,43 +21,25 @@ $(document).ready(function(){
 	<div class="mypage_body">
 		<div class="mymenu">
 			<div id="order">
-				<p>
-					<a href="my_order.do">주문/배송조회</a>
-				</p>
-				<span>고객님께서 주문하신 상품의 내용 및 배송조회를 확인하실 수 있습니다.</span>
+				<a href="my_order.do"><img alt="" src="images/orderlist.png"></a>
 			</div>
 			<div id="cart">
-				<p>
-					<a href="my_cart.do">장바구니</a>
-				</p>
-				<span>고객님께서 장바구니에 담으신 상품의 내용을 확인하실 수 있습니다.</span>
+				<a href="my_cart.do"><img alt="" src="images/mycartlist.png"></a>
 			</div>
 			<div id="coupon">
-				<p>
-					<a href="my_coupon.do">쿠폰/적립금</a>
-				</p>
-				<span>고객님의 쿠폰과 적립금을 확인하실 수 있습니다. </span>
+			<a href="my_coupon.do">	<img alt="" src="images/mycoupon.png"></a>
 			</div>
 
 			<div id="board">
-				<p>
-					<a href="my_board.do">내가쓴글</a>
-				</p>
-				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
+				<a href="my_board.do"><img alt="" src="images/myboard.png"></a>
 			</div>
 			
 			<div id="update">
-				<p>
-					<a href="my_update.do">개인정보 수정</a>
-				</p>
-				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
+				<a href="my_update.do"><img alt="" src="images/mymodify.png"></a>
 			</div>
 			
 			<div id="leave">
-				<p>
-					<a href="my_leave.do">회원 탈퇴</a>
-				</p>
-				<span>고객님께서 작성하신 글을 확인하실 수 있습니다. </span>
+				<a href="my_leave.do"><img alt="" src="images/myleave.png"></a>
 			</div>
 		</div>
 	</div>
