@@ -251,3 +251,6 @@ select count(*)
 		from fb_lately_product
 		where member_no = 4 and foods_no = 7
 		
+alter table fb_tr_order
+modify ORDER_TEXT varchar2(1000);
+		
