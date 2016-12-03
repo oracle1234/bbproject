@@ -23,15 +23,12 @@ public class fb_OrderDaoImp implements fb_OrderDAO{
 		return sqlSession.selectList("order.list", member_no);
 	}
 
-	@Override
-	public List<fb_OrderDTO> orderdelete(String member_no, String foods_no, String day) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("member_no", member_no);
-		map.put("foods_no", foods_no);
-		map.put("day", day);
-		sqlSession.delete("order.delete", map);
-		return null;
-		
-	}
+/*	@Override
+	public void orderdelete(fb_OrderDTO dto) {
+		sqlSession.delete("order.delete", dto);
+	}*/
+
+
+
 
 }

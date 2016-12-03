@@ -12,6 +12,14 @@
 		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/imgbar.jsp" />
 	</definition>
+	
+	<definition name="main" template="/WEB-INF/view/template/layout2.jsp">
+		<put-attribute name="title" value="Spring Tiles Example" />
+		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/template/main.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/imgbar.jsp" />
+	</definition>
 
 	<definition name="board_list" extends="index">
 		<put-attribute name="title" value="board example" />

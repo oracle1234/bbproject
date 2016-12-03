@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,11 +79,16 @@ public class MypageController {
 		
 	}
 	
-	@RequestMapping(value ="/myorder_del.do" , method = RequestMethod.GET, produces = "application/text; charset=utf8")
-	public @ResponseBody String orderDelete(String member_no, String foods_no, String day){
-		return "redirect:/my_order.do";
-	}
 	
+/*	@RequestMapping(value ="/myorder_del.do" , method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public @ResponseBody List<fb_OrderDTO> orderDelete(int member_no, int foods_no, Date day){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", member_no);
+		map.put("foods_no", foods_no);
+		map.put("day", day);
+		return orderservice.orderdelProcess(map);
+	}
+	*/
 	@RequestMapping("/my_cart.do")
 	public ModelAndView listMethod(HttpServletRequest req) {
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");

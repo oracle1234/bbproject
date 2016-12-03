@@ -27,7 +27,7 @@ $(document).ready(function(){
 	<table class="mycoupon_table">
 		<tr>
 			<th width="50%">쿠폰명</th>
-			<th width="20%">할인금액(율)</th>
+			<th width="20%">할인금액(원)</th>
 			<th width="30%">사용여부</th>
 
 		</tr>

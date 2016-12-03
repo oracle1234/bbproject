@@ -32,11 +32,7 @@
 		<tiles:insertAttribute name="img" />
 	</div>
 	<div id="main">
-		<tiles:insertAttribute name="menu" />
-		<div id="mainbody">
-			<tiles:insertAttribute name="body" />
-		</div>
-
+		<tiles:insertAttribute name="main"/>
 
 	</div>
 	<div id="quick_menu">

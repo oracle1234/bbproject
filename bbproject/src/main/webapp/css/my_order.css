@@ -41,9 +41,13 @@
 
 
 .myorder_table{
-	width:940px;
+	width:950px;
 	margin:auto;
 	margin-top:5px;
+}
+
+.myorder_table th{
+	background-color:#ebebeb;
 }
 
  .calHelp{
