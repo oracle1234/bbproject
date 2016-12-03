@@ -56,7 +56,6 @@ $(document).ready(function() {
 		$('#cart_order').on('click', function(){
 			 $("input[name=cart_cb]:checked").each(function(){
 				 $(this).next().prop("name", "checkfood");
-				 alert($(this).next().val());
 			//alert($(this).next().val());
 			//$(this).next().next().prop("name", "checkamount");
 			// alert($(this).next().next().val());
