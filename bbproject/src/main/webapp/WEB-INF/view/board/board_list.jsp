@@ -13,36 +13,36 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
-	function check(res) {
+	function check(res) {				
 		if (document.search_frm.keyWord.value == "") {
 			alert("검색어를 입력하세요.");
  			document.search_frm.keyWord.focus();
 			return;
 		}
 		document.search_frm.submit();
+	}
+	
+	var start = res.pv.startPage;
+	var end = res.pv.endPage;
+	var block = res.pv.blockPage;
+	var total = res.pv.totalPage;
+	
+	if (start > 1) {
+		$('.board_page').append(
+				'<a href="javascript:preFuncion(${dto.board_no},'
+						+ (start - block) + ')">이전</a>');
+	}
 
-		var start = res.pv.startPage;
-		var end = res.pv.endPage;
-		var block = res.pv.blockPage;
-		var total = res.pv.totalPage;
-		
-		if (start > 1) {
-			$('.board_page').append(
-					'<a href="javascript:preFuncion(${dto.board_no},'
-							+ (start - block) + ')">이전</a>');
-		}
+	for (var i = start; i <= end; i++) {
+		var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
+				+ i + ')">' + i + '&nbsp;';
+		$('.board_page').append(source1);
+	}
 
-		for (var i = start; i <= end; i++) {
-			var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
-					+ i + ')">' + i + '&nbsp;';
-			$('.board_page').append(source1);
-		}
-
-		if (end < total) {
-			$('#pre_next_pagenum').append(
-					'<a href="javascript:nextFuncion(${dto.board_no},'
-							+ (start + block) + ')">다음</a>');
-		}
+	if (end < total) {
+		$('#pre_next_pagenum').append(
+				'<a href="javascript:nextFuncion(${dto.board_no},'
+						+ (start + block) + ')">다음</a>');
 	}
 
 	function preFunction(b, c) {

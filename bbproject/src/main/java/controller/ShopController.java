@@ -229,7 +229,7 @@ public class ShopController {
 				currentPage = spdto.getCurrentPage();
 			}
 			
-			pdto = new shop_PageDTO(currentPage, totalRecord);
+			new shop_PageDTO(currentPage, totalRecord);
 			pdto.setCategory_no(fdto.getCategory_no());
 			
 			HashMap<String, Object> map = new HashMap<String, Object>();

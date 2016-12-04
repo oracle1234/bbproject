@@ -332,9 +332,9 @@ public class BoardController {
 		return mav;
 
 	}// end deleteMethod()
-
+	
 	// <검색>
-	@RequestMapping(value = "/board_search.do")
+	@RequestMapping(value = "/board_search.do", method=RequestMethod.POST)
 	public ModelAndView board_searchMethod(String keyField, String keyWord, BoardDTO bdto, PageDTO pv) {
 		ModelAndView mav = new ModelAndView();
 
@@ -361,11 +361,12 @@ public class BoardController {
 		mav.addObject("list", service.pageListProcess(pageMap));
 		mav.addObject("pv", pdto);
 		mav.setViewName("board_list");
-		
+		System.out.println("정상");
 		return mav;
 
 	}//end board_searchMethod()
 
+	
 	// [QA게시판]
 	@RequestMapping("/qa_list.do")
 	public ModelAndView qa_listMethod(QA_BoardDTO qdto, PageDTO pv) {
