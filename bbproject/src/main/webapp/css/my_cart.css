@@ -1,3 +1,11 @@
+table, tr, td{
+	font-size: 13px;
+	padding: 3px;
+	border-spacing: 3px;
+	color: #262626;
+	
+}
+
 .mypage_body{
 	position:relative;
 }
@@ -21,7 +29,7 @@
 }
 
 
-.mycart_table{
+/* .mycart_table{
 	width:940px;
 	margin:auto;
 	margin-top:5px;
@@ -34,10 +42,34 @@
 	margin-top:5px;
 	border:1px solid gray;
 }
-
-.mycart_table2 td{
-	height:130px;
+ */
+ 
+   .mycart_table {
+   width:950px;
+} 
+ 
+   .mycart_table2 {
+	 width:950px;
+} 
+ 
+ 
+ /*  .mycart_table td{
 	border:1px solid gray;
+}  */
+
+.mycart_table th{
+	/* width: 950px; */
+	background-color:#ebebeb;
+}
+
+ .mycart_table2 td{
+	height:130px;
+/* 	border:1px solid gray; */
+} 
+
+.mycart_table2 th{
+	/* width: 950px; */
+	background-color:#ebebeb;
 }
 	
 

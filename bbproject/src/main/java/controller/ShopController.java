@@ -151,6 +151,7 @@ public class ShopController {
 			System.out.println(foods_no);
 		}
 		
+		System.out.println(req.getHeader("referer"));
 		
 		String address[] = mdto.getAddress().split("/");
 		String Address = address[0]; 
