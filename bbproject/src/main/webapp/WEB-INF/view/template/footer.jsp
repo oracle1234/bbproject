@@ -2,7 +2,7 @@
 <div class="ft_info">
 	<div class=" wrap_inner">
 		<ul>
-			<li><a href="/content/content.php?cont=company"><img
+			<li><a href="#"><img
 					src="http://file.thebanchan.co.kr/_data/_image/footer/f_btn1.gif"
 					alt="회사소개"></a></li>
 			<li><a
