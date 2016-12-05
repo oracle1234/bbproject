@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -60,7 +61,7 @@ public class BoardController {
 	}
 
 	// [자유게시판]
-	// <처음 게시판 리스트보기>
+	// <게시판 리스트보기>
 	@RequestMapping("/board_list.do")
 	public ModelAndView board_listMethod(BoardDTO bdto, PageDTO pv) {
 
@@ -87,7 +88,7 @@ public class BoardController {
 
 	// <게시판 글 상세보기(눌렀을 때)>
 	@RequestMapping(value = "/board_view.do", method = RequestMethod.GET)
-	public ModelAndView board_viewMethod(int currentPage, BoardDTO bdto, Comment_PageDTO cpdto2) {
+	public ModelAndView board_viewMethod(int currentPage, BoardDTO bdto, Comment_PageDTO cpdto2, String keyWord) {
 		ModelAndView mav = new ModelAndView();
 
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
@@ -137,6 +138,103 @@ public class BoardController {
 		resultMap.put("page", cpdto);
 		return resultMap;
 	}// end board_viewProMethod();
+
+	// <검색>
+	@RequestMapping(value = "/board_search.do", method = RequestMethod.GET)
+	public ModelAndView board_searchMethod(String keyField, String keyWord, BoardDTO bdto, PageDTO pv) {
+		ModelAndView mav = new ModelAndView();
+
+		HashMap<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("keyfield", keyField);
+		searchMap.put("keyword", keyWord);
+
+		List<BoardDTO> list = service.searchListProcess(searchMap);
+
+		mav.addObject("aList", list);
+
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+
+		// int totalRecord = service.countProcess(bdto.getBoardcategory_no());
+		int totalRecord = list.size();
+		if (totalRecord >= 1) {
+			if (pv.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = pv.getCurrentPage();
+
+			pdto = new PageDTO(currentPage, totalRecord);
+
+			pageMap.put("startRow", pdto.getStartRow());
+			pageMap.put("endRow", pdto.getEndRow());
+		} else {
+			pdto = new PageDTO();
+		}
+
+		// mav.addObject("list", service.pageListProcess(pageMap));
+		mav.addObject("keyField", keyField);
+		mav.addObject("keyWord", keyWord);
+		mav.addObject("pv", pdto);
+		mav.setViewName("board_list");
+		System.out.println(keyField);
+		System.out.println(keyWord);
+		return mav;
+
+	}// end board_searchMethod()
+
+	// <게시글 쓰기(눌렀을 때)>
+	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
+	public ModelAndView board_writeMethod(PageDTO pv) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board_write");
+		return mav;
+	}// end board_writeMethod()
+
+	// <게시글 쓰기(쓰고난 후)>
+	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
+	public String board_writeProMethod(BoardDTO bdto) {
+		service.insertProcess(bdto);
+		return "redirect:/board_list.do";
+	}// end writeProMethod
+
+	// <게시글 수정(눌렀을 때)>
+	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)
+	public ModelAndView board_updateMethod(BoardDTO bdto, int currentPage) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", service.updateSelectProcess(bdto.getBoard_no()));
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("board_update");
+		return mav;
+	}// end board_updateMethod()
+
+	// <게시글 수정(수정 후)>
+	@RequestMapping(value = "/board_update.do", method = RequestMethod.POST)
+	public ModelAndView board_updateProMethod(BoardDTO bdto, int currentPage) {
+		ModelAndView mav = new ModelAndView();
+		service.updateProcess(bdto);
+		mav.addObject("currentPage", currentPage);
+		mav.addObject("pv", pdto);
+		mav.addObject("aList", service.listProcess(pdto));
+		mav.setViewName("board_list");
+		return mav;
+	}// end board_updateProMethod()
+
+	// <게시글 삭제>
+	@RequestMapping("/board_delete.do")
+	public ModelAndView board_deleteMethod(BoardDTO bdto, int currentPage) {
+		ModelAndView mav = new ModelAndView();
+		service.deleteProcess(bdto.getBoard_no());
+		PageDTO pv = new PageDTO(service.countProcess(bdto.getBoardcategory_no()));
+		if (pv.getTotalPage() < currentPage) {
+			mav.addObject("currentPage", pv.getTotalPage());
+		} else {
+			mav.addObject("currentPage", currentPage);
+		}
+		mav.addObject("pv", pdto);
+		mav.addObject("aList", service.listProcess(pdto));
+		mav.setViewName("board_list");
+		return mav;
+
+	}// end deleteMethod()
 
 	// <댓글쓰기>
 	@RequestMapping("/commentInsert.do")
@@ -278,95 +376,6 @@ public class BoardController {
 		return resultMap;
 	}// end commentUpdateProProcess()
 
-	// <게시글 쓰기>
-	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
-	public ModelAndView board_writeMethod(PageDTO pv) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("board_write");
-		return mav;
-	}// end board_writeMethod()
-
-	// <게시글 쓰기>
-	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
-	public String board_writeProMethod(BoardDTO bdto) {
-		service.insertProcess(bdto);
-		return "redirect:/board_list.do";
-	}// end writeProMethod
-
-	// <게시글 수정>
-	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)
-	public ModelAndView board_updateMethod(BoardDTO bdto, int currentPage) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("dto", service.updateSelectProcess(bdto.getBoard_no()));
-		mav.addObject("currentPage", currentPage);
-		mav.setViewName("board_update");
-		return mav;
-	}// end board_updateMethod()
-
-	// <게시글 수정>
-	@RequestMapping(value = "/board_update.do", method = RequestMethod.POST)
-	public ModelAndView board_updateProMethod(BoardDTO bdto, int currentPage) {
-		ModelAndView mav = new ModelAndView();
-		service.updateProcess(bdto);
-		mav.addObject("currentPage", currentPage);
-		mav.addObject("pv", pdto);
-		mav.addObject("aList", service.listProcess(pdto));
-		mav.setViewName("board_list");
-		return mav;
-	}// end board_updateProMethod()
-
-	// <게시글 삭제>
-	@RequestMapping("/board_delete.do")
-	public ModelAndView board_deleteMethod(BoardDTO bdto, int currentPage) {
-		ModelAndView mav = new ModelAndView();
-		service.deleteProcess(bdto.getBoard_no());
-		PageDTO pv = new PageDTO(service.countProcess(bdto.getBoardcategory_no()));
-		if (pv.getTotalPage() < currentPage) {
-			mav.addObject("currentPage", pv.getTotalPage());
-		} else {
-			mav.addObject("currentPage", currentPage);
-		}
-		mav.addObject("pv", pdto);
-		mav.addObject("aList", service.listProcess(pdto));
-		mav.setViewName("board_list");
-		return mav;
-
-	}// end deleteMethod()
-	
-	// <검색>
-	@RequestMapping(value = "/board_search.do", method=RequestMethod.POST)
-	public ModelAndView board_searchMethod(String keyField, String keyWord, BoardDTO bdto, PageDTO pv) {
-		ModelAndView mav = new ModelAndView();
-
-		HashMap<String, Object> searchMap = new HashMap<String, Object>();
-		searchMap.put("keyfield", keyField);
-		searchMap.put("keyword", keyWord);
-		mav.addObject("aList", service.searchListProcess(searchMap));
-		
-		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-		
-		int totalRecord = service.countProcess(bdto.getBoardcategory_no());
-		if(totalRecord >=1){
-			if(pv.getCurrentPage() == 0)
-				currentPage = 1;
-			else
-				currentPage = pv.getCurrentPage();
-			
-			pdto = new PageDTO(currentPage, totalRecord);
-			
-			pageMap.put("startRow", pdto.getStartRow());
-			pageMap.put("endRow", pdto.getEndRow());
-		}
-			
-		mav.addObject("list", service.pageListProcess(pageMap));
-		mav.addObject("pv", pdto);
-		mav.setViewName("board_list");
-		System.out.println("정상");
-		return mav;
-
-	}//end board_searchMethod()
-
-	
 	// [QA게시판]
 	@RequestMapping("/qa_list.do")
 	public ModelAndView qa_listMethod(QA_BoardDTO qdto, PageDTO pv) {

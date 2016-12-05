@@ -13,127 +13,15 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
-	function check(res) {				
-		if (document.search_frm.keyWord.value == "") {
-			alert("검색어를 입력하세요.");
- 			document.search_frm.keyWord.focus();
-			return;
-		}
-		document.search_frm.submit();
-	}
-	
-	var start = res.pv.startPage;
-	var end = res.pv.endPage;
-	var block = res.pv.blockPage;
-	var total = res.pv.totalPage;
-	
-	if (start > 1) {
-		$('.board_page').append(
-				'<a href="javascript:preFuncion(${dto.board_no},'
-						+ (start - block) + ')">이전</a>');
-	}
+	$(function() {
 
-	for (var i = start; i <= end; i++) {
-		var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
-				+ i + ')">' + i + '&nbsp;';
-		$('.board_page').append(source1);
-	}
-
-	if (end < total) {
-		$('#pre_next_pagenum').append(
-				'<a href="javascript:nextFuncion(${dto.board_no},'
-						+ (start + block) + ')">다음</a>');
-	}
-
-	function preFunction(b, c) {
-		$.ajax({
-			type : 'POST',
-			dataType : 'JSON',
-			url : "board_list.do",
-			data : "board_no=" + b + "&currentPage=" + c,
-			success : comment_prenext_list_result,
-			error : function(xhr, textStatus, error) {
-				alert("에러" + error);
+		$("#search_frm").submit(function() {
+			if ($("#keyWord").val() == "") {
+				alert("검색어를 입력하세요.");
+				return false;
 			}
 		});
-	};
-
-	function nextFunction(b, c) {
-		$.ajax({
-			type : 'POST',
-			dataType : 'JSON',
-			url : "board_list.do",
-			data : "board_no=" + b + "&currentPage=" + c,
-			success : comment_prenext_list_result,
-			error : function(xhr, textStatus, error) {
-				alert("에러" + error);
-			}
-		});
-	};
-
-	function myFunction(b, i) {
-		$.ajax({
-			type : 'POST',
-			dataType : 'json',
-			url : "board_list.do",
-			data : "board_no=" + b + "&currentPage=" + i,
-			success : comment_list_result,
-			error : function(xhr, textStatus, error) {
-				alert("에러" + error);
-			}
-		});
-	};
-
-	function comment_list_result(res) {
-		$('.commentarea .comment_row').remove();
-		$
-				.each(
-						res.list,
-						function(index, value) {
-							var source = "<td>{{board_no}}</td><td></td>";
-							var template = Handlebars.compile(source);
-							$('.commentarea').append(template(value));
-						});
-		
-	};
-	 
-	
-
-	function comment_prenext_list_result(res) {
-		$('.commentarea .comment_row').remove();
-		$('.board_page').empty();
-
-		$
-				.each(
-						res.list,
-						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
-							var template = Handlebars.compile(source);
-							$('.commentarea').append(template(value));
-						});
-		var start = res.page.startPage;
-		var end = res.page.endPage;
-		var block = res.page.blockPage;
-		var total = res.page.totalPage;
-
-		if (start > 1) {
-			$('.board_page').append(
-					'<a href="javascript:preFunction(${dto.board_no}, '
-							+ (start - block) + ')">이전&nbsp;</a>');
-		}
-
-		for (var i = start; i <= end; i++) {
-			var source1 = '<a href="javascript:myFunction(${dto.board_no}, '
-					+ i + ')">' + i + '&nbsp;';
-			$('.board_page').append(source1);
-		}
-
-		if (end < total) {
-			$('.board_page').append(
-					'<a href="javascript:nextFunction(${dto.board_no}, '
-							+ (start + block) + ')">다음</a>');
-		} 
-	};
+	});
 </script>
 <style type="text/css">
 #bodywrap {
@@ -225,7 +113,7 @@ td {
 			</tr>
 
 			<c:forEach var="BoardDTO" items="${aList}">
-				<tr>
+				<tr class="content">
 					<td>${BoardDTO.board_no}</td>
 					<td><c:url var="board_content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
@@ -245,42 +133,93 @@ td {
 		</div>
 
 		<div class="board_page">
-			<!-- 이전 출력 시작 -->
-			<c:if test="${pv.startPage>1}">
-				<a
-					href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}">이전</a>
-			</c:if>
 
-			<!-- 페이지 출력 시작 -->
-			<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-				<c:url var="currPage" value="board_list.do?boardcategory_no=1">
-					<c:param name="currentPage" value="${i}" />
-				</c:url>
-				<a href="${currPage}"><c:out value="${i}" /></a>
-			</c:forEach>
+			<c:choose>
+				<c:when test="${keyWord == null}">
+					<!-- 이전 출력 시작 -->
+					<c:if test="${pv.startPage>1}">
+						<a
+							href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}">이전</a>
+					</c:if>
+
+					<!-- 페이지 num출력 시작 -->
+					<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+						<c:url var="currPage" value="board_list.do?boardcategory_no=1">
+							<c:param name="currentPage" value="${i}" />
+						</c:url>
+						<a href="${currPage}"><c:out value="${i}" /></a>
+					</c:forEach>
+
+					<!-- 페이지 출력 끝 -->
+					<c:if test="${pv.totalPage>pv.endPage}">
+						<a
+							href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}">다음</a>
+					</c:if>
+				</c:when>
+
+				<c:otherwise>
+					<!-- 이전 출력 시작 -->
+					<c:if test="${pv.startPage>1}">
+						<a
+							href='board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}&keyFiled=${keyFiled}&keyWord=${keyWord}'>이전</a>
+					</c:if>
+
+					<!-- 페이지 num출력 시작 -->
+					<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+						<c:url var="currPage" value="board_search.do?boardcategory_no=1">
+							<c:param name="currentPage" value="${i}" />
+							<c:param name="keyField" value="${keyField}"></c:param>
+							<c:param name="keyWord" value="${keyWord}"></c:param>
+						</c:url>
+						<a href="${currPage}"><c:out value="${i}" /></a>
+					</c:forEach>
+
+					<!-- 페이지 출력 끝 -->
+					<c:if test="${pv.totalPage>pv.endPage}">
+						<a
+							href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}&keyFiled=${keyFiled}&keyWord=${keyWord}">다음</a>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
+
+			<!-- 이전 출력 시작 -->
+			<%-- 			<c:if test="${pv.startPage>1}"> --%>
+			<!-- 				<a -->
+			<%-- 					href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}">이전</a> --%>
+			<%-- 			</c:if> --%>
+
+			<!-- 페이지 num출력 시작 -->
+			<%-- 			<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}"> --%>
+			<%-- 				<c:url var="currPage" value="board_list.do?boardcategory_no=1"> --%>
+			<%-- 					<c:param name="currentPage" value="${i}" /> --%>
+			<%-- 				</c:url> --%>
+			<%-- 				<a href="${currPage}"><c:out value="${i}" /></a> --%>
+			<%-- 			</c:forEach> --%>
 
 			<!-- 페이지 출력 끝 -->
-			<c:if test="${pv.totalPage>pv.endPage}">
-				<a
-					href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}">다음</a>
-			</c:if>
+			<%-- 			<c:if test="${pv.totalPage>pv.endPage}"> --%>
+			<!-- 				<a -->
+			<%-- 					href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}">다음</a> --%>
+			<%-- 			</c:if> --%>
 
 		</div>
 
 		<div class="board_search">
 			<form action="board_search.do" id="search_frm" name="search_frm"
-				method="post">
+				method="GET">
 
 				<select name="keyField" size="1">
+
 					<option value="board_subject"><c:if
 							test="${'board_subject'==keyField}">selected</c:if>제목
 					</option>
+
 					<option value="board_writer"><c:if
-							test="${'board_writer'==keyField}">selected</c:if>글쓴이
+							test="${'board_writer'==keyField}">selected</c:if>작성자
 					</option>
+
 				</select> <input type="text" name="keyWord" id="keyWord" value="${keyWord}">
-				<input type="image" value="검색" src="./images/menu/button_find.png"
-					onclick="check()">
+				<input type="image" value="검색" src="./images/menu/button_find.png">
 
 			</form>
 		</div>

@@ -126,7 +126,7 @@
 			where c.rm >= #{pdto.startRow} and c.rm <= #{pdto.endRow}
 			]]>
 	</select>
-	
+
 	<select id="searchCount" parameterType="hashmap" resultType="int">
 		select count(*) from fb_foods
 		<choose>
