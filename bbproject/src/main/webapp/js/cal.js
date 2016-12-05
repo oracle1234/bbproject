@@ -29,7 +29,7 @@
 			
 			// temp
 			if( _id('out1') === null ) { $('#cal').after('<i id="out1"></i>'); }
-			_id('out1').innerHTML = '<br>Selected 1: ' + year + '-' +month+'-'+ e.innerText;
+			_id('out1').innerHTML = year + '-' +month+'-'+ e.innerText;
 			_id('sel1text').innerHTML = e.innerText + '-' + month + '-' + year;
 		}
 		
@@ -60,7 +60,7 @@
 					if(go){ e.classList.add('range'); }
 					// temp
 					if( _id('out2') === null ) { $('#out1').after('<i id="out2"></i>'); }
-					_id('out2').innerHTML = '<br>Selected 2: '  + year + '-' +month+'-'+ e.innerText;
+					_id('out2').innerHTML = year + '-' +month+'-'+ e.innerText;
 					_id('sel2text').innerHTML = e.innerText + '-' + month + '-' + year;
 				}
 				if(stop){ go=0; }

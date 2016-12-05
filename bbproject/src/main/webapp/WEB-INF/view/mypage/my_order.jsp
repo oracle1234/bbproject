@@ -24,11 +24,7 @@ $(document).ready(function() {
 		
 		$('#calfindButton').on('click',function(){
 			var test1=document.getElementById("out1").innerHTML;
-				var test2 = document.getElementById("out2").innerHTML;
-			alert(test1+test2);
-			var str1 = test1.substring(15);
-			var str2 = test2.substring(15);
-			alert(str1+str2);
+			var test2 = document.getElementById("out2").innerHTML;
 			
 		});
 	});
@@ -37,7 +33,7 @@ $(document).ready(function() {
 			if($(this).next().val()=="미입금" || $(this).next().val()=="입금완료"){
 				 $.ajax({
 					type:'GET',
-					dataType : 'json',
+					dataType : 'text',
 					url : 'myorder_del.do?member_no='+s_no+'&day='+$(this).next().next().next().val()+'&foods_no='+$(this).next().next().val(),
 					success : orderlist,
 					error: function(xhr, textStatus, error) {
@@ -50,6 +46,7 @@ $(document).ready(function() {
 			alert("해당 주문건은 취소할 수 없습니다.")
 		}
 		});
+});
 		
 		function orderlist(data){
 			$('.myorder_table').empty();
@@ -64,7 +61,7 @@ $(document).ready(function() {
 					'<th width="15%">취소</th>'+
 				'</tr>');
 			
-			$each(data, function(index, value){
+			$.each(data, function(index, value){
 				$('.myorder_table').append('<tr>'+
 				'<td>'+value.day+'</td>'+
 				'<td><img id="foodsmall_photo" alt="" src="">'+value.picture+'</td>'+
@@ -82,7 +79,7 @@ $(document).ready(function() {
 		}
 			
 	
-});
+
 </script>
 	<div class="mypage_body">
 	<div class="link">

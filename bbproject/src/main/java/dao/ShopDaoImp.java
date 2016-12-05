@@ -101,8 +101,22 @@ public class ShopDaoImp implements ShopDAO {
 	}
 
 	@Override
+	public int count(HashMap<String, Object> map) {
+		return sqlSession.selectOne("shop.searchCount", map);
+	}
+
+	@Override
+	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map) {
+		return sqlSession.selectList("shop.search", map);
+	}
+	
 	public fb_BasketDTO shopBuy(HashMap<String, Object> map) {
 		return sqlSession.selectOne("shop.buybasket", map);
+	}
+
+	@Override
+	public int basketChk(HashMap<String, Object> map) {
+		return sqlSession.selectOne("shop.basketChk", map);
 	}
 
 }

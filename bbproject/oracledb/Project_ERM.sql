@@ -58,13 +58,8 @@ CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_theme_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-<<<<<<< HEAD
-CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
-<<<<<<< HEAD
-=======
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
->>>>>>> refs/remotes/origin/joohoon2
 
 
 =======
@@ -73,11 +68,13 @@ CREATE SEQUENCE SEQ_boardcategory_no INCREMENT BY 1 START WITH 1 nocache nocycle
 
 /* Create Tables */
 
+
+--테이블 컬럼 순서 변경 //주훈
 CREATE TABLE fb_lately_product
 (
+	lately_no number NOT NULL,
 	member_no number NOT NULL,
-	foods_no number NOT NULL,
-	lately_no number NOT NULL
+	foods_no number NOT NULL
 );
 
 CREATE TABLE fb_coupon
@@ -96,21 +93,14 @@ CREATE TABLE fb_coupon_book
 	coupon_no number NOT NULL,
 	 
 	coupon_state varchar2(10) not null,
-<<<<<<< HEAD
-=======
 	PRIMARY KEY (couponbook_no)
 );
-=======
+
 CREATE TABLE fb_coupon_book
 (
 	couponbook_no number NOT NULL,
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
-<<<<<<< HEAD
-=======
->>>>>>> refs/remotes/origin/yeonsung
->>>>>>> refs/remotes/origin/joohoon2
->>>>>>> refs/remotes/origin/min
 	PRIMARY KEY (couponbook_no)
 );
 
@@ -312,7 +302,6 @@ CREATE TABLE fb_tr_order
 	order_no number NOT NULL,
 	recipe_no number NOT NULL,
 	order_pic varchar2(50),
-	-- 설명
 	order_text varchar2(100),
 	PRIMARY KEY (order_no)
 );
@@ -321,9 +310,8 @@ CREATE TABLE fb_tr_order
 CREATE TABLE fb_tr_complete
 (
 	recipe_no number NOT NULL,
-<<<<<<< HEAD
 	complete_pic varchar2(50),
-
+);
 
 CREATE TABLE fb_board
 (
@@ -336,7 +324,6 @@ CREATE TABLE fb_board
 	board_subject varchar2(200) NOT NULL,
 	PRIMARY KEY (board_no)
 );
-
 
 CREATE TABLE fb_theme_recipe
 (
@@ -407,6 +394,8 @@ ALTER TABLE fb_coupon_book
 ALTER TABLE fb_lately_product
 	ADD FOREIGN KEY (member_no)
 	REFERENCES fb_member (member_no)
+	ADD FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no)
 ;
 
 

@@ -1,7 +1,7 @@
 body {
 	margin: auto;
 	width: 1420px;
-	background-color: #ede6be;
+	background-color: white;
 }
 
 header {
@@ -23,10 +23,12 @@ header {
 }
 
 #mainbody {
-	width: 950px;
+	width: 948px;
 	background-color: white;
 	min-height : 500px;
 	float: left;
+	border-left:1px solid gray;
+	border-right:1px solid gray;
 }
 
 footer {

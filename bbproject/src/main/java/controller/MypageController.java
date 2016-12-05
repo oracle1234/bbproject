@@ -78,11 +78,10 @@ public class MypageController {
 		
 	}
 	
-/*	@RequestMapping("/myorder_del.do")
-	public @ResponseBody List<fb_OrderDTO> orderDelete(fb_OrderDTO odto){
-		return orderservice.deleteProcess(odto);
-
-	}*/
+	@RequestMapping(value ="/myorder_del.do" , method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public @ResponseBody String orderDelete(String member_no, String foods_no, String day){
+		return "redirect:/my_order.do";
+	}
 	
 	@RequestMapping("/my_cart.do")
 	public ModelAndView listMethod(HttpServletRequest req) {

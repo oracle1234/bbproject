@@ -259,32 +259,31 @@ public class ProductController {
 	public @ResponseBody String basketInsertProcess(fb_BasketDTO bdto, HttpServletRequest req){
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		
-		System.out.println("어마운트"+bdto.getAmount());
-		System.out.println("푸넘"+bdto.getFoods_no());
-		System.out.println("멤넘"+mdto.getMember_no());
-		
-		
+		int basketChk = service.basketChkProcess(bdto.getFoods_no(), mdto.getMember_no());
+		String str = "";
+		if(basketChk == 0){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", bdto.getFoods_no());
 		map.put("member_no", mdto.getMember_no());
 		map.put("amount", bdto.getAmount());
 		
 		service.basketInsertProcess(map);
+		str = "장바구니 추가완료";
+		}
+		else{
+		str = "이미 추가된 상품";	
+		}
 		
-		String str = "";
 		return str;
 	}//end basketinsert/////////////////////////
 	
-	@RequestMapping(value="/basketInsert.do", method = RequestMethod.POST)
+	/*@RequestMapping(value="/basketInsert.do", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView basketInsertPostProcess(fb_BasketDTO bdto, HttpServletRequest req, int amount){
 		
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
-		
-		System.out.println("어마운트"+amount);
-		System.out.println("푸넘"+bdto.getFoods_no());
-		System.out.println("멤넘"+mdto.getMember_no());
-		
+		int basketChk = service.basketChkProcess(bdto.getFoods_no(), mdto.getMember_no());
+		if(basketChk == 0){
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", bdto.getFoods_no());
@@ -292,9 +291,10 @@ public class ProductController {
 		map.put("amount", bdto.getAmount());
 		
 		service.basketInsertProcess(map);
+		}
 		
 		return mav;
 	}//end basketinsert/////////////////////////
-	
+*/	
 
 }
