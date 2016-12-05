@@ -132,10 +132,6 @@ public class ShopController {
 			list.add(service.shopBuyProcess(Integer.parseInt(foods_no), mdto.getMember_no()));
 		}
 		
-		for (fb_BasketDTO aa : list) {
-			System.out.println(aa.getFoods_no());
-		}
-		
 		mav.addObject("FoodsDTO", list);
 		mav.addObject("MemberDTO", mdto);
 		mav.addObject("Address", Address);
@@ -148,16 +144,11 @@ public class ShopController {
 		return mav;
 	}
 	
-	
-	
-	
 	@RequestMapping("/pay_end.do")
 	public ModelAndView mailSendProcess(HttpServletRequest req){
 		
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		
-		
 		
 		new MailSend(mdto);
 		
