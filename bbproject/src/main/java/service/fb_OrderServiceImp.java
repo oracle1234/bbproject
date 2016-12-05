@@ -24,6 +24,15 @@ public class fb_OrderServiceImp implements fb_OrderService{
 		return dao.list(member_no);
 	}
 
+	@Override
+	public fb_OrderDTO myOrderSearchProcess(int member_no, String start, String end) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", member_no);
+		map.put("start", start);
+		map.put("end", end);
+		return dao.myOrderSearch(map);
+	}
+
 /*	@Override
 	public List<fb_OrderDTO> orderdelProcess(HashMap<String, Object> map) {
 		return dao.orderdelete(map);

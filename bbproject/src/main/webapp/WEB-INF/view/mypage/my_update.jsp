@@ -14,99 +14,100 @@ $(document).ready(function(){
 	//alert(s_pw);
 	$(".join").hide();
 	
-	$("#pwok").on("click", function(){
-		if(s_pw==$("#pwck").val()){
+	$("#pwupok").on("click", function(){
+		alert($('#pwck').val());
+		if(s_pw==$("#pwckup").val()){
 			$(".password").remove();
 			$(".join").show();
-			$("#member_name").attr("value",s_name);
-			$("#id").attr("value",s_id);
+			$("#member_nameup").attr("value",s_name);
+			$("#idup").attr("value",s_id);
 		}else{
 			alert("비밀번호를 다시 입력해주세요.");
 		}
 	});
 	
-	$('#domain').change(function(){
-		if($('#domain').val()!="::직접입력::"){
-			$('#mail2').attr("value",$('#domain').val()).attr("readonly","true");
+	$('#domainup').change(function(){
+		if($('#domainup').val()!="::직접입력::"){
+			$('#mail2up').attr("value",$('#domainup').val()).attr("readonly","true");
 		//alert($('#domain').val());	
 		}
 	});
 	
-	$("#phone").keyup(function () {
+	$("#phoneup").keyup(function () {
 	    if (this.value.length == this.maxLength) {
-	        $("#phone2").focus();
+	        $("#phone2up").focus();
 	    }
 	});
 	
-	$("#pass").keyup(function(){
+	$("#passup").keyup(function(){
 		$('font[name=check]').text('');
 	});
-	$('#pw').keyup(function(){
-		if($("#pass").val()!=$("#pw").val()){
-			$('#check').css("color","red");
+	$('#pwup').keyup(function(){
+		if($("#passup").val()!=$("#pwup").val()){
+			$('#checkup').css("color","red");
 			$('font[name=check]').text('');
 			$('font[name=check]').html('비밀번호가 일치하지 않습니다.');
 		}else{
-			$('#check').css("color","green");
+			$('#checkup').css("color","green");
 			$('font[name=check]').text('');
 			$('font[name=check]').html('비밀번호가 일치합니다.');
 		}
 	});
 	
-	$("#ok").click(function () {
+	$("#okup").click(function () {
 		
-		$(".form2").append('<input type="hidden" id="mail" name="mail">');
-		$("#mail").val($("#email").val()+"@"+$('#mail2').val());
+		$(".form2").append('<input type="hidden" id="mailup" name="mail">');
+		$("#mailup").val($("#emailup").val()+"@"+$('#mail2up').val());
 		//alert($("#mail").val());
 		
-		$(".form2").append('<input type="hidden" id="tel" name="tel">');
-		$("#tel").val($('#phoneselect').val()+"-"+$('#phone').val()+"-"+$('#phone2').val());
+		$(".form2").append('<input type="hidden" id="telup" name="tel">');
+		$("#telup").val($('#phoneselectup').val()+"-"+$('#phoneup').val()+"-"+$('#phone2up').val());
 		//alert($("#tel").val());
 		
-		$(".form2").append('<input type="hidden" id="address" name="address">');
-	$("#address").val($('#sample4_roadAddress').val()+"/"+$('#sangsae').val()+"/"+$('#sample4_postcode').val());
+		$(".form2").append('<input type="hidden" id="addressup" name="address">');
+	$("#addressup").val($('#sample4_roadAddressup').val()+"/"+$('#sangsaeup').val()+"/"+$('#sample4_postcodeup').val());
 	//alert($("#address").val());
 		
-		if($("#member_name").val().length == 0 || $("#id").val().length == 0 || $("#pass").val().length == 0 ||
-				$("#pw").val().length == 0 || $("#phone").val().length == 0 || $("#phone2").val().length == 0 ||
-				$("#email").val().length == 0 || $("#address").val().length == 0){
+		if($("#member_nameup").val().length == 0 || $("#idup").val().length == 0 || $("#passup").val().length == 0 ||
+				$("#pwup").val().length == 0 || $("#phoneup").val().length == 0 || $("#phone2up").val().length == 0 ||
+				$("#emailup").val().length == 0 || $("#addressup").val().length == 0){
 			alert("전부 입력해주세요.");
-			if($("#member_name").val().length == 0){
-				$('#member_name').focus();
+			if($("#member_nameup").val().length == 0){
+				$('#member_nameup').focus();
 			}
 			
-			if($("#id").val().length == 0){
-				 $('#id').focus();
+			if($("#idup").val().length == 0){
+				 $('#idup').focus();
 			}
 			
-			if($("#pass").val().length == 0){
-				$('#pass').focus();
+			if($("#passup").val().length == 0){
+				$('#passup').focus();
 			}
 			
-			if($("#pw").val().length == 0){
-				$('#pw').focus();
+			if($("#pwup").val().length == 0){
+				$('#pwup').focus();
 			}
 			
-			if($("#phone").val().length == 0){
-				$('#phone').focus();
+			if($("#phoneup").val().length == 0){
+				$('#phoneup').focus();
 			}
 			
-			if($("#phone2").val().length == 0){
-				$('#phone2').focus();
+			if($("#phone2up").val().length == 0){
+				$('#phone2up').focus();
 			}
 			
-			if($("#email").val().length == 0){
-				$('#email').focus();
+			if($("#emailup").val().length == 0){
+				$('#emailup').focus();
 			}
 			
-			if($("#address").val().length == 0){
-				$('#address').focus();
+			if($("#addressup").val().length == 0){
+				$('#addressup').focus();
 			}
 		}
 		else {
-			if($("#pass").val()==$("#pw").val()){
-			$("a#okhref").attr("href","joinsucc.do");
-			$("#form").attr('action','myupdate.do').attr('method','post').attr('onsubmit','true').submit();
+			if($("#passup").val()==$("#pwup").val()){
+			$("a#okhrefup").attr("href","updsucc.do");
+			$("#formup").attr('action','myupdate.do').attr('method','post').attr('onsubmit','true').submit();
 			}else{
 				alert("비밀번호가 일치하지 않습니다.");
 			}
@@ -119,8 +120,8 @@ $(document).ready(function(){
 		var reg5 = /[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; // 문자는 반드시 포함되어야 함
 
 	 	
-		$('#ok').on('click', function(){
-			var pwreg =$('#pass').val();
+		$('#okup').on('click', function(){
+			var pwreg =$('#passup').val();
 
 			if(reg3.test(pwreg)){
 				alert("pw true 3");
@@ -172,68 +173,110 @@ function sample4_execDaumPostcode() {
             }
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
-            document.getElementById('sample4_roadAddress').value = fullRoadAddr;
-            document.getElementById('address').value = data.jibunAddress;
+            document.getElementById('sample4_postcodeup').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('sample4_roadAddressup').value = fullRoadAddr;
+            document.getElementById('addressup').value = data.jibunAddress;
 
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
             if(data.autoRoadAddress) {
                 //예상되는 도로명 주소에 조합형 주소를 추가한다.
                 var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                document.getElementById('guideup').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
 
             } else if(data.autoJibunAddress) {
                 var expJibunAddr = data.autoJibunAddress;
-                document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                document.getElementById('guideup').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
 
             } else {
-                document.getElementById('guide').innerHTML = '';
+                document.getElementById('guideup').innerHTML = '';
             }
         }
     }).open();
 }
 </script>
+
+<style>
+
+fieldset{
+width:900px;
+background-color: white;
+	z-index:100;
+	margin-top:-15px;
+	margin-left:-10px;
+}
+
+
+
+ .join{
+	text-align: left;
+	padding:10px;
+	width:900px;
+	height:500px;
+	background-color: white;
+	z-index:100;
+} 
+
+ .label{
+	width:120px;
+	height:40px;
+}
+
+.form{
+	width:780px;
+	height:40px;
+}
+
+.label2{
+	width:120px;
+	height:60px;
+}
+
+.form3{
+	width:780px;
+	height:60px;
+} 
+</style>
 	<div class="mypage_body">
 	<div class="password">
 	<table>
 <tr>
 <td class="label"><label for="pw">비밀번호확인</label></td>
-<td class="form"><input type="password" id="pwck"></td>
+<td class="form"><input type="password" id="pwckup"></td>
 </tr>
 </table>
-<input type="button" id="pwok" value="확인"> 
+<input type="button" id="pwupok" value="확인"> 
 </div>
 
 <div class="join">
-<form action="myupdate.do" method="post" enctype="application/x-www-form-urlencoded" id="form" onsubmit="return false">
+<form action="myupdate.do" method="post" enctype="application/x-www-form-urlencoded" id="formup" onsubmit="return false">
 <fieldset>
 <legend>회원정보 수정</legend>
 
 <table>
 <tr>
 <td class="label"><label for="name">이름</label></td>
-<td class="form"><input type="text" name="member_name" id="member_name" readonly style="background-color: rgb(219, 219, 219);"/></td>
+<td class="form"><input type="text" name="member_name" id="member_nameup" readonly style="background-color: rgb(219, 219, 219);"/></td>
 </tr>
 
 <tr>
 <td class="label"><label for="id">아이디</label></td>
-<td class="form"><input type="text" name="id" id="id" readonly style="background-color: rgb(219, 219, 219);"></td>
+<td class="form"><input type="text" name="id" id="idup" readonly style="background-color: rgb(219, 219, 219);"></td>
 </tr>
 
 <tr>
 <td class="label"><label for="pass">비밀번호</label></td>
-<td class="form"><input type="password" name="pass" id="pass"></td>
+<td class="form"><input type="password" name="pass" id="passup"></td>
 </tr>
 
 <tr>
 <td class="label"><label for="pw">비밀번호확인</label></td>
-<td class="form"><input type="password" name="pw" id="pw">
-<font id="check" name="check" size="2"></font></td>
+<td class="form"><input type="password" name="pw" id="pwup">
+<font id="checkup" name="check" size="2"></font></td>
 </tr>
 
 <tr>
 <td class="label"><label for="phone">휴대폰번호</label></td>
-<td class="form"><select id="phoneselect">
+<td class="form"><select id="phoneselectup">
 	<option value="010">010</option>
 	<option value="011">011</option>
 	<option value="016">016</option>
@@ -242,19 +285,19 @@ function sample4_execDaumPostcode() {
 	<option value="019">019</option>
 </select>
 <span>-</span>
-<input type="text" name="phone" id="phone" maxlength="4">
+<input type="text" name="phone" id="phoneup" maxlength="4">
 <span>-</span>
-<input type="text" name="phone2" id="phone2" maxlength="4">
-<input type="checkbox" id="messagree">문자메세지를 수신합니다.
+<input type="text" name="phone2" id="phone2up" maxlength="4">
+<input type="checkbox" id="messagreeup">문자메세지를 수신합니다.
 <!-- <input type="hidden" id="tel" name="tel">-->
 </td>
 </tr>
 
 <tr>
 <td class="label2"><label for="mail">이메일</label></td>
-<td class="form2"><input type="text" id="email"/><span>@</span>
-<input type="text" name="mail2" id="mail2"/>
-<select name="domain" id="domain">
+<td class="form2"><input type="text" id="emailup"/><span>@</span>
+<input type="text" name="mail2" id="mail2up"/>
+<select name="domain" id="domainup">
 <option value="::직접입력::">::직접입력::</option>
 <option value="naver.com">naver.com</option>
 <option value="daum.net">daum.net</option>
@@ -264,26 +307,26 @@ function sample4_execDaumPostcode() {
 <option value="yahoo.co.kr">yahoo.co.kr</option>
 <option value="hotmail.com">hotmail.com</option>
 </select>
-<br><input type="checkbox" id="mailagree">반찬을부탁해에서 보내드리는 정보, 이벤트 메일을 받습니다
+<br><input type="checkbox" id="mailagreeup">반찬을부탁해에서 보내드리는 정보, 이벤트 메일을 받습니다
 <!-- <input type="hidden" id="mail" name="mail"> --></td>
 </tr>
 
 <tr>
 <td class="label2"><label for="addr">주소</label></td>
-<td class="form2"><input type="text" id="sample4_postcode" placeholder="우편번호">
-<input type="button" onclick="sample4_execDaumPostcode()" id="map" value="우편번호 찾기"><br>
-<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-<input type="text" id="jibun" placeholder="지번주소">
-<input type="text" id="sangsae" placeholder="상세주소"></td>
+<td class="form2"><input type="text" id="sample4_postcodeup" placeholder="우편번호">
+<input type="button" onclick="sample4_execDaumPostcode()" id="mapup" value="우편번호 찾기"><br>
+<input type="text" id="sample4_roadAddressup" placeholder="도로명주소">
+<input type="text" id="jibunup" placeholder="지번주소">
+<input type="text" id="sangsaeup" placeholder="상세주소"></td>
 <!-- <input type="hidden" id="address" name="address"> -->
-<span id="guide" style="color:#999"></span>
+<span id="guideup" style="color:#999"></span>
 </tr>
 </table>
 </fieldset>
 
 
 <p>
-<a id="okhref" href=""><input type="submit" value="확인" id="ok" /></a>
+<a id="okhrefup" href=""><input type="submit" value="확인" id="okup" /></a>
 <input type="reset" value="취소" />
 </p>
 

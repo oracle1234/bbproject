@@ -10,9 +10,17 @@
 		where member_no=#{member_no}
 	</select>
 	
-	<delete id="delete" parameterType="hashmap">
+	<!-- <delete id="delete" parameterType="hashmap">
 	delete 
 	from fb_request
 	where member_no=#{member_no} and foods_no=#{foods_no} and day=#{day}
-	</delete>
+	</delete> -->
+	
+	<select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
+	select *
+	from fb_request
+<![CDATA[where member_no=#{member_no} and 
+    day >= #{start,jdbcType=TIMESTAMP}
+    and day < #{start,jdbcType=TIMESTAMP}]]>
+	</select>
 </mapper>
