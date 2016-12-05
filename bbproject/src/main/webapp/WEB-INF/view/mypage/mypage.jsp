@@ -4,20 +4,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <link rel="stylesheet" type="text/css" href="css/mypage.css" />
 <script type="text/javascript">
-$(document).ready(function(){
-	$("p").hover(function(){
-		    $(this).parent().css("background-color", "#c4c4c4");
-		    }, function(){
-		    $(this).parent().css("background-color", "white");
-		}); 
-	});
 </script>
-
-	<div class="mypage_title">
-		<div id="title">
-			<p>마이페이지</p>
-		</div>
-	</div>
 	<div class="mypage_body">
 		<div class="mymenu">
 			<div id="order">

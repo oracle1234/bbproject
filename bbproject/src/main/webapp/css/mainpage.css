@@ -7,7 +7,7 @@ body {
 header {
 /* 	width: 1350px; */
 	height: 100px;
-	background-color: aqua;
+	background-color: black;
 }
 
 #main {
@@ -57,7 +57,6 @@ header {
 }
 #etc ul li{
 	float:left;
-	border: 1px solid gray;
 }
 
 #map{
@@ -72,7 +71,7 @@ header {
 }
 
 #bb{
-	width:379px;
+	width:388px;
 	height:200px;
 }
 
@@ -91,9 +90,9 @@ footer {
 	border-top: 2px solid black;
 }
 
-#imgbar {
-/* 	width: 1350px; */
-	height: 350px;
+#imgslider {
+ 	width: 1350px; 
+	height: 400px;
 }
 
 li {
@@ -127,4 +126,12 @@ a {
 	font-size: 10px;
 	position : relative;
 	top: -5px;
+}
+
+#pop_wrap {
+	position:relative;
+	top: 200px;
+	left: 100px;
+	z-index: 30;
+	display: none;
 }

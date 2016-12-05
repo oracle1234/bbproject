@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css?var=2" media="all" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
-<link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
+<link rel="stylesheet" type="text/css" href="css/mainpage.css" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/main.js?var=2"></script>
 
@@ -28,8 +28,8 @@
 		<tiles:insertAttribute name="header" />
 	</header>
 
-	<div id="imgbar">
-		<tiles:insertAttribute name="img" />
+	<div id="imgslider">
+		<tiles:insertAttribute name="imgslider" />
 	</div>
 	<div id="main">
 		<tiles:insertAttribute name="main"/>
