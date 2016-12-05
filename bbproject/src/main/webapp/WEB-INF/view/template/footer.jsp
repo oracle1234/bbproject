@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <div class="ft_info">
-	<div class=" wrap_inner">
+	<div class="wrap_inner">
 		<ul>
 			<li><a href="#"><img
 					src="http://file.thebanchan.co.kr/_data/_image/footer/f_btn1.gif"
@@ -26,8 +26,8 @@
 		</div>
 	</div>
 
-	<div class="wrap_inner">
-		<p class="shopinfo">
+	<div class="shopinfo">
+		<p>
 			상호 : (주)더블유푸드마켓&nbsp;|&nbsp;대표자 : 신영수&nbsp;|&nbsp;통신판매업신고 :
 			제2016-서울마포-0111호&nbsp;|&nbsp;사업자등록번호 : 107-87-44713&nbsp;<a
 				href="http://ftc.go.kr/info/bizinfo/communicationList.jsp"
