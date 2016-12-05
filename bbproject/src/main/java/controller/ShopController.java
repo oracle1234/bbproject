@@ -143,16 +143,14 @@ public class ShopController {
 	}*/
 	
 	@RequestMapping(value="/shop_buy.do", method = RequestMethod.POST)
-	public ModelAndView buyPostPage(FoodsDTO fdto, HttpServletRequest req) {
+	public ModelAndView buyPostPage(FoodsDTO fdto, HttpServletRequest req, String checkfood[]) {
 		ModelAndView mav = new ModelAndView( );
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
-		String [] checkfood = req.getParameterValues("checkfood");
-
+		
 		for (String foods_no : checkfood) {
 			System.out.println(foods_no);
 		}
-		
-		
+
 		String address[] = mdto.getAddress().split("/");
 		String Address = address[0]; 
 		String detailAddress = address[1];
