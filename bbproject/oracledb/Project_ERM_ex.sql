@@ -22,6 +22,14 @@ select *
 where member_no=1 and 
     day >= to_date('2016-11-11','yyyy-mm-dd')
     and day < to_date('2016-12-5','yyyy-mm-dd')+1;
+    
+
+	select *
+	from fb_request
+where member_no=1 and 
+    day >= to_date('2016-11-11','YYYY-MM-DD')
+    and day <= to_date('2016-12-5','YYYY-MM-DD')
+
 	
 	
 	split

@@ -88,20 +88,26 @@ $(document).ready(function() {
 		 if(data.list == null){
 			 alert("조회 기간에 해당하는 주문내역이 없습니다.");
 		 }else {
-			// $('.myorder_table').empty();
+			 $('.myorder_table').empty();
 			$('.myorder_table').append('<tr>'+
-					'<th width="15%">주문일자</th>'+
-					'<th width="15%">상품정보</th>'+
-					'<th width="20%">상품명</th>'+
-					'<th width="5%">수량</th>'+
-					'<th width="15%">상품가격</th>'+
-					'<th width="10%">총결제금액</th>'+
-					'<th width="15%">주문상태</th>'+
-					'<th width="15%">취소</th>'+
+					'<th width="25%">주문일자</th>'+
+					'<th width="25%">상품명</th>'+
+					'<th width="10%">수량</th>'+
+					'<th width="20%">상품가격</th>'+
+					'<th width="15%">총결제금액</th>'+
+					'<th width="20%">주문상태</th>'+
 				'</tr>');
 			
 			$.each(data.list, function(index, value){
-				$('.myorder_table').append('<p>'+value.amount+'</p>');
+				$('.myorder_table').append('<tr>'+
+				'<td>'+value.day+'</td>'+
+				'<td>'+value.foods_no+'</td>'+
+				'<td>'+value.amount+'</td>'+
+				'<td>'+value.price+'</td>'+
+				'<td>'+value.price*dto.amount+'</td>'+
+				'<td>'+value.delivery_condition+'</td>'+
+				'</td>'+
+			'</tr>');
 			});
 		}
 	 }
@@ -128,35 +134,32 @@ $(document).ready(function() {
 	<input class="date-picker" type="text" id="start" name="start"/>~
 	<input class="date-picker" type="text" id="end" name="end"/>
 <input type="button" value="조회" id="calfindButton">
-<input type="hidden" id="start" name="start">
-	<input type="hidden" id="end" name="end">
+<!-- <input type="hidden" id="start" name="start">
+	<input type="hidden" id="end" name="end"> -->
 </div>
 	
 		<table class="myorder_table">
 		<tr>
 				
-				<th width="15%">주문일자</th>
-				<th width="15%">상품정보</th>
-				<th width="20%">상품명</th>
-				<th width="5%">수량</th>
-				<th width="15%">상품가격</th>
-				<th width="10%">총결제금액</th>
-				<th width="15%">주문상태</th>
-				<th width="15%">취소</th>
+				<th width="20%">주문일자</th>
+				<th width="25%">상품명</th>
+				<th width="10%">수량</th>
+				<th width="20%">상품가격</th>
+				<th width="15%">총결제금액</th>
+				<th width="20%">주문상태</th>
 			</tr>
 			<c:forEach var="dto" items="${aList}">
 				<tr>
 					<td>${dto.day}</td>
-					<td><img id="foodsmall_photo" alt="" src="">${dto.picture}</td>
 					<td>${dto.foods_no}</td>
 					<td>${dto.amount}개</td>
 					<td>${dto.price}</td>
 					<td>${dto.price*dto.amount}원</td>
 					<td>${dto.delivery_condition}</td>
-					<td><input type="button" value="취소" class="orderno">
-					<input type="hidden" class="delivery_condition" value="${dto.delivery_condition}">
+					<!-- <td><input type="button" value="취소" class="orderno"> -->
+					<%--<input type="hidden" class="delivery_condition" value="${dto.delivery_condition}">
 					<input type="hidden" class="foods_no" value="${dto.foods_no}">
-					<input type="hidden" class="day" value="${dto.day}"></td>
+					<input type="hidden" class="day" value="${dto.day}"> --%>
 				</tr>
 				</c:forEach>
 		</table>
