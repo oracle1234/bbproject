@@ -485,10 +485,11 @@ td {
 
 	<div class="board_buttons">
 		<form name="frm" id="frm" method="get">
-			<input type="hidden" name="board_no" id="board_no"
-				value="${dto.board_no}" /> <input type="hidden" name="currentPage"
-				id="currentPage" value="${currentPage}" /> <input type="button"
-				id="list" value="목록" /> <input type="button" id="update" value="수정" />
+			<input type="hidden" name="board_no" value="${dto.board_no}" /> 
+			<input type="hidden" name="currentPage" value="${currentPage}" />
+			<input type="hidden" name="comment_writer" value="${sessionScope.member.id}" /> 
+			<input type="button" id="list" value="목록" /> 
+			<input type="button" id="update" value="수정" />
 			<input type="button" id="delete" value="삭제" />
 		</form>
 	</div>
