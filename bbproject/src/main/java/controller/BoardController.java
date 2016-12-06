@@ -175,8 +175,6 @@ public class BoardController {
 		mav.addObject("keyWord", keyWord);
 		mav.addObject("pv", pdto);
 		mav.setViewName("board_list");
-		System.out.println(keyField);
-		System.out.println(keyWord);
 		return mav;
 
 	}// end board_searchMethod()
