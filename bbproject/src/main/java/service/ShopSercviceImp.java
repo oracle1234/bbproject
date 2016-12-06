@@ -18,6 +18,7 @@ import dao.ShopDAO;
 import dto.FoodsDTO;
 import dto.ReviewDTO;
 import dto.fb_BasketDTO;
+import dto.fb_CouponDTO;
 import dto.shop_PageDTO;
 
 public class ShopSercviceImp implements ShopService {
@@ -135,7 +136,7 @@ public class ShopSercviceImp implements ShopService {
 	public List<FoodsDTO> adminFoodsListProcess(int category_no) {
 		return dao.adminFoodsListProcess(category_no);
 	}
-	
+
 	@Override
 	public fb_BasketDTO shopBuyProcess(int foods_no, int member_no) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -154,7 +155,7 @@ public class ShopSercviceImp implements ShopService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("category_no", category_no);
 		map.put("foods_name", foods_name);
-		
+
 		return dao.count(map);
 	}
 
@@ -163,7 +164,7 @@ public class ShopSercviceImp implements ShopService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("foods_no", foods_no);
 		map.put("member_no", member_no);
-		
+
 		return dao.basketChk(map);
 	}
 
@@ -182,4 +183,19 @@ public class ShopSercviceImp implements ShopService {
 		dao.request_insert(map);
 	}
 
-}//end class
+	@Override
+	public void couponDeleteProcess(int member_no, int coupon_no) {
+		dao.coupon_delete(member_no, coupon_no);
+	}
+
+	@Override
+	public List<fb_CouponDTO> reCouponProcess(int member_no) {
+		return dao.reCoupon(member_no);
+	}
+
+	@Override
+	public int rePointProcess(int member_no) {
+		return dao.rePoint(member_no);
+	}
+
+}// end class

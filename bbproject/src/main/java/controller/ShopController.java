@@ -254,7 +254,7 @@ public class ShopController {
 
 	@RequestMapping(value = "/pay_end.do", method = RequestMethod.POST)
 	public ModelAndView pay_endPostProcess(HttpServletRequest req, String chkfood[], String foods_no[],
-			String foods_name[], int price[], int amount[], String savepoint[], String userpoint) {
+			String foods_name[], int price[], int amount[], String savepoint[], String userpoint, String usecoupon) {
 			
 		System.out.println(userpoint);
 		
@@ -289,6 +289,7 @@ public class ShopController {
 
 		service.savePointPlusProcess(mdto.getMember_no(), savePoint);
 		service.savePointMinusProcess(mdto.getMember_no(), Integer.parseInt(userpoint));
+		service.couponDeleteProcess(mdto.getMember_no(), Integer.parseInt(usecoupon));
 
 		for (String food_no : chkfood) {
 			int count = service.basketChkProcess(Integer.parseInt(food_no), mdto.getMember_no());
@@ -315,7 +316,7 @@ public class ShopController {
 
 	@RequestMapping(value = "/paynow_end.do", method = RequestMethod.POST)
 	public ModelAndView paynow_endPostProcess(HttpServletRequest req, String chkfood, String foods_no,
-			String foods_name, int price, int amount, String savepoint, String userpoint) {
+			String foods_name, int price, int amount, String savepoint, String userpoint, String usecoupon) {
 		
 		
 		ModelAndView mav = new ModelAndView();
@@ -326,6 +327,7 @@ public class ShopController {
 
 		service.savePointPlusProcess(mdto.getMember_no(), Integer.parseInt(SavePoint));
 		service.savePointMinusProcess(mdto.getMember_no(), Integer.parseInt(userpoint));
+		service.couponDeleteProcess(mdto.getMember_no(), Integer.parseInt(usecoupon));
 		
 		/*HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("member_no", mdto.getMember_no());
@@ -343,16 +345,16 @@ public class ShopController {
 		if (count != 0) {
 			basketService.basketDeleteProcess(Integer.parseInt(foods_no));
 		}
+		
+		// 유저 정보 갱신
+		mdto.setcList(service.reCouponProcess(mdto.getMember_no()));
+		mdto.setPoint(service.rePointProcess(mdto.getMember_no()));
+		req.getSession().setAttribute("member", mdto);
 
 		mav.setViewName("shop_buy_result");
 		return mav;
-		
 
 	}
-	
-	
-
-	
 	
 
 }// end class

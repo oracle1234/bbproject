@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -365,7 +364,7 @@ $(document).ready(function() {
 	$('#coupon_select').on('change', function(){
 		var tm = 0;
 		var couponID = $(this).val();
-		
+		$('#usecoupon').val(couponID);
 		
 		discount = discountGO(couponID);
 		
@@ -407,7 +406,7 @@ $(document).ready(function() {
 		
 	});
 	
-	var useSavemoney = "";
+	var useSavemoney = "0";
 	$('#savemoney_table tr:nth-child(1) td input').on('change', function(){
 		
 		useSavemoney = $('#savemoney_table tr:nth-child(1) td input').val();
@@ -615,7 +614,7 @@ $(document).ready(function() {
     	}
     	
     	var temp = $('.pay_type:checked').val();
-    	$("#userpoint").val(useSavemoney);
+    	$('#userpoint').val(useSavemoney);
     	$('#food_infoform').submit();
     	
 		/* if(temp == 'creditCard'){
@@ -694,16 +693,26 @@ $(document).ready(function() {
 }); //end document ready///////////////////////
 
 
-function discountGO(couponID){
+
+function discountGO(no) {
+	var sum = 0;
+
+	var list = new Array();
+	<c:forEach var='item1' items='${member.cList}'>
+		var coupon = new Object();
+		coupon.no = '${item1.couponbook_no}';
+		coupon.discount = '${item1.coupon_discount}';
+		list.push(coupon);
+	</c:forEach>
 	
-	obj = ${member.cList}
-	
-	$.each(obj, function(index, value) {
-		//if(value.coupon_no == couponID){
-			alert(value);
-		//}
-	});
-};
+	for(var i=0; i < list.length; i++){
+		if(list[i].no == no){
+			sum = list[i].discount;
+		}
+	}
+	return sum;
+}
+
 
 function sample4_execDaumPostcode() {
     new daum.Postcode({
@@ -837,7 +846,8 @@ function sample4_execDaumPostcode() {
 							</tr>
 						</c:forEach>
 					</table>
-					<input id="userpoint" type="hidden" name="userpoint">
+					<input id="userpoint" value = "0" type="hidden" name="userpoint">
+					<input id="usecoupon" value = "0" type="hidden" name="usecoupon">
 					</form>
 					
 				</div>
@@ -856,7 +866,7 @@ function sample4_execDaumPostcode() {
 							<td><select id="coupon_select">
 									<option selected value="0">사용하실 쿠폰을 선택하세요.</option>
 									<c:forEach items="${member.cList}" var = "couponDTO">
-									<option value="${couponDTO.coupon_no}">${couponDTO.coupon_name}</option>
+									<option value="${couponDTO.couponbook_no}">${couponDTO.coupon_name}</option>
 									</c:forEach>
 							</select>
 							</td>

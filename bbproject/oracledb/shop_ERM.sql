@@ -193,5 +193,11 @@ alter table fb_request
 
 drop table fb_reqeust
 
-select * from fb_coupon
+select * from fb_coupon_book
 
+delete from fb_coupon_book where member_no = 1 and coupon_no = 1;
+
+select b.*, c.*
+		from FB_MEMBER a, FB_COUPON_BOOK b, FB_COUPON c
+		where a.member_no = b.member_no and b.coupon_no = c.coupon_no
+		and a.member_no = (select member_no from fb_member where member_no = 1)

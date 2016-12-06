@@ -9,7 +9,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title" /></title>
 <style type="text/css">
-
+	#adminheader li{
+	width : 100px;
+	float: left;
+	border: 1px solid black;
+	text-align: center;
+	}
+	
+	#admin{
+		clear: both;
+	}
 </style>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />

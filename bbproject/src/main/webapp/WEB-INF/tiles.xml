@@ -156,9 +156,6 @@
 		<put-attribute name="body" value="/WEB-INF/view/admin/coupon_insert.jsp" />
 	</definition>
 	
-	<definition name="admincouponlist" extends="admincoupon">
-		<put-attribute name="body" value="/WEB-INF/view/admin/coupon_list.jsp" />
-	</definition>
 	<!-- 관리자 페이지 end -->
 	
 	<definition name="my_order" extends="index">

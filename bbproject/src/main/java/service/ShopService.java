@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import dto.FoodsDTO;
 import dto.ReviewDTO;
 import dto.fb_BasketDTO;
+import dto.fb_CouponDTO;
 
 public interface ShopService {
 	public List<FoodsDTO> listProcess(int foods_no);
@@ -34,6 +35,9 @@ public interface ShopService {
 	public void savePointPlusProcess(int member_no, int point);
 	public void savePointMinusProcess(int member_no, int point);
 	public void requestInsertProcess(HashMap<String, Object> map);
+	public void couponDeleteProcess(int member_no, int coupon_no);
+	public List<fb_CouponDTO> reCouponProcess(int member_no);
+	public int rePointProcess(int member_no);
 	
 	
 	
