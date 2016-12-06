@@ -43,14 +43,21 @@
 
 	<select id="count" resultType="int" parameterType="dto.FoodsDTO">
 		select
-		count(*) from fb_foods where category_no = #{category_no}
+		count(*) from fb_foods 
+		<if test="value != 0">
+			where category_no = #{value}
+		</if>
 	</select>
 
 	<select id="page_list" parameterType="hashmap" resultType="dto.FoodsDTO">
-		<![CDATA[
 		select b.* from(
 		select rownum as rm, a.* from(
-		select * from fb_foods where category_no=#{category_no} order by foods_no desc )a)b
+		select * from fb_foods 
+		<if test="category_no != 0">
+			where category_no=#{category_no} 
+		</if>
+		order by foods_no desc )a)b
+		<![CDATA[
 		where b.rm>=#{startRow} and b.rm <=#{endRow}
 		]]>
 	</select>
