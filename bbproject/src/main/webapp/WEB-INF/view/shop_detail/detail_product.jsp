@@ -222,7 +222,7 @@ $(document).ready(function() {
 			$('#info_table tr:nth-child(8) td').append('<td>' + savemoney + '<span>원</span></td>');
 						
 						
-			var totalmoney = parseInt($('#info_table').text());
+			var totalmoney = parseInt($('#info_table tr:nth-child(3) td').text());
 			
 			$('#shop_upbutton').on('click',function() {
 				var price = parseInt($('#info_table tr:nth-child(3) td').text());
@@ -653,7 +653,7 @@ $(document).ready(function() {
 		<form method="POST" id="foodform" action="shop_buy.do">
 
 			<div class="sul_wrap">
-
+				<c:if test=""></c:if>
 				<c:forEach items="${list}" var="Foods">
 					<div class="detail_img_wrap">
 						<div class="detail_img">

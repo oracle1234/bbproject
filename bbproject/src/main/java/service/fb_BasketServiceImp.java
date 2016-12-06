@@ -34,6 +34,11 @@ public class fb_BasketServiceImp implements fb_BasketService{
 		return dao.list(bdto.getMember_no());
 	}
 
+	@Override
+	public void basketDeleteProcess(int foods_no) {
+		dao.delete(foods_no);
+	}
+
 
 
 }//end class

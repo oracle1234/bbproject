@@ -16,10 +16,16 @@ import dto.MemberDTO;
 
 public class MailSend {
 	
-	public MailSend(MemberDTO mdto) {
-		System.out.println(mdto.getMail());
-		System.out.println(mdto.getId());
+	public MailSend() {
+		// TODO Auto-generated constructor stub
+	}
 
+	public MailSend(MemberDTO mdto, int price[], int amount[], String foods_name[]) {
+		
+		for (String i : foods_name) {
+			System.out.println("ms=="+i);
+		}
+		
 		Properties p = System.getProperties();
 		p.put("mail.smtp.starttls.enable", "true");// gmail은 무조건 true 고정
 		p.put("mail.smtp.host", "smtp.gmail.com");// smtp 서버 주소
@@ -44,9 +50,13 @@ public class MailSend {
 			InternetAddress to = new InternetAddress(mdto.getMail());
 			msg.setRecipient(Message.RecipientType.TO, to);
 			// 이메일 제목
-			msg.setSubject("상품구매", "UTF-8");
+			msg.setSubject("반찬을부탁해에서 구매한 상품정보입니다.", "UTF-8");
 			// 이메일 내용
-			msg.setText("상품이 구매되었습니다.");
+			String str="";
+			for(int i=0; i<foods_name.length; i++){
+				str += foods_name[i]+price[i];
+			}
+			msg.setText(str);
 			// 이메일 헤더
 			msg.setHeader("content-Type", "text/html");
 			// 메일보내기
@@ -57,6 +67,9 @@ public class MailSend {
 			msg_e.printStackTrace();
 		}
 	}
+	
+	
+	
 }// end MailTestclass
 
 class MyAuthentication extends Authenticator {

@@ -64,24 +64,22 @@ Handlebars.registerHelper("newDate",function(timeValue){
 	var year=dateObj.getFullYear();
 	var month=dateObj.getMonth()+1;
 	var date=dateObj.getDate();
-	return year+"/"+month+"/"+date;
+	return year+"-"+month+"-"+date;
 });//end newDate
 
 function photolist(data){
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
-	'<th width="5%"><input type="checkbox" class="board_checkbox"></th>'+
 	'<th width="5%">번호</th>'+
 	'<th width="15%">분류</th>'+
-	'<th width="40%">제목</th>'+
+	'<th width="45%">제목</th>'+
 	'<th width="20%">작성일</th>'+
 	'<th width="10%">수정</th>'+
 '</tr>');
  	$.each(data,function(index, value){
  		$.each(value.pdto,function(index, value){
 	var source='<tr>'+
-	'<td><input type="checkbox" class="board_cb"{{dto.photo_no}}></td>'+
-	'<td></td>'+
+	'<td>{{photo_no}}</td>'+
 	'<td>포토후기</td>'+
 	'<td>{{photo_subject}}</td>'+
 	'<td>{{newDate photo_reg_date}}</td>'+
@@ -96,10 +94,9 @@ $('.myboard_table').append(template(value));
 function qalist(qaqa){
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
-	'<th width="5%"><input type="checkbox" class="board_checkbox"></th>'+
 	'<th width="5%">번호</th>'+
 	'<th width="15%">분류</th>'+
-	'<th width="40%">제목</th>'+
+	'<th width="45%">제목</th>'+
 	'<th width="20%">작성일</th>'+
 	'<th width="10%">수정</th>'+
 '</tr>');
@@ -109,8 +106,7 @@ function qalist(qaqa){
  		$.each(value.qdto,function(index, value){
 
  			var source='<tr>'+
- 			'<td><input type="checkbox" class="board_cb"{{dto.qa_no}}></td>'+
- 			'<td></td>'+
+ 			'<td>{{qa_no}}</td>'+
  			'<td>질문과 답변</td>'+
  			'<td>{{qa_subject}}</td>'+
  			'<td>{{newDate qa_reg_date}}</td>'+
@@ -125,10 +121,9 @@ function qalist(qaqa){
 function freelist(free){
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
-	'<th width="5%"><input type="checkbox" class="board_checkbox"></th>'+
 	'<th width="5%">번호</th>'+
 	'<th width="15%">분류</th>'+
-	'<th width="40%">제목</th>'+
+	'<th width="45%">제목</th>'+
 	'<th width="20%">작성일</th>'+
 	'<th width="10%">수정</th>'+
 '</tr>');
@@ -140,8 +135,7 @@ function freelist(free){
 	$.each(free,function(index, value){
  		$.each(value.bdto,function(index, value){
  			var source='<tr>'+
- 			'<td><input type="checkbox" class="board_cb"{{dto.board_no}}></td>'+
- 			'<td></td>'+
+ 			'<td>{{board_no}}</td>'+
  			'<td>자유게시판</td>'+
  			'<td>{{board_subject}}</td>'+
  			'<td>{{newDate board_reg_date}}</td>'+
@@ -169,21 +163,19 @@ function freelist(free){
 		
 		<table class="myboard_table">
 		<tr>
-		<th width="5%"><input type="checkbox" class="board_checkbox"></th>
 				<th width="5%">번호</th>
 				<th width="15%">분류</th>
-				<th width="40%">제목</th>
+				<th width="45%">제목</th>
 				<th width="20%">작성일</th>
 				<th width="10%">수정</th>
 			</tr>
 			<c:forEach var="dto" items="${aList}">
 			<c:forEach var="bdto" items="${dto.bdto}">
 				<tr>
-				<td><input type="checkbox" class="board_cb" value="${bdto.board_no}"></td>
-					<td></td>
+					<td>${bdto.board_no}</td>
 					<td>자유게시판</td>
 					<td>${bdto.board_subject}</td>
-					<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${bdto.board_reg_date}"/></td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short" value="${bdto.board_reg_date}"/></td>
 					<td><input type="button" id="board_upd" value="수정하기"></td>
 				</tr>
 						</c:forEach>

@@ -1,8 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" href="css/my_order.css" />
+
    <link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/my_order.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
  <!--  <script src="js/jquery-ui"></script>  
   <script src="js/jquery-ui.min"></script> -->
@@ -36,8 +37,9 @@ $(document).ready(function() {
 					dataType : 'text',
 					url : 'myorder_del.do?member_no='+s_no+'&day='+$(this).next().next().next().val()+'&foods_no='+$(this).next().next().val(),
 					success : orderlist,
+					
 					error: function(xhr, textStatus, error) {
-						alert(error);
+						alert("노삭제");
 					}
 				 });
 			}

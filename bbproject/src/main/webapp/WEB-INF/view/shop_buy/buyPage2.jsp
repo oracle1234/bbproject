@@ -509,6 +509,7 @@ $(document).ready(function() {
 	});
 	
 	
+	//작업
 	$('#deli_comment').on('change', function(){
 		var comment=$("#deli_comment option:selected").text();
 		var chk = $("#deli_comment option:selected").val();
@@ -548,7 +549,6 @@ $(document).ready(function() {
     	var amount = am.substring(0, am.length-1);
     	var buyer_mail = $('#orderer_mail').val();
     	var food_name = $('#order_t_food_name').text();
-    	
     	
 		if($('#orderer_name').val() == ""){
 			alert('주문자 이름을 입력하세요.');
@@ -610,9 +610,8 @@ $(document).ready(function() {
     	}
     	
     	var temp = $('.pay_type:checked').val();
-    	$('#food_infoform').submit();
     	
-		/* if(temp == 'creditCard'){
+		if(temp == 'creditCard'){
 			
 			IMP.request_pay({
 			    pg : 'danal_tpay',
@@ -649,13 +648,13 @@ $(document).ready(function() {
 			    pg : 'danal_tpay',
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
+			    name : food_name,
 			    amount : 100,
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456'
+			    buyer_email : buyer_mail,
+			    buyer_name : buyer_name,
+			    buyer_tel : buyer_tel,
+			    buyer_addr : buyer_addr,
+			    buyer_postcode : buyer_postcode
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			        var msg = '결제가 완료되었습니다.';
@@ -666,6 +665,7 @@ $(document).ready(function() {
 			        
 			        $('#food_infoform').submit();
 			        
+			        
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
@@ -673,7 +673,7 @@ $(document).ready(function() {
 
 			    alert(msg);
 			});
-		} */
+		}
     	
     	
     });
@@ -779,7 +779,8 @@ function sample4_execDaumPostcode() {
 		<div id="order_wrap">
 			<div id="order_list_wrap">
 				<div id="order_list">
-				<form id="food_infoform" action="pay_end.do" method="POST">
+				
+					<form id="food_infoform" action="pay_end.do" method="POST">
 					<table id="order_table">
 						<caption>주문내역</caption>
 						<tr>
@@ -795,26 +796,25 @@ function sample4_execDaumPostcode() {
 						<c:set var="totalAmount" value="0" scope="page"/>
 						<c:set var="saveMoney" value="0" scope="page"/>
 						
+						
 						<c:forEach items="${FoodsDTO}" var="food">
 							<tr>
-
-									<td id="order_t_food_name">${food.foods_name}
-									
-									<input type="hidden" name="chkfood" value="${food.foods_no}">
-									<input type="hidden" name="foods_no" value="${food.foods_no}">
-									<input type="hidden" name="foods_name" value="${food.foods_name}">
-									<input type="hidden" name="price" value="${food.price}">
-									<input type="hidden" name="amount" value="${food.amount}">
-									<input type = "hidden" name = "savepoint" value="${food.price * 0.01 * food.amount}">
-									</td>
-									<td>${food.price}<span>원</span></td>
-								<td>${food.amount}<span>개</span></td>
-								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * food.amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
-								<td>${food.price * food.amount}<span>원</span></td>
+								<td id="order_t_food_name">${food.foods_name}
+								<input type = "hidden" name = "chkfood" value = "${food.foods_no}">
+								<input type = "hidden" name = "foods_name" value = "${food.foods_name}">
+								<input type = "hidden" name = "foods_no" value = "${food.foods_no}">
+								<input type = "hidden" name = "price" value = "${food.price}">
+								<input type = "hidden" name = "amount" value = "${Foods.amount}">
 								
-								<c:set var= "totalAmount" value="${totalAmount + food.amount}"/>
-								<c:set var="totalPrice" value="${totalPrice + food.price * food.amount}"/>
-								<c:set var="saveMoney" value="${saveMoney + (food.price * 0.01 * food.amount)}"/>
+								</td>
+								<td>${food.price}<span>원</span></td>
+								<td>${Foods.amount}<span>개</span></td>
+								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * Foods.amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
+								<td>${food.price * Foods.amount}<span>원</span></td>
+								
+								<c:set var= "totalAmount" value="${totalAmount + Foods.amount}"/>
+								<c:set var="totalPrice" value="${totalPrice + food.price * Foods.amount}"/>
+								<c:set var="saveMoney" value="${saveMoney + (food.price * 0.01 * Foods.amount)}"/>
 							</tr>
 						</c:forEach>
 					</table>

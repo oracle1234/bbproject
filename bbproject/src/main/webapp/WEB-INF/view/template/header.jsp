@@ -318,7 +318,7 @@ var s_name = "${sessionScope.member.member_name}";
 	width: 400px;
 	height: 50px;
 	background-color: white;
-	border-bottom:4px solid black; 
+	border-bottom:3px solid black; 
 	font-size:35px;
 	font-weight: bold; 
 }
@@ -576,6 +576,17 @@ input {
           margin:10px;
 }
 
+#findbutton{
+width:150px;
+height:40px;
+border:2px solid black;
+}
+
+#joinbutton{
+width:150px;
+height:40px;
+border:2px solid black;
+}
 
 </style>
 
@@ -589,7 +600,7 @@ input {
 </div>
 <div class='menu'>
 	<ul>
-		<li><a href='#'>Home</a></li>
+		<li><a href='#'><img alt="" src="images/logo.png"></a></li>
 		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
@@ -619,7 +630,7 @@ input {
 	<div class="login">
 		<div id="login_header">
 		<p>Login</p>
-			<button id="close" value="x"></button>
+			<img id="close" src="images/button_close.png">
 		</div>
 		<div class="login-form">
 			<div id="form">
@@ -628,13 +639,13 @@ input {
 					class="signUpInput" value="" placeholder="비밀번호" id="loginpw" name="pw">
 			</div>
 			<div id="loginbutton">
-				<a href="javascript:chkfun()">login</a>
+				<a href="javascript:chkfun()"><img alt="" src="images/button_login.png"></a>
 			</div>
 		</div>
 
 		<div id="button">
-			<input type="button" id="findbutton" value="아이디/비밀번호찾기"> <input
-				type="button" id="joinbutton"  value="회원가입">
+			<img id="findbutton" src="images/button_find.png"> 
+			<img id="joinbutton" src="images/button_join.png">
 		</div>
 	</div>
 </div>
@@ -655,7 +666,7 @@ input {
 					placeholder="이메일 주소" class="signUpInput">
 			</div>
 			<div class="idbutton">
-				<input type="button" id="idok" value="확인">
+				<img id="idok" src="images/button_ok2.png">
 			</div>
 		</div>
 		<div class="pwfind">
@@ -666,7 +677,7 @@ input {
 				<input type="text" id="pwmail" name="mail" placeholder="이메일 주소" class="signUpInput">
 			</div>
 			<div class="pwbutton">
-				<input type="button" id="pwok" value="확인">
+				<img id="pwok" src="images/button_ok.png">
 			</div>
 		</div>
 	</div>

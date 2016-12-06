@@ -7,7 +7,8 @@ body {
 header {
 /* 	width: 1350px; */
 	height: 100px;
-	background-color: aqua;
+	background-color: black;
+	
 }
 
 #main {
@@ -45,10 +46,12 @@ footer {
 
 li {
 	list-style-type: none;
+	color:white;
 }
 
 a {
 	text-decoration: none;
+	color:white;
 }
 
 /* 퀵메뉴 */

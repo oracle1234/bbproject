@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="buy_list" parameterType="int" resultType="dto.FoodsDTO">
-		select * from fb_foods where foods_no= #{foods_no} order by foods_no
+		select * from fb_foods where foods_no = #{foods_no} order by foods_no
 	</select>
 
 	<select id="count" resultType="int" parameterType="dto.FoodsDTO">
@@ -152,6 +152,14 @@
 		select count(*) from fb_basket
 		where member_no = #{member_no} and foods_no = #{foods_no}
 	</select>
+	
+	<update id="savemoney_plus" parameterType="hashmap">
+		update fb_member set point = point + #{point} where member_no= #{member_no}
+	</update>
+	
+	<update id="savemoney_minus" parameterType="hashmap">
+		update fb_member set point = point - #{point} where member_no=#{member_no}
+	</update>
 	
 </mapper>
 

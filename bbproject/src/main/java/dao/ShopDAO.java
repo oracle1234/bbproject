@@ -30,4 +30,5 @@ public interface ShopDAO {
 	
 	public fb_BasketDTO shopBuy(HashMap<String, Object> map);
 	public int basketChk(HashMap<String, Object> map);
+	public void pointPlus(int member_no, int point);
 }

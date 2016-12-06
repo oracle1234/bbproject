@@ -63,7 +63,7 @@
 				alt="고객센터연락처"></a><br> <br> <b>평일 09:00 ~ 18:00</b><br>
 			(토/일/공휴일은 휴무)
 			<ul class="sns">
-				<li><a href="https://www.facebook.com/mythebanchan/"
+				<li><a href="https://www.facebook.com/%EB%B0%98%EC%B0%AC%EC%9D%84-%EB%B6%80%ED%83%81%ED%95%B4-174044316394697/?fref=ts"
 					target="_blank" title="더반찬 페이스북"><img
 						src="http://file.thebanchan.co.kr/_data/_image/footer/sns_facebook.gif"></a></li>
 				<li><a href="https://www.instagram.com/thebanchan/"
