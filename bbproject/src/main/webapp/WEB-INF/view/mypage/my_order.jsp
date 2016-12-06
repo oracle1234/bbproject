@@ -24,13 +24,25 @@ $(document).ready(function() {
 		$('.calHelp').slideDown('fast');
 		
 		$('#calfindButton').on('click',function(){
-			var test1=document.getElementById("out1").innerHTML;
+			var test1 = document.getElementById("out1").innerHTML;
 			var test2 = document.getElementById("out2").innerHTML;
-			
+			$("#start").val(test1);
+			$("#end").val(test2);
+			//alert($("#start").val());
+			$.ajax({
+				type:'POST',
+				dataType : 'json',
+				url : "ordersearch.do",
+				data:'start'+$("#start").val()+'&end'+$("#end").val(),
+				success : searchlist,
+				error: function(xhr, textStatus, error) {
+					alert(error);
+				}
+			});
 		});
 	});
 		  
-		$('.orderno').on('click', function(){
+		/* $('.orderno').on('click', function(){
 			if($(this).next().val()=="미입금" || $(this).next().val()=="입금완료"){
 				 $.ajax({
 					type:'GET',
@@ -47,10 +59,10 @@ $(document).ready(function() {
 		else if ($(this).next().val()=="상품준비중" || $(this).next().val()=="배송중" || $(this).next().val()=="배송완료"){
 			alert("해당 주문건은 취소할 수 없습니다.")
 		}
-		});
+		}); */
 });
 		
-		function orderlist(data){
+		/* function orderlist(data){
 			$('.myorder_table').empty();
 			$('.myorder_table').append('<tr>'+
 					'<th width="15%">주문일자</th>'+
@@ -80,7 +92,30 @@ $(document).ready(function() {
 			});
 		}
 			
-	
+	 */
+	 
+	 function searchlist(data){
+		 if(data.list == null){
+			$('.myorder_table').empty();
+			$(".myorder_table").append('<p>의 검색결과가 없습니다.</p>');
+		 }else{
+			 $('.myorder_table').empty();
+			$('.myorder_table').append('<tr>'+
+					'<th width="15%">주문일자</th>'+
+					'<th width="15%">상품정보</th>'+
+					'<th width="20%">상품명</th>'+
+					'<th width="5%">수량</th>'+
+					'<th width="15%">상품가격</th>'+
+					'<th width="10%">총결제금액</th>'+
+					'<th width="15%">주문상태</th>'+
+					'<th width="15%">취소</th>'+
+				'</tr>');
+			
+			$.each(data.list, function(index, value){
+				$('.myorder_table').append('<p>'+value.amount+'</p>');
+			});
+		}
+	 }
 
 </script>
 	<div class="mypage_body">
@@ -116,6 +151,8 @@ $(document).ready(function() {
 	</div>
 	</div>
 	<input type="hidden" id="hidden">
+	<input type="hidden" id="start">
+	<input type="hidden" id="end">
 	
 	
 

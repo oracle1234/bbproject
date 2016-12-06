@@ -60,4 +60,42 @@
 		where member_no=#{member_no}
 	</select> 
 	
+	<select id="titlesearch1" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_board
+		where member_no=#{member_no}  and board_subject like '%' || #{board_subject} || '%'
+	</select> 
+	
+
+	<select id="titlesearch2" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_photo_board
+		where member_no=#{member_no} and photo_subject like '%' || #{photo_subject} || '%'
+	</select> 
+	
+	<select id="titlesearch3" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_qa_board
+		where member_no=#{member_no} and qa_subject like '%' || #{qa_subject} || '%'
+	</select> 
+	
+	<select id="contentsearch1" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_board
+		where member_no=#{member_no}  and board_content like '%' || #{board_content} || '%'
+	</select> 
+	
+
+	<select id="contentsearch2" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_photo_board
+		where member_no=#{member_no} and photo_content like '%' || #{photo_content} || '%'
+	</select> 
+	
+	<select id="contentsearch3" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_qa_board
+		where member_no=#{member_no} and qa_content like '%' || #{qa_content} || '%'
+	</select> 
+	
 </mapper>
