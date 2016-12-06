@@ -18,11 +18,11 @@
 		update fb_basket
 		set
 		amount=#{amount}
-		where foods_no=#{foods_no}
+		where foods_no=#{foods_no} and member_no=#{member_no}
 	</update>
 
 	<delete id="delete" parameterType="int">
 		delete from fb_basket
-		where foods_no=#{foods_no}
+		where foods_no=#{foods_no} and member_no=#{member_no}
 	</delete>
 </mapper>

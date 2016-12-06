@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
 <link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
 <link rel="stylesheet" type="text/css" href="css/mainpage.css?var=2" />
+		
 </head>
 <body>
 <div id="main">
@@ -31,17 +32,9 @@
 </tr>
 </table>
 </div>
-<div id="notice">
-<img class="title" src="images/main_notice.png">
-<table>
-<c:forEach var="BoardDTO" items="${aList}">
-<tr>
-<td width="70%">${BoardDTO.board_subject}</td>
-<td width="30%"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_reg_date}"/></td>
-</tr>
-</c:forEach>
-</table>
-</div>
+   <div class="container">
+					<iframe src="https://www.youtube.com/embed/fOyr5bvf-Wk?showinfo=0&am p;autoplay=1" frameborder="0" allowfullscreen></iframe>
+                </div>
 <div id="new">
 <img class="title" src="images/main_new.png">
 <table>
@@ -86,7 +79,7 @@
 			</map>
 		</p>
 	</div>
-	
+	</div>
 </div>
 </body>
 </html>

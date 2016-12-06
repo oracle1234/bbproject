@@ -8,7 +8,7 @@
 	<insert id="ins" parameterType="dto.MemberDTO">
 		insert into fb_member values
 		(SEQ_member_no.nextval, #{member_name}, #{id}, #{pw},
-		replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''), 0)
+		replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''),0, 0)
 	</insert>
 
 	<select id="ck" resultType="int" parameterType="String">
