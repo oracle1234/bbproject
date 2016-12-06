@@ -162,8 +162,23 @@ select a.amount, c.foods_no, c.foods_name, c.price
 		and a.member_no = 1 and a.foods_no = 2
 		
 		
-select * from fb_basket
+select * from fb_member
 delete from fb_basket where foods_no = 2
 
 select count(*) from fb_basket
 where member_no = 1 and foods_no = 2
+
+update fb_member set point = point + 400 where member_no=1;
+select * from fb_member
+
+
+update fb_member set point = point + 500 where member_no= 1;
+
+select * from fb_request
+
+
+select * from fb_member
+
+insert into fb_request values(1, 3000, 3, 3, sysdate, '주문완료', 1);
+
+alter table fb_request add column 

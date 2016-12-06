@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FoodsDTO {
 	private int review_no;
-	private int foods_no, price, category_no, fb_delivery_no;
+	private int foods_no, price, category_no, fb_delivery_no, amount;
 	private String foods_name, weight, way, shelfLife, foods_explaination, foods_material, picture;
 	private MultipartFile foods_file;
 
@@ -14,6 +14,14 @@ public class FoodsDTO {
 
 	public FoodsDTO() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public MultipartFile getFoods_file() {

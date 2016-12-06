@@ -167,4 +167,19 @@ public class ShopSercviceImp implements ShopService {
 		return dao.basketChk(map);
 	}
 
+	@Override
+	public void savePointPlusProcess(int member_no, int point) {
+		dao.pointPlus(member_no, point);
+	}
+
+	@Override
+	public void savePointMinusProcess(int member_no, int point) {
+		dao.pointMinus(member_no, point);
+	}
+
+	@Override
+	public void requestInsertProcess(HashMap<String, Object> map) {
+		dao.request_insert(map);
+	}
+
 }//end class

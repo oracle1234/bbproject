@@ -10,6 +10,7 @@ public interface fb_BasketService {
 	public List<fb_BasketDTO> listProcess(int member_no);
 	public List<fb_BasketDTO> amountUpdateProcess(fb_BasketDTO bdto);
 	List<fb_BasketDTO> deleteProcess(fb_BasketDTO bdto);
+	public void basketDeleteProcess(int foods_no);
 	
 	
 }
