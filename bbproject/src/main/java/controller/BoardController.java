@@ -475,7 +475,6 @@ public class BoardController {
 			pageMap.put("qa_no", qdto.getQa_no());
 		}
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		System.out.println(qdto.getQa_no());
 		resultMap.put("list", qa_service.commentPageProcess(pageMap));
 		resultMap.put("page", cpdto);
 		return resultMap;

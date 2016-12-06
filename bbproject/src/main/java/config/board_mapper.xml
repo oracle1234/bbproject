@@ -100,7 +100,7 @@
 	</select>
 	
 	<insert id="commentSave" parameterType="hashmap">
-		insert into fb_comment values (SEQ_comment_no.nextval, 1, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, sysdate)
+		insert into fb_comment values (SEQ_comment_no.nextval, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, sysdate, 1)
 	</insert>
 	
 	<delete id="commentDelete" parameterType="hashmap">

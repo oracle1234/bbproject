@@ -96,6 +96,11 @@
 td {
 	padding-top: 7px;
 }
+
+.content a{
+	color: black;
+}
+
 </style>
 
 <body>

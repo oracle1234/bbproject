@@ -357,9 +357,10 @@ primary key (boardcategory_no)
 insert into fb_boardcategory values
 (1, '자유게시판');
 insert into fb_boardcategory values
-(2, '포토후기');
+(2, '질문과 답변');
 insert into fb_boardcategory values
-(3, '질문과 답변');
+(3, '포토후기');
+
 
 
  SET fb_board          fb_photo_board          fb_qa_board  
