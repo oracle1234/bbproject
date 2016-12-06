@@ -2,11 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
    <link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" type="text/css" href="css/my_order.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
  <!--  <script src="js/jquery-ui"></script>  
   <script src="js/jquery-ui.min"></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/calendar.js"></script>
    
 <script type="text/javascript">
 var s_no ="${sessionScope.member.member_no}";
@@ -16,32 +18,20 @@ $(document).ready(function() {
 		if($(this).('${delivery_condition}'))
 	}); */
 	
-	$('.calHelp').hide();
-	$('.calactive').hide();
-	
-	
-	$('#calfind').on('click', function(){
-		$('.calHelp').slideDown('fast');
-		
 		$('#calfindButton').on('click',function(){
-			var test1 = document.getElementById("out1").innerHTML;
-			var test2 = document.getElementById("out2").innerHTML;
-			$("#start").val(test1);
-			$("#end").val(test2);
-			//alert($("#start").val());
+			alert($("#start").val());
 			$.ajax({
 				type:'POST',
 				dataType : 'json',
 				url : "ordersearch.do",
-				data:'start'+$("#start").val()+'&end'+$("#end").val(),
+				data:'start='+$("#start").val()+'&end='+$("#end").val(),
 				success : searchlist,
 				error: function(xhr, textStatus, error) {
 					alert(error);
 				}
 			});
 		});
-	});
-		  
+
 		/* $('.orderno').on('click', function(){
 			if($(this).next().val()=="미입금" || $(this).next().val()=="입금완료"){
 				 $.ajax({
@@ -96,10 +86,9 @@ $(document).ready(function() {
 	 
 	 function searchlist(data){
 		 if(data.list == null){
-			$('.myorder_table').empty();
-			$(".myorder_table").append('<p>의 검색결과가 없습니다.</p>');
-		 }else{
-			 $('.myorder_table').empty();
+			 alert("조회 기간에 해당하는 주문내역이 없습니다.");
+		 }else {
+			// $('.myorder_table').empty();
 			$('.myorder_table').append('<tr>'+
 					'<th width="15%">주문일자</th>'+
 					'<th width="15%">상품정보</th>'+
@@ -134,29 +123,15 @@ $(document).ready(function() {
 		</span>
 		<span id="notice_span3">그 외에 또 다른 문의사항이 있으시면 반찬을 부탁해 게시판 또는 전화로 연락 주시면 친절하게 안내해 드리겠습니다.</span>
 		</div>
-		
-			<div class="calfind">
-<img id="calfind" src="images/cal.PNG"><input type="button" value="조회" id="calfindButton">
-</div>
-		<div class="calHelp">
-		<div class="calactive">
- 	<div class="first active"><i>A</i> <b id="sel1text">SELECT DEPART</b></div><div class="disabled"><i>B</i> <b id="sel2text">RETURN</b></div> 
-</div>
-<div id="disp"><div id="prev" class="nav">←</div><div id="month">Hello world</div><div id="next" class="nav">→</div></div>
-<div id="cal"></div>
 
-	<div class="log">
-		 <script src='js/jquery.min.js'></script>
-	<script src="js/cal.js"></script>
-	</div>
-	</div>
-	<input type="hidden" id="hidden">
-	<input type="hidden" id="start">
-	<input type="hidden" id="end">
+<div id="cal">
+	<input class="date-picker" type="text" id="start" name="start"/>~
+	<input class="date-picker" type="text" id="end" name="end"/>
+<input type="button" value="조회" id="calfindButton">
+<input type="hidden" id="start" name="start">
+	<input type="hidden" id="end" name="end">
+</div>
 	
-	
-
-		
 		<table class="myorder_table">
 		<tr>
 				
@@ -185,4 +160,4 @@ $(document).ready(function() {
 				</tr>
 				</c:forEach>
 		</table>
-	</div>
+</div>

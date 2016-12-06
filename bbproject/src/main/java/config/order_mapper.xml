@@ -16,11 +16,20 @@
 	where member_no=#{member_no} and foods_no=#{foods_no} and day=#{day}
 	</delete> -->
 	
-	<select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
+<!-- 	<select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
 	select *
 	from fb_request
 <![CDATA[where member_no=#{member_no} and 
     day >= #{start,jdbcType=TIMESTAMP}
-    and day < #{start,jdbcType=TIMESTAMP}]]>
-	</select>
+    and day < #{end,jdbcType=TIMESTAMP}]]>
+	</select>  -->
+	
+ 	<select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
+	select *
+	from fb_request
+<![CDATA[where member_no=#{member_no} and 
+    day >= to_date(#{start},'yyyy-mm-dd')
+    and day < to_date(#{end},'yyyy-mm-dd')]]>
+    </select> 
+    
 </mapper>

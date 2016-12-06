@@ -1,5 +1,6 @@
 테이블명:fb_member
 select * from fb_member;
+select * from fb_request;
 insert into fb_member values 
 (1, '백나연', 'nayeon', '111111', '서울시 강북구 수유동', 
 01011111111, 'nayeon', 0, 0);
@@ -15,6 +16,14 @@ insert into fb_member values
 insert into fb_member values 
 (1, '관리자', 'admin', 'admin', '종각', 
 01044444444, 'admin', 0, 0);
+
+select *
+	from fb_request
+where member_no=1 and 
+    day >= to_date('2016-11-11','yyyy-mm-dd')
+    and day < to_date('2016-12-5','yyyy-mm-dd')+1;
+	
+	
 	split
 	select id
 	from fb_member
@@ -31,8 +40,6 @@ insert into fb_member values
 	where id='jaemin' and member_name='유재민' and mail='jaemin@paran.com,'
 	
 	replace(#{mail},',','')
-	
-	
 	
 	update fb_member
 	set
@@ -243,7 +250,15 @@ insert into fb_request values
 (1, 3000, 2, 1, sysdate, '배송완료', 2);
 insert into fb_request values
 (1, 3000, 3, 1, sysdate, '입금완료', 3);
+insert into fb_request values
+(1, 3000, 3, 1, sysdate, '입금완료', 3);
 
+to_date('2016-12-05','yyyy-mm-dd')+1;
+
+
+delete
+from fb_request
+where foods_no =3;
 주문조회 내역
 select day, foods_no, price, delivery_condition, amount
 from fb_request
@@ -347,6 +362,8 @@ where member_no=1
 
 =======
 where member_no=1
+
+select * from fb_boardcategory
 
 create table fb_boardcategory
 (
