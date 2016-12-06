@@ -1,8 +1,8 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <div class="ft_info">
-	<div class=" wrap_inner">
+	<div class="wrap_inner">
 		<ul>
-			<li><a href="/content/content.php?cont=company"><img
+			<li><a href="#"><img
 					src="http://file.thebanchan.co.kr/_data/_image/footer/f_btn1.gif"
 					alt="회사소개"></a></li>
 			<li><a
@@ -26,8 +26,8 @@
 		</div>
 	</div>
 
-	<div class="wrap_inner">
-		<p class="shopinfo">
+	<div class="shopinfo">
+		<p>
 			상호 : (주)더블유푸드마켓&nbsp;|&nbsp;대표자 : 신영수&nbsp;|&nbsp;통신판매업신고 :
 			제2016-서울마포-0111호&nbsp;|&nbsp;사업자등록번호 : 107-87-44713&nbsp;<a
 				href="http://ftc.go.kr/info/bizinfo/communicationList.jsp"
@@ -63,7 +63,7 @@
 				alt="고객센터연락처"></a><br> <br> <b>평일 09:00 ~ 18:00</b><br>
 			(토/일/공휴일은 휴무)
 			<ul class="sns">
-				<li><a href="https://www.facebook.com/mythebanchan/"
+				<li><a href="https://www.facebook.com/%EB%B0%98%EC%B0%AC%EC%9D%84-%EB%B6%80%ED%83%81%ED%95%B4-174044316394697/?fref=ts"
 					target="_blank" title="더반찬 페이스북"><img
 						src="http://file.thebanchan.co.kr/_data/_image/footer/sns_facebook.gif"></a></li>
 				<li><a href="https://www.instagram.com/thebanchan/"

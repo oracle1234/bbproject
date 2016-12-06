@@ -29,4 +29,5 @@ public interface ShopDAO {
 	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map);
 	
 	public fb_BasketDTO shopBuy(HashMap<String, Object> map);
+	public int basketChk(HashMap<String, Object> map);
 }

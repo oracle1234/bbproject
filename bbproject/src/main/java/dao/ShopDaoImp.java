@@ -114,4 +114,9 @@ public class ShopDaoImp implements ShopDAO {
 		return sqlSession.selectOne("shop.buybasket", map);
 	}
 
+	@Override
+	public int basketChk(HashMap<String, Object> map) {
+		return sqlSession.selectOne("shop.basketChk", map);
+	}
+
 }

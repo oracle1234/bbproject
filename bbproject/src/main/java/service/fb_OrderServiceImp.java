@@ -1,5 +1,6 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import dao.fb_OrderDAO;
@@ -19,13 +20,14 @@ public class fb_OrderServiceImp implements fb_OrderService{
 
 	@Override
 	public List<fb_OrderDTO> orderlistProcess(int member_no) {
+		
 		return dao.list(member_no);
 	}
 
-	@Override
-	public void orderdelProcess(String member_no, String foods_no,String day) {
-	dao.orderdelete(member_no, foods_no, day);
-	}
+/*	@Override
+	public List<fb_OrderDTO> orderdelProcess(HashMap<String, Object> map) {
+		return dao.orderdelete(map);
+	}*/
 
 
 }

@@ -38,10 +38,13 @@
 }
 
 .myboard_table{
-	width:930px;
+	width:950px;
 	margin:auto;
 	margin-top:5px;
-	border:solid 1px gray;
+}
+
+.myboard_table th{
+	background-color:#ebebeb;
 }
 
 .myboard_write{

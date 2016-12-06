@@ -1,23 +1,10 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<link rel="stylesheet" type="text/css" href="css/mypage.css?var=1" />
-<script type="text/javascript">
-$(document).ready(function(){
-	$("p").hover(function(){
-		    $(this).parent().css("background-color", "#c4c4c4");
-		    }, function(){
-		    $(this).parent().css("background-color", "white");
-		}); 
-	});
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<link rel="stylesheet" type="text/css" href="css/mypage.css?var=2" />
 
-	<div class="mypage_title">
-		<div id="title">
-			<p>마이페이지</p>
-		</div>
-	</div>
+<script type="text/javascript">
+</script>
 	<div class="mypage_body">
 		<div class="mymenu">
 			<div id="order">

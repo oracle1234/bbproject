@@ -381,7 +381,6 @@ $(document).ready(function() {
 				} 
 				
 				else if(totalmoney >= 10000){
-					$('#foodform').attr('action', 'shop_buy.do');
 					$('#foodform').submit();
 				}
 			
@@ -650,17 +649,16 @@ $(document).ready(function() {
 
 	<div id="product_wrap">
 
-		<form method="POST" id="foodform">
+		<form method="POST" id="foodform" action="shop_buy.do">
 
 			<div class="sul_wrap">
 
 				<c:forEach items="${list}" var="Foods">
 					<div class="detail_img_wrap">
 						<div class="detail_img">
-							<input type="hidden" name="foods_no" value="${foods_no}" /> <img
+							<input type="hidden" name="checkfood" value="${foods_no}" /> <img
 								alt="상세이미지" src="image.do?filename=${Foods.picture}">
 						</div>
-
 					</div>
 					<div class="table_wrap">
 						<table id="info_table" width="510px" height="auto">
@@ -826,7 +824,7 @@ $(document).ready(function() {
 		</div>
 		<div id="dialog" >
 			<p>
-				장바구니에 추가되었습니다. 이동하시겠습니까?<br>
+				장바구니로 이동하시겠습니까?<br>
 			</p>
 		</div>
 	</div>

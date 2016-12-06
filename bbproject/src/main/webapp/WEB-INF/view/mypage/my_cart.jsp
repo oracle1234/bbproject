@@ -30,29 +30,6 @@ $(document).ready(function() {
 		  parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
 		});
 	 
-	/*  $('#cart_order').on('click', function(){
-		 var foodsno ="";
-		 var amount ="";
-		 $("input[name=cart_cb]:checked").each(function(){
-			 if(foodsno==""){
-				 foodsno = $(this).next().val();
-			 } else{
-				 foodsno = foodsno + "|" + $(this).next().val();
-			 }
-		 });
-		 $("input[name=cart_cb]:checked").each(function(){
-			 if(amount==""){
-				 amount = $(this).next().next().val();
-			 } else{
-				 amount = amount + "|" + $(this).next().next().val();
-			 }
-		 });
-		 $('#foodsno').val(foodsno);
-		 $('#amount').val(amount);
-		 alert($('#foodsno').val());
-		 alert($('#amount').val());
-	 }); */
-	 
 		$('#cart_order').on('click', function(){
 			 $("input[name=cart_cb]:checked").each(function(){
 				 $(this).next().prop("name", "checkfood");
@@ -84,7 +61,7 @@ $(document).ready(function() {
 			$.ajax({
 		 		type:'GET',
 		 		dataType :'json',
-				url:'my_cart_delete.do?member_no=${member_no}&foods_no='+$(this).val()+'&amount='+$('#count_select').val(),
+				url:'my_cart_delete.do?member_no=${member_no}&foods_no='+$(this).next().val()+'&amount='+$('#count_select').val(),
 		 		success: cartlist,
 				error: function(xhr, textStatus, error) {
 		 			alert(error);
@@ -109,12 +86,10 @@ $(document).ready(function() {
 			$('.mycart_table').append('<tr><td><input type="checkbox" class="cart_cb"></td>'+
 			'<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
 			'<td>'+value.price+'원</td>'+
-			'<td>'+value.amount+'<select class="count_select" name="count_select">'+
-			  '<span class="placeholder">수량</span>'+
-			  '<c:forEach var="i" begin="1" end="20" step="1">'+
-					'<option id="option" value="${i}">${i}</option>'+
-				'</c:forEach>'+
-			'</select>'+
+			'<td>'+value.amount+" "+'<select id="count_select" name="count_select">'+
+			'<c:forEach var="i" begin="1" end="20" step="1">'+
+				'<option value="${i}">${i}</option>'+
+			'</c:forEach></select>'+" "+
 					'<input type="button" class="upd_amount" value="변경">'+
 					'<input type="hidden" class="foods_no" value="'+value.foods_no+'"></td>'+
 			'<td>'+value.price*value.amount*1/100+'원</td>'+
@@ -157,20 +132,20 @@ $(document).ready(function() {
 					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_name}</td>
 					<td>${dto.price}원</td>
 					<td>${dto.amount}
-				<%-- 	<select id="count_select" name="count_select">
+				 	<select id="count_select" name="count_select">
 
 							<c:forEach var="i" begin="1" end="20" step="1">
 								<option value="${i}">${i}</option>
 							</c:forEach>
 							
-					</select>  --%>
+					</select>  
 							
-<select class="count_select" name="count_select">
+<%-- <select class="count_select" name="count_select">
   <span class="placeholder">수량</span>
   <c:forEach var="i" begin="1" end="20" step="1">
 		<option id="option" value="${i}">${i}</option>
 	</c:forEach>
-</select>
+</select> --%>
 
 					<input type="button" class="upd_amount" value="변경">
 					<input type="hidden" class="foods_no" value="${dto.foods_no}">
@@ -190,8 +165,6 @@ $(document).ready(function() {
 			<th width="25%">총 주문 합계</th>
 		</tr>
 		<tr>
-		
-		
 			<td>${sum}원</td>
 			<td>0원</td>
 			<td><c:if test="${sum<70000}">
