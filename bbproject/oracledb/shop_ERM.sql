@@ -174,4 +174,11 @@ select * from fb_member
 
 update fb_member set point = point + 500 where member_no= 1;
 
+select * from fb_request
+
+
 select * from fb_member
+
+insert into fb_request values(1, 3000, 3, 3, sysdate, '주문완료', 1);
+
+alter table fb_request add column 

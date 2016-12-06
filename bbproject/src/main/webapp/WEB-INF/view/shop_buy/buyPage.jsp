@@ -797,7 +797,6 @@ function sample4_execDaumPostcode() {
 						
 						<c:forEach items="${FoodsDTO}" var="food">
 							<tr>
-
 									<td id="order_t_food_name">${food.foods_name}
 									
 									<input type="hidden" name="chkfood" value="${food.foods_no}">
@@ -805,13 +804,12 @@ function sample4_execDaumPostcode() {
 									<input type="hidden" name="foods_name" value="${food.foods_name}">
 									<input type="hidden" name="price" value="${food.price}">
 									<input type="hidden" name="amount" value="${food.amount}">
-									<input type = "hidden" name = "savepoint" value="${food.price * 0.01 * food.amount}">
+									<input type="hidden" name = "savepoint" value="${food.price * 0.01 * food.amount}">
 									</td>
 									<td>${food.price}<span>원</span></td>
 								<td>${food.amount}<span>개</span></td>
 								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * food.amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
 								<td>${food.price * food.amount}<span>원</span></td>
-								
 								<c:set var= "totalAmount" value="${totalAmount + food.amount}"/>
 								<c:set var="totalPrice" value="${totalPrice + food.price * food.amount}"/>
 								<c:set var="saveMoney" value="${saveMoney + (food.price * 0.01 * food.amount)}"/>
@@ -826,7 +824,7 @@ function sample4_execDaumPostcode() {
 						<tr>
 							<th scope="row">적립금사용</th>
 							<td>
-							<input size="5" type = "text" id ="savemoneytext" value="0"><span>원</span> (사용가능한 적립금 : ${MemberDTO.point}<span>원</span>)
+							<input size="5" type = "text" name = "useSaveMoney1" id ="savemoneytext" value="0"><span>원</span> (사용가능한 적립금 : ${MemberDTO.point}<span>원</span>)
 							</td>
 						</tr>
 						<tr>
@@ -842,13 +840,12 @@ function sample4_execDaumPostcode() {
 						</tr>
 					</table>
 					
-					
 				</div>
 				<div id="smalltotal_wrap">
 					<table id="smalltotal_table" width="100%" >
 						<tr>
 							<th scope="row">주문수량합계</th>
-							<td><span>${totalAmount}개</span></td>
+							<td>${totalAmount}<span>개</span></td>
 						</tr>
 						<tr>
 						

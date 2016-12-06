@@ -161,6 +161,10 @@
 		update fb_member set point = point - #{point} where member_no=#{member_no}
 	</update>
 	
+	<insert id="requestInsert">
+		insert into fb_request values(#{member_no}, #{price}, #{amount}, #{picture}, sysdate, #{delivery_condition}, #{foods_no})
+	</insert>
+	
 </mapper>
 
 

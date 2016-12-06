@@ -610,8 +610,9 @@ $(document).ready(function() {
     	}
     	
     	var temp = $('.pay_type:checked').val();
+    	$('#food_infoform').submit();
     	
-		if(temp == 'creditCard'){
+		/* if(temp == 'creditCard'){
 			
 			IMP.request_pay({
 			    pg : 'danal_tpay',
@@ -673,7 +674,7 @@ $(document).ready(function() {
 
 			    alert(msg);
 			});
-		}
+		} */
     	
     	
     });
@@ -780,7 +781,7 @@ function sample4_execDaumPostcode() {
 			<div id="order_list_wrap">
 				<div id="order_list">
 				
-					<form id="food_infoform" action="pay_end.do" method="POST">
+					<form id="food_infoform" action="paynow_end.do" method="POST">
 					<table id="order_table">
 						<caption>주문내역</caption>
 						<tr>
@@ -805,6 +806,7 @@ function sample4_execDaumPostcode() {
 								<input type = "hidden" name = "foods_no" value = "${food.foods_no}">
 								<input type = "hidden" name = "price" value = "${food.price}">
 								<input type = "hidden" name = "amount" value = "${Foods.amount}">
+								<input type = "hidden" name = "savepoint" value = "${food.price * 0.01 * Foods.amount}">
 								
 								</td>
 								<td>${food.price}<span>원</span></td>
@@ -819,14 +821,16 @@ function sample4_execDaumPostcode() {
 						</c:forEach>
 					</table>
 					</form>
+					
 				</div>
+				<!-- 바로구매 -->
 				<div id="savemoney_wrap">
 					<p id="save_text" align="left">고객님의 적립금이나 쿠폰을 사용하면 좀 더 절약하여 구매할 수 있습니다.</p><br>
 					<table id="savemoney_table" width="600px" height="100px;"> 
 						<tr>
 							<th scope="row">적립금사용</th>
 							<td>
-							<input size="5" type = "text" id ="savemoneytext" value="0"><span>원</span> (사용가능한 적립금 : ${MemberDTO.point}<span>원</span>)
+							<input size="5" name = "useSaveMoney" type = "text" id ="savemoneytext" value="0"><span>원</span> (사용가능한 적립금 : ${MemberDTO.point}<span>원</span>)
 							</td>
 						</tr>
 						<tr>
