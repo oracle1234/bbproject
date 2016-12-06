@@ -18,7 +18,7 @@
 			</div>
 
 			<div id="board">
-				<a href="my_board.do"><img alt="" src="images/myboard.png"></a>
+				<a href="my_board.do?boardcategory_no=1"><img alt="" src="images/myboard.png"></a>
 			</div>
 			
 			<div id="update">
