@@ -1,0 +1,142 @@
+.mypage_body{
+	position:relative;
+}
+
+.link{
+	text-align: left;
+	margin-top:5px;
+	margin-left:10px;
+}
+
+.link a{
+	color:black;
+}
+
+.cart_state{
+	width:930px;
+	height:200px;
+	border:solid 1px gray;
+	margin:auto;
+	margin-top:5px;
+}
+
+
+.mycart_table{
+	width:940px;
+	margin:auto;
+	margin-top:5px;
+	border:1px solid gray;
+}
+
+.mycart_table2{
+	width:940px;
+	margin:auto;
+	margin-top:5px;
+	border:1px solid gray;
+}
+
+.mycart_table2 td{
+	height:130px;
+	border:1px solid gray;
+}
+	
+
+.cart_button{
+	margin:auto;
+	margin-top:5px;
+}
+
+.cart_button button{
+	margin:5px;
+}
+
+.cart_button #cart_del{
+	width:150px;
+	height:40px;
+}
+
+.cart_button #cart_order{
+	width:150px;
+	height:40px;
+}
+
+#plus1 img{
+	position:relative;
+	margin-left:100px;
+	margin-top:100px;
+	z-index:100;
+}
+
+
+
+.count_select {
+  display: block;
+  margin: 0 auto;
+  width: 30px;
+  color: #cccccc;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: none;
+}
+.count_select .placeholder {
+  position: relative;
+  display: block;
+  background-color: #393d41;
+  z-index: 1;
+  padding: 1em;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.count_select .placeholder:hover {
+  background: #34383c;
+}
+.count_select .placeholder:after {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-family: 'FontAwesome';
+  content: '\f078';
+  z-index: 10;
+}
+.count_select.is-open .placeholder:after {
+  content: '\f077';
+}
+.count_select.is-open #option {
+  display: block;
+}
+.count_select .placeholder {
+  background: #fff;
+  color: #999;
+}
+.count_select .placeholder:hover {
+  background: #fafafa;
+}
+.count_select #option {
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  margin: 5px 0 0 0;
+  padding: 0;
+  z-index: 100;
+}
+.count_select #option {
+  display: block;
+  text-align: left;
+  padding: 0.8em 1em 0.8em 1em;
+  color: #999;
+  cursor: pointer;
+}
+.count_select #option:hover {
+  background: #4ebbf0;
+  color: #fff;
+}

@@ -1,0 +1,62 @@
+.link{
+	text-align: left;
+	margin-top:5px;
+	margin-left:10px;
+}
+
+.link a{
+	color:black;
+}
+
+.board_button{
+	width:930px;
+	height:40px;
+	margin:auto;
+	margin-top:5px;
+}
+
+.board_button input{
+	float:left;
+}
+
+.board_button #button_free{
+	width:310px;
+	height:38px;
+	
+}
+
+.board_button #button_review{
+	width:310px;
+	height:38px;
+	
+}
+
+.board_button #button_qa{
+	width:310px;
+	height:38px;
+	
+}
+
+.myboard_table{
+	width:930px;
+	margin:auto;
+	margin-top:5px;
+	border:solid 1px gray;
+}
+
+.myboard_write{
+	width:930px;
+	margin-top:5px;
+}
+
+.myboard_write #button_write{
+	width:80px;
+	height:20px;
+	float:right;
+}
+
+.myboard_find{
+	width:930px;
+	margin:auto;
+	margin-top:5px;
+}
