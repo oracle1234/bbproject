@@ -610,6 +610,7 @@ $(document).ready(function() {
     	}
     	
     	var temp = $('.pay_type:checked').val();
+    	$("#userpoint").val(useSavemoney);
     	$('#food_infoform').submit();
     	
 		/* if(temp == 'creditCard'){

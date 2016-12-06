@@ -181,4 +181,9 @@ select * from fb_member
 
 insert into fb_request values(1, 3000, 3, 3, sysdate, '주문완료', 1);
 
-alter table fb_request add column foods_
+alter table fb_request add column foods_no varchar2(20);
+alter table fb_request add column foods_name varchar2(30);
+
+alter table fb_request 
+
+drop table fb_reqeust

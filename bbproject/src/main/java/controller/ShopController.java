@@ -254,7 +254,7 @@ public class ShopController {
 
 	@RequestMapping(value = "/pay_end.do", method = RequestMethod.POST)
 	public ModelAndView pay_endPostProcess(HttpServletRequest req, String chkfood[], String foods_no[],
-			String foods_name[], int price[], int amount[], String savepoint[], int userpoint) {
+			String foods_name[], int price[], int amount[], String savepoint[], String userpoint) {
 			
 		System.out.println(userpoint);
 		
@@ -274,7 +274,7 @@ public class ShopController {
 		}
 		
 		
-		for(int i = 0; i < list.size(); i++){
+		/*for(int i = 0; i < list.size(); i++){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("member_no", mdto.getMember_no());
 		map.put("foods_no", list.get(i).getFoods_no());
@@ -284,11 +284,11 @@ public class ShopController {
 		map.put("delivery_condition", "주문완료");
 		map.put("picture", list.get(i).getPicture());
 		service.requestInsertProcess(map);
-		}
+		}*/
 		
 
 		service.savePointPlusProcess(mdto.getMember_no(), savePoint);
-		
+		service.savePointMinusProcess(mdto.getMember_no(), Integer.parseInt(userpoint));
 
 		for (String food_no : chkfood) {
 			int count = service.basketChkProcess(Integer.parseInt(food_no), mdto.getMember_no());
@@ -315,7 +315,7 @@ public class ShopController {
 
 	@RequestMapping(value = "/paynow_end.do", method = RequestMethod.POST)
 	public ModelAndView paynow_endPostProcess(HttpServletRequest req, String chkfood, String foods_no,
-			String foods_name, int price, int amount, String savepoint) {
+			String foods_name, int price, int amount, String savepoint, String userpoint) {
 		
 		
 		ModelAndView mav = new ModelAndView();
@@ -325,9 +325,9 @@ public class ShopController {
 		String SavePoint = savepoint.substring(0, savepoint.lastIndexOf("."));
 
 		service.savePointPlusProcess(mdto.getMember_no(), Integer.parseInt(SavePoint));
-		//<!-- mem_no, price,amount,picture, day, delevery, foods_no -->
+		service.savePointMinusProcess(mdto.getMember_no(), Integer.parseInt(userpoint));
 		
-		HashMap<String, Object> map = new HashMap<String, Object>();
+		/*HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("member_no", mdto.getMember_no());
 		map.put("price", price);
 		map.put("amount", amount);
@@ -336,7 +336,7 @@ public class ShopController {
 		//변경예정
 		map.put("picture", 3);
 		
-		service.requestInsertProcess(map);
+		service.requestInsertProcess(map);*/
 		
 
 		int count = service.basketChkProcess(Integer.parseInt(foods_no), mdto.getMember_no());
