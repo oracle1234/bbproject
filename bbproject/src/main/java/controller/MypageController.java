@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dto.BoardDTO;
 import dto.MemberDTO;
+import dto.Photo_BoardDTO;
 import dto.fb_BasketDTO;
 import dto.fb_OrderDTO;
 import dto.myBoardDTO;
@@ -127,12 +128,13 @@ public class MypageController {
 		map.put("member_no", dto.getMember_no());
 		map.put("boardcategory_no", boardcategory_no);
 		mav.addObject("aList", boardservice.myboardlistProcess(map));
+		mav.addObject("boardcategory_no", boardcategory_no);
 		mav.setViewName("my_board");
 		return mav;
 	}
 	
 	@RequestMapping("/my_board_free.do")
-	public @ResponseBody List<myBoardDTO> boardfreelist(HttpServletRequest req, int boardcategory_no){
+	public @ResponseBody myBoardDTO boardfreelist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("member_no", dto.getMember_no());
@@ -141,7 +143,7 @@ public class MypageController {
 	}
 
 	@RequestMapping("/my_board_photo.do")
-	public @ResponseBody List<myBoardDTO> boardphotolist(HttpServletRequest req, int boardcategory_no){
+	public @ResponseBody myBoardDTO boardphotolist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("member_no", dto.getMember_no());
@@ -151,7 +153,7 @@ public class MypageController {
 	
 
 	@RequestMapping("/my_board_qa.do")
-	public @ResponseBody List<myBoardDTO> boardqalist(HttpServletRequest req, int boardcategory_no){
+	public @ResponseBody myBoardDTO boardqalist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("member_no", dto.getMember_no());
@@ -167,7 +169,7 @@ public class MypageController {
 	@RequestMapping(value = "/myupdate.do", method = RequestMethod.POST)
 	public String myupdateProcess(MemberDTO dto) {
 		memberservice.updateProcess(dto);
-		return "joinsucc";
+		return "updsucc";
 	}
 	
 
@@ -189,17 +191,46 @@ public class MypageController {
 		return "joinsucc";
 	}
 	
-/*	@RequestMapping(value="/search.do", method=RequestMethod.GET)
-	public String searchProcess(HttpServletRequest req, Model model){
-		String searchtype = req.getParameter("searchtype");
-		String searchval = req.getParameter("searchval");
+
+	
+	@RequestMapping(value="/boardtitlesearch.do", method=RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> myboardtitleSearch(HttpServletRequest req, int boardcategory_no, String board_subject){
 		
-		Map mapSearch = new HashMap();
-		mapSearch.put("searchtype", searchtype);
-		mapSearch.put("searchval", searchval);
+		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", dto.getMember_no());
+		map.put("boardcategory_no", boardcategory_no);
+		map.put("board_subject", board_subject);
+		map.put("list", boardservice.myBoardSearchProcess(dto.getMember_no(), boardcategory_no, board_subject));
+	return map;	
+	}
+	
+	@RequestMapping(value="/boardcontentsearch.do", method=RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> myboardcontentSearch(HttpServletRequest req, int boardcategory_no, String board_content){
 		
-		model.addAttribute("mapSearch", mapSearch);
-		return "my_board.do";
+		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", dto.getMember_no());
+		map.put("boardcategory_no", boardcategory_no);
+		map.put("board_content", board_content);
 		
-	}*/
+		map.put("list", boardservice.myContentSearchProcess(dto.getMember_no(), boardcategory_no, board_content));
+		
+	return map;	
+	}
+	
+	@RequestMapping(value="/ordersearch.do", method= {RequestMethod.POST,RequestMethod.GET})
+	public @ResponseBody HashMap<String, Object> myorderSearch(HttpServletRequest req, String start, String end){
+		
+		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", dto.getMember_no());
+		map.put("start", start);
+		map.put("end", end);
+		
+		map.put("list", orderservice.myOrderSearchProcess(dto.getMember_no(), start, end));
+		
+		return map;
+	}
+
 }

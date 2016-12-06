@@ -9,6 +9,7 @@ import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -253,8 +254,9 @@ public class ShopController {
 
 	@RequestMapping(value = "/pay_end.do", method = RequestMethod.POST)
 	public ModelAndView pay_endPostProcess(HttpServletRequest req, String chkfood[], String foods_no[],
-			String foods_name[], int price[], int amount[], String savepoint[]) {
-		
+			String foods_name[], int price[], int amount[], String savepoint[], int userpoint) {
+			
+		System.out.println(userpoint);
 		
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");

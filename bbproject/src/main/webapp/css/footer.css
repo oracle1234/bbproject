@@ -1,7 +1,10 @@
+.ft_info{
+	position: relative;
+}
+
 .wrap_inner {
 	width: 1000px;
 	margin: auto;
-	position: relative;
 }
 .wrap_inner ul{
  	text-align: center; 
@@ -15,15 +18,25 @@
 }
 
 .shopinfo{
+	width: 1000px;
 	clear: both;
+	margin: auto;
 }
 
-.shopinfo{
+.shopinfo p{
 	font-size: 12px;
+}
+
+.company li{
+	float: left;
 }
 
 .escrow{
 	position: absolute;
-	right: 0;
-	top: 20px;
+	top : 30px;
+	right: 200px;
+}
+
+.escrow ul li{
+	float: left;
 }

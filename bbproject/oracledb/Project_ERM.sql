@@ -128,7 +128,7 @@ CREATE TABLE fb_request
 	member_no number NOT NULL,
 	price number NOT NULL,
 	amount number NOT NULL,
-	picture number NOT NULL,
+	picture varchar2(100) NOT NULL,
 	day date NOT NULL,
 	delivery_condition varchar2(50) NOT NULL,
 	foods_no number NOT NULL

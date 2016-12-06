@@ -9,8 +9,8 @@
 		<collection property="bdto" javaType="java.util.List" ofType="dto.BoardDTO">
 		<result column="board_no" property="board_no"/>
 		<result column="board_readcount" property="board_readcount"/>
-		<result column="member_no" property="member_no"/>
-		<result column="boardcategory_no" property="boardcategory_no"/>
+		<result column="bmno" property="member_no"/>
+		<result column="bcno" property="boardcategory_no"/>
 		<result column="board_writer" property="board_writer"/>
 		<result column="board_subject" property="board_subject"/>
 		<result column="board_content" property="board_content"/>
@@ -20,8 +20,8 @@
 		<collection property="pdto" javaType="java.util.List" ofType="dto.Photo_BoardDTO">
 		<result column="photo_no" property="photo_no"/>
 		<result column="photo_readcount" property="photo_readcount"/>
-		<result column="member_no" property="member_no"/>
-		<result column="boardcategory_no" property="boardcategory_no"/>
+		<result column="pmno" property="member_no"/>
+		<result column="pcno" property="boardcategory_no"/>
 		<result column="photo_writer" property="photo_writer"/>
 		<result column="photo_content" property="photo_content"/>
 		<result column="photo_upload" property="photo_upload"/>
@@ -32,8 +32,8 @@
 		<collection property="qdto" javaType="java.util.List" ofType="dto.QA_BoardDTO">
 		<result column="qa_no" property="qa_no"/>
 		<result column="qa_readcount" property="qa_readcount"/>
-		<result column="member_no" property="member_no"/>
-		<result column="boardcategory_no" property="boardcategory_no"/>
+		<result column="qmno" property="member_no"/>
+		<result column="qcno" property="boardcategory_no"/>
 		<result column="qa_writer" property="qa_writer"/>
 		<result column="qa_content" property="qa_content"/>
 		<result column="qa_upload" property="qa_upload"/>
@@ -58,6 +58,44 @@
 		select *
 		from fb_qa_board
 		where member_no=#{member_no}
+	</select> 
+	
+	<select id="titlesearch1" resultMap="BoardList" parameterType="java.util.HashMap">
+		select board_no, board_readcount, member_no as bmno, boardcategory_no as bcno, board_writer, board_subject, board_content, board_reg_date 
+		from fb_board
+		where member_no=#{member_no}  and board_subject like '%' || #{board_subject} || '%'
+	</select> 
+	
+
+	<select id="titlesearch2" resultMap="BoardList" parameterType="java.util.HashMap">
+		select photo_no, photo_readcount, member_no as pmno, boardcategory_no as pcno, photo_writer, photo_content, photo_upload, photo_subject, photo_reg_date 
+		from fb_photo_board
+		where member_no=#{member_no} and photo_subject like '%' || #{board_subject} || '%'
+	</select> 
+	
+	<select id="titlesearch3" resultMap="BoardList" parameterType="java.util.HashMap">
+		select qa_no, qa_readcount, member_no as qmno, boardcategory_no as qcno, qa_writer, qa_content, qa_upload, qa_subject, qa_reg_date
+		from fb_qa_board
+		where member_no=#{member_no} and qa_subject like '%' || #{board_subject} || '%'
+	</select> 
+	
+	<select id="contentsearch1" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_board
+		where member_no=#{member_no}  and board_content like '%' || #{board_content} || '%'
+	</select> 
+	
+
+	<select id="contentsearch2" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_photo_board
+		where member_no=#{member_no} and photo_content like '%' || #{board_content} || '%'
+	</select> 
+	
+	<select id="contentsearch3" resultMap="BoardList" parameterType="java.util.HashMap">
+		select *
+		from fb_qa_board
+		where member_no=#{member_no} and qa_content like '%' || #{board_content} || '%'
 	</select> 
 	
 </mapper>

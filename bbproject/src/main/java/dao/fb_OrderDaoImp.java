@@ -24,6 +24,17 @@ public class fb_OrderDaoImp implements fb_OrderDAO{
 	}
 
 /*	@Override
+	public List<fb_OrderDTO> myorderSearch(HashMap<String, Object> map) {
+		return sqlSession.selectList("order.search", map);
+	}*/
+
+	@Override
+	public fb_OrderDTO myOrderSearch(HashMap<String, Object> map) {
+		return sqlSession.selectOne("order.search", map);
+	}
+
+
+/*	@Override
 	public void orderdelete(fb_OrderDTO dto) {
 		sqlSession.delete("order.delete", dto);
 	}*/

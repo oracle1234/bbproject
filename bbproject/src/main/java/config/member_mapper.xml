@@ -45,7 +45,7 @@
 	<update id="upd" parameterType="dto.MemberDTO">
 	update fb_member
 	set
-	pw=#{pw}, tel=#{tel}, mail=#{mail}, address=#{address}
+	pw=#{pw}, replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''), 0, 0)
 	where id=#{id} and member_name=#{member_name}
 	</update>
 	

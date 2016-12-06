@@ -610,6 +610,8 @@ $(document).ready(function() {
     	}
     	
     	var temp = $('.pay_type:checked').val();
+    	
+		$("#userpoint").val(useSavemoney);
     	$('#food_infoform').submit();
     	
 		/* if(temp == 'creditCard'){
@@ -804,7 +806,7 @@ function sample4_execDaumPostcode() {
 									<input type="hidden" name="foods_name" value="${food.foods_name}">
 									<input type="hidden" name="price" value="${food.price}">
 									<input type="hidden" name="amount" value="${food.amount}">
-									<input type="hidden" name = "savepoint" value="${food.price * 0.01 * food.amount}">
+									<input type="hidden" name="savepoint" value="${food.price * 0.01 * food.amount}">
 									</td>
 									<td>${food.price}<span>원</span></td>
 								<td>${food.amount}<span>개</span></td>
@@ -816,6 +818,7 @@ function sample4_execDaumPostcode() {
 							</tr>
 						</c:forEach>
 					</table>
+						<input id="userpoint" type="hidden" name="userpoint">
 					</form>
 				</div>
 				<div id="savemoney_wrap">
