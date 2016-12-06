@@ -63,7 +63,7 @@ public class BoardController {
 	// [자유게시판]
 	// <게시판 리스트보기>
 	@RequestMapping("/board_list.do")
-	public ModelAndView board_listMethod(BoardDTO bdto, PageDTO pv) {
+	public ModelAndView board_listMethod(BoardDTO bdto, PageDTO pv, HttpServletRequest req) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -88,7 +88,8 @@ public class BoardController {
 
 	// <게시판 글 상세보기(눌렀을 때)>
 	@RequestMapping(value = "/board_view.do", method = RequestMethod.GET)
-	public ModelAndView board_viewMethod(int currentPage, BoardDTO bdto, Comment_PageDTO cpdto2, String keyWord) {
+	public ModelAndView board_viewMethod(int currentPage, BoardDTO bdto, Comment_PageDTO cpdto2, String keyWord,
+			HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
@@ -109,6 +110,9 @@ public class BoardController {
 		}
 
 		BoardDTO dto = service.contentProcess(bdto.getBoard_no());
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+
+		mav.addObject(mdto.getMember_no());
 		mav.addObject("dto", dto);
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("board_view");
@@ -117,9 +121,14 @@ public class BoardController {
 
 	// <게시판 글 상세보기(업데이트, 삭제 등 이후에)>
 	@RequestMapping(value = "/board_view.do", method = RequestMethod.POST)
-	public @ResponseBody HashMap<String, Object> board_viewProMethod(BoardDTO bdto, Comment_PageDTO cpdto2) {
+	public @ResponseBody HashMap<String, Object> board_viewProMethod(BoardDTO bdto, Comment_PageDTO cpdto2,
+			HttpServletRequest req) {
+
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
@@ -131,6 +140,7 @@ public class BoardController {
 			map.put("startRow", cpdto.getStartRow());
 			map.put("endRow", cpdto.getEndRow());
 			map.put("board_no", bdto.getBoard_no());
+			map.put("Member_no", mdto.getMember_no());
 		}
 
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -181,15 +191,20 @@ public class BoardController {
 
 	// <게시글 쓰기(눌렀을 때)>
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
-	public ModelAndView board_writeMethod(PageDTO pv) {
+	public ModelAndView board_writeMethod(PageDTO pv, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		mav.addObject(mdto.getMember_no());
 		mav.setViewName("board_write");
+
 		return mav;
 	}// end board_writeMethod()
 
-	// <게시글 쓰기(쓰고난 후)>
+	// <게시글 쓰기(쓰기)>
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
-	public String board_writeProMethod(BoardDTO bdto) {
+	public String board_writeProMethod(BoardDTO bdto, HttpServletRequest req) {
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		bdto.setMember_no(mdto.getMember_no());
 		service.insertProcess(bdto);
 		return "redirect:/board_list.do";
 	}// end writeProMethod
@@ -236,21 +251,28 @@ public class BoardController {
 
 	// <댓글쓰기>
 	@RequestMapping("/commentInsert.do")
-	public @ResponseBody HashMap<String, Object> commentInsertProcess(BoardDTO bdto, CommentDTO cdto, MemberDTO mdto,
-			Comment_PageDTO cpdto2) {
+	public @ResponseBody HashMap<String, Object> commentInsertProcess(BoardDTO bdto, CommentDTO cdto, 
+			Comment_PageDTO cpdto2, HttpServletRequest req) {
 
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		cdto.setMember_no(mdto.getMember_no());
+		
 		HashMap<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("comment_content", cdto.getComment_content());
 		insertMap.put("board_no", bdto.getBoard_no());
-		insertMap.put("member_no", mdto.getMember_no());
-		insertMap.put("comment_writer", "백나연");
-
+		insertMap.put("member_no", cdto.getMember_no());
+		insertMap.put("comment_writer", cdto.getComment_writer());
+		System.out.println(cdto.getComment_content());
+		System.out.println(bdto.getBoard_no());
+		System.out.println(cdto.getMember_no());
+		System.out.println(cdto.getComment_writer());
+		System.out.println("여기1");
 		service.commentInsertProcess(insertMap);
-
+		System.out.println("여기2");
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
 
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-
+		System.out.println("여기3");
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -263,10 +285,11 @@ public class BoardController {
 			pageMap.put("endRow", cpdto.getEndRow());
 			pageMap.put("board_no", bdto.getBoard_no());
 		}
+		System.out.println("여기4");
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("list", service.commentPageProcess(pageMap));
 		resultMap.put("page", cpdto);
-
+		System.out.println("여기5");
 		return resultMap;
 	}// end commentInsertProcess()
 

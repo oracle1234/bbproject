@@ -13,14 +13,24 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
-	$(function() {
+	var member_id = "${sessionScope.member.id}";
+
+	$(document).ready(function() {
 
 		$("#search_frm").submit(function() {
+
 			if ($("#keyWord").val() == "") {
 				alert("검색어를 입력하세요.");
 				return false;
 			}
 		});
+		
+		$("#write").click(function(){
+			if (member_id == '') {
+				alert("회원가입을 하세요.");
+				return false;
+			}
+		});	
 	});
 </script>
 <style type="text/css">
@@ -97,10 +107,9 @@ td {
 	padding-top: 7px;
 }
 
-.content a{
+.content a {
 	color: black;
 }
-
 </style>
 
 <body>
@@ -108,6 +117,7 @@ td {
 		<div id="bodytop">
 			<h3 class="bodyname">자유게시판</h3>
 		</div>
+		
 		<table id="table">
 			<tr id="col">
 				<th width="5%">번호</th>
@@ -134,7 +144,7 @@ td {
 
 		<div class="board_write">
 			<a href="board_write.do"><img alt="글쓰기"
-				src="./images/btn_write.gif"></a>
+				src="./images/btn_write.gif" id="write"></a>
 		</div>
 
 		<div class="board_page">

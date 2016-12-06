@@ -41,18 +41,18 @@ DROP TABLE fb_boardcategory CASCADE CONSTRAINTS;
 
 /* Drop Sequences */
 
-DROP SEQUENCE SEQ_fb_coupon_coupon_no;
-DROP SEQUENCE SEQ_fb_foods_foods_no;
-DROP SEQUENCE SEQ_fb_member_member_no;
-DROP SEQUENCE SEQ_fb_coupon_book_couponbook_no;
-DROP SEQUENCE SEQ_fb_delivery_cost_fb_delivery_no;
-DROP SEQUENCE SEQ_fb_review_review_no;
-DROP SEQUENCE SEQ_fb_theme_theme_no;
-DROP SEQUENCE SEQ_fb_theme_recipe_recipe_no;
-DROP SEQUENCE SEQ_fb_comment_comment_no;
-DROP SEQUENCE SEQ_fb_board_board_no;
-DROP SEQUENCE SEQ_fb_photo_board_photo_no;
-DROP SEQUENCE SEQ_fb_qa_board_qa_no;
+DROP SEQUENCE SEQ_coupon_no;
+DROP SEQUENCE SEQ_foods_no;
+DROP SEQUENCE SEQ_member_no;
+DROP SEQUENCE SEQ_couponbook_no;
+DROP SEQUENCE SEQ_fb_delivery_no;
+DROP SEQUENCE SEQ_review_no;
+DROP SEQUENCE SEQ_theme_no;
+DROP SEQUENCE SEQ_recipe_no;
+DROP SEQUENCE SEQ_comment_no;
+DROP SEQUENCE SEQ_board_no;
+DROP SEQUENCE SEQ_photo_no;
+DROP SEQUENCE SEQ_qa_no;
 
 
 
@@ -72,10 +72,7 @@ CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1;
 
-
-
 /* Create Tables */
-
 CREATE TABLE fb_coupon_book
 (
 	couponbook_no number NOT NULL,
@@ -141,13 +138,12 @@ CREATE TABLE fb_theme
 CREATE TABLE fb_photo_board
 (
 	photo_no number NOT NULL,
-	photo_writer varchar2(100) NOT NULL,
+	member_no number NOT NULL,
+	boardcategory_no number NOT NULL,
+	photo_subject varchar2(200) NOT NULL,
 	photo_content varchar2(2000) NOT NULL,
 	photo_reg_date date NOT NULL,
 	photo_upload varchar2(500) NOT NULL,
-	photo_subject varchar2(200) NOT NULL,
-	boardcategory_no number NOT NULL,
-	member_no number NOT NULL,
 	PRIMARY KEY (photo_no)
 );
 
@@ -155,17 +151,27 @@ CREATE TABLE fb_photo_board
 CREATE TABLE fb_qa_board
 (
 	qa_no number NOT NULL,
-	qa_readcount number NOT NULL,
-	qa_writer varchar2(100) NOT NULL,
-	qa_content varchar2(2000) NOT NULL,
-	qa_reg_date date NOT NULL,
-	qa_upload varchar2(500) NOT NULL,
-	qa_subject varchar2(200) NOT NULL,
-	boardcategory_no number NOT NULL,
 	member_no number NOT NULL,
+	boardcategory_no number NOT NULL,
+	qa_subject varchar2(200) NOT NULL,
+	qa_content varchar2(2000) NOT NULL,
+	qa_readcount number NOT NULL,	
+	qa_reg_date date NOT NULL,
+	qa_upload varchar2(500) NOT NULL,	
 	PRIMARY KEY (qa_no)
 );
 
+CREATE TABLE fb_board
+(
+	board_no number NOT NULL,
+	member_no number NOT NULL,
+	boardcategory_no number NOT NULL,
+	board_subject varchar2(200) NOT NULL,
+	board_content varchar2(2000) NOT NULL,
+	board_readcount number NOT NULL,
+	board_reg_date date NOT NULL,	
+	PRIMARY KEY (board_no)
+);
 
 CREATE TABLE fb_comment
 (
@@ -178,20 +184,6 @@ CREATE TABLE fb_comment
 	comment_date date NOT NULL,
 	member_no number NOT NULL,
 	PRIMARY KEY (comment_no)
-);
-
-
-CREATE TABLE fb_board
-(
-	board_no number NOT NULL,
-	board_readcount number NOT NULL,
-	board_writer varchar2(100) NOT NULL,
-	board_reg_date date NOT NULL,
-	board_content varchar2(2000) NOT NULL,
-	board_subject varchar2(200) NOT NULL,
-	boardcategory_no number NOT NULL,
-	member_no number NOT NULL,
-	PRIMARY KEY (board_no)
 );
 
 
@@ -540,5 +532,7 @@ END;
 /
 
 
-
-
+select * from FB_COMMENT;
+select * from qa_board;
+select * from FB_MEMBER;
+select * from fb_board;

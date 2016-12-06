@@ -100,7 +100,7 @@
 	</select>
 	
 	<insert id="commentSave" parameterType="hashmap">
-		insert into fb_comment values (SEQ_comment_no.nextval, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, sysdate, 1)
+		insert into fb_comment values (SEQ_comment_no.nextval, #{board_no}, 0, 0, #{comment_content}, #{comment_writer}, sysdate, #{member_no})
 	</insert>
 	
 	<delete id="commentDelete" parameterType="hashmap">
@@ -122,8 +122,8 @@
 	</select>
 	
 	<insert id="save" parameterType="dto.BoardDTO">
-		insert into fb_board(boardcategory_no, member_no, board_no, board_readcount, board_writer, board_content, board_reg_date, board_subject)  
-		values(1, 1,SEQ_board_no.nextval,0,#{board_writer}, #{board_content}, sysdate, #{board_subject})
+		insert into fb_board  
+		values(SEQ_board_no.nextval, #{member_no} , 1, #{board_subject}, #{board_content}, #{board_readcount}, sysdate, #{board_writer})
 	</insert>
 
 	<update id="update" parameterType="dto.BoardDTO">
