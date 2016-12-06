@@ -20,6 +20,20 @@
 		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
 		<put-attribute name="imgslider" value="/WEB-INF/view/template/imgbar2.jsp" />
 	</definition>
+	
+	<definition name="login" extends="index">
+			<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/login.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+	
+	<definition name="find" extends="index">
+		<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/find.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
 
 	<definition name="board_list" extends="index">
 		<put-attribute name="title" value="board example" />
