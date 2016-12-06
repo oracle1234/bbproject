@@ -63,13 +63,14 @@ insert into fb_category values
 (3, '국, 찌개');
 
 테이블명:fb_boardcategory
+delete from fb_boardcategory
 select * from fb_boardcategory;
 insert into fb_boardcategory values 
 (1, '자유게시판');
 insert into fb_boardcategory values 
-(2, 'QA게시판');
+(2, '포토후기');
 insert into fb_boardcategory values 
-(3, '포토후기');
+(3, 'QA게시판');
 
 테이블명:fb_boardcategory
 select * from fb_boardcategory;
@@ -287,30 +288,34 @@ from fb_coupon c, fb_coupon_book b
 where member_no=1
 and c.coupon_no = b.coupon_no;
 
+select * from fb_member
+
+delete from fb_qa_board
 select * from fb_qa_board
 insert into fb_qa_board values
-(2, 1, seq_qa_no.nextval, 0, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
+(3, 2, seq_qa_no.nextval, 0, '백나연', '이게 뭡니까', sysdate, '1','질문잇어요');
 insert into fb_qa_board values
-(2, 1, seq_qa_no.nextval, 0,  '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
+(3, 2, seq_qa_no.nextval, 0,  '백나연', '이게 뭡니까2', sysdate, '2','질문잇어요2');
 insert into fb_qa_board values
-(2, 1, seq_qa_no.nextval, 0, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
+(3, 2, seq_qa_no.nextval, 0, '백나연', '이게 뭡니까3', sysdate, '3','질문잇어요3');
 
+delete from fb_photo_board
 select * from fb_photo_board
 insert into fb_photo_board values
-(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다.', sysdate, '1', '포토후기');
+(2, 2, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다.', sysdate, '1', '포토후기');
 insert into fb_photo_board values
-(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
+(2, 2, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다2.', sysdate, '2', '포토후기2');
 insert into fb_photo_board values
-(3, 1, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
+(2, 2, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
 
-
+delete from fb_board
 select * from fb_board
 insert into fb_board values
-(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
+(1, 2, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
 insert into fb_board values
-(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다2.', sysdate, '자유2');
+(1, 2, seq_board_no.nextval, 0, '백나연', '자유게시판입니다2.', sysdate, '자유2');
 insert into fb_board values
-(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다3.', sysdate, '자유3');
+(1, 2, seq_board_no.nextval, 0, '백나연', '자유게시판입니다3.', sysdate, '자유3');
 
 CREATE TABLE fb_photo_board
 (
@@ -382,3 +387,11 @@ insert into fb_boardcategory values
  SET fb_board          fb_photo_board          fb_qa_board  
 
 >>>>>>> refs/remotes/origin/nayeon
+
+select boardcategory_no as tt, a.*
+from fb_photo_board a
+where member_no=2 and photo_subject like '%2%'
+
+select board_no, board_readcount, member_no as bmno, boardcategory_no as bcno, board_writer, board_subject, board_content, board_reg_date 
+		from fb_board
+		where member_no=2  and board_subject like '%2%'

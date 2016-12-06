@@ -103,7 +103,7 @@
 		where member_no = #{member_no} and foods_no = #{foods_no}
 	</select>
 	
-	<insert id="latelyins">
+	<insert id="latelyins" parameterType="hashmap">
 		insert into fb_lately_product values(SEQ_lately_no.nextval, #{member_no}, #{foods_no})
 	</insert>
 	

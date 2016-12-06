@@ -22,7 +22,7 @@ public class myBoardServiceImp implements myBoardService{
 	}
 
 	@Override
-	public List<myBoardDTO> myboardlistProcess(HashMap<String, Integer> map) {
+	public myBoardDTO myboardlistProcess(HashMap<String, Integer> map) {
 		return dao.myBoardList(map);
 	}
 

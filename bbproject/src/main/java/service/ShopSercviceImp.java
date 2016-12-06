@@ -144,4 +144,27 @@ public class ShopSercviceImp implements ShopService {
 		return dao.shopBuy(map);
 	}
 
+	@Override
+	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map) {
+		return dao.shopSearchProcess(map);
+	}
+
+	@Override
+	public int countProcess(int category_no, String foods_name) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("category_no", category_no);
+		map.put("foods_name", foods_name);
+		
+		return dao.count(map);
+	}
+
+	@Override
+	public int basketChkProcess(int foods_no, int member_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("foods_no", foods_no);
+		map.put("member_no", member_no);
+		
+		return dao.basketChk(map);
+	}
+
 }//end class

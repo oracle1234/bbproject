@@ -253,4 +253,6 @@ select count(*)
 		
 alter table fb_tr_order
 modify ORDER_TEXT varchar2(1000);
+
+select * from fb_member
 		

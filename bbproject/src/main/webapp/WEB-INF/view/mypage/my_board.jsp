@@ -11,16 +11,18 @@ $(document).ready(function(){
 /* 	var one = 1;
 	var two = 2;
 	var three = 3; */
+	var boardcategory_no = "${boardcategory_no}";
 	
 	$('.board_checkbox').bind('click', function() {
 		$('.board_cb').prop('checked', this.checked);
 	});
 	
 	$(document).on('click', '#button_free', function(){
+		boardcategory_no = 1;
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : 'my_board_free.do?member_no=${member_no}&boardcategory_no=1',
+			url : 'my_board_free.do?member_no=${member_no}&boardcategory_no='+boardcategory_no,
 			success : freelist,
 			error: function(xhr, textStatus, error) {
 				alert(error);
@@ -28,6 +30,7 @@ $(document).ready(function(){
 		})
 	});
 
+	// 검색
 	$('#button_find').on('click', function(){
 		var searchval = $('#searchval').val();
 		//alert(searchval);
@@ -41,8 +44,8 @@ $(document).ready(function(){
 			 			type:"POST",
 			 			dataType:"json",
 			 			url:"boardtitlesearch.do",
-			 			data:"boardcategory_no=1&board_subject="+$('#searchval').val(),
-			 			success:searchlist1,
+			 			data:"boardcategory_no="+boardcategory_no+"&board_subject="+$('#searchval').val(),
+			 			success: searchlist1,
 			 			error : function(xhr, textStatus, error) {
 				 			alert(error);
 				 		}
@@ -52,43 +55,8 @@ $(document).ready(function(){
 		 			type:"POST",
 		 			dataType:"json",
 		 			url:"boardcontentsearch.do",
-		 			data:"boardcategory_no=1&board_content="+$('#searchval').val(),
-		 			success:searchlist1,
-		 			error : function(xhr, textStatus, error) {
-			 			alert(error);
-			 		}
-		 		})
-			}
-		}
-	}); 
-	
-	
- 	$('#button_find').on('click', function(){
-		var searchval = $('#searchval').val();
-		//alert(searchval);
-		//alert($('input[type=radio]:checked').val());
-		if(searchval==''){
-			alert('검색어를 입력하세요.');
-			 $('#searchval').focus();
-		} else {
-			if($('input[type=radio]:checked').val()=="제목"){
-			 		$.ajax({
-			 			type:"POST",
-			 			dataType:"json",
-			 			url:"boardtitlesearch.do",
-			 			data:"boardcategory_no=1&board_subject="+$('#searchval').val(),
-			 			success:searchlist1,
-			 			error : function(xhr, textStatus, error) {
-				 			alert(error);
-				 		}
-			 		})
-			}else if($('input[type=radio]:checked').val()=="내용"){
-				$.ajax({
-		 			type:"POST",
-		 			dataType:"json",
-		 			url:"boardcontentsearch.do",
-		 			data:"boardcategory_no=1&board_content="+$('#searchval').val(),
-		 			success:searchlist1,
+		 			data:"boardcategory_no="+boardcategory_no+"&board_content="+$('#searchval').val(),
+		 			success: searchlist1,
 		 			error : function(xhr, textStatus, error) {
 			 			alert(error);
 			 		}
@@ -98,10 +66,11 @@ $(document).ready(function(){
 	}); 
  		
 	$(document).on('click', '#button_review', function(){
+		boardcategory_no = 2;
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : 'my_board_photo.do?member_no=${member_no}&boardcategory_no=2',
+			url : 'my_board_photo.do?member_no=${member_no}&boardcategory_no='+boardcategory_no,
 			success : photolist,
 			error: function(xhr, textStatus, error) {
 				alert(error);
@@ -110,10 +79,11 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '#button_qa', function(){
+		boardcategory_no = 3;
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : 'my_board_qa.do?member_no=${member_no}&boardcategory_no=3',
+			url : 'my_board_qa.do?member_no=${member_no}&boardcategory_no='+boardcategory_no,
 			success : qalist,
 			error: function(xhr, textStatus, error) {
 				alert(error);
@@ -140,8 +110,8 @@ function photolist(data){
 	'<th width="20%">작성일</th>'+
 	'<th width="10%">수정</th>'+
 '</tr>');
- 	$.each(data,function(index, value){
- 		$.each(value.pdto,function(index, value){
+ 	$.each(data.pdto,function(index, value){
+//  		$.each(value.pdto,function(index, value){
 	var source='<tr>'+
 	'<td>{{photo_no}}</td>'+
 	'<td>포토후기</td>'+
@@ -151,7 +121,7 @@ function photolist(data){
 '</tr>'
 var template=Handlebars.compile(source); 
 $('.myboard_table').append(template(value));
- 		});
+//  		});
 	});
 }
 
@@ -166,8 +136,8 @@ function qalist(qaqa){
 '</tr>');
 	
  		
-	$.each(qaqa,function(index, value){
- 		$.each(value.qdto,function(index, value){
+	$.each(qaqa.qdto,function(index, value){
+//  		$.each(value.qdto,function(index, value){
 
  			var source='<tr>'+
  			'<td>{{qa_no}}</td>'+
@@ -178,7 +148,7 @@ function qalist(qaqa){
  		'</tr>'
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
- 		 		});
+//  		 		});
 	});
 }
 
@@ -193,8 +163,8 @@ function freelist(free){
 '</tr>');
 	
 	
-	$.each(free,function(index, value){
- 		$.each(value.bdto,function(index, value){
+	$.each(free.bdto,function(index, value){
+//  		$.each(value.bdto,function(index, value){
  			var source='<tr>'+
  			'<td>{{board_no}}</td>'+
  			'<td>자유게시판</td>'+
@@ -204,38 +174,36 @@ function freelist(free){
  		'</tr>'
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
- 		 		});
+//  		 		});
 	});
 	
 	
 }
 
 function searchlist1(data){
-		//alert(data.list.bdto[0].board_subject);
-		if(data.list.bdto == null){
-			//$('.myboard_table').empty();
-			$(".myboard_table").append('<p>'+searchval+'의 검색결과가 없습니다.</p>');
-		}else{
-				$('.myboard_table').empty();
-				$('.myboard_table').append('<tr>'+
-						'<th width="5%">번호</th>'+
-						'<th width="15%">분류</th>'+
-						'<th width="45%">제목</th>'+
-						'<th width="20%">작성일</th>'+
-						'<th width="10%">수정</th>'+
-					'</tr>');
-			$.each(data.list.bdto,function(index, value) {
-				/* $(".myboard_table").append("<p>"+value.board_subject+"</p>"); */
-				var source='<tr>'+
-            '<td>{{board_no}}</td>'+
-            '<td>자유게시판</td>'+
-            '<td>{{board_subject}}</td>'+
-            '<td>{{newDate board_reg_date}}</td>'+
-            '<td><input type="button" id="board_upd" value="수정하기"></td>'+
-         '</tr>'
-         var template=Handlebars.compile(source); 
-         $('.myboard_table').append(template(value));
-			});
+		switch (data.boardcategory_no) {
+		case 1:
+			if(data.list.bdto == null){
+				$(".myboard_table").append('<p>'+searchval+'의 검색결과가 없습니다.</p>');
+			}else{
+				freelist(data.list);
+			}
+			break;
+		case 2:
+			if(data.list.pdto == null){
+				$(".myboard_table").append('<p>'+searchval+'의 검색결과가 없습니다.</p>');
+			}else{
+				photolist(data.list);
+			}
+			break;
+		case 3:
+			if(data.list.qdto == null){
+				$(".myboard_table").append('<p>'+searchval+'의 검색결과가 없습니다.</p>');
+			}else{
+				qalist(data.list);
+			}
+			break;
+
 		}
 	}
 	
@@ -258,8 +226,8 @@ function searchlist1(data){
 			<th width="20%">작성일</th>
 			<th width="10%">수정</th>
 		</tr>
-		<c:forEach var="dto" items="${aList}">
-			<c:forEach var="bdto" items="${dto.bdto}">
+<%-- 		<c:forEach var="dto" items="${aList}"> --%>
+			<c:forEach var="bdto" items="${aList.bdto}">
 				<tr>
 					<td>${bdto.board_no}</td>
 					<td>자유게시판</td>
@@ -269,7 +237,7 @@ function searchlist1(data){
 					<td><input type="button" id="board_upd" value="수정하기"></td>
 				</tr>
 			</c:forEach>
-		</c:forEach>
+<%-- 		</c:forEach> --%>
 
 	</table>
 	<div class="myboard_write">

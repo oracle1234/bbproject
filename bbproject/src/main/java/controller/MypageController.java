@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dto.BoardDTO;
 import dto.MemberDTO;
+import dto.Photo_BoardDTO;
 import dto.fb_BasketDTO;
 import dto.fb_OrderDTO;
 import dto.myBoardDTO;
@@ -127,12 +128,13 @@ public class MypageController {
 		map.put("member_no", dto.getMember_no());
 		map.put("boardcategory_no", boardcategory_no);
 		mav.addObject("aList", boardservice.myboardlistProcess(map));
+		mav.addObject("boardcategory_no", boardcategory_no);
 		mav.setViewName("my_board");
 		return mav;
 	}
 	
 	@RequestMapping("/my_board_free.do")
-	public @ResponseBody List<myBoardDTO> boardfreelist(HttpServletRequest req, int boardcategory_no){
+	public @ResponseBody myBoardDTO boardfreelist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("member_no", dto.getMember_no());
@@ -141,7 +143,7 @@ public class MypageController {
 	}
 
 	@RequestMapping("/my_board_photo.do")
-	public @ResponseBody List<myBoardDTO> boardphotolist(HttpServletRequest req, int boardcategory_no){
+	public @ResponseBody myBoardDTO boardphotolist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("member_no", dto.getMember_no());
@@ -151,7 +153,7 @@ public class MypageController {
 	
 
 	@RequestMapping("/my_board_qa.do")
-	public @ResponseBody List<myBoardDTO> boardqalist(HttpServletRequest req, int boardcategory_no){
+	public @ResponseBody myBoardDTO boardqalist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("member_no", dto.getMember_no());
@@ -199,9 +201,7 @@ public class MypageController {
 		map.put("member_no", dto.getMember_no());
 		map.put("boardcategory_no", boardcategory_no);
 		map.put("board_subject", board_subject);
-		
 		map.put("list", boardservice.myBoardSearchProcess(dto.getMember_no(), boardcategory_no, board_subject));
-		
 	return map;	
 	}
 	
@@ -214,8 +214,7 @@ public class MypageController {
 		map.put("boardcategory_no", boardcategory_no);
 		map.put("board_content", board_content);
 		
-		
-		map.put("list", boardservice.myBoardSearchProcess(dto.getMember_no(), boardcategory_no, board_content));
+		map.put("list", boardservice.myContentSearchProcess(dto.getMember_no(), boardcategory_no, board_content));
 		
 	return map;	
 	}
