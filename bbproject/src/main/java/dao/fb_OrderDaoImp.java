@@ -30,6 +30,7 @@ public class fb_OrderDaoImp implements fb_OrderDAO{
 
 	@Override
 	public fb_OrderDTO myOrderSearch(HashMap<String, Object> map) {
+		System.out.println(map);
 		return sqlSession.selectOne("order.search", map);
 	}
 
