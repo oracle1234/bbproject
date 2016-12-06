@@ -55,10 +55,15 @@ select *
 		and a.member_no = (select member_no from fb_member where id ='asdf' and pw = '1234')
 		
 select * from fb_coupon_book
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 1, 'yes');
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 2, 'no');
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 3, 'yes');
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 1);
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 2);
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 3);
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 4);
 
+insert into fb_coupon values(SEQ_coupon_no.nextval, '회원가입쿠폰', 2000);
+insert into fb_coupon values(SEQ_coupon_no.nextval, '축하쿠폰', 3000);
+insert into fb_coupon values(SEQ_coupon_no.nextval, '쿠폰', 2000);
+insert into fb_coupon values(SEQ_coupon_no.nextval, '대박쿠폰', 5000);
 
 select * from fb_coupon
 select * from fb_coupon_book
@@ -187,3 +192,6 @@ alter table fb_request add column foods_name varchar2(30);
 alter table fb_request 
 
 drop table fb_reqeust
+
+select * from fb_coupon
+

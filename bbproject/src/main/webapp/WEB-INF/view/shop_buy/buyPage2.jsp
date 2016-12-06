@@ -326,7 +326,9 @@ caption {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
+<script type="http://www.json.org/json2.js"></script>
 <script type="text/javascript">
+
 	
 $(document).ready(function() {
 	IMP.init('imp26018843'); 
@@ -362,7 +364,10 @@ $(document).ready(function() {
 	var discount = 0;
 	$('#coupon_select').on('change', function(){
 		var tm = 0;
-		discount = parseInt($(this).val());
+		var couponID = $(this).val();
+		
+		
+		discount = discountGO(couponID);
 		
 		tm = totalMoney - discount - useSavemoney; 
 		var deli = tm + 2500;
@@ -689,6 +694,17 @@ $(document).ready(function() {
 }); //end document ready///////////////////////
 
 
+function discountGO(couponID){
+	
+	obj = ${member.cList}
+	
+	$.each(obj, function(index, value) {
+		//if(value.coupon_no == couponID){
+			alert(value);
+		//}
+	});
+};
+
 function sample4_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -821,6 +837,7 @@ function sample4_execDaumPostcode() {
 							</tr>
 						</c:forEach>
 					</table>
+					<input id="userpoint" type="hidden" name="userpoint">
 					</form>
 					
 				</div>
@@ -839,7 +856,7 @@ function sample4_execDaumPostcode() {
 							<td><select id="coupon_select">
 									<option selected value="0">사용하실 쿠폰을 선택하세요.</option>
 									<c:forEach items="${member.cList}" var = "couponDTO">
-									<option value="${couponDTO.coupon_discount}">${couponDTO.coupon_name}</option>
+									<option value="${couponDTO.coupon_no}">${couponDTO.coupon_name}</option>
 									</c:forEach>
 							</select>
 							</td>

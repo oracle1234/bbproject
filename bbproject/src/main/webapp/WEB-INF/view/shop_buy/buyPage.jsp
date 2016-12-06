@@ -835,7 +835,7 @@ function sample4_execDaumPostcode() {
 							<td><select id="coupon_select">
 									<option selected value="0">사용하실 쿠폰을 선택하세요.</option>
 									<c:forEach items="${member.cList}" var = "couponDTO">
-									<option value="${couponDTO.coupon_discount}">${couponDTO.coupon_name}</option>
+									<option value="${couponDTO.coupon_no}">${couponDTO.coupon_name}</option>
 									</c:forEach>
 							</select>
 							</td>
