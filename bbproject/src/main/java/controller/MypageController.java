@@ -219,7 +219,7 @@ public class MypageController {
 	return map;	
 	}
 	
-	@RequestMapping(value="/ordersearch.do", method={RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value="/ordersearch.do", method=RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> myorderSearch(HttpServletRequest req, String start, String end){
 		
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");

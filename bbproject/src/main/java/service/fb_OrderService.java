@@ -9,5 +9,5 @@ public interface fb_OrderService {
 	
 	public List<fb_OrderDTO> orderlistProcess(int member_no);
 	//public List<fb_OrderDTO> orderdelProcess(HashMap<String, Object> map);
-	public fb_OrderDTO myOrderSearchProcess(int member_no, String start, String end);
+	public List<fb_OrderDTO> myOrderSearchProcess(int member_no, String start, String end);
 }

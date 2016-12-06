@@ -255,4 +255,11 @@ alter table fb_tr_order
 modify ORDER_TEXT varchar2(1000);
 
 select * from fb_member
+
+
+select *
+	from fb_request
+	where member_no=2 and 
+    day >= to_date('2016-12-5','yyyy-mm-dd')
+    and day <= to_date('2016-12-7','yyyy-mm-dd')
 		

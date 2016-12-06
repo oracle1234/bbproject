@@ -38,11 +38,13 @@
     </select>  -->  
     
      <select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
-	select *
-	from fb_request
-<![CDATA[where member_no=#{member_no} and 
-    day >= to_date(#{start},'yyyy-mm-dd')
-    and day <= to_date(#{end},'yyyy-mm-dd')]]>
+	<![CDATA[
+		select *
+		from fb_request
+		where member_no=#{member_no} and 
+	    day >= to_date(#{start},'yyyy-mm-dd')
+	    and day <= to_date(#{end},'yyyy-mm-dd')
+    ]]>
     </select>  
 
     

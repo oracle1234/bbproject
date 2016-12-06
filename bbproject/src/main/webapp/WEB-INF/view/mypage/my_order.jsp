@@ -20,6 +20,7 @@ $(document).ready(function() {
 	
 		$('#calfindButton').on('click',function(){
 			alert($("#start").val());
+			alert($("#end").val());
 			$.ajax({
 				type:'POST',
 				dataType : 'json',
@@ -104,7 +105,7 @@ $(document).ready(function() {
 				'<td>'+value.foods_no+'</td>'+
 				'<td>'+value.amount+'</td>'+
 				'<td>'+value.price+'</td>'+
-				'<td>'+value.price*dto.amount+'</td>'+
+				'<td>'+value.price*value.amount+'</td>'+
 				'<td>'+value.delivery_condition+'</td>'+
 				'</td>'+
 			'</tr>');
