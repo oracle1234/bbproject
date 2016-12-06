@@ -38,19 +38,26 @@
 	</select>
 	
 	<select id="buy_list" parameterType="int" resultType="dto.FoodsDTO">
-		select * from fb_foods where foods_no= #{foods_no} order by foods_no
+		select * from fb_foods where foods_no = #{foods_no} order by foods_no
 	</select>
 
 	<select id="count" resultType="int" parameterType="dto.FoodsDTO">
 		select
-		count(*) from fb_foods where category_no = #{category_no}
+		count(*) from fb_foods 
+		<if test="value != 0">
+			where category_no = #{value}
+		</if>
 	</select>
 
 	<select id="page_list" parameterType="hashmap" resultType="dto.FoodsDTO">
-		<![CDATA[
 		select b.* from(
 		select rownum as rm, a.* from(
-		select * from fb_foods where category_no=#{category_no} order by foods_no desc )a)b
+		select * from fb_foods 
+		<if test="category_no != 0">
+			where category_no=#{category_no} 
+		</if>
+		order by foods_no desc )a)b
+		<![CDATA[
 		where b.rm>=#{startRow} and b.rm <=#{endRow}
 		]]>
 	</select>
@@ -152,6 +159,18 @@
 		select count(*) from fb_basket
 		where member_no = #{member_no} and foods_no = #{foods_no}
 	</select>
+	
+	<update id="savemoney_plus" parameterType="hashmap">
+		update fb_member set point = point + #{point} where member_no= #{member_no}
+	</update>
+	
+	<update id="savemoney_minus" parameterType="hashmap">
+		update fb_member set point = point - #{point} where member_no=#{member_no}
+	</update>
+	
+	<insert id="requestInsert">
+		insert into fb_request values(#{member_no}, #{price}, #{amount}, #{picture}, sysdate, #{delivery_condition}, #{foods_no})
+	</insert>
 	
 </mapper>
 

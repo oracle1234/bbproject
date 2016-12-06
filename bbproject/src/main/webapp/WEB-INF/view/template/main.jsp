@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/main.js"></script>
+<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <title>Insert title here</title>
 
@@ -79,7 +81,7 @@
 		<p id="pop_wrap">
 			<img src="images/popup/main_pop.png" alt="" usemap="#pop" />
 			<map name="pop" id="pop">
-				<area shape="rect" coords="334,419,374,434" href="#" alt="창닫기" />
+				<area shape="rect" coords="334,419,374,434" id="#" alt="창닫기" />
 				<area shape="rect" coords="129,419,264,434" href="#" alt="하루동안 창 닫기" />
 			</map>
 		</p>

@@ -8,9 +8,8 @@ import dto.myBoardDTO;
 
 public interface myBoardDAO {
 	
-	public List<myBoardDTO> myBoardList(HashMap<String, Integer> map);
-/*	public List<myBoardDTO> searchMethod(Map map){
-		return this.searchMapper.select(map);
-	}*/
+	public myBoardDTO myBoardList(HashMap<String, Integer> map);
+	public myBoardDTO myboardtitleSearch(HashMap<String, Object> map);
+	public myBoardDTO myboardcontentSearch(HashMap<String, Object> map);
 
 }

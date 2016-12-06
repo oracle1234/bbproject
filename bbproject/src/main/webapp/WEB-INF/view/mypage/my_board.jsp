@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link rel="stylesheet" type="text/css" href="css/my_board.css" />
 <script
@@ -8,36 +8,69 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+/* 	var one = 1;
+	var two = 2;
+	var three = 3; */
+	var boardcategory_no = "${boardcategory_no}";
+	
 	$('.board_checkbox').bind('click', function() {
 		$('.board_cb').prop('checked', this.checked);
 	});
 	
 	$(document).on('click', '#button_free', function(){
+		boardcategory_no = 1;
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : 'my_board_free.do?member_no=${member_no}&boardcategory_no=1',
+			url : 'my_board_free.do?member_no=${member_no}&boardcategory_no='+boardcategory_no,
 			success : freelist,
 			error: function(xhr, textStatus, error) {
 				alert(error);
 			}
 		})
 	});
-	
+
+	// 검색
 	$('#button_find').on('click', function(){
 		var searchval = $('#searchval').val();
+		//alert(searchval);
+		//alert($('input[type=radio]:checked').val());
 		if(searchval==''){
 			alert('검색어를 입력하세요.');
-		} else{
-			$('#form_search').submit();
+			 $('#searchval').focus();
+		} else {
+			if($('input[type=radio]:checked').val()=="제목"){
+			 		$.ajax({
+			 			type:"POST",
+			 			dataType:"json",
+			 			url:"boardtitlesearch.do",
+			 			data:"boardcategory_no="+boardcategory_no+"&board_subject="+$('#searchval').val(),
+			 			success: searchlist1,
+			 			error : function(xhr, textStatus, error) {
+				 			alert(error);
+				 		}
+			 		})
+			}else if($('input[type=radio]:checked').val()=="내용"){
+				$.ajax({
+		 			type:"POST",
+		 			dataType:"json",
+		 			url:"boardcontentsearch.do",
+		 			data:"boardcategory_no="+boardcategory_no+"&board_content="+$('#searchval').val(),
+		 			success: searchlist1,
+		 			error : function(xhr, textStatus, error) {
+			 			alert(error);
+			 		}
+		 		})
+			}
 		}
-	});
-	
+	}); 
+ 		
 	$(document).on('click', '#button_review', function(){
+		boardcategory_no = 2;
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : 'my_board_photo.do?member_no=${member_no}&boardcategory_no=2',
+			url : 'my_board_photo.do?member_no=${member_no}&boardcategory_no='+boardcategory_no,
 			success : photolist,
 			error: function(xhr, textStatus, error) {
 				alert(error);
@@ -46,10 +79,11 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '#button_qa', function(){
+		boardcategory_no = 3;
 		$.ajax({
 			type : 'GET',
 			dataType : 'json',
-			url : 'my_board_qa.do?member_no=${member_no}&boardcategory_no=3',
+			url : 'my_board_qa.do?member_no=${member_no}&boardcategory_no='+boardcategory_no,
 			success : qalist,
 			error: function(xhr, textStatus, error) {
 				alert(error);
@@ -76,8 +110,8 @@ function photolist(data){
 	'<th width="20%">작성일</th>'+
 	'<th width="10%">수정</th>'+
 '</tr>');
- 	$.each(data,function(index, value){
- 		$.each(value.pdto,function(index, value){
+ 	$.each(data.pdto,function(index, value){
+//  		$.each(value.pdto,function(index, value){
 	var source='<tr>'+
 	'<td>{{photo_no}}</td>'+
 	'<td>포토후기</td>'+
@@ -87,7 +121,7 @@ function photolist(data){
 '</tr>'
 var template=Handlebars.compile(source); 
 $('.myboard_table').append(template(value));
- 		});
+//  		});
 	});
 }
 
@@ -102,8 +136,8 @@ function qalist(qaqa){
 '</tr>');
 	
  		
-	$.each(qaqa,function(index, value){
- 		$.each(value.qdto,function(index, value){
+	$.each(qaqa.qdto,function(index, value){
+//  		$.each(value.qdto,function(index, value){
 
  			var source='<tr>'+
  			'<td>{{qa_no}}</td>'+
@@ -114,7 +148,7 @@ function qalist(qaqa){
  		'</tr>'
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
- 		 		});
+//  		 		});
 	});
 }
 
@@ -128,12 +162,9 @@ function freelist(free){
 	'<th width="10%">수정</th>'+
 '</tr>');
 	
-
 	
- 		
-	
-	$.each(free,function(index, value){
- 		$.each(value.bdto,function(index, value){
+	$.each(free.bdto,function(index, value){
+//  		$.each(value.bdto,function(index, value){
  			var source='<tr>'+
  			'<td>{{board_no}}</td>'+
  			'<td>자유게시판</td>'+
@@ -143,54 +174,80 @@ function freelist(free){
  		'</tr>'
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
- 		 		});
+//  		 		});
 	});
+	
+	
 }
 
+function searchlist1(data){
+		switch (data.boardcategory_no) {
+		case 1:
+			if(data.list.bdto == null){
+				$(".myboard_table").append('<p>'+searchval+'의 검색결과가 없습니다.</p>');
+			}else{
+				freelist(data.list);
+			}
+			break;
+		case 2:
+			if(data.list.pdto == null){
+				$(".myboard_table").append('<p>'+searchval+'의 검색결과가 없습니다.</p>');
+			}else{
+				photolist(data.list);
+			}
+			break;
+		case 3:
+			if(data.list.qdto == null){
+				$(".myboard_table").append('<p>'+searchval+'의 검색결과가 없습니다.</p>');
+			}else{
+				qalist(data.list);
+			}
+			break;
 
+		}
+	}
 	
 </script>
-<form id="form_search" method="get" action="search.do">
-	<div class="mypage_body">
+<div class="mypage_body">
 	<div class="link">
-	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 내가 쓴 글
+		<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 내가 쓴 글
 	</div>
-		<div class="board_button">
-		<input type="button" id="button_free" value="자유게시판">
-		<input type="button" id="button_review" value="포토후기">
-		<input type="button" id="button_qa" value="Q&A">
-		</div>
-		
-		<table class="myboard_table">
+	<div class="board_button">
+		<input type="button" id="button_free" value="자유게시판"> <input
+			type="button" id="button_review" value="포토후기"> <input
+			type="button" id="button_qa" value="Q&A">
+	</div>
+
+	<table class="myboard_table">
 		<tr>
-				<th width="5%">번호</th>
-				<th width="15%">분류</th>
-				<th width="45%">제목</th>
-				<th width="20%">작성일</th>
-				<th width="10%">수정</th>
-			</tr>
-			<c:forEach var="dto" items="${aList}">
-			<c:forEach var="bdto" items="${dto.bdto}">
+			<th width="5%">번호</th>
+			<th width="15%">분류</th>
+			<th width="45%">제목</th>
+			<th width="20%">작성일</th>
+			<th width="10%">수정</th>
+		</tr>
+<%-- 		<c:forEach var="dto" items="${aList}"> --%>
+			<c:forEach var="bdto" items="${aList.bdto}">
 				<tr>
 					<td>${bdto.board_no}</td>
 					<td>자유게시판</td>
 					<td>${bdto.board_subject}</td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short" value="${bdto.board_reg_date}"/></td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
+							value="${bdto.board_reg_date}" /></td>
 					<td><input type="button" id="board_upd" value="수정하기"></td>
 				</tr>
-						</c:forEach>
-				</c:forEach>
-	
-		</table>
-		<div class="myboard_write">
-		<input type="button" id="button_write" value="글쓰기">
-			</div>
+			</c:forEach>
+<%-- 		</c:forEach> --%>
 
-		<div class="myboard_find">
-		<input type="radio" name="searchtype">제목
-		<input type="radio" name="searchtype">내용
-		<input type="text" id="searchval" placeholder="검색" name="searchval">
-		<input type="button" id="button_find" value="검색">
-		</div>
+	</table>
+	<div class="myboard_write">
+		<input type="button" id="button_write" value="글쓰기">
 	</div>
-	</form>
+
+	<div class="myboard_find">
+		<input type="radio" name="searchtype" value="제목">제목 <input
+			type="radio" name="searchtype" value="내용">내용 <input
+			type="text" id="searchval" placeholder="검색" name="searchval">
+		<input type="button" id="button_find" value="검색">
+	</div>
+</div>

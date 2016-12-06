@@ -31,6 +31,9 @@ public interface ShopService {
 	
 	public fb_BasketDTO shopBuyProcess(int foods_no, int member_no);
 	public int basketChkProcess(int foods_no, int member_no);
+	public void savePointPlusProcess(int member_no, int point);
+	public void savePointMinusProcess(int member_no, int point);
+	public void requestInsertProcess(HashMap<String, Object> map);
 	
 	
 	

@@ -101,33 +101,33 @@ CREATE TABLE fb_boardcategory
 
 /* Create Foreign Keys */
 ALTER TABLE fb_comment
-	ADD FOREIGN KEY (qa_no)
-	REFERENCES fb_qa_board (qa_no)
+	ADD CONSTRAINT fk_qa_no FOREIGN KEY (qa_no)
+	REFERENCES fb_qa_board (qa_no) on delete cascade
 ;
 
 
 ALTER TABLE fb_comment
-	ADD FOREIGN KEY (photo_no)
-	REFERENCES fb_photo_board (photo_no)
+	ADD CONSTRAINT fk_photo_no FOREIGN KEY (photo_no)
+	REFERENCES fb_photo_board (photo_no) on delete cascade
 ;
 
 
 ALTER TABLE fb_comment
-	ADD FOREIGN KEY (board_no)
-	REFERENCES fb_board (board_no)
+	ADD CONSTRAINT fk_board_no FOREIGN KEY (board_no)
+	REFERENCES fb_board (board_no) on delete cascade
 ;
 
 alter table fb_board
-add foreign key (member_no)
-references fb_member (member_no);
+add CONSTRAINT fk_fb_member_no foreign key (member_no)
+references fb_member (member_no) on delete cascade;
 
 alter table fb_photo_board
-add foreign key (member_no)
-references fb_member (member_no);
+add CONSTRAINT fk_pb_member_no foreign key (member_no)
+references fb_member (member_no) on delete cascade;
 
 alter table fb_qa_board
-add foreign key (member_no)
-references fb_member (member_no);
+add CONSTRAINT fk_qb_member_no foreign key (member_no)
+references fb_member (member_no) on delete cascade;
 
 
 /* Comments */

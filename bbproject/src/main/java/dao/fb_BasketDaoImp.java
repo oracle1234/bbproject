@@ -28,7 +28,6 @@ public class fb_BasketDaoImp implements fb_BasketDAO{
 	public void amountUpdate(fb_BasketDTO bdto) {
 		sqlSession.update("basket.amount", bdto);
 		
-		
 	}
 
 	@Override

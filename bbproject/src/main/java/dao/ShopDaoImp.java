@@ -119,4 +119,29 @@ public class ShopDaoImp implements ShopDAO {
 		return sqlSession.selectOne("shop.basketChk", map);
 	}
 
+	@Override
+	public void pointPlus(int member_no, int point) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", member_no);
+		map.put("point", point);
+		
+		sqlSession.update("shop.savemoney_plus", map);
+	}
+
+	@Override
+	public void pointMinus(int member_no, int point) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", member_no);
+		map.put("point", point);
+		
+		sqlSession.update("shop.savemoney_minus", map);
+	}
+
+	@Override
+	public void request_insert(HashMap<String, Object> map) {
+		sqlSession.insert("shop.requestInsert", map);
+	}
+
+
+
 }

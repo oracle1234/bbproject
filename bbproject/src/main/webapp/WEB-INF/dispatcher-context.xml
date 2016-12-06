@@ -172,6 +172,7 @@
 
 	<bean class="controller.ShopController">
 		<property name="service" ref="shopService"></property>
+		<property name="basketService" ref="BasketService"></property>
 	</bean>
 
 	<bean class="controller.BoardController">
