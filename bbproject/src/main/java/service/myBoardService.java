@@ -8,7 +8,7 @@ import dto.myBoardDTO;
 
 public interface myBoardService {
 	
-	public List<myBoardDTO> myboardlistProcess(HashMap<String, Integer> map);
+	public myBoardDTO myboardlistProcess(HashMap<String, Integer> map);
 	public myBoardDTO myBoardSearchProcess(int member_no, int boardcategory_no, String board_subject);
 	public myBoardDTO myContentSearchProcess(int member_no, int boardcategory_no, String board_content);
 
