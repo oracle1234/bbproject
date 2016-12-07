@@ -8,7 +8,7 @@
 	<insert id="ins" parameterType="dto.MemberDTO">
 		insert into fb_member values
 		(SEQ_member_no.nextval, #{member_name}, #{id}, #{pw},
-		replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''),0, 0)
+		replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''), 0)
 	</insert>
 
 	<select id="ck" resultType="int" parameterType="String">
@@ -45,7 +45,7 @@
 	<update id="upd" parameterType="dto.MemberDTO">
 	update fb_member
 	set
-	pw=#{pw}, address=replace(#{address},',',''), tel=replace(#{tel},',',''), mail=replace(#{mail},',',''), point=0, stamp=0
+	pw=#{pw}, address=replace(#{address},',',''), tel=replace(#{tel},',',''), mail=replace(#{mail},',',''), point=#{point}
 	where id=#{id} and member_name=#{member_name}
 	</update>
 	
@@ -65,7 +65,7 @@
 		<result column="tel" property="tel"/>
 		<result column="mail" property="mail"/>
 		<result column="point" property="point"/>
-		<result column="stamp" property="stamp"/>
+		<!-- <result column="stamp" property="stamp"/> -->
 		
 		<collection property="cList" javaType="list" ofType="dto.fb_CouponDTO">
 			<result column="couponbook_no" property="couponbook_no"/>

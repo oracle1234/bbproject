@@ -255,6 +255,13 @@
 		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 	
+	<definition name="leavesucc" extends="index">
+		<put-attribute name="title" value="join_succ" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/join/leavesucc.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+	
 		<definition name="updsucc" extends="index">
 		<put-attribute name="title" value="upd_succ" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />

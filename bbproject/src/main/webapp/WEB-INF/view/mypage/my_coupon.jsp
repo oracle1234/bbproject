@@ -15,14 +15,8 @@ $(document).ready(function(){
 	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 쿠폰/적립금
 	</div>
 	<div class="couponpoint">
-	<div class="coupon_info">
-
-		</div>
-		<div class="point">
-		 
-		<p id="p_name"></p>님의 현재 적립금은 <p id="p_point"></p>원 입니다.
+	<span>■ ${sessionScope.member.member_name}님의 현재 적립금은 ${sessionScope.member.point}원 입니다.</span>
 	
-		</div>
 </div>
 	<table class="mycoupon_table">
 		<tr>

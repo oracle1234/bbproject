@@ -104,11 +104,10 @@ Handlebars.registerHelper("newDate",function(timeValue){
 function photolist(data){
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
-	'<th width="5%">번호</th>'+
+	'<th width="10%">번호</th>'+
 	'<th width="15%">분류</th>'+
-	'<th width="45%">제목</th>'+
+	'<th width="50%">제목</th>'+
 	'<th width="20%">작성일</th>'+
-	'<th width="10%">수정</th>'+
 '</tr>');
  	$.each(data.pdto,function(index, value){
 //  		$.each(value.pdto,function(index, value){
@@ -117,7 +116,6 @@ function photolist(data){
 	'<td>포토후기</td>'+
 	'<td>{{photo_subject}}</td>'+
 	'<td>{{newDate photo_reg_date}}</td>'+
-	'<td><input type="button" id="board_upd" value="수정하기"></td>'+
 '</tr>'
 var template=Handlebars.compile(source); 
 $('.myboard_table').append(template(value));
@@ -128,11 +126,10 @@ $('.myboard_table').append(template(value));
 function qalist(qaqa){
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
-	'<th width="5%">번호</th>'+
+	'<th width="10%">번호</th>'+
 	'<th width="15%">분류</th>'+
-	'<th width="45%">제목</th>'+
+	'<th width="50%">제목</th>'+
 	'<th width="20%">작성일</th>'+
-	'<th width="10%">수정</th>'+
 '</tr>');
 	
  		
@@ -144,7 +141,6 @@ function qalist(qaqa){
  			'<td>질문과 답변</td>'+
  			'<td>{{qa_subject}}</td>'+
  			'<td>{{newDate qa_reg_date}}</td>'+
- 			'<td><input type="button" id="board_upd" value="수정하기"></td>'+
  		'</tr>'
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
@@ -155,11 +151,10 @@ function qalist(qaqa){
 function freelist(free){
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
-	'<th width="5%">번호</th>'+
+	'<th width="10%">번호</th>'+
 	'<th width="15%">분류</th>'+
-	'<th width="45%">제목</th>'+
+	'<th width="50%">제목</th>'+
 	'<th width="20%">작성일</th>'+
-	'<th width="10%">수정</th>'+
 '</tr>');
 	
 	
@@ -170,7 +165,6 @@ function freelist(free){
  			'<td>자유게시판</td>'+
  			'<td>{{board_subject}}</td>'+
  			'<td>{{newDate board_reg_date}}</td>'+
- 			'<td><input type="button" id="board_upd" value="수정하기"></td>'+
  		'</tr>'
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
@@ -220,11 +214,10 @@ function searchlist1(data){
 
 	<table class="myboard_table">
 		<tr>
-			<th width="5%">번호</th>
+			<th width="10%">번호</th>
 			<th width="15%">분류</th>
-			<th width="45%">제목</th>
+			<th width="50%">제목</th>
 			<th width="20%">작성일</th>
-			<th width="10%">수정</th>
 		</tr>
 <%-- 		<c:forEach var="dto" items="${aList}"> --%>
 			<c:forEach var="bdto" items="${aList.bdto}">
@@ -234,7 +227,6 @@ function searchlist1(data){
 					<td>${bdto.board_subject}</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
 							value="${bdto.board_reg_date}" /></td>
-					<td><input type="button" id="board_upd" value="수정하기"></td>
 				</tr>
 			</c:forEach>
 <%-- 		</c:forEach> --%>

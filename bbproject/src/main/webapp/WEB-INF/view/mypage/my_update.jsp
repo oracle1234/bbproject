@@ -9,17 +9,19 @@
 var s_pw = "${sessionScope.member.pw}";
 var s_id = "${sessionScope.member.id}";
 var s_name = "${sessionScope.member.member_name}";
+var s_point = "${sessionScope.member.point}";
 
 $(document).ready(function(){
 	//alert(s_pw);
 	$(".join").hide();
 	
 	$("#pwupok").on("click", function(){
-		alert($('#pwck').val());
+	//	alert($('#pwck').val());
 		if(s_pw==$("#pwckup").val()){
 			$(".password").remove();
 			$(".join").show();
 			$("#member_nameup").attr("value",s_name);
+			$("#point").attr("value",s_point);
 			$("#idup").attr("value",s_id);
 		}else{
 			alert("비밀번호를 다시 입력해주세요.");
@@ -200,7 +202,6 @@ function sample4_execDaumPostcode() {
 .mypage_body .password{
 width:950px;
 height:100px;
-border:1px solid gray;
 }
 
 fieldset{
@@ -311,6 +312,7 @@ width:200px;
 <input type="text" name="phone2" id="phone2up" maxlength="4">
 <input type="checkbox" id="messagreeup">문자메세지를 수신합니다.
 <!-- <input type="hidden" id="tel" name="tel">-->
+<input type="hidden" id="point" name="point">
 </td>
 </tr>
 

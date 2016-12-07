@@ -50,10 +50,12 @@ table, tr, td{
  */
  
    .mycart_table {
+   margin-top:10px;
    width:950px;
 } 
  
    .mycart_table2 {
+   margin-top:10px;
 	 width:950px;
 } 
  
