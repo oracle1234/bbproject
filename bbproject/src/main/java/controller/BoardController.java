@@ -768,16 +768,16 @@ public class BoardController {
 	}// end board_listMethod()
 
 	@RequestMapping(value = "/photo_image.do", method = RequestMethod.GET)
-	public void showImage(String filename, HttpServletResponse response, HttpServletRequest request)
+	public void showImage(String filename, HttpServletResponse res, HttpServletRequest req)
 			throws IOException, ServletException {
 
-		String filepath = request.getSession().getServletContext().getRealPath(File.separator) + "/temp/" + filename;
+		String filepath = req.getSession().getServletContext().getRealPath(File.separator) + "/temp/" + filename;
 
 		byte[] a = readFile(filepath);
 
-		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-		response.getOutputStream().write(a);
-		response.getOutputStream().close();
+		res.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+		res.getOutputStream().write(a);
+		res.getOutputStream().close();
 	}
 
 	private byte[] readFile(String filename) throws IOException {
@@ -793,15 +793,17 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/photo_write.do", method = RequestMethod.GET)
-	public ModelAndView photo_writeMethod(PageDTO pv) {
+	public ModelAndView photo_writeMethod(PageDTO pv, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		MemberDTO mdto = (MemberDTO)req.getSession().getAttribute("member");
+		mav.addObject(mdto.getMember_no());
 		mav.setViewName("photo_write");
 		return mav;
 
 	}// end qa_writeMethod()
 
 	@RequestMapping(value = "/photo_write.do", method = RequestMethod.POST)
-	public String photo_writeProMethod(Photo_BoardDTO idto, HttpServletRequest request) {
+	public String photo_writeProMethod(Photo_BoardDTO idto, HttpServletRequest req) {
 
 		MultipartFile file = idto.getFilename();
 		if (!file.isEmpty()) {
@@ -809,7 +811,7 @@ public class BoardController {
 
 			// 중복파일명을 처리하기 위해 난수 발생
 			UUID random = UUID.randomUUID();
-			String root = request.getSession().getServletContext().getRealPath("/");
+			String root = req.getSession().getServletContext().getRealPath("/");
 			// root+"temp/"
 			String saveDirectory = root + "temp" + File.separator;
 			File fe = new File(saveDirectory);
@@ -827,7 +829,8 @@ public class BoardController {
 			}
 			idto.setPhoto_upload(random + "_" + fileName);
 		}
-
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		idto.setMember_no(mdto.getMember_no());
 		photo_service.insertProcess(idto);
 		return "redirect:/photo_list.do";
 	}// end qa_writeProMethod
