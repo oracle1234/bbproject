@@ -13,11 +13,6 @@ $(document).ready(function() {
 		$('.cart_cb').prop('checked', this.checked);
 	});
 	
-/* 	var test = $('#count_select')[0].selectedIndex;
-	$('#count_select').change(function(){
-		$(this)[0].selectedIndex = test;
-	});
-	 */
 	 $('.count_select').on('click','.placeholder',function(){
 		  var parent = $(this).closest('.select');
 		  if ( ! parent.hasClass('is-open')){
@@ -34,9 +29,6 @@ $(document).ready(function() {
 		$('#cart_order').on('click', function(){
 			 $("input[name=cart_cb]:checked").each(function(){
 				 $(this).next().prop("name", "checkfood");
-			//alert($(this).next().val());
-			//$(this).next().next().prop("name", "checkamount");
-			// alert($(this).next().next().val());
 			 });
 		});
 	$(document).on('click', '.upd_amount',function(){
@@ -48,10 +40,7 @@ $(document).ready(function() {
 			error: function(xhr, textStatus, error) {
 				alert(error);
 			}
-		});  
-		/*  var aa=$(this).val();
-			$("#count_select option[value="+aa+"]").attr("", true); */
-
+		}); 
 	});
 	
 	$(document).on('click', '#cart_del',function(){
@@ -106,18 +95,6 @@ $(document).ready(function() {
 		            '</tr>');
 		}); 
 		
-			/* $('.mycart_table').append('<tr><td><input type="checkbox" class="cart_cb"></td>'+
-			'<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
-			'<td>'+value.price+'원</td>'+
-			'<td>'+value.amount+" "+'<select id="count_select" name="count_select">'+
-			'<c:forEach var="i" begin="1" end="20" step="1">'+
-				'<option value="${i}">${i}</option>'+
-			'</c:forEach></select>'+" "+
-					'<input type="button" class="upd_amount" value="변경">'+
-					'<input type="hidden" class="foods_no" value="'+value.foods_no+'"></td>'+
-			'<td>'+value.price*value.amount*1/100+'원</td>'+
-			'<td>'+value.price*value.amount+'원</td></tr>');
-		}); */
 	}
 	
 </script>
@@ -135,12 +112,12 @@ $(document).ready(function() {
 		<img id="cart_state_photo" alt="" src="images/cart_info.png">
 	</div>
 	
-	<%-- <c:choose>
+ <c:choose>
 		<c:when test="${aList==null}">
 		<img alt="" src="images/cart_empty.png">
 		</c:when>
 		
-		<c:otherwise> --%>
+		<c:otherwise> 
 		<table class="mycart_table">
 		<tr>
 			<th width="5%"><input type="checkbox" class="cart_checkbox"></th>
@@ -198,9 +175,9 @@ $(document).ready(function() {
 			<td>${sum}원</td>
 		</tr>
 	</table> 
-	<%-- 	</c:otherwise>
+	 	</c:otherwise>
 	</c:choose>
- --%>
+
 	<div class="cart_button">
 		<input type="button" id="cart_del" value="선택상품삭제"> <input
 			type="submit" id="cart_order" value="선택상품주문">
