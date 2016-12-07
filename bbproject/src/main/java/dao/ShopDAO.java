@@ -37,6 +37,6 @@ public interface ShopDAO {
 	public void coupon_delete(int member_no, int couponbook_no);
 	public List<fb_CouponDTO> reCoupon(int member_no);
 	public int rePoint(int member_no);
-	public void basket_delete(int foods_no);
+	public void basket_delete(int foods_no, int member_no);
 	
 }

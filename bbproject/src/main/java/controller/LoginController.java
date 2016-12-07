@@ -61,7 +61,7 @@ public class LoginController {
 			if (dto.getId().equals("admin")) {
 				map.put("href", "admin.do");
 			} else {
-				map.put("href", "mypage.do");
+				map.put("href", "main.do");
 			}
 		}
 
@@ -83,7 +83,7 @@ public class LoginController {
 			session.removeAttribute("member");            
 			session.invalidate();            
 			}            
-		return "redirect:/mypage.do";
+		return "redirect:/main.do";
 
 	}
 }

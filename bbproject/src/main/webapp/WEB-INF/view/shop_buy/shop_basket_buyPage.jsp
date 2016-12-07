@@ -362,7 +362,10 @@ $(document).ready(function() {
 	var discount = 0;
 	$('#coupon_select').on('change', function(){
 		var tm = 0;
-		discount = parseInt($(this).val());
+		var couponID = $(this).val();
+		$('#usecoupon').val(couponID);
+		
+		discount = discountGO(couponID);
 		
 		tm = totalMoney - discount - useSavemoney; 
 		var deli = tm + 2500;
@@ -688,6 +691,25 @@ $(document).ready(function() {
 	
 }); //end document ready///////////////////////
 
+function discountGO(no) {
+	var sum = 0;
+
+	var list = new Array();
+	<c:forEach var='item1' items='${member.cList}'>
+		var coupon = new Object();
+		coupon.no = '${item1.couponbook_no}';
+		coupon.discount = '${item1.coupon_discount}';
+		list.push(coupon);
+	</c:forEach>
+	
+	for(var i=0; i < list.length; i++){
+		if(list[i].no == no){
+			sum = list[i].discount;
+		}
+	}
+	return sum;
+}
+
 
 function sample4_execDaumPostcode() {
     new daum.Postcode({
@@ -836,7 +858,7 @@ function sample4_execDaumPostcode() {
 							<td><select id="coupon_select">
 									<option selected value="0">사용하실 쿠폰을 선택하세요.</option>
 									<c:forEach items="${member.cList}" var = "couponDTO">
-									<option value="${couponDTO.coupon_no}">${couponDTO.coupon_name}</option>
+									<option value="${couponDTO.couponbook_no}">${couponDTO.coupon_name}</option>
 									</c:forEach>
 							</select>
 							</td>

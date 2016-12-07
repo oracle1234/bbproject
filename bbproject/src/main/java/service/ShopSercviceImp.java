@@ -213,7 +213,7 @@ public class ShopSercviceImp implements ShopService {
 		int count = dao.basketChk(map);
 		
 		if(count !=0){
-			dao.basket_delete(foods_no);
+			dao.basket_delete(foods_no, member_no);
 		}
 		
 		HashMap<String, Object> requestMap = new HashMap<String, Object>();
@@ -243,7 +243,7 @@ public class ShopSercviceImp implements ShopService {
 			int count = dao.basketChk(map);
 			
 			if(count !=0){
-				dao.basket_delete(Integer.parseInt(foods_no[i]));
+				dao.basket_delete(Integer.parseInt(foods_no[i]), member_no);
 			}
 			
 			HashMap<String, Object> requestMap = new HashMap<String, Object>();
