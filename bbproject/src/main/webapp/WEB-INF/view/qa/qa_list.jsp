@@ -8,6 +8,39 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script type="text/javascript">
+	var member_id = "${sessionScope.member.id}";
+
+	$(document).ready(function() {
+
+		$("#search_frm").submit(function() {
+
+			if ($("#keyWord").val() == "") {
+				alert("검색어를 입력하세요.");
+				return false;
+			}
+		});
+
+		$("#write").click(function() {
+			if (member_id == '') {
+				alert("회원가입을 하세요.");
+				return false;
+			}
+		});
+
+		$("#board_content").click(function() {
+			if (member_id == '') {
+				alert("회원가입을 하세요.");
+				return false;
+			}
+		});
+	});
+</script>
+
 <style type="text/css">
 #bodywrap {
 	width: 950px;
@@ -43,16 +76,12 @@
 }
 
 .board_write {
-	padding: 20px 10px;
-	height:30px;
+	padding-top: 10px;
+	padding-right: 10px;
+	text-align: right;
 }
 
-.board_write a img{
-	float: right;
-}
-
-
-.board_search_str {
+#keyWord {
 	width: 40%;
 }
 
@@ -72,18 +101,22 @@
 	line-height: 10px;
 }
 
-#table{
+#table {
 	padding: 11px 0;
 	border-top: 2px solid black;
 	border-bottom: 1px solid gray;
 }
 
-#table #col{
+#table #col {
 	line-height: 40px;
 }
 
-td{
+td {
 	padding-top: 7px;
+}
+
+.content a {
+	color: black;
 }
 </style>
 
@@ -101,59 +134,87 @@ td{
 				<th width="10%">조회수</th>
 			</tr>
 
-			<c:forEach var="qdto" items="${aList}">
-				<tr>
-					<td>${qdto.qa_no}</td>
+			<c:forEach var="qa_BoardDTO" items="${aList}">
+				<tr class="content">
+					<td>${qa_BoardDTO.qa_no}</td>
 					<td><c:url var="qa_content" value="qa_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
-							<c:param name="qa_no" value="${qdto.qa_no}" />
-						</c:url> 
-						<a href="${qa_content}">${qdto.qa_subject}</a></td>
-					<td>${qdto.qa_writer}</td>
-					<td>
-						<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${qdto.qa_reg_date}" />
-					</td>
-					<td>${qdto.qa_readcount}</td>
+							<c:param name="qa_no" value="${qa_BoardDTO.qa_no}" />
+						</c:url><a href="${qa_content}" id="qa_content">${qa_BoardDTO.qa_subject}</a></td>
+					<td>${qa_BoardDTO.qa_writer}</td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
+							value="${qa_BoardDTO.qa_reg_date}" /></td>
+					<td>${qa_BoardDTO.qa_readcount}</td>
 				</tr>
 			</c:forEach>
 		</table>
-		
+
 		<div class="board_write">
-			<a href="qa_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
+			<a href="qa_write.do"><img alt="글쓰기" src="./images/btn_write.gif"
+				id="write"></a>
 		</div>
-		
+
 		<div class="board_page">
-		<!-- 이전 출력 시작 -->
-		<c:if test="${pv.startPage>1}">
-			<a href="qa_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
-		</c:if>
 
-		<!-- 페이지 출력 시작 -->
-		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-			<c:url var="currPage" value="qa_list.do">
-				<c:param name="currentPage" value="${i}" />
-			</c:url>
-			<a href="${currPage}"><c:out value="${i}" /></a>
-		</c:forEach>
+			<c:choose>
+				<c:when test="${keyWord==null}">
+					<c:if test="${pv.startPage>1}">
+						<a
+							href="qa_list.do?boardcategory_no=3&currentPage=${pv.startPage-pv.blockPage}">이전</a>
+					</c:if>
 
-		<!-- 페이지 출력 끝 -->
-		<c:if test="${pv.totalPage>pv.endPage}">
-			<a href="qa_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
-		</c:if>
+					<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+						<c:url var="currPage" value="qa_list.do?boardcategory_no=3">
+							<c:param name="currentPage" value="${i}" />
+						</c:url>
+						<a href="${currPage}"><c:out value="${i}" /></a>
+					</c:forEach>
+
+					<c:if test="${pv.totalPage>pv.endPage}">
+						<a
+							href="qa_list.do?boardcategory_no=3&currentPage=${pv.startPage+pv.blockPage}">다음</a>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${pv.startPage>1}">
+						<a
+							href='qa_list.do?boardcategory_no=3&currentPage=${pv.startPage-pv.blockPage}&keyFiled=${keyFiled}&keyWord=${keyWord}'>이전</a>
+					</c:if>
+
+					<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+						<c:url var="currPage" value="qa_search.do?boardcategory_no=3">
+							<c:param name="currentPage" value="${i}" />
+							<c:param name="keyField" value="${keyField}"></c:param>
+							<c:param name="keyWord" value="${keyWord}"></c:param>
+						</c:url>
+						<a href="${currPage}"><c:out value="${i}" /></a>
+					</c:forEach>
+
+					<c:if test="${pv.totalPage>pv.endPage}">
+						<a
+							href="qa_list.do?boardcategory_no=3&currentPage=${pv.startPage+pv.blockPage}&keyFiled=${keyFiled}&keyWord=${keyWord}">다음</a>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 		<div class="board_search">
-			<form id="search_frm" method="get">
-				<span class="chk"> 
-				<select name="search_select">
-					<option value="board_subject">제목</option>
-					<option value="board_writer">작성자</option>
-				</select>
-				</span> 
-					<input type="text" name="search_str" value class="board_search_str" />
-					<input type="button" id="btnSearch" value="검색" />				
+			<form action="qa_search.do" id="search_frm" name="search_frm" method="get">
+				<select name="keyField" size="1">
+
+					<option value="qa_subject"><c:if
+							test="${'qa_subject'==keyField}">selected</c:if>제목
+					</option>
+
+					<option value="qa_writer"><c:if
+							test="${'qa_writer'==keyField}">selected</c:if>작성자
+					</option>
+
+				</select> <input type="text" name="keyWord" id="keyWord" value="${keyWord}">
+				<input type="image" value="검색" src="./images/menu/button_find.png">
+
 			</form>
-		</div>	
+		</div>
 	</div>
 </body>
 </html>

@@ -1,21 +1,3 @@
-
-/* Drop Triggers */
-
-DROP TRIGGER TRI_fb_coupon_coupon_no;
-DROP TRIGGER TRI_fb_foods_foods_no;
-DROP TRIGGER TRI_fb_member_member_no;
-DROP TRIGGER TRI_fb_coupon_book_couponbook_no;
-DROP TRIGGER TRI_fb_delivery_cost_fb_delivery_no;
-DROP TRIGGER TRI_fb_review_review_no;
-DROP TRIGGER TRI_fb_theme_theme_no;
-DROP TRIGGER TRI_fb_theme_recipe_recipe_no;
-DROP TRIGGER TRI_fb_comment_comment_no;
-DROP TRIGGER TRI_fb_board_board_no;
-DROP TRIGGER TRI_fb_photo_board_photo_no;
-DROP TRIGGER TRI_fb_qa_board_qa_no;
-
-
-
 /* Drop Tables */
 
 DROP TABLE fb_coupon_book CASCADE CONSTRAINTS;
@@ -38,7 +20,6 @@ DROP TABLE fb_member CASCADE CONSTRAINTS;
 DROP TABLE fb_boardcategory CASCADE CONSTRAINTS;
 
 
-
 /* Drop Sequences */
 
 DROP SEQUENCE SEQ_coupon_no;
@@ -55,8 +36,6 @@ DROP SEQUENCE SEQ_photo_no;
 DROP SEQUENCE SEQ_qa_no;
 
 
-
-
 /* Create Sequences */
 
 CREATE SEQUENCE SEQ_coupon_no INCREMENT BY 1 START WITH 1;
@@ -71,6 +50,7 @@ CREATE SEQUENCE SEQ_comment_no INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_board_no INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_photo_no INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_qa_no INCREMENT BY 1 START WITH 1;
+
 
 /* Create Tables */
 CREATE TABLE fb_coupon_book
@@ -144,6 +124,7 @@ CREATE TABLE fb_photo_board
 	photo_content varchar2(2000) NOT NULL,
 	photo_reg_date date NOT NULL,
 	photo_upload varchar2(500) NOT NULL,
+	photo_writer varchar2(100) NOT NULL,
 	PRIMARY KEY (photo_no)
 );
 
@@ -157,7 +138,8 @@ CREATE TABLE fb_qa_board
 	qa_content varchar2(2000) NOT NULL,
 	qa_readcount number NOT NULL,	
 	qa_reg_date date NOT NULL,
-	qa_upload varchar2(500) NOT NULL,	
+	qa_upload varchar2(500) NOT NULL,
+	qa_writer varchar2(100) NOT NULL,
 	PRIMARY KEY (qa_no)
 );
 
@@ -169,7 +151,8 @@ CREATE TABLE fb_board
 	board_subject varchar2(200) NOT NULL,
 	board_content varchar2(2000) NOT NULL,
 	board_readcount number NOT NULL,
-	board_reg_date date NOT NULL,	
+	board_reg_date date NOT NULL,
+	board_writer varchar2(100) NOT NULL,
 	PRIMARY KEY (board_no)
 );
 
@@ -407,132 +390,3 @@ ALTER TABLE fb_tr_order
 	REFERENCES fb_theme_recipe (recipe_no) on delete cascade
 ;
 
-
-
-/* Create Triggers */
-
-CREATE OR REPLACE TRIGGER TRI_fb_coupon_coupon_no BEFORE INSERT ON fb_coupon
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_coupon_coupon_no.nextval
-	INTO :new.coupon_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_foods_foods_no BEFORE INSERT ON fb_foods
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_foods_foods_no.nextval
-	INTO :new.foods_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_member_member_no BEFORE INSERT ON fb_member
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_member_member_no.nextval
-	INTO :new.member_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_coupon_book_couponbook_no BEFORE INSERT ON fb_coupon_book
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_coupon_book_couponbook_no.nextval
-	INTO :new.couponbook_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_delivery_cost_fb_delivery_no BEFORE INSERT ON fb_delivery_cost
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_delivery_cost_fb_delivery_no.nextval
-	INTO :new.fb_delivery_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_review_review_no BEFORE INSERT ON fb_review
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_review_review_no.nextval
-	INTO :new.review_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_theme_theme_no BEFORE INSERT ON fb_theme
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_theme_theme_no.nextval
-	INTO :new.theme_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_theme_recipe_recipe_no BEFORE INSERT ON fb_theme_recipe
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_theme_recipe_recipe_no.nextval
-	INTO :new.recipe_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_comment_comment_no BEFORE INSERT ON fb_comment
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_comment_comment_no.nextval
-	INTO :new.comment_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_board_board_no BEFORE INSERT ON fb_board
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_board_board_no.nextval
-	INTO :new.board_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_photo_board_photo_no BEFORE INSERT ON fb_photo_board
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_photo_board_photo_no.nextval
-	INTO :new.photo_no
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_fb_qa_board_qa_no BEFORE INSERT ON fb_qa_board
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_fb_qa_board_qa_no.nextval
-	INTO :new.qa_no
-	FROM dual;
-END;
-
-/
-
-
-select * from FB_COMMENT;
-select * from qa_board;
-select * from FB_MEMBER;
-select * from fb_board;

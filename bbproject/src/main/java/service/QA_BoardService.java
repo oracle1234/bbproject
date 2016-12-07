@@ -24,6 +24,7 @@ public interface QA_BoardService {
 	public void commentInsertProcess(HashMap<String, Object> map);
 	public void commentUpdateProcess(HashMap<String, Object> map);
 	public void commentDeleteProcess(HashMap<String, Object> map);
+	public List<QA_BoardDTO> searchListProcess(HashMap<String, Object> Map);
 }
 
 

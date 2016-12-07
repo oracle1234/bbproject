@@ -30,7 +30,14 @@
 				alert("회원가입을 하세요.");
 				return false;
 			}
-		});	
+		});
+		
+		$("#board_content").click(function(){
+			if (member_id == ''){
+				alert("회원가입을 하세요.");
+				return false;
+			}
+		});
 	});
 </script>
 <style type="text/css">
@@ -117,7 +124,7 @@ td {
 		<div id="bodytop">
 			<h3 class="bodyname">자유게시판</h3>
 		</div>
-		
+
 		<table id="table">
 			<tr id="col">
 				<th width="5%">번호</th>
@@ -133,7 +140,7 @@ td {
 					<td><c:url var="board_content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
 							<c:param name="board_no" value="${BoardDTO.board_no}" />
-						</c:url> <a href="${board_content}">${BoardDTO.board_subject}</a></td>
+						</c:url> <a href="${board_content}" id="board_content">${BoardDTO.board_subject}</a></td>
 					<td>${BoardDTO.board_writer}</td>
 					<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
 							value="${BoardDTO.board_reg_date}" /></td>
@@ -196,27 +203,6 @@ td {
 					</c:if>
 				</c:otherwise>
 			</c:choose>
-
-			<!-- 이전 출력 시작 -->
-			<%-- 			<c:if test="${pv.startPage>1}"> --%>
-			<!-- 				<a -->
-			<%-- 					href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}">이전</a> --%>
-			<%-- 			</c:if> --%>
-
-			<!-- 페이지 num출력 시작 -->
-			<%-- 			<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}"> --%>
-			<%-- 				<c:url var="currPage" value="board_list.do?boardcategory_no=1"> --%>
-			<%-- 					<c:param name="currentPage" value="${i}" /> --%>
-			<%-- 				</c:url> --%>
-			<%-- 				<a href="${currPage}"><c:out value="${i}" /></a> --%>
-			<%-- 			</c:forEach> --%>
-
-			<!-- 페이지 출력 끝 -->
-			<%-- 			<c:if test="${pv.totalPage>pv.endPage}"> --%>
-			<!-- 				<a -->
-			<%-- 					href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}">다음</a> --%>
-			<%-- 			</c:if> --%>
-
 		</div>
 
 		<div class="board_search">
@@ -225,12 +211,12 @@ td {
 
 				<select name="keyField" size="1">
 
-					<option value="board_subject"><c:if
-							test="${'board_subject'==keyField}">selected</c:if>제목
+					<option value="board_subject">
+							제목
 					</option>
 
-					<option value="board_writer"><c:if
-							test="${'board_writer'==keyField}">selected</c:if>작성자
+					<option value="board_writer">
+							작성자
 					</option>
 
 				</select> <input type="text" name="keyWord" id="keyWord" value="${keyWord}">

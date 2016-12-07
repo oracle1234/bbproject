@@ -24,4 +24,5 @@ public interface QA_BoardDAO {
 	public void commentSaveList(HashMap<String, Object> map);
 	public void commentUpdateList(HashMap<String, Object> map);
 	public void commentDeleteList(HashMap<String, Object> map);
+	public List<QA_BoardDTO> searchList(HashMap<String, Object> map);
 }

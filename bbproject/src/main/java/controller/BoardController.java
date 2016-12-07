@@ -63,7 +63,7 @@ public class BoardController {
 	// [자유게시판]
 	// <게시판 리스트보기>
 	@RequestMapping("/board_list.do")
-	public ModelAndView board_listMethod(BoardDTO bdto, PageDTO pv, HttpServletRequest req) {
+	public ModelAndView board_listMethod(BoardDTO bdto, PageDTO pv) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -196,7 +196,6 @@ public class BoardController {
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		mav.addObject(mdto.getMember_no());
 		mav.setViewName("board_write");
-
 		return mav;
 	}// end board_writeMethod()
 
@@ -251,28 +250,23 @@ public class BoardController {
 
 	// <댓글쓰기>
 	@RequestMapping("/commentInsert.do")
-	public @ResponseBody HashMap<String, Object> commentInsertProcess(BoardDTO bdto, CommentDTO cdto, 
+	public @ResponseBody HashMap<String, Object> commentInsertProcess(BoardDTO bdto, CommentDTO cdto,
 			Comment_PageDTO cpdto2, HttpServletRequest req) {
 
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		cdto.setMember_no(mdto.getMember_no());
-		
+
 		HashMap<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("comment_content", cdto.getComment_content());
 		insertMap.put("board_no", bdto.getBoard_no());
 		insertMap.put("member_no", cdto.getMember_no());
 		insertMap.put("comment_writer", cdto.getComment_writer());
-		System.out.println(cdto.getComment_content());
-		System.out.println(bdto.getBoard_no());
-		System.out.println(cdto.getMember_no());
-		System.out.println(cdto.getComment_writer());
-		System.out.println("여기1");
 		service.commentInsertProcess(insertMap);
-		System.out.println("여기2");
+
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
 
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-		System.out.println("여기3");
+
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -285,11 +279,11 @@ public class BoardController {
 			pageMap.put("endRow", cpdto.getEndRow());
 			pageMap.put("board_no", bdto.getBoard_no());
 		}
-		System.out.println("여기4");
+
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("list", service.commentPageProcess(pageMap));
 		resultMap.put("page", cpdto);
-		System.out.println("여기5");
+
 		return resultMap;
 	}// end commentInsertProcess()
 
@@ -423,7 +417,8 @@ public class BoardController {
 	}// end board_listMethod()
 
 	@RequestMapping(value = "/qa_view.do", method = RequestMethod.GET)
-	public ModelAndView qa_viewMethod(int currentPage, QA_BoardDTO qdto, Comment_PageDTO cpdto2) {
+	public ModelAndView qa_viewMethod(int currentPage, QA_BoardDTO qdto, Comment_PageDTO cpdto2,
+			HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 
 		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
@@ -441,7 +436,10 @@ public class BoardController {
 			map.put("qa_no", qdto.getQa_no());
 			mav.addObject("aList", qa_service.commentPageProcess(map));
 		}
+
 		QA_BoardDTO dto = qa_service.contentProcess(qdto.getQa_no());
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		mav.addObject(mdto.getMember_no());
 		mav.addObject("dto", dto);
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("qa_view");
@@ -449,9 +447,13 @@ public class BoardController {
 	}// end qa_viewMethod()
 
 	@RequestMapping(value = "/qa_view.do", method = RequestMethod.POST)
-	public @ResponseBody HashMap<String, Object> qa_viewProMethod(QA_BoardDTO qdto, Comment_PageDTO cpdto2) {
+	public @ResponseBody HashMap<String, Object> qa_viewProMethod(QA_BoardDTO qdto, Comment_PageDTO cpdto2,
+			HttpServletRequest req) {
 		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
@@ -463,6 +465,7 @@ public class BoardController {
 			map.put("startRow", cpdto.getStartRow());
 			map.put("endRow", cpdto.getEndRow());
 			map.put("qa_no", qdto.getQa_no());
+			map.put("Member_no", mdto.getMember_no());
 		}
 
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -471,15 +474,58 @@ public class BoardController {
 		return resultMap;
 	}// end board_viewProMethod();
 
+	// <검색>
+	@RequestMapping(value = "/qa_search.do", method = RequestMethod.GET)
+	public ModelAndView qa_searchMethod(String keyField, String keyWord, QA_BoardDTO qdto, PageDTO pv) {
+		ModelAndView mav = new ModelAndView();
+
+		HashMap<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("keyfield", keyField);
+		searchMap.put("keyword", keyWord);
+
+		List<QA_BoardDTO> list = qa_service.searchListProcess(searchMap);
+
+		mav.addObject("aList", list);
+
+		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+
+		// int totalRecord = service.countProcess(bdto.getBoardcategory_no());
+		int totalRecord = list.size();
+		if (totalRecord >= 1) {
+			if (pv.getCurrentPage() == 0)
+				currentPage = 1;
+			else
+				currentPage = pv.getCurrentPage();
+
+			pdto = new PageDTO(currentPage, totalRecord);
+
+			pageMap.put("startRow", pdto.getStartRow());
+			pageMap.put("endRow", pdto.getEndRow());
+		} else {
+			pdto = new PageDTO();
+		}
+
+		// mav.addObject("list", service.pageListProcess(pageMap));
+		mav.addObject("keyField", keyField);
+		mav.addObject("keyWord", keyWord);
+		mav.addObject("pv", pdto);
+		mav.setViewName("qa_list");
+		return mav;
+
+	}// end board_searchMethod()
+
 	@RequestMapping("/qa_commentInsert.do")
 	public @ResponseBody HashMap<String, Object> qa_commentInsertProcess(QA_BoardDTO qdto, CommentDTO cdto,
-			MemberDTO mdto, Comment_PageDTO cpdto2) {
+			Comment_PageDTO cpdto2, HttpServletRequest req) {
+
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		cdto.setMember_no(mdto.getMember_no());
 
 		HashMap<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("comment_content", cdto.getComment_content());
 		insertMap.put("qa_no", qdto.getQa_no());
 		insertMap.put("member_no", mdto.getMember_no());
-		insertMap.put("comment_writer", "백나연");
+		insertMap.put("comment_writer", cdto.getComment_writer());
 
 		qa_service.commentInsertProcess(insertMap);
 
@@ -605,23 +651,25 @@ public class BoardController {
 	}// end commentUpdateProProcess()
 
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.GET)
-	public ModelAndView qa_writeMethod(PageDTO pv) {
+	public ModelAndView qa_writeMethod(PageDTO pv, HttpServletRequest req) {
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		ModelAndView mav = new ModelAndView();
+		mav.addObject(mdto.getMember_no());
 		mav.setViewName("qa_write");
 		return mav;
 
 	}// end qa_writeMethod()
 
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.POST)
-	public String qa_writeProMethod(QA_BoardDTO qdto, HttpServletRequest request) {
-
+	public String qa_writeProMethod(QA_BoardDTO qdto, HttpServletRequest req) {
+	
 		MultipartFile file = qdto.getFilename();
 		if (!file.isEmpty()) {
 			String fileName = file.getOriginalFilename();
 
 			// 중복파일명을 처리하기 위해 난수 발생
 			UUID random = UUID.randomUUID();
-			String root = request.getSession().getServletContext().getRealPath("/");
+			String root = req.getSession().getServletContext().getRealPath("/");
 			// root+"temp/"
 			String saveDirectory = root + "temp" + File.separator;
 			File fe = new File(saveDirectory);
@@ -639,8 +687,22 @@ public class BoardController {
 			}
 			qdto.setQa_upload(random + "_" + fileName);
 		}
+		
+		System.out.println(qdto.getMember_no());
+		System.out.println(qdto.getBoardcategory_no());
+		System.out.println(qdto.getMember_no());
+		System.out.println(qdto.getQa_content());
+		System.out.println(qdto.getQa_no());
+		System.out.println(qdto.getQa_readcount());
+		System.out.println(qdto.getQa_subject());
+		System.out.println(qdto.getQa_upload());
+		System.out.println(qdto.getQa_writer());
+		System.out.println(qdto.getQa_reg_date());
 
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		qdto.setMember_no(mdto.getMember_no());
 		qa_service.insertProcess(qdto);
+		
 		return "redirect:/qa_list.do";
 	}// end qa_writeProMethod
 

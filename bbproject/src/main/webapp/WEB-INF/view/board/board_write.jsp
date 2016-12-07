@@ -9,12 +9,8 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
-	/* var member_id="${sessionScope.member.id}"; */
-
 	$(document).ready(function() {
 
-		// 			$('#member_id').empty();
-		// 			$('#member_id').append('<th scope="row">글쓴이</th><td>'+member_id+'</td>');
 		$('#btnList').bind('click', function() {
 			$('#frm').attr('action', 'board_list.do');
 			$('#frm').submit();
@@ -73,8 +69,7 @@ td {
 				<tr>
 					<th scope="row">제목</th>
 					<td>
-						<%-- <c:if test="${bdto!=null}">답변</c:if> --%> <input type="text"
-						name="board_subject" size="40" />
+						<input type="text" name="board_subject" size="40" />
 					</td>
 				</tr>
 			</table>
@@ -87,6 +82,7 @@ td {
 				<input type="hidden" name="board_no" value="${dto.board_no}" />
 				<input type="hidden" name="currentPage" value="${currentPage}" />
 			</c:if>
+			
 			<input type="hidden" value="${sessionScope.member.id}"
 				name="board_writer">
 

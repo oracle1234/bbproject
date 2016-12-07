@@ -143,4 +143,10 @@ public class QA_BoardServiceImp implements QA_BoardService {
 		qdao.commentDeleteList(map);
 	}
 
+	@Override
+	public List<QA_BoardDTO> searchListProcess(HashMap<String, Object> map) {
+		
+		return qdao.searchList(map);
+	}
+
 }

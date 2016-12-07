@@ -124,4 +124,10 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 
 	}
 
+	@Override
+	public List<QA_BoardDTO> searchList(HashMap<String, Object> map) {
+		
+		return sqlSession.selectList("board.qa_search", map);
+	}
+
 }
