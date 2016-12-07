@@ -14,10 +14,10 @@
 
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
 <!-- <link rel="stylesheet" type="text/css" href="css/header.css" media="all" /> -->
-<link rel="stylesheet" type="text/css" href="css/main.css?var=2" media="all" />
+<!-- <link rel="stylesheet" type="text/css" href="css/main.css?var=2" media="all" /> -->
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
-<link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" /> -->
 <link rel="stylesheet" type="text/css" href="css/mainpage.css?var=2" />
 		
 </head>
