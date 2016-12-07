@@ -78,7 +78,10 @@ margin-left:5px;
 	width: 400px;
 	height: 90px;
 	background-color: white;
-	/* border:1px solid black; */
+}
+
+#findbutton {
+margin-left:-10px;
 }
 
 #formint {
@@ -156,8 +159,8 @@ input {
 			</div>
 		</div>
 		<div id="buttonint">
-		<input type="button" value="아이디/비밀번호 찾기">
-		<input type="button" value="회원가입"> 
+			<a href="find.do"><img id="findbutton" src="images/button_find.png"></a>
+			<a href="join.do"><img id="joinbutton" src="images/button_join.png"></a>
 		</div>
 
 	</div>

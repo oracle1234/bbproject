@@ -47,9 +47,6 @@ $(document).ready(function() {
 		
 		$('input[type=checkbox]:checked').each(function() {
 			
-			alert("${member_no}");
-			alert($(this).next().val());
-			alert($('#count_select').next().next().val());
 			$.ajax({
 		 		type:'GET',
 		 		dataType :'json',
@@ -65,37 +62,41 @@ $(document).ready(function() {
 
 
 	function cartlist(data) {
-		$('.mycart_table').empty();
-		$('.mycart_table').append('<tr><th width="5%"><input type="checkbox" id="cart_checkbox"></th>'+
-				'<th width="20%">상품명</th>'+
-				'<th width="20%">상품가격</th>'+
-				'<th width="15%">수량</th>'+
-				'<th width="20%">적립금</th>'+
-				'<th width="20%">합계</th>'+
-			'</tr>');
-		var sum = 0;
-		$.each(data,function(index, value){
-			 $('.mycart_table').append('<tr>'+
-		               '<td><input type="checkbox" class="cart_cb" name="cart_cb">'+
-		               '<input type="hidden" class="foods_no" value='+value.foods_no+'>'+
-		              '<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
-		              '<td>'+value.price+'원</td>'+
-		               '<td>'+value.amount+
-		                '<select id="count_select" name="count_select">'+
-		                     '<c:forEach var="i" begin="1" end="20" step="1">'+
-		                        '<option value="${i}">${i}</option>'+
-		                     '</c:forEach>'+
-		               '</select>'+
-		               '<input type="button" class="upd_amount" value="변경">'+
-		               '<input type="hidden" class="foods_no" value="'+value.foods_no+'">'+
-		               '</td>'+
-		               '<td>'+value.price*value.amount*1/100+'원</td>'+
-		               '<td>'+value.price*value.amount+'원</td>'+
-		            '</tr>');
-			 sum += parseInt(value.price)*parseInt(value.amount);
-		}); 
-		
-		
+			$('.mycart_table').empty();
+		if(data.length <= 0){
+			$('.mycart_table2').empty();
+			$('.cart_button').remove();
+			$('.mycart_table').append('<img id="empty" src="images/cart_empty.png">');
+		}else{
+			$('.mycart_table').append('<tr><th width="5%"><input type="checkbox" class="cart_checkbox"></th>'+
+					'<th width="20%">상품명</th>'+
+					'<th width="20%">상품가격</th>'+
+					'<th width="15%">수량</th>'+
+					'<th width="20%">적립금</th>'+
+					'<th width="20%">합계</th>'+
+				'</tr>');
+			var sum = 0;
+			$.each(data,function(index, value){
+				 $('.mycart_table').append('<tr>'+
+			               '<td><input type="checkbox" class="cart_cb" name="cart_cb">'+
+			               '<input type="hidden" class="foods_no" value='+value.foods_no+'>'+
+			              '<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
+			              '<td>'+value.price+'원</td>'+
+			               '<td>'+value.amount+
+			                '<select id="count_select" name="count_select">'+
+			                     '<c:forEach var="i" begin="1" end="20" step="1">'+
+			                        '<option value="${i}">${i}</option>'+
+			                     '</c:forEach>'+
+			               '</select>'+
+			               '<input type="button" class="upd_amount" value="변경">'+
+			               '<input type="hidden" class="foods_no" value="'+value.foods_no+'">'+
+			               '</td>'+
+			               '<td>'+value.price*value.amount*1/100+'원</td>'+
+			               '<td>'+value.price*value.amount+'원</td>'+
+			            '</tr>');
+				 sum += parseInt(value.price)*parseInt(value.amount);
+			}); 
+		}
 		var cost = 0;
 		var str = "무료";
 		if(sum < 45000){
@@ -122,10 +123,9 @@ $(document).ready(function() {
 	<div class="cart_state">
 		<img id="cart_state_photo" alt="" src="images/cart_info.png">
 	</div>
-	
- <c:choose>
-		<c:when test="${aList==null}">
-		<img alt="" src="images/cart_empty.png">
+ 	<c:choose>
+		<c:when test="${aList[0].foods_no == null}">
+			<img id="empty" src="images/cart_empty.png">
 		</c:when>
 		
 		<c:otherwise> 
@@ -187,18 +187,21 @@ $(document).ready(function() {
 			무료</c:if></td>
 			<td id="mycart_totalsum">${sum + delivery_cost}원</td>
 		</tr>
+	
 	</table> 
-	 	</c:otherwise>
-	</c:choose>
-
-	<div class="cart_button">
+		<div class="cart_button">
 		<input type="button" id="cart_del" value="선택상품삭제"> <input
 			type="submit" id="cart_order" value="선택상품주문">
 			<input type="hidden" id="foodsno" >
 			<input type="hidden" id="amount" >
-	</div>
-	<img id="plus1" src="images/plus.png">
+			<img id="plus1" src="images/plus.png">
 	<img id="plus2" src="images/plus.png">
 	<img id="sum" src="images/sum.png">
+	</div>
+	 	</c:otherwise>
+	</c:choose>
+
+	
+	
 </div>
 </form>
