@@ -27,18 +27,24 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		String reqUrl = request.getRequestURI().toString();
 		reqUrl = reqUrl.substring(reqUrl.lastIndexOf("/") + 1);
 		HttpSession session = request.getSession();
-		
+
 		MemberDTO dto = (MemberDTO) session.getAttribute("member");
-		
+
 		if (dto == null) {
 			response.sendRedirect("login.do");
 			return false;
 		} else {
-			if(!dto.getId().equals("admin")){
-				response.sendRedirect("mypage.do");
+			System.out.println(dto.getId());
+			if (dto.getId().equals("admin")) {
+				response.sendRedirect("admin.do");
 				return false;
+			} else {
+				if(reqUrl.indexOf("admin") >= 0){
+					response.sendRedirect("login.do");
+					return false;
+				}
+				return super.preHandle(request, response, handler);
 			}
-			return super.preHandle(request, response, handler);
 		}
 	}
 }

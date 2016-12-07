@@ -8,8 +8,8 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	
-	$(document).on('click', '.cart_checkbox',function(){
+
+		$(document).on('click', '.cart_checkbox',function(){
 		$('.cart_cb').prop('checked', this.checked);
 	});
 	
@@ -31,7 +31,7 @@ $(document).ready(function() {
 		  parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
 		});
 	 
-		$('.cart_order').on('click', function(){
+		$('#cart_order').on('click', function(){
 			 $("input[name=cart_cb]:checked").each(function(){
 				 $(this).next().prop("name", "checkfood");
 			//alert($(this).next().val());
@@ -77,7 +77,6 @@ $(document).ready(function() {
 
 
 	function cartlist(data) {
-		
 		$('.mycart_table').empty();
 		$('.mycart_table').append('<tr><th width="5%"><input type="checkbox" id="cart_checkbox"></th>'+
 				'<th width="20%">상품명</th>'+
@@ -88,7 +87,26 @@ $(document).ready(function() {
 			'</tr>');
 		
 		$.each(data,function(index, value){
-			$('.mycart_table').append('<tr><td><input type="checkbox" class="cart_cb"></td>'+
+			 $('.mycart_table').append('<tr>'+
+		               '<td><input type="checkbox" class="cart_cb" name="cart_cb">'+
+		               '<input type="hidden" class="foods_no" value='+value.foods_no+'>'+
+		              '<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
+		              '<td>'+value.price+'원</td>'+
+		               '<td>'+value.amount+
+		                '<select id="count_select" name="count_select">'+
+		                     '<c:forEach var="i" begin="1" end="20" step="1">'+
+		                        '<option value="${i}">${i}</option>'+
+		                     '</c:forEach>'+
+		               '</select>'+
+		               '<input type="button" class="upd_amount" value="변경">'+
+		               '<input type="hidden" class="foods_no" value="'+value.foods_no+'">'+
+		               '</td>'+
+		               '<td>'+value.price*value.amount*1/100+'원</td>'+
+		               '<td>'+value.price*value.amount+'원</td>'+
+		            '</tr>');
+		}); 
+		
+			/* $('.mycart_table').append('<tr><td><input type="checkbox" class="cart_cb"></td>'+
 			'<td><img id="foodsmall_photo" alt="" src="">'+value.foods_name+'</td>'+
 			'<td>'+value.price+'원</td>'+
 			'<td>'+value.amount+" "+'<select id="count_select" name="count_select">'+
@@ -99,7 +117,7 @@ $(document).ready(function() {
 					'<input type="hidden" class="foods_no" value="'+value.foods_no+'"></td>'+
 			'<td>'+value.price*value.amount*1/100+'원</td>'+
 			'<td>'+value.price*value.amount+'원</td></tr>');
-		});
+		}); */
 	}
 	
 </script>
@@ -140,7 +158,7 @@ $(document).ready(function() {
 				<tr>
 					<td><input type="checkbox" class="cart_cb" name="cart_cb">
 				 	<input type="hidden" class="foods_no" value="${dto.foods_no}" >
-					<td>${dto.foods_name}</td>
+					<td><img id="foodsmall_photo" alt="" src="">${dto.foods_name}</td>
 					<td>${dto.price}원</td>
 					<td>${dto.amount}
 				 	<select id="count_select" name="count_select">
@@ -184,8 +202,8 @@ $(document).ready(function() {
 	</c:choose>
  --%>
 	<div class="cart_button">
-		<input type="button" class="cart_del" value="선택상품삭제"> <input
-			type="submit" class="cart_order" value="선택상품주문">
+		<input type="button" id="cart_del" value="선택상품삭제"> <input
+			type="submit" id="cart_order" value="선택상품주문">
 			<input type="hidden" id="foodsno" >
 			<input type="hidden" id="amount" >
 	</div>
