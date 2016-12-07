@@ -11,7 +11,6 @@ public class MainController {
 	public MainController() {
 		
 	}
-	
 	@RequestMapping("/main_list.do")
 	public ModelAndView main_listMethod(){
 		ModelAndView mav = new ModelAndView();

@@ -325,7 +325,9 @@ caption {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
+<script type="http://www.json.org/json2.js"></script>
 <script type="text/javascript">
+
 	
 $(document).ready(function() {
 	IMP.init('imp26018843'); 
@@ -361,10 +363,10 @@ $(document).ready(function() {
 	var discount = 0;
 	$('#coupon_select').on('change', function(){
 		var tm = 0;
-		discount = parseInt($(this).val());
+		var couponID = $(this).val();
+		$('#usecoupon').val(couponID);
 		
-		discount = testarr(discount);
-		
+		discount = discountGO(couponID);
 		
 		tm = totalMoney - discount - useSavemoney; 
 		var deli = tm + 2500;
@@ -404,7 +406,7 @@ $(document).ready(function() {
 		
 	});
 	
-	var useSavemoney = "";
+	var useSavemoney = "0";
 	$('#savemoney_table tr:nth-child(1) td input').on('change', function(){
 		
 		useSavemoney = $('#savemoney_table tr:nth-child(1) td input').val();
@@ -612,6 +614,7 @@ $(document).ready(function() {
     	}
     	
     	var temp = $('.pay_type:checked').val();
+    	$('#userpoint').val(useSavemoney);
     	$('#food_infoform').submit();
     	
 		/* if(temp == 'creditCard'){
@@ -689,14 +692,16 @@ $(document).ready(function() {
 	
 }); //end document ready///////////////////////
 
-function testarr(no) {
+
+
+function discountGO(no) {
 	var sum = 0;
 
 	var list = new Array();
-	<c:forEach items="${member.cList}" var="item1">
+	<c:forEach var='item1' items='${member.cList}'>
 		var coupon = new Object();
-		coupon.no = "${item1.couponbook_no}";
-		coupon.discount = "${item1.coupon_discount}";
+		coupon.no = '${item1.couponbook_no}';
+		coupon.discount = '${item1.coupon_discount}';
 		list.push(coupon);
 	</c:forEach>
 	
@@ -705,7 +710,6 @@ function testarr(no) {
 			sum = list[i].discount;
 		}
 	}
-	
 	return sum;
 }
 
@@ -842,6 +846,8 @@ function sample4_execDaumPostcode() {
 							</tr>
 						</c:forEach>
 					</table>
+					<input id="userpoint" value = "0" type="hidden" name="userpoint">
+					<input id="usecoupon" value = "0" type="hidden" name="usecoupon">
 					</form>
 					
 				</div>

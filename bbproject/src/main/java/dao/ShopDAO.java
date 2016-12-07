@@ -6,6 +6,7 @@ import java.util.List;
 import dto.FoodsDTO;
 import dto.ReviewDTO;
 import dto.fb_BasketDTO;
+import dto.fb_CouponDTO;
 import dto.shop_PageDTO;
 
 public interface ShopDAO {
@@ -33,4 +34,9 @@ public interface ShopDAO {
 	public void pointPlus(int member_no, int point);
 	public void pointMinus(int member_no, int point);
 	public void request_insert(HashMap<String, Object> map);
+	public void coupon_delete(int member_no, int couponbook_no);
+	public List<fb_CouponDTO> reCoupon(int member_no);
+	public int rePoint(int member_no);
+	public void basket_delete(int foods_no);
+	
 }

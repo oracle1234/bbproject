@@ -39,6 +39,7 @@ public class ShopController {
 		this.basketService = basketService;
 	}
 
+	// ff
 	public void setService(ShopService service) {
 		this.service = service;
 	}
@@ -244,20 +245,19 @@ public class ShopController {
 
 	@RequestMapping(value = "/pay_end.do", method = RequestMethod.GET)
 	public ModelAndView pay_endProcess(HttpServletRequest req, String useSaveMoney) {
-		
+
 		ModelAndView mav = new ModelAndView();
-		
 
 		return mav;
 
 	}
-
+	
+	
+	//장바구니
 	@RequestMapping(value = "/pay_end.do", method = RequestMethod.POST)
-	public ModelAndView pay_endPostProcess(HttpServletRequest req, String chkfood[], String foods_no[],
-			String foods_name[], int price[], int amount[], String savepoint[], int userpoint) {
-			
-		System.out.println(userpoint);
-		
+	public ModelAndView pay_endPostProcess(HttpServletRequest req, String foods_no[],
+			String foods_name[], int price[], int amount[], String savepoint[], String userpoint, String usecoupon) {
+
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 
@@ -265,94 +265,53 @@ public class ShopController {
 		for (String i : savepoint) {
 			savePoint += Integer.parseInt(i.substring(0, i.lastIndexOf(".")));
 		}
-
+		
+		service.endProcess(mdto.getMember_no(), savePoint,
+				Integer.parseInt(userpoint), Integer.parseInt(usecoupon), foods_no, foods_name, price, amount);
+		
 		MailSend ms = new MailSend(mdto, price, amount, foods_name);
-		
-		List<FoodsDTO> list = new ArrayList<FoodsDTO>();
-		for(int i = 0; i<foods_no.length; i++){
-			list.add(service.buyListProcess(Integer.parseInt(foods_no[i])));
-		}
-		
-		
-		for(int i = 0; i < list.size(); i++){
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("member_no", mdto.getMember_no());
-		map.put("foods_no", list.get(i).getFoods_no());
-		map.put("foods_name", list.get(i).getFoods_name());
-		map.put("price", list.get(i).getPrice());
-		map.put("amount", amount[i]);
-		map.put("delivery_condition", "주문완료");
-		map.put("picture", list.get(i).getPicture());
-		service.requestInsertProcess(map);
-		}
-		
-
-		service.savePointPlusProcess(mdto.getMember_no(), savePoint);
-		
-
-		for (String food_no : chkfood) {
-			int count = service.basketChkProcess(Integer.parseInt(food_no), mdto.getMember_no());
-			if (count != 0) {
-				basketService.basketDeleteProcess(Integer.parseInt(food_no));
-			}
-		}
+		mdto.setcList(service.reCouponProcess(mdto.getMember_no()));
+		mdto.setPoint(service.rePointProcess(mdto.getMember_no()));
+		req.getSession().setAttribute("member", mdto);
 
 		mav.setViewName("shop_buy_result");
 		return mav;
 
 	}
-	
+
 	@RequestMapping(value = "/paynow_end.do", method = RequestMethod.GET)
 	public ModelAndView paynow_endProcess(HttpServletRequest req) {
-		
-		
+
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
-		
+
 		return mav;
 
 	}
 
+	// 바로구매
 	@RequestMapping(value = "/paynow_end.do", method = RequestMethod.POST)
 	public ModelAndView paynow_endPostProcess(HttpServletRequest req, String chkfood, String foods_no,
-			String foods_name, int price, int amount, String savepoint) {
+			String foods_name, int price, int amount, String savepoint, String userpoint, String usecoupon) {
 		
 		
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
-
-		MailSend ms = new MailSend(mdto, price, amount, foods_name);
 		String SavePoint = savepoint.substring(0, savepoint.lastIndexOf("."));
-
-		service.savePointPlusProcess(mdto.getMember_no(), Integer.parseInt(SavePoint));
-		//<!-- mem_no, price,amount,picture, day, delevery, foods_no -->
 		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("member_no", mdto.getMember_no());
-		map.put("price", price);
-		map.put("amount", amount);
-		map.put("foods_no", foods_no);
-		map.put("delivery_condition", "주문완료");
-		//변경예정
-		map.put("picture", 3);
+		service.now_endProcess(mdto.getMember_no(), Integer.parseInt(SavePoint),
+				Integer.parseInt(userpoint), Integer.parseInt(usecoupon),
+				Integer.parseInt(foods_no), price, amount, foods_name);
 		
-		service.requestInsertProcess(map);
-		
-
-		int count = service.basketChkProcess(Integer.parseInt(foods_no), mdto.getMember_no());
-		if (count != 0) {
-			basketService.basketDeleteProcess(Integer.parseInt(foods_no));
-		}
+		// 유저 정보 갱신
+		MailSend ms = new MailSend(mdto, price, amount, foods_name);
+		mdto.setcList(service.reCouponProcess(mdto.getMember_no()));
+		mdto.setPoint(service.rePointProcess(mdto.getMember_no()));
+		req.getSession().setAttribute("member", mdto);
 
 		mav.setViewName("shop_buy_result");
 		return mav;
-		
 
 	}
-	
-	
-
-	
-	
 
 }// end class
