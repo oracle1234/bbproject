@@ -55,10 +55,15 @@ select *
 		and a.member_no = (select member_no from fb_member where id ='asdf' and pw = '1234')
 		
 select * from fb_coupon_book
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 1, 'yes');
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 2, 'no');
-insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 3, 'yes');
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 1);
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 2);
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 3);
+insert into fb_coupon_book values(SEQ_couponbook_no.nextval, 1, 4);
 
+insert into fb_coupon values(SEQ_coupon_no.nextval, '회원가입쿠폰', 2000);
+insert into fb_coupon values(SEQ_coupon_no.nextval, '축하쿠폰', 3000);
+insert into fb_coupon values(SEQ_coupon_no.nextval, '쿠폰', 2000);
+insert into fb_coupon values(SEQ_coupon_no.nextval, '대박쿠폰', 5000);
 
 select * from fb_coupon
 select * from fb_coupon_book
@@ -162,8 +167,66 @@ select a.amount, c.foods_no, c.foods_name, c.price
 		and a.member_no = 1 and a.foods_no = 2
 		
 		
-select * from fb_basket
+select * from fb_member
 delete from fb_basket where foods_no = 2
 
 select count(*) from fb_basket
 where member_no = 1 and foods_no = 2
+
+update fb_member set point = point + 400 where member_no=1;
+select * from fb_member
+
+
+update fb_member set point = point + 500 where member_no= 1;
+
+select * from fb_request
+
+
+select * from fb_member
+
+insert into fb_request values(1, 3000, 3, 3, sysdate, '주문완료', 1);
+
+alter table fb_request add column foods_no varchar2(20);
+alter table fb_request add column foods_name varchar2(30);
+
+alter table fb_request 
+
+drop table fb_reqeust
+
+select * from fb_coupon_book
+
+delete from fb_coupon_book where member_no = 1 and coupon_no = 1;
+
+select b.*, c.*
+		from FB_MEMBER a, FB_COUPON_BOOK b, FB_COUPON c
+		where a.member_no = b.member_no and b.coupon_no = c.coupon_no
+		and a.member_no = (select member_no from fb_member where member_no = 1)
+
+		
+select * from fb_coupon_book
+
+select * from fb_coupon
+
+select * from fb_request
+
+drop table fb_request
+
+CREATE TABLE fb_request
+(
+	member_no number NOT NULL,
+	price number NOT NULL,
+	amount number NOT NULL,
+	day date NOT NULL,
+	delivery_condition varchar2(50) NOT NULL,
+	foods_no number NOT NULL,
+	foods_name varchar2(100) NOT NULL
+);
+
+ALTER TABLE fb_request
+	ADD FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no)
+	ADD FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no)
+;
+
+select * from fb_request

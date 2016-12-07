@@ -26,8 +26,9 @@ $(function() {
 					if(data == ""){
 						alert("없는 회원");
 					}else{
-						$(".member").empty();
-						$(".member").append('<input type="hidden" id="member_no" name="member_no" value="'+data.member_no+'"/>');
+						alert(data.member_name + " 회원 입니다.");
+						$("#member_no").val("");
+						$("#member_no").val(data.member_no);
 					}
 					
 				},
@@ -35,6 +36,13 @@ $(function() {
 					alert(error);
 				}
 			});
+		}
+	});
+	
+	$("#btn_submit").on("click", function() {
+		if($("#member_no").val() == ""){
+			alert("아이디 조회 필수");
+			return false;
 		}
 	});
 	
@@ -105,11 +113,9 @@ $(function() {
 		회원 아이디
 		<input type="text" id="id" name="id">
 		<input type="button" id="idchk" value="조회">
-		<div class="member">
-
-		</div>
+		<input type="hidden" id="member_no" name="member_no" />
 		<br/>
-		<input type="submit" value="보내기">
+		<input id="btn_submit" type="submit" value="보내기">
 
 	</form>
 		

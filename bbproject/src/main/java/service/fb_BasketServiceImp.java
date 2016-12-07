@@ -1,5 +1,6 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import dao.fb_BasketDAO;
@@ -30,10 +31,11 @@ public class fb_BasketServiceImp implements fb_BasketService{
 
 	@Override
 	public List<fb_BasketDTO> deleteProcess(fb_BasketDTO bdto) {
-		dao.delete(bdto.getFoods_no());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("foods_no", bdto.getFoods_no());
+		map.put("member_no", bdto.getMember_no());
+		dao.delete(map);
 		return dao.list(bdto.getMember_no());
 	}
-
-
 
 }//end class

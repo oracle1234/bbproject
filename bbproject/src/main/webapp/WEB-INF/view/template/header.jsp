@@ -600,7 +600,7 @@ border:2px solid black;
 </div>
 <div class='menu'>
 	<ul>
-		<li><a href='#'><img alt="" src="images/logo.png"></a></li>
+		<li><a href='main.do'><img alt="" src="images/logo.png"></a></li>
 		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
@@ -616,7 +616,7 @@ border:2px solid black;
 				<li class='sub'><a href="recipe.do?theme_no=4">다이어트</a></li>
 				<li class='sub'><a href="recipe.do?theme_no=5">야식</a></li>
 			</ul></li>
-		<li><a href='#'>BORDER</a>
+		<li><a href='board_list.do'>BOARD</a>
 			<ul>
 				<li class='sub'><a href='#'>게시판1</a></li>
 				<li class='sub'><a href='#'>게시판2</a></li>

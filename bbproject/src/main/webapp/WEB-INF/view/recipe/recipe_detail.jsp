@@ -46,7 +46,9 @@ $(function () {
 	
 	<hr/>
 	<p id="exp">${dto.recipe_explaination }</p>
-	
+	<br />
+	<p>재료</p>
+	<p>${dto.recipe_material }</p>
 	<br/>
 	<p> 조리 순서 </p>
 	<br/>
@@ -54,8 +56,8 @@ $(function () {
 	<div id="orderlist">
 		<c:forEach items="${dto.list}" var="list" varStatus="status">
 			<div>
-				<img class="step" alt="" src="images/icon_step_${status.index + 1}.gif" width="40px" height="40px">
-				<p class="ordertxt">${list.order_text}</p>
+<%-- 				<img class="step" alt="" src="images/icon_step_${status.index + 1}.gif" width="40px" height="40px"> --%>
+				<p class="ordertxt" style="padding-left: 40px;  background : url('images/icon_step_${status.index + 1}.gif') left top no-repeat; background-size: 40px 40px;" >${list.order_text}</p>
 				<p class="orderpic"><img src="image.do?filename=${list.order_pic }" ><p>
 			</div>
 			<br/>
