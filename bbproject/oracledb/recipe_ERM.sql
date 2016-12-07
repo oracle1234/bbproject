@@ -262,4 +262,8 @@ select *
 	where member_no=2 and 
     day >= to_date('2016-12-5','yyyy-mm-dd')
     and day <= to_date('2016-12-7','yyyy-mm-dd')
+    
+    
+    
+    
 		

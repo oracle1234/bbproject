@@ -1,6 +1,7 @@
 테이블명:fb_member
 select * from fb_member;
 select * from fb_request;
+select * from fb_basket;
 insert into fb_member values 
 (1, '백나연', 'nayeon', '111111', '서울시 강북구 수유동', 
 01011111111, 'nayeon', 0, 0);

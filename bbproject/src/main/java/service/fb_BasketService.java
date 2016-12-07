@@ -13,4 +13,5 @@ public interface fb_BasketService {
 	public void basketDeleteProcess(int foods_no);
 	
 	
+	
 }

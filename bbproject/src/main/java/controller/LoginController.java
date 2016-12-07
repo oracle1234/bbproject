@@ -31,12 +31,8 @@ public class LoginController {
 		this.memberservice = memberservice;
 	}
 
-/*	@RequestMapping("/login.do")
-	public ModelAndView loginForm() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("view/login");
-		return mav;
-	}*/
+
+	
 	@RequestMapping("/login.do")
 	public String login() {
 

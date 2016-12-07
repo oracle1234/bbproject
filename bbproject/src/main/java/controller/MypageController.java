@@ -60,16 +60,18 @@ public class MypageController {
 		this.memberservice = memberservice;
 	}
 	
+	// 마이페이지 화면
 	@RequestMapping("/mypage.do")
 	public String mypage(HttpServletRequest req) {
 		
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
-	/*	System.out.println(dto.getMember_no());
-		System.out.println(dto.getcList().get(0).getCoupon_name());*/
+		//System.out.println(dto.getMember_no());
+		//System.out.println(dto.getcList().get(0).getCoupon_name());
 		
 		return "mypage";
 	}
 
+	// 주문내역 조회
 	@RequestMapping("/my_order.do")
 	public ModelAndView orderlist(HttpServletRequest req){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
@@ -79,17 +81,8 @@ public class MypageController {
 		return mav;
 		
 	}
-	
-	
-/*	@RequestMapping(value ="/myorder_del.do" , method = RequestMethod.GET, produces = "application/text; charset=utf8")
-	public @ResponseBody List<fb_OrderDTO> orderDelete(int member_no, int foods_no, Date day){
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("member_no", member_no);
-		map.put("foods_no", foods_no);
-		map.put("day", day);
-		return orderservice.orderdelProcess(map);
-	}
-	*/
+
+	// 장바구니 확인
 	@RequestMapping("/my_cart.do")
 	public ModelAndView listMethod(HttpServletRequest req) {
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
@@ -99,17 +92,24 @@ public class MypageController {
 		mav.setViewName("my_cart");
 		return mav;
 	}// end listMethod()
-	
+		
+	// 장바구니 수량 변경
 	@RequestMapping("/my_cart_amountupdate.do")
-	public @ResponseBody List<fb_BasketDTO> amountUpdate(fb_BasketDTO bdto){
+	public @ResponseBody List<fb_BasketDTO> amountUpdate(HttpServletRequest req, fb_BasketDTO bdto){
+		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
+		bdto.setMember_no(dto.getMember_no());
 		return service.amountUpdateProcess(bdto);
 	}
 	
+	// 장바구니 상품 삭제
 	@RequestMapping("/my_cart_delete.do")
-	public @ResponseBody List<fb_BasketDTO> delete(fb_BasketDTO bdto){
+	public @ResponseBody List<fb_BasketDTO> delete(HttpServletRequest req, fb_BasketDTO bdto){
+		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
+		bdto.setMember_no(dto.getMember_no());
 		return service.deleteProcess(bdto);
 	}
 	
+	// 쿠폰, 적립금 확인
 	@RequestMapping("/my_coupon.do")
 	public ModelAndView couponlist(HttpServletRequest req){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
@@ -119,6 +119,7 @@ public class MypageController {
 		return mav;
 	}
 
+	// 내가 쓴글 확인
 	@RequestMapping("/my_board.do")
 	public ModelAndView BoardList(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
@@ -133,6 +134,7 @@ public class MypageController {
 		return mav;
 	}
 	
+	// 내가 쓴 글 -자유게시판
 	@RequestMapping("/my_board_free.do")
 	public @ResponseBody myBoardDTO boardfreelist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
@@ -142,6 +144,7 @@ public class MypageController {
 		return boardservice.myboardlistProcess(map);
 	}
 
+	// 내가 쓴 글 - 포토후기
 	@RequestMapping("/my_board_photo.do")
 	public @ResponseBody myBoardDTO boardphotolist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
@@ -151,7 +154,7 @@ public class MypageController {
 		return boardservice.myboardlistProcess(map);
 	}
 	
-
+	// 내가 쓴 글 -질문과 답변
 	@RequestMapping("/my_board_qa.do")
 	public @ResponseBody myBoardDTO boardqalist(HttpServletRequest req, int boardcategory_no){
 		MemberDTO dto = (MemberDTO) req.getSession().getAttribute("member");
@@ -161,23 +164,32 @@ public class MypageController {
 		return boardservice.myboardlistProcess(map);
 	}
 	
+	// 내 정보 변경
 	@RequestMapping("/my_update.do")
 	public String myupdate(){
 		return "my_update";
 	}
 	
+	// 내 정보 변경
 	@RequestMapping(value = "/myupdate.do", method = RequestMethod.POST)
 	public String myupdateProcess(MemberDTO dto) {
 		memberservice.updateProcess(dto);
 		return "updsucc";
 	}
 	
-
+	// 회원 탈퇴
 	@RequestMapping("/my_leave.do")
 	public String myleave(){
 		return "my_leave";
 	}
 	
+	// 회원 가입 성공
+	@RequestMapping("/joinsucc.do")
+	public String joinsucc(){
+		return "joinsucc";
+	}
+	
+	// 회원탈퇴
 	@RequestMapping(value = "/myleave.do", method = RequestMethod.POST)
 	public String myleaveProcess(MemberDTO dto) {
 		
@@ -191,8 +203,7 @@ public class MypageController {
 		return "joinsucc";
 	}
 	
-
-	
+	// 내가쓴글 제목 검색
 	@RequestMapping(value="/boardtitlesearch.do", method=RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> myboardtitleSearch(HttpServletRequest req, int boardcategory_no, String board_subject){
 		
@@ -205,6 +216,7 @@ public class MypageController {
 	return map;	
 	}
 	
+	// 내가쓴글 내용 검색
 	@RequestMapping(value="/boardcontentsearch.do", method=RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> myboardcontentSearch(HttpServletRequest req, int boardcategory_no, String board_content){
 		
@@ -219,6 +231,7 @@ public class MypageController {
 	return map;	
 	}
 	
+	// 주문날짜 검색
 	@RequestMapping(value="/ordersearch.do", method=RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> myorderSearch(HttpServletRequest req, String start, String end){
 		

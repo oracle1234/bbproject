@@ -4,5 +4,5 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <div class="success">
-<p>변경이 완료되었습니다.</p>
+<img alt="" src="images/updsucc.png">
 </div>
