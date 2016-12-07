@@ -5,8 +5,6 @@
 	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" type="text/css" href="css/my_order.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
- <!--  <script src="js/jquery-ui"></script>  
-  <script src="js/jquery-ui.min"></script> -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/calendar.js"></script>
    
@@ -14,10 +12,7 @@
 var s_no ="${sessionScope.member.member_no}";
 
 $(document).ready(function() {
-/* 	$('#orderno').on('click', function() {
-		if($(this).('${delivery_condition}'))
-	}); */
-	
+
 		$('#calfindButton').on('click',function(){
 			alert($("#start").val());
 			$.ajax({
@@ -32,58 +27,8 @@ $(document).ready(function() {
 			});
 		});
 
-		/* $('.orderno').on('click', function(){
-			if($(this).next().val()=="미입금" || $(this).next().val()=="입금완료"){
-				 $.ajax({
-					type:'GET',
-					dataType : 'text',
-					url : 'myorder_del.do?member_no='+s_no+'&day='+$(this).next().next().next().val()+'&foods_no='+$(this).next().next().val(),
-					success : orderlist,
-					
-					error: function(xhr, textStatus, error) {
-						alert("노삭제");
-					}
-				 });
-			}
-				
-		else if ($(this).next().val()=="상품준비중" || $(this).next().val()=="배송중" || $(this).next().val()=="배송완료"){
-			alert("해당 주문건은 취소할 수 없습니다.")
-		}
-		}); */
 });
 		
-		/* function orderlist(data){
-			$('.myorder_table').empty();
-			$('.myorder_table').append('<tr>'+
-					'<th width="15%">주문일자</th>'+
-					'<th width="15%">상품정보</th>'+
-					'<th width="20%">상품명</th>'+
-					'<th width="5%">수량</th>'+
-					'<th width="15%">상품가격</th>'+
-					'<th width="10%">총결제금액</th>'+
-					'<th width="15%">주문상태</th>'+
-					'<th width="15%">취소</th>'+
-				'</tr>');
-			
-			$.each(data, function(index, value){
-				$('.myorder_table').append('<tr>'+
-				'<td>'+value.day+'</td>'+
-				'<td><img id="foodsmall_photo" alt="" src="">'+value.picture+'</td>'+
-				'<td>'+value.foods_no+'</td>'+
-				'<td>'+value.amount+'개</td>'+
-				'<td>'+value.price+'</td>'+
-				'<td>'+value.price*value.amount+'원</td>'+
-				'<td>'+value.delivery_condition+'</td>'+
-				'<td><input type="button" value="취소" class="orderno">'+
-				'<input type="hidden" class="delivery_condition" value="'+value.delivery_condition+'">'+
-				'<input type="hidden" class="foods_no" value="'+value.foods_no+'">'+
-				'<input type="hidden" class="day" value="'+value.day+'"></td>'+
-			'</tr>');
-			});
-		}
-			
-	 */
-	 
 	 function searchlist(data){
 		 if(data.list == null){
 			 alert("조회 기간에 해당하는 주문내역이 없습니다.");
@@ -99,6 +44,7 @@ $(document).ready(function() {
 				'</tr>');
 			
 			$.each(data.list, function(index, value){
+				alert(value.foods_name);
 				$('.myorder_table').append('<tr>'+
 				'<td>'+value.day+'</td>'+
 				'<td>'+value.foods_no+'</td>'+
@@ -126,8 +72,6 @@ $(document).ready(function() {
 	<input class="date-picker" type="text" id="start" name="start"/>~
 	<input class="date-picker" type="text" id="end" name="end"/>
 <input type="button" value="조회" id="calfindButton">
-<!-- <input type="hidden" id="start" name="start">
-	<input type="hidden" id="end" name="end"> -->
 </div>
 	
 		<table class="myorder_table">
@@ -148,10 +92,6 @@ $(document).ready(function() {
 					<td>${dto.price}</td>
 					<td>${dto.price*dto.amount}원</td>
 					<td>${dto.delivery_condition}</td>
-					<!-- <td><input type="button" value="취소" class="orderno"> -->
-					<%--<input type="hidden" class="delivery_condition" value="${dto.delivery_condition}">
-					<input type="hidden" class="foods_no" value="${dto.foods_no}">
-					<input type="hidden" class="day" value="${dto.day}"> --%>
 				</tr>
 				</c:forEach>
 		</table>
