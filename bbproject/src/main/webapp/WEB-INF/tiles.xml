@@ -216,21 +216,40 @@
 	
 	
 	<definition name="shop" extends="index">
-		<put-attribute name="title" value="dish page" />
+		<put-attribute name="title" value="shop page" />
+		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop/shop.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/shop_imgbar.jsp" />
 	</definition>
 	
 	
 	<definition name="detail_product" extends="index">
 		<put-attribute name="title" value="detail_page" />
+		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/shop_imgbar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop_detail/detail_product.jsp" />
 	</definition>
 	
+	<definition name="shop_prom_buy" extends="index">
+		<put-attribute name="title" value="buy_page" />
+		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/shop_imgbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/shop_buy/prom_buyPage.jsp" />
+	</definition>
+	
+	<definition name="shop_buy" extends="index">
+		<put-attribute name="title" value="buy_page" />
+		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/shop_imgbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/shop_buy/prom_buyPage.jsp" />
+	</definition>
+	
+	
 	<definition name="shop_buy_result" extends="index">
 		<put-attribute name="title" value="buy_result_page" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
+		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buy_result.jsp" />
 	</definition>
 	

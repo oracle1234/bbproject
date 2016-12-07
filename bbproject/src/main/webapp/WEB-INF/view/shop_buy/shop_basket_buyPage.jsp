@@ -11,6 +11,10 @@
 
 <style type="text/css">
 
+.menu{
+	display : none;
+	
+}
 
 table, tr, td{
 	font-size: 13px;

@@ -10,6 +10,10 @@
 
 <style type="text/css">
 
+.menu{
+	display : none;
+	
+}
 
 table, tr, td{
 	font-size: 13px;
@@ -24,9 +28,10 @@ caption {
 }
 
 #buypage_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 2650px;
 	position: relative;
+	background-color: red;
 }
 
 #guide_wrap {

@@ -168,7 +168,7 @@ public class ShopController {
 			}
 
 			mav.addObject("FoodsDTO", list);
-			mav.setViewName("view/shop_buy/shop_basket_buyPage");
+			mav.setViewName("shop_prom_buy");
 
 		} else { // 바로구매
 			List<FoodsDTO> list = new ArrayList<FoodsDTO>();
@@ -179,7 +179,7 @@ public class ShopController {
 
 			mav.addObject("Foods", fdto);
 			mav.addObject("FoodsDTO", list);
-			mav.setViewName("view/shop_buy/prom_buyPage");
+			mav.setViewName("shop_buy");
 		}
 		
 		
