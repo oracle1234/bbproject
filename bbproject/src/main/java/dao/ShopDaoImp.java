@@ -144,10 +144,10 @@ public class ShopDaoImp implements ShopDAO {
 	}
 
 	@Override
-	public void coupon_delete(int member_no, int coupon_no) {
+	public void coupon_delete(int member_no, int couponbook_no) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("member_no", member_no);
-		map.put("coupon_no", coupon_no);
+		map.put("couponbook_no", couponbook_no);
 
 		sqlSession.delete("shop.couponDel", map);
 	}
@@ -160,5 +160,10 @@ public class ShopDaoImp implements ShopDAO {
 	@Override
 	public int rePoint(int member_no) {
 		return sqlSession.selectOne("shop.repoint", member_no);
+	}
+
+	@Override
+	public void basket_delete(int foods_no) {
+		sqlSession.delete("basket.delete", foods_no);
 	}
 }

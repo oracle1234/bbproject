@@ -169,11 +169,11 @@
 	</update>
 	
 	<insert id="requestInsert">
-		insert into fb_request values(#{member_no}, #{price}, #{amount}, #{picture}, sysdate, #{delivery_condition}, #{foods_no})
+		insert into fb_request values(#{member_no}, #{price}, #{amount}, sysdate, #{delivery_condition}, #{foods_no}, #{foods_name})
 	</insert>
 	
 	<delete id="couponDel" parameterType="hashmap">
-		delete from fb_coupon_book where member_no = #{member_no} and coupon_no = #{coupon_no}
+		delete from fb_coupon_book where member_no = #{member_no} and couponbook_no = #{couponbook_no}
 	</delete>
 	
 
