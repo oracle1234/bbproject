@@ -226,10 +226,26 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin**" />
+			<mvc:mapping path="/my_order.do" />
+			<mvc:mapping path="/my_cart.do" />
+			<mvc:mapping path="/my_cart_delete.do" />
+			<mvc:mapping path="/my_coupon.do" />
+			<mvc:mapping path="/my_board.do" />
+			<mvc:mapping path="/my_board_free.do" />
+			<mvc:mapping path="/my_board_photo.do" />
+			<mvc:mapping path="/my_board_qa.do" />
+			<mvc:mapping path="/myupdate.do" />
+			<mvc:mapping path="/myleave.do" />
+			<mvc:mapping path="/boardtitlesearch.do" />
+			<mvc:mapping path="/boardcontentsearch.do" />
+			<mvc:mapping path="/ordersearch.do" />
+			
 			<!-- 제외 시킬거 -->
 			<!-- spring 3.2 버전 -->
 			<!-- <mvc:exclude-mapping path="/image.do" /> -->
 			<!-- <mvc:exclude-mapping path="/recipe*.*" /> -->
+			
+			
 			<bean class="interceptor.Interceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
