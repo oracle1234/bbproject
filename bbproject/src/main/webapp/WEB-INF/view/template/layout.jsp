@@ -37,8 +37,6 @@
 		<div id="mainbody">
 			<tiles:insertAttribute name="body" />
 		</div>
-
-
 	</div>
 	<div id="quick_menu">
 			<h3>

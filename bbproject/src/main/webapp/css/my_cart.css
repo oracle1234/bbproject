@@ -177,3 +177,8 @@ table, tr, td{
   background: #4ebbf0;
   color: #fff;
 }
+
+#empty{
+	width:930px;
+	height:230px;
+}

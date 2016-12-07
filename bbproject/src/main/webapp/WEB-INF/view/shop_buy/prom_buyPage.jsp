@@ -10,9 +10,12 @@
 
 <style type="text/css">
 
-.menu{
-	display : none;
-	
+.menubar{
+	display: none;
+}
+
+#mainbody{
+border: 0;
 }
 
 table, tr, td{
@@ -31,28 +34,27 @@ caption {
 	width: 1200px;
 	height: 2650px;
 	position: relative;
-	background-color: red;
+	margin: auto;
 }
 
 #guide_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 280px;
-	position: absolute;
-	top: 30px;
+	margin: auto;
 }
 
 #guide_image_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 250px;
 }
 
 #guide_image_wrap img {
-	width: 950px;
+	width: 1200px;
 	height: 220px;
 }
 
 #terms_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 245px;
 	position: absolute;
 	top: 320px;
@@ -60,14 +62,14 @@ caption {
 }
 
 #terms_text {
-	width: 950px;
+	width: 1200px;
 	height: 210px;
 	position: absolute;
 	left:0px;
 }
 
 #terms_text p {
-	width: 930px;
+	width: 1187px;
 	height: 200px;
 	overflow: auto;
 	font-size: 12px;
@@ -93,27 +95,25 @@ caption {
 }
 
 #order_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 630px;
 	position: absolute;
 	top: 580px;
 }
 
 #order_list_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 620px;
 }
 
 #order_table {
-	width: 950px;
+	width: 1200px;
 }
 
 #order_table th{
-	width: 950px;
+	width: 1200px;
 	background-color:#ebebeb;
 }
-
-
 
 
 #order_table caption {
@@ -121,13 +121,13 @@ caption {
 }
 
 #savemoney_wrap {
-	width: 600px;
+	width: 700px;
 	height: 150px;
 	float: left;
 }
 
 #smalltotal_wrap {
-	width: 350px;
+	width: 500px;
 	height: 150px;
 	float: left;
 }
@@ -160,7 +160,7 @@ caption {
 }
 
 #total_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 230px;
 	float: left;
 }
@@ -176,16 +176,15 @@ caption {
 }
 
 
-
 #orderer_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 900px;
 	position: absolute;
 	top: 630px;
 }
 
 #orderer_info {
-	width: 950px;
+	width: 1200px;
 	height: 350px;
 	float: left;
 }
@@ -222,24 +221,24 @@ caption {
 
 
 #deliver_image {
-	width: 950px;
+	width: 1200px;
 	height: 105px;
 	float: left;
 }
 
 #deliver_image img {
-	width: 950px;
+	width: 1200px;
 	height:95px;
 }
 
 #delivery_info {
-	width: 950px;
+	width: 1200px;
 	height: 400px;
 	float: left;
 }
 
 #pay_info_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 80px;
 }
 
@@ -249,24 +248,24 @@ caption {
 }
 
 #pay_info_wrap img {
-	width: 950px;
+	width: 1200px;
 	height: 80px;
 }
 
 #info_image_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 120px;
 	float: left;
 }
 
 #pay_type_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 410px;
 	float: left;
 }
 
 #pay_type_table_wrap {
-	width: 950px;
+	width: 1200px;
 	height: 390px;
 }
 
@@ -775,7 +774,7 @@ function sample4_execDaumPostcode() {
 	<div id="buypage_wrap">
 		<div id="guide_wrap">
 			<div id="guide_image_wrap">
-				<img alt="안내이미지" src="./images/shop_buy_infor.png">
+				<img alt="안내이미지" src="./images/cart_info.png">
 			</div>
 		</div>
 		<div id="terms_wrap">
@@ -859,7 +858,7 @@ function sample4_execDaumPostcode() {
 				<!-- 바로구매 -->
 				<div id="savemoney_wrap">
 					<p id="save_text" align="left">고객님의 적립금이나 쿠폰을 사용하면 좀 더 절약하여 구매할 수 있습니다.</p><br>
-					<table id="savemoney_table" width="600px" height="100px;"> 
+					<table id="savemoney_table" width="680px" height="103px;"> 
 						<tr>
 							<th scope="row">적립금사용</th>
 							<td>
@@ -937,7 +936,7 @@ function sample4_execDaumPostcode() {
 				</div>
 				<div id="orderer_wrap">
 					<div id="orderer_info">
-						<table id="orderer_info_table" width="950" height="300">
+						<table id="orderer_info_table" width="1200" height="300">
 							<caption>주문자 정보</caption>
 							<tr>
 								<th scope="row">주문자 *</th>
@@ -972,7 +971,7 @@ function sample4_execDaumPostcode() {
 					</div>
 
 					<div id="delivery_info">
-						<table id="delivery_info_table" width="950">
+						<table id="delivery_info_table" width="1200">
 							<caption>
 								배송지 정보<span>*</span>&nbsp;&nbsp;&nbsp;<input type="checkbox" id="sameOrder"> 주문자 정보와
 								동일
@@ -1034,7 +1033,7 @@ function sample4_execDaumPostcode() {
 
 					<div id="pay_type_wrap">
 						<div id="pay_type_table_wrap">
-							<table id="pay_type_table" width="950">
+							<table id="pay_type_table" width="1200">
 							
 								<tr>
 									<th scope="row">결제방식</th>

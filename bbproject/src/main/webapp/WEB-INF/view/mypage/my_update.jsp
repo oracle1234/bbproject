@@ -197,6 +197,12 @@ function sample4_execDaumPostcode() {
 
 <style>
 
+.mypage_body .password{
+width:950px;
+height:100px;
+border:1px solid gray;
+}
+
 fieldset{
 width:900px;
 background-color: white;
@@ -235,13 +241,28 @@ background-color: white;
 	width:780px;
 	height:60px;
 } 
+
+
+#passtable{
+margin:auto;	
+margin-top:30px;
+}
+
+.labelpass{
+width:100px;
+}
+
+.formpass{
+width:200px;
+}
+
 </style>
 	<div class="mypage_body">
 	<div class="password">
-	<table>
+	<table id="passtable">
 <tr>
-<td class="label"><label for="pw">비밀번호확인</label></td>
-<td class="form"><input type="password" id="pwckup"></td>
+<td class="labelpass"><label for="pw">비밀번호확인</label></td>
+<td class="formpass"><input type="password" id="pwckup"></td>
 </tr>
 </table>
 <input type="button" id="pwupok" value="확인"> 

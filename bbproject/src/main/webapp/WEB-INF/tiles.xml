@@ -232,14 +232,14 @@
 		<put-attribute name="body" value="/WEB-INF/view/shop_detail/detail_product.jsp" />
 	</definition>
 	
-	<definition name="shop_prom_buy" extends="index">
+	<definition name="shop_prom_buy" extends="shop">
 		<put-attribute name="title" value="buy_page" />
 		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/shop_imgbar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/shop_buy/prom_buyPage.jsp" />
 	</definition>
 	
-	<definition name="shop_buy" extends="index">
+	<definition name="shop_buy" extends="shop">
 		<put-attribute name="title" value="buy_page" />
 		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/shop_imgbar.jsp" />

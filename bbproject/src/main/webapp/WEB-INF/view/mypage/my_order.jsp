@@ -48,7 +48,7 @@ $(document).ready(function() {
 				alert(value.foods_name);
 				$('.myorder_table').append('<tr>'+
 				'<td>'+value.day+'</td>'+
-				'<td>'+value.foods_no+'</td>'+
+				'<td>'+value.foods_name+'</td>'+
 				'<td>'+value.amount+'</td>'+
 				'<td>'+value.price+'</td>'+
 				'<td>'+value.price*value.amount+'</td>'+
@@ -88,7 +88,7 @@ $(document).ready(function() {
 			<c:forEach var="dto" items="${aList}">
 				<tr>
 					<td>${dto.day}</td>
-					<td>${dto.foods_no}</td>
+					<td>${dto.foods_name}</td>
 					<td>${dto.amount}개</td>
 					<td>${dto.price}</td>
 					<td>${dto.price*dto.amount}원</td>
