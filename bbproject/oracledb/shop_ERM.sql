@@ -128,7 +128,6 @@ and a.member_no = 4 and a.foods_no = 7
 update fb_member set point = 2000 where member_no = 1;
 
 update fb_member set pw = '1' where id='qwer';
-
 select * from fb_member
 
 select * from fb_category
@@ -306,6 +305,8 @@ ALTER TABLE fb_lately_product
 	ADD FOREIGN KEY (foods_no)
 	REFERENCES fb_foods (foods_no)
 ;
+
+CREATE SEQUENCE SEQ_lately_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
 ----------------------------------------------테이블 변경사항 저장---------------------------------------------------------
 

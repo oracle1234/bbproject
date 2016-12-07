@@ -60,6 +60,9 @@ CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
+--주훈 추가
+CREATE SEQUENCE SEQ_lately_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+
 
 
 =======

@@ -35,8 +35,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
 			return false;
 		} else {
 			if (dto.getId().equals("admin")) {
-				response.sendRedirect("admin.do");
-				return false;
+				return super.preHandle(request, response, handler);
 			} else {
 				if(reqUrl.indexOf("admin") >= 0){
 					response.sendRedirect("login.do");

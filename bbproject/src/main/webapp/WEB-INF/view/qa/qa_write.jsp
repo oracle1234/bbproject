@@ -70,16 +70,14 @@ td{
 		onsubmit="return process()">
 
 		<table class="board_row">
-
-			<tr>
+			<tr id="member_id">
 				<th scope="row">글쓴이</th>
-				<td><input type="text" name="qa_writer" size="10" maxlength="10" /></td>
+				<td>${sessionScope.member.id}</td>
 			</tr>
 
 			<tr>
 				<th scope="row">제목</th>
-				<td><c:if test="${qdto!=null}">답변</c:if> <input type="text"
-					name="qa_subject" size="40" /></td>
+				<td><input type="text" name="qa_subject" size="40" /></td>
 			</tr>
 			
 			<tr>
@@ -93,20 +91,19 @@ td{
 			<textarea name="qa_content" rows="100" cols="100"></textarea>
 		</div>
 		
-		<!-- 답변글일때.... -->
 		<c:if test="${qdto!=null}">
-			<input type="hidden" name="qa_no" id="qa_no" value="${qdto.qa_no}" />
-			<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" />
-			<%-- 
-			<input type="hidden" name="ref" value="${dto.comment_ref}" />
-			<input type="hidden" name="re_step" value="${dto.comment_re_step}" />
-			<input type="hidden" name="re_level" value="${dto.comment_re_level}" />
-			 --%>
+			<input type="hidden" name="qa_no" value="${qdto.qa_no}" />
+			<input type="hidden" name="currentPage" value="${currentPage}" />
 		</c:if>
+		
+		<input type="hidden" value="${sessionScope.member.id}"
+				name="qa_writer">
+			
 		<div class="board_btn">
 			<a href="#"><img alt="확인" src="./images/btn_ok.gif" id="btnSave"></a>
 			<a href="#"><img alt="취소" src="./images/btn_cancel.gif" id="btnList"></a>
 		</div>
+		
 	</form>
 </div>
 </body>

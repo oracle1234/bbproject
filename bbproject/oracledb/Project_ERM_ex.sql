@@ -15,6 +15,9 @@ insert into fb_member values
 (4, '유재민', 'jaemin', '444444', '종각', 
 01044444444, 'jaemin',0, 0, 0);
 insert into fb_member values 
+<<<<<<< HEAD
+(0, '관리자', 'admin', 'admin', '종각', '01044444444', 'admin.com', 0);
+=======
 (1, '관리자', 'admin', 'admin', '종각', 
 01044444444, 'admin', 0, 0);
 
@@ -33,6 +36,7 @@ where member_no=1 and
 
 	
 	
+>>>>>>> refs/remotes/origin/min
 	split
 	select id
 	from fb_member
@@ -386,9 +390,10 @@ primary key (boardcategory_no)
 insert into fb_boardcategory values
 (1, '자유게시판');
 insert into fb_boardcategory values
-(2, '포토후기');
+(2, '질문과 답변');
 insert into fb_boardcategory values
-(3, '질문과 답변');
+(3, '포토후기');
+
 
 
  SET fb_board          fb_photo_board          fb_qa_board  

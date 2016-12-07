@@ -838,15 +838,15 @@ function sample4_execDaumPostcode() {
 								<input type = "hidden" name = "amount" value = "${Foods.amount}">
 								<input type = "hidden" name = "savepoint" value = "${food.price * 0.01 * Foods.amount}">
 								
+								<c:set var="saveMoney" value="${saveMoney + (food.price * 0.01 * Foods.amount)}"/>
+								<c:set var= "totalAmount" value="${totalAmount + Foods.amount}"/>
+								<c:set var="totalPrice" value="${totalPrice + food.price * Foods.amount}"/>
 								</td>
 								<td>${food.price}<span>원</span></td>
 								<td>${Foods.amount}<span>개</span></td>
-								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * Foods.amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
+								<td><fmt:formatNumber value="${saveMoney+(10-(saveMoney%10))%10}" type="NUMBER" /><span>원</span></td>
 								<td>${food.price * Foods.amount}<span>원</span></td>
 								
-								<c:set var= "totalAmount" value="${totalAmount + Foods.amount}"/>
-								<c:set var="totalPrice" value="${totalPrice + food.price * Foods.amount}"/>
-								<c:set var="saveMoney" value="${saveMoney + (food.price * 0.01 * Foods.amount)}"/>
 							</tr>
 						</c:forEach>
 					</table>
@@ -897,7 +897,7 @@ function sample4_execDaumPostcode() {
 						</tr>
 						<tr>
 							<th scope="row">적립금</th>
-							<td><fmt:formatNumber pattern="0" value="${saveMoney}" type="NUMBER" /><span>원</span></td>
+							<td><fmt:formatNumber value="${saveMoney+(10-(saveMoney%10))%10}" type="NUMBER" /><span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">총 결제금액</th>

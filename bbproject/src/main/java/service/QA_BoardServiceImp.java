@@ -65,12 +65,12 @@ public class QA_BoardServiceImp implements QA_BoardService {
 	}
 
 	@Override
-	public void updateProcess(QA_BoardDTO dto, HttpServletRequest request) {
-		String filename = qdao.getFile(dto.getQa_no());
+	public void updateProcess(QA_BoardDTO qdto, HttpServletRequest request) {
+		String filename = qdao.getFile(qdto.getQa_no());
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String saveDirectory = root + "temp" + File.separator;
 
-		MultipartFile file = dto.getFilename();
+		MultipartFile file = qdto.getFilename();
 		// 수정할 첨부파일이 있으면...
 		if (!file.isEmpty()) {
 
@@ -84,7 +84,7 @@ public class QA_BoardServiceImp implements QA_BoardService {
 			}
 
 			String fileName = file.getOriginalFilename();
-			dto.setQa_upload(random + "_" + fileName);
+			qdto.setQa_upload(random + "_" + fileName);
 			File ff = new File(saveDirectory, random + "_" + fileName);
 
 			try {
@@ -97,7 +97,7 @@ public class QA_BoardServiceImp implements QA_BoardService {
 				e.printStackTrace();
 			}
 		}
-		qdao.update(dto);
+		qdao.update(qdto);
 	}// end updateProcess()
 
 	@Override
@@ -111,5 +111,42 @@ public class QA_BoardServiceImp implements QA_BoardService {
 		}
 		qdao.delete(num);
 	}// end deleteProcess()
+
+	@Override
+	public int commentCountProcess(int qa_no) {
+		
+		return qdao.commentCount(qa_no);
+	}
+
+	@Override
+	public List<CommentDTO> commentPageProcess(HashMap<String, Object> map) {
+		
+		return qdao.commentPageList(map);
+	}
+
+	@Override
+	public void commentInsertProcess(HashMap<String, Object> map) {
+		
+		qdao.commentSaveList(map);
+	}
+
+	@Override
+	public void commentUpdateProcess(HashMap<String, Object> map) {
+		
+		qdao.commentUpdateList(map);
+		
+	}
+
+	@Override
+	public void commentDeleteProcess(HashMap<String, Object> map) {
+		
+		qdao.commentDeleteList(map);
+	}
+
+	@Override
+	public List<QA_BoardDTO> searchListProcess(HashMap<String, Object> map) {
+		
+		return qdao.searchList(map);
+	}
 
 }

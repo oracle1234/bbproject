@@ -165,7 +165,7 @@ public class ShopController {
 			}
 
 			mav.addObject("FoodsDTO", list);
-			mav.setViewName("shop_prom_buy");
+			mav.setViewName("shop_basketbuy");
 
 		} else { // 바로구매
 			List<FoodsDTO> list = new ArrayList<FoodsDTO>();
@@ -176,7 +176,7 @@ public class ShopController {
 
 			mav.addObject("Foods", fdto);
 			mav.addObject("FoodsDTO", list);
-			mav.setViewName("shop_buy");
+			mav.setViewName("shop_prom_buy");
 		}
 		
 		
@@ -224,8 +224,8 @@ public class ShopController {
 			} else {
 				currentPage = spdto.getCurrentPage();
 			}
-
 			pdto = new shop_PageDTO(currentPage, totalRecord);
+
 			pdto.setCategory_no(fdto.getCategory_no());
 
 			HashMap<String, Object> map = new HashMap<String, Object>();

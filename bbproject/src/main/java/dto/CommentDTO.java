@@ -3,7 +3,7 @@ package dto;
 import java.util.Date;
 
 public class CommentDTO {
-	private int comment_no, board_no, photo_no, qa_no;
+	private int comment_no, board_no, photo_no, qa_no, member_no;
 	private String comment_content, comment_writer;
 	private Date comment_date;
 
@@ -61,6 +61,14 @@ public class CommentDTO {
 
 	public void setComment_date(Date comment_date) {
 		this.comment_date = comment_date;
+	}
+
+	public int getMember_no() {
+		return member_no;
+	}
+
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
 	}
 
 }

@@ -8,6 +8,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script type="text/javascript">
+	var member_id = "${sessionScope.member.id}";
+
+	$(document).ready(function() {
+
+		$("#search_frm").submit(function() {
+
+			if ($("#keyWord").val() == "") {
+				alert("검색어를 입력하세요.");
+				return false;
+			}
+		});
+		
+		$("#write").click(function(){
+			if (member_id == '') {
+				alert("회원가입을 하세요.");
+				return false;
+			}
+		});
+		
+		$("#board_content").click(function(){
+			if (member_id == ''){
+				alert("회원가입을 하세요.");
+				return false;
+			}
+		});
+	});
+</script>
 <style type="text/css">
 #bodywrap {
 	width: 950px;
@@ -43,12 +75,12 @@
 }
 
 .board_write {
-	padding-top:10px;
-	padding-right:10px;
+	padding-top: 10px;
+	padding-right: 10px;
 	text-align: right;
 }
 
-.board_search_str {
+#keyWord {
 	width: 40%;
 }
 
@@ -68,18 +100,22 @@
 	line-height: 10px;
 }
 
-#table{
+#table {
 	padding: 11px 0;
 	border-top: 2px solid black;
 	border-bottom: 1px solid gray;
 }
 
-#table #col{
+#table #col {
 	line-height: 40px;
 }
 
-td{
+td {
 	padding-top: 7px;
+}
+
+.content a {
+	color: black;
 }
 </style>
 
@@ -88,6 +124,7 @@ td{
 		<div id="bodytop">
 			<h3 class="bodyname">자유게시판</h3>
 		</div>
+
 		<table id="table">
 			<tr id="col">
 				<th width="5%">번호</th>
@@ -98,59 +135,95 @@ td{
 			</tr>
 
 			<c:forEach var="BoardDTO" items="${aList}">
-				<tr>
+				<tr class="content">
 					<td>${BoardDTO.board_no}</td>
 					<td><c:url var="board_content" value="board_view.do">
 							<c:param name="currentPage" value="${pv.currentPage}" />
 							<c:param name="board_no" value="${BoardDTO.board_no}" />
-							</c:url> 
-					<a href="${board_content}">${BoardDTO.board_subject}</a></td>
+						</c:url> <a href="${board_content}" id="board_content">${BoardDTO.board_subject}</a></td>
 					<td>${BoardDTO.board_writer}</td>
-					<td>
-						<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_reg_date}"/>
-					</td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
+							value="${BoardDTO.board_reg_date}" /></td>
 					<td>${BoardDTO.board_readcount}</td>
 				</tr>
 			</c:forEach>
 		</table>
-		
+
 		<div class="board_write">
-			<a href="board_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
+			<a href="board_write.do"><img alt="글쓰기"
+				src="./images/btn_write.gif" id="write"></a>
 		</div>
 
 		<div class="board_page">
-		<!-- 이전 출력 시작 -->
-		<c:if test="${pv.startPage>1}">
-			<a href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}">이전</a>
-		</c:if>
 
-		<!-- 페이지 출력 시작 -->
-		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-			<c:url var="currPage" value="board_list.do?boardcategory_no=1">
-				<c:param name="currentPage" value="${i}" />
-			</c:url>
-			<a href="${currPage}"><c:out value="${i}" /></a>
-		</c:forEach>
+			<c:choose>
+				<c:when test="${keyWord == null}">
+					<!-- 이전 출력 시작 -->
+					<c:if test="${pv.startPage>1}">
+						<a
+							href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}">이전</a>
+					</c:if>
 
-		<!-- 페이지 출력 끝 -->
-		<c:if test="${pv.totalPage>pv.endPage}">
-			<a href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}">다음</a>
-		</c:if>
-		
+					<!-- 페이지 num출력 시작 -->
+					<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+						<c:url var="currPage" value="board_list.do?boardcategory_no=1">
+							<c:param name="currentPage" value="${i}" />
+						</c:url>
+						<a href="${currPage}"><c:out value="${i}" /></a>
+					</c:forEach>
+
+					<!-- 페이지 출력 끝 -->
+					<c:if test="${pv.totalPage>pv.endPage}">
+						<a
+							href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}">다음</a>
+					</c:if>
+				</c:when>
+
+				<c:otherwise>
+					<!-- 이전 출력 시작 -->
+					<c:if test="${pv.startPage>1}">
+						<a
+							href='board_list.do?boardcategory_no=1&currentPage=${pv.startPage-pv.blockPage}&keyFiled=${keyFiled}&keyWord=${keyWord}'>이전</a>
+					</c:if>
+
+					<!-- 페이지 num출력 시작 -->
+					<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+						<c:url var="currPage" value="board_search.do?boardcategory_no=1">
+							<c:param name="currentPage" value="${i}" />
+							<c:param name="keyField" value="${keyField}"></c:param>
+							<c:param name="keyWord" value="${keyWord}"></c:param>
+						</c:url>
+						<a href="${currPage}"><c:out value="${i}" /></a>
+					</c:forEach>
+
+					<!-- 페이지 출력 끝 -->
+					<c:if test="${pv.totalPage>pv.endPage}">
+						<a
+							href="board_list.do?boardcategory_no=1&currentPage=${pv.startPage+pv.blockPage}&keyFiled=${keyFiled}&keyWord=${keyWord}">다음</a>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 		</div>
-		
+
 		<div class="board_search">
-			<form id="search_frm" method="get">
-				<span class="chk"> 
-				<select name="search_select">
-					<option value="board_subject">제목</option>
-					<option value="board_writer">작성자</option>
-				</select> 
-				</span> 
-					<input type="text" name="search_str" value class="board_search_str" />
-					<input type="submit" id="btnSearch" value="검색" />				
+			<form action="board_search.do" id="search_frm" name="search_frm"
+				method="GET">
+
+				<select name="keyField" size="1">
+
+					<option value="board_subject">
+							제목
+					</option>
+
+					<option value="board_writer">
+							작성자
+					</option>
+
+				</select> <input type="text" name="keyWord" id="keyWord" value="${keyWord}">
+				<input type="image" value="검색" src="./images/menu/button_find.png">
+
 			</form>
-		</div>	
+		</div>
 	</div>
 </body>
 </html>

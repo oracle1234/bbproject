@@ -821,9 +821,11 @@ function sample4_execDaumPostcode() {
 						<%-- 합계계산 --%>
 						<c:set var="totalPrice" value="0" scope="page"/>
 						<c:set var="totalAmount" value="0" scope="page"/>
+						<c:set var="saveMoneySum" value="0" scope="page"/>
 						<c:set var="saveMoney" value="0" scope="page"/>
 						
 						<c:forEach items="${FoodsDTO}" var="food">
+							<c:set var = "saveMoney" value="${food.price * 0.01 * food.amount}"></c:set>
 							<tr>
 									<td id="order_t_food_name">${food.foods_name}
 									
@@ -836,11 +838,12 @@ function sample4_execDaumPostcode() {
 									</td>
 									<td>${food.price}<span>원</span></td>
 								<td>${food.amount}<span>개</span></td>
-								<td><fmt:formatNumber pattern="0" value="${food.price * 0.01 * food.amount}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
+								<td><fmt:formatNumber value="${saveMoney+(10-(saveMoney%10))%10}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
 								<td>${food.price * food.amount}<span>원</span></td>
 								<c:set var= "totalAmount" value="${totalAmount + food.amount}"/>
 								<c:set var="totalPrice" value="${totalPrice + food.price * food.amount}"/>
-								<c:set var="saveMoney" value="${saveMoney + (food.price * 0.01 * food.amount)}"/>
+								<c:set var = "round" value="${saveMoney+(10-(saveMoney%10))%10}"></c:set>
+								<c:set var="saveMoneySum" value="${saveMoneySum + round}"/>
 							</tr>
 						</c:forEach>
 					</table>
@@ -888,7 +891,7 @@ function sample4_execDaumPostcode() {
 						</tr>
 						<tr>
 							<th scope="row">적립금</th>
-							<td><fmt:formatNumber pattern="0" value="${saveMoney}" type="NUMBER" /><span>원</span></td>
+							<td><fmt:formatNumber value="${saveMoneySum}" type="NUMBER"></fmt:formatNumber><span>원</span></td>
 						</tr>
 						<tr>
 							<th scope="row">총 결제금액</th>

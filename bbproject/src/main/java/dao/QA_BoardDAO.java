@@ -17,9 +17,12 @@ public interface QA_BoardDAO {
 	public QA_BoardDTO content(int num);
 	public void reStepCount(CommentDTO cdto);
 	public void save(QA_BoardDTO qdto);
-	public void save(CommentDTO cdto);
 	public QA_BoardDTO updateNum(int num);
 	public void update(QA_BoardDTO qdto);
 	public void delete(int num);
 	public String getFile(int num);
+	public void commentSaveList(HashMap<String, Object> map);
+	public void commentUpdateList(HashMap<String, Object> map);
+	public void commentDeleteList(HashMap<String, Object> map);
+	public List<QA_BoardDTO> searchList(HashMap<String, Object> map);
 }

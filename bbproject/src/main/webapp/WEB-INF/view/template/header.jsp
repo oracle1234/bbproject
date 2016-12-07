@@ -618,8 +618,8 @@ border:2px solid black;
 			</ul></li>
 		<li><a href='board_list.do'>BOARD</a>
 			<ul>
-				<li class='sub'><a href='#'>게시판1</a></li>
-				<li class='sub'><a href='#'>게시판2</a></li>
+				<li class='sub'><a href='board_list.do'>게시판1</a></li>
+				<li class='sub'><a href='qa_list.do'>게시판2</a></li>
 			</ul></li>
 		<li class='last'><a href='mypage.do'>MYPAGE</a></li>
 	</ul>
