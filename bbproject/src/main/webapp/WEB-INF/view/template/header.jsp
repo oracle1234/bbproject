@@ -295,14 +295,14 @@ var s_name = "${sessionScope.member.member_name}";
 
 .screen {
 	display: none;
-	background-color: gray;
 	z-index: 100000;
 	position: absolute;
 	margin-top: -79px;
-	width: 2000px;
+	margin-left:-500px;
+	width: 100%;
 	height: auto;
 	min-height: 1200px;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(108, 107, 107, 0.5);
 }
 
 .login {
@@ -310,7 +310,7 @@ var s_name = "${sessionScope.member.member_name}";
 	height: 300px;
 	z-index: 1000000;
 	margin-top: 200px;
-	margin-left: 500px;
+	margin-left: 1000px;
 	background-color:white;
 }
 

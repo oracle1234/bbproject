@@ -240,9 +240,6 @@ function searchlist1(data){
 <%-- 		</c:forEach> --%>
 
 	</table>
-	<div class="myboard_write">
-		<input type="button" id="button_write" value="글쓰기">
-	</div>
 
 	<div class="myboard_find">
 		<input type="radio" name="searchtype" value="제목">제목 <input
