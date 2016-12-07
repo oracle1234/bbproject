@@ -34,12 +34,10 @@ public class ShopController {
 	public ShopController() {
 		// TODO Auto-generated constructor stubdd
 	}
-
 	public void setBasketService(fb_BasketService basketService) {
 		this.basketService = basketService;
 	}
 
-	// ff
 	public void setService(ShopService service) {
 		this.service = service;
 	}
@@ -94,7 +92,6 @@ public class ShopController {
 
 			resultMap.put("aList", service.pageListProcess(map));
 		}
-
 		resultMap.put("pv", pdto);
 		return resultMap;
 	}// end shopPage()
