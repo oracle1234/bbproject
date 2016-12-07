@@ -6,9 +6,8 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
-
 $(document).ready(function() {
-
+	
 		$(document).on('click', '.cart_checkbox',function(){
 		$('.cart_cb').prop('checked', this.checked);
 	});
@@ -74,7 +73,7 @@ $(document).ready(function() {
 				'<th width="20%">적립금</th>'+
 				'<th width="20%">합계</th>'+
 			'</tr>');
-		
+		var sum = 0;
 		$.each(data,function(index, value){
 			 $('.mycart_table').append('<tr>'+
 		               '<td><input type="checkbox" class="cart_cb" name="cart_cb">'+
@@ -93,7 +92,19 @@ $(document).ready(function() {
 		               '<td>'+value.price*value.amount*1/100+'원</td>'+
 		               '<td>'+value.price*value.amount+'원</td>'+
 		            '</tr>');
+			 sum += parseInt(value.price)*parseInt(value.amount);
 		}); 
+		
+		
+		var cost = 0;
+		var str = "무료";
+		if(sum < 45000){
+			cost = 2500;
+			str = cost+"원";
+		}
+		$("#mycart_sum").text(sum+"원");
+		$("#mycart_cost").text(str);
+		$("#mycart_totalsum").text((sum + cost)+"원");
 		
 	}
 	
@@ -164,15 +175,17 @@ $(document).ready(function() {
 			<th width="25%">총 주문 합계</th>
 		</tr>
 		<tr>
-			<td>${sum}원</td>
+			<td id="mycart_sum">${sum}원</td>
 			<td>0원</td>
-			<td>
+			<td id="mycart_cost">
 			<c:if test="${sum<45000}">
+			<c:set var="delivery_cost" value="2500"></c:set>
 			2500원
 			</c:if>
 			<c:if test="${sum>=45000}">
-		무료</c:if></td>
-			<td>${sum}원</td>
+			<c:set var="delivery_cost" value="0"></c:set>
+			무료</c:if></td>
+			<td id="mycart_totalsum">${sum + delivery_cost}원</td>
 		</tr>
 	</table> 
 	 	</c:otherwise>
