@@ -20,6 +20,20 @@
 		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp" />
 		<put-attribute name="imgslider" value="/WEB-INF/view/template/imgbar2.jsp" />
 	</definition>
+	
+	<definition name="login" extends="index">
+			<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/login.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
+	
+	<definition name="find" extends="index">
+		<put-attribute name="title" value="Spring mypage Example" />
+		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/find.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
+	</definition>
 
 	<definition name="board_list" extends="index">
 		<put-attribute name="title" value="board example" />
@@ -156,9 +170,6 @@
 		<put-attribute name="body" value="/WEB-INF/view/admin/coupon_insert.jsp" />
 	</definition>
 	
-	<definition name="admincouponlist" extends="admincoupon">
-		<put-attribute name="body" value="/WEB-INF/view/admin/coupon_list.jsp" />
-	</definition>
 	<!-- 관리자 페이지 end -->
 	
 	<definition name="my_order" extends="index">
@@ -217,12 +228,6 @@
 		<put-attribute name="body" value="/WEB-INF/view/shop_detail/detail_product.jsp" />
 	</definition>
 	
-	<definition name="shop_buy" extends="index">
-		<put-attribute name="title" value="buy_page" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buyPage.jsp" />
-	</definition>
-	
 	<definition name="shop_buy_result" extends="index">
 		<put-attribute name="title" value="buy_result_page" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
@@ -253,7 +258,7 @@
 		<definition name="updsucc" extends="index">
 		<put-attribute name="title" value="upd_succ" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/mypage_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/join/upd.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/join/updsucc.jsp" />
 		<put-attribute name="img" value="/WEB-INF/view/template/mypage_imgbar.jsp" />
 	</definition>
 	

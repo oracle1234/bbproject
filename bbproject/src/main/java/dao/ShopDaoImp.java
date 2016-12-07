@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import dto.FoodsDTO;
 import dto.ReviewDTO;
 import dto.fb_BasketDTO;
+import dto.fb_CouponDTO;
 import dto.shop_PageDTO;
 
 public class ShopDaoImp implements ShopDAO {
@@ -30,7 +31,7 @@ public class ShopDaoImp implements ShopDAO {
 	@Override
 	public int count(int category_no) {
 		return sqlSession.selectOne("shop.count", category_no);
-		
+
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class ShopDaoImp implements ShopDAO {
 	@Override
 	public void reviewDeleteList(HashMap<String, Object> deleteMap) {
 		sqlSession.delete("shop.reviewDelete", deleteMap);
-		
+
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class ShopDaoImp implements ShopDAO {
 
 	public String insertFoods(FoodsDTO dto) {
 		sqlSession.insert("shop.insert", dto);
-		return "adminfoods"; 
+		return "adminfoods";
 	}
 
 	@Override
@@ -109,7 +110,7 @@ public class ShopDaoImp implements ShopDAO {
 	public List<FoodsDTO> shopSearchProcess(HashMap<String, Object> map) {
 		return sqlSession.selectList("shop.search", map);
 	}
-	
+
 	public fb_BasketDTO shopBuy(HashMap<String, Object> map) {
 		return sqlSession.selectOne("shop.buybasket", map);
 	}
@@ -124,7 +125,7 @@ public class ShopDaoImp implements ShopDAO {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("member_no", member_no);
 		map.put("point", point);
-		
+
 		sqlSession.update("shop.savemoney_plus", map);
 	}
 
@@ -133,7 +134,7 @@ public class ShopDaoImp implements ShopDAO {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("member_no", member_no);
 		map.put("point", point);
-		
+
 		sqlSession.update("shop.savemoney_minus", map);
 	}
 
@@ -142,6 +143,30 @@ public class ShopDaoImp implements ShopDAO {
 		sqlSession.insert("shop.requestInsert", map);
 	}
 
+	@Override
+	public void coupon_delete(int member_no, int couponbook_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_no", member_no);
+		map.put("couponbook_no", couponbook_no);
 
+		sqlSession.delete("shop.couponDel", map);
+	}
 
+	@Override
+	public List<fb_CouponDTO> reCoupon(int member_no) {
+		return sqlSession.selectList("shop.recoupon", member_no);
+	}
+	
+	@Override
+	public int rePoint(int member_no) {
+		return sqlSession.selectOne("shop.repoint", member_no);
+	}
+
+	@Override
+	public void basket_delete(int foods_no, int member_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("foods_no", foods_no);
+		map.put("member_no", member_no);
+		sqlSession.delete("basket.delete", map);
+	}
 }

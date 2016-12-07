@@ -46,13 +46,21 @@ footer {
 
 li {
 	list-style-type: none;
-	color:white;
 }
+
+
 
 a {
 	text-decoration: none;
+}
+
+.logindiv{
 	color:white;
 }
+.logindiv a{
+	color:white;
+}
+
 
 /* 퀵메뉴 */
 #quick_menu {

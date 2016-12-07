@@ -600,13 +600,13 @@ border:2px solid black;
 </div>
 <div class='menu'>
 	<ul>
-		<li><a href='#'><img alt="" src="images/logo.png"></a></li>
+		<li><a href='main.do'><img alt="" src="images/logo.png"></a></li>
 		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
-				<li class='sub'><a href='#'>요리1</a></li>
-				<li class='sub'><a href='#'>요리2</a></li>
-				<li class='sub'><a href='#'>요리3</a></li>
+				<li class='sub'><a href='shop.do?category_no=1'>국/찌개</a></li>
+				<li class='sub'><a href='shop.do?category_no=2'>반찬</a></li>
+				<li class='sub'><a href='shop.do?category_no=3'>김치</a></li>
 			</ul></li>
 		<li><a href='recipe.do'>RECIPE</a>
 			<ul>
@@ -616,7 +616,7 @@ border:2px solid black;
 				<li class='sub'><a href="recipe.do?theme_no=4">다이어트</a></li>
 				<li class='sub'><a href="recipe.do?theme_no=5">야식</a></li>
 			</ul></li>
-		<li><a href='board_list.do'>BORDER</a>
+		<li><a href='board_list.do'>BOARD</a>
 			<ul>
 				<li class='sub'><a href='board_list.do'>게시판1</a></li>
 				<li class='sub'><a href='qa_list.do'>게시판2</a></li>

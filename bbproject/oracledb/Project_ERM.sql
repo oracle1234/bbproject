@@ -380,8 +380,8 @@ ALTER TABLE fb_coupon_book
 
 
 ALTER TABLE fb_request
-	ADD FOREIGN KEY (member_no)
-	REFERENCES fb_member (member_no)
+	ADD FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no)
 ;
 
 

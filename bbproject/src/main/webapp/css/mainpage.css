@@ -17,7 +17,7 @@ header {
 	box-sizing: border-box;
 	text-align: center;
 	margin: auto;
-	border: 1px solid gray;
+/* 	border: 1px solid gray; */
 	min-height: 1000px;
 }
 
@@ -25,26 +25,29 @@ header {
 	padding:10px;
 	width:390px;
 	height:311px;
-	border: 1px solid gray;
+	border-right: 1px solid gray;
 	text-align: left;
 }
 
-#notice{
-	padding:10px;
-	width:390px;
+.container{
+	width:412px;
 	height:197px;
-	border: 1px solid gray;
 	text-align: left;
+}
+
+.container iframe{
+	
+	width:412px;
+	height:197px;
 }
 
 
 #new{
 	padding:10px;
 	width:765px;
-	height:530px;
-	border: 1px solid gray;
+	height:528px;
 	margin-left:410px;
-	margin-top:-552px;
+	margin-top:-528px;
 	text-align: left;
 	
 }
@@ -73,6 +76,11 @@ header {
 }
 
 #bb{
+	width:388px;
+	height:200px;
+}
+
+#bb img{
 	width:388px;
 	height:200px;
 }

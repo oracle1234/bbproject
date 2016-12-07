@@ -31,12 +31,22 @@ public class LoginController {
 		this.memberservice = memberservice;
 	}
 
+
+	
 	@RequestMapping("/login.do")
-	public ModelAndView loginForm() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("view/login");
-		return mav;
+	public String login() {
+
+		
+		return "login";
 	}
+	
+	@RequestMapping("/find.do")
+	public String find() {
+
+		
+		return "find";
+	}
+	
 
 	@RequestMapping(value = "/loginpro.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public @ResponseBody HashMap<String, String> loginPro(String id, String pw, HttpSession session) {
@@ -51,7 +61,7 @@ public class LoginController {
 			if (dto.getId().equals("admin")) {
 				map.put("href", "admin.do");
 			} else {
-				map.put("href", "mypage.do");
+				map.put("href", "main.do");
 			}
 		}
 
@@ -73,7 +83,7 @@ public class LoginController {
 			session.removeAttribute("member");            
 			session.invalidate();            
 			}            
-		return "redirect:/mypage.do";
+		return "redirect:/main.do";
 
 	}
 }

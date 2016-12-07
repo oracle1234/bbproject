@@ -96,7 +96,7 @@ td{
 		<div class="board_btn">
 			<img alt="수정" src="./images/btn_ok.gif" id="update" />
 			<img alt="취소" src="./images/btn_cancel.gif" id="cancel" />
-			<img alt="뒤로" src="./images/btn_cancel.gif" id="back" />
+			<img alt="뒤로" src="./images/button_back.png" id="back" />
 		</div>
 	</form>
 	</div>

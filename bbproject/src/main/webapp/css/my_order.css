@@ -10,38 +10,28 @@
 
 .order_notice{
 	width:930px;
-	height:300px;
-	border:solid 1px gray;
+	height:170px;
 	margin:auto;
 	margin-top:5px;
+}
+
+.order_notice img{
+	width:930px;
+	height:170px;
+}
+
+#cal{
+	width:930px;
+	height:50px;
 	text-align: left;
-}
-
-.order_notice #notice_span{
-	font-size:20px;
-	font-style:bold;
-	color:red;
+	margin:auto;
 	margin-top:5px;
-	margin-left:5px;
-}
-
-.order_notice #notice_span2{
-	font-size:15px;
-	margin-top:5px;
-	margin-left:5px;
-}
-
-.order_notice #notice_span3{
-	font-size:15px;
-	font-style:bold;
-	color:gray;
-	margin-top:5px;
-	margin-left:5px;
+	line-height: 50px;
 }
 
 
 .myorder_table{
-	width:950px;
+	width:930px;
 	margin:auto;
 	margin-top:5px;
 }
@@ -54,3 +44,5 @@
 	z-index:100;
 	position:relative;
 } 
+
+

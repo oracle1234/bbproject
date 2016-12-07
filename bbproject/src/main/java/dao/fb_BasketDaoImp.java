@@ -1,6 +1,6 @@
 package dao;
 
-import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -31,9 +31,8 @@ public class fb_BasketDaoImp implements fb_BasketDAO{
 	}
 
 	@Override
-	public void delete(int foods_no) {
-		sqlSession.delete("basket.delete", foods_no);
-		
+	public void delete(HashMap<String, Object> map) {
+		sqlSession.delete("basket.delete", map);
 	}
 
 

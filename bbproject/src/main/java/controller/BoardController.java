@@ -687,17 +687,6 @@ public class BoardController {
 			}
 			qdto.setQa_upload(random + "_" + fileName);
 		}
-		
-		System.out.println(qdto.getMember_no());
-		System.out.println(qdto.getBoardcategory_no());
-		System.out.println(qdto.getMember_no());
-		System.out.println(qdto.getQa_content());
-		System.out.println(qdto.getQa_no());
-		System.out.println(qdto.getQa_readcount());
-		System.out.println(qdto.getQa_subject());
-		System.out.println(qdto.getQa_upload());
-		System.out.println(qdto.getQa_writer());
-		System.out.println(qdto.getQa_reg_date());
 
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		qdto.setMember_no(mdto.getMember_no());

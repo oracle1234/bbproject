@@ -5,7 +5,7 @@
 <mapper namespace="order">
 
 	<select id="list" resultType="dto.fb_OrderDTO" parameterType="int">
-		select day, foods_no, price, delivery_condition, amount
+		select *
 		from fb_request
 		where member_no=#{member_no}
 	</select>
@@ -16,11 +16,45 @@
 	where member_no=#{member_no} and foods_no=#{foods_no} and day=#{day}
 	</delete> -->
 	
-	<select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
+	
+	
+<!--널
+  <select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
 	select *
 	from fb_request
 <![CDATA[where member_no=#{member_no} and 
     day >= #{start,jdbcType=TIMESTAMP}
-    and day < #{start,jdbcType=TIMESTAMP}]]>
-	</select>
+    and day <= #{end,jdbcType=TIMESTAMP}]]>
+	</select>    -->
+
+
+<!--  값 받아오고 부적절한 열 유형 -->
+ <!-- <select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
+	select *
+	from fb_request
+<![CDATA[where member_no=#{member_no} and 
+    day >= to_date(#{start},'YYYY-MM-DD')
+    and day <= to_date(#{end},'YYYY-MM-DD')]]>
+    </select>  -->  
+    
+     <select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
+	<![CDATA[
+		select *
+		from fb_request
+		where member_no=#{member_no} and 
+	    day >= to_date(#{start},'yyyy-mm-dd')
+	    and day <= to_date(#{end},'yyyy-mm-dd')
+    ]]>
+    </select>  
+
+    
+     
+   <!--  <select id="search" resultType="dto.fb_OrderDTO" parameterType="java.util.HashMap">
+	select *
+	from fb_request
+<![CDATA[where member_no=#{member_no} and 
+    day >= to_date(#{start})
+    and day <= to_date(#{end})]]>
+    </select>   -->
+    
 </mapper>

@@ -9,12 +9,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title" /></title>
 
-<link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/reset.css?var2" media="all" />
 <!-- <link rel="stylesheet" type="text/css" href="css/header.css" media="all" /> -->
 <link rel="stylesheet" type="text/css" href="css/main.css?var=2" media="all" />
-<link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/menu.css?var=2" media="all" />
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
-<link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
+<link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css?var=2" />
+
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/main.js?var=2"></script>
 

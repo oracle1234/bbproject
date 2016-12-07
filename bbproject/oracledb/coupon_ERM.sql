@@ -69,7 +69,7 @@ select *
 		
 select *
 from FB_COUPON_BOOK
-where member_no = 4
+where member_no = 2
 		
 		
 		

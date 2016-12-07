@@ -7,8 +7,8 @@
 
 	<insert id="ins" parameterType="dto.MemberDTO">
 		insert into fb_member values
-		(SEQ_member_no.nextval, #{member_name}, #{id}, #{pw},
-		replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''), 0)
+		(SEQ_member_no.nextval, #{member_name}, #{id}, #{pw}, replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''),0, 0)
+
 	</insert>
 
 	<select id="ck" resultType="int" parameterType="String">
@@ -45,7 +45,7 @@
 	<update id="upd" parameterType="dto.MemberDTO">
 	update fb_member
 	set
-	pw=#{pw}, replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''), 0, 0)
+	pw=#{pw}, address=replace(#{address},',',''), tel=replace(#{tel},',',''), mail=replace(#{mail},',',''), point=0, stamp=0
 	where id=#{id} and member_name=#{member_name}
 	</update>
 	
