@@ -39,6 +39,6 @@ height:600px;
  <ul class="bxslider">
  <li><img alt="" src="images/bx2.png"></li>
  <li><img alt="" src="images/bx1.png"></li>
- <li><img alt="" src="images/bx2.png"></li>
+ <li><img alt="" src="images/bx3.png"></li>
 			</ul>
  </div>

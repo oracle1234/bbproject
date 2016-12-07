@@ -22,10 +22,15 @@ table, tr, td{
 
 .cart_state{
 	width:930px;
-	height:200px;
-	border:solid 1px gray;
+	height:130px;
 	margin:auto;
 	margin-top:5px;
+}
+
+.cart_state img{
+	
+	width:930px;
+	height:140px;
 }
 
 

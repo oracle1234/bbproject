@@ -23,6 +23,6 @@
 
 	<delete id="delete" parameterType="int">
 		delete from fb_basket
-		where foods_no=#{foods_no} and member_no=#{member_no}
+		where foods_no=#{foods_no} and member_no=#{member_no} and amount=#{amount}
 	</delete>
 </mapper>

@@ -57,11 +57,14 @@ $(document).ready(function() {
 		
 		
 		$('input[type=checkbox]:checked').each(function() {
-			alert($(this).val());
+			
+			alert("${member_no}");
+			alert($(this).next().val());
+			alert($('#count_select').next().next().val());
 			$.ajax({
 		 		type:'GET',
 		 		dataType :'json',
-				url:'my_cart_delete.do?member_no=${member_no}&foods_no='+$(this).next().val()+'&amount='+$('#count_select').val(),
+				url:'my_cart_delete.do?member_no=${member_no}&foods_no='+$(this).next().val()+'&amount='+$('#count_select').next().next().val(),
 		 		success: cartlist,
 				error: function(xhr, textStatus, error) {
 		 			alert(error);
@@ -109,10 +112,16 @@ $(document).ready(function() {
 	<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 장바구니
 	</div>
 	<div class="cart_state">
-		<img id="cart_state_photo" alt="" src="">
+		<img id="cart_state_photo" alt="" src="images/cart_info.png">
 	</div>
-
-	<table class="mycart_table">
+	
+	<%-- <c:choose>
+		<c:when test="${aList==null}">
+		<img alt="" src="images/cart_empty.png">
+		</c:when>
+		
+		<c:otherwise> --%>
+		<table class="mycart_table">
 		<tr>
 			<th width="5%"><input type="checkbox" class="cart_checkbox"></th>
 			<th width="20%">상품명</th>
@@ -139,16 +148,9 @@ $(document).ready(function() {
 							</c:forEach>
 							
 					</select>  
-							
-<%-- <select class="count_select" name="count_select">
-  <span class="placeholder">수량</span>
-  <c:forEach var="i" begin="1" end="20" step="1">
-		<option id="option" value="${i}">${i}</option>
-	</c:forEach>
-</select> --%>
-
 					<input type="button" class="upd_amount" value="변경">
 					<input type="hidden" class="foods_no" value="${dto.foods_no}">
+					<input type="hidden" class="amount" value="${dto.amount}">
 					</td>
 					<td>${dto.price*dto.amount*1/100}원</td>
 					<td>${dto.price*dto.amount}원</td>
@@ -167,14 +169,18 @@ $(document).ready(function() {
 		<tr>
 			<td>${sum}원</td>
 			<td>0원</td>
-			<td><c:if test="${sum<70000}">
-			2500원</c:if>
-			<c:if test="${sum>=70000}">
-		0원</c:if></td>
+			<td>
+			<c:if test="${sum<45000}">
+			2500원
+			</c:if>
+			<c:if test="${sum>=45000}">
+		무료</c:if></td>
 			<td>${sum}원</td>
 		</tr>
 	</table> 
-
+	<%-- 	</c:otherwise>
+	</c:choose>
+ --%>
 	<div class="cart_button">
 		<input type="button" id="cart_del" value="선택상품삭제"> <input
 			type="submit" id="cart_order" value="선택상품주문">
