@@ -228,12 +228,6 @@
 		<put-attribute name="body" value="/WEB-INF/view/shop_detail/detail_product.jsp" />
 	</definition>
 	
-	<definition name="shop_buy" extends="index">
-		<put-attribute name="title" value="buy_page" />
-		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/shop_buy/buyPage.jsp" />
-	</definition>
-	
 	<definition name="shop_buy_result" extends="index">
 		<put-attribute name="title" value="buy_result_page" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/shop_menu.jsp" />

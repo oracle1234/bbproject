@@ -604,9 +604,9 @@ border:2px solid black;
 		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
-				<li class='sub'><a href='#'>요리1</a></li>
-				<li class='sub'><a href='#'>요리2</a></li>
-				<li class='sub'><a href='#'>요리3</a></li>
+				<li class='sub'><a href='shop.do?category_no=1'>국/찌개</a></li>
+				<li class='sub'><a href='shop.do?category_no=2'>반찬</a></li>
+				<li class='sub'><a href='shop.do?category_no=3'>김치</a></li>
 			</ul></li>
 		<li><a href='recipe.do'>RECIPE</a>
 			<ul>

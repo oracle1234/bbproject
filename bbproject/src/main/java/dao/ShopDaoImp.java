@@ -163,7 +163,10 @@ public class ShopDaoImp implements ShopDAO {
 	}
 
 	@Override
-	public void basket_delete(int foods_no) {
-		sqlSession.delete("basket.delete", foods_no);
+	public void basket_delete(int foods_no, int member_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("foods_no", foods_no);
+		map.put("member_no", member_no);
+		sqlSession.delete("basket.delete", map);
 	}
 }

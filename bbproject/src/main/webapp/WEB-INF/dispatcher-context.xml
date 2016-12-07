@@ -239,6 +239,7 @@
 			<mvc:mapping path="/boardtitlesearch.do" />
 			<mvc:mapping path="/boardcontentsearch.do" />
 			<mvc:mapping path="/ordersearch.do" />
+			<mvc:mapping path="/detail**" />
 			
 			<!-- 제외 시킬거 -->
 			<!-- spring 3.2 버전 -->
