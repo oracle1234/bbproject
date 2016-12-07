@@ -153,7 +153,7 @@ ALTER TABLE fb_qa_board
 
 
 /*각종 실행~*/
-select * from fb_boardcategory
+select * from fb_boardcategory;
 select * from FB_MEMBER;
 select * from FB_COMMENT;
 
