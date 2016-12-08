@@ -8,7 +8,11 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	
+
+	if('${aList.bdto}' == ""){
+	 	$('.myboard_find').empty();
+	}
+
 /* 	var one = 1;
 	var two = 2;
 	var three = 3; */
@@ -21,20 +25,22 @@ $(document).ready(function(){
 	
 
 	// 검색
-	$('#button_find').on('click', function(){
-		var searchval = $('#searchval').val();
+	/* $('.button_find').on('click', function(){ */
+		
+		$(document).on('click','#button_find', function(){
+		var searchval = $('.searchval').val();
 		//alert(searchval);
 		//alert($('input[type=radio]:checked').val());
 		if(searchval==''){
 			alert('검색어를 입력하세요.');
-			 $('#searchval').focus();
+			 $('.searchval').focus();
 		} else {
 			if($('input[type=radio]:checked').val()=="제목"){
 			 		$.ajax({
 			 			type:"POST",
 			 			dataType:"json",
 			 			url:"boardtitlesearch.do",
-			 			data:"boardcategory_no="+boardcategory_no+"&board_subject="+$('#searchval').val(),
+			 			data:"boardcategory_no="+boardcategory_no+"&board_subject="+$('.searchval').val(),
 			 			success: searchlist1,
 			 			error : function(xhr, textStatus, error) {
 				 			alert(error);
@@ -45,7 +51,7 @@ $(document).ready(function(){
 		 			type:"POST",
 		 			dataType:"json",
 		 			url:"boardcontentsearch.do",
-		 			data:"boardcategory_no="+boardcategory_no+"&board_content="+$('#searchval').val(),
+		 			data:"boardcategory_no="+boardcategory_no+"&board_content="+$('.searchval').val(),
 		 			success: searchlist1,
 		 			error : function(xhr, textStatus, error) {
 			 			alert(error);
@@ -53,7 +59,7 @@ $(document).ready(function(){
 		 		})
 			}
 		}
-	}); 
+		});
  		
 	$(document).on('click', '#button_free', function(){
 		boardcategory_no = 1;
@@ -107,12 +113,11 @@ Handlebars.registerHelper("newDate",function(timeValue){
 function photolist(data){
 	//alert(data.pdto.length);
 	$('.myboard_table').empty();
+	$('.myboard_find').empty();
 	
 	if(data.pdto== null){
 		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
 	}else{
-		$('#empty').remove();
-		$('.myboard_table').empty();
 		$('.myboard_table').append('<tr>'+
 		'<th width="10%">번호</th>'+
 		'<th width="15%">분류</th>'+
@@ -130,30 +135,29 @@ function photolist(data){
 			var template=Handlebars.compile(source); 
 			$('.myboard_table').append(template(value));
 			//  		});
-			$('.myboard_table').append(
-			 		'<div class="myboard_find">'+
-					'<input type="radio" name="searchtype" value="제목">제목 <input'+
-						'type="radio" name="searchtype" value="내용">내용 <input'+
-						'type="text" id="searchval" placeholder="검색" name="searchval">'+
-					'<img id="button_find" src="./images/button_find2.png">'+
-				'</div>'); 
 		});
+	 	
+	 	$('.myboard_find').append('<div class="myboard_find"><input type="radio" name="searchtype" value="제목">제목 '+
+				'<input type="radio" name="searchtype" value="내용">내용 '+
+				'<input type="text" class="searchval" placeholder="검색" name="searchval">'+
+	' <input type="button" id="button_find" value="검색"></div>');
 	}
+	
 }
 
 function qalist(data){
 	$('.myboard_table').empty();
+	$('.myboard_find').empty();
+	
 	if(data.qdto== null){
 		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
 	}else{
-		$('#empty').remove();
-	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
 	'<th width="10%">번호</th>'+
 	'<th width="15%">분류</th>'+
 	'<th width="50%">제목</th>'+
 	'<th width="20%">작성일</th>'+
-'</tr>');
+	'</tr>');
 	
  		
 	$.each(data.qdto,function(index, value){
@@ -169,25 +173,23 @@ function qalist(data){
  		$('.myboard_table').append(template(value));
  		
 //  		 		});
- 		$('.myboard_table').append(
- 		 		'<div class="myboard_find">'+
- 				'<input type="radio" name="searchtype" value="제목">제목 <input'+
- 					'type="radio" name="searchtype" value="내용">내용 <input'+
- 					'type="text" id="searchval" placeholder="검색" name="searchval">'+
- 				'<img id="button_find" src="./images/button_find2.png">'+
- 			'</div>'); 
 	});
+	
+	$('.myboard_find').append('<div class="myboard_find"><input type="radio" name="searchtype" value="제목">제목 '+
+			'<input type="radio" name="searchtype" value="내용">내용 '+
+			'<input type="text" class="searchval" placeholder="검색" name="searchval">'+
+			' <input type="button" id="button_find" value="검색"></div>');
 }
 }
 
 function freelist(data){
 	//alert(data.pdto.length);
 	$('.myboard_table').empty();
+	$('.myboard_find').empty();
+	
 	if(data.bdto == null){
 		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
 	}else{
-		$('#empty').remove();
-		$('.myboard_table').empty();
 		$('.myboard_table').append('<tr>'+
 	'<th width="10%">번호</th>'+
 	'<th width="15%">분류</th>'+
@@ -207,14 +209,12 @@ function freelist(data){
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
   		 		//});
- 	 	$('.myboard_table').append(
- 		'<div class="myboard_find">'+
-		'<input type="radio" name="searchtype" value="제목">제목 <input'+
-			'type="radio" name="searchtype" value="내용">내용 <input'+
-			'type="text" id="searchval" placeholder="검색" name="searchval">'+
-		'<img id="button_find" src="./images/button_find2.png">'+
-	'</div>'); 
 	});
+	
+	$('.myboard_find').append('<div class="myboard_find"><input type="radio" name="searchtype" value="제목">제목 '+
+			'<input type="radio" name="searchtype" value="내용">내용 '+
+			'<input type="text" class="searchval" placeholder="검색" name="searchval">'+
+			' <input type="button" id="button_find" value="검색"></div>');
 	
 	}
 }
@@ -252,41 +252,43 @@ function searchlist1(data){
 		<a href="mypage.do">HOME</a> > <a href="mypage.do">마이페이지</a> > 내가 쓴 글
 	</div>
 	<div class="board_button">
-		<input type="button" id="button_free" value="자유게시판"> <input
-			type="button" id="button_review" value="포토후기"> <input
-			type="button" id="button_qa" value="Q&A">
+		<input type="button" id="button_free" value="자유게시판"/> <input
+			type="button" id="button_review" value="포토후기"/> <input
+			type="button" id="button_qa" value="Q&A"/>
 	</div>
 	<table class="myboard_table">
-	<c:choose>
-		<c:when test="${aList.bdto[0].board_no == null}">
-			<img id="empty" src="images/no_board.png">
-		</c:when>
-	<c:otherwise> 
-		<tr>
-			<th width="10%">번호</th>
-			<th width="15%">분류</th>
-			<th width="50%">제목</th>
-			<th width="20%">작성일</th>
-		</tr>
-<%-- 		<c:forEach var="dto" items="${aList}"> --%>
-			<c:forEach var="bdto" items="${aList.bdto}">
+		<c:choose>
+			<c:when test="${aList.bdto[0].board_no == null}">
+			<tr>
+				<td>
+					<img id="empty" src="images/no_board.png" />
+				</td>
+			</tr>
+			</c:when>
+			<c:otherwise> 
 				<tr>
-					<td>${bdto.board_no}</td>
-					<td>자유게시판</td>
-					<td>${bdto.board_subject}</td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
-							value="${bdto.board_reg_date}" /></td>
+					<th width="10%">번호</th>
+					<th width="15%">분류</th>
+					<th width="50%">제목</th>
+					<th width="20%">작성일</th>
 				</tr>
-			</c:forEach>
-<%-- 		</c:forEach> --%>
-
+				<c:forEach var="bdto" items="${aList.bdto}">
+					<tr>
+						<td>${bdto.board_no}</td>
+						<td>자유게시판</td>
+						<td>${bdto.board_subject}</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
+								value="${bdto.board_reg_date}" /></td>
+					</tr>
+				</c:forEach>
+			
+			</c:otherwise>
+		</c:choose>
+	</table>
 	<div class="myboard_find">
 		<input type="radio" name="searchtype" value="제목">제목 <input
 			type="radio" name="searchtype" value="내용">내용 <input
-			type="text" id="searchval" placeholder="검색" name="searchval">
-		<img id="button_find" src="./images/button_find2.png">
+			type="text" class="searchval" placeholder="검색" name="searchval">
+		<input type="button" id="button_find" value="검색">
 	</div>
-	</c:otherwise>
-	</c:choose>
-	</table>
 </div>

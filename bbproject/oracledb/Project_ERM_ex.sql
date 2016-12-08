@@ -322,13 +322,16 @@ insert into fb_photo_board values
 (2, 2, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
 
 delete from fb_board where member_no=1
+
+select * from fb_member
+
 select * from fb_board
 insert into fb_board values
-(1, 2, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
 insert into fb_board values
-(1, 2, seq_board_no.nextval, 0, '백나연', '자유게시판입니다2.', sysdate, '자유2');
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다2.', sysdate, '자유2');
 insert into fb_board values
-(1, 2, seq_board_no.nextval, 0, '백나연', '자유게시판입니다3.', sysdate, '자유3');
+(1, 1, seq_board_no.nextval, 0, '백나연', '자유게시판입니다3.', sysdate, '자유3');
 
 CREATE TABLE fb_photo_board
 (

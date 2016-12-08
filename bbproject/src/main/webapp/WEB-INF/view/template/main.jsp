@@ -27,26 +27,23 @@
 <div id="mainbody">
 <div id="board">
 <img class="title" src="images/main_board.png">
+<c:forEach var="BoardDTO" items="${aList}">
 <table>
 <tr>
 <td width="70%">${BoardDTO.board_subject}</td>
 <td width="30%"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_reg_date}"/></td>
 </tr>
 </table>
+</c:forEach>
 </div>
    <div class="container">
-					<iframe src="https://www.youtube.com/embed/fOyr5bvf-Wk?showinfo=0&am p;autoplay=1" frameborder="0" allowfullscreen></iframe>
-                </div>
+		<iframe src="https://www.youtube.com/embed/fOyr5bvf-Wk?showinfo=0&am p;autoplay=1" frameborder="0" allowfullscreen></iframe>
+      </div>
 <div id="new">
 <img class="title" src="images/main_new.png">
-<table>
-<c:forEach items="${aList}" var="FoodsDTO">
-<tr>
-<td width="30%">${FoodsDTO.picture}</td>
-<td width="70%">${FoodsDTO.foods_name}<br>출시!</td>
-</tr>
-</c:forEach>
-</table>
+<ul><li class="main_photo"><img src="./images/new_1.jpg"></li><li class="main_content"><p>●참치김치찌개</p><span class="main_span">요즘처럼 경기가 안 좋을 때, 답답한 가슴 속까지 확 뚫어주는 얼큰한 김치찌개 생각나시죠? 어머니가 해주시던 깊은 그 맛으로 오늘 하루 속 시원하게 시작하세요.</span></li></ul>
+<ul><li class="main_photo"><img src="./images/new_2.jpg"></li><li class="main_content"><p>●영양콩비지찌개</p><span class="main_span">오늘 저녁 뭘 해먹지? 고민이신 분들을 위해 반찬을 부탁해에서 제안하는 식탁요리, 올갱이 된장국입니다.</span></li></ul>
+<ul><li class="main_photo"><img src="./images/new_3.jpg"></li><li class="main_content"><p>●올갱이된장국</p><span class="main_span">콩비지에는 현대인에게 부족하기 쉬운 식이섬유가 다량 함유되어 있습니다. 또한 콜레스테롤을 낮춰주고 혈액을 맑게 해주는 효능이 있어 동맥경화, 고혈압, 고지혈증과 같은 성인병예방에 도움이 됩니다.</span></li></ul>
 </div>
 
 <div id="etc">
@@ -66,8 +63,8 @@
 <div id="photo">
 <img class="title" src="images/main_photo.png">
 <ul>
-<c:forEach items="${aList}" var="Photo_BoardDTO">
-<li>${Photo_BoardDTO.picture}</li>
+<c:forEach items="${aList}" var="idto">
+<li><a href="#"><img alt="후기이미지" src="photo_image.do?filename=${idto.photo_upload}" width="200"></a></li>
 </c:forEach>
 </ul>
 </div>
@@ -82,6 +79,5 @@
 		</p>
 	</div>
 	</div>
-</div>
 </body>
 </html>
