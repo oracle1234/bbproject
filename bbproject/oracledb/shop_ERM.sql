@@ -301,6 +301,7 @@ CREATE TABLE fb_lately_product
 	lately_no number NOT NULL,
 	member_no number NOT NULL,
 	foods_no number NOT NULL
+	PRIMARY KEY (lately_no)
 );
 
 --외래키 변경
