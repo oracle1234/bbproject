@@ -9,17 +9,19 @@
 var s_pw = "${sessionScope.member.pw}";
 var s_id = "${sessionScope.member.id}";
 var s_name = "${sessionScope.member.member_name}";
+var s_point = "${sessionScope.member.point}";
 
 $(document).ready(function(){
 	//alert(s_pw);
 	$(".join").hide();
 	
 	$("#pwupok").on("click", function(){
-		alert($('#pwck').val());
+	//	alert($('#pwck').val());
 		if(s_pw==$("#pwckup").val()){
 			$(".password").remove();
 			$(".join").show();
 			$("#member_nameup").attr("value",s_name);
+			$("#point").attr("value",s_point);
 			$("#idup").attr("value",s_id);
 		}else{
 			alert("비밀번호를 다시 입력해주세요.");
@@ -197,6 +199,11 @@ function sample4_execDaumPostcode() {
 
 <style>
 
+.mypage_body .password{
+width:950px;
+height:100px;
+}
+
 fieldset{
 width:900px;
 background-color: white;
@@ -235,13 +242,28 @@ background-color: white;
 	width:780px;
 	height:60px;
 } 
+
+
+#passtable{
+margin:auto;	
+margin-top:30px;
+}
+
+.labelpass{
+width:100px;
+}
+
+.formpass{
+width:200px;
+}
+
 </style>
 	<div class="mypage_body">
 	<div class="password">
-	<table>
+	<table id="passtable">
 <tr>
-<td class="label"><label for="pw">비밀번호확인</label></td>
-<td class="form"><input type="password" id="pwckup"></td>
+<td class="labelpass"><label for="pw">비밀번호확인</label></td>
+<td class="formpass"><input type="password" id="pwckup"></td>
 </tr>
 </table>
 <input type="button" id="pwupok" value="확인"> 
@@ -290,6 +312,7 @@ background-color: white;
 <input type="text" name="phone2" id="phone2up" maxlength="4">
 <input type="checkbox" id="messagreeup">문자메세지를 수신합니다.
 <!-- <input type="hidden" id="tel" name="tel">-->
+<input type="hidden" id="point" name="point">
 </td>
 </tr>
 

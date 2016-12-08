@@ -7,17 +7,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="js/main.js"></script>
+<script src="js/main2.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <title>Insert title here</title>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
 <!-- <link rel="stylesheet" type="text/css" href="css/header.css" media="all" /> -->
-<link rel="stylesheet" type="text/css" href="css/main.css?var=2" media="all" />
+<!-- <link rel="stylesheet" type="text/css" href="css/main.css?var=2" media="all" /> -->
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
-<link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css" /> -->
 <link rel="stylesheet" type="text/css" href="css/mainpage.css?var=2" />
 		
 </head>

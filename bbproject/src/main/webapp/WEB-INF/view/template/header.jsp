@@ -295,22 +295,20 @@ var s_name = "${sessionScope.member.member_name}";
 
 .screen {
 	display: none;
-	background-color: gray;
 	z-index: 100000;
 	position: absolute;
 	margin-top: -79px;
-	width: 2000px;
-	height: auto;
-	min-height: 1200px;
-	background-color: rgba(255, 255, 255, 0.5);
+	width: 100%;
+	height: 2100px;
+	background-color: rgba(108, 107, 107, 0.5);
 }
 
 .login {
 	width: 400px;
 	height: 300px;
 	z-index: 1000000;
-	margin-top: 200px;
-	margin-left: 500px;
+	margin-top:200px;
+	margin-left:780px;
 	background-color:white;
 }
 
@@ -329,9 +327,14 @@ margin-left:5px;
 
 #close {
 	width: 50px;
-	height: 50px;
+	height: 47px;
 	margin-left: 350px;
-	margin-top:-100px;
+	 margin-top:-45px; 
+}
+
+#close img{
+	width: 50px;
+	height: 47px;
 }
 
 .login-form {
@@ -382,14 +385,12 @@ margin-left:20px;
 
 .idpwfind {
 	display: none;
-	background-color: gray;
 	z-index: 100000;
 	position: absolute;
 	margin-top: -79px;
-	width: 2000px;
-	height: auto;
-	min-height: 1200px;
-	background-color: rgba(255, 255, 255, 0.5);
+	width: 100%;
+	height: 2100px;
+	background-color: rgba(108, 107, 107, 0.5);
 }
 
 .idpwform {
@@ -397,7 +398,7 @@ margin-left:20px;
 	height: 300px;
 	z-index: 1000000;
 	margin-top: 200px;
-	margin-left: 400px;
+	margin-left: 650px;
 	background-color: white;
 }
 
@@ -418,9 +419,14 @@ margin-left:5px;
 
 #findclose {
 	width: 50px;
-	height: 50px;
+	height: 47px;
 	margin-left: 550px;
-	margin-top:-100px;
+	margin-top:-45px;
+}
+
+#findclose img{
+	width: 50px;
+	height: 47px;
 }
 
 .idfind {
@@ -449,18 +455,17 @@ margin-left:5px;
 	z-index: 1000000;
 	position: absolute;
 	margin-top: -79px;
-	width: 2000px;
-	height: auto;
-	min-height: 1200px;
-	background-color: rgba(255, 255, 255, 0.5);
+	width: 100%;
+	height: 2100px;
+	background-color: rgba(108, 107, 107, 0.5);
 }
 
 .pwupdform {
 	width: 300px;
-	height: 300px;
+	height: 250px;
 	z-index: 10000000;
 	margin-top: 200px;
-	margin-left: 550px;
+	margin-left: 750px;
 	background-color: white;
 	border: 2px solid black;
 }
@@ -476,8 +481,15 @@ margin-left:5px;
 
 #updclose {
 	width: 50px;
-	height: 50px;
+	height: 47px;
 	margin-left: 250px;
+}
+
+#updclose img{
+	width: 50px;
+	height: 47px;
+	margin-left: 250px;
+	margin-top: -93px;
 }
 
 #logincheck {
@@ -520,8 +532,8 @@ input {
     outline: none;
   display: block;
   background: rgba(0, 0, 0, 0.1);
-   width:180px;
-  height:30px; 
+/*    width:180px; */
+  height:30px;  
   border: 0;
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.6);
@@ -534,13 +546,14 @@ input {
           margin-top:40px;
           margin-left:40px; 
           margin:10px;
+          float:left;
 }
 
 .pwfind .signUpInput {
     outline: none;
   display: block;
   background: rgba(0, 0, 0, 0.1);
-   width:180px;
+   /* width:180px; */
   height:30px; 
   border: 0;
   border-radius: 4px;
@@ -554,13 +567,14 @@ input {
           margin-top:40px;
           margin-left:40px; 
           margin:10px;
+            float:left;
 }
 
 .pwupd .signUpInput {
     outline: none;
   display: block;
   background: rgba(0, 0, 0, 0.1);
-   width:180px;
+ /*   width:180px; */
   height:30px; 
   border: 0;
   border-radius: 4px;
@@ -571,9 +585,10 @@ input {
    line-height: inherit; 
   -webkit-transition: 0.3s ease;
           transition: 0.3s ease;
-          margin-top:100px;
+          /* margin-top:100px; */
           margin-left:40px; 
           margin:10px;
+           float:left;
 }
 
 #findbutton{
@@ -586,6 +601,21 @@ border:2px solid black;
 width:150px;
 height:40px;
 border:2px solid black;
+}
+
+.idbutton{
+float:right;
+margin-top:-30px;
+}
+
+.pwbutton{
+float:right;
+margin-top:-30px;
+}
+
+#pwupdok{
+float:right;
+margin-top:-30px;
 }
 
 </style>
@@ -645,7 +675,7 @@ border:2px solid black;
 
 		<div id="button">
 			<img id="findbutton" src="images/button_find.png"> 
-			<img id="joinbutton" src="images/button_join.png">
+			<a href="agree.do"><img id="joinbutton" src="images/button_join.png"></a>
 		</div>
 	</div>
 </div>
@@ -656,7 +686,7 @@ border:2px solid black;
 	<div class="idpwform">
 		<div class="idpwheader">
 		<p>Find</p>
-			<button id="findclose" value="x"></button>
+			<img id="findclose" src="images/button_close.png">
 		</div>
 		<div class="idfind">
 			<span>아이디 찾기 이름과 이메일을 입력하시면 아이디를 알려드립니다.</span>
@@ -687,7 +717,7 @@ border:2px solid black;
 		<div class="pwupdform">
 			<div class="pwupdheader">
 			<p>New Password</p>
-				<button id="updclose" value="x"></button>
+				<img id="updclose" src="images/button_close.png">
 			</div>
 			<table>
 				<tr>
@@ -698,7 +728,7 @@ border:2px solid black;
 						<font id="logincheck" name="logincheck" size="2"></font></td>
 				</tr>
 			</table>
-			<input type="button" id="pwupdok" value="확인">
+			<img id="pwupdok" src="images/button_ok.png">
 		</div>
 	</div>
 	

@@ -31,7 +31,7 @@ $(document).ready(function(){
 			alert("전부 입력해주세요.");
 				 $('#otherreasonle').focus();
 			} else {
-				$("a#okhrefle").attr("href","joinsucc.do");
+				$("a#okhrefle").attr("href","leavesucc.do");
 			$("#formle").attr('action','myleave.do').attr('method','post').attr('onsubmit','true').submit();
 		}
 		});
@@ -39,12 +39,35 @@ $(document).ready(function(){
 	
 });
 </script>
+
+<style>
+
+.mypage_body .passwordle{
+width:300px;
+height:200px;
+margin:auto;
+}
+
+.labelleave{
+width:100px;
+}
+
+.formleave{
+width:200px;
+}
+
+#passtable{
+margin:auto;	
+margin-top:30px;
+}
+
+</style>
 	<div class="mypage_body">
 	<div class="passwordle">
-	<table>
+	<table id="passtable">
 <tr>
-<td class="label"><label for="pw">비밀번호확인</label></td>
-<td class="form"><input type="password" name="pw" id="pwckle">
+<td class="labelleave"><label for="pw">비밀번호확인</label></td>
+<td class="formleave"><input type="password" name="pw" id="pwckle">
 <font id="check" name="check" size="2"></font></td>
 </tr>
 </table>

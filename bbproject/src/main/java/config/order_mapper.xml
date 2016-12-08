@@ -43,7 +43,7 @@
 		from fb_request
 		where member_no=#{member_no} and 
 	    day >= to_date(#{start},'yyyy-mm-dd')
-	    and day <= to_date(#{end},'yyyy-mm-dd')
+	    and day < to_date(#{end},'yyyy-mm-dd')+1
     ]]>
     </select>  
 

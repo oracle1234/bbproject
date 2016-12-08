@@ -1,7 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-   <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style2.css">
 	<link rel="stylesheet" type="text/css" href="css/my_order.css" />
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
@@ -14,8 +13,8 @@ var s_no ="${sessionScope.member.member_no}";
 $(document).ready(function() {
 
 		$('#calfindButton').on('click',function(){
-			alert($("#start").val());
-			alert($("#end").val());
+			//alert($("#start").val());
+			//alert($("#end").val());
 			$.ajax({
 				type:'POST',
 				dataType : 'json',
@@ -31,7 +30,7 @@ $(document).ready(function() {
 });
 		
 	 function searchlist(data){
-		 if(data.list == null){
+		 if(data.list.length <=0){
 			 alert("조회 기간에 해당하는 주문내역이 없습니다.");
 		 }else {
 			 $('.myorder_table').empty();
@@ -45,7 +44,7 @@ $(document).ready(function() {
 				'</tr>');
 			
 			$.each(data.list, function(index, value){
-				alert(value.foods_name);
+				//alert(value.foods_name);
 				$('.myorder_table').append('<tr>'+
 				'<td>'+value.day+'</td>'+
 				'<td>'+value.foods_name+'</td>'+

@@ -31,7 +31,7 @@ $(function () {
 <style>
 .bxslider li img{
 width:100%;
-height:600px;
+height:500px;
 }
 
 </style>
@@ -40,5 +40,5 @@ height:600px;
  <li><img alt="" src="images/bx2.png"></li>
  <li><img alt="" src="images/bx1.png"></li>
  <li><img alt="" src="images/bx3.png"></li>
-			</ul>
+</ul>
  </div>
