@@ -164,7 +164,6 @@ public class BoardController {
 
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
 
-		// int totalRecord = service.countProcess(bdto.getBoardcategory_no());
 		int totalRecord = list.size();
 		if (totalRecord >= 1) {
 			if (pv.getCurrentPage() == 0)
@@ -180,7 +179,6 @@ public class BoardController {
 			pdto = new PageDTO();
 		}
 
-		// mav.addObject("list", service.pageListProcess(pageMap));
 		mav.addObject("keyField", keyField);
 		mav.addObject("keyWord", keyWord);
 		mav.addObject("pv", pdto);
@@ -261,12 +259,16 @@ public class BoardController {
 		insertMap.put("board_no", bdto.getBoard_no());
 		insertMap.put("member_no", cdto.getMember_no());
 		insertMap.put("comment_writer", cdto.getComment_writer());
+		
+//		System.out.println(cpdto2.getCurrentPage());
+		
 		service.commentInsertProcess(insertMap);
-
+		
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
-
+		
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -274,34 +276,33 @@ public class BoardController {
 				currentPage = cpdto2.getCurrentPage();
 
 			cpdto = new Comment_PageDTO(currentPage, totalRecord);
-
 			pageMap.put("startRow", cpdto.getStartRow());
 			pageMap.put("endRow", cpdto.getEndRow());
 			pageMap.put("board_no", bdto.getBoard_no());
+			resultMap.put("page", cpdto);
+			resultMap.put("list", service.commentPageProcess(pageMap));
 		}
-
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", service.commentPageProcess(pageMap));
-		resultMap.put("page", cpdto);
-
 		return resultMap;
 	}// end commentInsertProcess()
 
 	// <댓글삭제>
 	@RequestMapping("/commentDelete.do")
-	public @ResponseBody HashMap<String, Object> commentDeleteProcess(BoardDTO bdto, CommentDTO cdto, MemberDTO mdto,
-			Comment_PageDTO cpdto2) {
+	public @ResponseBody HashMap<String, Object> commentDeleteProcess(BoardDTO bdto, CommentDTO cdto,
+			Comment_PageDTO cpdto2, HttpServletRequest req) {
+
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
+		cdto.setMember_no(mdto.getMember_no());
 
 		HashMap<String, Object> deleteMap = new HashMap<String, Object>();
 		deleteMap.put("comment_no", cdto.getComment_no());
-		deleteMap.put("member_no", mdto.getMember_no());
+		deleteMap.put("board_no", bdto.getBoard_no());
+		deleteMap.put("member_no", cdto.getMember_no());
 
 		service.commentDeleteProcess(deleteMap);
 
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
-
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -309,15 +310,12 @@ public class BoardController {
 				currentPage = cpdto2.getCurrentPage();
 
 			cpdto = new Comment_PageDTO(currentPage, totalRecord);
-
 			pageMap.put("startRow", cpdto.getStartRow());
 			pageMap.put("endRow", cpdto.getEndRow());
 			pageMap.put("board_no", bdto.getBoard_no());
+			resultMap.put("list", service.commentPageProcess(pageMap));
+			resultMap.put("page", cpdto);
 		}
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", service.commentPageProcess(pageMap));
-		resultMap.put("page", cpdto);
-
 		return resultMap;
 	}// end commentDeleteProcess()
 
@@ -336,7 +334,7 @@ public class BoardController {
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
 
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -348,10 +346,9 @@ public class BoardController {
 			pageMap.put("startRow", cpdto.getStartRow());
 			pageMap.put("endRow", cpdto.getEndRow());
 			pageMap.put("board_no", bdto.getBoard_no());
+			resultMap.put("list", service.commentPageProcess(pageMap));
+			resultMap.put("page", cpdto);
 		}
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", service.commentPageProcess(pageMap));
-		resultMap.put("page", cpdto);
 
 		return resultMap;
 	}// end commentUpdateProcess()
@@ -371,7 +368,7 @@ public class BoardController {
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
 
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -383,11 +380,9 @@ public class BoardController {
 			pageMap.put("startRow", cpdto.getStartRow());
 			pageMap.put("endRow", cpdto.getEndRow());
 			pageMap.put("board_no", bdto.getBoard_no());
+			resultMap.put("list", service.commentPageProcess(pageMap));
+			resultMap.put("page", cpdto);
 		}
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", service.commentPageProcess(pageMap));
-		resultMap.put("page", cpdto);
-
 		return resultMap;
 	}// end commentUpdateProProcess()
 
@@ -555,6 +550,7 @@ public class BoardController {
 
 		HashMap<String, Object> deleteMap = new HashMap<String, Object>();
 		deleteMap.put("comment_no", cdto.getComment_no());
+		deleteMap.put("qa_no", qdto.getQa_no());
 		deleteMap.put("member_no", mdto.getMember_no());
 
 		qa_service.commentDeleteProcess(deleteMap);
@@ -562,7 +558,7 @@ public class BoardController {
 		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
 
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
-
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;
@@ -574,10 +570,9 @@ public class BoardController {
 			pageMap.put("startRow", cpdto.getStartRow());
 			pageMap.put("endRow", cpdto.getEndRow());
 			pageMap.put("qa_no", qdto.getQa_no());
+			resultMap.put("list", qa_service.commentPageProcess(pageMap));
+			resultMap.put("page", cpdto);
 		}
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", qa_service.commentPageProcess(pageMap));
-		resultMap.put("page", cpdto);
 
 		return resultMap;
 	}// end qa_commentDeleteProcess()
@@ -644,7 +639,7 @@ public class BoardController {
 			pageMap.put("qa_no", qdto.getQa_no());
 		}
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", service.commentPageProcess(pageMap));
+		resultMap.put("list", qa_service.commentPageProcess(pageMap));
 		resultMap.put("page", cpdto);
 
 		return resultMap;
@@ -662,7 +657,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/qa_write.do", method = RequestMethod.POST)
 	public String qa_writeProMethod(QA_BoardDTO qdto, HttpServletRequest req) {
-	
+
 		MultipartFile file = qdto.getFilename();
 		if (!file.isEmpty()) {
 			String fileName = file.getOriginalFilename();
@@ -691,7 +686,7 @@ public class BoardController {
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		qdto.setMember_no(mdto.getMember_no());
 		qa_service.insertProcess(qdto);
-		
+
 		return "redirect:/qa_list.do";
 	}// end qa_writeProMethod
 
@@ -795,7 +790,7 @@ public class BoardController {
 	@RequestMapping(value = "/photo_write.do", method = RequestMethod.GET)
 	public ModelAndView photo_writeMethod(PageDTO pv, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		MemberDTO mdto = (MemberDTO)req.getSession().getAttribute("member");
+		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
 		mav.addObject(mdto.getMember_no());
 		mav.setViewName("photo_write");
 		return mav;

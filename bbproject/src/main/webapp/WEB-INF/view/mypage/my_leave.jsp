@@ -73,7 +73,6 @@ margin-top:10px;
 .leavele{
 width:250px;
 height:400px;
-border:1px solid gray;
 margin:auto;
 text-align: left;
 margin-top:10px;
@@ -88,6 +87,9 @@ font-size: large;
 margin-top:10px;
 }
 
+#aa{
+    margin-left: 90px;
+}
 </style>
 	<div class="mypage_body">
 	<div class="passwordle">
@@ -115,9 +117,11 @@ margin-top:10px;
 	<li id="reason9"><input type="checkbox" name="checkboxle" >기타</li>
 	</ul>
 	
-	<a id="okhrefle" href=""><input type="submit" src="./images/btn_ok.gif" id="okle" /></a>
+	<div id="aa">
+	<a id="okhrefle" href=""><input type="submit" id="okle" value="확인"/></a>
 	
-	<a href="mypage.do"><img id="nole" src="./images/button_cancel.gif"></a>
+	<a href="mypage.do"><input type="button" id="nole" value="취소"></a>
+	</div>
 	<div id="hiddenle">
 	<input type="text" name="id" id="idle">
 	<input type="text" name="pw" id="pwle">

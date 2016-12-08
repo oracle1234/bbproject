@@ -87,9 +87,8 @@ td {
 				name="board_writer">
 
 			<div class="board_btn">
-				<a href="#"><img alt="확인" src="./images/btn_ok.gif" id="btnSave"></a>
-				<a href="#"><img alt="취소" src="./images/btn_cancel.gif"
-					id="btnList"></a>
+				<input type="image" alt="확인" src="./images/btn_ok.gif" id="btnSave">
+				<input type="image" alt="취소" src="./images/btn_cancel.gif" id="btnList">
 			</div>
 
 		</form>
