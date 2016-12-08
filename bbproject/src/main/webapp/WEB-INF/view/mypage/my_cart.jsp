@@ -195,9 +195,9 @@ $(document).ready(function() {
 			type="submit" id="cart_order" value="선택상품주문">
 			<input type="hidden" id="foodsno" >
 			<input type="hidden" id="amount" >
-			<img id="plus1" src="images/plus.png">
+		<!-- 	<img id="plus1" src="images/plus.png">
 	<img id="plus2" src="images/plus.png">
-	<img id="sum" src="images/sum.png">
+	<img id="sum" src="images/sum.png"> -->
 	</div>
 	 	</c:otherwise>
 	</c:choose>

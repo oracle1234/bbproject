@@ -89,8 +89,8 @@
 	<select id="commentPageList" resultType="dto.CommentDTO" parameterType="hashmap">
 		<![CDATA[
 		select b.* from (
-		select rownum as rm, a.* from (
-		select * from fb_comment where board_no = #{board_no} order by comment_no desc)a)b 
+		select rownum as rm, a.* from ( 
+ 		select * from fb_comment where board_no = #{board_no} order by comment_no desc)a)b  
 		where b.rm>=#{startRow} and b.rm <=#{endRow}
  		]]>
 	</select>
@@ -174,7 +174,7 @@
 	</select>
 	
 	<insert id="qa_commentSave" parameterType="hashmap">
-		insert into fb_comment values (SEQ_comment_no.nextval, 0, 0, #{qa_no}, #{comment_content}, #{comment_writer}, sysdate, #{member_no})
+		insert into fb_comment values (SEQ_comment_no.nextval, 0, #{qa_no}, 0, #{comment_content}, #{comment_writer}, sysdate, #{member_no})
 	</insert>
 	
 	<delete id="qa_commentDelete" parameterType="hashmap">

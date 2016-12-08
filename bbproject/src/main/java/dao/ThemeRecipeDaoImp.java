@@ -26,9 +26,8 @@ public class ThemeRecipeDaoImp implements ThemeRecipeDAO {
 	}
 	
 	@Override
-	public List<ThemeRecipeDTO> deleteRecipe(ThemeRecipeDTO dto){
+	public void deleteRecipe(ThemeRecipeDTO dto){
 		sqlSession.delete("recipe.delete", dto.getRecipe_no());
-		return sqlSession.selectList("recipe.list", 0);
 	}
 
 	@Override

@@ -102,7 +102,7 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 	}
 
 	@Override
-	public List<ThemeRecipeDTO> deleteRecipeProcess(ThemeRecipeDTO dto, HttpServletRequest request) {
+	public void deleteRecipeProcess(ThemeRecipeDTO dto, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String saveDirectory = root + "temp" + File.separator;
 		ThemeRecipeDTO temp = dao.selectRecipe(dto.getRecipe_no());
@@ -121,7 +121,7 @@ public class ThemeRecipeServiceImp implements ThemeRecipeService {
 				fe.delete();
 			}
 		}
-		return dao.deleteRecipe(temp);
+		dao.deleteRecipe(temp);
 	}
 
 	@Override

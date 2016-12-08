@@ -13,8 +13,13 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+<<<<<<< HEAD
  	<!-- <property name="url" value="jdbc:oracle:thin://@127.0.0.1:1521:xe" />  -->
 	  <property name="url" value="jdbc:oracle:thin://@192.168.10.106:1521:xe" /> 
+=======
+<!--  		<property name="url" value="jdbc:oracle:thin://@127.0.0.1:1521:xe" /> -->
+	<property name="url" value="jdbc:oracle:thin://@192.168.10.106:1521:xe" />
+>>>>>>> refs/remotes/origin/min
 		<property name="username" value="hr" />
 		<property name="password" value="a1234" />
 	</bean>
@@ -93,9 +98,6 @@
 	<bean id="myBoardDao" class="dao.myBoardDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-
-	<!-- <bean id="photoDao" class="dao.Photo_BoardDaoImp"> <property name="sqlSession" 
-		ref="sqlSession"/> </bean> -->
 
 	<bean id="themeRecipeDao" class="dao.ThemeRecipeDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
@@ -215,7 +217,6 @@
 	<!-- 파일 다운로드 -->
 	<bean id="download" class="view.BoardDownLoadView">
 		<property name="qdao" ref="qaDao" /> 
-		<!-- <property name="pdao" ref="photoDao" /> -->
 	</bean>
 
 	<!-- spring Framework. 3.1과 3.2의 버전마다 차이가 있는데. Spring 3.2의 경우는 servlet-context.xml 
@@ -239,9 +240,9 @@
 			<mvc:mapping path="/boardtitlesearch.do" />
 			<mvc:mapping path="/boardcontentsearch.do" />
 			<mvc:mapping path="/ordersearch.do" />
-			<mvc:mapping path="/board_list.do" />
-			<mvc:mapping path="/qa_list.do" />
-			<mvc:mapping path="/photo_list.do" />
+			<mvc:mapping path="/board_write.do" />
+			<mvc:mapping path="/qa_write.do" />
+			<mvc:mapping path="/photo_write.do" />
 			<mvc:mapping path="/detail**" />
 			
 			<!-- 제외 시킬거 -->

@@ -82,6 +82,7 @@
 
 #keyWord {
 	width: 40%;
+	height: 30px;
 }
 
 #btnSearch {
@@ -116,6 +117,14 @@ td {
 
 .content a {
 	color: black;
+}
+
+#select{
+	height: 30px;
+}
+
+#image{
+	height:30px;
 }
 </style>
 
@@ -209,7 +218,7 @@ td {
 			<form action="board_search.do" id="search_frm" name="search_frm"
 				method="GET">
 
-				<select name="keyField" size="1">
+				<select name="keyField" size="1" id="select">
 
 					<option value="board_subject">
 							제목
@@ -220,7 +229,7 @@ td {
 					</option>
 
 				</select> <input type="text" name="keyWord" id="keyWord" value="${keyWord}">
-				<input type="image" value="검색" src="./images/menu/button_find.png">
+				<input type="image" value="검색" src="./images/menu/button_find.png" id="image">
 
 			</form>
 		</div>
