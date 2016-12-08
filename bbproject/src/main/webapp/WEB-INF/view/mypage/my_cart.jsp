@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <link rel="stylesheet" type="text/css" href="css/my_cart.css" />
 
@@ -160,7 +161,7 @@ $(document).ready(function() {
 					<input type="hidden" class="foods_no" value="${dto.foods_no}">
 					<input type="hidden" class="amount" value="${dto.amount}">
 					</td>
-					<td>${dto.price*dto.amount*1/100}원</td>
+					<td><fmt:formatNumber pattern="0">${dto.price*dto.amount*1/100}</fmt:formatNumber>원</td>
 					<td>${dto.price*dto.amount}원</td>
 				</tr>
 			</c:forEach>
