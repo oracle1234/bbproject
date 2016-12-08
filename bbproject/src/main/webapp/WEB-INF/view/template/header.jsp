@@ -483,13 +483,13 @@ margin-left:5px;
 	width: 50px;
 	height: 47px;
 	margin-left: 250px;
+	margin-top: -46px;
 }
 
 #updclose img{
 	width: 50px;
 	height: 47px;
 	margin-left: 250px;
-	margin-top: -93px;
 }
 
 #logincheck {
@@ -626,7 +626,8 @@ margin-top:-30px;
 
 #pwupdok{
 float:right;
-margin-top:-30px;
+    margin-top: -100px;
+    margin-left: 180px;
 }
 
 </style>
