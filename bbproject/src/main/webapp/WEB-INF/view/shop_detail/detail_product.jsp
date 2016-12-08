@@ -572,42 +572,45 @@ $(document).ready(function() {
 	
 	//딜리트 석세스
 	function review_delete_result(res) {
+		
 		$('.review_tr').remove();
 		$('#pre_next_pagenum').empty();
-
-		$.each(res.ReviewDTO,
-			function(index, value) {
-			if(value.member_no == member_no){
-				var source = "<tr class='review_tr'><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
-				var template = Handlebars.compile(source);
-				$('#review_table').append(template(value));
+		if(res.ReviewDTO != null){
+	
+			$.each(res.ReviewDTO,
+				function(index, value) {
+				if(value.member_no == member_no){
+					var source = "<tr class='review_tr'><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td><td><button class = 'review_udt_btn' value = {{review_no}}>수정</button></td><td><button class = 'review_del_btn' value = {{review_no}}>삭제</button></td></tr>";
+					var template = Handlebars.compile(source);
+					$('#review_table').append(template(value));
+				}
+				else if (value.member_no != member_no){
+					var source = "<tr class='review_tr'><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td></tr>";
+					var template = Handlebars.compile(source);
+					$('#review_table').append(template(value));
+				}
+			});
+	
+			var start = res.page.startPage;
+			var end = res.page.endPage;
+			var block = res.page.blockPage;
+			var total = res.page.totalPage;
+	
+			if (start > 1) {
+				$('#pre_next_pagenum').append('<a href="javascript:preFunction(${foods_no}, '+ (start - block) + ')">이전</a>');
 			}
-			else if (value.member_no != member_no){
-				var source = "<tr class='review_tr'><td>{{review_content}}</td><td>{{review_writer}}</td><td>{{newDate review_date}}</td></tr>";
-				var template = Handlebars.compile(source);
-				$('#review_table').append(template(value));
+	
+			for (var i = start; i <= end; i++) {
+				var source1 = '<a href="javascript:myFunction(${foods_no}, ' + i
+						+ ')">' + i + '&nbsp;';
+				$('#pre_next_pagenum').append(source1);
 			}
-		});
-
-		var start = res.page.startPage;
-		var end = res.page.endPage;
-		var block = res.page.blockPage;
-		var total = res.page.totalPage;
-
-		if (start > 1) {
-			$('#pre_next_pagenum').append('<a href="javascript:preFunction(${foods_no}, '+ (start - block) + ')">이전</a>');
-		}
-
-		for (var i = start; i <= end; i++) {
-			var source1 = '<a href="javascript:myFunction(${foods_no}, ' + i
-					+ ')">' + i + '&nbsp;';
-			$('#pre_next_pagenum').append(source1);
-		}
-
-		if (end < total) {
-			$('#pre_next_pagenum').append(
-					'<a href="javascript:nextFunction(${foods_no}, '
-							+ (start + block) + ')">다음</a>');
+	
+			if (end < total) {
+				$('#pre_next_pagenum').append(
+						'<a href="javascript:nextFunction(${foods_no}, '
+								+ (start + block) + ')">다음</a>');
+			}
 		}
 	};
 	

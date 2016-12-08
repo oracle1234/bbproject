@@ -630,7 +630,7 @@ margin-top:-30px;
 </div>
 <div class='menu'>
 	<ul>
-		<li><a href='main.do'><img alt="" src="images/logo.png"></a></li>
+		<li><a href='main.do'><img alt="" src="images/bb_logomain.png"></a></li>
 		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
