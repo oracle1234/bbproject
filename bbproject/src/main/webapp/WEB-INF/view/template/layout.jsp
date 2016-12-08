@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css?var=2" media="all" />
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
 <link rel="stylesheet" type="text/css" href="css/mypage_imgbar.css?var=2" />
+<link rel="stylesheet" type="text/css" href="css/shop_imgbar.css?var=2" />
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/main.js?var=2"></script>
@@ -37,8 +38,6 @@
 		<div id="mainbody">
 			<tiles:insertAttribute name="body" />
 		</div>
-
-
 	</div>
 	<div id="quick_menu">
 			<h3>

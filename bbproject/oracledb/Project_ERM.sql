@@ -60,6 +60,9 @@ CREATE SEQUENCE SEQ_order_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_complete_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 CREATE SEQUENCE SEQ_review_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
+--주훈 추가
+CREATE SEQUENCE SEQ_lately_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+
 
 
 =======
@@ -91,8 +94,6 @@ CREATE TABLE fb_coupon_book
 	couponbook_no number NOT NULL,
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
-	 
-	coupon_state varchar2(10) not null,
 	PRIMARY KEY (couponbook_no)
 );
 
@@ -192,12 +193,12 @@ ALTER TABLE fb_review modify member_no NOT NULL
 
 CREATE TABLE fb_review
 (
+	member_no number NOT NULL,
 	review_no number NOT NULL,
 	review_writer varchar2(50),
 	review_content varchar2(100) NOT NULL,
 	review_date date,
 	foods_no number NOT NULL,
-	member_no number NOT NULL,
 	PRIMARY KEY (review_no)
 );
 
@@ -310,7 +311,7 @@ CREATE TABLE fb_tr_order
 CREATE TABLE fb_tr_complete
 (
 	recipe_no number NOT NULL,
-	complete_pic varchar2(50),
+	complete_pic varchar2(50)
 );
 
 CREATE TABLE fb_board
@@ -397,6 +398,8 @@ ALTER TABLE fb_lately_product
 	ADD FOREIGN KEY (foods_no)
 	REFERENCES fb_foods (foods_no)
 ;
+
+select * from fb_lately_product
 
 
 ALTER TABLE fb_basket
