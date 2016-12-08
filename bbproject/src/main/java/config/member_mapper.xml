@@ -71,7 +71,6 @@
 			<result column="coupon_no" property="coupon_no"/>
 			<result column="coupon_name" property="coupon_name"/>
 			<result column="coupon_discount" property="coupon_discount"/>
-			<result column="coupon_state" property="coupon_state"/>
 		</collection>
 		
 	</resultMap>

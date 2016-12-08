@@ -7,6 +7,9 @@ insert into fb_review values (SEQ_review_no.nextval, 'adfasdfsdaf', 'ㅎㅎㅎ�
 insert into fb_review values (SEQ_review_no.nextval, 'adfasdfsdaf', 'ㅎㅎㅎㅎㅎㅎㅎ', sysdate, 1, 1);
 insert into fb_review values (SEQ_review_no.nextval, 'adfasdfsdaf', 'ㅎㅎㅎㅎㅎㅎㅎ', sysdate, 1, 1);
 
+select * from fb_coupon
+select * from fb_coupon_book
+
 
 select count(*) from fb_foods where category_no = 3
 
@@ -246,6 +249,8 @@ CREATE TABLE fb_coupon_book
 ALTER TABLE fb_coupon_book
 	ADD FOREIGN KEY (member_no)
 	REFERENCES fb_member (member_no)
+	ADD FOREIGN KEY (coupon_no)
+	REFERENCES fb_coupon (coupon_no)
 ;
 
 
@@ -296,6 +301,7 @@ CREATE TABLE fb_lately_product
 	lately_no number NOT NULL,
 	member_no number NOT NULL,
 	foods_no number NOT NULL
+	PRIMARY KEY (lately_no)
 );
 
 --외래키 변경
