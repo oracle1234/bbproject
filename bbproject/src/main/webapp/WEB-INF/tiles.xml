@@ -39,6 +39,7 @@
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/board/board_list.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/board_list_imgbar.jsp" />
 	</definition>
 	
 	<definition name="board_update" extends="index">
