@@ -24,11 +24,7 @@
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript"
-	src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script type="text/javascript">
 	$('#homeBtn').on('click', function() {
 		alert('홈버튼');
@@ -38,7 +34,6 @@
 	$('#shoppingBtn').on('click', function() {
 		alert('쇼핑계속');
 		window.location.href = "shop.do";
-
 	});
 </script>
 
