@@ -24,7 +24,7 @@
 		
 </head>
 <body>
-<div id="main">
+<div id="mainbody">
 <div id="board">
 <img class="title" src="images/main_board.png">
 <table>

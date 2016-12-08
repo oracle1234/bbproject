@@ -20,16 +20,14 @@ $(document).ready(function(){
 </div>
 	<table class="mycoupon_table">
 		<tr>
-			<th width="50%">쿠폰명</th>
-			<th width="20%">할인금액(원)</th>
-			<th width="30%">사용여부</th>
+			<th width="60%">쿠폰명</th>
+			<th width="40%">할인금액(원)</th>
 
 		</tr>
 		<c:forEach var="dto" items="${aList}">
 			<tr>
 				<td>${dto.coupon_name}</td>
 				<td>${dto.coupon_discount}</td>
-				<td>${dto.coupon_state}</td>
 			</tr>
 		</c:forEach>
 	</table>

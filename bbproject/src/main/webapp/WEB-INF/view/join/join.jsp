@@ -44,6 +44,7 @@ $(document).ready(function(){
 	$("#joinok").click(function () {
 		
 		
+			
 	$(".form3").append('<input type="hidden" id="joinmail" name="mail">');
 	$("#joinmail").val($("#email").val()+"@"+$('#mail2').val());
 	//alert($("#joinmail").val());
@@ -99,6 +100,8 @@ $(document).ready(function(){
 		if($("#joinaddress").val().length == 0){
 			$('#joinaddress').focus();
 		}
+		
+		
 	}
 	else {
 		if($("#pass").val()==$("#pw").val()){
@@ -114,6 +117,7 @@ $(document).ready(function(){
 	
 	
 	
+	/* 
 	var reg2 = /[^(a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣)]/gi; // 영문자,숫자만 (대소문자 구분 x)
 	var reg3 = /[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; //특수문자는 반드시 포함되어야함
 	var reg4 = /[0-9]/g; // 숫자는 반드시 포함되어야 함
@@ -140,7 +144,8 @@ $(document).ready(function(){
 		} else {
 			alert("문자는 반드시 포함되어야합니다.");
 		}
-	});
+	}); 
+	*/
 	  
 	
 	

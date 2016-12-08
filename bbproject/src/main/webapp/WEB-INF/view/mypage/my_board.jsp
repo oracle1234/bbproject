@@ -103,27 +103,37 @@ Handlebars.registerHelper("newDate",function(timeValue){
 
 function photolist(data){
 	$('.myboard_table').empty();
-	$('.myboard_table').append('<tr>'+
-	'<th width="10%">번호</th>'+
-	'<th width="15%">분류</th>'+
-	'<th width="50%">제목</th>'+
-	'<th width="20%">작성일</th>'+
-'</tr>');
- 	$.each(data.pdto,function(index, value){
-//  		$.each(value.pdto,function(index, value){
-	var source='<tr>'+
-	'<td>{{photo_no}}</td>'+
-	'<td>포토후기</td>'+
-	'<td>{{photo_subject}}</td>'+
-	'<td>{{newDate photo_reg_date}}</td>'+
-'</tr>'
-var template=Handlebars.compile(source); 
-$('.myboard_table').append(template(value));
-//  		});
-	});
+	
+	if(data.pdto.length <=0){
+		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
+	}else{
+		$('.myboard_table').empty();
+		$('.myboard_table').append('<tr>'+
+		'<th width="10%">번호</th>'+
+		'<th width="15%">분류</th>'+
+		'<th width="50%">제목</th>'+
+		'<th width="20%">작성일</th>'+
+		'</tr>');
+	 	$.each(data.pdto,function(index, value){
+			//  		$.each(value.pdto,function(index, value){
+			var source='<tr>'+
+			'<td>{{photo_no}}</td>'+
+			'<td>포토후기</td>'+
+			'<td>{{photo_subject}}</td>'+
+			'<td>{{newDate photo_reg_date}}</td>'+
+			'</tr>'
+			var template=Handlebars.compile(source); 
+			$('.myboard_table').append(template(value));
+			//  		});
+		});
+	}
 }
 
 function qalist(qaqa){
+	$('.myboard_table').empty();
+	if(qaqa.length <=0){
+		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
+	}else{
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
 	'<th width="10%">번호</th>'+
@@ -147,10 +157,14 @@ function qalist(qaqa){
 //  		 		});
 	});
 }
+}
 
 function freelist(free){
 	$('.myboard_table').empty();
-	$('.myboard_table').append('<tr>'+
+	if(free.length <=0){
+		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
+	}else{
+		$('.myboard_table').append('<tr>'+
 	'<th width="10%">번호</th>'+
 	'<th width="15%">분류</th>'+
 	'<th width="50%">제목</th>'+
@@ -160,6 +174,9 @@ function freelist(free){
 	
 	$.each(free.bdto,function(index, value){
 //  		$.each(value.bdto,function(index, value){
+	/* if(free.bdto.length<=0){
+		alert("")
+	} */
  			var source='<tr>'+
  			'<td>{{board_no}}</td>'+
  			'<td>자유게시판</td>'+
@@ -171,7 +188,7 @@ function freelist(free){
 //  		 		});
 	});
 	
-	
+	}
 }
 
 function searchlist1(data){
@@ -211,8 +228,12 @@ function searchlist1(data){
 			type="button" id="button_review" value="포토후기"> <input
 			type="button" id="button_qa" value="Q&A">
 	</div>
-
 	<table class="myboard_table">
+	<c:choose>
+		<c:when test="${aList.bdto[0].board_no == null}">
+			<img id="empty" src="images/no_board.png">
+		</c:when>
+	<c:otherwise> 
 		<tr>
 			<th width="10%">번호</th>
 			<th width="15%">분류</th>
@@ -231,12 +252,13 @@ function searchlist1(data){
 			</c:forEach>
 <%-- 		</c:forEach> --%>
 
-	</table>
-
 	<div class="myboard_find">
 		<input type="radio" name="searchtype" value="제목">제목 <input
 			type="radio" name="searchtype" value="내용">내용 <input
 			type="text" id="searchval" placeholder="검색" name="searchval">
 		<img id="button_find" src="./images/button_find2.png">
 	</div>
+	</c:otherwise>
+	</c:choose>
+	</table>
 </div>
