@@ -160,7 +160,7 @@ input {
 		</div>
 		<div id="buttonint">
 			<a href="find.do"><img id="findbutton" src="images/button_find.png"></a>
-			<a href="join.do"><img id="joinbutton" src="images/button_join.png"></a>
+			<a href="agree.do"><img id="joinbutton" src="images/button_join.png"></a>
 		</div>
 
 	</div>

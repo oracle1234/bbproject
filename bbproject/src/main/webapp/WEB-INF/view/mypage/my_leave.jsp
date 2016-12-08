@@ -31,7 +31,7 @@ $(document).ready(function(){
 			alert("전부 입력해주세요.");
 				 $('#otherreasonle').focus();
 			} else {
-				$("a#okhrefle").attr("href","joinsucc.do");
+				$("a#okhrefle").attr("href","leavesucc.do");
 			$("#formle").attr('action','myleave.do').attr('method','post').attr('onsubmit','true').submit();
 		}
 		});

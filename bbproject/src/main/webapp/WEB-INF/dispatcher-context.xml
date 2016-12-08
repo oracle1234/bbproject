@@ -189,11 +189,11 @@
 		<property name="memberservice" ref="memberService"></property>
 	</bean>
 
-	<!-- <bean class="controller.AdminController">
+	<bean class="controller.AdminController">
 		<property name="recipeservice" ref="themeRecipeservice"></property>
 		<property name="foodsservice" ref="shopService"></property>
 		<property name="couponservice" ref="CouponService"></property>
-	</bean> -->
+	</bean>
 
 	<bean class="controller.LoginController">
 		<property name="memberservice" ref="memberService"></property>
@@ -234,8 +234,8 @@
 			<mvc:mapping path="/my_board_free.do" />
 			<mvc:mapping path="/my_board_photo.do" />
 			<mvc:mapping path="/my_board_qa.do" />
-			<mvc:mapping path="/myupdate.do" />
-			<mvc:mapping path="/myleave.do" />
+			<mvc:mapping path="/my_update.do" />
+			<mvc:mapping path="/my_leave.do" />
 			<mvc:mapping path="/boardtitlesearch.do" />
 			<mvc:mapping path="/boardcontentsearch.do" />
 			<mvc:mapping path="/ordersearch.do" />

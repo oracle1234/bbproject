@@ -9,25 +9,12 @@
 }
 
 .couponpoint{
-	height:200px;
-	float:left;
-}
-.coupon_info{
-	margin-left:5px;
-	width:500px;
-	height:200px;
-	border:solid 1px gray;
-	float:left;
+	padding:10px;
+	height:30px;
+	text-align: right;
+	margin-right:20px;
 }
 
-
-.point{
-		margin-left:5px;
-	width:430px;
-	height:200px;
-	border:solid 1px gray;
-	float:left;
-}
 
 .mycoupon_table{
 	width:950px;
