@@ -134,7 +134,13 @@ public class MypageController {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("member_no", dto.getMember_no());
 		map.put("boardcategory_no", boardcategory_no);
-		return boardservice.myboardlistProcess(map);
+		
+		myBoardDTO ff = boardservice.myboardlistProcess(map);
+		if(ff == null){
+			ff = new myBoardDTO();
+		}
+		
+		return ff;
 	}
 
 	// 내가 쓴 글 - 포토후기

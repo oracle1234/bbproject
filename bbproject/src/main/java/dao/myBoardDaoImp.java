@@ -31,6 +31,7 @@ public class myBoardDaoImp implements myBoardDAO{
 		return sqlSession.selectOne("myboard.all2", map);
 		else if (value == 3)
 		return sqlSession.selectOne("myboard.all3", map);
+		
 		return sqlSession.selectOne("myboard.all", map);
 	}
 

@@ -8,6 +8,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+	
 /* 	var one = 1;
 	var two = 2;
 	var three = 3; */
@@ -17,18 +18,7 @@ $(document).ready(function(){
 		$('.board_cb').prop('checked', this.checked);
 	});
 	
-	$(document).on('click', '#button_free', function(){
-		boardcategory_no = 1;
-		$.ajax({
-			type : 'GET',
-			dataType : 'json',
-			url : 'my_board_free.do?member_no=${member_no}&boardcategory_no='+boardcategory_no,
-			success : freelist,
-			error: function(xhr, textStatus, error) {
-				alert(error);
-			}
-		})
-	});
+	
 
 	// 검색
 	$('#button_find').on('click', function(){
@@ -65,6 +55,19 @@ $(document).ready(function(){
 		}
 	}); 
  		
+	$(document).on('click', '#button_free', function(){
+		boardcategory_no = 1;
+		$.ajax({
+			type : 'GET',
+			dataType : 'json',
+			url : 'my_board_free.do?member_no=${member_no}&boardcategory_no='+boardcategory_no,
+			success : freelist,
+			error: function(xhr, textStatus, error) {
+				alert(error);
+			}
+		})
+	});
+	
 	$(document).on('click', '#button_review', function(){
 		boardcategory_no = 2;
 		$.ajax({
@@ -102,11 +105,13 @@ Handlebars.registerHelper("newDate",function(timeValue){
 });//end newDate
 
 function photolist(data){
+	//alert(data.pdto.length);
 	$('.myboard_table').empty();
 	
-	if(data.pdto.length <=0){
+	if(data.pdto== null){
 		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
 	}else{
+		$('#empty').remove();
 		$('.myboard_table').empty();
 		$('.myboard_table').append('<tr>'+
 		'<th width="10%">번호</th>'+
@@ -121,19 +126,27 @@ function photolist(data){
 			'<td>포토후기</td>'+
 			'<td>{{photo_subject}}</td>'+
 			'<td>{{newDate photo_reg_date}}</td>'+
-			'</tr>'
+			'</tr>';
 			var template=Handlebars.compile(source); 
 			$('.myboard_table').append(template(value));
 			//  		});
+			$('.myboard_table').append(
+			 		'<div class="myboard_find">'+
+					'<input type="radio" name="searchtype" value="제목">제목 <input'+
+						'type="radio" name="searchtype" value="내용">내용 <input'+
+						'type="text" id="searchval" placeholder="검색" name="searchval">'+
+					'<img id="button_find" src="./images/button_find2.png">'+
+				'</div>'); 
 		});
 	}
 }
 
-function qalist(qaqa){
+function qalist(data){
 	$('.myboard_table').empty();
-	if(qaqa.length <=0){
+	if(data.qdto== null){
 		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
 	}else{
+		$('#empty').remove();
 	$('.myboard_table').empty();
 	$('.myboard_table').append('<tr>'+
 	'<th width="10%">번호</th>'+
@@ -143,7 +156,7 @@ function qalist(qaqa){
 '</tr>');
 	
  		
-	$.each(qaqa.qdto,function(index, value){
+	$.each(data.qdto,function(index, value){
 //  		$.each(value.qdto,function(index, value){
 
  			var source='<tr>'+
@@ -151,19 +164,30 @@ function qalist(qaqa){
  			'<td>질문과 답변</td>'+
  			'<td>{{qa_subject}}</td>'+
  			'<td>{{newDate qa_reg_date}}</td>'+
- 		'</tr>'
+ 		'</tr>';
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
+ 		
 //  		 		});
+ 		$('.myboard_table').append(
+ 		 		'<div class="myboard_find">'+
+ 				'<input type="radio" name="searchtype" value="제목">제목 <input'+
+ 					'type="radio" name="searchtype" value="내용">내용 <input'+
+ 					'type="text" id="searchval" placeholder="검색" name="searchval">'+
+ 				'<img id="button_find" src="./images/button_find2.png">'+
+ 			'</div>'); 
 	});
 }
 }
 
-function freelist(free){
+function freelist(data){
+	//alert(data.pdto.length);
 	$('.myboard_table').empty();
-	if(free.length <=0){
+	if(data.bdto == null){
 		$('.myboard_table').append('<img id="empty" src="images/no_board.png">');
 	}else{
+		$('#empty').remove();
+		$('.myboard_table').empty();
 		$('.myboard_table').append('<tr>'+
 	'<th width="10%">번호</th>'+
 	'<th width="15%">분류</th>'+
@@ -172,20 +196,24 @@ function freelist(free){
 '</tr>');
 	
 	
-	$.each(free.bdto,function(index, value){
-//  		$.each(value.bdto,function(index, value){
-	/* if(free.bdto.length<=0){
-		alert("")
-	} */
+	$.each(data.bdto,function(index, value){
+  		//$.each(value.bdto,function(index, value){
  			var source='<tr>'+
  			'<td>{{board_no}}</td>'+
  			'<td>자유게시판</td>'+
  			'<td>{{board_subject}}</td>'+
  			'<td>{{newDate board_reg_date}}</td>'+
- 		'</tr>'
+ 		'</tr>';
  		var template=Handlebars.compile(source); 
  		$('.myboard_table').append(template(value));
-//  		 		});
+  		 		//});
+ 	 	$('.myboard_table').append(
+ 		'<div class="myboard_find">'+
+		'<input type="radio" name="searchtype" value="제목">제목 <input'+
+			'type="radio" name="searchtype" value="내용">내용 <input'+
+			'type="text" id="searchval" placeholder="검색" name="searchval">'+
+		'<img id="button_find" src="./images/button_find2.png">'+
+	'</div>'); 
 	});
 	
 	}

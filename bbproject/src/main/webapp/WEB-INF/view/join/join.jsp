@@ -130,7 +130,7 @@ $(document).ready(function(){
 		if(reg3.test(pwreg)){
 			alert("pw true 3");
 		} else {
-			alert("특수문자는 반드시 포함되어야합니다.");
+			alert("특수문자는 반드시 포함되어야합니다.	");
 		}
 		
 		if(reg4.test(pwreg)){
