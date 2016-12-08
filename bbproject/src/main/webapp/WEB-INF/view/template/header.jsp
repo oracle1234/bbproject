@@ -608,9 +608,20 @@ float:right;
 margin-top:-30px;
 }
 
-.pwbutton{
-float:right;
-margin-top:-30px;
+ #loginpop{
+ 	float: left;
+ 	width: 280px;
+	position: relative;
+	top : -60px;
+ }
+#loginpop .pwform{
+/* 	width: 175px; */
+}
+
+#loginpop .pwbutton{
+	width: 0;
+	position: relative;
+	top : 45px;
 }
 
 #pwupdok{
@@ -701,13 +712,15 @@ margin-top:-30px;
 		</div>
 		<div class="pwfind">
 			<span>비밀번호 찾기 아이디, 이름, 이메일을 입력하시면 새로운 비밀번호로 변경할 수 있습니다.</span>
-			<div class="pwform">
-				<input type="text" id="pwid" name="id" placeholder="아이디" class="signUpInput"> <input
-					type="text" id="pwmember_name" name="member_name" placeholder="이름" class="signUpInput">
-				<input type="text" id="pwmail" name="mail" placeholder="이메일 주소" class="signUpInput">
-			</div>
-			<div class="pwbutton">
-				<img id="pwok" src="images/button_ok.png">
+			<div id="loginpop">
+				<div class="pwform">
+					<input type="text" id="pwid" name="id" placeholder="아이디" class="signUpInput"> <input
+						type="text" id="pwmember_name" name="member_name" placeholder="이름" class="signUpInput">
+					<input type="text" id="pwmail" name="mail" placeholder="이메일 주소" class="signUpInput">
+				</div>
+				<div class="pwbutton">
+					<img id="pwok" src="images/button_ok.png">
+				</div>
 			</div>
 		</div>
 	</div>
