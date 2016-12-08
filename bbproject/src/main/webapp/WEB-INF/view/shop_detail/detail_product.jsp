@@ -675,7 +675,7 @@ $(document).ready(function() {
 								<td>${Foods.price}<span>원</span></td>
 							</tr>
 							<tr>
-								<th>유통기한</th>
+								<th>보관방법</th>
 								<td>${Foods.way}</td>
 							</tr>
 							<tr>
@@ -683,7 +683,7 @@ $(document).ready(function() {
 								<td>${Foods.weight}</td>
 							</tr>
 							<tr>
-								<th>보관방법</th>
+								<th>유통기한</th>
 								<td>${Foods.shelfLife}</td>
 							</tr>
 							<tr>
