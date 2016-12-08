@@ -151,7 +151,6 @@ ALTER TABLE fb_qa_board
 	REFERENCES fb_boardcategory (boardcategory_no) on delete cascade
 ;
 
-
 /*각종 실행~*/
 select * from fb_boardcategory;
 select * from FB_MEMBER;
@@ -162,8 +161,24 @@ select * from fb_photo_board;
 select * from fb_qa_board;
 
 
+<<<<<<< HEAD
 insert into fb_board values(0,6,1,'ssfsdf','csdfdf',0,sysdate,'wr');
 insert into fb_photo_board values(0,6,2,'ssfsdf','csdfdf',sysdate,'wr.text','wr');
 insert into fb_qa_board values(0,6,3,'ssfsdf','csdfdf',0,sysdate,'wr','wr');
+=======
+
+insert into fb_boardcategory values 
+(1, '자유게시판');
+insert into fb_boardcategory values 
+(2, '포토후기');
+insert into fb_boardcategory values 
+(3, 'QA게시판');
+
+insert into fb_member values(0,'가짜','가짜','가짜1!','서울','1','1@daum.net',0);
+insert into fb_board values(0,0,1,'ssfsdf','csdfdf',0,sysdate,'wr');
+insert into fb_photo_board values(0,0,2,'ssfsdf','csdfdf',sysdate,'wr.text','wr');
+insert into fb_qa_board values(0,0,3,'ssfsdf','csdfdf',0,sysdate,'wr','wr');
+insert into fb_comment values(0,1,0,0,'123','123',sysdate,0);
+>>>>>>> refs/remotes/origin/yeonsung
 
 select * from fb_board where board_no>=1 order by board_no desc;

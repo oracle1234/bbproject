@@ -61,7 +61,7 @@ td{
 
 .textarea textarea{
 	width:948px;
-	height: 600px;
+	height: 450px;
 }
 </style>
 <body>
@@ -82,9 +82,10 @@ td{
 			
 			<tr>
 				<th scope="row">첨부파일</th>
-				<td><input type="file" name="filename" id="filepath" />
-			</tr>
-			
+				<td>
+					<input type="file" name="filename" id="filepath" />
+				</td>
+			</tr>			
 		</table>
 		
 		<div class="textarea">
@@ -100,8 +101,8 @@ td{
 				name="qa_writer">
 			
 		<div class="board_btn">
-			<a href="#"><img alt="확인" src="./images/btn_ok.gif" id="btnSave"></a>
-			<a href="#"><img alt="취소" src="./images/btn_cancel.gif" id="btnList"></a>
+			<input type="image" alt="확인" src="./images/btn_ok.gif" id="btnSave">
+			<input type="image" alt="취소" src="./images/btn_cancel.gif" id="btnList">
 		</div>
 		
 	</form>
