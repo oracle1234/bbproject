@@ -25,6 +25,7 @@ $(document).ready(function() {
 					alert(error);
 				}
 			});
+			
 		});
 
 });
@@ -71,7 +72,7 @@ $(document).ready(function() {
 <div id="cal">
 	<input class="date-picker" type="text" id="start" name="start"/>~
 	<input class="date-picker" type="text" id="end" name="end"/>
-<input type="button" value="조회" id="calfindButton">
+<img id="calfindButton" src="./images/button_search.png">
 </div>
 	
 		<table class="myorder_table">

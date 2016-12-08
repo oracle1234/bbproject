@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/footer.css?var=2" />
 <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="js/main.js?var=2"></script>
+<!-- <script src="js/main.js?var=2"></script> -->
 
 <script type="text/javascript">
 		var member_no = "${sessionScope.member.member_no}";
@@ -44,7 +44,7 @@
 				<span>상품이름</span>
 				</a></li>
 			</ul>
-			<a href=""><img src="images/quick_top_btn.png" alt="상단으로 이동"></a>
+			<a href="" id="quick_top"><img src="images/quick_top_btn.png" alt="상단으로 이동" width="100px"></a>
 		</div>
 
 	<footer>

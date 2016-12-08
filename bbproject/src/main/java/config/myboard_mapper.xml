@@ -19,14 +19,14 @@
 		
 		<collection property="pdto" javaType="java.util.List" ofType="dto.Photo_BoardDTO">
 		<result column="photo_no" property="photo_no"/>
-		<result column="photo_readcount" property="photo_readcount"/>
+		<!-- <result column="photo_readcount" property="photo_readcount"/> -->
 		<result column="pmno" property="member_no"/>
 		<result column="pcno" property="boardcategory_no"/>
 		<result column="photo_writer" property="photo_writer"/>
 		<result column="photo_content" property="photo_content"/>
 		<result column="photo_upload" property="photo_upload"/>
 		<result column="photo_subject" property="photo_subject"/>
-		<result column="photo_reg_date" property="photo_reg_date"/>
+	 <result column="photo_reg_date" property="photo_reg_date"/> 
 		</collection>
 		
 		<collection property="qdto" javaType="java.util.List" ofType="dto.QA_BoardDTO">

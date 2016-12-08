@@ -223,8 +223,8 @@ $(document).ready(function(){
 <input type="checkbox" id="allagree">회원가입 정보정책(이용약관/개인정보취급방침)에 모두 동의합니다.
 </div>
 <div class="button">
-<a id="okhref" href=""><input type="button" id="ok" value="확인" ></a>
-<input type="button" id="no" value="취소">
+<a id="okhref" href=""><img id="ok" src="./images/btn_ok.gif" ></a>
+<a href="main.do"><img id="home" src="./images/button_home.png" ></a>
 </div>
 </div>
 </body>

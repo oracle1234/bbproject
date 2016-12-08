@@ -8,7 +8,7 @@ var s_pw = "${sessionScope.member.pw}";
 var s_id = "${sessionScope.member.id}";
 var s_name = "${sessionScope.member.member_name}";
 $(document).ready(function(){
-	
+	//alert($('input[name=checkboxle]:checked').val());
 	$(".leavele").hide();
 	$("#hiddenle").hide();
 	
@@ -25,11 +25,11 @@ $(document).ready(function(){
 	});
 	
 	$("#okle").click(function () {
-		
+		if($('input:checkbox[name="checkboxle"]:checked').length==0){
 
-		if($("#otherreasonle").val().length == 0){
-			alert("전부 입력해주세요.");
-				 $('#otherreasonle').focus();
+		// if($('input[name=checkboxle]').prop("unchecked")){
+			alert("탈퇴 사유를 선택해주세요.");
+			 
 			} else {
 				$("a#okhrefle").attr("href","leavesucc.do");
 			$("#formle").attr('action','myleave.do').attr('method','post').attr('onsubmit','true').submit();
@@ -61,37 +61,63 @@ margin:auto;
 margin-top:30px;
 }
 
+#uppwbtn{
+width:140px;
+height:40px;
+}
+
+#pwokle{
+margin-top:10px;
+}
+
+.leavele{
+width:250px;
+height:400px;
+border:1px solid gray;
+margin:auto;
+text-align: left;
+margin-top:10px;
+}
+
+.leavele p{
+text-align: center;
+font-size: large;
+}
+
+.reason{
+margin-top:10px;
+}
+
 </style>
 	<div class="mypage_body">
 	<div class="passwordle">
 	<table id="passtable">
 <tr>
-<td class="labelleave"><label for="pw">비밀번호확인</label></td>
+<td class="labelleave"><img id="uppwbtn" src="./images/button_pwck.png"></td>
 <td class="formleave"><input type="password" name="pw" id="pwckle">
 <font id="check" name="check" size="2"></font></td>
 </tr>
 </table>
-<input type="button" id="pwokle" value="확인"> 
+<img id="pwokle" src="./images/btn_ok.gif"> 
 </div>
 <div class="leavele">
 <form action="myleave.do" method="post" enctype="application/x-www-form-urlencoded" id="formle" onsubmit="return false">
-	탈퇴 사유
+	<p>탈퇴 사유<p>
 	<ul class="reason">
-	<li id="reason1"><input type="checkbox" >상품품질불만(맛)</li>
-	<li id="reason2"><input type="checkbox" >상품품질불만(위생)</li>
-	<li id="reason3"><input type="checkbox" >가격부담</li>
-	<li id="reason4"><input type="checkbox" >타업체 이용</li>
-	<li id="reason5"><input type="checkbox" >이용 빈도 낮음</li>
-	<li id="reason6"><input type="checkbox" >새로운 아이디 생성을 위해</li>
-	<li id="reason7"><input type="checkbox" >배송문제</li>
-	<li id="reason8"><input type="checkbox" >포장문제</li>
-	<li id="reason9"><input type="checkbox" >기타</li>
+	<li id="reason1"><input type="checkbox" name="checkboxle" >상품품질불만(맛)</li>
+	<li id="reason2"><input type="checkbox" name="checkboxle" >상품품질불만(위생)</li>
+	<li id="reason3"><input type="checkbox" name="checkboxle" >가격부담</li>
+	<li id="reason4"><input type="checkbox" name="checkboxle" >타업체 이용</li>
+	<li id="reason5"><input type="checkbox" name="checkboxle" >이용 빈도 낮음</li>
+	<li id="reason6"><input type="checkbox" name="checkboxle" >새로운 아이디 생성을 위해</li>
+	<li id="reason7"><input type="checkbox" name="checkboxle" >배송문제</li>
+	<li id="reason8"><input type="checkbox" name="checkboxle" >포장문제</li>
+	<li id="reason9"><input type="checkbox" name="checkboxle" >기타</li>
 	</ul>
-	<div id="otherle">
-	<input type="text" id="otherreasonle"> 
-	</div>
-	<a id="okhrefle" href=""><input type="submit" value="확인" id="okle" /></a>
-	<input type="button" id="nole" value="취소">
+	
+	<a id="okhrefle" href=""><input type="submit" src="./images/btn_ok.gif" id="okle" /></a>
+	
+	<a href="mypage.do"><img id="nole" src="./images/button_cancel.gif"></a>
 	<div id="hiddenle">
 	<input type="text" name="id" id="idle">
 	<input type="text" name="pw" id="pwle">

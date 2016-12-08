@@ -4,6 +4,12 @@
 
 $(function() {
 	/*퀵 메뉴*/
+	$("#quick_top").on("click", function() {
+		$(window).scrollTop(0);
+		return false;
+	});
+	
+	
 	if(member_no != ""){
 		quick_left();
 		$("#quick_menu").css("display", "block");

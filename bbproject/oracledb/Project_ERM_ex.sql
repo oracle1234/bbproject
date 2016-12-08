@@ -1,5 +1,7 @@
 테이블명:fb_member
 select * from fb_member;
+
+alter table fb_member drop (stamp);
 select * from fb_request;
 select * from fb_basket;
 insert into fb_member values 
@@ -319,7 +321,7 @@ insert into fb_photo_board values
 insert into fb_photo_board values
 (2, 2, seq_photo_no.nextval, 0, '백나연', '떡볶이 입니다3.', sysdate, '3', '포토후기3');
 
-delete from fb_board
+delete from fb_board where member_no=1
 select * from fb_board
 insert into fb_board values
 (1, 2, seq_board_no.nextval, 0, '백나연', '자유게시판입니다.', sysdate, '자유');
@@ -394,7 +396,7 @@ insert into fb_boardcategory values
 insert into fb_boardcategory values
 (3, '포토후기');
 
-
+alter table 
 
  SET fb_board          fb_photo_board          fb_qa_board  
 

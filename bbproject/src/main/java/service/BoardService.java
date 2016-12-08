@@ -11,7 +11,7 @@ import dto.PageDTO;
 
 public interface BoardService {
 	
-	public int countProcess(int boardcategry_no);
+	public int countProcess(int boardcategory_no);
 	public List<BoardDTO> listProcess(PageDTO pv);
 	public List<BoardDTO> pageListProcess(HashMap<String, Object> map);
 	public List<CommentDTO> commentPageProcess(HashMap<String, Object> map);

@@ -154,19 +154,18 @@ var s_name = "${sessionScope.member.member_name}";
 	});
 
 	function chkfun() {
+		alert($("#loginidhea").val());
+		alert($("#loginpwhea").val());
 		$.ajax({
 			type : "POST",
 			datatype : "json",
 			url : "loginpro.do",
-			data : "id=" + $("#loginid").val() + "&pw=" + $("#loginpw").val(),
+			data : "id=" + $("#loginidhea").val() + "&pw=" + $("#loginpwhea").val(),
 			success : function(data) {
-				
 				if (data.chk == null) {
-					
 					window.location.href = data.href;
-					
 				} else {
-					alert(data.chk);
+					alert(data.chk);	
 				}
 
 			},
@@ -664,9 +663,9 @@ margin-top:-30px;
 		</div>
 		<div class="login-form">
 			<div id="form">
-				<input type="text" class="signUpInput" value="" placeholder="이이디"
-					id="loginid" name="id"> <input type="password"
-					class="signUpInput" value="" placeholder="비밀번호" id="loginpw" name="pw">
+				<input type="text" class="signUpInput" value="" placeholder="아이디"
+					id="loginidhea" name="id"> <input type="password"
+					class="signUpInput" value="" placeholder="비밀번호" id="loginpwhea" name="pw">
 			</div>
 			<div id="loginbutton">
 				<a href="javascript:chkfun()"><img alt="" src="images/button_login.png"></a>

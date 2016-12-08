@@ -10,15 +10,16 @@
  	       
 $(document).ready(function(){
 	
+	var check = "false";
+	var idchk = "";
 	
-	
-	$('#domain').change(function(){
-	if($('#domain').val()!="::직접입력::"){
-		$('#mail2').attr("value",$('#domain').val()).attr("readonly","true");
-
-
-		
-	}
+	$(document).on("change", "#domain", function() {
+		var domain = $('#domain').val();
+		if(domain=="1"){
+			$('#mail2').val("");
+		} else {
+			$('#mail2').val(domain);
+		}
 	});
 	
 	$("#phone").keyup(function () {
@@ -35,15 +36,49 @@ $(document).ready(function(){
 			$('#check').css("color","red");
 			$('font[name=check]').text('');
 			$('font[name=check]').html('비밀번호가 일치하지 않습니다.');
+			return false;
 		}else{
 			$('#check').css("color","green");
 			$('font[name=check]').text('');
 			$('font[name=check]').html('비밀번호가 일치합니다.');
 		}
 	});
-	$("#joinok").click(function () {
+	
+	$('#joinok').on('click', function(){
 		
 		
+		var reg2 = /[^(a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣)]/gi; // 영문자,숫자만 (대소문자 구분 x)
+		var reg3 = /[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; //특수문자는 반드시 포함되어야함
+		var reg4 = /[0-9]/g; // 숫자는 반드시 포함되어야 함
+		var reg5 = /[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; // 문자는 반드시 포함되어야 함
+		
+		var pwreg = $('#pass').val();
+		
+		if(idchk=="false"){
+			alert("ID가 중복입니다. 다시 입력하세요.");
+			return false;
+		}
+		
+		if(check=="false"){
+			alert("ID중복체크를 하세요.")
+			return false;
+		}
+		
+		if(!reg3.test(pwreg)){
+			alert("특수문자는 반드시 포함되어야합니다.");
+			return false;
+		}
+		if(!reg4.test(pwreg)){
+			alert("숫자는 반드시 포함되어야합니다.");
+			return false;
+		}
+		
+		if(!reg5.test(pwreg)){
+			alert("문자는 반드시 포함되어야합니다.");
+			return false;
+		}
+		
+			
 	$(".form3").append('<input type="hidden" id="joinmail" name="mail">');
 	$("#joinmail").val($("#email").val()+"@"+$('#mail2').val());
 	//alert($("#joinmail").val());
@@ -66,39 +101,63 @@ $(document).ready(function(){
 	
  	if($("#member_name").val().length == 0 || $("#id").val().length == 0 || $("#pass").val().length == 0 ||
 			$("#pw").val().length == 0 || $("#phone").val().length == 0 || $("#phone2").val().length == 0 ||
-			$("#email").val().length == 0 || $("#joinaddress").val().length == 0){
+			$("#email").val().length == 0 || $("#joinaddress").val().length == 0 || $("#mail2").val().length == 0||$('#sample4_postcode').val().length==0||$('#sangsae').val().length==0){
 		alert("전부 입력해주세요.");
 		if($("#member_name").val().length == 0){
 			$('#member_name').focus();
+			return false;
 		}
 		
 		if($("#id").val().length == 0){
 			 $('#id').focus();
+			 return false;
 		}
 		
 		if($("#pass").val().length == 0){
 			$('#pass').focus();
+			return false;
 		}
 		
 		if($("#pw").val().length == 0){
 			$('#pw').focus();
+			return false;
 		}
 		
 		if($("#phone").val().length == 0){
 			$('#phone').focus();
+			return false;
 		}
 		
 		if($("#phone2").val().length == 0){
 			$('#phone2').focus();
+			return false;
 		}
 		
 		if($("#email").val().length == 0){
 			$('#email').focus();
+			return false;
+		}
+		
+		if($("#mail2").val().length == 0){
+			$('#mail2').focus();
+			return false;
+		}
+		
+		if($('#sample4_postcode').val().length==0){
+			$('#sample4_postcode').focus();
+			return false;
+		}
+		
+		if($('#sangsae').val().length==0){
+			$('#sangsae').focus();
+			return false;
 		}
 		
 		if($("#joinaddress").val().length == 0){
 			$('#joinaddress').focus();
+			return false;
 		}
+		
 	}
 	else {
 		if($("#pass").val()==$("#pw").val()){
@@ -107,56 +166,32 @@ $(document).ready(function(){
 		}else{
 			alert("비밀번호가 일치하지 않습니다.");
 		}
-
-		
 	}
-	}); 
-	
-	
-	
-	var reg2 = /[^(a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣)]/gi; // 영문자,숫자만 (대소문자 구분 x)
-	var reg3 = /[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; //특수문자는 반드시 포함되어야함
-	var reg4 = /[0-9]/g; // 숫자는 반드시 포함되어야 함
-	var reg5 = /[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]/g; // 문자는 반드시 포함되어야 함
-
- 	
-	$('#joinok').on('click', function(){
-		var pwreg =$('#pass').val();
-
-		if(reg3.test(pwreg)){
-			alert("pw true 3");
-		} else {
-			alert("특수문자는 반드시 포함되어야합니다.");
-		}
 		
-		if(reg4.test(pwreg)){
-			alert("pw true 4");
-		} else {
-			alert("숫자는 반드시 포함되어야합니다.");
-		}
-		
-		if(reg5.test(pwreg)){
-			alert("pw true 5");
-		} else {
-			alert("문자는 반드시 포함되어야합니다.");
-		}
-	});
-	  
+}); 
+
 	
-	
-	$('#button_idcheck').bind('click', function() {
+	$('#button_idcheck').on('click', function() {
 		var idreg =$('#id').val();
-		
-		
+		check = "true";
  		if(idreg.length == 0){
 			alert("공백은 입력할 수 없습니다.");
-		} else {
+			return false;
+		}
+ 		else {
 	 		$.ajax({
 	 			type : 'POST',
 				url : 'join_idck.do',
 				data :"id="+idreg,
 				success : function(data){
-					alert(data);
+					if(data == "1"){
+						idchk = "false";
+						alert("아이디가 중복입니다.")
+						return false;
+					} else{
+						alert("사용가능한 아이디입니다.")
+						idchk = "true";
+					}
 				},
 				error : function(xhr, textStatus, error) {
 					alert(error);
@@ -310,7 +345,7 @@ background-color: white;
 <td class="form3"><input type="text" id="email"/><span>@</span>
 <input type="text" name="mail2" id="mail2"/>
 <select name="domain" id="domain">
-<option value="::직접입력::">::직접입력::</option>
+<option value="1">::직접입력::</option>
 <option value="naver.com">naver.com</option>
 <option value="daum.net">daum.net</option>
 <option value="paran.com">paran.com</option>
@@ -338,7 +373,7 @@ background-color: white;
 
 
 <p>
-<a id="suchref" href=""><input type="submit" value="확인" id="joinok" /></a>
+<input type="submit" value="확인" id="joinok" />
 <input type="reset" value="취소" />
 </p>
 

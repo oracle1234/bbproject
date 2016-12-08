@@ -24,14 +24,16 @@
 		
 </head>
 <body>
-<div id="main">
+<div id="mainbody">
 <div id="board">
 <img class="title" src="images/main_board.png">
 <table>
+<c:forEach items="${list}" var="BoardDTO">
 <tr>
-<td width="70%">${BoardDTO.board_subject}</td>
+<td width="70%">${BoardDTO.board_writer}</td>
 <td width="30%"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_reg_date}"/></td>
 </tr>
+</c:forEach>
 </table>
 </div>
    <div class="container">
