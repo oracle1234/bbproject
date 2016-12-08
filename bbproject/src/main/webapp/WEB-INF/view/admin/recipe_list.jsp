@@ -46,7 +46,7 @@
 											' 난이도 : '+value.difficulty+'</span> <span>조리 시간 : '+value.recipe_time+'</span>'+
 								'</span></span></a></div>'+
 								'<div class="del">'+
-							'<a href="adminrecipedel.do?recipe_no='+value.recipe_no+'">삭제</a></div>'
+							'<a href="adminrecipedel.do?currentRow=1&recipe_no='+value.recipe_no+'">삭제</a></div>'
 						);
 						
 					});

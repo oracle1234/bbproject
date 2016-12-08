@@ -79,9 +79,9 @@ CREATE TABLE fb_theme_recipe
 (
 	recipe_no number NOT NULL,
 	theme_no number NOT NULL,
-	receipe_name varchar2(2000) NOT NULL,
+	recipe_name varchar2(2000) NOT NULL,
 	recipe_material varchar2(2000) NOT NULL,
-	receipe_explaination varchar2(2000) NOT NULL,
+	recipe_explaination varchar2(2000) NOT NULL,
 	picture varchar2(2000) NOT NULL,
 	portion varchar2(2000) NOT NULL,
 	recipe_time varchar2(2000) NOT NULL,

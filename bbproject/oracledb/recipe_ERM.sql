@@ -213,7 +213,18 @@ from fb_theme_recipe a, fb_tr_order b, fb_tr_complete c
 where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no  and a.theme_no = 1)d
 
 
+alter table FB_THEME_RECIPE modify (recipe_name var)
 
+ALTER TABLE table_name
+ADD recipe_name 
+
+ALTER TABLE table_name
+DROP COLUMN column_name
+
+alter table FB_THEME_RECIPE rename column receipe_name to recipe_name;
+alter table FB_THEME_RECIPE rename column receipe_explaination to recipe_explaination;
+alter table FB_THEME_RECIPE rename column receipe_time to recipe_time;
+alter table FB_THEME_RECIPE rename column receipe_name to recipe_name;
 
 
 	select c.* from (
@@ -221,10 +232,10 @@ where a.recipe_no = b.recipe_no and a.recipe_no = c.recipe_no  and a.theme_no = 
 			from(
 			select * from
 			fb_theme_recipe
-			where theme_no = 5
 			order by recipe_no desc)b)c
 			where c.rm >= 1 and c.rm <= 5
 
+			where theme_no = 3
 
 
 select *
