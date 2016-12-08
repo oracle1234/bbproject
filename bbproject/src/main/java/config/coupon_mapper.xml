@@ -5,7 +5,7 @@
 <mapper namespace="coupon">
 
 	<select id="list" resultType="dto.fb_CouponDTO" parameterType="int">
-		select c.coupon_name, c.coupon_discount, b.coupon_state
+		select c.coupon_name, c.coupon_discount
 		from fb_coupon c, fb_coupon_book b
 		where member_no=#{member_no}
 		and c.coupon_no = b.coupon_no
@@ -33,7 +33,7 @@
 	
 	<insert id="admincouponmemins" parameterType="dto.fb_CouponDTO">
 		insert into fb_coupon_book
-		values(SEQ_couponbook_no.nextval, #{member_no}, #{coupon_no}, 0)
+		values(SEQ_couponbook_no.nextval, #{member_no}, #{coupon_no})
 	</insert>
 	
 	
