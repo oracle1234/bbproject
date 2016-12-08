@@ -162,8 +162,8 @@ select * from fb_photo_board;
 select * from fb_qa_board;
 
 
-insert into fb_board values(0,0,1,'ssfsdf','csdfdf',0,sysdate,'wr');
-insert into fb_photo_board values(0,0,2,'ssfsdf','csdfdf',sysdate,'wr.text','wr');
-insert into fb_qa_board values(0,0,3,'ssfsdf','csdfdf',0,sysdate,'wr','wr');
+insert into fb_board values(0,6,1,'ssfsdf','csdfdf',0,sysdate,'wr');
+insert into fb_photo_board values(0,6,2,'ssfsdf','csdfdf',sysdate,'wr.text','wr');
+insert into fb_qa_board values(0,6,3,'ssfsdf','csdfdf',0,sysdate,'wr','wr');
 
 select * from fb_board where board_no>=1 order by board_no desc;

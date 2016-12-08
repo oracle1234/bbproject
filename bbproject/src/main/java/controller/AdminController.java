@@ -94,7 +94,6 @@ public class AdminController {
 
 		map.put("pdto", pdto);
 		map.put("list", recipeservice.selectListProcess(pdto));
-
 		return map;
 	}
 
@@ -111,9 +110,8 @@ public class AdminController {
 	@RequestMapping("/adminrecipedel.do")
 	public ModelAndView recipeDelPage(ThemeRecipeDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		List<ThemeRecipeDTO> list = recipeservice.deleteRecipeProcess(dto, req);
-		mav.addObject("aList", list);
-		mav.setViewName("adminrecipelist");
+		recipeservice.deleteRecipeProcess(dto, req);
+		mav.setViewName("redirect:adminrecipelist.do");
 		return mav;
 	}
 
