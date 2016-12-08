@@ -13,54 +13,58 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
 <script type="text/javascript">
-var uno = "";
-$(document).ready(
-		function() {
-			$('.list_btn').bind('click', listRun);
-			$('.update_btn').bind('click', updateRun);
-			$('.delete_btn').bind('click', deleteRun);
+	var uno = "";
 
-			//[댓글입력]
-			$('#comment_insert').click(
-					function() {
+	$(document).ready(
+			function() {
 
-						if ($('#comment_str').val() == "") {
-							return false;
-						}
+				$('.list_btn').bind('click', listRun);
+				$('.update_btn').bind('click', updateRun);
+				$('.delete_btn').bind('click', deleteRun);
 
-						$.ajax({
-							type : 'GET',
-							dataType : 'json',
-							url : "qa_commentInsert.do?comment_content="
-									+ $('#comment_str').val()
-									+ "&qa_no=${dto.qa_no}"
-									+ "&member_no=1",
-							success : comment_insert,
-							error : function(xhr, textStatus, error) {
-								alert("insert는 " + error);
+				//[댓글입력]
+				$('#comment_insert').click(
+						function() {
+
+							if ($('#comment_str').val() == "") {
+								return false;
 							}
-						});
-					});
 
-			//[댓글삭제]
-			$(document).on(
-					'click',
-					'.comment_delete',
-					function() {
-						var cno = $(this).val();
-						$.ajax({
-							type : 'GET',
-							dataType : 'json',
-							url : "qa_commentDelete.do?comment_no=" + cno
-									+ "&qa_no=${dto.qa_no}"
-									+ "&member_no=1",
-							success : comment_delete,
-							error : function(xhr, textStatus, error) {
-								alert("delete는 " + error);
-							}
+							$.ajax({
+								type : 'GET',
+								dataType : 'json',
+								url : "qa_commentInsert.do?comment_content="
+										+ $('#comment_str').val()
+										+ "&qa_no=${dto.qa_no}"
+										+ "&member_no=${dto.member_no}"
+										+ "&comment_writer=${member.id}",
+								success : comment_insert,
+								error : function(xhr, textStatus, error) {
+									alert("insert는 " + error);
+								}
+							});
 						});
-					});
+
+				//[댓글삭제]
+				$(document).on(
+						'click',
+						'.comment_delete',
+						function() {
+							var cno = $(this).val();
+							$.ajax({
+								type : 'GET',
+								dataType : 'json',
+								url : "qa_commentDelete.do?comment_no=" + cno
+										+ "&qa_no=${dto.qa_no}"
+										+ "&member_no=${dto.member_no}",
+								success : comment_delete,
+								error : function(xhr, textStatus, error) {
+									alert("delete는 " + error);
+								}
+							});
+						});
 
 				//[댓글수정 창 띄우기]
 				$('.updateWindow').addClass('updateHide');
@@ -91,7 +95,8 @@ $(document).ready(
 								type : 'POST',
 								dataType : 'json',
 								url : "qa_commentUpdate.do",
-								data : "comment_no=" + uno + "&member_no=1"
+								data : "comment_no=" + uno
+										+ "&member_no=${dto.member_no}"
 										+ "&comment_content="
 										+ $('.updateCommentText').val()
 										+ "&qa_no=${dto.qa_no}",
@@ -102,7 +107,6 @@ $(document).ready(
 							});
 						});
 			});
-
 
 	function listRun() {
 		$('#frm').attr('action', "qa_list.do").submit();
@@ -130,12 +134,11 @@ $(document).ready(
 		$('.comment_row').remove();
 		$('.board_page').empty();
 
-
 		$
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
 
@@ -153,8 +156,8 @@ $(document).ready(
 		}
 
 		for (var i = start; i <= end; i++) {
-			var source1 = '<a href="javascript:myFunction(${dto.qa_no}, '
-					+ i + ')">' + i + '&nbsp;';
+			var source1 = '<a href="javascript:myFunction(${dto.qa_no}, ' + i
+					+ ')">' + i + '&nbsp;';
 			$('.board_page').append(source1);
 		}
 
@@ -171,39 +174,39 @@ $(document).ready(
 	function comment_delete(res) {
 		$('.comment_row').remove();
 		$('.board_page').empty();
+		if (res.list != null) {
+			$
+					.each(
+							res.list,
+							function(index, value) {
+								var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+								var template = Handlebars.compile(source);
+								$('.commentarea').append(template(value));
+							});
 
-		$
-				.each(
-						res.list,
-						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
-							var template = Handlebars.compile(source);
-							$('.commentarea').append(template(value));
-						});
+			var start = res.page.startPage;
+			var end = res.page.endPage;
+			var block = res.page.blockPage;
+			var total = res.page.totalPage;
 
-		var start = res.page.startPage;
-		var end = res.page.endPage;
-		var block = res.page.blockPage;
-		var total = res.page.totalPage;
+			if (start > 1) {
+				$('.board_page').append(
+						'<a href="javascript:preFuncion(${dto.qa_no},'
+								+ (start - block) + ')">이전</a>');
+			}
 
-		if (start > 1) {
-			$('.board_page').append(
-					'<a href="javascript:preFuncion(${dto.qa_no},'
-							+ (start - block) + ')">이전</a>');
+			for (var i = start; i <= end; i++) {
+				var source1 = '<a href="javascript:myFunction(${dto.qa_no}, '
+						+ i + ')">' + i + '&nbsp;';
+				$('.board_page').append(source1);
+			}
+
+			if (end < total) {
+				$('#pre_next_pagenum').append(
+						'<a href="javascript:nextFuncion(${dto.qa_no},'
+								+ (start + block) + ')">다음</a>');
+			}
 		}
-
-		for (var i = start; i <= end; i++) {
-			var source1 = '<a href="javascript:myFunction(${dto.qa_no}, '
-					+ i + ')">' + i + '&nbsp;';
-			$('.board_page').append(source1);
-		}
-
-		if (end < total) {
-			$('#pre_next_pagenum').append(
-					'<a href="javascript:nextFuncion(${dto.qa_no},'
-							+ (start + block) + ')">다음</a>');
-		}
-
 	};
 
 	//[댓글수정]
@@ -215,7 +218,7 @@ $(document).ready(
 				.each(
 						data.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
 						});
@@ -232,8 +235,8 @@ $(document).ready(
 		}
 
 		for (var i = start; i <= end; i++) {
-			var source1 = '<a href="javascript:myFunction(${dto.qa_no}, '
-					+ i + ')">' + i + '&nbsp;';
+			var source1 = '<a href="javascript:myFunction(${dto.qa_no}, ' + i
+					+ ')">' + i + '&nbsp;';
 			$('.board_page').append(source1);
 		}
 
@@ -247,7 +250,7 @@ $(document).ready(
 		$('.updateWindow').addClass('updateHide');
 		uno = "";
 	};
-	
+
 	function preFunction(b, c) {
 		$.ajax({
 			type : 'POST',
@@ -293,7 +296,7 @@ $(document).ready(
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
 						});
@@ -307,33 +310,33 @@ $(document).ready(
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
-	});
-	var start = res.page.startPage;
-	var end = res.page.endPage;
-	var block = res.page.blockPage;
-	var total = res.page.totalPage;
-	
-	if (start > 1) {
-		$('.board_page').append(
-				'<a href="javascript:preFunction(${dto.qa_no}, '
-						+ (start - block) + ')">이전&nbsp;</a>');
-	}
+						});
+		var start = res.page.startPage;
+		var end = res.page.endPage;
+		var block = res.page.blockPage;
+		var total = res.page.totalPage;
 
-	for (var i = start; i <= end; i++) {
-		var source1 = '<a href="javascript:myFunction(${dto.qa_no}, '
-				+ i + ')">' + i + '&nbsp;';
-		$('.board_page').append(source1);
-	}
+		if (start > 1) {
+			$('.board_page').append(
+					'<a href="javascript:preFunction(${dto.qa_no}, '
+							+ (start - block) + ')">이전&nbsp;</a>');
+		}
 
-	if (end < total) {
-		$('.board_page').append(
-				'<a href="javascript:nextFunction(${dto.qa_no}, '
-						+ (start + block) + ')">다음</a>');
-	}
-};
+		for (var i = start; i <= end; i++) {
+			var source1 = '<a href="javascript:myFunction(${dto.qa_no}, ' + i
+					+ ')">' + i + '&nbsp;';
+			$('.board_page').append(source1);
+		}
+
+		if (end < total) {
+			$('.board_page').append(
+					'<a href="javascript:nextFunction(${dto.qa_no}, '
+							+ (start + block) + ')">다음</a>');
+		}
+	};
 </script>
 <style type="text/css">
 #board_row tr {
@@ -352,15 +355,14 @@ td {
 }
 
 #textarea {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	padding-left: 20px;
+	padding: 20px;
 	text-align: left;
 	height: 450px;
 }
 
-.comment_str {
+#comment_str {
 	width: 40%;
+	height: 30px;
 }
 
 #comment_button {
@@ -449,7 +451,6 @@ td {
 				<div class="comment_row_top">${CommentDTO.comment_writer}<fmt:formatDate
 						pattern="yyyy/MM/dd" dateStyle="short"
 						value="${CommentDTO.comment_date}" />
-					<button class="comment_comment" value="${CommentDTO.comment_no}">댓글</button>
 					<button class="comment_update" value="${CommentDTO.comment_no}">수정</button>
 					<button class="comment_delete" value="${CommentDTO.comment_no}">삭제</button>
 				</div>
@@ -492,10 +493,11 @@ td {
 
 	<div class="board_btn">
 		<form name="frm" id="frm" method="get">
-			<input type="hidden" name="qa_no" id="qa_no" value="${dto.qa_no}" />
-			<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" />
-			<input type="hidden" name="comment_writer" value="${sessionScope.member.id}" /> 
-			<input type="button" class="list_btn" value="목록" />
+			<input type="hidden" name="qa_no" value="${dto.qa_no}" /> <input
+				type="hidden" name="currentPage" value="${currentPage}" /> <input
+				type="hidden" name="comment_writer"
+				value="${sessionScope.member.id}" /> <input type="button"
+				class="list_btn" value="목록" />
 
 			<c:if test="${member.member_no ==  dto.member_no}">
 				<input type="button" class="update_btn" value="수정" />

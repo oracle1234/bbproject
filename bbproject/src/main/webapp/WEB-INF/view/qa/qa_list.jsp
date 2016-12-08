@@ -32,7 +32,7 @@
 			}
 		});
 
-		$("#board_content").click(function() {
+		$("#qa_content").click(function() {
 			if (member_id == '') {
 				alert("회원가입을 하세요.");
 				return false;
