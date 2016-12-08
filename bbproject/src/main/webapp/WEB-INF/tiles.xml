@@ -39,73 +39,84 @@
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/board/board_list.jsp" />
-		<put-attribute name="img" value="/WEB-INF/view/template/board_list_imgbar.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/board_imgbar.jsp" />
 	</definition>
 	
 	<definition name="board_update" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/board/board_update.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/board_imgbar.jsp" />
 	</definition>
 	
 	<definition name="board_view" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/board/board_view.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/board_imgbar.jsp" />
 	</definition>	
 	
 	<definition name="board_write" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/board/board_write.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/board_imgbar.jsp" />
 	</definition>	
 	
 	<definition name="qa_list" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/qa/qa_list.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/qa_imgbar.jsp" />
 	</definition>
 	
 	<definition name="qa_update" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/qa/qa_update.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/qa_imgbar.jsp" />
 	</definition>
 	
 	<definition name="qa_view" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/qa/qa_view.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/qa_imgbar.jsp" />
 	</definition>	
 	
 	<definition name="qa_write" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/qa/qa_write.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/qa_imgbar.jsp" />
 	</definition>
 	
 	<definition name="photo_list" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/photo/photo_list.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/photo_imgbar.jsp" />
 	</definition>
 	
 	<definition name="photo_update" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/photo/photo_update.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/photo_imgbar.jsp" />
 	</definition>
 	
 	<definition name="photo_view" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/photo/photo_view.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/photo_imgbar.jsp" />
 	</definition>	
 	
 	<definition name="photo_write" extends="index">
 		<put-attribute name="title" value="board example" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/board_menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/photo/photo_write.jsp" />
+		<put-attribute name="img" value="/WEB-INF/view/template/photo_imgbar.jsp" />
 	</definition>
 	
 	<definition name="mypage" extends="index">
