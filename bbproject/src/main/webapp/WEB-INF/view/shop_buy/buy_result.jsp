@@ -19,23 +19,8 @@
 	width: 1200px;
 	height: auto;
 	margin: auto;
-	background-color: red;
 }
 </style>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<script type="text/javascript">
-	$('#homeBtn').on('click', function() {
-		alert('홈버튼');
-		window.location.href = "main.do";
-	});
-
-	$('#shoppingBtn').on('click', function() {
-		alert('쇼핑계속');
-		window.location.href = "shop.do";
-	});
-</script>
 
 
 </head>
@@ -44,8 +29,8 @@
 		<p>구매가 완료되었습니다.</p>
 		<p>고객님의 메일로 구매상품정보를 발송하였습니다.</p>
 		<p>반찬을 부탁해를 이용해주셔서 감사합니다.</p>
-		<button id="shoppingBtn">계속쇼핑하기</button>
-		<button id="homeBtn">홈으로 가기</button>
+		<a href="shop.do"><button id="shoppingBtn">계속쇼핑하기</button></a>
+		<a href="main.do"><button id="homeBtn">홈으로 가기</button></a>
 	</div>
 </body>
 </html>
