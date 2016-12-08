@@ -271,7 +271,7 @@ public class ProductController {
 		str = "장바구니 추가완료";
 		}
 		else{
-		str = "이미 추가된 상품";	
+		str = "이미 추가된 상품입니다.";	
 		}
 		
 		return str;

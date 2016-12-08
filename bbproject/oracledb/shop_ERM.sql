@@ -138,6 +138,8 @@ insert into fb_category values (SEQ_category_no.nextval, '국/찌개');
 insert into fb_category values (SEQ_category_no.nextval, '반찬');
 insert into fb_category values (SEQ_category_no.nextval, '김치');
 
+select * from fb_foods
+
 insert into fb_lately_product values('')
 select * from fb_lately_product
 

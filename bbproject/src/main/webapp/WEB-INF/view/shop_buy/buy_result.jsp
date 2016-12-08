@@ -20,6 +20,11 @@
 	height: auto;
 	margin: auto;
 }
+
+#pay_end p{
+	font-size: 25px;
+	margin-top: 20px;
+}
 </style>
 
 
@@ -28,7 +33,7 @@
 	<div id="pay_end">
 		<p>구매가 완료되었습니다.</p>
 		<p>고객님의 메일로 구매상품정보를 발송하였습니다.</p>
-		<p>반찬을 부탁해를 이용해주셔서 감사합니다.</p>
+		<p>반찬을 부탁해를 이용해주셔서 감사합니다.</p><br><br>
 		<a href="shop.do"><button id="shoppingBtn">계속쇼핑하기</button></a>
 		<a href="main.do"><button id="homeBtn">홈으로 가기</button></a>
 	</div>

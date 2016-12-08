@@ -922,7 +922,7 @@ function sample4_execDaumPostcode() {
 						</tr>
 						<tr>
 							<td colspan="5" align="left">고객님, 수도권 지역이세요?<br> 반찬을부탁해
-								새벽직배송으로 더신선하고 신속하게 더반찬을 만나보실 수 있습니다.<br> 상품금액에서 할인금액을 제외한 총
+								새벽직배송으로 더신선하고 신속하게 반찬을 만나보실 수 있습니다.<br> 상품금액에서 할인금액을 제외한 총
 								주문 합계가 45,000원 이상이 되어야 무료배송이 가능합니다.
 							</td>
 						</tr>
@@ -1034,7 +1034,7 @@ function sample4_execDaumPostcode() {
 									<td><input type="radio" class="pay_type" name="pay_type" value="creditCard">
 										신용카드<br> &nbsp;- 신용카드 결제 신청 시 승인 진행에 다소 시간이 소요될 수 있으므로
 										'중지', '새로고침'을 누르지 마시고 결과 화면이 나타날 때까지 기다려 주십시오.<br>
-										&nbsp;- 결제하기 버튼 클릭시 결제창이 나타나지 않을 경우나 안전결제 모듈이 설치 되지 않을 경우 더반찬
+										&nbsp;- 결제하기 버튼 클릭시 결제창이 나타나지 않을 경우나 안전결제 모듈이 설치 되지 않을 경우 반찬을부탁해
 										사이트를 모두 닫으시고 아래 설치파일을 다운받아 ActiveX를 수동설치 하시고 결제를 진행하여 주십시오.<br>
 									<br> <input type="radio" class="pay_type" name="pay_type" value="bankBook">
 										무통장입금<br> &nbsp;- 안전한 거래를 제공하기 위해 현금결제시 구매안전 서비스를 제공하고
