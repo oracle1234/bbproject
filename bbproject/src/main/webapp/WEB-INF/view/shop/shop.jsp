@@ -54,6 +54,12 @@
 	margin: auto;
 }
 
+#pagenum_wrap a{
+	color: black;
+	text-decoration: none;
+	text-align: center;
+}
+
 #search_wrap {
 	width: 300px;
 	height: 50px;
@@ -104,14 +110,6 @@
 					$(this).dialog("close"); // 남아있기
 				},
 			},
-			show : { // 애니메이션 효과 - 보여줄때
-				effect : "blind",
-				duration : 1000
-			},
-			hide : { // 애니메이션 효과 - 감출때
-				effect : "explode",
-				duration : 1000
-			},
 			open : function() {
 				$(".ui-dialog-titlebar-close").hide();
 			}
@@ -138,6 +136,9 @@
 			}); 
 			
 		});
+		
+		
+		
 		
 	});//end ready
 	
@@ -392,13 +393,13 @@
 					<option value="2">반찬</option>
 					<option value="3">김치</option>
 				</select> <input type="text" id="searchText">
-				<button id="searchBtn">검색</button>
+				<input type="image" src="images/header_sch_btn.gif" id="searchBtn">
 			</div>
 
 		</div>
 	</div>
 	<div id="dialog">
-		<p>
+		<p><br>
 			장바구니로 이동하시겠습니까?<br>
 		</p>
 	</div>

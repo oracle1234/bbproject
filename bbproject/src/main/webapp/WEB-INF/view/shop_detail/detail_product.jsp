@@ -186,7 +186,7 @@
 	height: 150px;
 	z-index: 1000;
 	border: 1px solid black;
-	background-color: green;
+	background-color: blue;
 	text-align: center;
 }
 
@@ -388,6 +388,22 @@ $(document).ready(function() {
 				}
 			
 			});
+			
+			
+			$('#reviewText').keyup(function (e){
+		        var content = $(this).val();
+		        /* $(this).height(((content.split('\n').length + 1) * 1.5) + 'em'); */
+		        $('#counter').html(content.length + '/20');
+		        
+		        if(content.length > 20){
+		        	$(this).val($(this).val().substring(0, 20));
+		        	alert('20자 이내로 입력하세요.');
+		        	return false;
+		        }
+		        
+		    });
+		    $('#deli_comment_area').keyup();
+			
 						
 });//end ready end
 
@@ -678,7 +694,7 @@ $(document).ready(function() {
 								<td>${Foods.price}<span>원</span></td>
 							</tr>
 							<tr>
-								<th>유통기한</th>
+								<th>보관방법</th>
 								<td>${Foods.way}</td>
 							</tr>
 							<tr>
@@ -686,7 +702,7 @@ $(document).ready(function() {
 								<td>${Foods.weight}</td>
 							</tr>
 							<tr>
-								<th>보관방법</th>
+								<th>유통기한</th>
 								<td>${Foods.shelfLife}</td>
 							</tr>
 							<tr>
@@ -750,10 +766,10 @@ $(document).ready(function() {
 			<div class="shop_review">
 				<!-- <p id="review_text_p">한줄평</p> -->
 				<table id="review_table" width="860" >
-					<caption>한줄평</caption>
+					<caption><img src="./images/menu/img_review.png"></caption>
 
 					<tr>
-						<th>내용</th>
+						<th>작성내용</th>
 						<th>작성자</th>
 						<th>작성일</th>
 						<th></th>
@@ -783,7 +799,7 @@ $(document).ready(function() {
 
 				</table>
 
-				<label>한줄평 남기기</label> <input type="text" size="70px"
+				<label><img src="./images/menu/button_review.png"></label> <input type="text" size="70px"
 					placeholder="20자 이내로 한줄평을 작성해주세요." id="reviewText"
 					class="form-control">
 				<button id="review_reg">등록</button>
