@@ -224,7 +224,7 @@ $(document).ready(function(){
 </div>
 <div class="button">
 <a id="okhref" href=""><img id="ok" src="./images/btn_ok.gif" ></a>
-<img id="no" src="./images/button_cancel.gif" >
+<a href="main.do"><img id="home" src="./images/button_home.png" ></a>
 </div>
 </div>
 </body>

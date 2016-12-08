@@ -237,6 +237,6 @@ function searchlist1(data){
 		<input type="radio" name="searchtype" value="제목">제목 <input
 			type="radio" name="searchtype" value="내용">내용 <input
 			type="text" id="searchval" placeholder="검색" name="searchval">
-		<input type="button" id="button_find" value="검색">
+		<img id="button_find" src="./images/button_find2.png">
 	</div>
 </div>

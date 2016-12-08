@@ -257,16 +257,25 @@ width:100px;
 width:200px;
 }
 
+#uppwbtn{
+width:140px;
+height:40px;
+}
+
+#pwupok{
+margin-top:10px;
+}
+
 </style>
 	<div class="mypage_body">
 	<div class="password">
 	<table id="passtable">
 <tr>
-<td class="labelpass"><label for="pw">비밀번호확인</label></td>
+<td class="labelpass"><img id="uppwbtn" src="./images/button_pwck.png"></td>
 <td class="formpass"><input type="password" id="pwckup"></td>
 </tr>
 </table>
-<input type="button" id="pwupok" value="확인"> 
+<img id="pwupok" src="./images/btn_ok.gif"> 
 </div>
 
 <div class="join">
