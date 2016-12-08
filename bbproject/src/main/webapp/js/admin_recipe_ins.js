@@ -11,6 +11,12 @@ $(function() {
 												+ " class='upload'/> <textarea class='order_text' name='order_text' "
 												+ "placeholder='조리 순서'></textarea></td></tr>");
 					});
+	
+	$("#btn_order2").on("click",function() {
+
+		$("#add_order tr:last-child").remove();
+	
+	});
 
 	$(document).on("change", ".upload", function() {
 		imgOne(this);

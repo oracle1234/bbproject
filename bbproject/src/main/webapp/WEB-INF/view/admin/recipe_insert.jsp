@@ -55,9 +55,16 @@
 					<th>분량(인분)</th>
 					<td><input type="text" id="portion" name="portion" /></td>
 				</tr>
+				
+				<tr>
+					<th></th>
+					<td><input id="btn_order" type="button" value="+" style="width:30px;">
+					<input id="btn_order2" type="button" value="-" style="width:30px;"></td>
+				</tr>
+				
 				<tbody id="add_order">
 					<tr>
-						<th rowspan="10" width="100">레시피 순서</th>
+						<th rowspan="30" width="100">레시피 순서</th>
 						<td>
 							<div class="holder"></div>
 							<input type="file" name="order_file" class="upload" /> 
@@ -66,10 +73,7 @@
 					</tr>
 				</tbody>
 
-				<tr>
-					<th></th>
-					<td><input id="btn_order" type="button" value="+"></td>
-				</tr>
+				
 
 				<tr>
 					<th>레시피 완성 사진</th>
