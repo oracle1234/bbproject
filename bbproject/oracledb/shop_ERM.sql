@@ -249,6 +249,8 @@ CREATE TABLE fb_coupon_book
 ALTER TABLE fb_coupon_book
 	ADD FOREIGN KEY (member_no)
 	REFERENCES fb_member (member_no)
+	ADD FOREIGN KEY (coupon_no)
+	REFERENCES fb_coupon (coupon_no)
 ;
 
 
