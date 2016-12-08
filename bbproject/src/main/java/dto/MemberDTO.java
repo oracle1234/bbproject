@@ -3,7 +3,7 @@ package dto;
 import java.util.List;
 
 public class MemberDTO {
-	private int member_no, stamp, point;
+	private int member_no, point;
 	private String member_name, id, pw, address, tel, mail;
 	private List<fb_CouponDTO> cList;
 
@@ -24,14 +24,6 @@ public class MemberDTO {
 
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
-	}
-
-	public int getStamp() {
-		return stamp;
-	}
-
-	public void setStamp(int stamp) {
-		this.stamp = stamp;
 	}
 
 	public int getPoint() {

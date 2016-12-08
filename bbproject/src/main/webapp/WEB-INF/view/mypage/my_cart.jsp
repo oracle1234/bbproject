@@ -45,7 +45,7 @@ $(document).ready(function() {
 	$(document).on('click', '#cart_del',function(){
 		
 		
-		$('input[type=checkbox]:checked').each(function() {
+		$('input[name=cart_cb]:checked').each(function() {
 			
 			$.ajax({
 		 		type:'GET',

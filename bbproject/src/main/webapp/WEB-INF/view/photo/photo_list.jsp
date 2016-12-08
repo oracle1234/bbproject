@@ -8,30 +8,70 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="css/nf.lightbox.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/nf.lightbox.css"
+	media="screen" />
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="js/NFLightBox.js"></script>
-<script type="text/javascript"> 
-	$(function() {
-	var settings = { containerResizeSpeed: 350
+<script type="text/javascript">
+	var member_id = "${sessionScope.member.id}";
+
+	$(document).ready(function() {
+		
+		$("#write").click(function(){
+			if(member_id == ''){
+				alert("회원가입을 하세요.")
+				return false;
+			}
+		});
+		
+		var settings = {
+			containerResizeSpeed : 350
 		};
 		$('#gallery a').lightBox(settings);
 	});
+
+// 	$(function() {
+// 		var settings = {
+// 			containerResizeSpeed : 350
+// 		};
+// 		$('#gallery a').lightBox(settings);
+// 	});
+
 </script>
-<style type="text/css"> 
-#gallery{padding: 10px;width: 930px;}
-#gallery ul{list-style: none;}
-#gallery ul li{display: inline;}
-#gallery ul img{border: 5px solid #3e3e3e;border-width: 5px 5px 20px;}
-#gallery ul a:hover img{border: 5px solid #ff6000;border-width: 5px 5px 20px;color: #ff6000;}
-#gallery ul a:hover{color: #fff;}
-
-
-#photoList{
-	padding-top:10px;
-	padding-bottom:10px;
+<style type="text/css">
+#gallery {
+	padding: 10px;
 	width: 930px;
-	
+}
+
+#gallery ul {
+	list-style: none;
+}
+
+#gallery ul li {
+	display: inline;
+}
+
+#gallery ul img {
+	border: 5px solid #3e3e3e;
+	border-width: 5px 5px 20px;
+}
+
+#gallery ul a:hover img {
+	border: 5px solid #ff6000;
+	border-width: 5px 5px 20px;
+	color: #ff6000;
+}
+
+#gallery ul a:hover {
+	color: #fff;
+}
+
+#photoList {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 930px;
 }
 
 .board_page {
@@ -41,52 +81,52 @@
 
 .board_write {
 	padding: 20px 10px;
-	height:30px;
+	height: 30px;
 }
 
 .board_write {
 	padding: 20px 10px;
-	height:30px;
+	height: 30px;
 }
 
-img{
+img {
 	margin-bottom: 20px;
 	margin-right: 10px;
 }
-
-
 </style>
 <body>
 
-<div id="gallery">
-	<ul id="photoList">
-	<c:forEach items="${aList}" var="idto">
-		<li><a href="#"><img alt="후기이미지" src="photo_image.do?filename=${idto.photo_upload}" width="200"></a></li>
-	</c:forEach>
-	</ul>
+	<div id="gallery">
+		<ul id="photoList">
+			<c:forEach items="${aList}" var="idto">
+				<li><a href="#"><img alt="후기이미지"
+						src="photo_image.do?filename=${idto.photo_upload}" width="200"></a></li>
+			</c:forEach>
+		</ul>
 		<div class="board_write">
-			<a href="photo_write.do"><img alt="글쓰기" src="./images/btn_write.gif"></a>
+			<a href="photo_write.do"><img alt="글쓰기"
+				src="./images/btn_write.gif" id="write"></a>
 		</div>
 
 		<div class="board_page">
-		<!-- 이전 출력 시작 -->
-		<c:if test="${pv.startPage>1}">
-			<a href="photo_list.do?currentPage=${pv.startPage-pv.blockPage}">이전</a>
-		</c:if>
+			<!-- 이전 출력 시작 -->
+			<c:if test="${pv.startPage>1}">
+				<a href="photo_list.do?boardcategory_no=2&currentPage=${pv.startPage-pv.blockPage}">이전</a>
+			</c:if>
 
-		<!-- 페이지 출력 시작 -->
-		<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
-			<c:url var="currPage" value="photo_list.do">
-				<c:param name="currentPage" value="${i}" />
-			</c:url>
-			<a href="${currPage}"><c:out value="${i}" /></a>
-		</c:forEach>
+			<!-- 페이지 출력 시작 -->
+			<c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+				<c:url var="currPage" value="photo_list.do?boardcategory_no=2">
+					<c:param name="currentPage" value="${i}" />
+				</c:url>
+				<a href="${currPage}"><c:out value="${i}" /></a>
+			</c:forEach>
 
-		<!-- 페이지 출력 끝 -->
-		<c:if test="${pv.totalPage>pv.endPage}">
-			<a href="photo_list.do?currentPage=${pv.startPage+pv.blockPage}">다음</a>
-		</c:if>
+			<!-- 페이지 출력 끝 -->
+			<c:if test="${pv.totalPage>pv.endPage}">
+				<a href="photo_list.do?boardcategory_no=2&currentPage=${pv.startPage+pv.blockPage}">다음</a>
+			</c:if>
+		</div>
 	</div>
-</div>
 </body>
 </html>

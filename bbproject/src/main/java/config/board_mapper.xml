@@ -236,7 +236,7 @@
 		<![CDATA[
 		select b.* from (
 		select rownum as rm, a.* from (
-		select * from fb_photo_board order by photo_no desc)a)b 
+		select * from fb_photo_board where photo_no>=1 order by photo_no desc)a)b 
 		where b.rm>=#{startRow} and b.rm <=#{endRow}
  		]]>
 	</select>
