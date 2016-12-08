@@ -15,6 +15,9 @@ insert into fb_member values
 (4, '유재민', 'jaemin', '444444', '종각', 
 01044444444, 'jaemin',0, 0, 0);
 insert into fb_member values 
+<<<<<<< HEAD
+(0, '관리자', 'admin', 'admin', '종각', '01044444444', 'admin.com', 0);
+=======
 (1, '관리자', 'admin', 'admin', '종각', 
 01044444444, 'admin', 0, 0);
 
@@ -33,6 +36,7 @@ where member_no=1 and
 
 	
 	
+>>>>>>> refs/remotes/origin/min
 	split
 	select id
 	from fb_member
@@ -166,9 +170,7 @@ CREATE TABLE fb_delivery_cost
 select * from fb_foods
 
 insert into fb_delivery_cost values (SEQ_fb_delivery_no.nextval, 3000);
-insert into fb_category values (SEQ_category_no.nextval, '국/찌개');
-insert into fb_category values (SEQ_category_no.nextval, '반찬');
-insert into fb_category values (SEQ_category_no.nextval, '김치');
+
 
 insert into fb_foods values (SEQ_foods_no.nextval, '반찬test1', 3500, '300g', '제조일로부터 4일', '냉장', '온 가족이 좋아하는 달큰한 우엉조림은 여러 가지 피부질환에 탁월한 효과가 있을 뿐 아니라 풍부한 식이섬유로 비만, 당뇨, 대장암은 물론 성인병 예방과 다이어트에도 효과가 있습니다.', '돼지고기, 양파, 부추, 홍고추, 마늘, 올리브유, 청주, 생강, 소금, 후춧가루, 굴소스, 간장, 소금, 후춧가루, 참기름, 데리야끼소스', '데리야끼돼지고기안심볶음.jpg', 2, 1);
 insert into fb_foods values (SEQ_foods_no.nextval, '반찬29', 3500, '300g', '냉장', '제조일로부터 4일', '맛있습니다', '재료들', '데리야끼돼지고기안심볶음.jpg', 2, 1);
@@ -388,9 +390,10 @@ primary key (boardcategory_no)
 insert into fb_boardcategory values
 (1, '자유게시판');
 insert into fb_boardcategory values
-(2, '포토후기');
+(2, '질문과 답변');
 insert into fb_boardcategory values
-(3, '질문과 답변');
+(3, '포토후기');
+
 
 
  SET fb_board          fb_photo_board          fb_qa_board  

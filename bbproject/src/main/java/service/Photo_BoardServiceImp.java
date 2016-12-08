@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,11 +28,17 @@ public class Photo_BoardServiceImp implements Photo_BoardService {
 	public void setDao(Photo_BoardDAO pdao) {
 		this.pdao = pdao;
 	}
-
+	
 	@Override
-	public int countProcess() {
-
-		return pdao.count();
+	public int countProcess(int boardcategory_no) {
+		
+		return pdao.count(boardcategory_no);
+	}
+	
+	@Override
+	public List<Photo_BoardDTO> pageListProcess(HashMap<String, Object> map) {
+		
+		return pdao.pageList(map);
 	}
 
 	@Override
@@ -47,7 +54,7 @@ public class Photo_BoardServiceImp implements Photo_BoardService {
 
 	@Override
 	public Photo_BoardDTO contentProcess(int num) {
-		pdao.readCount(num);
+		
 		return pdao.content(num);
 	}
 
@@ -105,4 +112,5 @@ public class Photo_BoardServiceImp implements Photo_BoardService {
 		}
 		pdao.delete(num);
 	}// end deleteProcess()
+
 }

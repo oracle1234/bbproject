@@ -216,7 +216,8 @@ $(document).ready(function() {
 			//$('#btnModify').on('click', review_update_result);
 
 			var price = parseInt($('#info_table tr:nth-child(3) td').text());
-			savemoney = price * 0.01;
+			var savemoney1 = price * 0.01;
+			savemoney = Math.ceil(savemoney1/10) * 10;
 
 			$('#info_table tr:nth-child(8) td').empty();
 			$('#info_table tr:nth-child(8) td').append('<td>' + savemoney + '<span>원</span></td>');

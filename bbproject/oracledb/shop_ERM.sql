@@ -117,22 +117,23 @@ select *
 from fb_basket
 where member_no = 4
 
+select * from fb_member
+
 select a.amount, c.foods_no, c.foods_name, c.price
 from fb_basket a, fb_member b, fb_foods c 
 where a.member_no = b.member_no
 and a.foods_no = c.foods_no
 and a.member_no = 4 and a.foods_no = 7
 
-update fb_member set point = 2000;
+update fb_member set point = 2000 where member_no = 1;
 
 update fb_member set pw = '1' where id='qwer';
-
 select * from fb_member
 
 select * from fb_category
-insert into fb_category values(SEQ_category_no.nextval, '국/찌개');
-insert into fb_category values(SEQ_category_no.nextval, '반찬');
-insert into fb_category values(SEQ_category_no.nextval, '김치');
+insert into fb_category values (SEQ_category_no.nextval, '국/찌개');
+insert into fb_category values (SEQ_category_no.nextval, '반찬');
+insert into fb_category values (SEQ_category_no.nextval, '김치');
 
 insert into fb_lately_product values('')
 select * from fb_lately_product
@@ -211,17 +212,21 @@ select * from fb_request
 
 drop table fb_request
 
+insert into fb_category values()
+
+----------------------------------------------테이블 변경사항 저장---------------------------------------------------------
 CREATE TABLE fb_request
 (
 	member_no number NOT NULL,
+	foods_no number NOT NULL,
 	price number NOT NULL,
 	amount number NOT NULL,
 	day date NOT NULL,
 	delivery_condition varchar2(50) NOT NULL,
-	foods_no number NOT NULL,
 	foods_name varchar2(100) NOT NULL
 );
 
+--foods_no 외래키 추가
 ALTER TABLE fb_request
 	ADD FOREIGN KEY (foods_no)
 	REFERENCES fb_foods (foods_no)
@@ -229,4 +234,79 @@ ALTER TABLE fb_request
 	REFERENCES fb_member (member_no)
 ;
 
-select * from fb_request
+--stats 컬럼 삭제
+CREATE TABLE fb_coupon_book
+(
+	couponbook_no number NOT NULL,
+	member_no number NOT NULL,
+	coupon_no number NOT NULL,
+	PRIMARY KEY (couponbook_no)
+);
+
+ALTER TABLE fb_coupon_book
+	ADD FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no)
+;
+
+
+--delivery_no 컬럼 삭제
+CREATE TABLE fb_foods
+(
+	foods_no number NOT NULL,
+	foods_name varchar2(50) NOT NULL,
+	price number NOT NULL,
+	weight varchar2(50) NOT NULL,
+	way varchar2(50) NOT NULL,
+	shelfLife varchar2(50) NOT NULL,
+	foods_explaination varchar2(2000) NOT NULL,
+	foods_material varchar2(2000) NOT NULL,
+	picture varchar2(500) NOT NULL,
+	category_no number NOT NULL,
+	PRIMARY KEY (foods_no)
+);
+
+ALTER TABLE fb_foods
+	ADD FOREIGN KEY (category_no)
+	REFERENCES fb_category (category_no)
+;
+
+--member_no 컬럼추가, review_content 컬럼 크기변경
+CREATE TABLE fb_review
+(
+	member_no number NOT NULL,
+	review_no number NOT NULL,
+	review_writer varchar2(50),
+	review_content varchar2(100) NOT NULL,
+	review_date date,
+	foods_no number NOT NULL,
+	PRIMARY KEY (review_no)
+);
+
+
+ALTER TABLE fb_review
+	ADD CONSTRAINT fk_review_foods_no FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no) on delete cascade
+	ADD CONSTRAINT fk_review_member_no FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no) on delete cascade
+;
+
+--테이블 순서변경
+CREATE TABLE fb_lately_product
+(
+	lately_no number NOT NULL,
+	member_no number NOT NULL,
+	foods_no number NOT NULL
+);
+
+--외래키 변경
+ALTER TABLE fb_lately_product
+	ADD FOREIGN KEY (member_no)
+	REFERENCES fb_member (member_no)
+	ADD FOREIGN KEY (foods_no)
+	REFERENCES fb_foods (foods_no)
+;
+
+CREATE SEQUENCE SEQ_lately_no INCREMENT BY 1 START WITH 1 nocache nocycle;
+
+----------------------------------------------테이블 변경사항 저장---------------------------------------------------------
+

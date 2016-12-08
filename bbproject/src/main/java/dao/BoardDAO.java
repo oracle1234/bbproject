@@ -14,7 +14,6 @@ public interface BoardDAO {
 	public List<BoardDTO> list(PageDTO pv);
 	public List<BoardDTO> pageList(HashMap<String, Object> map);
 	public int commentCount(int board_no);
-	//public List<CommentDTO> commentList(int comment_no);
 	public List<CommentDTO> commentPageList(HashMap<String, Object> map);
 	public void readCount(int num);
 	public BoardDTO content(int num);
@@ -25,4 +24,5 @@ public interface BoardDAO {
 	public void commentSaveList(HashMap<String, Object> map);
 	public void commentUpdateList(HashMap<String, Object> map);
 	public void commentDeleteList(HashMap<String, Object> map);
+	public List<BoardDTO> searchList(HashMap<String, Object> map);
 }

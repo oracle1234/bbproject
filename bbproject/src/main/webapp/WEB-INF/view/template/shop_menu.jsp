@@ -29,10 +29,10 @@ $(document).ready(function(){
 		<img alt="" src="./images/menubar_shop.png">
 	</div>
 	<ul class="detailmenu">
-		<li><a href="shop.do?category_no=1"><img class="banchan"
-				src="./images/shop_banchan.png"></a></li>
-		<li><a href="shop.do?category_no=2"><img class="gook"
+		<li><a href="shop.do?category_no=1"><img class="gook"
 				src="./images/shop_gook.png"></a></li>
+		<li><a href="shop.do?category_no=2"><img class="banchan"
+				src="./images/shop_banchan.png"></a></li>
 		<li><a href="shop.do?category_no=3"><img class="kimchi"
 				src="./images/shop_kimchi.png"></a></li>
 	</ul>

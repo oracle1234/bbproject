@@ -15,12 +15,15 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <script type="text/javascript">
+
 var uno = "";
-$(document).ready(
+
+$(document).ready(		
 		function() {
-			$('#list').bind('click', listRun);
-			$('#update').bind('click', updateRun);
-			$('#delete').bind('click', deleteRun);
+				
+			$('.list_btn').bind('click', listRun);
+			$('.update_btn').bind('click', updateRun);
+			$('.delete_btn').bind('click', deleteRun);
 
 			//[댓글입력]
 			$('#comment_insert').click(
@@ -36,7 +39,8 @@ $(document).ready(
 							url : "commentInsert.do?comment_content="
 									+ $('#comment_str').val()
 									+ "&board_no=${dto.board_no}"
-									+ "&member_no=1",
+									+ "&member_no=${dto.member_no}" 
+									+ "&comment_writer=${member.id}",
 							success : comment_insert,
 							error : function(xhr, textStatus, error) {
 								alert("insert는 " + error);
@@ -66,6 +70,7 @@ $(document).ready(
 				//[댓글수정 창 띄우기]
 				$('.updateWindow').addClass('updateHide');
 				$(document).on('click', '.comment_update', function() {
+					
 					uno = $(this).val();
 					$('.updateWindow').addClass('updateShow');
 					$('.updateWindow').removeClass('updateHide');
@@ -136,7 +141,7 @@ $(document).ready(
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
 
@@ -177,7 +182,7 @@ $(document).ready(
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
 						});
@@ -216,7 +221,7 @@ $(document).ready(
 				.each(
 						data.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
 						});
@@ -294,7 +299,7 @@ $(document).ready(
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
 						});
@@ -308,7 +313,7 @@ $(document).ready(
 				.each(
 						res.list,
 						function(index, value) {
-							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_comment' value={{comment_no}}>댓글</button><button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
+							var source = "<div class='comment_row'><div class='comment_row_top'>{{comment_writer}}{{newDate comment_date}}<button class='comment_update' value={{comment_no}}>수정</button><button class = 'comment_delete' value={{comment_no}}>삭제</button></div><div class='comment_row_bottom'>{{comment_content}}</div></div>";
 							var template = Handlebars.compile(source);
 							$('.commentarea').append(template(value));
 	});
@@ -377,7 +382,7 @@ td {
 	text-align: center;
 }
 
-.board_buttons {
+.board_btn {
 	padding: 20px 50px;
 	text-align: center;
 }
@@ -422,7 +427,6 @@ td {
 		</tr>
 	</table>
 
-
 	<div class="updateWindow">
 		<p>
 			<input type="text" class="updateCommentText"
@@ -442,7 +446,6 @@ td {
 				<div class="comment_row_top">${CommentDTO.comment_writer}<fmt:formatDate
 						pattern="yyyy/MM/dd" dateStyle="short"
 						value="${CommentDTO.comment_date}" />
-					<button class="comment_comment" value="${CommentDTO.comment_no}">댓글</button>
 					<button class="comment_update" value="${CommentDTO.comment_no}">수정</button>
 					<button class="comment_delete" value="${CommentDTO.comment_no}">삭제</button>
 				</div>
@@ -483,13 +486,17 @@ td {
 		</c:if>
 	</div>
 
-	<div class="board_buttons">
+	<div class="board_btn">
 		<form name="frm" id="frm" method="get">
-			<input type="hidden" name="board_no" id="board_no"
-				value="${dto.board_no}" /> <input type="hidden" name="currentPage"
-				id="currentPage" value="${currentPage}" /> <input type="button"
-				id="list" value="목록" /> <input type="button" id="update" value="수정" />
-			<input type="button" id="delete" value="삭제" />
+			<input type="hidden" name="board_no" value="${dto.board_no}" /> 
+			<input type="hidden" name="currentPage" value="${currentPage}" />
+			<input type="hidden" name="comment_writer" value="${sessionScope.member.id}" /> 
+			<input type="button" class="list_btn" value="목록" /> 
+			
+			<c:if test="${member.member_no ==  dto.member_no}">
+				<input type="button" class="update_btn" value="수정" />
+				<input type="button" class="delete_btn" value="삭제" />
+			</c:if>
 		</form>
 	</div>
 </body>

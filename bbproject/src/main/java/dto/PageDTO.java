@@ -1,6 +1,9 @@
 package dto;
 
 public class PageDTO {
+
+	private int boardcategory_no;
+
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
 	private int blockCount = 15; // 한 페이지에 보여줄 레코드수
@@ -124,6 +127,14 @@ public class PageDTO {
 
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
+	}
+
+	public int getBoardcategory_no() {
+		return boardcategory_no;
+	}
+
+	public void setBoardcategory_no(int boardcategory_no) {
+		this.boardcategory_no = boardcategory_no;
 	}
 
 }
