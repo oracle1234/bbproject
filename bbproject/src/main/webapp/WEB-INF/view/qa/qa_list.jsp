@@ -83,6 +83,7 @@
 
 #keyWord {
 	width: 40%;
+	height: 30px;
 }
 
 #btnSearch {
@@ -117,6 +118,14 @@ td {
 
 .content a {
 	color: black;
+}
+
+#select{
+	height: 30px;
+}
+
+#image{
+	height:30px;
 }
 </style>
 
@@ -200,18 +209,19 @@ td {
 
 		<div class="board_search">
 			<form action="qa_search.do" id="search_frm" name="search_frm" method="get">
-				<select name="keyField" size="1">
+			
+				<select name="keyField" size="1" id="select">
 
-					<option value="qa_subject"><c:if
-							test="${'qa_subject'==keyField}">selected</c:if>제목
+					<option value="qa_subject">
+						제목
 					</option>
 
-					<option value="qa_writer"><c:if
-							test="${'qa_writer'==keyField}">selected</c:if>작성자
+					<option value="qa_writer">
+						작성자
 					</option>
 
 				</select> <input type="text" name="keyWord" id="keyWord" value="${keyWord}">
-				<input type="image" value="검색" src="./images/menu/button_find.png">
+				<input type="image" value="검색" src="./images/menu/button_find.png" id="image">
 
 			</form>
 		</div>

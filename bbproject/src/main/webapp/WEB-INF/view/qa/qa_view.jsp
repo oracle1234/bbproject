@@ -493,7 +493,8 @@ td {
 	<div class="board_btn">
 		<form name="frm" id="frm" method="get">
 			<input type="hidden" name="qa_no" id="qa_no" value="${dto.qa_no}" />
-			<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" /> 
+			<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" />
+			<input type="hidden" name="comment_writer" value="${sessionScope.member.id}" /> 
 			<input type="button" class="list_btn" value="목록" />
 
 			<c:if test="${member.member_no ==  dto.member_no}">

@@ -358,15 +358,14 @@ td {
 }
 
 #textarea {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	padding-left: 20px;
+	padding:20px;
 	text-align: left;
 	height: 450px;
 }
 
-.comment_str {
+#comment_str {
 	width: 40%;
+	height: 30px;
 }
 
 #comment_button {

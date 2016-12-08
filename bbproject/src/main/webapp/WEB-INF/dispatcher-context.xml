@@ -239,9 +239,9 @@
 			<mvc:mapping path="/boardtitlesearch.do" />
 			<mvc:mapping path="/boardcontentsearch.do" />
 			<mvc:mapping path="/ordersearch.do" />
-			<mvc:mapping path="/board_list.do" />
-			<mvc:mapping path="/qa_list.do" />
-			<mvc:mapping path="/photo_list.do" />
+			<mvc:mapping path="/board_write.do" />
+			<mvc:mapping path="/qa_write.do" />
+			<mvc:mapping path="/photo_write.do" />
 			<mvc:mapping path="/detail**" />
 			
 			<!-- 제외 시킬거 -->
