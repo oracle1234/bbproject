@@ -59,7 +59,7 @@ $(document).ready(
 							dataType : 'json',
 							url : "commentDelete.do?comment_no=" + cno
 									+ "&board_no=${dto.board_no}"
-									+ "&member_no=1",
+									+ "&member_no=${dto.member_no}",
 							success : comment_delete,
 							error : function(xhr, textStatus, error) {
 								alert("delete는 " + error);
@@ -97,7 +97,7 @@ $(document).ready(
 								type : 'POST',
 								dataType : 'json',
 								url : "commentUpdate.do",
-								data : "comment_no=" + uno + "&member_no=1"
+								data : "comment_no=" + uno + "&member_no=${dto.member_no}"
 										+ "&comment_content="
 										+ $('.updateCommentText').val()
 										+ "&board_no=${dto.board_no}",

@@ -259,16 +259,16 @@ public class BoardController {
 		insertMap.put("board_no", bdto.getBoard_no());
 		insertMap.put("member_no", cdto.getMember_no());
 		insertMap.put("comment_writer", cdto.getComment_writer());
-
-		// System.out.println(cpdto2.getCurrentPage());
-
+		
+//		System.out.println(cpdto2.getCurrentPage());
+		
 		service.commentInsertProcess(insertMap);
-
+		
 		int totalRecord = service.commentCountProcess(bdto.getBoard_no());
-
+		
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
+		
 		if (totalRecord >= 1) {
 			if (cpdto2.getCurrentPage() == 0)
 				currentPage = 1;

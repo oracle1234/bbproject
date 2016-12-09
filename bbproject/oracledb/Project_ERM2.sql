@@ -405,5 +405,5 @@ ALTER TABLE fb_request
 	REFERENCES fb_member (member_no) on delete cascade
 ;
 
-
-
+select * from FB_COMMENT;
+select * from fb_board;
