@@ -139,7 +139,7 @@ function qalist(qaqa){
  			var source='<tr>'+
  			'<td>{{qa_no}}</td>'+
  			'<td>질문과 답변</td>'+
- 			'<td>{{qa_subject}}</td>'+
+ 			'<td><a href="board_view.do?currentPage=1&board_no={{qa_no}}">{{qa_subject}}</td>'+
  			'<td>{{newDate qa_reg_date}}</td>'+
  		'</tr>'
  		var template=Handlebars.compile(source); 
@@ -163,7 +163,7 @@ function freelist(free){
  			var source='<tr>'+
  			'<td>{{board_no}}</td>'+
  			'<td>자유게시판</td>'+
- 			'<td>{{board_subject}}</td>'+
+ 			'<td><a href="board_view.do?currentPage=1&board_no={{board_no}}">{{board_subject}}</a></td>'+
  			'<td>{{newDate board_reg_date}}</td>'+
  		'</tr>'
  		var template=Handlebars.compile(source); 
@@ -224,7 +224,7 @@ function searchlist1(data){
 				<tr>
 					<td>${bdto.board_no}</td>
 					<td>자유게시판</td>
-					<td>${bdto.board_subject}</td>
+					<td><a href="board_view.do?currentPage=1&board_no=${bdto.board_no}">${bdto.board_subject}</a></td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" dateStyle="short"
 							value="${bdto.board_reg_date}" /></td>
 				</tr>
