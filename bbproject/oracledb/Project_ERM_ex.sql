@@ -1,12 +1,14 @@
 테이블명:fb_member
 select * from fb_member;
+delete from fb_member
+
 
 alter table fb_member drop (stamp);
 select * from fb_request;
 select * from fb_basket;
 insert into fb_member values 
-(1, '백나연', 'nayeon', '111111', '서울시 강북구 수유동', 
-01011111111, 'nayeon', 0, 0);
+(0, 'test', 'nayeon', '111111', '서울시 강북구 수유동', 
+01011111111, 'nayeon', 0);
 insert into fb_member values 
 (2, '이주훈', 'joohoon', '222222', '구리', 
 01022222222, 'joohoon', 0, 0);
@@ -425,11 +427,18 @@ select b.* from (
 		select * from fb_board where board_no>=1 order by board_no desc)a)b 
 		where b.rm>=1 and b.rm <=3		
 		
+	select * from fb_photo_board
+	
+		delete from fb_photo_board where photo_no = 31
+	
+	
+		insert into fb_photo_board 
+		values(SEQ_photo_no.nextval, 0, 2, '제목', '내용', sysdate, '0a17f5a1-dfef-4698-8ff0-e920b281ac72_22.jpg', '글쓴이')
 		
+		select * from fb_member
 		
-		
-		
-		
-		
-		
+select * from fb_boardcategory
+select * from fb_comment where qa_no > 1;
+
+delete from fb_comment where comment_no = 47 and member_no = 19
 		

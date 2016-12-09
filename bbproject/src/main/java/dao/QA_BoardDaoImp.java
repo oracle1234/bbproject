@@ -119,8 +119,7 @@ public class QA_BoardDaoImp implements QA_BoardDAO {
 
 	@Override
 	public void commentDeleteList(HashMap<String, Object> map) {
-
-		sqlSession.selectList("board.qa_commentDelete", map);
+		sqlSession.delete("board.qa_commentDelete", map);
 
 	}
 

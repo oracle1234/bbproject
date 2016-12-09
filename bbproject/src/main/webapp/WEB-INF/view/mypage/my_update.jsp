@@ -126,19 +126,17 @@ $(document).ready(function(){
 			var pwreg =$('#passup').val();
 
 			if(reg3.test(pwreg)){
-				alert("pw true 3");
+				//alert("pw true 3");
 			} else {
 				alert("특수문자는 반드시 포함되어야합니다.");
 			}
 			
 			if(reg4.test(pwreg)){
-				alert("pw true 4");
 			} else {
 				alert("숫자는 반드시 포함되어야합니다.");
 			}
 			
 			if(reg5.test(pwreg)){
-				alert("pw true 5");
 			} else {
 				alert("문자는 반드시 포함되어야합니다.");
 			}

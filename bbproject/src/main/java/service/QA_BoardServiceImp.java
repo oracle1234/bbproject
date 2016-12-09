@@ -139,7 +139,6 @@ public class QA_BoardServiceImp implements QA_BoardService {
 
 	@Override
 	public void commentDeleteProcess(HashMap<String, Object> map) {
-		
 		qdao.commentDeleteList(map);
 	}
 
