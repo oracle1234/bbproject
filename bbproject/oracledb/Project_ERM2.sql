@@ -21,7 +21,6 @@ DROP TABLE fb_coupon CASCADE CONSTRAINTS;
 DROP TABLE fb_member CASCADE CONSTRAINTS;
 
 
-
 /* Drop Sequences */
 
 DROP SEQUENCE SEQ_coupon_no;

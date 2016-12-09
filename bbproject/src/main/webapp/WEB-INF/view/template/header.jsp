@@ -154,8 +154,8 @@ var s_name = "${sessionScope.member.member_name}";
 	});
 
 	function chkfun() {
-		alert($("#loginidhea").val());
-		alert($("#loginpwhea").val());
+		//alert($("#loginidhea").val());
+		//alert($("#loginpwhea").val());
 		$.ajax({
 			type : "POST",
 			datatype : "json",

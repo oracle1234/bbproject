@@ -90,6 +90,18 @@ margin-top:10px;
 #aa{
     margin-left: 90px;
 }
+
+.joinbut{
+width:80px;
+height:40px;
+float: left;
+}
+/**/
+#aa{
+margin-left:30px;
+margin-top:20px;
+}
+
 </style>
 	<div class="mypage_body">
 	<div class="passwordle">
@@ -118,9 +130,9 @@ margin-top:10px;
 	</ul>
 	
 	<div id="aa">
-	<a id="okhrefle" href=""><input type="submit" id="okle" value="확인"/></a>
+	<a id="okhrefle" href=""><input type="submit" id="okle" value="확인" class="joinbut"/></a>
 	
-	<a href="mypage.do"><input type="button" id="nole" value="취소"></a>
+	<a href="mypage.do"><input type="button" id="nole" value="취소" class="joinbut"></a>
 	</div>
 	<div id="hiddenle">
 	<input type="text" name="id" id="idle">
