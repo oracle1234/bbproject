@@ -178,11 +178,11 @@
 	</insert>
 	
 	<delete id="qa_commentDelete" parameterType="hashmap">
-		delete from fb_comment where comment_no = #{comment_no} and member_no = #{member_no}
+		delete from fb_comment where comment_no=#{comment_no} and member_no=#{member_no}
 	</delete>
 
 	<update id="qa_commentUpdate" parameterType="hashmap">
-		update fb_comment set comment_content = #{comment_content} where comment_no = #{comment_no} and member_no = #{member_no}
+		update fb_comment set comment_content=#{comment_content} where comment_no=#{comment_no} and member_no=#{member_no}
 	</update>
 	
 	<update id="qa_readCount" parameterType="int">
@@ -242,8 +242,8 @@
 	</select>
 	
 	<insert id="photo_save" parameterType="dto.Photo_BoardDTO">
-		insert into fb_photo_board(boardcategory_no, member_no, photo_no, photo_writer, photo_content, photo_reg_date, photo_subject, photo_upload)  
-		values(3, 1, SEQ_photo_no.nextval,#{photo_writer}, #{photo_content}, sysdate, #{photo_subject}, #{photo_upload,jdbcType=VARCHAR})
+		insert into fb_photo_board  
+		values(SEQ_photo_no.nextval, #{member_no}, 2,#{photo_writer}, #{photo_content}, sysdate, #{photo_upload,jdbcType=VARCHAR}, #{photo_subject})
 	</insert>	
 
 	<select id="photo_uploadFile" parameterType="int" resultType="String">

@@ -160,11 +160,12 @@ select * from fb_board;
 select * from fb_photo_board;
 select * from fb_qa_board;
 
+select * from fb_review
 
 <<<<<<< HEAD
-insert into fb_board values(0,6,1,'ssfsdf','csdfdf',0,sysdate,'wr');
-insert into fb_photo_board values(0,6,2,'ssfsdf','csdfdf',sysdate,'wr.text','wr');
-insert into fb_qa_board values(0,6,3,'ssfsdf','csdfdf',0,sysdate,'wr','wr');
+insert into fb_board values(0,19,1,'ssfsdf','csdfdf',0,sysdate,'wr');
+insert into fb_photo_board values(0,19,2,'ssfsdf','csdfdf',sysdate,'wr.text','wr');
+insert into fb_qa_board values(0,19,3,'ssfsdf','csdfdf',0,sysdate,'wr','wr');
 =======
 
 insert into fb_boardcategory values 

@@ -46,6 +46,7 @@ public class BoardController {
 
 	public BoardController() {
 
+		
 	}
 
 	public void setService(BoardService service) {
@@ -552,7 +553,7 @@ public class BoardController {
 		deleteMap.put("comment_no", cdto.getComment_no());
 		deleteMap.put("qa_no", qdto.getQa_no());
 		deleteMap.put("member_no", mdto.getMember_no());
-
+		
 		qa_service.commentDeleteProcess(deleteMap);
 
 		int totalRecord = qa_service.commentCountProcess(qdto.getQa_no());
