@@ -186,12 +186,14 @@
 	height: 150px;
 	z-index: 1000;
 	border: 1px solid black;
-	background-color: blue;
+	background-color: white;
 	text-align: center;
 }
 
 #dialog{
 	display: none;
+	background-color: white;
+	border : 1px solid balck;
 }
 
 
@@ -345,8 +347,7 @@ $(document).ready(function() {
 			$(".basket_insimg").on("click", function() {
 				$("#dialog").dialog({
 					autoOpen: false,
-					width : "500px",
-					height : "500px",
+					width : "250px",
 					modal : true,
 					resizeable : false,
 					buttons : { // dialog 하단 버튼들

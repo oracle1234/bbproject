@@ -659,8 +659,9 @@ float:right;
 			</ul></li>
 		<li><a href='board_list.do'>BOARD</a>
 			<ul>
-				<li class='sub'><a href='board_list.do'>게시판1</a></li>
-				<li class='sub'><a href='qa_list.do'>게시판2</a></li>
+				<li class='sub'><a href='board_list.do'>자유게시판</a></li>
+				<li class='sub'><a href='qa_list.do'>Q&A</a></li>
+				<li class='sub'><a href='photo_list.do'>포토후기</a></li>
 			</ul></li>
 		<li class='last'><a href='mypage.do'>MYPAGE</a></li>
 	</ul>

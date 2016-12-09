@@ -549,14 +549,6 @@ $(document).ready(function() {
     
     $('#shop_orderBtn').on('click', function(){
     	
-    	var buyer_name =  $('#orderer_name').val();
-    	var buyer_tel = $('#firstPhone').val()+"-"+$('#secondPhone').val()+"-"+$('#lastPhone').val();
-    	var buyer_addr = $('#orderer_info_table #sample4_roadAddress').val() +" "+ $('#orderer_info_table #detailAddress').val();
-    	var buyer_postcode = $('#orderer_info_table #sample4_postcode').val(); 
-    	var am = $('#pay_type_table tr:nth-child(4) td').text();
-    	var amount = am.substring(0, am.length-1);
-    	var buyer_mail = $('#orderer_mail').val();
-    	var food_name = $('#order_t_food_name').text();
     	
 		if($('#orderer_name').val() == ""){
 			alert('주문자 이름을 입력하세요.');
@@ -618,22 +610,30 @@ $(document).ready(function() {
     	}
     	
     	var temp = $('.pay_type:checked').val();
-    	$('#userpoint').val(useSavemoney);
-    	$('#food_infoform').submit();
+    	var buyer_name =  $('#orderer_name').val();
+    	var buyer_tel = $('#firstPhone').val()+"-"+$('#secondPhone').val()+"-"+$('#lastPhone').val();
+    	var buyer_addr = $('#orderer_info_table #sample4_roadAddress').val() +" "+ $('#orderer_info_table #detailAddress').val();
+    	var buyer_postcode = $('#orderer_info_table #sample4_postcode').val(); 
+    	var am = $('#pay_type_table tr:nth-child(4) td').text();
+    	var amount = am.substring(0, am.length-1);
+    	var buyer_mail = $('#orderer_mail').val();
+    	var food_name = $('#order_t_food_name').text();
     	
-		/* if(temp == 'creditCard'){
+    	
+    	
+		 if(temp == 'creditCard'){
 			
 			IMP.request_pay({
 			    pg : 'danal_tpay',
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
+			    name : '반찬을 부탁해 결제',
 			    amount : 100,
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456'
+			    buyer_email : buyer_mail,
+			    buyer_name : buyer_name,
+			    buyer_tel : buyer_tel,
+			    buyer_addr : buyer_addr,
+			    buyer_postcode : buyer_postcode
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			        var msg = '결제가 완료되었습니다.';
@@ -642,7 +642,8 @@ $(document).ready(function() {
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
-			        $('#food_infoform').submit();
+			        $('#userpoint').val(useSavemoney);
+			    	$('#food_infoform').submit();
 			        
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
@@ -683,7 +684,7 @@ $(document).ready(function() {
 
 			    alert(msg);
 			});
-		} */
+		} 
     	
     	
     });
