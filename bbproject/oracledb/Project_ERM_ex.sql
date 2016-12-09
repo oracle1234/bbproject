@@ -399,7 +399,6 @@ insert into fb_boardcategory values
 insert into fb_boardcategory values
 (3, '포토후기');
 
-alter table 
 
  SET fb_board          fb_photo_board          fb_qa_board  
 
