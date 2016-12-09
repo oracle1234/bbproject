@@ -17,27 +17,19 @@
 	var member_id = "${sessionScope.member.id}";
 
 	$(document).ready(function() {
-		
-		$("#write").click(function(){
-			if(member_id == ''){
+
+		$("#write").click(function() {
+			if (member_id == '') {
 				alert("회원가입을 하세요.")
 				return false;
 			}
 		});
-		
+
 		var settings = {
 			containerResizeSpeed : 350
 		};
 		$('#gallery a').lightBox(settings);
 	});
-
-// 	$(function() {
-// 		var settings = {
-// 			containerResizeSpeed : 350
-// 		};
-// 		$('#gallery a').lightBox(settings);
-// 	});
-
 </script>
 <style type="text/css">
 #gallery {
@@ -85,17 +77,35 @@
 }
 
 .board_write {
-	padding: 20px 10px;
-	height: 30px;
+	padding-top: 10px;
+	padding-right: 10px;
+	text-align: right;
 }
 
 img {
 	margin-bottom: 20px;
 	margin-right: 10px;
 }
+
+#bodytop {
+	width: 950px;
+	height: 100px;
+}
+
+.bodyname {
+	font-size: 22px;
+	display: block;
+	font-family: "맑은 고딕", "malgun gothic", dotum;
+	font-weight: bold;
+	line-height: 100px;
+	margin-left: 25px;
+	float: left;
+}
 </style>
 <body>
-
+	<div id="bodytop">
+		<h3 class="bodyname">포토후기</h3>
+	</div>
 	<div id="gallery">
 		<ul id="photoList">
 			<c:forEach items="${aList}" var="idto">
@@ -111,7 +121,8 @@ img {
 		<div class="board_page">
 			<!-- 이전 출력 시작 -->
 			<c:if test="${pv.startPage>1}">
-				<a href="photo_list.do?boardcategory_no=2&currentPage=${pv.startPage-pv.blockPage}">이전</a>
+				<a
+					href="photo_list.do?boardcategory_no=2&currentPage=${pv.startPage-pv.blockPage}">이전</a>
 			</c:if>
 
 			<!-- 페이지 출력 시작 -->
@@ -124,7 +135,8 @@ img {
 
 			<!-- 페이지 출력 끝 -->
 			<c:if test="${pv.totalPage>pv.endPage}">
-				<a href="photo_list.do?boardcategory_no=2&currentPage=${pv.startPage+pv.blockPage}">다음</a>
+				<a
+					href="photo_list.do?boardcategory_no=2&currentPage=${pv.startPage+pv.blockPage}">다음</a>
 			</c:if>
 		</div>
 	</div>
