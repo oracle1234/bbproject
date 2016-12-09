@@ -16,7 +16,7 @@ var s_name = "${sessionScope.member.member_name}";
 			type : "POST",
 			datatype : "json",
 			url : "loginpro.do",
-			data : "id=" + $("#loginidint").val() + "&pw=" + $("#loginpwint").val(),
+			data : "id=" + $("#loginidintno").val() + "&pw=" + $("#loginpwintno").val(),
 			success : function(data) {
 				
 				if (data.chk == null) {
@@ -151,8 +151,8 @@ input {
 		</div>
 		<div class="login-formint">
 			<div id="formint">
-				<input type="text" class="signUpInput" value="" placeholder="이이디" id="loginidint" name="id"> 
-					<input type="password" class="signUpInput" value="" placeholder="비밀번호" id="loginpwint" name="pw">
+				<input type="text" class="signUpInput" value="" placeholder="아이디" id="loginidintno" name="id"> 
+					<input type="password" class="signUpInput" value="" placeholder="비밀번호" id="loginpwintno" name="pw">
 			</div>
 			<div id="loginbuttonint">
 				<a href="javascript:chkfun()"><img alt="" src="images/button_login.png"></a>

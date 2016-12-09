@@ -48,7 +48,7 @@
 				<span>상품이름</span>
 				</a></li>
 			</ul>
-			<a href=""><img src="images/quick_top_btn.png" alt="상단으로 이동"></a>
+			<a href=" " id="quick_top"><img src="images/quick_top_btn.png" alt="상단으로 이동" width="100px"></a>
 		</div>
 
 	<footer>

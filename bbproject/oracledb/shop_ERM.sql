@@ -10,6 +10,8 @@ insert into fb_review values (SEQ_review_no.nextval, 'adfasdfsdaf', 'ㅎㅎㅎ�
 select * from fb_coupon
 select * from fb_coupon_book
 
+select * from fb_member
+alter table fb_member drop column stamp;
 
 select count(*) from fb_foods where category_no = 3
 
@@ -137,6 +139,8 @@ select * from fb_category
 insert into fb_category values (SEQ_category_no.nextval, '국/찌개');
 insert into fb_category values (SEQ_category_no.nextval, '반찬');
 insert into fb_category values (SEQ_category_no.nextval, '김치');
+
+select * from fb_foods
 
 insert into fb_lately_product values('')
 select * from fb_lately_product
@@ -316,3 +320,13 @@ CREATE SEQUENCE SEQ_lately_no INCREMENT BY 1 START WITH 1 nocache nocycle;
 
 ----------------------------------------------테이블 변경사항 저장---------------------------------------------------------
 
+
+select * from fb_board
+
+insert into fb_board values(SEQ_board_no.nextval,0,'홍길동','내용',sysdate,'파일');
+
+
+select b.* from (
+		select rownum as rm, a.* from (
+		select * from fb_board where board_no>=1 order by board_no desc)a)b 
+		where b.rm>=1 and b.rm <=3

@@ -12,7 +12,7 @@ header {
 	background-color: black;
 }
 
-#main {
+#mainbody {
 	width: 1200px;
 	box-sizing: border-box;
 	text-align: center;
@@ -52,7 +52,15 @@ header {
 	
 }
 
-#main .title{
+#new ul{
+	border: 1px solid white;
+	width:750px;
+	height:150px;
+	margin-top:10px;
+	
+}
+
+#mainbody .title{
 	width:130px;
 	height:40px;
 }
@@ -63,6 +71,31 @@ header {
 #etc ul li{
 	float:left;
 }
+
+.main_photo{
+	width:250px;
+	height:150px;
+	border: 1px solid white;
+	float:left;
+}
+
+.main_photo img{
+	width:250px;
+	height:150px;
+}
+.main_content{
+	width:460px;
+	height:150px;
+	border: 1px solid white;
+	float:right;
+}
+
+.main_content p{
+	color:gray;
+	font-size:20px;
+	font-weight: bold;
+}
+
 
 #map{
 	width:308px;
@@ -154,3 +187,4 @@ a {
 	display: block;
 	box-shadow: 0 2px 10px #000;
 }
+

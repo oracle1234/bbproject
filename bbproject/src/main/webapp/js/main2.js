@@ -4,6 +4,11 @@
 
 $(function() {
 	/*퀵 메뉴*/
+	$("#quick_top").on("click", function() {
+		$(window).scrollTop(0);
+		return false;
+	});
+	
 	if(member_no != ""){
 		quick_left();
 		$("#quick_menu").css("display", "block");
@@ -11,13 +16,13 @@ $(function() {
 		$(window).on("scroll resize", function() {
 			var bodyHeight = $("#mainbody").height();
 			var scv = $(window).scrollTop() + defaultTop;
-			
 			if(scv >= bodyHeight){
 				scv = bodyHeight;
 				if(scv <= 600){
 					scv = 600;
 				}
 			}
+			
 			$("#quick_menu").stop().animate({
 				top : scv + "px",
 			}, 500);
@@ -98,6 +103,7 @@ $(function() {
 
 function quick_left() {
 	var wi = $(window).width();
+	
 	if(wi >= 1420){
 		var a = (wi - 1350) / 2;
 		var b = a + 1350 - 75;

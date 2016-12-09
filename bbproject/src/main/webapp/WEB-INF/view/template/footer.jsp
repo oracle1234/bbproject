@@ -28,14 +28,14 @@
 
 	<div class="shopinfo">
 		<p>
-			상호 : (주)더블유푸드마켓&nbsp;|&nbsp;대표자 : 신영수&nbsp;|&nbsp;통신판매업신고 :
-			제2016-서울마포-0111호&nbsp;|&nbsp;사업자등록번호 : 107-87-44713&nbsp;<a
+			상호 : (주)반찬을부탁해&nbsp;|&nbsp;대표자 : 이주훈&nbsp;|&nbsp;통신판매업신고 :
+			제2016-서울마포-0111호&nbsp;|&nbsp;사업자등록번호 : 123-45-678910&nbsp;<a
 				href="http://ftc.go.kr/info/bizinfo/communicationList.jsp"
 				target="_blank" style="text-decoration: underline">[사업자정보확인]</a><br>
-			웰메이드 센터 주소 : 인천광역시 부평구(청천동) 청중로 92 F1&nbsp;|&nbsp;본사 주소 : 서울특별시
-			마포구(합정동) 독막로 13 IH빌딩 B동 3층 <br>오피스2 : 서울특별시 마포구(합정동) 양화로6길 33<br>
+			웰메이드 센터 주소 : 서울 어딘가 반찬가게 &nbsp;|&nbsp;본사 주소 : 서울시 구로구 개봉3동
+			<br>오피스2 : 서울특별시 마포구(합정동) 양화로6길 54<br>
 			TEL : 02-6408-9770&nbsp;&nbsp;FAX : 02-2633-9770&nbsp;|&nbsp;이메일 :
-			hello@wfoodmarket.co.kr &nbsp;|&nbsp;개인정보관리책임자 : 주희찬<br> 고객님의
+			hello@wfoodmarket.co.kr &nbsp;|&nbsp;개인정보관리책임자 : 백나연<br> 고객님의
 			안전거래를 위해 현금 등으로 결제시 LG U+의 구매안전 서비스를 이용하실 수 있습니다.<a
 				onclick="goValidEscrow('ws_thebanchan');"
 				style="text-decoration: underline">[서비스 가입사실 확인]</a> <br>ⓒ
@@ -64,13 +64,13 @@
 			(토/일/공휴일은 휴무)
 			<ul class="sns">
 				<li><a href="https://www.facebook.com/%EB%B0%98%EC%B0%AC%EC%9D%84-%EB%B6%80%ED%83%81%ED%95%B4-174044316394697/?fref=ts"
-					target="_blank" title="더반찬 페이스북"><img
+					target="_blank" title="반찬을부탁해 페이스북"><img
 						src="http://file.thebanchan.co.kr/_data/_image/footer/sns_facebook.gif"></a></li>
 				<li><a href="https://www.instagram.com/thebanchan/"
-					target="_blank" title="더반찬 인스타그램"><img
+					target="_blank" title="반찬을부탁해 인스타그램"><img
 						src="http://file.thebanchan.co.kr/_data/_image/footer/sns_insta.gif"></a></li>
 				<li><a href="http://blog.naver.com/thebanchan/" target="_blank"
-					title="더반찬 네이버 블로그"><img
+					title="반찬을부탁해 네이버 블로그"><img
 						src="http://file.thebanchan.co.kr/_data/_image/footer/sns_blog.gif"></a></li>
 			</ul>
 		</span>
