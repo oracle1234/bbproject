@@ -224,7 +224,7 @@ background-color: white;
 } 
 
  .label{
-	width:120px;
+	width:150px;
 	height:40px;
 }
 
@@ -234,7 +234,7 @@ background-color: white;
 }
 
 .label2{
-	width:120px;
+	width:150px;
 	height:60px;
 }
 
@@ -266,6 +266,27 @@ height:40px;
 margin-top:10px;
 }
 
+#joinbut .joinbut{
+width:80px;
+height:40px;
+}
+
+#joinbut {
+margin-left:380px;
+margin-top:10px;
+}
+
+#jointable{
+margin-left:200px;
+}
+
+.join legend{
+text-align: center;
+margin-top:30px;
+font-size: 20px;
+font-weight: bold;
+}
+
 </style>
 	<div class="mypage_body">
 	<div class="password">
@@ -283,7 +304,7 @@ margin-top:10px;
 <fieldset>
 <legend>회원정보 수정</legend>
 
-<table>
+<table id="jointable">
 <tr>
 <td class="label"><label for="name">이름</label></td>
 <td class="form"><input type="text" name="member_name" id="member_nameup" readonly style="background-color: rgb(219, 219, 219);"/></td>
@@ -357,9 +378,9 @@ margin-top:10px;
 </fieldset>
 
 
-<p>
-<a id="okhrefup" href=""><input type="submit" value="확인" id="okup" /></a>
-<input type="reset" value="취소" />
+<p id="joinbut">
+<a id="okhrefup" href=""><input type="submit" value="확인" id="okup" class="joinbut"/></a>
+<input type="reset" value="취소" class="joinbut"/>
 </p>
 
 </form>

@@ -129,7 +129,7 @@ function photolist(data){
 			var source='<tr>'+
 			'<td>{{photo_no}}</td>'+
 			'<td>포토후기</td>'+
-			'<td>{{photo_subject}}</td>'+
+			'<td><a href="photo_view.do?currentPage=1&photo_no={{photo_no}}">{{photo_subject}}</a></td>'+
 			'<td>{{newDate photo_reg_date}}</td>'+
 			'</tr>';
 			var template=Handlebars.compile(source); 
@@ -166,7 +166,7 @@ function qalist(data){
  			var source='<tr>'+
  			'<td>{{qa_no}}</td>'+
  			'<td>질문과 답변</td>'+
- 			'<td>{{qa_subject}}</td>'+
+ 			'<td><a href="qa_view.do?currentPage=1&qa_no={{qa_no}}">{{qa_subject}}</a></td>'+
  			'<td>{{newDate qa_reg_date}}</td>'+
  		'</tr>';
  		var template=Handlebars.compile(source); 

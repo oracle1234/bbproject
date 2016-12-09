@@ -273,8 +273,9 @@ background-color: white;
 } 
 
  .label{
-	width:120px;
+	width:150px;
 	height:40px;
+	
 }
 
 .form{
@@ -283,7 +284,7 @@ background-color: white;
 }
 
 .label2{
-	width:120px;
+	width:150px;
 	height:60px;
 }
 
@@ -291,6 +292,28 @@ background-color: white;
 	width:780px;
 	height:60px;
 } 
+
+#joinbut .joinbut{
+width:80px;
+height:40px;
+}
+
+#joinbut {
+margin-left:380px;
+margin-top:10px;
+}
+
+#jointable{
+margin-left:200px;
+}
+
+.join legend{
+text-align: center;
+margin-top:30px;
+font-size: 20px;
+font-weight: bold;
+}
+
 </style>
 
 <div class="join">
@@ -298,7 +321,7 @@ background-color: white;
 <fieldset>
 <legend>회원가입</legend>
 
-<table>
+<table id="jointable">
 <tr>
 <td class="label"><label for="name">이름</label></td>
 <td class="form"><input type="text" name="member_name" id="member_name" /></td>
@@ -372,9 +395,9 @@ background-color: white;
 </fieldset>
 
 
-<p>
-<input type="submit" value="확인" id="joinok" />
-<input type="reset" value="취소" />
+<p id="joinbut">
+<input type="submit" value="확인" id="joinok" class="joinbut"/>
+<input type="reset" value="취소"  class="joinbut"/>
 </p>
 
 </form>
