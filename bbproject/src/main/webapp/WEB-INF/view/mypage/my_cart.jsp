@@ -13,6 +13,7 @@ $(document).ready(function() {
 		$('.cart_cb').prop('checked', this.checked);
 	});
 	
+		
 	 $('.count_select').on('click','.placeholder',function(){
 		  var parent = $(this).closest('.select');
 		  if ( ! parent.hasClass('is-open')){
