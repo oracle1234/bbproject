@@ -27,14 +27,14 @@
 <div id="mainbody">
 <div id="board">
 <img class="title" src="images/main_board.png">
-<c:forEach var="BoardDTO" items="${aList}">
 <table>
+<c:forEach items="${boardList}" var="dto">
 <tr>
-<td width="70%">${BoardDTO.board_subject}</td>
-<td width="30%"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_reg_date}"/></td>
+<td width="70%"><a href="board_view.do?currentPage=1&board_no=${dto.board_no }">${dto.board_subject}</a></td>
+<td width="30%"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${dto.board_reg_date}"/></td>
 </tr>
-</table>
 </c:forEach>
+</table>
 </div>
    <div class="container">
 		<iframe src="https://www.youtube.com/embed/fOyr5bvf-Wk?showinfo=0&am p;autoplay=1" frameborder="0" allowfullscreen></iframe>

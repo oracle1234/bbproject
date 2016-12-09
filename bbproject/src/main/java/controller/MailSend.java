@@ -19,7 +19,9 @@ public class MailSend {
 	public MailSend() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	//장바구니 들려서 메일
 	public MailSend(MemberDTO mdto, int price[], int amount[], String foods_name[]) {
 
 	
@@ -49,11 +51,13 @@ public class MailSend {
 			// 이메일 제목
 			msg.setSubject("반찬을부탁해에서 구매한 상품정보입니다.", "UTF-8");
 			// 이메일 내용
+			String tableStart = "<table border='1'><tr><th>상품명</th><th>상품가격</th><th>수량</th><th>합계</th></tr>";
 			String str = "";
+			String tableEnd = "</table>";
 			for (int i = 0; i < foods_name.length; i++) {
-				str += foods_name[i] + price[i];
+				str += "<tr><td>"+foods_name[i]+"</td>"+ "<td>"+ price[i] +"</td>" + "<td>"+ amount[i] + "</td>"+ "<td>"+ price[i]*amount[i]+"</td></tr>";
 			}
-			msg.setText(str);
+			msg.setText(tableStart+str+tableEnd);
 			// 이메일 헤더
 			msg.setHeader("content-Type", "text/html");
 			// 메일보내기
@@ -64,7 +68,9 @@ public class MailSend {
 			msg_e.printStackTrace();
 		}
 	}
-
+	
+	
+	///바로구매 메일
 	public MailSend(MemberDTO mdto, int price, int amount, String foods_name) {
 
 		Properties p = System.getProperties();
@@ -93,7 +99,11 @@ public class MailSend {
 			// 이메일 제목
 			msg.setSubject("반찬을부탁해에서 구매한 상품정보입니다.", "UTF-8");
 			// 이메일 내용
-			msg.setText("ㅋㅋ");
+			String tableStart = "<table border='1'><tr><th>상품명</th><th>상품가격</th><th>수량</th><th>합계</th></tr>";
+			String str = "";
+			String tableEnd = "</table>";
+				str += "<tr><td>"+foods_name+"</td>"+ "<td>"+ price +"</td>" + "<td>"+ amount + "</td>"+ "<td>"+ price*amount+"</td></tr>";
+			msg.setText(tableStart+str+tableEnd);
 			// 이메일 헤더
 			msg.setHeader("content-Type", "text/html");
 			// 메일보내기

@@ -32,7 +32,7 @@ public class ShopController {
 	private shop_PageDTO pdto;
 
 	public ShopController() {
-		// TODO Auto-generated constructor stubdd
+		// TODO Auto-generated constructor stubddsdf
 	}
 	public void setBasketService(fb_BasketService basketService) {
 		this.basketService = basketService;

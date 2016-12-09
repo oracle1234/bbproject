@@ -159,6 +159,7 @@ public class ProductController {
 		
 		int totalRecord = service.reviewCountProcess(fdto.getFoods_no());
 		HashMap<String, Object> pageMap = new HashMap<String, Object>();
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
 		if (totalRecord >= 1) {
 			// 첫 접속시 현재 페이지를 1로 지정
@@ -172,11 +173,10 @@ public class ProductController {
 			pageMap.put("startRow", pdto.getStartRow());
 			pageMap.put("endRow", pdto.getEndRow());
 			pageMap.put("foods_no", fdto.getFoods_no());
+			resultMap.put("ReviewDTO", service.reviewPageListProcess(pageMap));
+			resultMap.put("page", pdto);
 		}
 		
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("ReviewDTO", service.reviewPageListProcess(pageMap));
-		resultMap.put("page", pdto);
 		
 		return resultMap;
 		
@@ -271,7 +271,7 @@ public class ProductController {
 		str = "장바구니 추가완료";
 		}
 		else{
-		str = "이미 추가된 상품";	
+		str = "이미 추가된 상품입니다.";	
 		}
 		
 		return str;
