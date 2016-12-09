@@ -132,7 +132,7 @@ td {
 <body>
 	<div id="bodywrap">
 		<div id="bodytop">
-			<h3 class="bodyname">Q/A</h3>
+			<h3 class="bodyname">Q&A</h3>
 		</div>
 		<table id="table">
 			<tr id="col">

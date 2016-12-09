@@ -66,6 +66,11 @@
 	position: absolute;
 	top: 30px;
 }
+
+#dialog{
+	background-color: white;
+	border: 1px solid black;
+}
 </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -97,10 +102,13 @@
 		
 		$("#dialog").dialog({
 			autoOpen: false,
-			width : "500px",
-			height : "500px",
+			width : "250px",
 			modal : true,
 			resizeable : false,
+			overlay: { 
+				backgroundColor: '#000000', 
+				opacity: 0.8 
+			},
 			buttons : { // dialog 하단 버튼들
 				예 : function() {
 					window.location.href = "my_cart.do"; //장바구니 이동
@@ -399,7 +407,7 @@
 		</div>
 	</div>
 	<div id="dialog">
-		<p><br>
+		<p>장바구니에 추가되었습니다<br>
 			장바구니로 이동하시겠습니까?<br>
 		</p>
 	</div>

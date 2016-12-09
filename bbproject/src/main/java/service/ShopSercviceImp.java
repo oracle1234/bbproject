@@ -220,7 +220,7 @@ public class ShopSercviceImp implements ShopService {
 		requestMap.put("member_no", member_no);
 		requestMap.put("price", price);
 		requestMap.put("amount", amount);
-		requestMap.put("delivery_condition", "주문완료");
+		requestMap.put("delivery_condition", "입금완료");
 		requestMap.put("foods_no", foods_no);
 		requestMap.put("foods_name", foods_name);
 		
@@ -250,7 +250,7 @@ public class ShopSercviceImp implements ShopService {
 			requestMap.put("member_no", member_no);
 			requestMap.put("price", price[i]);
 			requestMap.put("amount", amount[i]);
-			requestMap.put("delivery_condition", "주문완료");
+			requestMap.put("delivery_condition", "입금완료");
 			requestMap.put("foods_no", foods_no[i]);
 			requestMap.put("foods_name", foods_name[i]);
 			
