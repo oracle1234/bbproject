@@ -188,3 +188,27 @@ a {
 	box-shadow: 0 2px 10px #000;
 }
 
+#photo ul li{
+	width : 150px;
+	margin: 7px;
+	float: left;
+}
+
+#photo ul li img{
+	width: 150px;
+}
+
+#main_board{
+	text-align: center;
+	width:390px;
+}
+
+#main_board td{
+	border-bottom: 1px solid gray;
+	height:40px;
+}
+
+.main_href{
+	text-decoration: none;
+	color: black;
+}

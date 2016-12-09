@@ -148,6 +148,7 @@
 	<!-- controller 등록 -->
 	<bean class="controller.MainController">
 		<property name="boardService" ref="boardService" />
+		<property name="photo_service" ref="photoService" />
 	</bean>
 
 	<bean class="controller.ImageController">

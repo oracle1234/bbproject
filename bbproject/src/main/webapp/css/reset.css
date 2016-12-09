@@ -9,3 +9,6 @@ input,select,button,select{vertical-align:middle;}
 h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
 address,caption,cite,code,
 dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+p, span {
+	font-family: "맑은고딕", "malgun gothic", dotum;
+}

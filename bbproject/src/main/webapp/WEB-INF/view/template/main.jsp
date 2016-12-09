@@ -12,7 +12,7 @@
 <script src="js/jquery.cookie.js"></script>
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/reset.css?var=2" media="all" />
 <!-- <link rel="stylesheet" type="text/css" href="css/header.css" media="all" /> -->
 <!-- <link rel="stylesheet" type="text/css" href="css/main.css?var=2" media="all" /> -->
 <link rel="stylesheet" type="text/css" href="css/menu.css" media="all" />
@@ -23,14 +23,70 @@
 <link rel="stylesheet" type="text/css" href="css/mainpage.css?var=2" />
 		
 </head>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+// 		$(document).on('mouseover','.main_hover>a>img', function(){
+// 			$(this).css({'width':'250px', 'height':'250px'});
+// 		});
+		
+		/* $(".main_hover>a>img").hover(function () {
+					$(this).css({'position':'absolute'});
+					$(this).css({'z-index' : "111"});
+					$(this).css({'margin-left' : "-60px"});
+					$(this).css({'margin-top' : "-60px"});
+					$(this).animate({
+					width: "250px" //커질크기
+					}, 300 ); //속도(slow, fast, 숫자...)
+					},
+					function () {
+// 					$(this).css({'position':'static'});
+					$(this).css({'z-index' : "0"});
+					$(this).css({'margin-left' : "-60px"});
+					$(this).css({'margin-top' : "-60px"});
+					$(this).animate({
+					width: "150px" //원래크기
+					}, 300 ); //속도(slow, fast, 숫자...)
+					}
+				)
+		
+		
+	}); */
+	
+	$(".main_hover>a>img").mouseover(function() {
+		$(this).css({'position':'absolute'});
+        $(this).animate({
+           'width' : '250px',
+           'height' : '250px',
+           'margin-left' : '-37.5px',
+           'margin-top' : '-37.5px',
+           'z-index' : 10000000
+        });
+        $(this).mouseout(function() {
+        	//$(this).css({'position':'static'});
+        	//$(this).css({'z-index' : "0"});
+           $(this).animate({
+              'width' : '150px',
+              'height' : '150px',
+              'margin-left' : '0px',
+              'margin-top' : '0px',
+            	  'z-index' : 0
+           });
+        });
+     });
+}); 
+	
+</script>
+
 <body>
 <div id="mainbody">
 <div id="board">
 <img class="title" src="images/main_board.png">
-<table>
+<table id="main_board">
 <c:forEach items="${boardList}" var="dto">
 <tr>
-<td width="70%"><a href="board_view.do?currentPage=1&board_no=${dto.board_no }">${dto.board_subject}</a></td>
+<td width="70%"><a class="main_href" href="board_view.do?currentPage=1&board_no=${dto.board_no }">${dto.board_subject}</a></td>
 <td width="30%"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${dto.board_reg_date}"/></td>
 </tr>
 </c:forEach>
@@ -41,9 +97,9 @@
       </div>
 <div id="new">
 <img class="title" src="images/main_new.png">
-<ul><li class="main_photo"><a href="detailProduct.do?foods_no=86"><img src="./images/new_1.jpg"></a></li><li class="main_content"><p>●참치김치찌개</p><span class="main_span">요즘처럼 경기가 안 좋을 때, 답답한 가슴 속까지 확 뚫어주는 얼큰한 김치찌개 생각나시죠? 어머니가 해주시던 깊은 그 맛으로 오늘 하루 속 시원하게 시작하세요.</span></li></ul>
-<ul><li class="main_photo"><a href="detailProduct.do?foods_no=84"><img src="./images/new_2.jpg"></a></li><li class="main_content"><p>●영양콩비지찌개</p><span class="main_span">오늘 저녁 뭘 해먹지? 고민이신 분들을 위해 반찬을 부탁해에서 제안하는 식탁요리, 올갱이 된장국입니다.</span></li></ul>
-<ul><li class="main_photo"><a href="detailProduct.do?foods_no=85"><img src="./images/new_3.jpg"></a></li><li class="main_content"><p>●올갱이된장국</p><span class="main_span">콩비지에는 현대인에게 부족하기 쉬운 식이섬유가 다량 함유되어 있습니다. 또한 콜레스테롤을 낮춰주고 혈액을 맑게 해주는 효능이 있어 동맥경화, 고혈압, 고지혈증과 같은 성인병예방에 도움이 됩니다.</span></li></ul>
+<ul><li class="main_photo"><a class="main_href" href="detailProduct.do?foods_no=86"><img src="./images/new_1.jpg"></a></li><li class="main_content"><p>●참치김치찌개</p><span class="main_span">요즘처럼 경기가 안 좋을 때, 답답한 가슴 속까지 확 뚫어주는 얼큰한 김치찌개 생각나시죠? 어머니가 해주시던 깊은 그 맛으로 오늘 하루 속 시원하게 시작하세요.</span></li></ul>
+<ul><li class="main_photo"><a class="main_href" href="detailProduct.do?foods_no=84"><img src="./images/new_2.jpg"></a></li><li class="main_content"><p>●영양콩비지찌개</p><span class="main_span">오늘 저녁 뭘 해먹지? 고민이신 분들을 위해 반찬을 부탁해에서 제안하는 식탁요리, 올갱이 된장국입니다.</span></li></ul>
+<ul><li class="main_photo"><a class="main_href" href="detailProduct.do?foods_no=85"><img src="./images/new_3.jpg"></a></li><li class="main_content"><p>●올갱이된장국</p><span class="main_span">콩비지에는 현대인에게 부족하기 쉬운 식이섬유가 다량 함유되어 있습니다. 또한 콜레스테롤을 낮춰주고 혈액을 맑게 해주는 효능이 있어 동맥경화, 고혈압, 고지혈증과 같은 성인병예방에 도움이 됩니다.</span></li></ul>
 </div>
 
 <div id="etc">
@@ -64,8 +120,8 @@
 <div id="photo">
 <img class="title" src="images/main_photo.png">
 <ul>
-<c:forEach items="${aList}" var="idto">
-<li><a href="#"><img alt="후기이미지" src="photo_image.do?filename=${idto.photo_upload}" width="200"></a></li>
+<c:forEach items="${photoList}" var="idto">
+<li class="main_hover"><a href="#"><img alt="후기이미지" src="photo_image.do?filename=${idto.photo_upload}"></a></li>
 </c:forEach>
 </ul>
 </div>

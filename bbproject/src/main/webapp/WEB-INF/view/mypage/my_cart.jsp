@@ -26,11 +26,24 @@ $(document).ready(function() {
 		  parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
 		});
 	 
-		$('#cart_order').on('click', function(){
-			 $("input[name=cart_cb]:checked").each(function(){
-				 $(this).next().prop("name", "checkfood");
-			 });
-		});
+// 		$('#cart_order').on('click', function(){
+// 			 $("input[name=cart_cb]:checked").each(function(){
+// 				 $(this).next().prop("name", "checkfood");
+// 			 });
+// 		});
+	      $('#cart_order').on('click', function(){
+	          
+	          if($('input:checkbox[name="cart_cb"]:checked').length==0){
+	              alert("주문할 음식을 선택해 주세요.");
+	              return false;
+	           }else{
+	           $("input[name=cart_cb]:checked").each(function(){
+	              $(this).next().prop("name", "checkfood");
+	           });
+	           }
+	           
+	       });
+		
 	$(document).on('click', '.upd_amount',function(){
 		 $.ajax({
 		 type : 'GET', 
