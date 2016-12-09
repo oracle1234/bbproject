@@ -403,7 +403,7 @@ alter table
 
  SET fb_board          fb_photo_board          fb_qa_board  
 
->>>>>>> refs/remotes/origin/nayeon
+>>>>>>> refs/remotes/origin/nayeonsadfds
 
 select boardcategory_no as tt, a.*
 from fb_photo_board a
@@ -412,3 +412,10 @@ where member_no=2 and photo_subject like '%2%'
 select board_no, board_readcount, member_no as bmno, boardcategory_no as bcno, board_writer, board_subject, board_content, board_reg_date 
 		from fb_board
 		where member_no=2  and board_subject like '%2%'
+		
+		delete from fb_member where id = 'aa'
+		
+		select *
+		from FB_MEMBER a, FB_COUPON_BOOK b, FB_COUPON c
+		where a.member_no = b.member_no(+) and b.coupon_no = c.coupon_no(+)
+		and a.member_no = (select member_no from fb_member where id = 'aa' and pw = '1234')
