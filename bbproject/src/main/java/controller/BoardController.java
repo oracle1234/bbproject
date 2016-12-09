@@ -46,6 +46,7 @@ public class BoardController {
 
 	public BoardController() {
 
+		
 	}
 
 	public void setService(BoardService service) {
