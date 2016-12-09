@@ -41,9 +41,9 @@
       </div>
 <div id="new">
 <img class="title" src="images/main_new.png">
-<ul><li class="main_photo"><img src="./images/new_1.jpg"></li><li class="main_content"><p>●참치김치찌개</p><span class="main_span">요즘처럼 경기가 안 좋을 때, 답답한 가슴 속까지 확 뚫어주는 얼큰한 김치찌개 생각나시죠? 어머니가 해주시던 깊은 그 맛으로 오늘 하루 속 시원하게 시작하세요.</span></li></ul>
-<ul><li class="main_photo"><img src="./images/new_2.jpg"></li><li class="main_content"><p>●영양콩비지찌개</p><span class="main_span">오늘 저녁 뭘 해먹지? 고민이신 분들을 위해 반찬을 부탁해에서 제안하는 식탁요리, 올갱이 된장국입니다.</span></li></ul>
-<ul><li class="main_photo"><img src="./images/new_3.jpg"></li><li class="main_content"><p>●올갱이된장국</p><span class="main_span">콩비지에는 현대인에게 부족하기 쉬운 식이섬유가 다량 함유되어 있습니다. 또한 콜레스테롤을 낮춰주고 혈액을 맑게 해주는 효능이 있어 동맥경화, 고혈압, 고지혈증과 같은 성인병예방에 도움이 됩니다.</span></li></ul>
+<ul><li class="main_photo"><a href="detailProduct.do?foods_no=86"><img src="./images/new_1.jpg"></a></li><li class="main_content"><p>●참치김치찌개</p><span class="main_span">요즘처럼 경기가 안 좋을 때, 답답한 가슴 속까지 확 뚫어주는 얼큰한 김치찌개 생각나시죠? 어머니가 해주시던 깊은 그 맛으로 오늘 하루 속 시원하게 시작하세요.</span></li></ul>
+<ul><li class="main_photo"><a href="detailProduct.do?foods_no=84"><img src="./images/new_2.jpg"></a></li><li class="main_content"><p>●영양콩비지찌개</p><span class="main_span">오늘 저녁 뭘 해먹지? 고민이신 분들을 위해 반찬을 부탁해에서 제안하는 식탁요리, 올갱이 된장국입니다.</span></li></ul>
+<ul><li class="main_photo"><a href="detailProduct.do?foods_no=85"><img src="./images/new_3.jpg"></a></li><li class="main_content"><p>●올갱이된장국</p><span class="main_span">콩비지에는 현대인에게 부족하기 쉬운 식이섬유가 다량 함유되어 있습니다. 또한 콜레스테롤을 낮춰주고 혈액을 맑게 해주는 효능이 있어 동맥경화, 고혈압, 고지혈증과 같은 성인병예방에 도움이 됩니다.</span></li></ul>
 </div>
 
 <div id="etc">
@@ -52,7 +52,8 @@
 <img alt="" src="images/main_1.png">
 </li>
 <li id="company">
-<img alt="" src="images/main_2.png">
+<a href="https://www.facebook.com/%EB%B0%98%EC%B0%AC%EC%9D%84-%EB%B6%80%ED%83%81%ED%95%B4-174044316394697/?fref=ts"
+					target="_blank" title="더반찬 페이스북"><img alt="" src="images/main_2.png"></a>
 </li>
 <li id="bb">
 <img alt="" src="images/main_3.png">
