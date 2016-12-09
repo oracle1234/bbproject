@@ -379,8 +379,8 @@ td {
 }
 
 .board_btn {
-	padding: 20px 50px;
-	text-align: center;
+	padding: 20px;
+	float: right;
 }
 
 .board_page {
@@ -391,18 +391,30 @@ td {
 .updateShow {
 	visibility: block;
 	position: absolute;
-	width: 400px;
-	height: 200px;
+	width:300px;
+	height: 70px;
 	top: 600px;
 	left: 850px;
-	border: 1px solid gray;
-	text-align: left;
+	border: 1px solid black;
+	padding: 10px;
 }
 
 .updateHide {
 	visibility: hidden;
 	width: 0px;
 	height: 0px;
+}
+
+.comment_row{
+	margin-bottom: 30px;
+	text-align: left;
+	padding-left: 50px;
+}
+
+.updateCommentText{
+	width:290px;
+	height: 30px;
+	margin-bottom: 10px;
 }
 </style>
 
@@ -493,15 +505,14 @@ td {
 
 	<div class="board_btn">
 		<form name="frm" id="frm" method="get">
-			<input type="hidden" name="qa_no" value="${dto.qa_no}" /> <input
-				type="hidden" name="currentPage" value="${currentPage}" /> <input
-				type="hidden" name="comment_writer"
-				value="${sessionScope.member.id}" /> <input type="button"
-				class="list_btn" value="목록" />
+			<input type="hidden" name="qa_no" value="${dto.qa_no}" /> 
+			<input type="hidden" name="currentPage" value="${currentPage}" /> 
+			<input type="hidden" name="comment_writer" value="${sessionScope.member.id}" /> 
+			<input type="image" class="list_btn" alt="목록" src="./images/menu/button_list.png" />
 
 			<c:if test="${member.member_no ==  dto.member_no}">
-				<input type="button" class="update_btn" value="수정" />
-				<input type="button" class="delete_btn" value="삭제" />
+				<input type="image" class="update_btn" alt="수정" src="./images/menu/button_modify.png" />
+				<input type="image" class="delete_btn" alt="삭제" src="./images/menu/button_delete.png" />
 			</c:if>
 		</form>
 	</div>

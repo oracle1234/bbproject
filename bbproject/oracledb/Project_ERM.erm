@@ -10,9 +10,9 @@
 		<right_margin>30</right_margin>
 	</page_setting>
 	<category_index>0</category_index>
-	<zoom>0.8</zoom>
-	<x>29</x>
-	<y>585</y>
+	<zoom>0.75</zoom>
+	<x>0</x>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -110,7 +110,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2016-12-06 10:25:29</creation_date>
-			<updated_date>2016-12-08 15:04:48</updated_date>
+			<updated_date>2016-12-09 09:19:20</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1229,12 +1229,12 @@
 	<contents>
 		<table>
 			<id>0</id>
-			<height>103</height>
-			<width>218</width>
+			<height>107</height>
+			<width>225</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>62</x>
-			<y>1038</y>
+			<x>1236</x>
+			<y>23</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1383,11 +1383,11 @@
 		<table>
 			<id>1</id>
 			<height>86</height>
-			<width>236</width>
+			<width>243</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>618</x>
-			<y>1038</y>
+			<x>1536</x>
+			<y>179</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1503,11 +1503,11 @@
 		<table>
 			<id>2</id>
 			<height>233</height>
-			<width>273</width>
+			<width>274</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>332</x>
-			<y>1165</y>
+			<x>1236</x>
+			<y>156</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -2033,8 +2033,8 @@
 			<width>249</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>46</x>
-			<y>768</y>
+			<x>972</x>
+			<y>36</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -2043,7 +2043,7 @@
 			<connections>
 				<relation>
 					<id>5</id>
-					<source>9</source>
+					<source>16</source>
 					<target>4</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2065,7 +2065,7 @@
 				</relation>
 				<relation>
 					<id>6</id>
-					<source>16</source>
+					<source>9</source>
 					<target>4</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2129,7 +2129,7 @@
 				<normal_column>
 					<id>18</id>
 					<referenced_column>82</referenced_column>
-					<relation>6</relation>
+					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2163,7 +2163,7 @@
 				<normal_column>
 					<id>19</id>
 					<referenced_column>46</referenced_column>
-					<relation>5</relation>
+					<relation>6</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2374,8 +2374,8 @@
 			<width>250</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>343</x>
-			<y>783</y>
+			<x>972</x>
+			<y>282</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -2725,50 +2725,6 @@
 			<connections>
 				<relation>
 					<id>9</id>
-					<source>4</source>
-					<target>6</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
-						<color>
-							<r>0</r>
-							<g>0</g>
-							<b>0</b>
-						</color>
-					<child_cardinality>1..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<name></name>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-					<referenced_column>null</referenced_column>
-					<referenced_complex_unique_key>null</referenced_complex_unique_key>
-				</relation>
-				<relation>
-					<id>10</id>
-					<source>5</source>
-					<target>6</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
-						<color>
-							<r>0</r>
-							<g>0</g>
-							<b>0</b>
-						</color>
-					<child_cardinality>1..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<name></name>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-					<referenced_column>null</referenced_column>
-					<referenced_complex_unique_key>null</referenced_complex_unique_key>
-				</relation>
-				<relation>
-					<id>11</id>
 					<source>10</source>
 					<target>6</target>
 						<source_xp>-1</source_xp>
@@ -2790,8 +2746,52 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 				<relation>
-					<id>12</id>
+					<id>10</id>
+					<source>4</source>
+					<target>6</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>11</id>
 					<source>16</source>
+					<target>6</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>12</id>
+					<source>5</source>
 					<target>6</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2855,7 +2855,7 @@
 				<normal_column>
 					<id>34</id>
 					<referenced_column>17</referenced_column>
-					<relation>9</relation>
+					<relation>10</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2889,7 +2889,7 @@
 				<normal_column>
 					<id>35</id>
 					<referenced_column>48</referenced_column>
-					<relation>11</relation>
+					<relation>9</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2923,7 +2923,7 @@
 				<normal_column>
 					<id>36</id>
 					<referenced_column>25</referenced_column>
-					<relation>10</relation>
+					<relation>12</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3056,7 +3056,7 @@
 				<normal_column>
 					<id>40</id>
 					<referenced_column>82</referenced_column>
-					<relation>12</relation>
+					<relation>11</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3112,7 +3112,7 @@
 			<connections>
 				<relation>
 					<id>13</id>
-					<source>14</source>
+					<source>16</source>
 					<target>7</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -3134,7 +3134,7 @@
 				</relation>
 				<relation>
 					<id>14</id>
-					<source>16</source>
+					<source>14</source>
 					<target>7</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -3165,7 +3165,7 @@
 				<normal_column>
 					<id>41</id>
 					<referenced_column>82</referenced_column>
-					<relation>14</relation>
+					<relation>13</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3199,7 +3199,7 @@
 				<normal_column>
 					<id>42</id>
 					<referenced_column>65</referenced_column>
-					<relation>13</relation>
+					<relation>14</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3275,11 +3275,11 @@
 		<table>
 			<id>8</id>
 			<height>88</height>
-			<width>239</width>
+			<width>253</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1031</x>
-			<y>504</y>
+			<x>48</x>
+			<y>648</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -3472,8 +3472,8 @@
 			<width>248</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>648</x>
-			<y>772</y>
+			<x>973</x>
+			<y>528</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -3843,11 +3843,11 @@
 		<table>
 			<id>11</id>
 			<height>86</height>
-			<width>234</width>
+			<width>241</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>332</x>
-			<y>1038</y>
+			<x>1476</x>
+			<y>34</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -4083,7 +4083,7 @@
 			<connections>
 				<relation>
 					<id>17</id>
-					<source>12</source>
+					<source>16</source>
 					<target>13</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -4105,7 +4105,7 @@
 				</relation>
 				<relation>
 					<id>18</id>
-					<source>16</source>
+					<source>12</source>
 					<target>13</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -4169,7 +4169,7 @@
 				<normal_column>
 					<id>63</id>
 					<referenced_column>82</referenced_column>
-					<relation>18</relation>
+					<relation>17</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4203,7 +4203,7 @@
 				<normal_column>
 					<id>64</id>
 					<referenced_column>59</referenced_column>
-					<relation>17</relation>
+					<relation>18</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4249,8 +4249,8 @@
 			<width>272</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>998</x>
-			<y>199</y>
+			<x>336</x>
+			<y>504</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -4354,7 +4354,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>48</word_id>
+					<word_id>47</word_id>
 					<id>67</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4643,7 +4643,7 @@
 			<connections>
 				<relation>
 					<id>20</id>
-					<source>16</source>
+					<source>14</source>
 					<target>15</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -4665,7 +4665,7 @@
 				</relation>
 				<relation>
 					<id>21</id>
-					<source>14</source>
+					<source>16</source>
 					<target>15</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -4696,7 +4696,7 @@
 				<normal_column>
 					<id>75</id>
 					<referenced_column>82</referenced_column>
-					<relation>20</relation>
+					<relation>21</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4728,7 +4728,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>47</word_id>
+					<word_id>48</word_id>
 					<id>76</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4862,7 +4862,7 @@
 				<normal_column>
 					<id>80</id>
 					<referenced_column>65</referenced_column>
-					<relation>21</relation>
+					<relation>20</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5232,12 +5232,12 @@
 		</table>
 		<table>
 			<id>17</id>
-			<height>149</height>
-			<width>238</width>
+			<height>170</height>
+			<width>252</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1032</x>
-			<y>12</y>
+			<x>636</x>
+			<y>607</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -5246,7 +5246,7 @@
 			<connections>
 				<relation>
 					<id>22</id>
-					<source>14</source>
+					<source>16</source>
 					<target>17</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -5268,7 +5268,7 @@
 				</relation>
 				<relation>
 					<id>23</id>
-					<source>16</source>
+					<source>14</source>
 					<target>17</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -5299,7 +5299,7 @@
 				<normal_column>
 					<id>90</id>
 					<referenced_column>82</referenced_column>
-					<relation>23</relation>
+					<relation>22</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -5465,7 +5465,7 @@
 				<normal_column>
 					<id>95</id>
 					<referenced_column>65</referenced_column>
-					<relation>22</relation>
+					<relation>23</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
