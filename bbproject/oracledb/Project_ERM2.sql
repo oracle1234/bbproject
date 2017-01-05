@@ -201,6 +201,7 @@ CREATE TABLE fb_coupon_book
 	couponbook_no number NOT NULL,
 	member_no number NOT NULL,
 	coupon_no number NOT NULL,
+	/*coupon_state number CHECK (coupon_state = 0 OR coupon_state = 1) not null,*/
 	PRIMARY KEY (couponbook_no)
 );
 
@@ -258,6 +259,13 @@ CREATE TABLE fb_review
 	PRIMARY KEY (review_no)
 );
 
+
+CREATE TABLE fb_delivery_cost
+(
+	fb_delivery_no number NOT NULL,
+	fb_delivery_cost number NOT NULL,
+	PRIMARY KEY (fb_delivery_no)
+);
 
 
 /* Create Foreign Keys */
@@ -404,6 +412,3 @@ ALTER TABLE fb_request
 	ADD CONSTRAINT fk_request_member_no FOREIGN KEY (member_no)
 	REFERENCES fb_member (member_no) on delete cascade
 ;
-
-select * from FB_COMMENT;
-select * from fb_board;

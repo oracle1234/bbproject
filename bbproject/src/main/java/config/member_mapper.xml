@@ -8,7 +8,7 @@
 	<insert id="ins" parameterType="dto.MemberDTO">
 		insert all
 		into fb_member values (SEQ_member_no.nextval, #{member_name}, #{id}, #{pw}, replace(#{address},',',''), replace(#{tel},',',''), replace(#{mail},',',''), 0)
-		into fb_coupon_book	values(SEQ_couponbook_no.nextval, SEQ_member_no.nextval, 1)
+		into fb_coupon_book values(SEQ_couponbook_no.nextval, SEQ_member_no.nextval, 1)
 		select * from dual
 	</insert>
 

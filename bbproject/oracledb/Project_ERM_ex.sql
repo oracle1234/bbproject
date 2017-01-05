@@ -1,76 +1,23 @@
 테이블명:fb_member
+delete from fb_member;
 select * from fb_member;
-delete from fb_member
-
-
-alter table fb_member drop (stamp);
-select * from fb_request;
-select * from fb_basket;
 insert into fb_member values 
-(0, 'test', 'nayeon', '111111', '서울시 강북구 수유동', 
+(1, '나연', 'nayeon', '111111', '서울시 강북구 수유동', 
 01011111111, 'nayeon', 0);
 insert into fb_member values 
 (2, '이주훈', 'joohoon', '222222', '구리', 
-01022222222, 'joohoon', 0, 0);
+01022222222, 'joohoon', 0);
 insert into fb_member values 
 (3, '김연성', 'yeonsung', '333333', '일산', 
-01033333333, 'yeonsung', 0, 0);
+01033333333, 'yeonsung', 0);
 insert into fb_member values 
 (4, '유재민', 'jaemin', '444444', '종각', 
-01044444444, 'jaemin',0, 0, 0);
+01044444444, 'jaemin',0);
 insert into fb_member values 
-<<<<<<< HEAD
 (0, '관리자', 'admin', 'admin', '종각', '01044444444', 'admin.com', 0);
-=======
-(1, '관리자', 'admin', 'admin', '종각', 
-01044444444, 'admin', 0, 0);
-
-select *
-	from fb_request
-where member_no=1 and 
-    day >= to_date('2016-11-11','yyyy-mm-dd')
-    and day < to_date('2016-12-7','yyyy-mm-dd')+1;
-    
-
-	select *
-	from fb_request
-where member_no=1 and 
-    day >= to_date('2016-11-11','YYYY-MM-DD')
-    and day <= to_date('2016-12-5','YYYY-MM-DD')
-
-	
-	
->>>>>>> refs/remotes/origin/min
-	split
-	select id
-	from fb_member
-	where member_name='유재민' and mail='jaemin@paran.com,'
-	
-		select pw
-	from fb_member
-	where id='jaemin' and member_name='유재민' and mail='jaemin@paran.com,'
-	
-	
-		update fb_member
-	set
-	pw='jamin123'
-	where id='jaemin' and member_name='유재민' and mail='jaemin@paran.com,'
-	
-	replace(#{mail},',','')
-	
-	update fb_member
-	set
-	pw='12345', tel='수정', mail='수정', address='수정'
-	where id='nayeon6222' and member_name='백나연'
-	
-	delete 
-	from fb_member
-	where member_no >2 and member_no <43
-delete 
-from fb_member
-where member_no=4
 
 테이블명:fb_category
+delete from fb_category;
 select * from fb_category;
 insert into fb_category values 
 (1, '요리');
@@ -80,7 +27,7 @@ insert into fb_category values
 (3, '국, 찌개');
 
 테이블명:fb_boardcategory
-delete from fb_boardcategory
+delete from fb_boardcategory;
 select * from fb_boardcategory;
 insert into fb_boardcategory values 
 (1, '자유게시판');
@@ -88,9 +35,6 @@ insert into fb_boardcategory values
 (2, '포토후기');
 insert into fb_boardcategory values 
 (3, 'QA게시판');
-
-테이블명:fb_boardcategory
-select * from fb_boardcategory;
 
 테이블명:fb_delivery_cost
 select * from fb_delivery_cost;
@@ -136,7 +80,6 @@ where foods_no=1;
 장바구니 음식 삭제
 delete from fb_basket
 where foods_no=1;
-
 
 --주훈오빠
 select foods_no, price, amount
@@ -258,8 +201,8 @@ select * from
 		select * from fb_review where foods_no = 1
 		
 		
-주문내역
-select * from fb_request
+테이블명:fb_request
+select * from fb_request;
 insert into fb_request values
 (1, 3000, 3, 1, sysdate, '배송전', 1);
 insert into fb_request values
@@ -280,8 +223,10 @@ select day, foods_no, price, delivery_condition, amount
 from fb_request
 where member_no=1;
 
-쿠폰
-select * from fb_coupon
+
+테이블명:fb_coupon
+delete from fb_coupon;
+select * from fb_coupon;
 insert into fb_coupon values
 (1, '가입 선물', 2000);
 insert into fb_coupon values
@@ -289,7 +234,10 @@ insert into fb_coupon values
 insert into fb_coupon values
 (3, '크리스마스 선물', 2500);
 
-select * from FB_COUPON_BOOK
+
+테이블명:fb_coupon_book
+delete from fb_coupon_book;
+select * from FB_COUPON_BOOK;
 insert into FB_COUPON_BOOK values
 (1, 1, 1, '미사용');
 insert into FB_COUPON_BOOK values

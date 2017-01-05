@@ -641,7 +641,7 @@ float:right;
 </div>
 <div class='menu'>
 	<ul>
-		<li><a href='main.do'><img alt="" src="images/bb_logomain.png"></a></li>
+		<li><a href='main.do'><img alt="로고" src="images/logo.png"></a></li>
 		<li><a href='shop.do'>SHOP</a>
 
 			<ul>
