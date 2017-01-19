@@ -136,7 +136,11 @@ public class ShopController {
 	public ModelAndView buyPostPage(FoodsDTO fdto, HttpServletRequest req, String[] checkfood) {
 		ModelAndView mav = new ModelAndView();
 		MemberDTO mdto = (MemberDTO) req.getSession().getAttribute("member");
-
+		
+		System.out.println(checkfood[0]);
+		System.out.println(checkfood[1]);
+		System.out.println(checkfood[2]);
+		
 		String uc = req.getHeader("referer");
 
 		String address[] = mdto.getAddress().split("/");

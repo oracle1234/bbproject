@@ -332,3 +332,5 @@ select b.* from (
 		select rownum as rm, a.* from (
 		select * from fb_board where board_no>=1 order by board_no desc)a)b 
 		where b.rm>=1 and b.rm <=3
+		
+select * from fb_category

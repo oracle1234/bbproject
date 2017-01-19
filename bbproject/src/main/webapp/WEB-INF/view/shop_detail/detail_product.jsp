@@ -730,11 +730,9 @@ $(document).ready(function() {
 
 						</table>
 						<div class="deli_img">
-							<img alt="무료배송안내이미지" src="./images/baesong_info.png"> <input
-								type="image" id="buy_insimg" alt="바로구매이미지"
-								src="./images/shop_buy.png"> <input type="image"
-								class="basket_insimg" alt="장바구니이미지"
-								src="./images/shop_basket.png">
+							<img alt="무료배송안내이미지" src="./images/baesong_info.png">
+							<input type="image" id="buy_insimg" alt="바로구매이미지" src="./images/shop_buy.png">
+							<input type="image" class="basket_insimg" alt="장바구니이미지" src="./images/shop_basket.png">
 						</div>
 
 					</div>

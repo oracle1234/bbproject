@@ -71,5 +71,15 @@ select *
 from FB_COUPON_BOOK
 where member_no = 2
 		
+select * from fb_member
+insert into fb_member values (SEQ_member_no.nextval, '관리자', 'admin', '1', '서울,구로,개봉', '010,3892,6638', 'pwljh@naver.com', 1000);
+insert into fb_coupon_book values (SEQ_couponbook_no.nextval, '2', '1');
+
+select * from fb_coupon_book
+
+select * from fb_coupon
+
+insert into fb_member values ('2', '이주훈', 'pwljh', '1', '서울시 /구로구 /개봉3동', '010-3842-4053', 'pwljh@naver.com', 0)
+	
 		
-		
+select * from fb_member
